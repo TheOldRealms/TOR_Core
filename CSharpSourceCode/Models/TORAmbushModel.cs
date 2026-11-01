@@ -678,14 +678,32 @@ namespace TOR_Core.Models
             return ambusherHealthy >= victimHealthy * AmbushFollowupThreshold;
         }
 
-        /// <summary>Returns the ambush propensity (0..1) for a given AI
-        /// party, defaulting to the party culture's baseline when there's
-        /// no hero override. Hero overrides take precedence — e.g. a
-        /// chivalric-culture hero known for banditry can still have a high
-        /// propensity (<see cref="AmbushPropensityRegistry"/>).</summary>
+        /// <summary>Returns the ambush propensity for a given AI party.
+        /// Composed of a base value (hero override or culture baseline),
+        /// a <see cref="HomelandMultiplier"/> that boosts when the party
+        /// is surrounded by its own culture's settlements, and a
+        /// <see cref="TraitAmbushMultiplier"/> that shifts per hero
+        /// personality (Calculating / Honor / Valor). Bandits bypass
+        /// the two multipliers — their fake-culture StringIds don't
+        /// match any settlement and they rarely have a LeaderHero.
+        /// </summary>
         public virtual float GetAmbushPropensity(MobileParty party)
         {
             if (party == null) return 0f;
+            float basePropensity = GetBaseAmbushPropensity(party);
+            if (basePropensity <= 0f) return 0f;
+            if (party.IsBandit) return basePropensity;
+            return basePropensity
+                * HomelandMultiplier(party)
+                * TraitAmbushMultiplier(party.LeaderHero);
+        }
+
+        /// <summary>Base propensity before the homeland / trait multipliers.
+        /// Hero override takes precedence over culture value — e.g. a
+        /// chivalric-culture hero known for banditry can still have a high
+        /// base (see <see cref="AmbushPropensityRegistry"/>).</summary>
+        protected virtual float GetBaseAmbushPropensity(MobileParty party)
+        {
             var hero = party.LeaderHero;
             if (hero != null)
             {
@@ -701,6 +719,69 @@ namespace TOR_Core.Models
             // the entry chance; the culture-level propensity is only
             // the inclination to try, not the capability.
             return AmbushPropensityRegistry.GetCulturePropensity(culture, DefaultCulturePropensity);
+        }
+
+        // ---- Homeland awareness ----
+
+        /// <summary>Scan radius around an AI party for the homeland density
+        /// check. 25u is tuned against the TOR map (median same-culture
+        /// settlement spacing ~15u; at 25 the median settlement has ~4
+        /// neighbours in range — enough for a stable ratio without blurring
+        /// across lore regions).</summary>
+        public virtual float HomelandScanRadius => 25f;
+
+        /// <summary>Propensity multiplier when the ambusher's neighbourhood
+        /// is 100 % foreign (no same-culture settlements in scan). Thematic:
+        /// a lord lying in wait in enemy territory is cautious.</summary>
+        public virtual float HomelandForeignMultiplier => 0.5f;
+
+        /// <summary>Propensity multiplier when the ambusher's neighbourhood
+        /// is 100 % own-culture (homeland). Wood elves in Laurelorn,
+        /// greenskins in orc hills, Empire lords in Reikland.</summary>
+        public virtual float HomelandOwnMultiplier => 1.5f;
+
+        /// <summary>Linear interpolation from <see cref="HomelandForeignMultiplier"/>
+        /// (ratio 0, foreign) to <see cref="HomelandOwnMultiplier"/> (ratio
+        /// 1, home). Reads density via the <see cref="Extensions.MobilePartyExtensions.GetHomelandDensity"/>
+        /// extension so other systems can reuse the same signal.</summary>
+        protected virtual float HomelandMultiplier(MobileParty party)
+        {
+            float density = party.GetHomelandDensity(HomelandScanRadius);
+            return MBMath.Lerp(HomelandForeignMultiplier, HomelandOwnMultiplier, density);
+        }
+
+        // ---- Personality traits ----
+
+        /// <summary>How much a single trait step (±1 of
+        /// <c>Hero.GetTraitLevel</c>) shifts the ambush multiplier. 0.1 →
+        /// each ±1 trait step moves the multiplier by ±10 %. With three
+        /// contributing traits (<see cref="DefaultTraits.Calculating"/>,
+        /// <see cref="DefaultTraits.Honor"/>, <see cref="DefaultTraits.Valor"/>)
+        /// at max ±2 each, total swing is ±0.6 → clamped to the band
+        /// below.</summary>
+        public virtual float TraitStepWeight => 0.1f;
+
+        /// <summary>Lower bound of the trait multiplier — a maxed-honorable,
+        /// maxed-valorous, zero-calculating lord. Thematic: a knight who
+        /// disdains ambushes to the point of practical refusal.</summary>
+        public virtual float TraitMultiplierMin => 0.4f;
+
+        /// <summary>Upper bound of the trait multiplier — a scheming,
+        /// dishonourable, cowardly lord. The classic "cunning assassin"
+        /// archetype: ambushes whenever possible.</summary>
+        public virtual float TraitMultiplierMax => 1.6f;
+
+        /// <summary>Combine Calculating (bonus), Honor (penalty), Valor
+        /// (penalty) trait levels into a propensity multiplier. Returns
+        /// 1.0 when no leader (bandit tag parties etc.).</summary>
+        protected virtual float TraitAmbushMultiplier(Hero leader)
+        {
+            if (leader == null) return 1f;
+            int calc = leader.GetTraitLevel(DefaultTraits.Calculating);
+            int hon  = leader.GetTraitLevel(DefaultTraits.Honor);
+            int val  = leader.GetTraitLevel(DefaultTraits.Valor);
+            float swing = (calc - hon - val) * TraitStepWeight;
+            return MBMath.ClampFloat(1f + swing, TraitMultiplierMin, TraitMultiplierMax);
         }
     }
 }

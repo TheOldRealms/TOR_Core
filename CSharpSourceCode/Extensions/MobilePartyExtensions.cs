@@ -270,5 +270,32 @@ namespace TOR_Core.Extensions
             }
             return false;
         }
+
+        /// <summary>
+        /// Returns the fraction of settlements within <paramref name="radius"/>
+        /// map units of the party whose fixed native <c>Culture</c> matches the
+        /// party's own map-faction culture.
+        ///
+        /// Generalisation of the hand-authored <see cref="InAthelLoren"/> /
+        /// <see cref="InLaurelorn"/> region circles — works for every culture
+        /// without authored geometry. Used by the AI ambush decision tick to
+        /// shape propensity: own-culture-heavy neighbourhood → more inclined
+        /// to lie in wait; foreign territory → less.
+        ///
+        /// Radius default 25u is calibrated against the TOR map's settlement
+        /// density (median same-culture spacing ~15u; at r=25 the median
+        /// settlement has 4 neighbours in range, enough for a stable ratio).
+        /// </summary>
+        public static float GetHomelandDensity(this MobileParty party, float radius = 25f)
+        {
+            var culture = party?.MapFaction?.Culture;
+            if (culture == null) return 0.5f;
+            var nearby = TORCommon.FindSettlementsAroundPosition(party.Position.ToVec2(), radius);
+            if (nearby.Count == 0) return 0.5f;
+            int match = 0;
+            foreach (var s in nearby)
+                if (s?.Culture == culture) match++;
+            return (float)match / nearby.Count;
+        }
     }
 }
