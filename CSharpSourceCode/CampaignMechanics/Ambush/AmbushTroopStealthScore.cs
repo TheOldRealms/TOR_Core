@@ -55,6 +55,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
         // regardless of mount / size / weight penalties.
         private const float MasterAmbusherFloor = 0.6f;
 
+        // Hard clamp bounds. Negative scores are allowed and meaningful —
+        // a plated knight / troll actively DRAGS a party's average below
+        // neutral, so you can't ambush effectively if half the roster
+        // is heavy cav. -0.5 is the practical floor (worse than that
+        // produces runaway drag from a few monstrous units).
+        private const float ScoreFloor = -0.5f;
+        private const float ScoreCeiling = 1.0f;
+
         private static readonly Dictionary<string, float> _baseCache = new Dictionary<string, float>();
 
         /// <summary>Precomputes the base stealth score for every registered
@@ -127,8 +135,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
             {
                 score = MasterAmbusherFloor;
             }
-            if (score < 0f) score = 0f;
-            if (score > 1f) score = 1f;
+            if (score < ScoreFloor) score = ScoreFloor;
+            if (score > ScoreCeiling) score = ScoreCeiling;
             return score;
         }
 
