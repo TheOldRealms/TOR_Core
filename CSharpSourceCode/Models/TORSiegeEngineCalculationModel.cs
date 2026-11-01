@@ -15,27 +15,19 @@ namespace TOR_Core.Models
 
         public float CalculateCannonReloadSpeed(float cannonReloadSpeed, Agent user , Agent reloader)
         {
+            if (user == null || reloader == null) return cannonReloadSpeed;
+
             var explainedNumber = new ExplainedNumber(cannonReloadSpeed);
-            if (user == null) return cannonReloadSpeed;
-            else
+            foreach (var crewMember in new[] { user, reloader })
             {
-                if(user.HasAttribute(CharacterAttributes.CREW_2)) // mid tier Cannoneer troops
+                if (crewMember.HasAttribute(CharacterAttributes.CREW_3))
                 {
-                    explainedNumber.AddFactor(-0.15f);
+                    explainedNumber.AddFactor(-0.35f);
                 }
-                else if(user.HasAttribute(CharacterAttributes.CREW_3))   //Elite Cannoneer units can reload very fast
+                else if (crewMember.HasAttribute(CharacterAttributes.CREW_2))
                 {
-                    explainedNumber.AddFactor(-0.30f);
+                    explainedNumber.AddFactor(-0.20f);
                 }
-            }
-            if (reloader == null) return cannonReloadSpeed;
-            if(reloader.HasAttribute(CharacterAttributes.CREW_2)) // mid tier Cannoneer troops
-            {
-                explainedNumber.AddFactor(-0.20f);
-            }
-            else if(reloader.HasAttribute(CharacterAttributes.CREW_3))   //Elite Cannoneer units can reload very fast
-            {
-                explainedNumber.AddFactor(-0.35f);
             }
 
             return explainedNumber.ResultNumber;

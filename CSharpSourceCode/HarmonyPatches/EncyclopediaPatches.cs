@@ -322,6 +322,9 @@ namespace TOR_Core.HarmonyPatches
                     return CharacterAttributes.PIERCING;
                 case CharacterAttributes.ETHEREAL_2:
                     return CharacterAttributes.ETHEREAL;
+                case CharacterAttributes.CREW_2:
+                case CharacterAttributes.CREW_3:
+                    return CharacterAttributes.CREW_1;
                 case CharacterAttributes.MONSTER_SLAYER_2:
                     return CharacterAttributes.MONSTER_SLAYER;
                 case CharacterAttributes.UNDEAD_SLAYER_2:
@@ -341,6 +344,7 @@ namespace TOR_Core.HarmonyPatches
                 case CharacterAttributes.BULWARK_3:
                 case CharacterAttributes.SWIFT_3:
                 case CharacterAttributes.REGENERATION_3:
+                case CharacterAttributes.CREW_3:
                     return 3;
                 case CharacterAttributes.BULWARK_2:
                 case CharacterAttributes.SWIFT_2:
@@ -350,6 +354,7 @@ namespace TOR_Core.HarmonyPatches
                 case CharacterAttributes.MONSTER_SLAYER_2:
                 case CharacterAttributes.UNDEAD_SLAYER_2:
                 case CharacterAttributes.REGENERATION_2:
+                case CharacterAttributes.CREW_2:
                     return 2;
                 default:
                     return 1;
@@ -365,13 +370,17 @@ namespace TOR_Core.HarmonyPatches
                    attribute == CharacterAttributes.ETHEREAL ||
                    attribute == CharacterAttributes.MONSTER_SLAYER ||
                    attribute == CharacterAttributes.UNDEAD_SLAYER ||
-                   attribute == CharacterAttributes.REGENERATION;
+                   attribute == CharacterAttributes.REGENERATION ||
+                   attribute == CharacterAttributes.CREW_1;
         }
 
         private static void SetUnitAttributeTextVariables(TextObject text, string attribute, int tier)
         {
             switch (attribute)
             {
+                case CharacterAttributes.CREW_1:
+                    text.SetTextVariable("VALUE", tier == 3 ? 35 : tier == 2 ? 20 : 0);
+                    break;
                 case CharacterAttributes.BULWARK:
                     text.SetTextVariable("VALUE", tier == 3 ? 60 : tier == 2 ? 40 : 20);
                     break;
@@ -469,6 +478,13 @@ namespace TOR_Core.HarmonyPatches
                     return "attribute_icon_unbreakable";
                 case CharacterAttributes.UNSTOPPABLE:
                     return "attribute_icon_unstoppable";
+                case CharacterAttributes.EXPENDABLE:
+                case CharacterAttributes.CRUSHING:
+                case CharacterAttributes.SLICE:
+                case CharacterAttributes.TREE_SPIRIT:
+                case CharacterAttributes.CREW_1:
+                case CharacterAttributes.BRETONNIAN_KNIGHT:
+                    return null;
                 default:
                     return null;
             }

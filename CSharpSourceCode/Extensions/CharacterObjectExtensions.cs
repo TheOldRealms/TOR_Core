@@ -222,7 +222,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsKnightUnit(this CharacterObject characterObject)
         {
-            return !characterObject.IsHero && characterObject.IsMounted && (IsEliteTroop(characterObject) || characterObject.HasAttribute(CharacterAttributes.KNIGHTLY));
+            return !characterObject.IsHero && characterObject.IsMounted && (IsEliteTroop(characterObject) || characterObject.HasAttribute(CharacterAttributes.EMPIRE_KNIGHT) || characterObject.HasAttribute(CharacterAttributes.BRETONNIAN_KNIGHT));
         }
 
         public static bool IsRunesmith(this CharacterObject characterObject)
@@ -331,9 +331,35 @@ namespace TOR_Core.Extensions
             return basicCharacterObject.Race == FaceGen.GetRaceOrDefault("spirit_host") || basicCharacterObject.Race == FaceGen.GetRaceOrDefault("wraith");
         }
 
+        // ironbreaker troop tree, formerly had the attribute Ironbreaker
         public static bool IsIronbreakerUnit(this BasicCharacterObject characterObject)
         {
-            return characterObject.IsSoldier && characterObject.Culture.StringId == TORConstants.Cultures.DAWI && characterObject.HasAttribute(CharacterAttributes.IRONBREAKER);
+            return characterObject.StringId.StartsWith("tor_dw_iron");
+        }
+
+        // dawi firearms troops, formerly had the attribute DwarfGun
+        public static bool IsDwarfGunUnit(this BasicCharacterObject characterObject)
+        {
+            return characterObject.StringId is
+                "tor_dw_thunderer"
+                or "tor_dw_sharpshooter"
+                or "tor_dw_grudge_raker"
+                or "tor_dw_irondrake"
+                or "tor_dw_irondrake_trollhammer";
+        }
+
+        // troops that can be donated to miners guild, formerly had the attribute DwarfMiner
+        public static bool IsDwarfMinerUnit(this BasicCharacterObject characterObject)
+        {
+            return characterObject.StringId is
+                "tor_dw_miner"
+                or "tor_dw_prospector";
+        }
+
+        // harbinger family, formerly had the attribute NecromancerChampion
+        public static bool IsNecromancerChampion(this BasicCharacterObject characterObject)
+        {
+            return characterObject.StringId.Contains("harbinger");
         }
 
         public static bool IsVampire(this BasicCharacterObject characterObject)

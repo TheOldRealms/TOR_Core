@@ -133,7 +133,7 @@ namespace TOR_Core.Extensions
 
             if (Hero.MainHero.HasCareer(TORCareers.Necromancer))
             {
-                if (Hero.MainHero.HasCareerChoice("BookofWsoranKeystone") && agent.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION))
+                if (Hero.MainHero.HasCareerChoice("BookofWsoranKeystone") && agent.Character.IsNecromancerChampion())
                     return true;
             }
 
@@ -234,9 +234,9 @@ namespace TOR_Core.Extensions
             return agent.HasAttribute(CharacterAttributes.SLICE);
         }
 
-        public static bool HasMonsterAttack(this Agent agent)
+        public static bool HasCrushing(this Agent agent)
         {
-            return agent.HasAttribute(CharacterAttributes.MONSTER_ATTACK);
+            return agent.HasAttribute(CharacterAttributes.CRUSHING);
         }
 
         public static bool HasBrute(this Agent agent)

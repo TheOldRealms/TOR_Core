@@ -2794,7 +2794,7 @@
 		applies_for_attack_type="All"
 		type="TemporaryAttributeOnly"
 		damage_type="Physical">
-		<temporary_attribute>MonsterAttack</temporary_attribute>
+		<temporary_attribute>Crushing</temporary_attribute>
 	</StatusEffectTemplate>
 
 	<StatusEffectTemplate
