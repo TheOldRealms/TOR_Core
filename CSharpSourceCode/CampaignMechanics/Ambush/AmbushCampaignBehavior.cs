@@ -261,12 +261,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
             var attackerFaction = attacker.MapFaction;
             if (attackerFaction == null) return new List<MobileParty>();
 
-            float radiusSq = StealthRadius * StealthRadius;
-            // LocatorGrid returns a cell-superset; tighten with a distance
-            // check so parties just outside the circle don't appear in
-            // the strike-slot list.
+            // Strike range is dynamic — scales with the attacker's
+            // effective Scouting via model.CalculateStrikeRange.
+            // A well-scouted hero plus Scout companion reaches further.
+            float strikeRange = Campaign.Current?.Models?.GetAmbushModel()?.CalculateStrikeRange(attacker) ?? StealthRadius;
+            float radiusSq = strikeRange * strikeRange;
             var candidates = new List<(MobileParty party, float distSq)>();
-            var query = MobileParty.StartFindingLocatablesAroundPosition(attackerPos, StealthRadius);
+            var query = MobileParty.StartFindingLocatablesAroundPosition(attackerPos, strikeRange);
             for (var p = MobileParty.FindNextLocatable(ref query); p != null;
                  p = MobileParty.FindNextLocatable(ref query))
             {

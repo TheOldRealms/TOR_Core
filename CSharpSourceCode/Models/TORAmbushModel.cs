@@ -59,6 +59,20 @@ namespace TOR_Core.Models
         public virtual float EntryRogueryPerPointBonus => 0.001f;
         public virtual float EntryRogueryBonusCap => 0.15f;
 
+        /// <summary>Weight on the party-stealth-score delta (vs the
+        /// baseline 0.5 troop score). Positive when the party is
+        /// stealthier than neutral; negative when weighted down by
+        /// heavy cav / monstrous / plate. Baseline is 0.5 so a
+        /// goblin-skirmisher roster at 0.75 → +0.25 × weight; a
+        /// knightly roster at -0.1 → -0.6 × weight.</summary>
+        public virtual float EntryPartyStealthScoreWeight => 0.3f;
+
+        /// <summary>Baseline per-troop stealth score used as the pivot
+        /// for the party-stealth-score bonus. Any score above this
+        /// adds; below subtracts. Matches
+        /// <c>AmbushTroopStealthScore</c>'s neutral baseline.</summary>
+        public virtual float PartyStealthScoreBaseline => 0.5f;
+
         // ---- Roguery XP (hidden-tick + perfect-ambush bonus) ----
 
         public virtual int RogueryXpBasePerHiddenTick => 5;
@@ -392,23 +406,37 @@ namespace TOR_Core.Models
             IReadOnlyList<MobileParty> observers)
         {
             if (self == null) return MinEntryChance;
-            // Roguery bonus temporarily disabled — most vanilla NPC lords
-            // have Roguery = 0, which was zero-ing the entry chance for
-            // AI parties and killing all AI ambushes in testing. Terrain
-            // / night / observer penalty still apply; re-enable when
-            // we've either confirmed higher Roguery values on key AI
-            // heroes or combined it with Scouting as a hybrid stealth stat.
             float chance = BaseEntryChance
+                + EntryRogueryBonus(self)
+                + EntryPartyStealthScoreBonus(self)
                 + EntryTerrainBonus(self)
                 + EntryNightBonus()
                 - EntryHostilePenalty(observers);
             return MBMath.ClampFloat(chance, MinEntryChance, MaxEntryChance);
         }
 
+        /// <summary>Pair-combined Roguery contribution to entry chance.
+        /// Uses <see cref="GetAmbusherRoguery"/> so a party with a
+        /// Roguery-specialist as either leader or dedicated Scout
+        /// benefits. Cap prevents a maxed hero from single-handedly
+        /// pushing entry chance to certainty.</summary>
         protected virtual float EntryRogueryBonus(MobileParty self)
         {
-            int r = self.LeaderHero?.GetSkillValue(DefaultSkills.Roguery) ?? 0;
+            int r = GetAmbusherRoguery(self);
             return MBMath.ClampFloat(r * EntryRogueryPerPointBonus, 0f, EntryRogueryBonusCap);
+        }
+
+        /// <summary>Party-roster stealth suitability contribution.
+        /// Reads <see cref="AmbushTroopStealthScore.GetBasePartyScore"/>
+        /// plus the dynamic bonus (perks / buffs), pivots around the
+        /// neutral baseline, scales by
+        /// <see cref="EntryPartyStealthScoreWeight"/>. Can be negative —
+        /// a heavy-cav roster actively drags entry chance down.</summary>
+        protected virtual float EntryPartyStealthScoreBonus(MobileParty self)
+        {
+            float score = AmbushTroopStealthScore.GetBasePartyScore(self)
+                        + GetDynamicStealthBonus(self);
+            return (score - PartyStealthScoreBaseline) * EntryPartyStealthScoreWeight;
         }
 
         protected virtual float EntryTerrainBonus(MobileParty self)

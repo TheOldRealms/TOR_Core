@@ -239,8 +239,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             if (_stealthedParties.Count == 0) return;
 
-            float strikeRadius = AmbushCampaignBehavior.StealthRadius;
-            float strikeRadiusSq = strikeRadius * strikeRadius;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return;
             bool playerAvailable = IsPlayerAvailableAsTarget();
             var main = MobileParty.MainParty;
             Vec2 mainPos = main != null ? main.Position.ToVec2() : Vec2.Zero;
@@ -270,6 +270,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     LeaveAiStealth(ambusher);
                     continue;
                 }
+
+                // Strike range is per-ambusher — scales with the
+                // ambusher's effective Scouting. A high-Scouting party
+                // reaches further.
+                float strikeRadius = model.CalculateStrikeRange(ambusher);
+                float strikeRadiusSq = strikeRadius * strikeRadius;
 
                 // Priority 1: player in strike range. Fiction: the player
                 // always counts as a notable target, so a stealthed party
