@@ -342,25 +342,42 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return closest;
         }
 
+        /// <summary>
+        /// Fire a headless AI-vs-AI ambush skirmish. One chance roll
+        /// against <c>CalculateAmbushSuccessChance</c> picks an outcome
+        /// tier via <c>RollOutcomeTier</c>; damage is tier-scaled from
+        /// the single skirmish base. Terrible fail flips the damage
+        /// onto the ambusher — a goblin band that charged a scout
+        /// patrol gets cut down for their trouble. Design: campaign-
+        /// stealth-design.md § 13.
+        /// </summary>
         private void TriggerSkirmishAgainstAiParty(MobileParty ambusher, MobileParty victim)
         {
             var model = Campaign.Current?.Models?.GetAmbushModel();
             if (model == null) return;
 
-            var (ambusherWounds, victimWounds) = model.CalculateSkirmishCasualties(ambusher, victim);
+            // Roll outcome tier from the chance curve.
+            float chance = model.CalculateAmbushSuccessChance(ambusher, victim, CampaignTime.Now);
+            var tier = model.RollOutcomeTier(chance, MBRandom.RandomFloat);
+
+            var (ambusherWounds, victimWounds) = model.CalculateSkirmishCasualties(ambusher, victim, tier);
             WoundTroops(ambusher.Party, ambusherWounds);
             WoundTroops(victim.Party, victimWounds);
 
+            // Press-attack decision after wounding — terrible fail or
+            // minor fail usually leaves the ambusher below the follow-
+            // up threshold and forces a retreat naturally.
             bool press = model.ShouldPressAttackAfterSkirmish(ambusher, victim);
             LeaveAiStealth(ambusher);
 
             TORCommon.Say("[AI Ambush] " + PartyLabel(ambusher) + " struck "
-                          + PartyLabel(victim) + ": wounded " + victimWounds
+                          + PartyLabel(victim) + " [" + tier + "]: wounded " + victimWounds
                           + " (took " + ambusherWounds + ") — "
                           + (press ? "pressing the attack." : "fading back into cover."));
             TORCommon.Log(LogLevel.Info, "[AI Ambush] skirmish @ "
                 + ambusher.Position.ToVec2() + " ambusher=" + PartyLabel(ambusher)
-                + " victim=" + PartyLabel(victim) + " press=" + press);
+                + " victim=" + PartyLabel(victim) + " tier=" + tier
+                + " chance=" + chance.ToString("F2") + " press=" + press);
 
             // Only open the field battle if neither party has drifted into
             // a map event during this tick (another skirmish, player

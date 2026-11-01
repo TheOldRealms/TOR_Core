@@ -557,20 +557,65 @@ namespace TOR_Core.Models
         /// skirmish. The strike power is the ambusher's healthy count ×
         /// <see cref="AmbushSkirmishStrikePowerFraction"/>; victim wounds
         /// are clamped against the victim's available healthy count.
+        ///
+        /// Base-tier numbers (Normal success multiplier 1.0×). Call
+        /// <see cref="CalculateSkirmishCasualties(MobileParty, MobileParty, AmbushOutcomeTier)"/>
+        /// to scale by tier.
         /// </summary>
         public virtual (int ambusherWounds, int victimWounds) CalculateSkirmishCasualties(
             MobileParty ambusher, MobileParty victim)
+            => CalculateSkirmishCasualties(ambusher, victim, AmbushOutcomeTier.NormalSuccess);
+
+        /// <summary>Tier-scaled casualty computation. Multipliers per
+        /// tier are documented in campaign-stealth-design.md § 13.
+        /// Values are rounded via (int) truncation and clamped against
+        /// the available healthy count on each side.</summary>
+        public virtual (int ambusherWounds, int victimWounds) CalculateSkirmishCasualties(
+            MobileParty ambusher, MobileParty victim, AmbushOutcomeTier tier)
         {
             if (ambusher?.MemberRoster == null || victim?.MemberRoster == null)
                 return (0, 0);
             int ambusherHealthy = ambusher.MemberRoster.TotalHealthyCount;
             int victimHealthy = victim.MemberRoster.TotalHealthyCount;
             int strikePower = (int)(ambusherHealthy * AmbushSkirmishStrikePowerFraction);
-            int victimWounds = System.Math.Min(victimHealthy,
-                (int)(strikePower * AmbushSkirmishVictimCasualtyFraction));
-            int ambusherWounds = System.Math.Min(ambusherHealthy,
-                (int)(ambusherHealthy * AmbushSkirmishAmbusherCasualtyFraction));
+            int baseVictimWounds = (int)(strikePower * AmbushSkirmishVictimCasualtyFraction);
+            int baseAmbusherWounds = (int)(ambusherHealthy * AmbushSkirmishAmbusherCasualtyFraction);
+
+            (float ambusherMult, float victimMult) = tier switch
+            {
+                AmbushOutcomeTier.CriticalSuccess => (0.5f, 1.5f),
+                AmbushOutcomeTier.NormalSuccess   => (1.0f, 1.0f),
+                AmbushOutcomeTier.MinorFail       => (0.5f, 0.5f),
+                AmbushOutcomeTier.TerribleFail    => (1.5f, 0.0f),
+                _                                 => (1.0f, 1.0f),
+            };
+
+            int victimWounds = System.Math.Min(victimHealthy, (int)(baseVictimWounds * victimMult));
+            int ambusherWounds = System.Math.Min(ambusherHealthy, (int)(baseAmbusherWounds * ambusherMult));
             return (ambusherWounds, victimWounds);
+        }
+
+        /// <summary>Band widths for the outcome-tier margin check.
+        /// Critical / terrible require a decisive margin either way;
+        /// in between is a normal pass / minor fail.</summary>
+        public virtual float TierCriticalMargin => 0.25f;
+        public virtual float TierTerribleMargin => 0.25f;
+
+        /// <summary>
+        /// Pick an outcome tier from a chance (0..1) and a roll (0..1).
+        /// margin = chance - roll; the magnitude decides how decisive the
+        /// outcome is. See campaign-stealth-design.md § 13 for the design.
+        ///
+        /// Only applies to AI-vs-AI skirmishes — player-involved cases
+        /// stay binary (pass → NormalSuccess, fail → MinorFail) per § 14.
+        /// </summary>
+        public virtual AmbushOutcomeTier RollOutcomeTier(float chance, float roll)
+        {
+            float margin = chance - roll;
+            if (margin > TierCriticalMargin) return AmbushOutcomeTier.CriticalSuccess;
+            if (margin >= 0f) return AmbushOutcomeTier.NormalSuccess;
+            if (margin > -TierTerribleMargin) return AmbushOutcomeTier.MinorFail;
+            return AmbushOutcomeTier.TerribleFail;
         }
 
         /// <summary>True when the ambusher's post-skirmish healthy count
