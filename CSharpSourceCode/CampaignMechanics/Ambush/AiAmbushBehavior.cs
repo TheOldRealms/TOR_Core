@@ -39,12 +39,17 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private Dictionary<MobileParty, CampaignTime> _stealthedParties
             = new Dictionary<MobileParty, CampaignTime>();
 
-        // Parties on ambush cooldown → when the cooldown expires. Mirror
-        // of the player-side cooldown; stamped whenever a party leaves
-        // stealth (burned the surprise, visibility compromised) and read
-        // by IsEligibleAmbusher to block immediate re-stealth.
-        private Dictionary<MobileParty, CampaignTime> _partyCooldownUntil
-            = new Dictionary<MobileParty, CampaignTime>();
+        // The single source of truth for all ambush-cooldown and
+        // reveal logic. Every record is one ambush incident; every
+        // query ("is party X on cooldown?", "is party Y a repelled
+        // ambusher we should keep visible?", "has the player been
+        // ambushed recently?") derives from scanning this list.
+        //
+        // Written at four points (LeaveAiStealth / TriggerAmbushAgainst-
+        // Player / TriggerSkirmishAgainstAiParty / Phase D & F outcome
+        // handlers); pruned on OnWeeklyTick to drop records older than
+        // MaxRecordAgeHours.
+        private List<AmbushRecord> _ambushRecords = new List<AmbushRecord>();
 
         // How long a stealthed AI party stays hidden before giving up and
         // leaving stealth on its own (no viable target walked past). Half
@@ -66,11 +71,136 @@ namespace TOR_Core.CampaignMechanics.Ambush
         // many in one tick can hang vanilla's engagement pipeline.
         private const int MaxSkirmishesPerTick = 2;
 
+        // Weekly-sweep retention. Any record older than this gets
+        // dropped from _ambushRecords by OnWeeklyTick. 72h (3 game-days)
+        // is well past any active cooldown or reveal window — all live
+        // queries use ≤ 6h — so no in-use record gets caught by mistake.
+        private const float MaxRecordAgeHours = 72f;
+
+        // Transient tracker: the AI party currently ambushing the player.
+        // Not serialized — only meaningful for the duration of an active
+        // Phase F mission (set in TriggerAmbushAgainstPlayer, read by
+        // AmbushCampaignBehavior.OnAmbushedMissionEnd to call RecordAmbush
+        // with the right (ambusher, victim, repelled) tuple, cleared on
+        // mission close). Save/load during a mission resets it to null,
+        // which is correct — the mission can't survive save anyway.
+        public MobileParty CurrentAmbusherOnPlayer { get; set; }
+
         public override void RegisterEvents()
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.QuarterHourlyTickEvent.AddNonSerializedListener(this, OnQuarterHourlyTick);
+            CampaignEvents.WeeklyTickEvent.AddNonSerializedListener(this, OnWeeklyTick);
             CampaignEvents.OnPartyRemovedEvent.AddNonSerializedListener(this, OnPartyRemoved);
+        }
+
+        // ---- Record authoring ----
+
+        /// <summary>Record a new ambush incident. Called from every
+        /// write-site: stealth exit (victim null), AI ambushing player,
+        /// AI vs AI skirmish, player ambushing AI. The record is dumb
+        /// data — cooldown length is derived at query time by the
+        /// model's <see cref="Models.TORAmbushModel.GetAmbushCooldownHours"/>
+        /// method, which can read fields like <see cref="AmbushRecord.WasLoud"/>
+        /// to tune the window.</summary>
+        public void RecordAmbush(MobileParty ambusher, MobileParty victim, bool repelled, bool wasLoud = false)
+        {
+            if (ambusher == null && victim == null) return;
+            _ambushRecords.Add(new AmbushRecord(CampaignTime.Now, ambusher, victim, repelled, wasLoud));
+        }
+
+        /// <summary>Drop any record in the active cooldown window that
+        /// involves <paramref name="party"/>. Used by the silent-Total-
+        /// Victory branch to zero the player's cooldown immediately
+        /// after a clean kill.</summary>
+        public void ClearRecentRecordsInvolving(MobileParty party)
+        {
+            if (party == null) return;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return;
+            var now = CampaignTime.Now;
+            _ambushRecords.RemoveAll(r =>
+                r.Involves(party)
+                && (now - r.At).ToHours < model.GetAmbushCooldownHours(r));
+        }
+
+        // ---- Record queries ----
+
+        /// <summary>True if <paramref name="party"/> is involved in any
+        /// record (as ambusher or victim) whose cooldown is still
+        /// active — the record's own cooldown length is computed by
+        /// the model from the record's data (loudness etc.).</summary>
+        public bool IsOnAmbushCooldown(MobileParty party)
+        {
+            if (party == null) return false;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return false;
+            var now = CampaignTime.Now;
+            for (int i = _ambushRecords.Count - 1; i >= 0; i--)
+            {
+                var rec = _ambushRecords[i];
+                if (!rec.Involves(party)) continue;
+                if ((now - rec.At).ToHours < model.GetAmbushCooldownHours(rec)) return true;
+            }
+            return false;
+        }
+
+        /// <summary>Game-time at which <paramref name="party"/>'s
+        /// current cooldown expires. Returns <c>CampaignTime.Zero</c>
+        /// if no active record involves the party. Used by UI
+        /// (AmbushButtonVM) to render "available in Xh".</summary>
+        public CampaignTime GetCooldownExpiresAt(MobileParty party)
+        {
+            if (party == null) return CampaignTime.Zero;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return CampaignTime.Zero;
+            var now = CampaignTime.Now;
+            CampaignTime latest = CampaignTime.Zero;
+            foreach (var rec in _ambushRecords)
+            {
+                if (!rec.Involves(party)) continue;
+                float cd = model.GetAmbushCooldownHours(rec);
+                if ((now - rec.At).ToHours >= cd) continue;
+                var expires = rec.At + CampaignTime.Hours(cd);
+                if (expires > latest) latest = expires;
+            }
+            return latest;
+        }
+
+        /// <summary>True if there's a recent record where
+        /// <paramref name="party"/> was the ambusher AND the attempt
+        /// was repelled. Used by <c>TORMapVisibilityModel.IsVisibilityPersistent</c>
+        /// to force-reveal the party on the campaign map. Shares the
+        /// cooldown window — alertness and visibility expire together.</summary>
+        public bool IsPartyRevealed(MobileParty party)
+        {
+            if (party == null) return false;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return false;
+            var now = CampaignTime.Now;
+            for (int i = _ambushRecords.Count - 1; i >= 0; i--)
+            {
+                var rec = _ambushRecords[i];
+                if (!(rec.AmbusherRepelled && rec.Ambusher == party)) continue;
+                if ((now - rec.At).ToHours < model.GetAmbushCooldownHours(rec)) return true;
+            }
+            return false;
+        }
+
+        /// <summary>Weekly orphan sweep. Drops any record older than
+        /// <see cref="MaxRecordAgeHours"/>. Live cooldown / reveal
+        /// queries only look at the recent window (≤ model cooldown)
+        /// so stale records don't affect behaviour, but they'd
+        /// otherwise accumulate indefinitely across long campaigns.</summary>
+        private void OnWeeklyTick()
+        {
+            if (_ambushRecords.Count == 0) return;
+            var now = CampaignTime.Now;
+            int before = _ambushRecords.Count;
+            _ambushRecords.RemoveAll(r => (now - r.At).ToHours >= MaxRecordAgeHours);
+            int dropped = before - _ambushRecords.Count;
+            if (dropped > 0)
+                TORCommon.Log(LogLevel.Info, "[AI Ambush] weekly sweep: dropped " + dropped + " stale ambush records (kept " + _ambushRecords.Count + ")");
         }
 
         /// <summary>
@@ -106,7 +236,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_stealthedParties", ref _stealthedParties);
-            dataStore.SyncData("_partyCooldownUntil", ref _partyCooldownUntil);
+            dataStore.SyncData("_ambushRecords", ref _ambushRecords);
         }
 
         /// <summary>True while <paramref name="party"/> is in AI stealth
@@ -138,15 +268,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return n;
         }
 
-        private bool IsOnCooldown(MobileParty party)
-        {
-            if (party == null) return false;
-            if (!_partyCooldownUntil.TryGetValue(party, out var until)) return false;
-            if (until.IsFuture) return true;
-            // Expired — tidy up so the dict doesn't accumulate forever.
-            _partyCooldownUntil.Remove(party);
-            return false;
-        }
+        // Shorthand alias — kept so the TickDecisions / FindClosest-
+        // HostileAiParty call-sites read like before.
+        private bool IsOnCooldown(MobileParty party) => IsOnAmbushCooldown(party);
 
         private void OnQuarterHourlyTick()
         {
@@ -339,6 +463,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
             if (behavior != null && behavior.IsPlayerInStealth) return false;
 
+            // Player-side cooldown: just drove off / was wounded by an
+            // ambush recently, OR has their own stealth cooldown active.
+            // Either way, the player is "alert" and can't be surprised
+            // again for the cooldown window. Prevents the "two different
+            // ambushers back-to-back" scenario entirely.
+            if (behavior != null && behavior.IsOnAmbushCooldown) return false;
+
             // Only ambush when the player is actually on the map screen.
             // If any other GameState is active (options, inventory, encounter,
             // conversation, trade, clan screen), opening a PlayerEncounter
@@ -375,6 +506,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 // engagement paths too.
                 if (!p.IsLordParty) continue;
                 if (p.MemberRoster == null || p.MemberRoster.TotalHealthyCount < MinHealthyForAmbush) continue;
+                // Victim-side cooldown: don't pile onto a party that was
+                // just ambushed by someone else, or who recently stealthed
+                // themselves. _partyCooldownUntil now covers both roles.
+                if (IsOnCooldown(p)) continue;
                 float distSq = p.Position.ToVec2().DistanceSquared(ambusherPos);
                 if (distSq > closestDistSq) continue;
                 closest = p;
@@ -410,6 +545,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // up threshold and forces a retreat naturally.
             bool press = model.ShouldPressAttackAfterSkirmish(ambusher, victim);
             LeaveAiStealth(ambusher);
+
+            // Record the pair incident so both ambusher and victim
+            // register as "recently involved" for cooldown purposes.
+            // AmbusherRepelled when the outcome tier flipped the damage
+            // onto the ambusher — the victim won the exchange.
+            bool victimWonExchange = tier == AmbushOutcomeTier.TerribleFail;
+            RecordAmbush(ambusher, victim, repelled: victimWonExchange);
 
             TORCommon.Say("[AI Ambush] " + PartyLabel(ambusher) + " struck "
                           + PartyLabel(victim) + " [" + tier + "]: wounded " + victimWounds
@@ -486,7 +628,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
             // Leave stealth before the encounter opens so the stealth dict
             // doesn't hold a reference to a party now mid-combat.
-            LeaveAiStealth(ambusher);
+            // LeaveAiStealth also writes a stealth-exit record (ambusher,
+            // victim=null); the Phase F outcome handler on
+            // AmbushCampaignBehavior will append the pair-incident record
+            // with the correct AmbusherRepelled flag once the mission
+            // closes. Keeping the two records distinct makes the history
+            // readable: "X exited stealth" + "X ambushed MainParty with
+            // outcome Y" as separate events.
+            CurrentAmbusherOnPlayer = ambusher;
 
             PlayerEncounter.RestartPlayerEncounter(PartyBase.MainParty, ambusher.Party, false);
             if (PlayerEncounter.Battle == null)
@@ -528,13 +677,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             if (party == null) return;
             _stealthedParties.Remove(party);
-            // Stamp cooldown unconditionally — covers burned strikes
-            // (player ambush / skirmish), vanilla-engagement drag-in, and
-            // the max-hold-expired "gave up" case. All three share the
+            // Add a stealth-exit record (victim null, not repelled) —
+            // covers burned strikes, vanilla-engagement drag-in, and the
+            // max-hold-expired "gave up" case. All three share the
             // "position revealed / recently stealthed" semantics that
-            // justify a cooldown before the party tries again.
-            _partyCooldownUntil[party] =
-                CampaignTime.HoursFromNow(AmbushCampaignBehavior.CooldownHours);
+            // justify an ambush cooldown. Pair-ambush records (player
+            // or AI victim) get added separately at the trigger sites.
+            RecordAmbush(party, null, repelled: false);
             if (party.IsActive)
             {
                 party.Ai.SetDoNotMakeNewDecisions(false);
@@ -587,7 +736,16 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             if (party?.MobileParty == null) return;
             _stealthedParties.Remove(party.MobileParty);
-            _partyCooldownUntil.Remove(party.MobileParty);
+            // Null out any record referencing the removed party so
+            // queries don't match dangling refs. Keep the record (for
+            // history completeness); nulled refs just stop matching.
+            foreach (var rec in _ambushRecords)
+            {
+                if (rec.Ambusher == party.MobileParty) rec.Ambusher = null;
+                if (rec.Victim == party.MobileParty) rec.Victim = null;
+            }
+            if (CurrentAmbusherOnPlayer == party.MobileParty)
+                CurrentAmbusherOnPlayer = null;
         }
 
         /// <summary>

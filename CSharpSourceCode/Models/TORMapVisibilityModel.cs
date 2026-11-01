@@ -80,5 +80,21 @@ namespace TOR_Core.Models
 
             base.GetMobilePartyVisibilityAndInspectedState(mobileParty, points, seeingRange, out isVisible, out isInspected);
         }
+
+        /// <summary>
+        /// A repelled AI ambusher is kept persistently visible to the
+        /// player while the ambush record's cooldown is still active —
+        /// same vanilla mechanism <c>PlayerCaptivity.CaptorParty</c> uses.
+        /// Returning <c>true</c> here makes vanilla's fog-of-war pass
+        /// skip the distance check for this party, so its current
+        /// <c>IsVisible = true</c> (set by <c>LeaveAiStealth</c> before
+        /// the mission opened) stays in place for the window.
+        /// </summary>
+        public override bool IsVisibilityPersistent(MobileParty mobileParty)
+        {
+            var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
+            if (ai != null && ai.IsPartyRevealed(mobileParty)) return true;
+            return base.IsVisibilityPersistent(mobileParty);
+        }
     }
 }

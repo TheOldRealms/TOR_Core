@@ -290,6 +290,7 @@
     <Compile Include="CampaignMechanics\Ambush\AmbushMapView.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushOutcome.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushOutcomeTier.cs" />
+    <Compile Include="CampaignMechanics\Ambush\AmbushRecord.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushedOutcome.cs" />
     <Compile Include="Missions\AmbushMission\AmbushedEndLogic.cs" />
     <Compile Include="Missions\AmbushMission\AmbushEndLogic.cs" />

@@ -493,6 +493,26 @@ namespace TOR_Core.Models
             return MBMath.ClampFloat(raw, 0f, EntryHostilePenaltyCap);
         }
 
+        // ---- Record-cooldown ----
+
+        /// <summary>How many game-hours an <see cref="AmbushRecord"/>
+        /// keeps a party on cooldown. Baseline comes from
+        /// <see cref="AmbushCampaignBehavior.CooldownHours"/>; loud
+        /// ambushes (gunpowder / non-Shadow magic) extend it by the
+        /// mission model's <c>LoudnessPenaltyHours</c>. One place for
+        /// the cooldown math — queries on the record list all call
+        /// this instead of baking the length into records.</summary>
+        public virtual float GetAmbushCooldownHours(AmbushRecord record)
+        {
+            float hours = AmbushCampaignBehavior.CooldownHours;
+            if (record != null && record.WasLoud)
+            {
+                var missionModel = Campaign.Current?.Models?.GetMissionAmbushModel();
+                if (missionModel != null) hours += missionModel.LoudnessPenaltyHours;
+            }
+            return hours;
+        }
+
         // ---- Phase F: AI-side propensity ----
 
         /// <summary>Per-tick chance that an eligible AI lord/bandit party even

@@ -54,7 +54,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private bool _playerInStealth;
         private CampaignTime _stealthEnteredAt = CampaignTime.Zero;
-        private CampaignTime _playerAmbushCooldownUntil = CampaignTime.Zero;
+        // Player ambush cooldown is derived from the record list on
+        // AiAmbushBehavior (one source of truth across the two
+        // behaviours). See IsOnAmbushCooldown / PlayerAmbushCooldownUntil
+        // below.
 
         private readonly List<MobileParty> _currentTargets = new List<MobileParty>();
         private CampaignTimeControlMode _cachedTimeControlMode = CampaignTimeControlMode.StoppablePlay;
@@ -72,9 +75,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
         public int LastAmbushLoudness { get; set; }
 
         public bool IsPlayerInStealth => _playerInStealth;
-        public CampaignTime PlayerAmbushCooldownUntil => _playerAmbushCooldownUntil;
+        public CampaignTime PlayerAmbushCooldownUntil
+            => Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>()
+                ?.GetCooldownExpiresAt(MobileParty.MainParty) ?? CampaignTime.Zero;
         public CampaignTime StealthEnteredAt => _stealthEnteredAt;
-        public bool IsOnAmbushCooldown => _playerAmbushCooldownUntil.IsFuture;
+        public bool IsOnAmbushCooldown
+            => Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>()
+                ?.IsOnAmbushCooldown(MobileParty.MainParty) ?? false;
 
         /// <summary>
         /// Outcome of the most recent ambush mission. Set by AmbushEndLogic as the
@@ -298,13 +305,19 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 .ToList();
         }
 
+        /// <summary>Stamps a cooldown on the main party by writing an
+        /// ambush record. Thin wrapper over <c>AiAmbushBehavior.RecordAmbush</c>
+        /// so existing call-sites don't change — the record carries a
+        /// <c>WasLoud</c> flag that the model reads when computing the
+        /// effective cooldown hours.</summary>
         public void StampAmbushCooldown()
         {
-            float hours = CooldownHours;
+            var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
+            if (ai == null) return;
             var missionModel = Campaign.Current?.Models?.GetMissionAmbushModel();
-            if (missionModel != null && LastAmbushLoudness >= missionModel.LoudnessEventThreshold)
-                hours += missionModel.LoudnessPenaltyHours;
-            _playerAmbushCooldownUntil = CampaignTime.HoursFromNow(hours);
+            bool wasLoud = missionModel != null
+                           && LastAmbushLoudness >= missionModel.LoudnessEventThreshold;
+            ai.RecordAmbush(MobileParty.MainParty, null, repelled: false, wasLoud: wasLoud);
         }
 
         public override void RegisterEvents()
@@ -492,7 +505,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
                                     && LastAmbushLoudness >= missionModel.LoudnessEventThreshold;
                         if (!loud)
                         {
-                            _playerAmbushCooldownUntil = CampaignTime.Zero;
+                            // Silent TotalVictory — clear any player
+                            // records in the active cooldown window so
+                            // stealth is immediately available again.
+                            Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>()
+                                ?.ClearRecentRecordsInvolving(MobileParty.MainParty);
                             TORCommon.Say("No one escaped the ambush. You can slip back into cover immediately.");
                         }
                         else
@@ -553,12 +570,31 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     break;
             }
 
-            // Phase F aftermath. The full flows (reveal window, follow-up
-            // battle, wounded troops) are built out in subsequent slices;
-            // for now we log the outcome so a debug-triggered mission has
-            // a visible closing beat.
+            // Phase F aftermath. The full flows (follow-up battle, wounded
+            // troops) are built out in subsequent slices; the record
+            // written here drives cooldown (both sides) and reveal (if
+            // repelled) via the model's query layer.
             if (LastAmbushedOutcome != AmbushedOutcome.None)
             {
+                var aiBehavior = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
+                var ambusher = aiBehavior?.CurrentAmbusherOnPlayer;
+                bool repelled = LastAmbushedOutcome == AmbushedOutcome.AmbushRepelled;
+
+                // Pair-incident record: the single write that drives
+                // the player's cooldown, the ambusher's cooldown, and
+                // (if repelled) the ambusher's persistent visibility.
+                if (aiBehavior != null && ambusher != null && ambusher.IsActive)
+                {
+                    aiBehavior.RecordAmbush(ambusher, MobileParty.MainParty,
+                        repelled: repelled, wasLoud: false);
+                }
+                else
+                {
+                    // Fallback: no ambusher ref (shouldn't normally happen)
+                    // — still stamp the player's own cooldown.
+                    StampAmbushCooldown();
+                }
+
                 switch (LastAmbushedOutcome)
                 {
                     case AmbushedOutcome.AmbushRepelled:
@@ -574,6 +610,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
                         // Vanilla defeat flow handles casualties / prisoners.
                         break;
                 }
+
+                // Clear the current-ambusher tracker regardless of outcome
+                // — only meaningful for the duration of the encounter.
+                if (aiBehavior != null) aiBehavior.CurrentAmbusherOnPlayer = null;
 
                 // Close the AmbushedIntroMenu if it survived the mission.
                 // OnAmbushedIntroPrepare now ExitToLast()s before opening
@@ -1040,7 +1080,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             dataStore.SyncData("_playerInStealth", ref _playerInStealth);
             dataStore.SyncData("_stealthEnteredAt", ref _stealthEnteredAt);
-            dataStore.SyncData("_playerAmbushCooldownUntil", ref _playerAmbushCooldownUntil);
+            // _playerAmbushCooldownUntil removed — player cooldown is
+            // now derived from AiAmbushBehavior._ambushRecords.
         }
     }
 }
