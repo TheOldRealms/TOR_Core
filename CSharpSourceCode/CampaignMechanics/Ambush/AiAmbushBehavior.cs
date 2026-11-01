@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
+using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
@@ -266,6 +267,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     LeaveAiStealth(ambusher);
                     continue;
                 }
+                // Belt-and-suspenders: same for settlement entry. Prune
+                // handles this on the next tick, but between prune and
+                // target-detection a party could technically have been
+                // pulled into a settlement (quest reaction, defender call).
+                if (ambusher.CurrentSettlement != null)
+                {
+                    LeaveAiStealth(ambusher);
+                    continue;
+                }
                 // Post-skirmish-wounding may have dropped the ambusher
                 // below the fighting threshold since the last tick.
                 if (ambusher.MemberRoster == null
@@ -320,6 +330,22 @@ namespace TOR_Core.CampaignMechanics.Ambush
             if (MapEvent.PlayerMapEvent != null) return false;
             if (TaleWorlds.MountAndBlade.Mission.Current != null) return false;
             if (main.MapFaction == null) return false;
+
+            // Don't ambush a player already in stealth stance — would push
+            // the AmbushedIntroMenu on top of the active stealth wait-menu,
+            // which races the vanilla game-menu stack and can crash the
+            // engine. Two parties lying in wait don't surprise each other
+            // anyway; thematically fine.
+            var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
+            if (behavior != null && behavior.IsPlayerInStealth) return false;
+
+            // Only ambush when the player is actually on the map screen.
+            // If any other GameState is active (options, inventory, encounter,
+            // conversation, trade, clan screen), opening a PlayerEncounter
+            // and activating a game menu under a modal UI corrupts the
+            // screen stack — observed as hard freezes under Proton/Vulkan.
+            if (!(Game.Current?.GameStateManager?.ActiveState is MapState)) return false;
+
             return true;
         }
 
