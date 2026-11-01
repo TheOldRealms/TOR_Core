@@ -47,13 +47,20 @@ namespace TOR_Core.CampaignMechanics.Ambush
             { Cultures.SYLVANIA, 0.5f },         // Vampire Counts (Sylvania) — same flavour
             { Cultures.GREENSKIN, 0.6f },
 
-            // Bandit sub-cultures (goblin bandits, chaos cultists, etc.)
-            // are intentionally not listed. IsEligibleAmbusher excludes
-            // IsBandit parties entirely — the base-Bannerlord bandit
-            // population is too dense to enrol into the stealth pool
-            // without hanging the quarter-hourly tick. Bandits are still
-            // valid *victims* via FindClosestHostileAiParty. Re-add
-            // entries here if we decide to let a subset ambush later.
+            // ---- Bandit sub-cultures: hiders, not strikers ----
+            // Bandit parties enter stealth to HIDE from hostile AI (which
+            // in practice means lord patrols) — not to strike. They can
+            // still ambush the player when the player walks past, so
+            // propensity drives that. Values intentionally moderate:
+            // bandits aren't aggressive about hiding either, just
+            // instinctive. See AiAmbushBehavior.IsHiderOnly for the
+            // archetype gate.
+            { Cultures.GOBLIN_BANDIT, 0.4f },        // "looters"
+            { Cultures.GREENSKIN_BANDIT, 0.35f },
+            { Cultures.BEASTMEN_BANDIT, 0.4f },      // beastmen offshoot bandits
+            { Cultures.CHAOS_CULTIST, 0.35f },       // "forest_bandits"
+            { Cultures.EMPIRE_DESERTERS, 0.3f },     // "mountain_bandits"
+            { Cultures.HERRIMAULT, 0.3f },           // "desert_bandits"
 
             // ---- Moderate ----
             { Cultures.EMPIRE, 0.15f },          // professional soldiery, formation warfare

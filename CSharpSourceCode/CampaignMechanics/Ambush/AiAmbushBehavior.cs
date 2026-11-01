@@ -169,17 +169,20 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 float propensity = model.GetAmbushPropensity(party);
                 if (propensity <= 0f) continue;
 
-                // Reactive-stealth gate: only enter stealth if there's a
-                // viable target nearby RIGHT NOW. Scans a wider "opportunity"
-                // radius than the strike radius so the party stealths just
-                // before the target walks into range. If no hostile is in
-                // sight OR the best candidate's predicted ambush success is
-                // too low, don't bother hiding — the party would just sit
-                // forever with no one to ambush.
+                // Reactive-stealth gate: branch on archetype.
+                // - Striker (lord parties): opportunity + viability. Only
+                //   stealths when a weak-enough target is in range to
+                //   actually ambush.
+                // - Hider (bandit parties): just "a hostile is nearby".
+                //   Bandits hide reflexively from any threat, no viability
+                //   check — they're not planning a strike against AI.
                 var nearbyHostiles = CollectNearbyHostiles(party, model.AiOpportunityScanRadius);
                 if (nearbyHostiles.Count == 0) continue;
-                var bestTarget = FindBestEntryCandidate(party, nearbyHostiles, model, out float bestChance);
-                if (bestTarget == null || bestChance < model.AiMinEntryViabilityChance) continue;
+                if (!IsHiderOnly(party))
+                {
+                    var bestTarget = FindBestEntryCandidate(party, nearbyHostiles, model, out float bestChance);
+                    if (bestTarget == null || bestChance < model.AiMinEntryViabilityChance) continue;
+                }
 
                 // propensity gate (cheap).
                 if (MBRandom.RandomFloat >= propensity * model.AiDecisionTickFraction) continue;
@@ -282,11 +285,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     continue;
                 }
 
-                // Priority 2: closest AI victim. Multiple skirmishes CAN
-                // fire in a tick but we cap them — each one touches
-                // vanilla's engagement pipeline (CreateFieldBattleEvent +
-                // roster mutation), and stacking too many at once can
-                // hang the campaign-map tick.
+                // Priority 2: closest AI victim — strikers only. Bandits
+                // (hiders) don't initiate AI-vs-AI skirmishes; they just
+                // stay hidden until the hostile moves away or stealth
+                // times out. Multiple skirmishes CAN fire in a tick but
+                // we cap them — each one touches vanilla's engagement
+                // pipeline (CreateFieldBattleEvent + roster mutation).
+                if (IsHiderOnly(ambusher)) continue;
                 if (skirmishesFired >= MaxSkirmishesPerTick) continue;
                 var aiVictim = FindClosestHostileAiParty(ambusher, strikeRadius);
                 if (aiVictim != null)
@@ -556,6 +561,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
             _stealthedParties.Remove(party.MobileParty.Id);
         }
 
+        /// <summary>
+        /// Any party that CAN enter stealth. Lord parties count (strikers)
+        /// and bandit parties count (hiders — see
+        /// <see cref="IsHiderOnly"/>). Non-combatant parties, main hero,
+        /// in-settlement, in-encounter, and too-small parties are out.
+        /// </summary>
         private static bool IsEligibleAmbusher(MobileParty party)
         {
             if (party == null || !party.IsActive) return false;
@@ -563,17 +574,20 @@ namespace TOR_Core.CampaignMechanics.Ambush
             if (party.LeaderHero == Hero.MainHero) return false;
             if (party.CurrentSettlement != null) return false;
             if (party.MapEvent != null) return false;
-            // Only lord parties ambush. Bandit parties get excluded for
-            // now — base Bannerlord spawns dozens of them continuously and
-            // enrolling the whole bandit population into the stealth pool
-            // was swamping the quarter-hourly tick (freezes). Bandits
-            // remain valid *victims* in the AI-vs-AI skirmish check (that
-            // filter is in FindClosestHostileAiParty).
-            if (!party.IsLordParty) return false;
+            if (!party.IsLordParty && !party.IsBandit) return false;
             if (party.MemberRoster == null) return false;
             if (party.MemberRoster.TotalHealthyCount < MinHealthyForAmbush) return false;
             return true;
         }
+
+        /// <summary>
+        /// True for bandit parties — they enter stealth to HIDE from
+        /// hostile AI, not to strike it. They can still ambush the
+        /// player when the player walks past; the restriction is only
+        /// on AI-vs-AI skirmishes. Lord parties (beastmen, chaos
+        /// warbands, etc.) are the real strikers.
+        /// </summary>
+        private static bool IsHiderOnly(MobileParty party) => party != null && party.IsBandit;
 
         private static List<MobileParty> CollectNearbyHostiles(MobileParty self, float scanRadius)
         {
