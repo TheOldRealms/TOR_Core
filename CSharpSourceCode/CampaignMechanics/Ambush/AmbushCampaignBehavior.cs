@@ -133,6 +133,24 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// </summary>
         private MobileParty _lastAmbushTarget;
 
+        /// <summary>Phase F §6: when the player flees a Phase F mission
+        /// and the ambusher presses the attack, we open a vanilla field
+        /// battle. This flag lets OnPlayerBattleEnd recognise the
+        /// follow-up battle and apply the extra double-flee morale
+        /// penalty. Transient — not serialised; mission can't survive
+        /// save anyway.</summary>
+        private bool _followUpFieldBattlePending;
+        private List<CharacterObject> _phaseFSpawnedCharacters;
+
+        /// <summary>Phase F §6: the ambusher that pressed the attack is
+        /// stashed here from <c>HandleAmbushedFledFollowUp</c> and the
+        /// actual <c>PlayerEncounter.RestartPlayerEncounter</c> call
+        /// is deferred to <see cref="OnCampaignTick"/>. Running it
+        /// re-entrantly from inside <c>OnPlayerBattleEnd</c> races
+        /// vanilla's encounter cleanup — see outcome-graph.md
+        /// "Why OpenFollowUpFieldBattle must defer".</summary>
+        private MobileParty _pendingFollowUpAmbusher;
+
         public bool IsPartyInStealth(MobileParty party)
         {
             if (party == null) return false;
@@ -340,9 +358,17 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private void OnQuarterHourlyTick()
         {
-            // Only roll detection while the player is actively hiding. Game-time stopped
-            // (menu paused) → no quarter-hourly ticks → no rolls, which is intended.
-            if (!_playerInStealth) return;
+            // Player stealth and player-side scanning are mutually exclusive:
+            // hiding is passive, you can't both lie in wait AND actively
+            // scout. When the player is not hiding, run the mirror pass —
+            // player's party rolls detection against nearby stealthed AI
+            // parties. Vanilla-style "hideout found" notification + sound
+            // + Scouting XP, same shape as spotting a bandit hideout.
+            if (!_playerInStealth)
+            {
+                RunPlayerDetectsAiPass();
+                return;
+            }
 
             var mainParty = MobileParty.MainParty;
             if (mainParty == null) return;
@@ -399,6 +425,57 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
         }
 
+        /// <summary>Player-side mirror of the AI-detects-player roll:
+        /// for each AI party in stealth within <c>DetectionScanRadius</c>
+        /// of the main party, call <c>TryDetect</c> with the main party
+        /// as observer. On success, break the AI party's stealth and
+        /// fire a <c>TORMapNotification</c> styled like a vanilla
+        /// hideout-spotted event (same sound), plus award Scouting XP
+        /// to the player's Scout role.</summary>
+        private void RunPlayerDetectsAiPass()
+        {
+            var mainParty = MobileParty.MainParty;
+            if (mainParty == null || !mainParty.IsActive) return;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return;
+            var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
+            if (ai == null) return;
+
+            // ToList() to materialise before breaking stealth — the dict
+            // mutates on BreakStealthByDetection, so we can't iterate the
+            // live enumerable while mutating.
+            var candidates = ai.StealthedPartiesInRange(mainParty, model.DetectionScanRadius).ToList();
+            foreach (var stealthed in candidates)
+            {
+                if (!model.TryDetect(mainParty, stealthed, ai.GetStealthEnteredAt(stealthed), out _))
+                    continue;
+
+                ai.BreakStealthByDetection(stealthed);
+
+                var who = stealthed.LeaderHero?.Name?.ToString()
+                          ?? stealthed.Name?.ToString()
+                          ?? "A hostile party";
+                var text = new TextObject("{=!}{NAME} was spotted lying in wait!");
+                text.SetTextVariable("NAME", who);
+                Campaign.Current?.CampaignInformationManager?.NewMapNoticeAdded(
+                    new CampaignMechanics.MapNotifications.TORMapNotification(
+                        text, "tor_ambush_detected",
+                        "event:/ui/notification/hideout_found"));
+
+                // Mirror vanilla's OnHideoutSpotted → Scouting XP for the
+                // Scout role. Partied-hero fallback to MainHero when no
+                // dedicated Scout is assigned.
+                var scout = mainParty.EffectiveScout ?? Hero.MainHero;
+                if (scout != null) scout.AddSkillXp(DefaultSkills.Scouting, 100f);
+
+                // One detection per tick — if several AI parties are
+                // stealthed near each other, the player sees one, next
+                // tick's roll surfaces the next if still hidden. Keeps
+                // the notification shelf from flooding.
+                return;
+            }
+        }
+
         private static void OnScreenPushed(ScreenBase pushedScreen)
         {
             if (pushedScreen is not MapScreen mapScreen) return;
@@ -445,6 +522,21 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private void OnCampaignTick(float dt)
         {
+            // Phase F §6: open the follow-up field battle one tick AFTER
+            // the Phase F mission closes. Opening it from inside
+            // OnPlayerBattleEnd races vanilla's own encounter cleanup
+            // for the just-closed mission — the queued pattern waits
+            // for Mission.Current to be null (vanilla fully torn down)
+            // and only fires once per queued ambusher.
+            if (_pendingFollowUpAmbusher != null
+                && TaleWorlds.MountAndBlade.Mission.Current == null
+                && MapEvent.PlayerMapEvent == null)
+            {
+                var ambusher = _pendingFollowUpAmbusher;
+                _pendingFollowUpAmbusher = null;
+                OpenFollowUpFieldBattle(ambusher);
+            }
+
             if (PendingPostAmbushCleanup && TaleWorlds.MountAndBlade.Mission.Current == null)
             {
                 PendingPostAmbushCleanup = false;
@@ -474,8 +566,153 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
         }
 
+        // ---- Phase F §6: AmbushedFled follow-up ----
+
+        /// <summary>Called right after a Phase F AmbushedFled outcome.
+        /// Marks spawned victim troops as wounded, then branches on the
+        /// ambusher's press-vs-vanish decision. Press → open vanilla
+        /// field battle and let its flee/pursuit flow handle the sequel.
+        /// Vanish → light morale penalty, done.</summary>
+        private void HandleAmbushedFledFollowUp(MobileParty ambusher)
+        {
+            PromoteSpawnedParticipantsToWounded();
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null || ambusher == null || !ambusher.IsActive)
+            {
+                float vanishPenalty = model?.AmbushedFledVanishMoralePenalty ?? 5f;
+                ApplyMoraleDelta(-vanishPenalty);
+                TORCommon.Log(LogLevel.Info, "[Ambush] AmbushedFled: ambusher gone/null — vanish branch, morale -"
+                    + vanishPenalty);
+                return;
+            }
+            bool presses = model.AmbusherPressesAttack(ambusher, MobileParty.MainParty);
+            TORCommon.Log(LogLevel.Info, "[Ambush] AmbushedFled branch: ambusher="
+                + (ambusher.LeaderHero?.Name?.ToString() ?? ambusher.Name?.ToString() ?? "?")
+                + " ambusherStrength=" + (ambusher.Party?.EstimatedStrength ?? 0f).ToString("F0")
+                + " playerStrength=" + (MobileParty.MainParty.Party?.EstimatedStrength ?? 0f).ToString("F0")
+                + " presses=" + presses);
+            if (presses)
+            {
+                // Stash the ambusher — the actual
+                // PlayerEncounter.RestartPlayerEncounter call is deferred
+                // to OnCampaignTick next frame so we don't race vanilla's
+                // encounter cleanup from the just-closed Phase F mission.
+                _pendingFollowUpAmbusher = ambusher;
+                TORCommon.Log(LogLevel.Info, "[Ambush] follow-up battle queued; will open on next tick.");
+                // Morale on the Press-and-Win case is left to vanilla; the
+                // double-flee extra is applied by OnPlayerBattleEnd when it
+                // sees _followUpFieldBattlePending + player retreat.
+            }
+            else
+            {
+                TORCommon.Say("They melted away. Your troops regroup.");
+                ApplyMoraleDelta(-model.AmbushedFledVanishMoralePenalty);
+                TORCommon.Log(LogLevel.Info, "[Ambush] vanish branch: morale -"
+                    + model.AmbushedFledVanishMoralePenalty);
+            }
+        }
+
+        /// <summary>Shift the still-healthy counts of each tracked
+        /// participant from healthy → wounded on the main party.
+        /// Pulls the participant list from the mission controller
+        /// before the mission tears down, into
+        /// <see cref="_phaseFSpawnedCharacters"/>, where
+        /// <see cref="OnPlayerBattleEnd"/> can still see them for the
+        /// double-flee removal.</summary>
+        private void PromoteSpawnedParticipantsToWounded()
+        {
+            var controller = TaleWorlds.MountAndBlade.Mission.Current
+                ?.GetMissionBehavior<Missions.AmbushMission.AmbushMissionController>();
+            var list = controller?.VictimSideSpawnedCharacters;
+            if (list == null || list.Count == 0)
+            {
+                _phaseFSpawnedCharacters = null;
+                return;
+            }
+            _phaseFSpawnedCharacters = new List<CharacterObject>(list);
+
+            // Reduce one healthy, add one wounded per spawned instance.
+            var roster = MobileParty.MainParty?.MemberRoster;
+            if (roster == null) return;
+            foreach (var c in _phaseFSpawnedCharacters)
+            {
+                if (c == null || c.IsHero) continue;
+                int idx = roster.FindIndexOfTroop(c);
+                if (idx < 0) continue;
+                var el = roster.GetElementCopyAtIndex(idx);
+                int available = el.Number - el.WoundedNumber;
+                if (available <= 0) continue;
+                // countChange=0 keeps total, woundedCountChange shifts
+                // healthy→wounded.
+                roster.AddToCountsAtIndex(idx, 0, woundedCountChange: 1);
+            }
+        }
+
+        /// <summary>Opens a vanilla field battle on the campaign map with
+        /// the ambusher as attacker. Sets the follow-up flag so
+        /// <see cref="OnPlayerBattleEnd"/> can recognise this battle's
+        /// aftermath (double-flee removal + extra morale).</summary>
+        private void OpenFollowUpFieldBattle(MobileParty ambusher)
+        {
+            if (ambusher == null || !ambusher.IsActive) return;
+            _followUpFieldBattlePending = true;
+            TORCommon.Say((ambusher.LeaderHero?.Name?.ToString()
+                           ?? ambusher.Name?.ToString()
+                           ?? "The ambushers")
+                          + " press the attack.");
+            // Teleport onto the player if the ambusher drifted during
+            // mission transitions, then let vanilla open the encounter.
+            ambusher.Position = MobileParty.MainParty.Position;
+            TaleWorlds.CampaignSystem.Encounters.PlayerEncounter.RestartPlayerEncounter(
+                PartyBase.MainParty, ambusher.Party, forcePlayerOutFromSettlement: false);
+            if (TaleWorlds.CampaignSystem.Encounters.PlayerEncounter.Battle == null)
+            {
+                TaleWorlds.CampaignSystem.Encounters.PlayerEncounter.StartBattle();
+                TaleWorlds.CampaignSystem.Encounters.PlayerEncounter.Update();
+            }
+        }
+
+        private static void ApplyMoraleDelta(float delta)
+        {
+            var main = MobileParty.MainParty;
+            if (main == null) return;
+            main.RecentEventsMorale += delta;
+        }
+
         private void OnPlayerBattleEnd(MapEvent mapEvent)
         {
+            // Phase F §6 double-flee check: fires ONLY when the player
+            // pressed retreat during the follow-up field battle — not
+            // on stand-and-lose. See outcome-graph.md "The checks that
+            // matter" for the full reasoning.
+            //
+            // RetreatingSide is set by vanilla's EndByRunAway, which
+            // runs only when a side explicitly ran. PlayerSide is
+            // dynamic (resolves to PartyBase.MainParty.Side) so it
+            // survives any attacker/defender swap vanilla might do.
+            if (_followUpFieldBattlePending && mapEvent != null)
+            {
+                bool playerDoubleFled =
+                    mapEvent.PlayerSide != BattleSideEnum.None
+                    && mapEvent.RetreatingSide == mapEvent.PlayerSide;
+                TORCommon.Log(LogLevel.Info, "[Ambush] follow-up end: PlayerSide="
+                    + mapEvent.PlayerSide + " WinningSide=" + mapEvent.WinningSide
+                    + " RetreatingSide=" + mapEvent.RetreatingSide
+                    + " doubleFled=" + playerDoubleFled);
+                if (playerDoubleFled)
+                {
+                    var model = Campaign.Current?.Models?.GetAmbushModel();
+                    if (model != null)
+                        ApplyMoraleDelta(-model.AmbushedFledDoubleFleeExtraMoralePenalty);
+                    TORCommon.Say("The second rout breaks your band. Troops scatter.");
+                    TORCommon.Log(LogLevel.Info, "[Ambush] double-flee penalty applied: -"
+                        + (model?.AmbushedFledDoubleFleeExtraMoralePenalty ?? 0f)
+                        + " to RecentEventsMorale");
+                }
+                _followUpFieldBattlePending = false;
+                _phaseFSpawnedCharacters = null;
+            }
+
             if (_playerInStealth) LeaveStealth(MobileParty.MainParty);
 
             // Routes outcome → aftermath. Full map in
@@ -602,6 +839,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                         break;
                     case AmbushedOutcome.AmbushedFled:
                         TORCommon.Say("You broke contact. Your troops are shaken.");
+                        HandleAmbushedFledFollowUp(ambusher);
                         break;
                     case AmbushedOutcome.AmbushedHeroWounded:
                         TORCommon.Say("You were cut down in the ambush.");

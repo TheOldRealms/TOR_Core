@@ -245,6 +245,46 @@ namespace TOR_Core.CampaignMechanics.Ambush
         public bool IsPartyStealthed(MobileParty party)
             => party != null && _stealthedParties.ContainsKey(party);
 
+        /// <summary>Game-time at which <paramref name="party"/> entered
+        /// stealth. Used by the player-side detection pass to feed the
+        /// model's duration-multiplier term (longer stealth = easier to
+        /// spot). Returns <c>CampaignTime.Zero</c> for non-stealthed
+        /// parties.</summary>
+        public CampaignTime GetStealthEnteredAt(MobileParty party)
+            => (party != null && _stealthedParties.TryGetValue(party, out var at))
+                ? at : CampaignTime.Zero;
+
+        /// <summary>Enumerate stealthed AI parties within
+        /// <paramref name="radius"/> of <paramref name="centerParty"/>'s
+        /// position. Used by the player-detection pass in
+        /// <c>AmbushCampaignBehavior</c>.</summary>
+        public IEnumerable<MobileParty> StealthedPartiesInRange(MobileParty centerParty, float radius)
+        {
+            if (centerParty == null || _stealthedParties.Count == 0) yield break;
+            var center = centerParty.Position.ToVec2();
+            float radiusSq = radius * radius;
+            foreach (var p in _stealthedParties.Keys)
+            {
+                if (p == null || !p.IsActive) continue;
+                if (p.Position.ToVec2().DistanceSquared(center) > radiusSq) continue;
+                yield return p;
+            }
+        }
+
+        /// <summary>Public break-stealth path for the player-detection
+        /// pass on <c>AmbushCampaignBehavior</c>. Wraps the private
+        /// <c>LeaveAiStealth</c> so detection can clear the stealth state
+        /// and stamp the cooldown via the standard mechanism. Separate
+        /// method so we can add detection-specific effects (persistent
+        /// reveal window, special narration, Scouting-dependent reveal
+        /// radius) without touching the broader LeaveAiStealth flow.
+        /// </summary>
+        public void BreakStealthByDetection(MobileParty party)
+        {
+            if (party == null || !_stealthedParties.ContainsKey(party)) return;
+            LeaveAiStealth(party);
+        }
+
         /// <summary>Count already-stealthed friendly parties within
         /// <paramref name="radius"/> of <paramref name="party"/>. Used by
         /// the cluster penalty — too many friends hiding in the same
@@ -480,7 +520,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return true;
         }
 
-        private static MobileParty FindClosestHostileAiParty(MobileParty ambusher, float strikeRadius)
+        private MobileParty FindClosestHostileAiParty(MobileParty ambusher, float strikeRadius)
         {
             float strikeRadiusSq = strikeRadius * strikeRadius;
             var ambusherPos = ambusher.Position.ToVec2();

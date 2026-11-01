@@ -65,6 +65,15 @@ namespace TOR_Core.Missions.AmbushMission
         private readonly List<Agent> _initialPatrol = new List<Agent>();
         private bool _initialPatrolDefeated;
 
+        // Phase F §6: track characters that spawned on the VICTIM side
+        // (player's side when AI ambushes player). On AmbushedFled, these
+        // get promoted to wounded on the main party so vanilla's defeat
+        // flow in the follow-up field battle hands them to the attacker
+        // as prisoners if the player retreats a second time. Hero is
+        // excluded — vanilla handles the hero via its own captivity flow.
+        public readonly List<CharacterObject> VictimSideSpawnedCharacters
+            = new List<CharacterObject>();
+
         /// <summary>True once every member of the initial defender spawn is
         /// inactive. Readers: <see cref="AmbushEndLogic"/> gates Phase 2
         /// behaviours on this; <see cref="AmbushReinforcementSpawnTimer"/>
@@ -158,6 +167,17 @@ namespace TOR_Core.Missions.AmbushMission
         {
             base.OnAgentCreated(agent);
             if (agent == null || !agent.IsHuman) return;
+
+            // Phase F §6 tracking: anything spawned on the VICTIM side
+            // (hero + initial companions + reinforcement waves) is a
+            // "participant" that gets flagged wounded on AmbushedFled.
+            // Hero skipped — vanilla's defeat-flow captivity handles them.
+            if (agent.Team != null && agent.Team.Side == _victimSide
+                && agent.Character is CharacterObject c && !c.IsHero)
+            {
+                VictimSideSpawnedCharacters.Add(c);
+            }
+
             if (agent.Team == null || agent.Team.Side != _ambusherSide) return;
 
             var formationClass = agent.Character?.DefaultFormationClass ?? FormationClass.Infantry;

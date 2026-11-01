@@ -493,6 +493,55 @@ namespace TOR_Core.Models
             return MBMath.ClampFloat(raw, 0f, EntryHostilePenaltyCap);
         }
 
+        // ---- Phase F §6 follow-up: ambusher-presses-after-flee ----
+
+        /// <summary>Base strength-ratio threshold for the AI ambusher
+        /// deciding to press the attack after the player flees the
+        /// Phase F mission (AmbushedFled). The actual threshold is
+        /// scaled by <see cref="HomelandMultiplier"/> and
+        /// <see cref="TraitAmbushMultiplier"/> — a Wood Elf lord in
+        /// Laurelorn with a scheming hero presses at a far lower
+        /// ratio than a Bretonnian honour-bound knight in foreign
+        /// terrain. 1.0 means "equal strength = always press"
+        /// before culture/trait modifiers are applied.</summary>
+        public virtual float AmbushPressBaseThreshold => 1.0f;
+
+        /// <summary>True if the AI ambusher presses the attack on the
+        /// campaign map after the player fled the Phase F mission.
+        /// Combination of raw strength ratio + culture-homeland +
+        /// hero-trait multipliers — mirrors the propensity formula
+        /// so cultures and heroes read consistently from the
+        /// entry decision through the press decision.</summary>
+        public virtual bool AmbusherPressesAttack(MobileParty ambusher, MobileParty player)
+        {
+            if (ambusher == null || player == null) return false;
+            float ambusherStrength = ambusher.Party?.EstimatedStrength ?? 0f;
+            float playerStrength = player.Party?.EstimatedStrength ?? 0f;
+            if (playerStrength <= 0f) return true;    // player has no fighting force
+            if (ambusherStrength <= 0f) return false; // ambusher wiped
+            float strengthRatio = ambusherStrength / playerStrength;
+            // Threshold shrinks for aggressive cultures / scheming heroes.
+            // AmbushPressBaseThreshold / mult inverts the same multipliers
+            // that boost propensity (homeland + traits).
+            float threshold = AmbushPressBaseThreshold
+                            / System.Math.Max(HomelandMultiplier(ambusher), 0.1f)
+                            / System.Math.Max(TraitAmbushMultiplier(ambusher.LeaderHero), 0.1f);
+            return strengthRatio >= threshold;
+        }
+
+        /// <summary>Flat morale penalty applied to the main party when
+        /// the ambusher vanishes after a Phase F AmbushedFled outcome.
+        /// Light — fiction is "being ambushed is rattling but no
+        /// combat loss."</summary>
+        public virtual float AmbushedFledVanishMoralePenalty => 5f;
+
+        /// <summary>Extra morale penalty stacked on top of vanilla's
+        /// defeat-morale when the player retreats from the follow-up
+        /// field battle (double-flee). Pushes a mid-morale party into
+        /// the desertion zone — the fiction is "running twice in one
+        /// afternoon shatters the band."</summary>
+        public virtual float AmbushedFledDoubleFleeExtraMoralePenalty => 20f;
+
         // ---- Record-cooldown ----
 
         /// <summary>How many game-hours an <see cref="AmbushRecord"/>

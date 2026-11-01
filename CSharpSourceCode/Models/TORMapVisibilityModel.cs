@@ -82,18 +82,43 @@ namespace TOR_Core.Models
         }
 
         /// <summary>
-        /// A repelled AI ambusher is kept persistently visible to the
-        /// player while the ambush record's cooldown is still active —
-        /// same vanilla mechanism <c>PlayerCaptivity.CaptorParty</c> uses.
-        /// Returning <c>true</c> here makes vanilla's fog-of-war pass
-        /// skip the distance check for this party, so its current
-        /// <c>IsVisible = true</c> (set by <c>LeaveAiStealth</c> before
-        /// the mission opened) stays in place for the window.
+        /// Overrides vanilla's fog-of-war distance pass for two
+        /// ambush-related cases, both using the same mechanism
+        /// <c>PlayerCaptivity.CaptorParty</c> uses — returning
+        /// <c>true</c> here makes <c>UpdateVisibilitiesBasedOnPoint</c>
+        /// skip the distance check for this party and leave its
+        /// current <c>IsVisible</c> value in place:
+        ///
+        /// • <b>Stealthed AI party</b> — <c>EnterAiStealth</c> sets
+        ///   <c>IsVisible = false</c> once; without this persistence
+        ///   override vanilla would flip it back to <c>true</c> on the
+        ///   next tick as soon as the player's party is in seeing
+        ///   range. The whole stealth fiction depends on them staying
+        ///   off the campaign map.
+        /// • <b>Repelled ambusher</b> — <c>LeaveAiStealth</c> sets
+        ///   <c>IsVisible = true</c> before the mission opens; this
+        ///   persistence keeps them visible to the player regardless
+        ///   of fog-of-war until the record's cooldown lapses.
         /// </summary>
         public override bool IsVisibilityPersistent(MobileParty mobileParty)
         {
             var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
-            if (ai != null && ai.IsPartyRevealed(mobileParty)) return true;
+            if (ai != null)
+            {
+                // Stealth persistence: only relevant when the party is
+                // already flagged invisible (set by EnterAiStealth). Fast
+                // path for the 99 % of parties that are visible — skips
+                // the dict lookup. Also self-healing: if stealth state
+                // and IsVisible get desynced, vanilla's distance check
+                // runs this tick and re-aligns the IsVisible side;
+                // persistence resumes on the next tick when they match.
+                if (!mobileParty.IsVisible && ai.IsPartyStealthed(mobileParty)) return true;
+                // Reveal persistence: specifically overrides distance so
+                // visible-but-far parties stay visible. Can't short-circuit
+                // on IsVisible since the whole point is keeping them
+                // visible when vanilla would otherwise hide them.
+                if (ai.IsPartyRevealed(mobileParty)) return true;
+            }
             return base.IsVisibilityPersistent(mobileParty);
         }
     }
