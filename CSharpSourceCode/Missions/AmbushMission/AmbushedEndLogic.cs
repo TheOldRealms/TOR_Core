@@ -1,3 +1,4 @@
+using NLog;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.Core;
@@ -5,6 +6,7 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.CampaignMechanics.Ambush;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Missions.AmbushMission
 {
@@ -160,7 +162,7 @@ namespace TOR_Core.Missions.AmbushMission
                 : MissionResult.CreateDefeated(Mission);
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
             if (behavior != null) behavior.LastAmbushedOutcome = outcome;
-            TaleWorlds.Library.Debug.Print(
+            TORCommon.Log(LogLevel.Info, 
                 "[AmbushedEndLogic] outcome=" + outcome + " successful=" + successful
                 + " (" + reason + ")");
         }

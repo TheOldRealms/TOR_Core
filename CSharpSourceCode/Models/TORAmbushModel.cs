@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Party;
@@ -48,8 +49,15 @@ namespace TOR_Core.Models
         public virtual float MaxEntryChance => 0.98f;
         public virtual float EntryHostilePenaltyPerParty => 0.12f;
         public virtual float EntryHostilePenaltyCap => 0.4f;
-        public virtual float EntryScoutingPerPointBonus => 0.001f;
-        public virtual float EntryScoutingBonusCap => 0.08f;
+        /// <summary>Added penalty per point of observer Scouting (summed
+        /// across observers in range). 300 Scouting observer → +0.15
+        /// detection probability, on top of the per-party flat.</summary>
+        public virtual float EntryHostileScoutingPenaltyPerPoint => 0.0005f;
+        /// <summary>Entry-chance bonus per point of the ambusher-leader's
+        /// Roguery skill. Thematically the stealth stat; Scouting lives
+        /// on the detection side only.</summary>
+        public virtual float EntryRogueryPerPointBonus => 0.001f;
+        public virtual float EntryRogueryBonusCap => 0.15f;
 
         // ---- Roguery XP (hidden-tick + perfect-ambush bonus) ----
 
@@ -262,26 +270,39 @@ namespace TOR_Core.Models
         }
 
         /// <summary>
-        /// Chance that the player successfully slips into stealth stance on
-        /// the hotkey press. Factors: Scouting (+), terrain (+/-), night (+),
-        /// nearby hostile count (- per party, capped). Clamp
-        /// [MinEntryChance..MaxEntryChance]. See campaign-stealth-design.md § 1.
+        /// Chance that a party successfully slips into stealth stance.
+        /// Factors: ambusher Roguery (+), terrain (+/-), night (+),
+        /// observers in range (- per party AND - per observer-Scouting
+        /// point, both capped). Clamp [MinEntryChance..MaxEntryChance].
+        /// See campaign-stealth-design.md § 1.
+        ///
+        /// <paramref name="observers"/> is the live list of hostile
+        /// parties within <see cref="DetectionScanRadius"/>; passing it
+        /// in (rather than just the count) lets the penalty scale with
+        /// the observers' actual Scouting totals, so a lone scout-master
+        /// is a bigger problem than a herd of untrained levies.
         /// </summary>
-        public virtual float CalculateEntryChance(MobileParty self, int nearbyHostileCount)
+        public virtual float CalculateEntryChance(MobileParty self,
+            IReadOnlyList<MobileParty> observers)
         {
             if (self == null) return MinEntryChance;
+            // Roguery bonus temporarily disabled — most vanilla NPC lords
+            // have Roguery = 0, which was zero-ing the entry chance for
+            // AI parties and killing all AI ambushes in testing. Terrain
+            // / night / observer penalty still apply; re-enable when
+            // we've either confirmed higher Roguery values on key AI
+            // heroes or combined it with Scouting as a hybrid stealth stat.
             float chance = BaseEntryChance
-                + EntryScoutingBonus(self)
                 + EntryTerrainBonus(self)
                 + EntryNightBonus()
-                - EntryHostilePenalty(nearbyHostileCount);
+                - EntryHostilePenalty(observers);
             return MBMath.ClampFloat(chance, MinEntryChance, MaxEntryChance);
         }
 
-        protected virtual float EntryScoutingBonus(MobileParty self)
+        protected virtual float EntryRogueryBonus(MobileParty self)
         {
-            int s = self.LeaderHero?.GetSkillValue(DefaultSkills.Scouting) ?? 0;
-            return MBMath.ClampFloat(s * EntryScoutingPerPointBonus, 0f, EntryScoutingBonusCap);
+            int r = self.LeaderHero?.GetSkillValue(DefaultSkills.Roguery) ?? 0;
+            return MBMath.ClampFloat(r * EntryRogueryPerPointBonus, 0f, EntryRogueryBonusCap);
         }
 
         protected virtual float EntryTerrainBonus(MobileParty self)
@@ -312,11 +333,15 @@ namespace TOR_Core.Models
             return Campaign.Current.IsNight ? NightTimeBonus : 0f;
         }
 
-        protected virtual float EntryHostilePenalty(int hostileCount)
+        protected virtual float EntryHostilePenalty(IReadOnlyList<MobileParty> observers)
         {
-            if (hostileCount <= 0) return 0f;
-            return MBMath.ClampFloat(hostileCount * EntryHostilePenaltyPerParty,
-                                     0f, EntryHostilePenaltyCap);
+            if (observers == null || observers.Count == 0) return 0f;
+            int totalScouting = 0;
+            foreach (var o in observers)
+                totalScouting += o?.LeaderHero?.GetSkillValue(DefaultSkills.Scouting) ?? 0;
+            float raw = observers.Count * EntryHostilePenaltyPerParty
+                        + totalScouting * EntryHostileScoutingPenaltyPerPoint;
+            return MBMath.ClampFloat(raw, 0f, EntryHostilePenaltyCap);
         }
 
         // ---- Phase F: AI-side propensity ----
@@ -358,6 +383,33 @@ namespace TOR_Core.Models
         /// Mirrors design doc § 6 — same gate the Phase F AmbushedFled
         /// follow-up uses on the player side.</summary>
         public virtual float AmbushFollowupThreshold => 1.5f;
+
+        /// <summary>Minimum CalculateAmbushSuccessChance an AI ambusher
+        /// requires before committing to a strike. Below this, the party
+        /// stays in stealth and lets the target walk past — the
+        /// "lurking is also valid" case: small forces that spotted a
+        /// stronger hostile just vanish and wait for it to clear.
+        /// </summary>
+        public virtual float AiMinCommitChance => 0.35f;
+
+        /// <summary>Radius an AI party scans for potential ambush targets
+        /// BEFORE deciding to enter stealth. If no hostile party is in
+        /// this range, the propensity / entry roll is skipped entirely —
+        /// the party doesn't lie in wait for ambushes that will never
+        /// happen. Wider than <see cref="AmbushCampaignBehavior.StealthRadius"/>
+        /// (the actual strike range) so the party stealths slightly
+        /// before the target walks into strike range, not at the moment
+        /// it's already too late to react.</summary>
+        public virtual float AiOpportunityScanRadius => 25f;
+
+        /// <summary>Minimum predicted ambush success chance against the
+        /// best candidate target before even considering entering
+        /// stealth. Below this, the party knows a strike wouldn't work
+        /// against anyone it can see, so it doesn't bother hiding.
+        /// Separate from <see cref="AiMinCommitChance"/> (which is the
+        /// strike-commit gate at target-detection time) — this is the
+        /// "is it worth even trying" entry gate.</summary>
+        public virtual float AiMinEntryViabilityChance => 0.3f;
 
         /// <summary>Returns (ambusherWounds, victimWounds) for a headless
         /// skirmish. The strike power is the ambusher's healthy count ×

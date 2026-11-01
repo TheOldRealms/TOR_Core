@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NLog;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Encounters;
@@ -246,7 +247,7 @@ namespace TOR_Core.Missions.AmbushMission
                 : MissionResult.CreateDefeated(Mission);
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
             if (behavior != null) behavior.LastAmbushOutcome = outcome;
-            TaleWorlds.Library.Debug.Print(
+            TORCommon.Log(LogLevel.Info, 
                 "[AmbushEndLogic] outcome=" + outcome + " successful=" + successful
                 + " (" + reason + ")");
         }

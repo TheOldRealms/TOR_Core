@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NLog;
 using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -157,12 +158,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 return;
             }
 
-            // Entry chance roll — scouting / terrain / night / nearby hostiles.
-            // Failed entry stamps the cooldown just like a failed strike would.
+            // Entry chance roll — Roguery / terrain / night / nearby hostiles
+            // (count AND their Scouting totals). Failed entry stamps the
+            // cooldown just like a failed strike would.
             var model = Campaign.Current?.Models?.GetAmbushModel();
             if (model != null)
             {
-                int hostilesInRange = CountHostileObserversInScanRadius(model);
+                var hostilesInRange = CollectHostileObserversInScanRadius(model);
                 float chance = model.CalculateEntryChance(MobileParty.MainParty, hostilesInRange);
                 if (MBRandom.RandomFloat >= chance)
                 {
@@ -177,24 +179,29 @@ namespace TOR_Core.CampaignMechanics.Ambush
             _lastHotkeyRealTime = nowRealTime;
         }
 
-        private int CountHostileObserversInScanRadius(TORAmbushModel model)
+        private List<MobileParty> CollectHostileObserversInScanRadius(TORAmbushModel model)
         {
+            var result = new List<MobileParty>();
             var mainParty = MobileParty.MainParty;
-            if (mainParty == null) return 0;
+            if (mainParty == null) return result;
             float scanRadius = model.DetectionScanRadius;
             float scanRadiusSq = scanRadius * scanRadius;
             var mainPos = mainParty.Position.ToVec2();
-            int n = 0;
-            foreach (var observer in MobileParty.All)
+            // LocatorGrid returns a cell-superset — tighten with a
+            // distance check so the penalty math doesn't inflate from
+            // observers just outside the actual circle.
+            var query = MobileParty.StartFindingLocatablesAroundPosition(mainPos, scanRadius);
+            for (var observer = MobileParty.FindNextLocatable(ref query); observer != null;
+                 observer = MobileParty.FindNextLocatable(ref query))
             {
                 if (observer == null || !observer.IsActive) continue;
                 if (observer == mainParty) continue;
                 if (!observer.IsVisible) continue;   // fog-of-war hidden parties don't count
                 if (observer.Position.ToVec2().DistanceSquared(mainPos) > scanRadiusSq) continue;
                 if (!model.CanDetect(observer, mainParty)) continue;
-                n++;
+                result.Add(observer);
             }
-            return n;
+            return result;
         }
 
         public void EnterStealth(MobileParty party)
@@ -251,20 +258,30 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             if (attacker == null) return new List<MobileParty>();
             var attackerPos = attacker.Position.ToVec2();
-            var radiusSq = StealthRadius * StealthRadius;
             var attackerFaction = attacker.MapFaction;
+            if (attackerFaction == null) return new List<MobileParty>();
 
-            return MobileParty.All
-                .Where(p => p != null
-                            && p.IsActive
-                            && p != attacker
-                            && p.IsVisible   // fog-of-war-hidden parties can't be targeted
-                            && p.MapFaction != null
-                            && attackerFaction != null
-                            && FactionManager.IsAtWarAgainstFaction(attackerFaction, p.MapFaction)
-                            && p.Position.ToVec2().DistanceSquared(attackerPos) <= radiusSq)
-                .OrderBy(p => p.Position.ToVec2().DistanceSquared(attackerPos))
+            float radiusSq = StealthRadius * StealthRadius;
+            // LocatorGrid returns a cell-superset; tighten with a distance
+            // check so parties just outside the circle don't appear in
+            // the strike-slot list.
+            var candidates = new List<(MobileParty party, float distSq)>();
+            var query = MobileParty.StartFindingLocatablesAroundPosition(attackerPos, StealthRadius);
+            for (var p = MobileParty.FindNextLocatable(ref query); p != null;
+                 p = MobileParty.FindNextLocatable(ref query))
+            {
+                if (p == null || !p.IsActive || p == attacker) continue;
+                if (!p.IsVisible) continue;   // fog-of-war-hidden parties can't be targeted
+                if (p.MapFaction == null) continue;
+                if (!FactionManager.IsAtWarAgainstFaction(attackerFaction, p.MapFaction)) continue;
+                float distSq = p.Position.ToVec2().DistanceSquared(attackerPos);
+                if (distSq > radiusSq) continue;
+                candidates.Add((p, distSq));
+            }
+            return candidates
+                .OrderBy(c => c.distSq)
                 .Take(MaxTargetSlots)
+                .Select(c => c.party)
                 .ToList();
         }
 
@@ -487,7 +504,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                             var roster = _lastAmbushTarget.MemberRoster;
                             int total = roster != null ? roster.TotalManCount : -1;
                             bool active = _lastAmbushTarget.IsActive;
-                            TaleWorlds.Library.Debug.Print(
+                            TORCommon.Log(LogLevel.Info, 
                                 "[AmbushCampaignBehavior] TotalVictory post-mission:"
                                 + " target=" + GetPartyLabel(_lastAmbushTarget)
                                 + " active=" + active

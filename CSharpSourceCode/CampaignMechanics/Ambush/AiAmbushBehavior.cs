@@ -9,7 +9,9 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.ObjectSystem;
+using NLog;
 using TOR_Core.Extensions;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Ambush
@@ -32,6 +34,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private Dictionary<MBGUID, CampaignTime> _stealthedParties
             = new Dictionary<MBGUID, CampaignTime>();
 
+        // Parties on ambush cooldown → when the cooldown expires. Mirror
+        // of the player-side cooldown; stamped whenever a party leaves
+        // stealth (burned the surprise, visibility compromised) and read
+        // by IsEligibleAmbusher to block immediate re-stealth.
+        private Dictionary<MBGUID, CampaignTime> _partyCooldownUntil
+            = new Dictionary<MBGUID, CampaignTime>();
+
         // How long a stealthed AI party stays hidden before giving up and
         // leaving stealth on its own (no viable target walked past). Keeps
         // the stealth pool from accumulating indefinitely.
@@ -51,13 +60,38 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         public override void RegisterEvents()
         {
+            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.QuarterHourlyTickEvent.AddNonSerializedListener(this, OnQuarterHourlyTick);
             CampaignEvents.OnPartyRemovedEvent.AddNonSerializedListener(this, OnPartyRemoved);
+        }
+
+        /// <summary>
+        /// Fires on every save-game load. One-shot sanity scrub: for every
+        /// party we think is stealthed, make sure it's actually clearable
+        /// if the game state no longer matches. The earlier dict-mutation
+        /// bug could leave parties with SetDoNotMakeNewDecisions(true) +
+        /// IgnoreByOtherPartiesTill(+100 years) stuck in Hold mode, which
+        /// manifests as "no party moves anymore". Call LeaveAiStealth on
+        /// anything we're tracking so a loaded game starts clean.
+        /// </summary>
+        private void OnSessionLaunched(CampaignGameStarter starter)
+        {
+            if (_stealthedParties.Count == 0) return;
+            var snapshot = new List<MBGUID>(_stealthedParties.Keys);
+            foreach (var id in snapshot)
+            {
+                var party = FindPartyById(id);
+                if (party != null) LeaveAiStealth(party);
+                else _stealthedParties.Remove(id);
+            }
+            TORCommon.Log(LogLevel.Info, "[AI Ambush] OnSessionLaunched: cleared "
+                + snapshot.Count + " stealthed parties from loaded save");
         }
 
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData("_stealthedParties", ref _stealthedParties);
+            dataStore.SyncData("_partyCooldownUntil", ref _partyCooldownUntil);
         }
 
         /// <summary>True while <paramref name="party"/> is in AI stealth
@@ -66,17 +100,27 @@ namespace TOR_Core.CampaignMechanics.Ambush
         public bool IsPartyStealthed(MobileParty party)
             => party != null && _stealthedParties.ContainsKey(party.Id);
 
+        private bool IsOnCooldown(MobileParty party)
+        {
+            if (party == null) return false;
+            if (!_partyCooldownUntil.TryGetValue(party.Id, out var until)) return false;
+            if (until.IsFuture) return true;
+            // Expired — tidy up so the dict doesn't accumulate forever.
+            _partyCooldownUntil.Remove(party.Id);
+            return false;
+        }
+
         private void OnQuarterHourlyTick()
         {
             if (Campaign.Current == null) return;
 
-            TaleWorlds.Library.Debug.Print("[AI Ambush] tick: start, stealthed=" + _stealthedParties.Count);
+            TORCommon.Log(LogLevel.Info, "[AI Ambush] tick: start, stealthed=" + _stealthedParties.Count);
             PruneStealthedParties();
-            TaleWorlds.Library.Debug.Print("[AI Ambush] tick: pruned, stealthed=" + _stealthedParties.Count);
+            TORCommon.Log(LogLevel.Info, "[AI Ambush] tick: pruned, stealthed=" + _stealthedParties.Count);
             TickDecisions();
-            TaleWorlds.Library.Debug.Print("[AI Ambush] tick: decisions done, stealthed=" + _stealthedParties.Count);
+            TORCommon.Log(LogLevel.Info, "[AI Ambush] tick: decisions done, stealthed=" + _stealthedParties.Count);
             TickTargetDetection();
-            TaleWorlds.Library.Debug.Print("[AI Ambush] tick: targets done, stealthed=" + _stealthedParties.Count);
+            TORCommon.Log(LogLevel.Info, "[AI Ambush] tick: targets done, stealthed=" + _stealthedParties.Count);
         }
 
         private void TickDecisions()
@@ -88,20 +132,64 @@ namespace TOR_Core.CampaignMechanics.Ambush
             {
                 if (!IsEligibleAmbusher(party)) continue;
                 if (_stealthedParties.ContainsKey(party.Id)) continue;
+                if (IsOnCooldown(party)) continue;
 
                 float propensity = model.GetAmbushPropensity(party);
                 if (propensity <= 0f) continue;
 
-                // propensity gate first (cheap), then the full entry chance
-                // (reads terrain, scouting, night, nearby hostiles).
+                // Reactive-stealth gate: only enter stealth if there's a
+                // viable target nearby RIGHT NOW. Scans a wider "opportunity"
+                // radius than the strike radius so the party stealths just
+                // before the target walks into range. If no hostile is in
+                // sight OR the best candidate's predicted ambush success is
+                // too low, don't bother hiding — the party would just sit
+                // forever with no one to ambush.
+                var nearbyHostiles = CollectNearbyHostiles(party, model.AiOpportunityScanRadius);
+                if (nearbyHostiles.Count == 0) continue;
+                var bestTarget = FindBestEntryCandidate(party, nearbyHostiles, model, out float bestChance);
+                if (bestTarget == null || bestChance < model.AiMinEntryViabilityChance) continue;
+
+                // propensity gate (cheap).
                 if (MBRandom.RandomFloat >= propensity * model.AiDecisionTickFraction) continue;
 
-                int hostileCount = CountNearbyHostiles(party, model.DetectionScanRadius);
-                float entryChance = model.CalculateEntryChance(party, hostileCount);
+                // Entry chance roll — observer-penalty uses the same list
+                // we already collected (scoped by DetectionScanRadius this
+                // time, since that's what the entry calc expects).
+                var observers = CollectNearbyHostiles(party, model.DetectionScanRadius);
+                float entryChance = model.CalculateEntryChance(party, observers);
                 if (MBRandom.RandomFloat >= entryChance) continue;
 
                 EnterAiStealth(party);
             }
+        }
+
+        /// <summary>Pick the hostile from <paramref name="candidates"/> with
+        /// the highest predicted CalculateAmbushSuccessChance. Returns null
+        /// if none of them are plausible targets (e.g. all in encounters /
+        /// settlements). <paramref name="bestChance"/> is 0 when null is
+        /// returned.</summary>
+        private static MobileParty FindBestEntryCandidate(MobileParty ambusher,
+            List<MobileParty> candidates, TORAmbushModel model, out float bestChance)
+        {
+            MobileParty best = null;
+            bestChance = 0f;
+            foreach (var cand in candidates)
+            {
+                if (cand == null || !cand.IsActive) continue;
+                if (cand.CurrentSettlement != null) continue;
+                if (cand.MapEvent != null) continue;
+                // CalculateAmbushSuccessChance takes a CampaignTime for
+                // "stealth entered at" — we haven't entered yet, so pass
+                // the current time (the "fresh entry" value, no duration
+                // bonus / malus).
+                float chance = model.CalculateAmbushSuccessChance(ambusher, cand, CampaignTime.Now);
+                if (chance > bestChance)
+                {
+                    bestChance = chance;
+                    best = cand;
+                }
+            }
+            return best;
         }
 
         private void TickTargetDetection()
@@ -110,7 +198,6 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
             float strikeRadius = AmbushCampaignBehavior.StealthRadius;
             float strikeRadiusSq = strikeRadius * strikeRadius;
-
             bool playerAvailable = IsPlayerAvailableAsTarget();
             var main = MobileParty.MainParty;
             Vec2 mainPos = main != null ? main.Position.ToVec2() : Vec2.Zero;
@@ -161,7 +248,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 // roster mutation), and stacking too many at once can
                 // hang the campaign-map tick.
                 if (skirmishesFired >= MaxSkirmishesPerTick) continue;
-                var aiVictim = FindClosestHostileAiParty(ambusher, strikeRadiusSq);
+                var aiVictim = FindClosestHostileAiParty(ambusher, strikeRadius);
                 if (aiVictim != null)
                 {
                     TriggerSkirmishAgainstAiParty(ambusher, aiVictim);
@@ -181,12 +268,18 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return true;
         }
 
-        private static MobileParty FindClosestHostileAiParty(MobileParty ambusher, float strikeRadiusSq)
+        private static MobileParty FindClosestHostileAiParty(MobileParty ambusher, float strikeRadius)
         {
+            float strikeRadiusSq = strikeRadius * strikeRadius;
             var ambusherPos = ambusher.Position.ToVec2();
             MobileParty closest = null;
             float closestDistSq = strikeRadiusSq;
-            foreach (var p in MobileParty.All)
+            // LocatorGrid radius query — touches only the grid cells
+            // overlapping the strike radius (~5-unit cells, grid-wide).
+            // Keeps cost proportional to local density, not world size.
+            var query = MobileParty.StartFindingLocatablesAroundPosition(ambusherPos, strikeRadius);
+            for (var p = MobileParty.FindNextLocatable(ref query); p != null;
+                 p = MobileParty.FindNextLocatable(ref query))
             {
                 if (p == null || !p.IsActive || p == ambusher) continue;
                 if (p == MobileParty.MainParty) continue;    // player handled above
@@ -194,9 +287,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 if (p.MapEvent != null) continue;
                 if (p.MapFaction == null) continue;
                 if (!FactionManager.IsAtWarAgainstFaction(ambusher.MapFaction, p.MapFaction)) continue;
-                // Only engage proper fighting parties; caravans / villagers
-                // use their vanilla engagement paths.
-                if (!p.IsLordParty && !p.IsBandit) continue;
+                // Lord parties only — ambushing a bandit party reads as
+                // immersion-breaking (a Warhammer lord doesn't lie in
+                // wait to spring on looters; they just ride them down).
+                // Caravans / villagers / militia keep their vanilla
+                // engagement paths too.
+                if (!p.IsLordParty) continue;
                 if (p.MemberRoster == null || p.MemberRoster.TotalHealthyCount < MinHealthyForAmbush) continue;
                 float distSq = p.Position.ToVec2().DistanceSquared(ambusherPos);
                 if (distSq > closestDistSq) continue;
@@ -222,6 +318,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
                           + PartyLabel(victim) + ": wounded " + victimWounds
                           + " (took " + ambusherWounds + ") — "
                           + (press ? "pressing the attack." : "fading back into cover."));
+            TORCommon.Log(LogLevel.Info, "[AI Ambush] skirmish @ "
+                + ambusher.Position.ToVec2() + " ambusher=" + PartyLabel(ambusher)
+                + " victim=" + PartyLabel(victim) + " press=" + press);
 
             // Only open the field battle if neither party has drifted into
             // a map event during this tick (another skirmish, player
@@ -229,7 +328,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // in a MapEvent hangs vanilla.
             if (press && ambusher.MapEvent == null && victim.MapEvent == null)
             {
-                TaleWorlds.Library.Debug.Print("[AI Ambush] press-attack opening field battle: "
+                TORCommon.Log(LogLevel.Info, "[AI Ambush] press-attack opening field battle: "
                     + PartyLabel(ambusher) + " -> " + PartyLabel(victim));
                 // Teleport the ambusher onto the victim and open a vanilla
                 // field battle. The vanilla engagement AI + auto-resolve
@@ -237,7 +336,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 // morale, composition all fold in naturally.
                 ambusher.Position = victim.Position;
                 FieldBattleEventComponent.CreateFieldBattleEvent(ambusher.Party, victim.Party);
-                TaleWorlds.Library.Debug.Print("[AI Ambush] press-attack field battle opened");
+                TORCommon.Log(LogLevel.Info, "[AI Ambush] press-attack field battle opened");
             }
             // Retreat branch (and the drifted-into-map-event guard above):
             // nothing further — ambusher is out of stealth, victim is
@@ -282,9 +381,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private static MobileParty FindPartyById(MBGUID id)
         {
-            foreach (var p in MobileParty.All)
-                if (p.Id == id) return p;
-            return null;
+            // MBObjectManager keys by (type, GUID) with O(1) lookup inside
+            // each type bucket. Beats the previous MobileParty.All linear
+            // scan by a wide margin when the stealth dict grows.
+            return MBObjectManager.Instance.GetObject(id) as MobileParty;
         }
 
         private void TriggerAmbushAgainstPlayer(MobileParty ambusher)
@@ -309,6 +409,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
                                         ?? ambusher.Name?.ToString()
                                         ?? "A hostile force")
                           + " was lying in wait.");
+            TORCommon.Log(LogLevel.Info, "[AI Ambush] player ambush @ "
+                + MobileParty.MainParty.Position.ToVec2()
+                + " ambusher=" + PartyLabel(ambusher));
         }
 
         private void EnterAiStealth(MobileParty party)
@@ -316,22 +419,40 @@ namespace TOR_Core.CampaignMechanics.Ambush
             _stealthedParties[party.Id] = CampaignTime.Now;
             party.Ai.SetDoNotMakeNewDecisions(true);
             party.SetMoveModeHold();
-            party.IgnoreByOtherPartiesTill(CampaignTime.YearsFromNow(100f));
-            // Mono-log only — many parties can enter per tick, and spamming
-            // the top-left feed with "X entered stealth" was swamping real
-            // user-facing messages. The dramatic beats (skirmish fire,
-            // player ambush) still go to the feed via TORCommon.Say below.
-            TaleWorlds.Library.Debug.Print("[AI Ambush] " + PartyLabel(party)
-                + " (" + CultureLabel(party) + ") entered stealth stance.");
+            // Cap the ignore window at the max stealth hold (48h). If
+            // LeaveAiStealth ever misses, the party clears on its own
+            // instead of being permanently invisible to other AI
+            // (previous +100 years was a time bomb for stuck parties).
+            party.IgnoreByOtherPartiesTill(CampaignTime.HoursFromNow(MaxStealthHoldHours));
+            // Actually vanish from the campaign map. This is the other
+            // side of the ambush model — the stealth value isn't just
+            // "AI leaves them alone", it's "nobody sees them". Lets
+            // weaker parties lurk until a bigger threat passes.
+            party.IsVisible = false;
+            TORCommon.Log(LogLevel.Info, "[AI Ambush] " + PartyLabel(party)
+                + " (" + CultureLabel(party) + ") entered stealth stance at "
+                + party.Position.ToVec2());
         }
 
         private void LeaveAiStealth(MobileParty party)
         {
+            if (party == null) return;
             _stealthedParties.Remove(party.Id);
-            if (party != null && party.IsActive)
+            // Stamp cooldown unconditionally — covers burned strikes
+            // (player ambush / skirmish), vanilla-engagement drag-in, and
+            // the max-hold-expired "gave up" case. All three share the
+            // "position revealed / recently stealthed" semantics that
+            // justify a cooldown before the party tries again.
+            _partyCooldownUntil[party.Id] =
+                CampaignTime.HoursFromNow(AmbushCampaignBehavior.CooldownHours);
+            if (party.IsActive)
             {
                 party.Ai.SetDoNotMakeNewDecisions(false);
                 party.IgnoreByOtherPartiesTill(CampaignTime.Zero);
+                party.IsVisible = true;
+                TORCommon.Log(LogLevel.Info, "[AI Ambush] " + PartyLabel(party)
+                    + " left stealth at " + party.Position.ToVec2()
+                    + " (cooldown " + AmbushCampaignBehavior.CooldownHours + "h)");
             }
         }
 
@@ -365,6 +486,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
             foreach (var id in expired) _stealthedParties.Remove(id);
             foreach (var party in toLeave) LeaveAiStealth(party);
+            if (expired.Count > 0 || toLeave.Count > 0)
+            {
+                TORCommon.Log(LogLevel.Info, "[AI Ambush] prune: destroyed/inactive="
+                    + expired.Count + " left-stealth=" + toLeave.Count);
+            }
         }
 
         private void OnPartyRemoved(PartyBase party)
@@ -392,23 +518,28 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return true;
         }
 
-        private static int CountNearbyHostiles(MobileParty self, float scanRadius)
+        private static List<MobileParty> CollectNearbyHostiles(MobileParty self, float scanRadius)
         {
-            if (self == null) return 0;
+            var result = new List<MobileParty>();
+            if (self == null) return result;
             var selfPos = self.Position.ToVec2();
-            float radiusSq = scanRadius * scanRadius;
             var selfFaction = self.MapFaction;
-            if (selfFaction == null) return 0;
-            int n = 0;
-            foreach (var p in MobileParty.All)
+            if (selfFaction == null) return result;
+            float radiusSq = scanRadius * scanRadius;
+            // LocatorGrid returns a cell-superset — parties in cells
+            // overlapping the radius, which includes some outside the
+            // exact circle. Redundant distance check tightens it.
+            var query = MobileParty.StartFindingLocatablesAroundPosition(selfPos, scanRadius);
+            for (var p = MobileParty.FindNextLocatable(ref query); p != null;
+                 p = MobileParty.FindNextLocatable(ref query))
             {
                 if (p == null || !p.IsActive || p == self) continue;
                 if (p.MapFaction == null) continue;
                 if (!FactionManager.IsAtWarAgainstFaction(selfFaction, p.MapFaction)) continue;
                 if (p.Position.ToVec2().DistanceSquared(selfPos) > radiusSq) continue;
-                n++;
+                result.Add(p);
             }
-            return n;
+            return result;
         }
     }
 }
