@@ -80,6 +80,10 @@
   <string id="tor_race_name.spirit_host" text="{=str_tor_race_name_spirit_host}Spirit Host" />
   <string id="tor_race_name.troll" text="{=str_tor_race_name_troll}Troll" />
 
+  <!-- UI - Ambush deployment -->
+  <string id="tor_ambush_spawnpoint_tag.attacker_ambush_hill" text="{=str_tor_ambush_spawnpoint_tag.attacker_ambush_hill}Hill" />
+  <string id="tor_ambush_spawnpoint_tag.attacker_ambush_street" text="{=str_tor_ambush_spawnpoint_tag.attacker_ambush_street}Street" />
+
   <!-- Oathgold -->
   <string id="tor_party_size_desc.FriendOfUndead" text="{=str_tor_party_size_desc_friendofundead}Friend of undead" />
   <string id="tor_party_size_desc.CaravanOfDeath" text="{=str_tor_party_size_desc_caravanofdeath}Caravan of death" />
@@ -4561,11 +4565,6 @@
   <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead - not affected by morale, and instead of fleeing, shall crumble to dust. If defeated, this unit cannot be wounded." />
   <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew - required to operate most artillery pieces." />
   <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale." />
-  <string id="tor_extendedInfo.Expendable" text="{=str_tor_extendedinfo_expendable}Expendable - Losses of this unit cause no morale shock (...)" />
-  <string id="tor_extendedInfo.Crushing" text="{=str_tor_extendedinfo_crushing}Crushing - Attacks cannot be blocked or parried with weapons. (...)" />
-  <string id="tor_extendedInfo.Slice" text="{=str_tor_extendedinfo_slice}Slice - Melee attacks can cut through enemies(...)" />
-  <string id="tor_extendedInfo.TreeSpirit" text="{=str_tor_extendedinfo_treespirit}Tree Spirit - Tree Spirit (...)" />
-  <string id="tor_extendedInfo.Crew" text="{=str_tor_extendedinfo_crew}Artillery Crew - {VALUE}% faster cannon reloads and can load cannons (...)" />
   <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage." />
   <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Piercing - {VALUE}% Armor Penetration(...)" />
   <string id="tor_damagetype.Invalid" text="{=str_tor_damagetype_invalid}Invalid" />
@@ -4575,6 +4574,21 @@
   <string id="tor_damagetype.Holy" text="{=str_tor_damagetype_holy}Holy" />
   <string id="tor_damagetype.Frost" text="{=str_tor_damagetype_frost}Frost" />
   <string id="tor_damagetype.Lightning" text="{=str_tor_damagetype_lightning}Lightning" />
+
+  <!-- ExtendedInfo.Expendable -->
+  <string id="tor_extendedInfo.Expendable" text="{=str_tor_extendedinfo_expendable}Expendable - Losses of this unit cause no morale shock (...)" />
+
+  <!-- ExtendedInfo.Crushing -->
+  <string id="tor_extendedInfo.Crushing" text="{=str_tor_extendedinfo_crushing}Crushing - Attacks cannot be blocked or parried with weapons. (...)" />
+
+  <!-- ExtendedInfo.Slice -->
+  <string id="tor_extendedInfo.Slice" text="{=str_tor_extendedinfo_slice}Slice - Melee attacks can cut through enemies(...)" />
+
+  <!-- ExtendedInfo.TreeSpirit -->
+  <string id="tor_extendedInfo.TreeSpirit" text="{=str_tor_extendedinfo_treespirit}Tree Spirit - Tree Spirit (...)" />
+
+  <!-- ExtendedInfo.Crew -->
+  <string id="tor_extendedInfo.Crew" text="{=str_tor_extendedinfo_crew}Artillery Crew - {VALUE}% faster cannon reloads and can load cannons (...)" />
 
   <!-- ExtendedInfo.Monstrous -->
   <string id="tor_extendedInfo.Monstrous" text="{=str_tor_extendedinfo_monstrous}Monstrous - Attacks gates (...)" />
@@ -4621,6 +4635,8 @@
 
   <!-- ExtendedInfo.Ethereal -->
   <string id="tor_extendedInfo.Ethereal" text="{=str_tor_extendedinfo_ethereal}Ethereal - {VALUE}% Chance to Ignore Purely Physical Hits(...)" />
+
+  <!-- Ethereal -->
   <string id="tor_ethereal_hit_ignored" text="{=str_tor_ethereal_hit_ignored}Your blow passes harmlessly through the ethereal form!" />
 
   <!-- ExtendedInfo.KillingBlow -->
@@ -6117,4 +6133,35 @@
   <string id="tor_towncomplex_intro.mousillon" text="{=str_tor_towncomplex_intro.mousillon}The alleys of {SETTLEMENT_NAME} reek of damp and rot. Figures huddle in doorways and watch you pass without comment." />
   <string id="tor_towncomplex.sturgia" text="{=str_tor_towncomplex.sturgia}Visit the clan workshops" />
   <string id="tor_towncomplex_intro.sturgia" text="{=str_tor_towncomplex_intro.sturgia}The workshops of {SETTLEMENT_NAME} ring with hammer-blows; smoke and sparks curl up through grates in the stone ceiling." />
+
+  <!-- Ambush -->
+  <string id="tor_ambush_widget_tt_eye_unavailable" text="{=str_tor_ambush_widget_tt_eye_unavailable}Stealth entry chance unavailable." />
+  <string id="tor_ambush_widget_tt_eye_header" text="{=str_tor_ambush_widget_tt_eye_header}Stealth entry chance: {PCT}%" />
+  <string id="tor_ambush_widget_tt_eye_base" text="{=str_tor_ambush_widget_tt_eye_base}  Base: {PCT}%" />
+  <string id="tor_ambush_widget_tt_eye_observers" text="{=str_tor_ambush_widget_tt_eye_observers}  Hostile observers in range: {COUNT}" />
+  <string id="tor_ambush_widget_tt_eye_night" text="{=str_tor_ambush_widget_tt_eye_night}  Night: +{PCT}%" />
+  <string id="tor_ambush_widget_tt_eye_click_enter" text="{=str_tor_ambush_widget_tt_eye_click_enter}(Click to enter stealth)" />
+  <string id="tor_ambush_widget_tt_eye_click_exit" text="{=str_tor_ambush_widget_tt_eye_click_exit}(In stealth — click to break cover)" />
+  <string id="tor_ambush_widget_tt_spotted" text="{=str_tor_ambush_widget_tt_spotted}You were spotted recently. Enemies are alert." />
+  <string id="tor_ambush_widget_tt_alert" text="{=str_tor_ambush_widget_tt_alert}{COUNT} hostile parties in detection range." />
+  <string id="tor_ambush_widget_tt_cooldown_hours" text="{=str_tor_ambush_widget_tt_cooldown_hours}Stealth cooling down — available in {HOURS}h." />
+  <string id="tor_ambush_widget_tt_cooldown_now" text="{=str_tor_ambush_widget_tt_cooldown_now}Stealth cooling down." />
+  <string id="tor_ambush_widget_tt_backstab_hours" text="{=str_tor_ambush_widget_tt_backstab_hours}Recently ambushed — enemies still searching. Clear in {HOURS}h." />
+  <string id="tor_ambush_widget_tt_backstab_now" text="{=str_tor_ambush_widget_tt_backstab_now}Recently ambushed — enemies are still searching." />
+  <string id="tor_ambush_widget_tt_terrain_forest" text="{=str_tor_ambush_widget_tt_terrain_forest}Forest — concealing terrain, bonus to entry chance." />
+  <string id="tor_ambush_widget_tt_terrain_mountain" text="{=str_tor_ambush_widget_tt_terrain_mountain}Mountain — concealing terrain, bonus to entry chance." />
+  <string id="tor_ambush_widget_tt_terrain_canyon" text="{=str_tor_ambush_widget_tt_terrain_canyon}Canyon — concealing terrain, bonus to entry chance." />
+  <string id="tor_ambush_widget_tt_terrain_swamp" text="{=str_tor_ambush_widget_tt_terrain_swamp}Swamp — concealing terrain, bonus to entry chance." />
+  <string id="tor_ambush_widget_tt_terrain_open" text="{=str_tor_ambush_widget_tt_terrain_open}Open ground — exposing, penalty to entry chance." />
+  <string id="tor_ambush_widget_tt_snowy" text="{=str_tor_ambush_widget_tt_snowy}Snowy weather." />
+  <string id="tor_ambush_widget_tt_rainy" text="{=str_tor_ambush_widget_tt_rainy}Rainy weather." />
+  <string id="tor_ambush_widget_tt_cursed" text="{=str_tor_ambush_widget_tt_cursed}You are inside a cursed region." />
+  <string id="tor_ambush_widget_tt_settlement" text="{=str_tor_ambush_widget_tt_settlement}A settlement is nearby." />
+  <string id="tor_ambush_widget_tt_settlement_hostile" text="{=str_tor_ambush_widget_tt_settlement_hostile}A hostile settlement is nearby — garrisons are watching." />
+  <string id="tor_ambush_widget_tt_settlement_neutral" text="{=str_tor_ambush_widget_tt_settlement_neutral}A neutral settlement is nearby — passers-by notice more than empty roads do." />
+  <string id="tor_ambush_widget_tt_enemies_close" text="{=str_tor_ambush_widget_tt_enemies_close}A hostile party is very close — detection risk is high." />
+  <string id="tor_ambush_widget_tt_eye_detection_header" text="{=str_tor_ambush_widget_tt_eye_detection_header}Chance of being spotted within the next hour: {PCT}%" />
+  <string id="tor_ambush_widget_tt_eye_settlement_hostile" text="{=str_tor_ambush_widget_tt_eye_settlement_hostile}  Hostile settlement nearby: strong pressure" />
+  <string id="tor_ambush_widget_tt_eye_settlement_neutral" text="{=str_tor_ambush_widget_tt_eye_settlement_neutral}  Neutral settlement nearby: slight pressure" />
+  <string id="tor_ambush_widget_tt_eye_night_stealth" text="{=str_tor_ambush_widget_tt_eye_night_stealth}  Night: detection reduced" />
 </strings>

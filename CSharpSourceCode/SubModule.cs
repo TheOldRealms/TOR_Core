@@ -260,6 +260,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORStrikeMagnitudeModel());
                 gameStarterObject.AddModel(new TORCombatSimulationModel());
                 gameStarterObject.AddModel(new TORPartyMoraleModel());
+                gameStarterObject.AddModel(new TORPartyImpairmentModel());
                 gameStarterObject.AddModel(new TORPartyDesertionModel());
                 gameStarterObject.AddModel(new TORPersuasionModel());
                 gameStarterObject.AddModel(new TORVoiceOverModel());

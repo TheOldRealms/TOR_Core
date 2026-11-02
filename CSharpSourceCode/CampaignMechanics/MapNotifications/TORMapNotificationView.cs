@@ -34,6 +34,11 @@ namespace TOR_Core.CampaignMechanics.MapNotifications
             _mapNavigationHandler = MapScreen.NavigationHandler;
             _dataSource = new MapNotificationVM(_mapNavigationHandler, MapScreen.FastMoveCameraToPosition);
             _dataSource.RegisterMapNotificationType(typeof(TORMapNotification), typeof(MapNotificationItemBaseVM));
+            // Specialized VM for the ambush-detected notification —
+            // carries a target position + wires _onInspect to a
+            // camera-pan callback. Registered AFTER the base type so
+            // the subclass → specialized-VM mapping takes precedence.
+            _dataSource.RegisterMapNotificationType(typeof(AmbushDetectedMapNotification), typeof(AmbushDetectedNotificationItemVM));
             _dataSource.ReceiveNewNotification += OnReceiveNewNotification;
             _dataSource.SetRemoveInputKey(
                 HotKeyManager.GetCategory("MapNotificationHotKeyCategory").GetHotKey("RemoveNotification"));

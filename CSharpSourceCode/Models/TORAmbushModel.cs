@@ -2,10 +2,13 @@ using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics.Ambush;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
@@ -97,24 +100,69 @@ namespace TOR_Core.Models
         // notice" roll called many times, not a one-shot strike outcome.
         public virtual float BaseDetectionChancePerTick => 0.05f;
         public virtual float MinDetectionChance => 0f;
-        public virtual float MaxDetectionChance => 0.80f;
+        public virtual float MaxDetectionChance => 0.45f;
         public virtual float DetectionScanRadius => 10f;
+
+        /// <summary>Time horizon (in quarter-hour ticks) that the eye widget
+        /// extrapolates the per-tick detection roll over. The display value is
+        /// <c>1 - (1 - p)^N</c> where <c>p</c> is the aggregated per-tick
+        /// chance across observers and <c>N</c> is this knob. Default 4
+        /// = one in-game hour, which keeps a useful gradient across the full
+        /// per-tick range without saturating too early. Longer horizons
+        /// (e.g. 24 for a 6-hour camp) saturate anything above ~10 % per
+        /// tick, losing resolution — surface those in the tooltip, not
+        /// the eye.</summary>
+        public virtual int DetectionDisplayHorizonTicks => 4;
 
         // Distance multiplier: closer = higher. Lerped from AdjacentDistanceMultiplier
         // at distance 0 to FarDistanceMultiplier at the scan-radius edge.
         public virtual float AdjacentDistanceMultiplier => 2.5f;
         public virtual float FarDistanceMultiplier => 0.2f;
 
-        public virtual float DetectionScoutingPerPointBonus => 0.004f;   // observer scouting bias
+        public virtual float DetectionScoutingPerPointBonus => 1f / 600f;  // 300 Scouting = +50% detection mult (cap below)
         public virtual float DetectionScoutingBonusCap => 0.5f;
 
         public virtual float ConcealingTerrainMultiplier => 0.5f;        // forest / mountain / canyon / swamp
         public virtual float OpenTerrainMultiplier => 1.5f;              // plain / desert / steppe / dune
 
-        public virtual float NightDetectionMultiplier => 0.5f;
+        public virtual float NightDetectionMultiplier => 0.7f;
 
         public virtual float StealthDurationDetectionPerHour => 0.1f;    // multiplicative +10% per hour
         public virtual float StealthDurationDetectionCap => 0.5f;        // capped at +50%
+
+        /// <summary>Radius (map units) around the main party within which a
+        /// nearby settlement counts as "proximate." Shared by the two-tier
+        /// settlement check — a settlement inside this radius lights one of
+        /// two icons (hostile / neutral) and feeds into the entry- and
+        /// detection-chance math. Backed by vanilla's locatable-tree via
+        /// <c>TORCommon.FindNearestSettlement</c>, so lower radius = cheaper
+        /// query.</summary>
+        public virtual float SettlementProximityRadius => 8f;
+
+        /// <summary>Entry-chance penalty when a hostile-faction settlement is
+        /// within <see cref="SettlementProximityRadius"/>. Garrisons, watch
+        /// riders, and alert townsfolk make slipping into stealth harder.
+        /// Subtracted from the base entry-chance roll.</summary>
+        public virtual float HostileSettlementEntryPenalty => 0.2f;
+
+        /// <summary>Entry-chance penalty for a neutral-faction settlement
+        /// (not at war, not ours) in range. Smaller than the hostile case —
+        /// a neutral town's townsfolk aren't hunting you, but any busy
+        /// settlement reduces the shadows available.</summary>
+        public virtual float NeutralSettlementEntryPenalty => 0.08f;
+
+        /// <summary>Per-tick detection multiplier when a hostile settlement
+        /// is within <see cref="SettlementProximityRadius"/> of the target
+        /// (the stealthed party). Applied multiplicatively on top of the
+        /// per-observer detection roll, so a hostile settlement lifts every
+        /// observer's chance of spotting the stealthed party this tick.
+        /// </summary>
+        public virtual float HostileSettlementDetectionMultiplier => 1.6f;
+
+        /// <summary>Per-tick detection multiplier for a neutral settlement
+        /// in range. Smaller lift — passers-by who aren't actively hunting
+        /// still add a bit of ambient attention.</summary>
+        public virtual float NeutralSettlementDetectionMultiplier => 1.1f;
 
         // Filter: which parties count as "observers" that can even attempt a detection
         // roll against a stealthed target. Default is hostile parties only — a friendly
@@ -151,8 +199,96 @@ namespace TOR_Core.Models
                 * ScoutingDetectionMultiplier(observer)
                 * TerrainDetectionMultiplier(target)
                 * NightDetectionMultiplierValue()
-                * StealthDurationDetectionMultiplier(stealthEnteredAt);
+                * StealthDurationDetectionMultiplier(stealthEnteredAt)
+                * SettlementDetectionMultiplier(target);
             return MBMath.ClampFloat(chance, MinDetectionChance, MaxDetectionChance);
+        }
+
+        /// <summary>Combined per-tick detection chance across all nearby
+        /// observers for the given target. Each observer rolls independently,
+        /// so the chance that at least one succeeds is <c>1 - ∏(1 - p_i)</c>.
+        /// Used by the eye widget to drive the openness continuum while the
+        /// player is in stealth — the eye shows how likely they are to be
+        /// seen in the next quarter-hour tick, not just the best single
+        /// observer's chance. See campaign-stealth-design.md §21.</summary>
+        public virtual float CalculateAggregatedDetectionChancePerTick(
+            MobileParty target, IReadOnlyList<MobileParty> observers, CampaignTime stealthEnteredAt)
+        {
+            if (target == null || observers == null || observers.Count == 0) return 0f;
+            float survival = 1f;   // probability that NO observer detects us
+            foreach (var observer in observers)
+            {
+                float p = CalculateDetectionChancePerTick(observer, target, stealthEnteredAt);
+                survival *= (1f - p);
+            }
+            return MBMath.ClampFloat(1f - survival, 0f, 1f);
+        }
+
+        /// <summary>Per-tick aggregated detection chance extrapolated over
+        /// <see cref="DetectionDisplayHorizonTicks"/>. Answers "chance the
+        /// player is spotted at least once within the horizon." Composition
+        /// is <c>1 - (1 - p_tick)^N</c>, i.e. independent Bernoulli trials
+        /// across ticks. Used by the eye widget so the openness reads actual
+        /// threat over a stay rather than a per-tick snapshot that
+        /// understates compounding over time.</summary>
+        public virtual float CalculateAggregatedDetectionChanceOverHorizon(
+            MobileParty target, IReadOnlyList<MobileParty> observers, CampaignTime stealthEnteredAt)
+        {
+            float pTick = CalculateAggregatedDetectionChancePerTick(target, observers, stealthEnteredAt);
+            int horizon = DetectionDisplayHorizonTicks;
+            if (horizon <= 1 || pTick <= 0f) return pTick;
+            return MBMath.ClampFloat(1f - MathF.Pow(1f - pTick, horizon), 0f, 1f);
+        }
+
+        /// <summary>Settlement-proximity multiplier on the per-tick detection
+        /// chance. Hostile and neutral settlements lift the base multiplier
+        /// by different amounts via the HostileSettlement- / NeutralSettlement-
+        /// DetectionMultiplier knobs. Returns 1.0 (neutral) when no settlement
+        /// is in range or the party has no faction to compare against.</summary>
+        protected virtual float SettlementDetectionMultiplier(MobileParty target)
+        {
+            if (target?.MapFaction == null) return 1f;
+            switch (GetNearbySettlementKind(target))
+            {
+                case SettlementProximityKind.Hostile: return HostileSettlementDetectionMultiplier;
+                case SettlementProximityKind.Neutral: return NeutralSettlementDetectionMultiplier;
+                default: return 1f;
+            }
+        }
+
+        /// <summary>Settlement-proximity penalty on the entry-chance roll.
+        /// Hostile settlement subtracts more, neutral less. Returns 0 if
+        /// no settlement in range.</summary>
+        protected virtual float SettlementEntryPenalty(MobileParty self)
+        {
+            if (self?.MapFaction == null) return 0f;
+            switch (GetNearbySettlementKind(self))
+            {
+                case SettlementProximityKind.Hostile: return HostileSettlementEntryPenalty;
+                case SettlementProximityKind.Neutral: return NeutralSettlementEntryPenalty;
+                default: return 0f;
+            }
+        }
+
+        /// <summary>Classify any settlement inside
+        /// <see cref="SettlementProximityRadius"/> of the party. Hostile wins
+        /// over neutral when both are present — a hostile garrison in range
+        /// shouldn't be masked by a friendly town standing between.</summary>
+        public virtual SettlementProximityKind GetNearbySettlementKind(MobileParty party)
+        {
+            if (party?.MapFaction == null) return SettlementProximityKind.None;
+            if (TORCommon.FindNearestSettlement(party, SettlementProximityRadius,
+                    s => s.MapFaction != null &&
+                         FactionManager.IsAtWarAgainstFaction(s.MapFaction, party.MapFaction)) != null)
+                return SettlementProximityKind.Hostile;
+
+            if (TORCommon.FindNearestSettlement(party, SettlementProximityRadius,
+                    s => s.MapFaction != null &&
+                         s.MapFaction != party.MapFaction &&
+                         !FactionManager.IsAtWarAgainstFaction(s.MapFaction, party.MapFaction)) != null)
+                return SettlementProximityKind.Neutral;
+
+            return SettlementProximityKind.None;
         }
 
         protected virtual float DistanceDetectionMultiplier(MobileParty observer, MobileParty target)
@@ -426,7 +562,8 @@ namespace TOR_Core.Models
                 + EntryPartyStealthScoreBonus(self)
                 + EntryTerrainBonus(self)
                 + EntryNightBonus()
-                - EntryHostilePenalty(observers);
+                - EntryHostilePenalty(observers)
+                - SettlementEntryPenalty(self);
             return MBMath.ClampFloat(chance, MinEntryChance, MaxEntryChance);
         }
 
@@ -542,17 +679,129 @@ namespace TOR_Core.Models
         /// afternoon shatters the band."</summary>
         public virtual float AmbushedFledDoubleFleeExtraMoralePenalty => 20f;
 
+        /// <summary>Fraction of each committed troop type that gets
+        /// shifted from healthy → wounded when the player flees the
+        /// first ambush. Applied per-character-type via the roster
+        /// snapshot taken at mission start. E.g. 0.3 = 30% of each
+        /// troop stack from the ambushed-into-mission commitment ends
+        /// up carrying wounds.</summary>
+        public virtual float AmbushedFledWoundShare => 0.3f;
+
+        /// <summary>Fraction of each committed troop type that gets
+        /// removed from the roster on double-flee (fled the follow-up
+        /// field battle too). Same snapshot semantics as
+        /// <see cref="AmbushedFledWoundShare"/>. These are the "left
+        /// behind for good" — not wounded, gone.</summary>
+        public virtual float AmbushedDoubleFleeRemoveShare => 0.3f;
+
+        // ---- Preparation time (§19) ----
+
+        /// <summary>Minimum prep window for an ambush, in game-minutes.
+        /// Applied regardless of party size — a solo scout still needs
+        /// at least this long to pick a position. Full design in §19 of
+        /// campaign-stealth-design.md.</summary>
+        public virtual float BasePreparationMinutes => 15f;
+
+        /// <summary>Party sizes at or below this get the base floor only;
+        /// extra troops beyond this threshold stack
+        /// <see cref="PerTroopMinutes"/> each. Fiction: a small group
+        /// disperses into cover in minutes.</summary>
+        public virtual int SmallPartyThreshold => 25;
+
+        /// <summary>Added game-minutes per troop above
+        /// <see cref="SmallPartyThreshold"/>. 0.1 means a 100-man party
+        /// pays 7.5 extra minutes on top of base before the concealment
+        /// multiplier.</summary>
+        public virtual float PerTroopMinutes => 0.1f;
+
+        /// <summary>Floor on the concealment multiplier `(2 - stealthScore)`.
+        /// Clamps the worst-case penalty so an awful stealth-score party
+        /// still can set up eventually; also guards against an unexpected
+        /// stealthScore > 2 value from an edge case.</summary>
+        public virtual float MinimumConcealmentFactor => 0.3f;
+
+        /// <summary>AI only: scan radius around a candidate ambusher for
+        /// hostile parties when evaluating "could a pursuer intercept
+        /// before setup completes?" Larger than
+        /// <c>AiOpportunityScanRadius</c> so we see pursuers who are
+        /// slightly farther out but moving fast.</summary>
+        public virtual float AiPrepPursuitRejectionRadius => 25f;
+
+        /// <summary>Short-lived persistence window after the player spots
+        /// a stealthed AI party via the quarter-hourly detection roll.
+        /// For the window length the detected party stays visible on the
+        /// player's map regardless of fog-of-war distance. Lets the
+        /// player actually chase the detected party instead of having
+        /// them fade back into fog the second they walk out of Scouting
+        /// range. Full design in ai-ambushes-player-design.md §6
+        /// "Deferred — persistent on-map display for the detected party."
+        /// </summary>
+        public virtual float PlayerDetectionRevealHours => 2f;
+
+        /// <summary>Game-minutes needed to set up an ambush, given the
+        /// party's size and troop composition. See §19 for the derivation
+        /// and target curve (solo scout → ~12 min, 300-man knight army
+        /// → ~98 min).</summary>
+        public virtual float CalculatePreparationMinutes(MobileParty party)
+        {
+            if (party == null) return BasePreparationMinutes;
+            int size = party.MemberRoster?.TotalHealthyCount ?? 0;
+
+            int excess = System.Math.Max(0, size - SmallPartyThreshold);
+            float sizeMinutes = excess * PerTroopMinutes;
+
+            float stealthScore = AmbushTroopStealthScore.GetBasePartyScore(party);
+            float concealmentFactor = System.Math.Max(MinimumConcealmentFactor,
+                                                      2f - stealthScore);
+
+            return (BasePreparationMinutes + sizeMinutes) * concealmentFactor;
+        }
+
         // ---- Record-cooldown ----
 
+        /// <summary>Protection window after the player gets ambushed:
+        /// hours during which the AI-ambush decision tick refuses to
+        /// re-target MainParty. Distinct from the stealth-rebuild
+        /// cooldown — "I was just ambushed and need to recover" is a
+        /// different mechanical state than "I just ambushed and gave
+        /// away my position." Shorter by default; the player should
+        /// get back to normal campaign play reasonably soon, just not
+        /// get stacked by back-to-back AI ambushes.
+        /// See [[feedback_ambush_role_asymmetry]].</summary>
+        public virtual float AmbushGuardingHours => 3f;
+
         /// <summary>How many game-hours an <see cref="AmbushRecord"/>
-        /// keeps a party on cooldown. Baseline comes from
-        /// <see cref="AmbushCampaignBehavior.CooldownHours"/>; loud
-        /// ambushes (gunpowder / non-Shadow magic) extend it by the
-        /// mission model's <c>LoudnessPenaltyHours</c>. One place for
-        /// the cooldown math — queries on the record list all call
-        /// this instead of baking the length into records.</summary>
+        /// keeps a party on cooldown.
+        ///
+        /// Role-sensitive:
+        ///  - Phase F victim guard (<c>Victim == MainParty</c>, not
+        ///    repelled) → <see cref="AmbushGuardingHours"/>. Protects
+        ///    the player from immediate re-ambush.
+        ///  - Phase D / repelled / AI-vs-AI → baseline from
+        ///    <c>AmbushCampaignBehavior.CooldownHours</c>, plus the
+        ///    mission model's <c>LoudnessPenaltyHours</c> for loud
+        ///    ambushes (gunpowder / non-Shadow magic).</summary>
         public virtual float GetAmbushCooldownHours(AmbushRecord record)
         {
+            // Quiet successful strike — ambusher landed with no loud
+            // signature, no witnesses. Stealth should re-arm immediately
+            // so the player can slip straight into the next target. Was
+            // previously hardcoded into the TotalVictory quiet branch
+            // via a ClearRecentRecordsInvolving call; moved here so the
+            // record still exists for disorganize shield / hooded-eye
+            // queries but imposes no cooldown.
+            if (record != null && IsSilentSuccessfulStrike(record))
+            {
+                return 0f;
+            }
+
+            if (record != null
+                && record.Victim == MobileParty.MainParty
+                && !record.AmbusherRepelled)
+            {
+                return AmbushGuardingHours;
+            }
+
             float hours = AmbushCampaignBehavior.CooldownHours;
             if (record != null && record.WasLoud)
             {
@@ -560,6 +809,97 @@ namespace TOR_Core.Models
                 if (missionModel != null) hours += missionModel.LoudnessPenaltyHours;
             }
             return hours;
+        }
+
+        /// <summary>True if the record represents a landed ambush
+        /// strike — ambusher held the field or got at least partial
+        /// kills. Consumed by the disorganize shield via
+        /// <see cref="AiAmbushBehavior"/>. Solo stealth-exit stamps
+        /// (Resolution=None) and repelled / stalemate resolutions
+        /// return false.</summary>
+        public virtual bool IsSuccessfulStrike(AmbushRecord record)
+        {
+            if (record == null) return false;
+            switch (record.Resolution)
+            {
+                case AmbushResolution.AmbusherTotalVictory:
+                case AmbushResolution.AmbusherPartialVictory:
+                case AmbushResolution.VictimDefeated:
+                case AmbushResolution.VictimFled:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        /// <summary>True when the strike landed silently (no loud
+        /// signature, no witnesses). Drives the zero-cooldown branch
+        /// in <see cref="GetAmbushCooldownHours"/> and the hooded eye
+        /// nudge via <see cref="IsInstantAmbushAllowed"/>.</summary>
+        public virtual bool IsSilentSuccessfulStrike(AmbushRecord record)
+            => IsSuccessfulStrike(record) && !record.WasLoud;
+
+        /// <summary>Game-hours the hooded "slip back to cover now"
+        /// nudge stays lit after a silent clean sweep. Short enough
+        /// that an unused opportunity decays before the next day;
+        /// long enough to be noticed on the HUD.</summary>
+        public virtual float InstantAmbushWindowHours => 2f;
+
+        /// <summary>True when the latest record makes the player
+        /// eligible for an instant re-ambush (no cooldown wait, eye
+        /// widget lights the hooded icon). Only a silent
+        /// <see cref="AmbushResolution.AmbusherTotalVictory"/> that
+        /// didn't knock the ambusher's leader down qualifies, within
+        /// <see cref="InstantAmbushWindowHours"/>.</summary>
+        public virtual bool IsInstantAmbushAllowed(AmbushRecord record)
+            => record != null
+               && record.Resolution == AmbushResolution.AmbusherTotalVictory
+               && !record.WasLoud
+               && !record.AmbusherLeaderDown
+               && (CampaignTime.Now - record.At).ToHours < InstantAmbushWindowHours;
+
+        /// <summary>Minimum visible troop count before an enemy side's
+        /// numbers get masked ("?"). Below or equal to this the real
+        /// numbers show. Centralised here instead of hardcoded 5 in
+        /// each extension so the formation marker and scoreboard mask
+        /// stay in sync.</summary>
+        public virtual int BluffVisibleThreshold => 5;
+
+        /// <summary>True when the scoreboard should render a row's
+        /// counts as "?" instead of real numbers. Fires for Phase F
+        /// ambushed (player on Defender) while the ambush's bluff
+        /// state is active, the row is not on the player's own party,
+        /// and the enemy-team visible total exceeds
+        /// <see cref="BluffVisibleThreshold"/>. All other missions,
+        /// phases, and player-party rows return false. The Dead /
+        /// Eliminated column stays visible regardless — the mask
+        /// only hides what the player hasn't already killed.</summary>
+        public virtual bool ShouldMaskScoreboardRow(bool isRowOnPlayerSide)
+        {
+            if (isRowOnPlayerSide) return false;
+            var mission = Mission.Current;
+            if (mission?.PlayerTeam == null) return false;
+            // Scoreboard mask only applies when the player is the
+            // ambushed (Phase F). Phase D player-as-ambusher sees the
+            // enemy counts normally; the bluff is them-looking-at-us,
+            // not us-looking-at-them.
+            if (mission.PlayerTeam.Side != BattleSideEnum.Defender) return false;
+            var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
+            if (behavior == null || !behavior.IsCurrentMissionBluffed) return false;
+            // Enemy side visible total — if it's dropped to threshold
+            // or below, the mask lifts (matches the formation-marker
+            // bluff behaviour).
+            var enemySide = mission.PlayerTeam.Side.GetOppositeSide();
+            int visible = 0;
+            foreach (var t in mission.Teams)
+            {
+                if (t == null || t.Side != enemySide) continue;
+                foreach (var a in t.ActiveAgents)
+                {
+                    if (a != null && a.IsHuman && a.IsActive()) visible++;
+                }
+            }
+            return visible > BluffVisibleThreshold;
         }
 
         // ---- Phase F: AI-side propensity ----

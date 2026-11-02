@@ -23,7 +23,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             var mapBasicView = MapScreen.GetMapView<GauntletMapBasicView>();
             Layer = mapBasicView.GauntletLayer;
             _layer = Layer as GauntletLayer;
-            _movie = _layer.LoadMovie("AmbushStealthButton", _vm);
+            _movie = _layer.LoadMovie("AmbushStealthWidget", _vm);
         }
 
         protected override void OnMapScreenUpdate(float dt)

@@ -23,6 +23,7 @@ using TaleWorlds.MountAndBlade.Missions.Handlers;
 using TaleWorlds.MountAndBlade.Source.Missions;
 using TaleWorlds.MountAndBlade.Source.Missions.Handlers;
 using TaleWorlds.MountAndBlade.Source.Missions.Handlers.Logic;
+using TOR_Core.Extensions;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.MountAndBlade.View.MissionViews.Order;
@@ -249,32 +250,69 @@ namespace TOR_Core.Missions
             var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All);
             return MissionState.OpenNew("Battle", rec, delegate (Mission mission)
             {
+                // Share the attacker supplier instance between vanilla's spawn
+                // logic and the AmbushMissionController. The controller drains
+                // it in AfterStart (ambusher custom spawn) so vanilla's later
+                // SetSpawnTroops(Attacker, enforceSpawning: true) sees an
+                // empty supplier and skips the (0, 0, 0) initial placement
+                // that would otherwise hang the deployment screen.
+                var ambusherSupplier = new PartyGroupTroopSupplier(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Attacker);
+                // Vanilla's defender spawn drops specific troops (e.g. Ungor
+                // Raider in the current test scene) at (0, 0, 0) on the first
+                // mission tick, which hangs the walkable-area check. Share
+                // the defender supplier too so AmbushMissionController can
+                // drain it and spawn at sp_defender_<class> positions.
+                var victimSupplier = new PartyGroupTroopSupplier(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Defender);
                 IMissionTroopSupplier[] suppliers =
                 [
-                    new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Defender),
-                    new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Attacker),
+                    victimSupplier,
+                    ambusherSupplier,
                 ];
                 // Phase D: player (ambusher) sits on Attacker, target
                 // (victim) on Defender. Pass the two parties through to the
                 // controller — it resolves sides and counts from them.
                 var ambusherParty = PartyBase.MainParty;
                 var victimParty = MapEvent.PlayerMapEvent.DefenderSide.LeaderParty;
+                // Ambush spawn logic subclass: keeps vanilla type
+                // identity for all dependents (BattleEndLogic, our end
+                // logics, TOR's campaign-wide ReinforcementMissionLogic)
+                // while encapsulating the per-ambush bookkeeping our
+                // custom spawn needs.
+                var ambushSpawnLogic = new AmbushMission.AmbushMissionAgentSpawnLogic(
+                    suppliers, BattleSideEnum.Attacker, BattleSizeType.Battle);
+                var model = Campaign.Current?.Models?.GetMissionAmbushModel()
+                            ?? new TOR_Core.Models.TORMissionAmbushModel();
                 List<MissionBehavior> list =
                 [
-                    // Player side = Attacker (user-confirmed; previous read of EncounterManager
-                    // internals was misleading).
-                    new DefaultBattleMissionAgentSpawnLogic(suppliers, BattleSideEnum.Attacker, BattleSizeType.Battle),
+                    ambushSpawnLogic,
                     new BattlePowerCalculationLogic(),
                     new BattleSpawnLogic("battle_set"),
-                    new AmbushMission.AmbushMissionController(ambusherParty, victimParty),
+                    new AmbushMission.AmbushMissionController(ambusherParty, victimParty, ambusherSupplier, victimSupplier),
+                    new AmbushMission.AmbushReinforcementMissionLogic(victimSupplier, ambushSpawnLogic, model),
+                    new TaleWorlds.MountAndBlade.Missions.MissionLogics.MissionObjectiveLogic(),
+                    ViewCreator.CreateMissionObjectiveView(mission),
                     new AmbushMission.AmbushEndLogic(),
                     new AmbushMission.AmbushLoudnessTracker(),
+                    new AmbushMission.AmbushTacticalAnchorLogic(),
                     new MissionExperienceBehavior(),
                     new CampaignMissionComponent(),
                     new BattleAgentLogic(),
                     new MountAgentLogic(),
                     new MissionOptionsComponent(),
-                    new BattleEndLogic(),
+                    // AmbushBattleEndLogic : BattleEndLogic. Subclass so all
+                    // the base OnMissionTick side effects still fire
+                    // (victory reactions on AgentVictoryLogic, retreat
+                    // detection, enemy-pullback tracking, battle-won /
+                    // lost messages — the post-mission stealth-menu /
+                    // loot-flow handoff depends on them). Only
+                    // MissionEnded is overridden to return false so
+                    // vanilla's frame-one "IsSideDepleted → instant
+                    // Player Victory" can't win the CheckMissionEnded
+                    // race against AmbushEndLogic, which is the
+                    // authoritative outcome decider.
+                    new AmbushMission.AmbushBattleEndLogic(),
                     new MissionCombatantsLogic(
                         MobileParty.MainParty.MapEvent.InvolvedParties,
                         PartyBase.MainParty,
@@ -290,9 +328,15 @@ namespace TOR_Core.Missions
                     new AssignPlayerRoleInTeamMissionController(true, false, false),
                     new BannerBearerLogic(),
                 ];
-                Hero attackerHero = MapEvent.PlayerMapEvent.AttackerSide.LeaderParty.LeaderHero;
-                Hero defenderHero = MapEvent.PlayerMapEvent.DefenderSide.LeaderParty.LeaderHero;
-                list.Add(new SandboxGeneralsAndCaptainsAssignmentLogic(attackerHero?.Name, defenderHero?.Name, null, null, false));
+                // SandboxGeneralsAndCaptainsAssignmentLogic deliberately
+                // NOT added. Its OnDeploymentFinished treats the player
+                // ambusher as a team General and calls
+                // SetFormationPositioningFromDeploymentPlan on a formation
+                // our ambush scene has no plan entry for; the native call
+                // derefs invalid data and the game dies with no managed
+                // exception. Ambush missions don't use the generals /
+                // bodyguard mechanic anyway, so skipping registration
+                // avoids the crash without needing a Harmony patch.
                 list.Add(new EquipmentControllerLeaveLogic());
                 list.Add(new MissionHardBorderPlacer());
                 list.Add(new MissionBoundaryPlacer());
@@ -324,33 +368,65 @@ namespace TOR_Core.Missions
             var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All);
             return MissionState.OpenNew("Battle", rec, delegate (Mission mission)
             {
+                // Share the supplier instances between vanilla's spawn logic
+                // and AmbushMissionController, same as OpenAmbushMission. Our
+                // AfterStart drains them so vanilla's SetSpawnTroops sees an
+                // empty supplier and never drops agents at (0, 0, 0). Without
+                // this, Phase F hung the loading screen on the engine's
+                // walkable-area check when the scene lacks vanilla-named
+                // sp_attacker_<class> entities.
+                var ambusherSupplier = new PartyGroupTroopSupplier(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Attacker);
+                var victimSupplier = new PartyGroupTroopSupplier(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Defender);
                 IMissionTroopSupplier[] suppliers =
                 [
-                    new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Defender),
-                    new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Attacker),
+                    victimSupplier,
+                    ambusherSupplier,
                 ];
                 // Phase F: AI ambusher on Attacker, player (victim) on
-                // Defender. Pass the two parties through to the controller.
+                // Defender. Pass the two parties + their suppliers through
+                // to the controller.
                 var ambusherParty = MapEvent.PlayerMapEvent.AttackerSide.LeaderParty;
                 var victimParty = PartyBase.MainParty;
+                // Player is on the Defender side here. The spawn logic's
+                // "player side" arg is purely informational for vanilla's
+                // deployment-UI / hiding behaviour; it doesn't gate the
+                // spawn pipeline. Subclass identity reasoning same as
+                // the Phase D opener.
+                var ambushSpawnLogic = new AmbushMission.AmbushMissionAgentSpawnLogic(
+                    suppliers, BattleSideEnum.Defender, BattleSizeType.Battle);
+                var model = Campaign.Current?.Models?.GetMissionAmbushModel()
+                            ?? new TOR_Core.Models.TORMissionAmbushModel();
                 List<MissionBehavior> list =
                 [
-                    // Player is on the Defender side here. The spawn logic's
-                    // "player side" arg is purely informational for vanilla's
-                    // deployment-UI / hiding behaviour; it doesn't gate the
-                    // spawn pipeline.
-                    new DefaultBattleMissionAgentSpawnLogic(suppliers, BattleSideEnum.Defender, BattleSizeType.Battle),
+                    ambushSpawnLogic,
                     new BattlePowerCalculationLogic(),
                     new BattleSpawnLogic("battle_set"),
-                    new AmbushMission.AmbushMissionController(ambusherParty, victimParty),
+                    new AmbushMission.AmbushMissionController(ambusherParty, victimParty, ambusherSupplier, victimSupplier),
+                    new AmbushMission.AmbushReinforcementMissionLogic(victimSupplier, ambushSpawnLogic, model),
+                    new TaleWorlds.MountAndBlade.Missions.MissionLogics.MissionObjectiveLogic(),
+                    ViewCreator.CreateMissionObjectiveView(mission),
                     new AmbushMission.AmbushedEndLogic(),
                     new AmbushMission.AmbushLoudnessTracker(),
+                    new AmbushMission.AmbushTacticalAnchorLogic(),
                     new MissionExperienceBehavior(),
                     new CampaignMissionComponent(),
                     new BattleAgentLogic(),
                     new MountAgentLogic(),
                     new MissionOptionsComponent(),
-                    new BattleEndLogic(),
+                    // Same frame-one race as Phase D. Vanilla's
+                    // BattleEndLogic.MissionEnded calls IsSideDepleted on
+                    // both sides before the custom spawn's agent counts
+                    // settle; it fires AttackerVictory, which for Phase F
+                    // (player on Defender) is instant player defeat.
+                    // AmbushBattleEndLogic : BattleEndLogic overrides
+                    // MissionEnded to return false so AmbushedEndLogic is
+                    // the authoritative outcome decider. The base class's
+                    // OnMissionTick side effects (victory reactions,
+                    // retreat detection, enemy-pullback tracking) still
+                    // fire so the post-mission handoff isn't broken.
+                    new AmbushMission.AmbushBattleEndLogic(),
                     new MissionCombatantsLogic(
                         MobileParty.MainParty.MapEvent.InvolvedParties,
                         PartyBase.MainParty,
@@ -366,15 +442,26 @@ namespace TOR_Core.Missions
                     new AssignPlayerRoleInTeamMissionController(true, false, false),
                     new BannerBearerLogic(),
                 ];
-                Hero attackerHero = MapEvent.PlayerMapEvent.AttackerSide.LeaderParty.LeaderHero;
-                Hero defenderHero = MapEvent.PlayerMapEvent.DefenderSide.LeaderParty.LeaderHero;
-                list.Add(new SandboxGeneralsAndCaptainsAssignmentLogic(attackerHero?.Name, defenderHero?.Name, null, null, false));
+                // SandboxGeneralsAndCaptainsAssignmentLogic deliberately
+                // NOT added (same reason as Phase D opener): it derefs
+                // invalid data when our ambush scene has no deployment
+                // plan entry for the generals formation class, and the
+                // generals / bodyguard mechanic isn't used in ambush.
                 list.Add(new EquipmentControllerLeaveLogic());
                 list.Add(new MissionHardBorderPlacer());
                 list.Add(new MissionBoundaryPlacer());
                 list.Add(new MissionBoundaryCrossingHandler());
                 list.Add(new HighlightsController());
                 list.Add(new BattleHighlightsController());
+                // Player is the ambush victim here, caught by surprise — no
+                // placement step. Keep the vanilla deployment behaviours
+                // anyway: they own agent spawn kickoff + initial-player-agent
+                // handoff via FinishDeployment. AmbushMissionController
+                // subscribes to BattleDeploymentMissionController.OnAfterSetupTeams
+                // and calls FinishDeployment immediately on that event, so the
+                // player sees no deployment UI and the mission drops straight
+                // into combat without us re-implementing vanilla's spawn
+                // lifecycle.
                 list.Add(new BattleDeploymentMissionController(false));
                 list.Add(new BattleDeploymentHandler(false));
                 return list.ToArray();

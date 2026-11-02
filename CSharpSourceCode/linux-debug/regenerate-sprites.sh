@@ -28,8 +28,10 @@
 # modified in git. Expected; TOR_Armory already accepts this.
 #
 # Usage:
-#   ./regenerate-sprites.sh                # packs TOR_Armory (default)
-#   ./regenerate-sprites.sh TOR_Core       # packs a different module
+#   ./regenerate-sprites.sh                       # packs TOR_Armory (default)
+#   ./regenerate-sprites.sh TOR_Core              # packs a different module
+#   ./regenerate-sprites.sh --reload-editor       # also restart the Kit afterward
+#   ./regenerate-sprites.sh TOR_Core --reload-editor
 #
 # Hooking into Steam launch options for the Modding Kit (AppID 1393600):
 #
@@ -38,10 +40,25 @@
 # This repacks sprites before every Kit launch — useful during active icon
 # work. Omit the hook once art is stable; running manually when PNGs change
 # is cheaper than the ~1s cost per Kit boot.
+#
+# --reload-editor: after packing, kill any running Modding Kit and launch it
+# via Steam so the fresh atlas is imported on startup. Skips the manual
+# "stop, wait, relaunch, wait" dance during active icon iteration. Not the
+# default so the Steam-launch-option hook above stays non-destructive.
 
 set -euo pipefail
 
-MODULE="${1:-TOR_Armory}"
+MODULE="TOR_Armory"
+RELOAD_EDITOR=0
+for arg in "$@"; do
+    case "$arg" in
+        --reload-editor) RELOAD_EDITOR=1 ;;
+        -*) echo "unknown flag: $arg" >&2; exit 2 ;;
+        *)  MODULE="$arg" ;;
+    esac
+done
+
+EDITOR_APPID=1393600
 GAMEBIN="$HOME/.local/share/Steam/steamapps/common/Mount & Blade II Bannerlord/bin/Win64_Shipping_wEditor"
 MODULES_DIR="$HOME/.local/share/Steam/steamapps/common/Mount & Blade II Bannerlord/Modules"
 MODULE_PATH="$MODULES_DIR/$MODULE"

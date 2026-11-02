@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TOR_Core.CampaignMechanics.Ambush;
 using TOR_Core.CampaignMechanics.Religion;
 
 namespace TOR_Core.Utilities
@@ -37,6 +38,8 @@ namespace TOR_Core.Utilities
         public event EventHandler<ShrineLootedEventArgs> ShrineLooted;
 
         public event EventHandler<PracticeFightWonEventArgs> PracticeFightWon;
+
+        public event EventHandler<AmbushResolvedEventArgs> AmbushResolved;
 
         public TORCampaignEvents()
         {
@@ -193,6 +196,36 @@ namespace TOR_Core.Utilities
                 practiceFightWon(this, args);
             }
         }
+
+        /// <summary>
+        /// Fired for every ambush exchange resolution — Phase D mission
+        /// end, Phase F mission end, AI-on-AI campaign-map strength
+        /// roll. The <see cref="CampaignMechanics.Ambush.AmbushCampaignBehavior"/>
+        /// subscriber appends the carried record to the shared history
+        /// and drives downstream effects (disorganize, cooldowns,
+        /// instant-ambush query). Producers construct the record and
+        /// fire — they don't touch the history list directly.
+        ///
+        /// The solo stealth-exit cooldown stamp (player entered stealth
+        /// and cancelled with no engagement) is not a resolution and
+        /// does not fire this event; it writes to the history list
+        /// directly with <see cref="AmbushResolution.None"/>.
+        /// </summary>
+        public void OnAmbushResolved(AmbushRecord record)
+        {
+            if (record == null) return;
+            var args = new AmbushResolvedEventArgs(record);
+            var evt = AmbushResolved;
+            if (evt != null)
+            {
+                evt(this, args);
+            }
+        }
+    }
+
+    public class AmbushResolvedEventArgs(AmbushRecord record) : EventArgs
+    {
+        public AmbushRecord Record { get; private set; } = record;
     }
 
     public class HeroExtendedInfoCreatedEventArgs(Hero hero) : EventArgs

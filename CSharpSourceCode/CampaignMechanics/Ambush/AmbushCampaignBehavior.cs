@@ -46,7 +46,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
         // Distance (metres) the player's party is teleported along the escape
         // vector when picking "escape" from the Ambush Escape menu. Enough to
         // prevent immediate re-engagement by the target party's AI.
-        private const float AmbushEscapeTeleportDistance = 50f;
+        // Campaign-map units (approx km). Was 50f which teleported the
+        // slipper half the map away on an extraction; the intent is a
+        // short hop that just breaks engagement so the ambusher AI
+        // doesn't re-stack on player next tick.
+        private const float AmbushEscapeTeleportDistance = 3f;
 
         // First delivered scene from the scener (TOR_Environment/SceneObj/test_ambush/).
         // Has an authored AmbushRetreatZone (Radius=10) + TacticalRegion=Forest.
@@ -55,6 +59,16 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private bool _playerInStealth;
         private CampaignTime _stealthEnteredAt = CampaignTime.Zero;
+
+        // Prep state (§19 campaign-stealth-design.md). Player is "setting
+        // up the ambush" between hotkey press and the model's
+        // CalculatePreparationMinutes elapsing. Not yet IsPlayerInStealth
+        // — Scouting bonus (§17) stays off during prep by design.
+        // Only start-time is stored; the total prep window is recomputed
+        // from the model on each tick (party is held in place during
+        // prep, so size/composition don't drift).
+        private bool _playerPreppingStealth;
+        private CampaignTime _playerStealthPrepStartedAt = CampaignTime.Zero;
         // Player ambush cooldown is derived from the record list on
         // AiAmbushBehavior (one source of truth across the two
         // behaviours). See IsOnAmbushCooldown / PlayerAmbushCooldownUntil
@@ -71,11 +85,33 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         /// <summary>Loudness tally from the most recent ambush mission —
         /// player-side gunpowder shots + non-Shadow magic casts. Set by
-        /// AmbushLoudnessTracker before mission close; consumed by
-        /// StampAmbushCooldown and the TotalVictory cooldown-zero gate.</summary>
+        /// AmbushLoudnessTracker before mission close; consumed by the
+        /// resolution event's record (WasLoud flag) which drives the
+        /// cooldown length model.</summary>
         public int LastAmbushLoudness { get; set; }
 
+        // ---- Eye-widget state (§21) ----
+
+        /// <summary>Timestamp of the last successful detection-roll against
+        /// the main party. Used by the eye-widget VM to light the
+        /// "recently spotted" event icon for a model-tunable window after
+        /// detection fires. Zero when no detection has fired yet (or the
+        /// window has fully decayed before being reset).</summary>
+        private CampaignTime _spottedAt = CampaignTime.Zero;
+
+        /// <summary>Hostile observers inside <c>DetectionScanRadius</c> as
+        /// of the last <see cref="OnQuarterHourlyTick"/>. Cached here so
+        /// the per-frame VM refresh doesn't have to re-iterate
+        /// <c>MobileParty.All</c>. Written in the tick's observer loop,
+        /// read by <c>AmbushButtonVM.Refresh</c>.</summary>
+        private readonly List<MobileParty> _cachedObserversInRange = new List<MobileParty>();
+
+        public CampaignTime PlayerSpottedAt => _spottedAt;
+        public IReadOnlyList<MobileParty> CachedObserversInRange => _cachedObserversInRange;
+
         public bool IsPlayerInStealth => _playerInStealth;
+        public bool IsPlayerPreppingStealth => _playerPreppingStealth;
+        public CampaignTime PlayerStealthPrepStartedAt => _playerStealthPrepStartedAt;
         public CampaignTime PlayerAmbushCooldownUntil
             => Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>()
                 ?.GetCooldownExpiresAt(MobileParty.MainParty) ?? CampaignTime.Zero;
@@ -85,19 +121,37 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 ?.IsOnAmbushCooldown(MobileParty.MainParty) ?? false;
 
         /// <summary>
-        /// Outcome of the most recent ambush mission. Set by AmbushEndLogic as the
-        /// mission closes; read by Phase E's aftermath handler to pick escape vs
-        /// press-attack / wounded-flow. Reset to <c>None</c> once consumed.
+        /// Resolution of the most recent ambush mission. Set by
+        /// <see cref="Missions.AmbushMission.AmbushEndLogic.SetOutcome"/>
+        /// (player as ambusher) or
+        /// <see cref="Missions.AmbushMission.AmbushedEndLogic.SetOutcome"/>
+        /// (player as victim); consumed in <see cref="OnPlayerBattleEnd"/>
+        /// to pick post-mission flow. Reset to <c>None</c> once consumed.
         /// </summary>
-        public AmbushOutcome LastAmbushOutcome { get; set; } = AmbushOutcome.None;
+        public AmbushResolution LastResolution { get; set; } = AmbushResolution.None;
 
         /// <summary>
-        /// Phase F counterpart. Set by <c>AmbushedEndLogic.SetOutcome</c>;
-        /// consumed by <see cref="OnPlayerBattleEnd"/> to drive the Phase F
-        /// aftermath (reveal window, follow-up battle, wounded troops).
-        /// Reset to <c>None</c> once consumed.
+        /// Role flag paired with <see cref="LastResolution"/>: true when
+        /// the player was the ambusher (Phase D mission), false when
+        /// the player was the victim (Phase F). Set by the mission end
+        /// logics alongside <see cref="LastResolution"/>; consumed by
+        /// the post-mission switch to pick the right menu branch
+        /// (ambusher-win menus vs victim menus).
         /// </summary>
-        public AmbushedOutcome LastAmbushedOutcome { get; set; } = AmbushedOutcome.None;
+        public bool PlayerWasAmbusher { get; set; }
+
+        /// <summary>Ambusher's hero went down during the engagement.
+        /// Set alongside <see cref="LastResolution"/>. In Phase D (player
+        /// = ambusher) this means the player's hero dropped mid-strike;
+        /// in Phase F / AI-on-AI the AI ambusher's hero is the referent.
+        /// Post-mission menu picker reads it to pick the right flavor
+        /// without expanding the resolution enum.</summary>
+        public bool LastAmbusherLeaderDown { get; set; }
+
+        /// <summary>Victim's hero went down during the engagement.
+        /// Mirror of <see cref="LastAmbusherLeaderDown"/> on the other
+        /// side.</summary>
+        public bool LastVictimLeaderDown { get; set; }
 
         /// <summary>
         /// Set by <c>AmbushEndLogic.OnMissionResultReady</c> when a TotalVictory
@@ -141,7 +195,26 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// penalty. Transient — not serialised; mission can't survive
         /// save anyway.</summary>
         private bool _followUpFieldBattlePending;
-        private List<CharacterObject> _phaseFSpawnedCharacters;
+
+        // §6 bluff mechanic: parties flip MobileParty.IsInfoHidden on
+        // when they enter ambush/prep/active-ambusher state, so the
+        // vanilla UI renders "?" instead of real numbers. No shadow set
+        // — "is this party bluffing?" is derived from live ambush state
+        // + the vanilla IsInfoHidden flag itself. Cleanup is unconditional:
+        // when ambush state ends, flip IsInfoHidden back to false. Small
+        // trade-off: if a party vanilla info-hid for another reason
+        // happened to be an ambusher, we'd strip the hiding on cleanup.
+        // Lord parties / bandit war-parties never fall into that case so
+        // the risk is theoretical.
+
+        // Snapshot of the player's non-hero roster at the moment the
+        // ambush mission started — captured by AmbushedEndLogic.AfterStart,
+        // handed over in OnEndMission via StashAmbushedRosterSnapshot.
+        // Drives the "troops committed to this ambush take a share of
+        // wounds (on first flee) or disappear (on double flee)" model.
+        // Keyed by CharacterObject; value is the healthy count at
+        // commitment time.
+        private Dictionary<CharacterObject, int> _ambushedRosterSnapshot;
 
         /// <summary>Phase F §6: the ambusher that pressed the attack is
         /// stashed here from <c>HandleAmbushedFledFollowUp</c> and the
@@ -153,22 +226,22 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private MobileParty _pendingFollowUpAmbusher;
 
         /// <summary>Phase F outcome queue — set by
-        /// <c>AmbushedEndLogic.OnMissionResultReady</c> for outcomes
+        /// <c>AmbushedEndLogic.OnMissionResultReady</c> for resolutions
         /// that don't naturally close the vanilla <c>PlayerEncounter</c>
-        /// (<c>AmbushedFled</c>, <c>AmbushedHeroWounded</c>). The
+        /// (<c>VictimFled</c>, hero-down <c>VictimDefeated</c>). The
         /// outcome menu is activated from <see cref="OnCampaignTick"/>
         /// on the first tick after <c>Mission.Current == null</c>, so
         /// the mission is fully torn down before we interact with
         /// vanilla UI again. See outcome-graph.md.</summary>
-        private AmbushedOutcome _pendingPhaseFOutcome = AmbushedOutcome.None;
-        private MobileParty _pendingPhaseFAmbusher;
+        private AmbushResolution _pendingAmbushedResolution = AmbushResolution.None;
+        private MobileParty _pendingAmbushedAttacker;
 
         /// <summary>Branch result cached by the outcome menu's init
         /// delegate so the "Continue" option knows what to do without
         /// re-running the <c>AmbusherPressesAttack</c> roll (keeps the
         /// menu description and the consequence consistent — one roll,
         /// one outcome).</summary>
-        private bool _phaseFOutcomeMenuPressBranch;
+        private bool _ambushedOutcomeMenuPressBranch;
 
         public bool IsPartyInStealth(MobileParty party)
         {
@@ -187,6 +260,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
             if (nowRealTime - _lastHotkeyRealTime < HotkeyInputCooldownSeconds) return;
 
             if (!CanToggleStealth()) return;
+
+            // Hotkey during prep → cancel setup. No cooldown stamp, nothing
+            // happened — the ambush was never set.
+            if (_playerPreppingStealth)
+            {
+                CancelPlayerStealthPrep();
+                _lastHotkeyRealTime = nowRealTime;
+                return;
+            }
 
             if (_playerInStealth)
             {
@@ -213,16 +295,21 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 if (MBRandom.RandomFloat >= chance)
                 {
                     TORCommon.Say("You couldn't slip away in time.");
-                    StampAmbushCooldown();
+                    // Entry failed — no strike landed. Written as a
+                    // solo stealth-exit stamp (Resolution.None, no
+                    // victim) so cooldown queries treat it as a
+                    // position-revealed record without lighting the
+                    // disorganize shield.
+                    var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
+                    ai?.RecordAmbush(new AmbushRecord(CampaignTime.Now,
+                        MobileParty.MainParty, null, AmbushResolution.None));
                     _lastHotkeyRealTime = nowRealTime;
                     return;
                 }
             }
 
-            EnterStealth(MobileParty.MainParty);
+            BeginPlayerStealthPrep(MobileParty.MainParty);
 
-            // One-shot diagnostic so the next tuning cycle can lock the
-            // X anchor precisely instead of eyeballing it from a screenshot.
             if (model != null)
             {
                 var main = MobileParty.MainParty;
@@ -260,29 +347,115 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return result;
         }
 
+        /// <summary>§19 prep entry — hotkey put us into "setting up the
+        /// ambush." Party is held in place; <see cref="IsPlayerInStealth"/>
+        /// stays false (so the §17 Scouting bonus doesn't kick in yet).
+        /// <see cref="TickPlayerStealthPrep"/> finalizes once the model's
+        /// <c>CalculatePreparationMinutes</c> elapses.</summary>
+        private void BeginPlayerStealthPrep(MobileParty party)
+        {
+            if (party != MobileParty.MainParty) return;
+            if (_playerInStealth || _playerPreppingStealth) return;
+
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            float totalMinutes = model?.CalculatePreparationMinutes(party) ?? 15f;
+            _playerStealthPrepStartedAt = CampaignTime.Now;
+            _playerPreppingStealth = true;
+
+            party.Ai.SetDoNotMakeNewDecisions(true);
+            party.SetMoveModeHold();
+            // Same long-ignore pattern as the finalized stealth: pursuers
+            // shouldn't engage a party actively prepping an ambush either.
+            party.IgnoreByOtherPartiesTill(CampaignTime.YearsFromNow(100f));
+
+            _cachedTimeControlMode = Campaign.Current.TimeControlMode;
+
+            TORCommon.Say("Setting up the ambush (~"
+                + totalMinutes.ToString("F0") + " minutes).");
+            GameMenu.ActivateGameMenu(StealthMenuId);
+            Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
+
+            TORCommon.Log(LogLevel.Info, "[Ambush] prep begin: minutes="
+                + totalMinutes.ToString("F1")
+                + " size=" + (party.MemberRoster?.TotalHealthyCount ?? 0));
+        }
+
+        /// <summary>Called from <see cref="OnCampaignTick"/>. If enough
+        /// game-time elapsed, flip into full stealth stance. Scouting
+        /// bonus (§17) activates here via <see cref="IsPlayerInStealth"/>
+        /// flipping true. Total prep window is recomputed from the model
+        /// — same inputs as entry, so the result is stable while the
+        /// party is held in place.</summary>
+        private void TickPlayerStealthPrep()
+        {
+            if (!_playerPreppingStealth) return;
+            float elapsed = (float)(CampaignTime.Now - _playerStealthPrepStartedAt).ToMinutes;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            float totalMinutes = model?.CalculatePreparationMinutes(MobileParty.MainParty) ?? 15f;
+
+            // Refresh the stealth menu's prep progress text so the player
+            // sees the bar fill. RefreshStealthMenuTargets branches on
+            // _playerPreppingStealth to render BuildStealthPrepText.
+            if (Campaign.Current?.CurrentMenuContext?.GameMenu?.StringId == StealthMenuId)
+                RefreshStealthMenuTargets();
+
+            if (elapsed < totalMinutes) return;
+
+            _playerPreppingStealth = false;
+            _playerInStealth = true;
+            _stealthEnteredAt = CampaignTime.Now;
+            TORCommon.Say("Ambush is set.");
+            TORCommon.Log(LogLevel.Info, "[Ambush] prep complete: elapsed="
+                + elapsed.ToString("F1") + " of " + totalMinutes.ToString("F1"));
+
+            // Final refresh — flip into "in cover" mode text + strike list.
+            if (Campaign.Current?.CurrentMenuContext?.GameMenu?.StringId == StealthMenuId)
+                RefreshStealthMenuTargets();
+        }
+
+        /// <summary>Hotkey during prep cancels setup. No cooldown stamp
+        /// (nothing happened) — party resumes normal campaign play.</summary>
+        private void CancelPlayerStealthPrep()
+        {
+            if (!_playerPreppingStealth) return;
+            _playerPreppingStealth = false;
+
+            var party = MobileParty.MainParty;
+            if (party != null)
+            {
+                party.Ai.SetDoNotMakeNewDecisions(false);
+                party.IgnoreByOtherPartiesTill(CampaignTime.Zero);
+            }
+            if (Campaign.Current?.CurrentMenuContext?.GameMenu?.StringId == StealthMenuId)
+                GameMenu.ExitToLast();
+            Campaign.Current.TimeControlMode = _cachedTimeControlMode;
+
+            TORCommon.Say("Ambush setup aborted.");
+            TORCommon.Log(LogLevel.Info, "[Ambush] prep cancelled");
+        }
+
+        /// <summary>Legacy entry point — now just a direct finalize for
+        /// debug-command / forced entry paths. Normal player entry goes
+        /// through <see cref="BeginPlayerStealthPrep"/> → tick-driven
+        /// finalize. Kept so the console <c>trigger_stealth</c> command
+        /// still works without a prep window.</summary>
         public void EnterStealth(MobileParty party)
         {
             if (party != MobileParty.MainParty) return;
             if (_playerInStealth) return;
+            _playerPreppingStealth = false;
 
             _playerInStealth = true;
             _stealthEnteredAt = CampaignTime.Now;
 
             party.Ai.SetDoNotMakeNewDecisions(true);
             party.SetMoveModeHold();
-
-            // Phase B: drop the party off the AI target list. AiEngagePartyBehavior skips
-            // targets where ShouldBeIgnored is true. Set a far-future expiry so the ignore flag
-            // persists until LeaveStealth clears it.
             party.IgnoreByOtherPartiesTill(CampaignTime.YearsFromNow(100f));
 
             _cachedTimeControlMode = Campaign.Current.TimeControlMode;
 
             TORCommon.Say("Entered stealth stance.");
             GameMenu.ActivateGameMenu(StealthMenuId);
-            // ActivateGameMenu + the wait-menu's internal StartWait set TimeControlMode to
-            // UnstoppableFastForward; override back to Stop so the player starts paused and can
-            // choose their own speed via the UI arrows.
             Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
         }
 
@@ -342,25 +515,16 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 .ToList();
         }
 
-        /// <summary>Stamps a cooldown on the main party by writing an
-        /// ambush record. Thin wrapper over <c>AiAmbushBehavior.RecordAmbush</c>
-        /// so existing call-sites don't change — the record carries a
-        /// <c>WasLoud</c> flag that the model reads when computing the
-        /// effective cooldown hours.</summary>
-        public void StampAmbushCooldown()
-        {
-            var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
-            if (ai == null) return;
-            var missionModel = Campaign.Current?.Models?.GetMissionAmbushModel();
-            bool wasLoud = missionModel != null
-                           && LastAmbushLoudness >= missionModel.LoudnessEventThreshold;
-            ai.RecordAmbush(MobileParty.MainParty, null, repelled: false, wasLoud: wasLoud);
-        }
-
         public override void RegisterEvents()
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, OnPlayerBattleEnd);
+            // OnPlayerBattleEnd doesn't fire for Phase F AmbushedFled —
+            // vanilla's soft-border retreat path returns to the parent
+            // PlayerEncounter without a battle-end dispatch. We need the
+            // generic OnMissionEndedEvent to catch that case and open
+            // our outcome menu.
+            CampaignEvents.OnMissionEndedEvent.AddNonSerializedListener(this, OnAnyMissionEnded);
             CampaignEvents.QuarterHourlyTickEvent.AddNonSerializedListener(this, OnQuarterHourlyTick);
             CampaignEvents.TickEvent.AddNonSerializedListener(this, OnCampaignTick);
             // GameMenuOpened fires regardless of TimeControlMode — unlike
@@ -373,10 +537,45 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
             ScreenManager.OnPushScreen -= OnScreenPushed;
             ScreenManager.OnPushScreen += OnScreenPushed;
+
+            // Single subscriber for all three ambush producers (Phase D,
+            // Phase F, AI-on-AI). Idempotent re-subscription on save-load.
+            TORCampaignEvents.Instance.AmbushResolved -= OnAmbushResolved;
+            TORCampaignEvents.Instance.AmbushResolved += OnAmbushResolved;
+        }
+
+        /// <summary>
+        /// Single subscriber for <see cref="TORCampaignEvents.AmbushResolved"/>.
+        /// Appends the carried <see cref="AmbushRecord"/> to the shared
+        /// history and dispatches the shared post-strike effects
+        /// (disorganize apply / shield) for ambusher-win resolutions.
+        /// Producers never write the history list directly — they
+        /// construct a record and fire this event.
+        /// </summary>
+        private void OnAmbushResolved(object sender, AmbushResolvedEventArgs args)
+        {
+            var record = args?.Record;
+            if (record == null) return;
+
+            var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
+            ai?.RecordAmbush(record);
+
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model != null && model.IsSuccessfulStrike(record))
+            {
+                ApplySuccessfulAmbushEffects(record.Ambusher, record.Victim);
+            }
         }
 
         private void OnQuarterHourlyTick()
         {
+            // Rebuild the hostile-observer cache before the stealth branch split.
+            // The eye widget reads this every frame (via CachedObserversInRange)
+            // to drive the Alert icon and the CalculateEntryChance call that
+            // sets the eye's openness — it needs fresh data regardless of
+            // whether the player is currently stealthed.
+            RefreshCachedObservers();
+
             // Player stealth and player-side scanning are mutually exclusive:
             // hiding is passive, you can't both lie in wait AND actively
             // scout. When the player is not hiding, run the mirror pass —
@@ -403,30 +602,30 @@ namespace TOR_Core.CampaignMechanics.Ambush
             var model = Campaign.Current?.Models?.GetAmbushModel();
             if (model == null) return;
 
-            float scanRadius = model.DetectionScanRadius;
-            var mainPos = mainParty.Position.ToVec2();
-            float scanRadiusSq = scanRadius * scanRadius;
-
-            // Collect eligible observers once per tick so we can both roll detection
-            // AND award hidden-tick Roguery XP on the "not revealed" path.
-            int observerCount = 0;
+            // Observers were cached at the top of this tick by
+            // RefreshCachedObservers — reuse here for both the detection
+            // roll AND the hidden-tick Roguery XP calculation.
+            int observerCount = _cachedObserversInRange.Count;
             int highestObserverScouting = 0;
-            foreach (var observer in MobileParty.All)
+            foreach (var observer in _cachedObserversInRange)
             {
-                if (observer == null || !observer.IsActive) continue;
-                if (!observer.IsVisible) continue;   // fog-of-war-hidden parties don't observe us either
-                if (observer.Position.ToVec2().DistanceSquared(mainPos) > scanRadiusSq) continue;
-                if (!model.CanDetect(observer, mainParty)) continue;
-
-                observerCount++;
                 int s = observer.LeaderHero?.GetSkillValue(DefaultSkills.Scouting) ?? 0;
                 if (s > highestObserverScouting) highestObserverScouting = s;
 
                 if (model.TryDetect(observer, mainParty, _stealthEnteredAt, out string reason))
                 {
                     TORCommon.Say(reason);
+                    // §21 eye-widget: stamp "recently spotted" timestamp so the
+                    // Spotted event icon lights for the model's display window.
+                    _spottedAt = CampaignTime.Now;
                     LeaveStealth(mainParty);
-                    StampAmbushCooldown();   // being spotted locks us out for the normal cooldown window
+                    // Spotted without striking — written as a solo
+                    // stealth-exit stamp (Resolution.None) so cooldown
+                    // queries treat it as a position-revealed record
+                    // without lighting the disorganize shield.
+                    var aiStamp = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
+                    aiStamp?.RecordAmbush(new AmbushRecord(CampaignTime.Now,
+                        MobileParty.MainParty, null, AmbushResolution.None));
                     return;
                 }
             }
@@ -441,6 +640,35 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     : 0;
                 int xp = model.RogueryXpBasePerHiddenTick + hostileBonus + scoutingBonus;
                 Hero.MainHero.AddSkillXp(DefaultSkills.Roguery, xp);
+            }
+        }
+
+        /// <summary>Rebuild <see cref="_cachedObserversInRange"/> — hostile
+        /// parties inside the model's detection scan radius that pass the
+        /// standard <c>CanDetect</c> filter (visible, at-war, not us).
+        /// Called from <see cref="OnQuarterHourlyTick"/> before the
+        /// stealth branch split so the eye widget always has fresh data
+        /// regardless of current stealth state.</summary>
+        private void RefreshCachedObservers()
+        {
+            _cachedObserversInRange.Clear();
+            var mainParty = MobileParty.MainParty;
+            if (mainParty == null || !mainParty.IsActive) return;
+
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return;
+
+            float scanRadius = model.DetectionScanRadius;
+            float scanRadiusSq = scanRadius * scanRadius;
+            var mainPos = mainParty.Position.ToVec2();
+
+            foreach (var observer in MobileParty.All)
+            {
+                if (observer == null || !observer.IsActive) continue;
+                if (!observer.IsVisible) continue;
+                if (observer.Position.ToVec2().DistanceSquared(mainPos) > scanRadiusSq) continue;
+                if (!model.CanDetect(observer, mainParty)) continue;
+                _cachedObserversInRange.Add(observer);
             }
         }
 
@@ -469,6 +697,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 if (!model.TryDetect(mainParty, stealthed, ai.GetStealthEnteredAt(stealthed), out _))
                     continue;
 
+                // Record detection BEFORE BreakStealthByDetection — the
+                // latter clears the party from _stealthedParties, which
+                // means the IsPartyStealthed check won't short-circuit
+                // IsVisibilityPersistent. The player-detection record
+                // takes over for the short reveal window.
+                var spotPos = stealthed.Position.ToVec2();
+                ai.RecordPlayerDetection(stealthed);
                 ai.BreakStealthByDetection(stealthed);
 
                 var who = stealthed.LeaderHero?.Name?.ToString()
@@ -477,9 +712,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 var text = new TextObject("{=!}{NAME} was spotted lying in wait!");
                 text.SetTextVariable("NAME", who);
                 Campaign.Current?.CampaignInformationManager?.NewMapNoticeAdded(
-                    new CampaignMechanics.MapNotifications.TORMapNotification(
+                    new CampaignMechanics.MapNotifications.AmbushDetectedMapNotification(
                         text, "tor_ambush_detected",
-                        "event:/ui/notification/hideout_found"));
+                        "event:/ui/notification/hideout_found",
+                        spotPos));
 
                 // Mirror vanilla's OnHideoutSpotted → Scouting XP for the
                 // Scout role. Partied-hero fallback to MainHero when no
@@ -502,6 +738,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 mapScreen.AddMapView<AmbushMapView>();
             if (mapScreen.GetMapView<AmbushRangeDebugMapView>() == null)
                 mapScreen.AddMapView<AmbushRangeDebugMapView>();
+            if (mapScreen.GetMapView<AmbushPrepOverlayMapView>() == null)
+                mapScreen.AddMapView<AmbushPrepOverlayMapView>();
         }
 
         /// <summary>
@@ -541,19 +779,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private void OnCampaignTick(float dt)
         {
-            // Phase F §6: open the outcome menu once the mission has
-            // fully torn down. AmbushedFled / AmbushedHeroWounded don't
-            // close PlayerEncounter via vanilla, so this is where the
-            // narrative transition from the mission to the aftermath
-            // actually happens.
-            if (_pendingPhaseFOutcome != AmbushedOutcome.None
-                && TaleWorlds.MountAndBlade.Mission.Current == null
-                && MapEvent.PlayerMapEvent == null)
-            {
-                GameMenu.ActivateGameMenu(AmbushedFledOutcomeMenuId);
-                // Fields cleared by the menu's init-delegate once it
-                // has committed its branch choice.
-            }
+            TickPlayerStealthPrep();
 
             // Phase F §6: open the follow-up field battle one tick AFTER
             // the outcome menu's "Continue" picks the press branch (which
@@ -598,22 +824,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
         }
 
-        // ---- Phase F §6: AmbushedFled / AmbushedHeroWounded outcome queue ----
-
-        /// <summary>Called from <c>AmbushedEndLogic.OnMissionResultReady</c>
-        /// for the two Phase F outcomes that don't naturally fire
-        /// <c>OnPlayerBattleEnd</c> (because PlayerEncounter stays
-        /// alive). Stashes the outcome + ambusher for
-        /// <see cref="OnCampaignTick"/> to pick up and open the
-        /// narrative menu once the mission has fully torn down.</summary>
-        public void QueuePhaseFOutcomeMenu(AmbushedOutcome outcome, MobileParty ambusher)
-        {
-            _pendingPhaseFOutcome = outcome;
-            _pendingPhaseFAmbusher = ambusher;
-            TORCommon.Log(LogLevel.Info, "[Ambush] Phase F outcome menu queued: outcome="
-                + outcome + " ambusher="
-                + (ambusher?.LeaderHero?.Name?.ToString() ?? ambusher?.Name?.ToString() ?? "?"));
-        }
+        // ---- Phase F §6: AmbushedFled follow-up ----
 
         /// <summary>Called right after a Phase F AmbushedFled outcome.
         /// Marks spawned victim troops as wounded, then branches on the
@@ -622,7 +833,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// Vanish → light morale penalty, done.</summary>
         private void HandleAmbushedFledFollowUp(MobileParty ambusher)
         {
-            PromoteSpawnedParticipantsToWounded();
+            WoundAmbushedCommittedTroops();
             var model = Campaign.Current?.Models?.GetAmbushModel();
             if (model == null || ambusher == null || !ambusher.IsActive)
             {
@@ -663,36 +874,176 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// participant from healthy → wounded on the main party.
         /// Pulls the participant list from the mission controller
         /// before the mission tears down, into
-        /// <see cref="_phaseFSpawnedCharacters"/>, where
+        /// <see cref="_ambushedRosterSnapshot"/>, where
         /// <see cref="OnPlayerBattleEnd"/> can still see them for the
         /// double-flee removal.</summary>
-        private void PromoteSpawnedParticipantsToWounded()
+        /// <summary>Called from <c>AmbushedEndLogic.OnEndMission</c> with
+        /// the roster snapshot captured at mission-start (AfterStart,
+        /// before combat touched the roster). Hands "troops committed to
+        /// this ambush" over for the Fled wound/remove flows.</summary>
+        public void StashAmbushedRosterSnapshot(Dictionary<CharacterObject, int> snapshot)
         {
-            var controller = TaleWorlds.MountAndBlade.Mission.Current
-                ?.GetMissionBehavior<Missions.AmbushMission.AmbushMissionController>();
-            var list = controller?.VictimSideSpawnedCharacters;
-            if (list == null || list.Count == 0)
+            _ambushedRosterSnapshot = (snapshot != null && snapshot.Count > 0)
+                ? new Dictionary<CharacterObject, int>(snapshot) : null;
+        }
+
+        /// <summary>§6 bluff mechanic — flip
+        /// <see cref="MobileParty.IsInfoHidden"/> on so vanilla's UI
+        /// pipeline displays "?" instead of troop counts for this party.
+        /// Idempotent.</summary>
+        public void BeginBluffOn(MobileParty party)
+        {
+            if (party == null || !party.IsActive) return;
+            party.IsInfoHidden = true;
+        }
+
+        /// <summary>Clear the bluff on this party.</summary>
+        public void EndBluffOn(MobileParty party)
+        {
+            if (party == null || !party.IsActive) return;
+            party.IsInfoHidden = false;
+        }
+
+        /// <summary>True when the player's current MapEvent has at least
+        /// one enemy party flagged as info-hidden — i.e. we're actively
+        /// in a battle against a bluffing ambusher. Scoped to the
+        /// current engagement, so unrelated battles (fighting a looter
+        /// band while an Ungor warband preps an ambush 500u away) don't
+        /// suppress the scoreboard.</summary>
+        public bool IsCurrentMissionBluffed
+        {
+            get
             {
-                _phaseFSpawnedCharacters = null;
+                var mapEvent = MapEvent.PlayerMapEvent;
+                if (mapEvent == null) return false;
+                foreach (var p in mapEvent.InvolvedParties)
+                {
+                    var mp = p?.MobileParty;
+                    if (mp != null && mp != MobileParty.MainParty && mp.IsInfoHidden)
+                        return true;
+                }
+                return false;
+            }
+        }
+
+        /// <summary>Clear bluff state on every party on the ambusher's
+        /// side of a mapEvent. Teardown safety net.</summary>
+        public void EndBluffOnAmbusherSide(MapEvent mapEvent)
+        {
+            if (mapEvent == null) return;
+            foreach (var p in mapEvent.InvolvedParties)
+            {
+                var mp = p?.MobileParty;
+                if (mp != null && mp != MobileParty.MainParty) EndBluffOn(mp);
+            }
+        }
+
+        /// <summary>Bluff every party on the ambusher's side of the
+        /// current PlayerEncounter MapEvent. The initial trigger only
+        /// knows the lead ambusher party; vanilla pulls in nearby
+        /// hostile parties onto the same MapEvent side when the
+        /// encounter opens (joined-side reinforcements). Each of them
+        /// otherwise exposes real troop counts in the hover tooltip
+        /// since IsInfoHidden isn't set on them.</summary>
+        public void BeginBluffOnAmbusherSide(MobileParty ambusher)
+        {
+            if (ambusher == null) return;
+            BeginBluffOn(ambusher);
+            var mapEvent = ambusher.MapEvent;
+            if (mapEvent == null) return;
+            var ambusherSide = ambusher.Party?.Side ?? BattleSideEnum.None;
+            if (ambusherSide == BattleSideEnum.None) return;
+            var side = mapEvent.GetMapEventSide(ambusherSide);
+            if (side == null) return;
+            foreach (var mep in side.Parties)
+            {
+                var p = mep.Party?.MobileParty;
+                if (p != null && p != ambusher) BeginBluffOn(p);
+            }
+        }
+
+        /// <summary>First-flee cost. For each troop type in the committed
+        /// snapshot, shifts <c>ceil(startCount * AmbushedFledWoundShare)</c>
+        /// of that type from healthy → wounded on the current roster,
+        /// capped at currently-healthy of that type (vanilla's combat
+        /// casualty flow may already have taken some).</summary>
+        private void WoundAmbushedCommittedTroops()
+        {
+            if (_ambushedRosterSnapshot == null || _ambushedRosterSnapshot.Count == 0)
+            {
+                TORCommon.Log(LogLevel.Info, "[Ambush] wound-committed: no snapshot (0 troops wounded)");
                 return;
             }
-            _phaseFSpawnedCharacters = new List<CharacterObject>(list);
-
-            // Reduce one healthy, add one wounded per spawned instance.
             var roster = MobileParty.MainParty?.MemberRoster;
             if (roster == null) return;
-            foreach (var c in _phaseFSpawnedCharacters)
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            float share = model?.AmbushedFledWoundShare ?? 0.3f;
+
+            int typesProcessed = 0;
+            int totalWounded = 0;
+            foreach (var kv in _ambushedRosterSnapshot)
             {
+                var c = kv.Key;
+                int startCount = kv.Value;
                 if (c == null || c.IsHero) continue;
                 int idx = roster.FindIndexOfTroop(c);
                 if (idx < 0) continue;
-                var el = roster.GetElementCopyAtIndex(idx);
-                int available = el.Number - el.WoundedNumber;
-                if (available <= 0) continue;
-                // countChange=0 keeps total, woundedCountChange shifts
-                // healthy→wounded.
-                roster.AddToCountsAtIndex(idx, 0, woundedCountChange: 1);
+                int currentlyHealthy = roster.GetElementNumber(idx) - roster.GetElementWoundedNumber(idx);
+                if (currentlyHealthy <= 0) continue;
+
+                int wantToWound = (int)System.Math.Ceiling(startCount * share);
+                int actually = System.Math.Min(currentlyHealthy, wantToWound);
+                if (actually <= 0) continue;
+                roster.AddToCountsAtIndex(idx, 0, actually);
+                typesProcessed++;
+                totalWounded += actually;
             }
+            TORCommon.Log(LogLevel.Info, "[Ambush] wound-committed: wounded "
+                + totalWounded + " troops across " + typesProcessed + " types"
+                + " (snapshot had " + _ambushedRosterSnapshot.Count + " types, share=" + share + ")");
+        }
+
+        /// <summary>Double-flee cost. For each troop type in the committed
+        /// snapshot, removes <c>ceil(startCount * AmbushedDoubleFleeRemoveShare)</c>
+        /// of that type from the current roster — prefers to drop wounded
+        /// first (they were marked wounded by WoundAmbushedCommittedTroops
+        /// on the first flee), then healthy.</summary>
+        private void RemoveAmbushedCommittedTroops()
+        {
+            if (_ambushedRosterSnapshot == null || _ambushedRosterSnapshot.Count == 0)
+            {
+                TORCommon.Log(LogLevel.Info, "[Ambush] double-flee: no snapshot (0 troops removed)");
+                return;
+            }
+            var roster = MobileParty.MainParty?.MemberRoster;
+            if (roster == null) return;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            float share = model?.AmbushedDoubleFleeRemoveShare ?? 0.3f;
+
+            int typesProcessed = 0;
+            int totalRemoved = 0;
+            foreach (var kv in _ambushedRosterSnapshot)
+            {
+                var c = kv.Key;
+                int startCount = kv.Value;
+                if (c == null || c.IsHero) continue;
+                int idx = roster.FindIndexOfTroop(c);
+                if (idx < 0) continue;
+
+                int wantToRemove = (int)System.Math.Ceiling(startCount * share);
+                int presentNow = roster.GetElementNumber(idx);
+                int actually = System.Math.Min(presentNow, wantToRemove);
+                if (actually <= 0) continue;
+
+                int wounded = roster.GetElementWoundedNumber(idx);
+                int takeFromWounded = System.Math.Min(wounded, actually);
+                roster.AddToCountsAtIndex(idx, -actually, woundedCountChange: -takeFromWounded);
+                typesProcessed++;
+                totalRemoved += actually;
+            }
+            TORCommon.Log(LogLevel.Info, "[Ambush] double-flee: removed "
+                + totalRemoved + " troops across " + typesProcessed + " types"
+                + " (share=" + share + ")");
         }
 
         /// <summary>Opens a vanilla field battle on the campaign map with
@@ -703,6 +1054,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             if (ambusher == null || !ambusher.IsActive) return;
             _followUpFieldBattlePending = true;
+            // §6 bluff carries over to the follow-up encounter screen —
+            // keep IsInfoHidden on so the "stand or retreat" decision
+            // bar shows "?" instead of the ambusher's actual (possibly
+            // depleted) count. Idempotent if the initial trigger already
+            // set it.
+            BeginBluffOn(ambusher);
             TORCommon.Say((ambusher.LeaderHero?.Name?.ToString()
                            ?? ambusher.Name?.ToString()
                            ?? "The ambushers")
@@ -717,6 +1074,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 TaleWorlds.CampaignSystem.Encounters.PlayerEncounter.StartBattle();
                 TaleWorlds.CampaignSystem.Encounters.PlayerEncounter.Update();
             }
+            // Vanilla pulls nearby hostile parties onto the ambusher's
+            // MapEvent side as the encounter opens — those joiners have
+            // their own IsInfoHidden=false unless we flip them here.
+            BeginBluffOnAmbusherSide(ambusher);
         }
 
         private static void ApplyMoraleDelta(float delta)
@@ -726,8 +1087,56 @@ namespace TOR_Core.CampaignMechanics.Ambush
             main.RecentEventsMorale += delta;
         }
 
+        /// <summary>Fires for every mission end, independent of battle
+        /// outcome and PlayerEncounter state. Phase F's VictimFled (and
+        /// hero-down VictimDefeated) don't route through
+        /// <see cref="OnPlayerBattleEnd"/> because vanilla's soft-border
+        /// retreat returns to the parent PlayerEncounter without a
+        /// battle-end dispatch. OnMissionEndedEvent catches them.
+        /// </summary>
+        private void OnAnyMissionEnded(IMission mission)
+        {
+            if (PlayerWasAmbusher) return;
+            bool needsMenu = LastResolution == AmbushResolution.VictimFled
+                             || (LastResolution == AmbushResolution.VictimDefeated
+                                 && LastVictimLeaderDown);
+            if (!needsMenu) return;
+
+            var ambusher = Campaign.Current
+                ?.GetCampaignBehavior<AiAmbushBehavior>()?.CurrentAmbusherOnPlayer;
+            _pendingAmbushedResolution = LastResolution;
+            _pendingAmbushedAttacker = ambusher;
+            TORCommon.Log(LogLevel.Info, "[Ambush] OnMissionEnded: activating menu for "
+                + LastResolution + " ambusher="
+                + (ambusher?.LeaderHero?.Name?.ToString()
+                   ?? ambusher?.Name?.ToString() ?? "?"));
+
+            // Clear now so a subsequent mission-end doesn't re-fire.
+            // OnPlayerBattleEnd never ran for this resolution; nobody
+            // else reads LastResolution on the victim-side path.
+            LastResolution = AmbushResolution.None;
+
+            // Pop whatever vanilla just pushed (the parent encounter
+            // menu returning after the mission closes), then open our
+            // outcome menu on top.
+            if (Campaign.Current?.CurrentMenuContext != null)
+                GameMenu.ExitToLast();
+            GameMenu.ActivateGameMenu(AmbushedFledOutcomeMenuId);
+        }
+
         private void OnPlayerBattleEnd(MapEvent mapEvent)
         {
+            TORCommon.Log(LogLevel.Info, "[Ambush] OnPlayerBattleEnd fired. LastResolution="
+                + LastResolution + " PlayerWasAmbusher=" + PlayerWasAmbusher
+                + " followUpPending=" + _followUpFieldBattlePending);
+
+            // §6 bluff — any player battle end resolves the ambush
+            // engagement one way or another (Repelled, Wiped,
+            // double-flee, follow-up stand). Troop counts are revealed
+            // (via combat) or no longer meaningful; drop IsInfoHidden
+            // on every party on the mapEvent's enemy side.
+            EndBluffOnAmbusherSide(mapEvent);
+
             // Phase F §6 double-flee check: fires ONLY when the player
             // pressed retreat during the follow-up field battle — not
             // on stand-and-lose. See outcome-graph.md "The checks that
@@ -751,173 +1160,214 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     var model = Campaign.Current?.Models?.GetAmbushModel();
                     if (model != null)
                         ApplyMoraleDelta(-model.AmbushedFledDoubleFleeExtraMoralePenalty);
+                    RemoveAmbushedCommittedTroops();
                     TORCommon.Say("The second rout breaks your band. Troops scatter.");
                     TORCommon.Log(LogLevel.Info, "[Ambush] double-flee penalty applied: -"
                         + (model?.AmbushedFledDoubleFleeExtraMoralePenalty ?? 0f)
                         + " to RecentEventsMorale");
                 }
+                // Teleport the ambusher off the player tile regardless of
+                // double-flee outcome — they were last placed onto the
+                // player by OpenFollowUpFieldBattle, and vanilla's
+                // engagement AI would re-encounter them on the next tick
+                // if they stayed stacked. Mirror of the vanish-branch
+                // teleport in OnAmbushedFledOutcomeContinue.
+                var aiBehavior = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
+                var followUpAmbusher = aiBehavior?.CurrentAmbusherOnPlayer;
+                if (followUpAmbusher != null && followUpAmbusher.IsActive)
+                {
+                    var main = MobileParty.MainParty;
+                    if (main != null)
+                    {
+                        var away = CampaignVec2.Normalized(followUpAmbusher.Position - main.Position);
+                        var awayV = away.ToVec2();
+                        if (awayV.x == 0f && awayV.y == 0f) away = new CampaignVec2(new Vec2(1f, 0f), true);
+                        followUpAmbusher.Position = main.Position + away * AmbushEscapeTeleportDistance;
+                    }
+                }
+                if (aiBehavior != null) aiBehavior.CurrentAmbusherOnPlayer = null;
                 _followUpFieldBattlePending = false;
-                _phaseFSpawnedCharacters = null;
+                _ambushedRosterSnapshot = null;
             }
 
             if (_playerInStealth) LeaveStealth(MobileParty.MainParty);
 
-            // Routes outcome → aftermath. Full map in
-            // TORTasks/ambush-feature/mission-design.md.
-            switch (LastAmbushOutcome)
+            // Routes resolution → aftermath. Full map in
+            // TORTasks/ambush-feature/mission-design.md. Resolution
+            // enum is unified across Phase D / Phase F / AI-on-AI;
+            // PlayerWasAmbusher distinguishes the player-role branch
+            // for menu selection and record construction.
+            if (PlayerWasAmbusher)
             {
-                case AmbushOutcome.TotalVictory:
-                    // Quiet TotalVictory: no witnesses, no alarm — stealth is
-                    // immediately available. Loud TotalVictory: the gunpowder /
-                    // magic noise carried, cooldown stays at the extended value
-                    // StampAmbushCooldown just set.
+                HandlePlayerAmbusherResolution();
+            }
+            else if (LastResolution != AmbushResolution.None)
+            {
+                HandlePlayerVictimResolution();
+            }
+
+            LastResolution = AmbushResolution.None;
+            PlayerWasAmbusher = false;
+            LastAmbusherLeaderDown = false;
+            LastVictimLeaderDown = false;
+            ExtractionTroopsLeftBehind = 0;
+            LastAmbushLoudness = 0;
+            // _lastAmbushTarget is cleared when the escape/engage option fires,
+            // not here — the Ambush Escape menu may still need it after this.
+        }
+
+        /// <summary>
+        /// Player-ambusher (Phase D) post-mission branch. Fires the
+        /// <see cref="TORCampaignEvents.AmbushResolved"/> event with a
+        /// fully-populated record and drives the follow-up menu for
+        /// non-Extracted outcomes. Extracted was already dispatched
+        /// synchronously via <see cref="BeginExtractionTransition"/>
+        /// when the mission closed.
+        /// </summary>
+        private void HandlePlayerAmbusherResolution()
+        {
+            if (LastResolution == AmbushResolution.None) return;
+            if (LastResolution == AmbushResolution.AmbusherPartialVictory)
+            {
+                // Extracted path already fired its event and opened its
+                // menu from BeginExtractionTransition. OnPlayerBattleEnd
+                // runs after, with nothing left to do.
+                return;
+            }
+
+            var missionModel = Campaign.Current?.Models?.GetMissionAmbushModel();
+            bool wasLoud = missionModel != null
+                           && LastAmbushLoudness >= missionModel.LoudnessEventThreshold;
+
+            // Single event fire. The subscriber appends the record and
+            // runs shared post-strike effects for ambusher-win cases.
+            TORCampaignEvents.Instance.OnAmbushResolved(
+                new AmbushRecord(CampaignTime.Now, MobileParty.MainParty, _lastAmbushTarget,
+                                 LastResolution, wasLoud,
+                                 LastAmbusherLeaderDown, LastVictimLeaderDown));
+
+            switch (LastResolution)
+            {
+                case AmbushResolution.AmbusherTotalVictory:
+                    // Quiet TotalVictory: no witnesses — stealth is
+                    // immediately available via the instant-ambush
+                    // model query. Loud: scouts carried the noise,
+                    // cooldown length reflects that via WasLoud.
                     //
-                    // DO NOT force-destroy the target party here. OnPlayerBattleEnd
-                    // fires at vanilla's ApplyResults state, mid-flow — vanilla
-                    // still has PlayerVictory → LootParty → LootInventory → End
-                    // ahead. End handles 0-troop party cleanup itself. Firing
-                    // DestroyPartyAction mid-state-machine crashes native.
+                    // DO NOT force-destroy the target party. OnPlayerBattleEnd
+                    // runs mid-ApplyResults; vanilla still has PlayerVictory
+                    // → LootParty → LootInventory → End ahead. End handles
+                    // 0-troop party cleanup. Firing DestroyPartyAction
+                    // mid-state-machine crashes native.
+                    if (wasLoud)
+                    {
+                        TORCommon.Say("The noise of your attack carries far. Scouts are looking for you — stealth will be slow to re-establish.");
+                    }
                     {
                         int eliminated = _lastAmbushTarget?.MemberRoster?.TotalManCount ?? 0;
-                        // Pre-mission snapshot would be more accurate; roster at
-                        // this point is already reduced. For the XP bonus we use
-                        // the "eliminated" scale as a proxy — refined later if
-                        // we snapshot in OnStrike.
                         var ambushModel = Campaign.Current?.Models?.GetAmbushModel();
-                        var missionModel = Campaign.Current?.Models?.GetMissionAmbushModel();
-                        bool loud = missionModel != null
-                                    && LastAmbushLoudness >= missionModel.LoudnessEventThreshold;
-                        if (!loud)
-                        {
-                            // Silent TotalVictory — clear any player
-                            // records in the active cooldown window so
-                            // stealth is immediately available again.
-                            Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>()
-                                ?.ClearRecentRecordsInvolving(MobileParty.MainParty);
-                            TORCommon.Say("No one escaped the ambush. You can slip back into cover immediately.");
-                        }
-                        else
-                        {
-                            // Re-stamp with current-mission loudness. The
-                            // OnStrike pre-stamp ran before LastAmbushLoudness
-                            // was known, so it used only the base cooldown.
-                            // StampAmbushCooldown reads the current loudness
-                            // and adds LoudnessPenaltyHours → full extended
-                            // cooldown kicks in (12h by default, not 6h).
-                            StampAmbushCooldown();
-                            TORCommon.Say("The noise of your attack carries far. Scouts are looking for you — stealth will be slow to re-establish.");
-                        }
-
                         if (ambushModel != null && Hero.MainHero != null)
                         {
                             int xp = ambushModel.RogueryXpTotalVictoryBase
                                    + (int)(eliminated * ambushModel.RogueryXpTotalVictoryPerMember);
                             Hero.MainHero.AddSkillXp(DefaultSkills.Roguery, xp);
                         }
-
                         if (_lastAmbushTarget != null)
                         {
-                            var roster = _lastAmbushTarget.MemberRoster;
-                            int total = roster != null ? roster.TotalManCount : -1;
-                            bool active = _lastAmbushTarget.IsActive;
-                            TORCommon.Log(LogLevel.Info, 
+                            TORCommon.Log(LogLevel.Info,
                                 "[AmbushCampaignBehavior] TotalVictory post-mission:"
                                 + " target=" + GetPartyLabel(_lastAmbushTarget)
-                                + " active=" + active
-                                + " totalManCount=" + total
+                                + " active=" + _lastAmbushTarget.IsActive
+                                + " totalManCount=" + (_lastAmbushTarget.MemberRoster?.TotalManCount ?? -1)
                                 + " loudness=" + LastAmbushLoudness
-                                + (loud ? " (loud: cooldown extended)" : " (quiet: cooldown zeroed)"));
+                                + (wasLoud ? " (loud: cooldown extended)" : " (quiet: cooldown zeroed)"));
                         }
                     }
                     _lastAmbushTarget = null;
                     break;
-                case AmbushOutcome.Extracted:
-                    // Re-stamp with current-mission loudness; see TotalVictory
-                    // branch for the reasoning. OnStrike pre-stamp ran before
-                    // LastAmbushLoudness was known.
-                    StampAmbushCooldown();
-                    WoundLeftBehindTroops(ExtractionTroopsLeftBehind);
-                    GameMenu.ActivateGameMenu(AmbushEscapeMenuId);
+                case AmbushResolution.AmbusherDefeated:
+                    // Includes the hero-wounded sub-case (distinguished
+                    // by LastAmbusherLeaderDown). Both route to the
+                    // same failed-ambush menu.
+                    if (LastAmbusherLeaderDown)
+                    {
+                        GameMenu.ActivateGameMenu(AmbushFailedMenuId);
+                    }
                     break;
-                case AmbushOutcome.HeroWounded:
-                    // Hero down. The "Ambush Failed" menu offers run-with-losses
-                    // vs auto-battle fight; vanilla wounded flow for the hero
-                    // itself already fired via BattleEndLogic. Re-stamp cooldown
-                    // with current loudness so a loud failure extends it too.
-                    StampAmbushCooldown();
-                    GameMenu.ActivateGameMenu(AmbushFailedMenuId);
-                    break;
-                case AmbushOutcome.Defeated:
-                case AmbushOutcome.Stalemate:
-                    // Vanilla defeat flow already handled casualties / prisoners.
-                    StampAmbushCooldown();
+                case AmbushResolution.Stalemate:
+                    // Timed out without clearing the patrol. Vanilla
+                    // defeat flow handles casualties.
                     break;
             }
+        }
 
-            // Phase F aftermath. The full flows (follow-up battle, wounded
-            // troops) are built out in subsequent slices; the record
-            // written here drives cooldown (both sides) and reveal (if
-            // repelled) via the model's query layer.
-            if (LastAmbushedOutcome != AmbushedOutcome.None)
+        /// <summary>
+        /// Player-victim (Phase F) post-mission branch. Fires
+        /// <see cref="TORCampaignEvents.AmbushResolved"/> with the AI
+        /// ambusher as the ambusher role, queues the Phase F outcome
+        /// menu for resolutions that don't naturally close the
+        /// PlayerEncounter, and cleans up the per-encounter ambusher
+        /// ref.
+        /// </summary>
+        private void HandlePlayerVictimResolution()
+        {
+            var aiBehavior = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
+            var ambusher = aiBehavior?.CurrentAmbusherOnPlayer;
+
+            TORCampaignEvents.Instance.OnAmbushResolved(
+                new AmbushRecord(CampaignTime.Now, ambusher, MobileParty.MainParty,
+                                 LastResolution, wasLoud: false,
+                                 LastAmbusherLeaderDown, LastVictimLeaderDown));
+
+            switch (LastResolution)
             {
-                var aiBehavior = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
-                var ambusher = aiBehavior?.CurrentAmbusherOnPlayer;
-                bool repelled = LastAmbushedOutcome == AmbushedOutcome.AmbushRepelled;
-
-                // Pair-incident record: the single write that drives
-                // the player's cooldown, the ambusher's cooldown, and
-                // (if repelled) the ambusher's persistent visibility.
-                if (aiBehavior != null && ambusher != null && ambusher.IsActive)
-                {
-                    aiBehavior.RecordAmbush(ambusher, MobileParty.MainParty,
-                        repelled: repelled, wasLoud: false);
-                }
-                else
-                {
-                    // Fallback: no ambusher ref (shouldn't normally happen)
-                    // — still stamp the player's own cooldown.
-                    StampAmbushCooldown();
-                }
-
-                switch (LastAmbushedOutcome)
-                {
-                    case AmbushedOutcome.AmbushRepelled:
-                        TORCommon.Say("You drove them off. You got a good look at them — they won't stay hidden for long.");
-                        break;
-                    // AmbushedFled and AmbushedHeroWounded don't close
-                    // PlayerEncounter, so OnPlayerBattleEnd never fires
-                    // for them. Their aftermath runs via the
-                    // AmbushedFledOutcomeMenuId path, queued from
-                    // AmbushedEndLogic.OnMissionResultReady and opened
-                    // from OnCampaignTick once the mission has torn down.
-                    case AmbushedOutcome.AmbushedWiped:
-                        // Vanilla defeat flow handles casualties / prisoners.
-                        break;
-                }
-
-                // Clear the current-ambusher tracker regardless of outcome
-                // — only meaningful for the duration of the encounter.
-                if (aiBehavior != null) aiBehavior.CurrentAmbusherOnPlayer = null;
-
-                // Close the AmbushedIntroMenu if it survived the mission.
-                // OnAmbushedIntroPrepare now ExitToLast()s before opening
-                // the mission so the usual case is already fine; this is
-                // the belt-and-suspenders half for state-machine corners
-                // where vanilla re-pushed the menu during PlayerEncounter
-                // cleanup.
-                var ambushedCtx = Campaign.Current?.CurrentMenuContext;
-                if (ambushedCtx?.GameMenu?.StringId == AmbushedIntroMenuId)
-                {
-                    GameMenu.ExitToLast();
-                }
+                case AmbushResolution.AmbusherDefeated:
+                    TORCommon.Say("You drove them off. You got a good look at them — they won't stay hidden for long.");
+                    break;
+                case AmbushResolution.VictimFled:
+                    // Soft-border exit. Needs a deferred menu because
+                    // vanilla's retreat path doesn't fully tear down
+                    // the encounter before OnPlayerBattleEnd fires.
+                    _pendingAmbushedResolution = LastResolution;
+                    _pendingAmbushedAttacker = ambusher;
+                    TORCommon.Log(LogLevel.Info, "[Ambush] Phase F outcome menu opening for "
+                        + LastResolution + " ambusher="
+                        + (ambusher?.LeaderHero?.Name?.ToString()
+                           ?? ambusher?.Name?.ToString() ?? "?"));
+                    GameMenu.ActivateGameMenu(AmbushedFledOutcomeMenuId);
+                    break;
+                case AmbushResolution.VictimDefeated:
+                    if (LastVictimLeaderDown)
+                    {
+                        // Hero-down variant — same deferred menu path
+                        // as VictimFled, different branch inside the
+                        // menu's init delegate.
+                        _pendingAmbushedResolution = LastResolution;
+                        _pendingAmbushedAttacker = ambusher;
+                        TORCommon.Log(LogLevel.Info, "[Ambush] Phase F outcome menu opening for "
+                            + LastResolution + " (hero down) ambusher="
+                            + (ambusher?.LeaderHero?.Name?.ToString()
+                               ?? ambusher?.Name?.ToString() ?? "?"));
+                        GameMenu.ActivateGameMenu(AmbushedFledOutcomeMenuId);
+                    }
+                    // Non-hero-down VictimDefeated: vanilla defeat flow
+                    // runs casualties / prisoners, nothing extra.
+                    break;
             }
 
-            LastAmbushOutcome = AmbushOutcome.None;
-            LastAmbushedOutcome = AmbushedOutcome.None;
-            ExtractionTroopsLeftBehind = 0;
-            LastAmbushLoudness = 0;
-            // _lastAmbushTarget is cleared when the escape/engage option fires,
-            // not here — the Ambush Escape menu may still need it after this.
+            if (aiBehavior != null) aiBehavior.CurrentAmbusherOnPlayer = null;
+
+            // Close the AmbushedIntroMenu if it survived the mission.
+            // OnAmbushedIntroPrepare now ExitToLast()s before opening
+            // the mission so the usual case is already fine; this is
+            // the belt-and-suspenders half for state-machine corners
+            // where vanilla re-pushed the menu during PlayerEncounter
+            // cleanup.
+            var ambushedCtx = Campaign.Current?.CurrentMenuContext;
+            if (ambushedCtx?.GameMenu?.StringId == AmbushedIntroMenuId)
+            {
+                GameMenu.ExitToLast();
+            }
         }
 
         /// <summary>
@@ -928,6 +1378,55 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// pickup. Hero itself is unaffected; vanilla casualty flow has already
         /// run by the time this fires.
         /// </summary>
+        /// <summary>
+        /// Called synchronously from <see cref="Missions.AmbushMission.AmbushEndLogic"/>
+        /// the moment the Extracted outcome is decided, so the post-ambush
+        /// menu is already queued before the mission screen tears down.
+        /// This matches the brawl / POI-visit pattern where the next menu
+        /// is set up inside <c>MissionEnded</c>, not deferred to vanilla's
+        /// <c>OnPlayerBattleEnd</c> dispatch. Prevents the scoreboard
+        /// interstitial that otherwise wins the race.
+        /// </summary>
+        public void BeginExtractionTransition(int leftBehind)
+        {
+            WoundLeftBehindTroops(leftBehind);
+            // Phase D Extracted: ambusher = player, victim =
+            // _lastAmbushTarget. Loudness reads from LastAmbushLoudness
+            // (set during the mission). Subscriber writes the record
+            // and runs shared post-strike effects.
+            var missionModel = Campaign.Current?.Models?.GetMissionAmbushModel();
+            bool wasLoud = missionModel != null
+                           && LastAmbushLoudness >= missionModel.LoudnessEventThreshold;
+            TORCampaignEvents.Instance.OnAmbushResolved(
+                new AmbushRecord(CampaignTime.Now, MobileParty.MainParty, _lastAmbushTarget,
+                                 AmbushResolution.AmbusherPartialVictory, wasLoud));
+            GameMenu.ActivateGameMenu(AmbushEscapeMenuId);
+        }
+
+        /// <summary>
+        /// Shared campaign-side effect for any successful ambush, keyed
+        /// on the two role parties (ambusher / ambushed) rather than on
+        /// whether the player is involved — the player can be in either
+        /// role, and in both cases the ambushed side takes the
+        /// disorganized debuff while the ambusher sheds any they were
+        /// carrying. Disorganized is vanilla's ~6h -40% campaign-speed
+        /// state (<see cref="TaleWorlds.CampaignSystem.ComponentInterfaces.PartyImpairmentModel"/>);
+        /// <c>CanGetDisorganized</c> gates the apply so dead parties,
+        /// rosters below 10, and non-leader army members are skipped.
+        /// </summary>
+        private static void ApplySuccessfulAmbushEffects(MobileParty ambusher, MobileParty ambushed)
+        {
+            if (ambushed != null && ambushed.IsActive
+                && ambushed.Party != null
+                && Campaign.Current?.Models?.PartyImpairmentModel != null
+                && Campaign.Current.Models.PartyImpairmentModel.CanGetDisorganized(ambushed.Party))
+            {
+                ambushed.SetDisorganized(true);
+            }
+            if (ambusher != null && ambusher.IsActive && ambusher.IsDisorganized)
+                ambusher.SetDisorganized(false);
+        }
+
         private static void WoundLeftBehindTroops(int count)
         {
             if (count <= 0) return;
@@ -961,6 +1460,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 MobileParty.MainParty?.Ai?.SetDoNotMakeNewDecisions(false);
                 MobileParty.MainParty?.IgnoreByOtherPartiesTill(CampaignTime.Zero);
             }
+
+            // §6 bluff — IsInfoHidden is a vanilla SaveableField, so UI
+            // state persists across save/load without any work from us.
+            // No shadow set to rebuild.
         }
 
         private void RegisterMenus(CampaignGameStarter starter)
@@ -1071,8 +1574,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private void RegisterAmbushEscapeMenu(CampaignGameStarter starter)
         {
-            // Shown after AmbushOutcome.Extracted. The hero made it through the
-            // bar; the surviving target party is still at the ambush point.
+            // Shown after AmbushResolution.AmbusherPartialVictory (hero
+            // made it through the extraction bar). The surviving target
+            // party is still at the ambush point.
             // Player picks: resume the fight on the campaign map (full battle)
             // or peel away.
             starter.AddGameMenu(
@@ -1100,7 +1604,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private void RegisterAmbushFailedMenu(CampaignGameStarter starter)
         {
-            // Shown after AmbushOutcome.HeroWounded. The hero is down but the
+            // Shown after AmbushResolution.AmbusherDefeated with
+            // AmbusherLeaderDown=true (hero down). The hero is out but the
             // surviving party is still in the field. Player picks: cut losses
             // and flee (take more casualties) or let the survivors finish the
             // fight without the hero (auto-resolved battle, can wipe entirely).
@@ -1154,7 +1659,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 "{=tor_ambushed_fled_outcome_continue}Continue.",
                 args =>
                 {
-                    args.optionLeaveType = _phaseFOutcomeMenuPressBranch
+                    args.optionLeaveType = _ambushedOutcomeMenuPressBranch
                         ? GameMenuOption.LeaveType.HostileAction
                         : GameMenuOption.LeaveType.Continue;
                     return true;
@@ -1164,27 +1669,34 @@ namespace TOR_Core.CampaignMechanics.Ambush
         }
 
         /// <summary>Init-delegate for the outcome menu. Runs once when
-        /// the menu opens. Branches on the stashed outcome, prepares
+        /// the menu opens. Branches on the stashed resolution, prepares
         /// the flavor text via <c>MBTextManager</c>, applies the
-        /// wound-promotion for AmbushedFled, and caches the
+        /// wound-promotion for VictimFled, and caches the
         /// press-vs-vanish decision so <c>OnAmbushedFledOutcomeContinue</c>
-        /// can act on it. Clears the pending-outcome fields.</summary>
+        /// can act on it. Clears the pending-resolution fields.</summary>
         private void OnAmbushedFledOutcomeMenuInit(MenuCallbackArgs args)
         {
-            var outcome = _pendingPhaseFOutcome;
-            var ambusher = _pendingPhaseFAmbusher;
-            _pendingPhaseFOutcome = AmbushedOutcome.None;
-            _pendingPhaseFAmbusher = null;
+            var resolution = _pendingAmbushedResolution;
+            var ambusher = _pendingAmbushedAttacker;
+            _pendingAmbushedResolution = AmbushResolution.None;
+            _pendingAmbushedAttacker = null;
+
+            // Vanilla re-fires menu init when the campaign screen resumes
+            // after the mission screen tears down — the pending fields were
+            // already consumed by the first fire, so a second pass arrives
+            // with resolution=None. Early-return so we don't clobber the
+            // flavor text or the cached press-branch flag.
+            if (resolution == AmbushResolution.None) return;
 
             TextObject flavor;
-            if (outcome == AmbushedOutcome.AmbushedFled)
+            if (resolution == AmbushResolution.VictimFled)
             {
-                PromoteSpawnedParticipantsToWounded();
+                WoundAmbushedCommittedTroops();
                 var model = Campaign.Current?.Models?.GetAmbushModel();
                 bool presses = model != null
                                && ambusher != null && ambusher.IsActive
                                && model.AmbusherPressesAttack(ambusher, MobileParty.MainParty);
-                _phaseFOutcomeMenuPressBranch = presses;
+                _ambushedOutcomeMenuPressBranch = presses;
 
                 if (presses)
                 {
@@ -1198,21 +1710,23 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     flavor = new TextObject("{=tor_ambushed_outcome_vanish}You broke contact. The enemy melted away. Your troops are shattered, but the survivors are getting picked up and tending to their wounds.");
                 }
                 TORCommon.Log(LogLevel.Info,
-                    "[Ambush] outcome menu opened: AmbushedFled presses=" + presses
+                    "[Ambush] outcome menu opened: VictimFled presses=" + presses
                     + " ambusher=" + (ambusher?.LeaderHero?.Name?.ToString()
                                       ?? ambusher?.Name?.ToString() ?? "?"));
             }
-            else if (outcome == AmbushedOutcome.AmbushedHeroWounded)
+            else if (resolution == AmbushResolution.VictimDefeated)
             {
-                _phaseFOutcomeMenuPressBranch = false;
+                // Hero-down sub-case — non-hero-down VictimDefeated
+                // doesn't route through this menu (vanilla defeat flow).
+                _ambushedOutcomeMenuPressBranch = false;
                 flavor = new TextObject("{=tor_ambushed_outcome_hero_wounded}You were cut down in the ambush. Your troops carried you clear of the fighting; the enemy did not pursue.");
-                TORCommon.Log(LogLevel.Info, "[Ambush] outcome menu opened: AmbushedHeroWounded");
+                TORCommon.Log(LogLevel.Info, "[Ambush] outcome menu opened: VictimDefeated (hero down)");
             }
             else
             {
-                _phaseFOutcomeMenuPressBranch = false;
+                _ambushedOutcomeMenuPressBranch = false;
                 flavor = new TextObject("{=tor_ambushed_outcome_generic}The ambush is over.");
-                TORCommon.Log(LogLevel.Info, "[Ambush] outcome menu opened: fallthrough outcome=" + outcome);
+                TORCommon.Log(LogLevel.Info, "[Ambush] outcome menu opened: fallthrough resolution=" + resolution);
             }
             MBTextManager.SetTextVariable("AMBUSH_OUTCOME_TEXT", flavor);
         }
@@ -1228,40 +1742,50 @@ namespace TOR_Core.CampaignMechanics.Ambush
             var aiBehavior = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
             var ambusher = aiBehavior?.CurrentAmbusherOnPlayer;
 
-            if (_phaseFOutcomeMenuPressBranch
+            if (_ambushedOutcomeMenuPressBranch
                 && ambusher != null && ambusher.IsActive)
             {
                 _pendingFollowUpAmbusher = ambusher;
+                TORCommon.Say("The enemy regroups. They are coming for you.");
                 TORCommon.Log(LogLevel.Info, "[Ambush] outcome menu continue: press — queued follow-up battle.");
                 GameMenu.ExitToLast();
                 return;
             }
 
-            // Vanish branch — morale penalty, pair-record, back to map.
+            // Vanish branch — morale penalty, back to map.
+            // Physical separation (player teleport + 2-tick ignore) and
+            // the Phase F cooldown pair-record are both already handled
+            // by AmbushedEndLogic.OnEndMission before this menu opens.
+            // See decompiled PlayerEncounter.cs:1072-1078 for the
+            // teleport-and-ignore, and [[feedback_ambush_role_asymmetry]]
+            // for the record semantics.
             var model = Campaign.Current?.Models?.GetAmbushModel();
             float moraleHit = model?.AmbushedFledVanishMoralePenalty ?? 5f;
             ApplyMoraleDelta(-moraleHit);
-            if (aiBehavior != null && ambusher != null && ambusher.IsActive)
-            {
-                aiBehavior.RecordAmbush(ambusher, MobileParty.MainParty,
-                    repelled: false, wasLoud: false);
-            }
-            // Clear the Phase F ambusher ref now that the vanish branch
-            // consumed it (press branch keeps it for OpenFollowUpFieldBattle
-            // to teleport the ambusher onto the player).
-            if (aiBehavior != null && !_phaseFOutcomeMenuPressBranch)
+            TORCommon.Say("The ambushers melt back into cover. Your troops lick their wounds. (Morale -" + moraleHit + ")");
+            // §6 bluff ends on vanish — the ambusher melted away, so
+            // their actual size no longer matters to this engagement.
+            if (ambusher != null) EndBluffOn(ambusher);
+            if (aiBehavior != null && !_ambushedOutcomeMenuPressBranch)
                 aiBehavior.CurrentAmbusherOnPlayer = null;
-            TORCommon.Log(LogLevel.Info, "[Ambush] outcome menu continue: vanish — morale -" + moraleHit);
+            TORCommon.Log(LogLevel.Info, "[Ambush] outcome menu continue: vanish — morale -" + moraleHit
+                + " PlayerEncounter.Current="
+                + (TaleWorlds.CampaignSystem.Encounters.PlayerEncounter.Current != null ? "ALIVE" : "null"));
+
             GameMenu.ExitToLast();
         }
 
         private void OnAmbushEscapeEngage()
         {
             // Open a vanilla field battle at current positions. Target party is
-            // whoever we just ambushed.
+            // whoever we just ambushed. Close the pre-extraction encounter
+            // first; StartPartyEncounter wants a clean slate and vanilla
+            // doesn't handle stacking a second encounter on top of a
+            // dangling one well.
             if (_lastAmbushTarget == null || !_lastAmbushTarget.IsActive) { GameMenu.ExitToLast(); _lastAmbushTarget = null; return; }
             var target = _lastAmbushTarget;
             _lastAmbushTarget = null;
+            if (PlayerEncounter.Current != null) PlayerEncounter.Finish(false);
             EncounterManager.StartPartyEncounter(PartyBase.MainParty, target.Party);
         }
 
@@ -1269,7 +1793,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             // Teleport the player's party a short distance along the vector
             // pointing away from the target so the AI doesn't immediately
-            // re-engage.
+            // re-engage, then close the lingering encounter — the
+            // campaign doesn't handle unfinished PlayerEncounters cleanly
+            // and the hit-and-run fiction is "the engagement is over."
             var main = MobileParty.MainParty;
             if (main != null && _lastAmbushTarget != null && _lastAmbushTarget.IsActive)
             {
@@ -1277,6 +1803,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 main.Position = main.Position + away * AmbushEscapeTeleportDistance;
             }
             _lastAmbushTarget = null;
+            if (PlayerEncounter.Current != null) PlayerEncounter.Finish(false);
             GameMenu.ExitToLast();
         }
 
@@ -1334,6 +1861,19 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private void RefreshStealthMenuTargets()
         {
             _currentTargets.Clear();
+
+            // §19 prep mode — the Gauntlet overlay (AmbushPrepOverlayMapView)
+            // handles the visual bar; the stealth menu stays empty so the
+            // UI reads as one clean indicator. Strike-slot condition
+            // delegates gate on _playerInStealth, which is false during
+            // prep, so no stale strike options appear.
+            if (_playerPreppingStealth)
+            {
+                MBTextManager.SetTextVariable("STEALTH_MENU_TEXT",
+                    new TextObject("{=tor_ambush_menu_preparing}Preparing ambush..."));
+                return;
+            }
+
             _currentTargets.AddRange(GetAmbushTargets(MobileParty.MainParty));
 
             var intro = new TextObject("{=tor_ambush_menu_intro}You crouch in cover. Nothing moves nearby.");
@@ -1418,9 +1958,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
             bool success = MBRandom.RandomFloat < chance;
             int chancePct = (int)(chance * 100f);
 
-            // Drop stealth before combat; cooldown fires regardless of outcome.
+            // Drop stealth before combat. No cooldown stamp here —
+            // Phase D records the AmbushRecord at resolution time with
+            // the correct AmbusherRepelled flag, so the strike-time
+            // pre-stamp (which hardcoded repelled=false) is gone. Every
+            // abandon path (crash, quit mid-mission, save+load mid-
+            // mission) either rolls back before the strike or resumes
+            // in-mission, so there's no "strike happened but no record"
+            // scenario to defend against.
             LeaveStealth(MobileParty.MainParty);
-            StampAmbushCooldown();
 
             // Teleport the player onto the target before starting the encounter
             // so the campaign-map visualization matches the fiction: the player
@@ -1493,6 +2039,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             dataStore.SyncData("_playerInStealth", ref _playerInStealth);
             dataStore.SyncData("_stealthEnteredAt", ref _stealthEnteredAt);
+            dataStore.SyncData("_playerPreppingStealth", ref _playerPreppingStealth);
+            dataStore.SyncData("_playerStealthPrepStartedAt", ref _playerStealthPrepStartedAt);
+            // _spottedAt intentionally NOT synced — cosmetic UI timestamp
+            // with a <1-hour window. Reload after that window is lost
+            // anyway; reload inside it just leaves the icon unlit. No
+            // gameplay impact either way.
+            // No bluff state to sync — IsInfoHidden is a vanilla
+            // SaveableField, no shadow dict to persist.
             // _playerAmbushCooldownUntil removed — player cooldown is
             // now derived from AiAmbushBehavior._ambushRecords.
         }

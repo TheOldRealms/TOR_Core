@@ -39,6 +39,24 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private Dictionary<MobileParty, CampaignTime> _stealthedParties
             = new Dictionary<MobileParty, CampaignTime>();
 
+        // §19 preparation window. Parties mid-setup live here instead of
+        // _stealthedParties — detection + strike-trigger ignore them. On
+        // quarter-hourly tick, if the prep window elapsed the party moves
+        // from here into _stealthedParties. Only start time stored; the
+        // total prep window is recomputed from the model on each tick
+        // (party is held in place, so size/composition don't drift).
+        private Dictionary<MobileParty, CampaignTime> _preppingPartiesStartedAt
+            = new Dictionary<MobileParty, CampaignTime>();
+
+        // Player-spotted parties — timestamp when the quarter-hourly
+        // detection roll succeeded. Within model.PlayerDetectionRevealHours
+        // from this timestamp, TORMapVisibilityModel.IsVisibilityPersistent
+        // returns true for the party, holding them visible on the
+        // player's map despite fog-of-war distance. Short-lived: 2h by
+        // default. Design: ai-ambushes-player-design.md §6.
+        private Dictionary<MobileParty, CampaignTime> _playerDetectedParties
+            = new Dictionary<MobileParty, CampaignTime>();
+
         // The single source of truth for all ambush-cooldown and
         // reveal logic. Every record is one ambush incident; every
         // query ("is party X on cooldown?", "is party Y a repelled
@@ -96,32 +114,40 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         // ---- Record authoring ----
 
-        /// <summary>Record a new ambush incident. Called from every
-        /// write-site: stealth exit (victim null), AI ambushing player,
-        /// AI vs AI skirmish, player ambushing AI. The record is dumb
-        /// data — cooldown length is derived at query time by the
-        /// model's <see cref="Models.TORAmbushModel.GetAmbushCooldownHours"/>
-        /// method, which can read fields like <see cref="AmbushRecord.WasLoud"/>
-        /// to tune the window.</summary>
-        public void RecordAmbush(MobileParty ambusher, MobileParty victim, bool repelled, bool wasLoud = false)
+        /// <summary>Append a resolved ambush record to the shared
+        /// history. Normal write path is the <c>AmbushResolved</c> event
+        /// — the <see cref="AmbushCampaignBehavior"/> subscriber calls
+        /// this with the record carried on the event. Direct callers
+        /// are the solo stealth-exit cooldown stamp (not a resolution).
+        /// Records are dumb data — cooldown length, shield window, and
+        /// instant-ambush eligibility are derived at query time by
+        /// <see cref="Models.TORAmbushModel"/>.</summary>
+        public void RecordAmbush(AmbushRecord record)
         {
-            if (ambusher == null && victim == null) return;
-            _ambushRecords.Add(new AmbushRecord(CampaignTime.Now, ambusher, victim, repelled, wasLoud));
+            if (record == null) return;
+            if (record.Ambusher == null && record.Victim == null) return;
+            _ambushRecords.Add(record);
         }
 
-        /// <summary>Drop any record in the active cooldown window that
-        /// involves <paramref name="party"/>. Used by the silent-Total-
-        /// Victory branch to zero the player's cooldown immediately
-        /// after a clean kill.</summary>
-        public void ClearRecentRecordsInvolving(MobileParty party)
+        /// <summary>Most recent record where <paramref name="party"/>
+        /// is Ambusher or Victim. Null if no record involves them in
+        /// <paramref name="windowHours"/>; pass a large number to
+        /// search unbounded. Used by hooded-opportunity + disorganize
+        /// shield consumers who want the latest classified outcome.
+        /// </summary>
+        public AmbushRecord GetMostRecentRecordInvolving(MobileParty party, float windowHours = float.MaxValue)
         {
-            if (party == null) return;
-            var model = Campaign.Current?.Models?.GetAmbushModel();
-            if (model == null) return;
+            if (party == null) return null;
             var now = CampaignTime.Now;
-            _ambushRecords.RemoveAll(r =>
-                r.Involves(party)
-                && (now - r.At).ToHours < model.GetAmbushCooldownHours(r));
+            AmbushRecord best = null;
+            for (int i = _ambushRecords.Count - 1; i >= 0; i--)
+            {
+                var rec = _ambushRecords[i];
+                if (!rec.Involves(party)) continue;
+                if ((now - rec.At).ToHours > windowHours) continue;
+                if (best == null || rec.At > best.At) best = rec;
+            }
+            return best;
         }
 
         // ---- Record queries ----
@@ -143,6 +169,60 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 if ((now - rec.At).ToHours < model.GetAmbushCooldownHours(rec)) return true;
             }
             return false;
+        }
+
+        /// <summary>Most recent record where <paramref name="victim"/> was the
+        /// VICTIM of an ambush that still lies within its active cooldown
+        /// window, AND the ambusher was not repelled. Used by the eye-widget
+        /// Backstab icon to light while the player is still in the post-
+        /// ambush guarding window — mechanically a cooldown, fictionally
+        /// "they just hit you, scouts are still searching." Returns
+        /// <c>null</c> if no such record. See
+        /// <see cref="Models.TORAmbushModel.AmbushGuardingHours"/>.</summary>
+        /// <summary>
+        /// True when <paramref name="party"/> is the ambusher of a
+        /// non-repelled record created within
+        /// <paramref name="windowMinutes"/>. Read by
+        /// <see cref="Models.TORPartyImpairmentModel.CanGetDisorganized"/>
+        /// to shield recent strikers from vanilla's
+        /// DisorganizedStateCampaignBehavior.OnMapEventEnd re-apply.
+        /// Uses the existing <see cref="AmbushRecord"/> list rather
+        /// than a parallel map so there's one source of truth for
+        /// "who struck when."
+        /// </summary>
+        public bool IsRecentSuccessfulAmbusher(MobileParty party, float windowMinutes)
+        {
+            if (party == null) return false;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return false;
+            var now = CampaignTime.Now;
+            for (int i = _ambushRecords.Count - 1; i >= 0; i--)
+            {
+                var rec = _ambushRecords[i];
+                if (rec.Ambusher != party) continue;
+                if (!model.IsSuccessfulStrike(rec)) continue;
+                if ((now - rec.At).ToMinutes > windowMinutes) continue;
+                return true;
+            }
+            return false;
+        }
+
+        public AmbushRecord GetMostRecentActiveVictimRecord(MobileParty victim)
+        {
+            if (victim == null) return null;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return null;
+            var now = CampaignTime.Now;
+            AmbushRecord best = null;
+            for (int i = _ambushRecords.Count - 1; i >= 0; i--)
+            {
+                var rec = _ambushRecords[i];
+                if (rec.Victim != victim) continue;
+                if (rec.AmbusherRepelled) continue;
+                if ((now - rec.At).ToHours >= model.GetAmbushCooldownHours(rec)) continue;
+                if (best == null || rec.At > best.At) best = rec;
+            }
+            return best;
         }
 
         /// <summary>Game-time at which <paramref name="party"/>'s
@@ -222,6 +302,26 @@ namespace TOR_Core.CampaignMechanics.Ambush
             AmbushTroopStealthScore.PrecomputeAll();
             TORCommon.Log(LogLevel.Info, "[AI Ambush] stealth-score base precomputed");
 
+            // Session-launch sanity scrub for any mid-prep parties — same
+            // reasoning as the stealthed clear below. Prep is transient
+            // state; a loaded game shouldn't resume someone else's
+            // half-committed setup.
+            if (_preppingPartiesStartedAt.Count > 0)
+            {
+                var prepSnapshot = new List<MobileParty>(_preppingPartiesStartedAt.Keys);
+                foreach (var party in prepSnapshot)
+                {
+                    _preppingPartiesStartedAt.Remove(party);
+                    if (party != null && party.IsActive)
+                    {
+                        party.Ai.SetDoNotMakeNewDecisions(false);
+                        party.IgnoreByOtherPartiesTill(CampaignTime.Zero);
+                    }
+                }
+                TORCommon.Log(LogLevel.Info, "[AI Ambush] OnSessionLaunched: cleared "
+                    + prepSnapshot.Count + " prepping parties from loaded save");
+            }
+
             if (_stealthedParties.Count == 0) return;
             var snapshot = new List<MobileParty>(_stealthedParties.Keys);
             foreach (var party in snapshot)
@@ -237,6 +337,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             dataStore.SyncData("_stealthedParties", ref _stealthedParties);
             dataStore.SyncData("_ambushRecords", ref _ambushRecords);
+            dataStore.SyncData("_preppingPartiesStartedAt", ref _preppingPartiesStartedAt);
+            dataStore.SyncData("_playerDetectedParties", ref _playerDetectedParties);
         }
 
         /// <summary>True while <paramref name="party"/> is in AI stealth
@@ -285,6 +387,43 @@ namespace TOR_Core.CampaignMechanics.Ambush
             LeaveAiStealth(party);
         }
 
+        /// <summary>Timestamp a player-detection event on
+        /// <paramref name="party"/>. Within
+        /// <c>TORAmbushModel.PlayerDetectionRevealHours</c> from now,
+        /// <see cref="IsRecentlyPlayerDetected"/> returns true, which
+        /// <c>TORMapVisibilityModel.IsVisibilityPersistent</c> uses to
+        /// hold the party visible on the player's map despite fog-of-war.
+        /// Called from <c>AmbushCampaignBehavior.RunPlayerDetectsAiPass</c>
+        /// right after the detection roll succeeds. Idempotent — a repeat
+        /// detection resets the window.</summary>
+        /// <summary>Enumerate currently-prepping AI parties. Used by
+        /// <c>AmbushCampaignBehavior.OnSessionLaunched</c> to restore the
+        /// runtime-only bluff shadow after save/load.</summary>
+        public IEnumerable<MobileParty> PreppingParties => _preppingPartiesStartedAt.Keys;
+
+        public void RecordPlayerDetection(MobileParty party)
+        {
+            if (party == null) return;
+            _playerDetectedParties[party] = CampaignTime.Now;
+        }
+
+        /// <summary>True if <paramref name="party"/> was spotted by the
+        /// player within the <c>PlayerDetectionRevealHours</c> window.
+        /// Called from <see cref="TORMapVisibilityModel.IsVisibilityPersistent"/>.
+        /// Lazy prune: expired entries are dropped here instead of in a
+        /// dedicated tick so the window check and the cleanup share the
+        /// same pass.</summary>
+        public bool IsRecentlyPlayerDetected(MobileParty party)
+        {
+            if (party == null || _playerDetectedParties.Count == 0) return false;
+            if (!_playerDetectedParties.TryGetValue(party, out var at)) return false;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            float windowHours = model?.PlayerDetectionRevealHours ?? 2f;
+            if ((CampaignTime.Now - at).ToHours < windowHours) return true;
+            _playerDetectedParties.Remove(party);
+            return false;
+        }
+
         /// <summary>Count already-stealthed friendly parties within
         /// <paramref name="radius"/> of <paramref name="party"/>. Used by
         /// the cluster penalty — too many friends hiding in the same
@@ -312,13 +451,60 @@ namespace TOR_Core.CampaignMechanics.Ambush
         // HostileAiParty call-sites read like before.
         private bool IsOnCooldown(MobileParty party) => IsOnAmbushCooldown(party);
 
+        /// <summary>§19 — true if any hostile within
+        /// <c>AiPrepPursuitRejectionRadius</c> would close the distance
+        /// to <paramref name="party"/> within <paramref name="prepMinutes"/>
+        /// at its current speed, AND is actually moving toward the party
+        /// (dot of normalized velocity vs vector-to-ambusher &gt; 0).</summary>
+        private bool WouldPursuerInterceptBeforePrepCompletes(MobileParty party,
+            float prepMinutes, TORAmbushModel model)
+        {
+            var selfPos = party.Position.ToVec2();
+            float rejectionRadius = model.AiPrepPursuitRejectionRadius;
+            var query = MobileParty.StartFindingLocatablesAroundPosition(selfPos, rejectionRadius);
+            for (var p = MobileParty.FindNextLocatable(ref query); p != null;
+                 p = MobileParty.FindNextLocatable(ref query))
+            {
+                if (p == null || !p.IsActive || p == party) continue;
+                if (p.MapFaction == null) continue;
+                if (!FactionManager.IsAtWarAgainstFaction(party.MapFaction, p.MapFaction)) continue;
+
+                float dist = (p.Position.ToVec2() - selfPos).Length;
+                // Vanilla MovementSpeed is in map-u/hour (reads ~5-6 for
+                // normal parties). Convert to u/minute for prep math.
+                float speedPerMinute = p.Speed / 60f;
+                float interceptDistance = prepMinutes * speedPerMinute;
+                if (dist > interceptDistance) continue;
+
+                // Direction gate — a pursuer moving away isn't a credible
+                // threat. Normalized vector-to-ambusher dotted with
+                // normalized pursuer-heading: dot > 0 means pursuer is
+                // headed toward us. If TargetPosition is effectively the
+                // pursuer's current position (idle party), skip the gate
+                // and treat distance alone as the signal.
+                var pPos = p.Position.ToVec2();
+                var toSelf = (selfPos - pPos).Normalized();
+                var headingRaw = p.TargetPosition.ToVec2() - pPos;
+                if (headingRaw.LengthSquared > 0.01f)
+                {
+                    var heading = headingRaw.Normalized();
+                    float dot = heading.x * toSelf.x + heading.y * toSelf.y;
+                    if (dot < 0f) continue;  // pursuer heading away
+                }
+                return true;
+            }
+            return false;
+        }
+
         private void OnQuarterHourlyTick()
         {
             if (Campaign.Current == null) return;
 
-            TORCommon.Log(LogLevel.Info, "[AI Ambush] tick: start, stealthed=" + _stealthedParties.Count);
+            TORCommon.Log(LogLevel.Info, "[AI Ambush] tick: start, stealthed=" + _stealthedParties.Count
+                + " prepping=" + _preppingPartiesStartedAt.Count);
             PruneStealthedParties();
             TORCommon.Log(LogLevel.Info, "[AI Ambush] tick: pruned, stealthed=" + _stealthedParties.Count);
+            TickPrepping();
             TickDecisions();
             TORCommon.Log(LogLevel.Info, "[AI Ambush] tick: decisions done, stealthed=" + _stealthedParties.Count);
             TickTargetDetection();
@@ -334,6 +520,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             {
                 if (!IsEligibleAmbusher(party)) continue;
                 if (_stealthedParties.ContainsKey(party)) continue;
+                if (_preppingPartiesStartedAt.ContainsKey(party)) continue;
                 if (IsOnCooldown(party)) continue;
 
                 float propensity = model.GetAmbushPropensity(party);
@@ -372,7 +559,17 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 if (entryChance < model.MinEntryChance) entryChance = model.MinEntryChance;
                 if (MBRandom.RandomFloat >= entryChance) continue;
 
-                EnterAiStealth(party);
+                // §19 chase-geometry gate — reject stealth entry if any
+                // hostile is close enough to intercept during the prep
+                // window. Fixes the "AI cheeses the chase by vanishing
+                // into stealth" exploit: a pursued party can't commit to
+                // setup when a pursuer would overrun the position before
+                // it's set.
+                float prepMinutes = model.CalculatePreparationMinutes(party);
+                if (WouldPursuerInterceptBeforePrepCompletes(party, prepMinutes, model))
+                    continue;
+
+                StartAiStealthPrep(party, prepMinutes);
             }
         }
 
@@ -508,7 +705,21 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // Either way, the player is "alert" and can't be surprised
             // again for the cooldown window. Prevents the "two different
             // ambushers back-to-back" scenario entirely.
-            if (behavior != null && behavior.IsOnAmbushCooldown) return false;
+            //
+            // Positive-evidence log: seeing this line in TOR_log confirms
+            // the AmbushGuarding (TORAmbushModel.AmbushGuardingHours)
+            // protection is firing for Phase F victim records. If the
+            // 3h window elapses or no record is written, the gate falls
+            // through and the AI tick continues as normal — meaning the
+            // ABSENCE of this line across a few successful post-flee
+            // ticks is not itself evidence of a bug. The user cannot
+            // directly force a re-ambush within the window; use the
+            // log line as cross-check.
+            if (behavior != null && behavior.IsOnAmbushCooldown)
+            {
+                TORCommon.Log(LogLevel.Info, "[AI Ambush] player skip: on guarding cooldown");
+                return false;
+            }
 
             // Only ambush when the player is actually on the map screen.
             // If any other GameState is active (options, inventory, encounter,
@@ -586,12 +797,20 @@ namespace TOR_Core.CampaignMechanics.Ambush
             bool press = model.ShouldPressAttackAfterSkirmish(ambusher, victim);
             LeaveAiStealth(ambusher);
 
-            // Record the pair incident so both ambusher and victim
-            // register as "recently involved" for cooldown purposes.
-            // AmbusherRepelled when the outcome tier flipped the damage
-            // onto the ambusher — the victim won the exchange.
+            // Resolve + dispatch. AmbushCampaignBehavior's single
+            // AmbushResolved subscriber owns the append to the history
+            // list AND the shared post-strike effects (disorganize,
+            // reveal, cooldown queries). TerribleFail flips the
+            // Resolution to AmbusherDefeated. AI-on-AI has no
+            // extraction mechanic, so successful outcomes map to
+            // AmbusherTotalVictory regardless of residual victim
+            // troops.
             bool victimWonExchange = tier == AmbushOutcomeTier.TerribleFail;
-            RecordAmbush(ambusher, victim, repelled: victimWonExchange);
+            var resolution = victimWonExchange
+                ? AmbushResolution.AmbusherDefeated
+                : AmbushResolution.AmbusherTotalVictory;
+            TORCampaignEvents.Instance.OnAmbushResolved(
+                new AmbushRecord(CampaignTime.Now, ambusher, victim, resolution));
 
             TORCommon.Say("[AI Ambush] " + PartyLabel(ambusher) + " struck "
                           + PartyLabel(victim) + " [" + tier + "]: wounded " + victimWounds
@@ -683,6 +902,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 PlayerEncounter.StartBattle();
                 PlayerEncounter.Update();
             }
+            // §6 bluff — hide troop counts across the whole ambusher
+            // side (lead ambusher + any parties vanilla pulled onto the
+            // same MapEvent side as reinforcements). Called AFTER
+            // RestartPlayerEncounter so MapEvent.Parties is populated.
+            Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>()
+                ?.BeginBluffOnAmbusherSide(ambusher);
             GameMenu.ActivateGameMenu(AmbushCampaignBehavior.AmbushedIntroMenuId);
             TORCommon.Say("Ambush! " + (ambusher.LeaderHero?.Name?.ToString()
                                         ?? ambusher.Name?.ToString()
@@ -693,37 +918,89 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 + " ambusher=" + PartyLabel(ambusher));
         }
 
-        private void EnterAiStealth(MobileParty party)
+        /// <summary>§19 — start the preparation window for an AI party.
+        /// Party is held in place and ignored by other AI, but NOT yet
+        /// in <c>_stealthedParties</c>: strike-triggering and the
+        /// IsVisibilityPersistent-based reveal path skip it until prep
+        /// completes. <see cref="TickPrepping"/> finalizes once elapsed.
+        /// </summary>
+        private void StartAiStealthPrep(MobileParty party, float totalMinutes)
         {
-            _stealthedParties[party] = CampaignTime.Now;
+            _preppingPartiesStartedAt[party] = CampaignTime.Now;
             party.Ai.SetDoNotMakeNewDecisions(true);
             party.SetMoveModeHold();
             // Cap the ignore window at the max stealth hold (48h). If
-            // LeaveAiStealth ever misses, the party clears on its own
-            // instead of being permanently invisible to other AI
-            // (previous +100 years was a time bomb for stuck parties).
+            // the prep/finalize cycle misses, the party unfreezes on its
+            // own instead of being permanently invisible to other AI.
             party.IgnoreByOtherPartiesTill(CampaignTime.HoursFromNow(MaxStealthHoldHours));
-            // Actually vanish from the campaign map. This is the other
-            // side of the ambush model — the stealth value isn't just
-            // "AI leaves them alone", it's "nobody sees them". Lets
-            // weaker parties lurk until a bigger threat passes.
+            // §6 bluff — prepping parties are visible on the map (per
+            // §19 fiction) but their troop counts hide. All ambushing
+            // parties bluff; perk-driven "see through bluff" is a
+            // future design extension.
+            Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>()
+                ?.BeginBluffOn(party);
+            // Prep does NOT vanish the party from the map — they're
+            // still visibly moving into position. Only after finalize
+            // do they become invisible (§19 fiction + chase-geometry
+            // consistency: a pursuing player should see the enemy "stop
+            // and set up" rather than magically disappear).
+            TORCommon.Log(LogLevel.Info, "[AI Ambush] " + PartyLabel(party)
+                + " (" + CultureLabel(party) + ") begin prep at "
+                + party.Position.ToVec2() + " minutes=" + totalMinutes.ToString("F1"));
+        }
+
+        /// <summary>Promote a prep-complete party into full stealth
+        /// stance. Mirrors the previous <c>EnterAiStealth</c> body:
+        /// register in <c>_stealthedParties</c> and vanish from the
+        /// map.</summary>
+        private void FinalizeAiStealth(MobileParty party)
+        {
+            _preppingPartiesStartedAt.Remove(party);
+            _stealthedParties[party] = CampaignTime.Now;
             party.IsVisible = false;
             TORCommon.Log(LogLevel.Info, "[AI Ambush] " + PartyLabel(party)
                 + " (" + CultureLabel(party) + ") entered stealth stance at "
-                + party.Position.ToVec2());
+                + party.Position.ToVec2() + " (prep complete)");
+        }
+
+        /// <summary>Quarter-hourly check — any party whose prep window
+        /// has elapsed graduates into full stealth stance. Called from
+        /// <see cref="OnQuarterHourlyTick"/>.</summary>
+        private void TickPrepping()
+        {
+            if (_preppingPartiesStartedAt.Count == 0) return;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return;
+            var now = CampaignTime.Now;
+            var toFinalize = new List<MobileParty>();
+            foreach (var kv in _preppingPartiesStartedAt)
+            {
+                if (kv.Key == null || !kv.Key.IsActive) continue;
+                float elapsed = (float)(now - kv.Value).ToMinutes;
+                float totalMinutes = model.CalculatePreparationMinutes(kv.Key);
+                if (elapsed >= totalMinutes) toFinalize.Add(kv.Key);
+            }
+            foreach (var party in toFinalize) FinalizeAiStealth(party);
         }
 
         private void LeaveAiStealth(MobileParty party)
         {
             if (party == null) return;
             _stealthedParties.Remove(party);
-            // Add a stealth-exit record (victim null, not repelled) —
-            // covers burned strikes, vanilla-engagement drag-in, and the
-            // max-hold-expired "gave up" case. All three share the
+            // Add a stealth-exit record (victim null, Resolution.None)
+            // — covers burned strikes, vanilla-engagement drag-in, and
+            // the max-hold-expired "gave up" case. All three share the
             // "position revealed / recently stealthed" semantics that
-            // justify an ambush cooldown. Pair-ambush records (player
-            // or AI victim) get added separately at the trigger sites.
-            RecordAmbush(party, null, repelled: false);
+            // justify an ambush cooldown. Not a resolved exchange so
+            // no AmbushResolved event; written directly.
+            RecordAmbush(new AmbushRecord(CampaignTime.Now, party, null,
+                                          AmbushResolution.None));
+            // §6 bluff clear — leaving stealth exposes the party,
+            // numbers back to normal. Safe against vanilla-set hiding
+            // (hideouts etc.) because BeginBluffOn only tracks parties
+            // we flipped from false → true.
+            Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>()
+                ?.EndBluffOn(party);
             if (party.IsActive)
             {
                 party.Ai.SetDoNotMakeNewDecisions(false);
@@ -776,6 +1053,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             if (party?.MobileParty == null) return;
             _stealthedParties.Remove(party.MobileParty);
+            _preppingPartiesStartedAt.Remove(party.MobileParty);
+            _playerDetectedParties.Remove(party.MobileParty);
+            // §6 bluff cleanup — safety net, usually the AmbushCampaignBehavior
+            // paths clear it first, but a destroyed party here means we
+            // can't restore IsInfoHidden to false anyway (party is gone).
+            Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>()
+                ?.EndBluffOn(party.MobileParty);
             // Null out any record referencing the removed party so
             // queries don't match dangling refs. Keep the record (for
             // history completeness); nulled refs just stop matching.
