@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using NLog;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.CampaignMechanics.Ambush;
@@ -32,11 +34,34 @@ namespace TOR_Core.Missions.AmbushMission
 
         private float _outsideBoundarySeconds;
 
+        // Snapshot of MainParty's non-hero roster at mission start.
+        // Captured in AfterStart (roster still untouched by combat),
+        // handed to AmbushCampaignBehavior at OnEndMission for the Fled
+        // flow's wound/remove logic. "Troops the player committed to this
+        // ambush" — the thing we're trying to tax on vanish / double-flee.
+        private Dictionary<CharacterObject, int> _ambushedRosterSnapshot;
+
         public override void AfterStart()
         {
             base.AfterStart();
             _model = Campaign.Current?.Models?.GetMissionAmbushModel() ?? new TORMissionAmbushModel();
             _spawnLogic = Mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>();
+
+            _ambushedRosterSnapshot = new Dictionary<CharacterObject, int>();
+            var roster = MobileParty.MainParty?.MemberRoster;
+            if (roster != null)
+            {
+                for (int i = 0; i < roster.Count; i++)
+                {
+                    var c = roster.GetCharacterAtIndex(i);
+                    if (c == null || c.IsHero) continue;
+                    int healthy = roster.GetElementNumber(i) - roster.GetElementWoundedNumber(i);
+                    if (healthy <= 0) continue;
+                    _ambushedRosterSnapshot[c] = healthy;
+                }
+            }
+            TORCommon.Log(LogLevel.Info, "[AmbushedEndLogic] AfterStart: committed roster snapshot — "
+                + _ambushedRosterSnapshot.Count + " non-hero troop types captured");
         }
 
         public override void OnDeploymentFinished()
@@ -160,31 +185,13 @@ namespace TOR_Core.Missions.AmbushMission
                 behavior.PendingPostAmbushCleanup = true;
                 return;
             }
-            if (outcome == AmbushedOutcome.AmbushedFled
-                || outcome == AmbushedOutcome.AmbushedHeroWounded)
-            {
-                // Snapshot the spawned victim-side participants NOW —
-                // Mission.Current goes null between here and the outcome
-                // menu's init-delegate, so the controller's list isn't
-                // reachable from the menu. This in-mission callback is
-                // the only reliable moment.
-                var controller = Mission.GetMissionBehavior<AmbushMissionController>();
-                int listCount = controller?.VictimSideSpawnedCharacters?.Count ?? -1;
-                TORCommon.Log(LogLevel.Info, "[AmbushedEndLogic] stash: controller="
-                    + (controller != null ? "ok" : "null")
-                    + " victimCharacters.Count=" + listCount);
-                behavior.StashSpawnedCharactersForPhaseF(controller?.VictimSideSpawnedCharacters);
-
-                // Vanilla leaves PlayerEncounter alive for these outcomes
-                // (MissionResult.CreateSuccessful doesn't close the
-                // encounter the way SetPlayerVictorious does). Call
-                // Finish() explicitly so the encounter resolves and
-                // OnPlayerBattleEnd fires — that handler activates
-                // AmbushedFledOutcomeMenuId with the proper flavor /
-                // branch state.
-                if (PlayerEncounter.Current != null)
-                    PlayerEncounter.Finish(forcePlayerOutFromSettlement: false);
-            }
+            // AmbushedFled / AmbushedHeroWounded cleanup moved to OnEndMission
+            // override — OnMissionResultReady doesn't fire reliably when the
+            // mission ends via a path that bypasses MissionResultReady
+            // (Mission.EndMission() direct call from retreat/surrender/leave-
+            // mission-timer paths — see decompiled Mission.cs lines 2873,
+            // 2889, 3876). OnEndMission is called from EndMissionInternal
+            // which runs for every teardown path (verified Mission.cs:4658).
             // AmbushedWiped: MissionResult.CreateDefeated — vanilla's
             // defeat flow closes PlayerEncounter and fires
             // OnPlayerBattleEnd naturally.
@@ -201,22 +208,75 @@ namespace TOR_Core.Missions.AmbushMission
             TORCommon.Log(LogLevel.Info,
                 "[AmbushedEndLogic] outcome=" + outcome + " successful=" + successful
                 + " (" + reason + ")");
+        }
 
-            // Stash the spawned list here as well — SetOutcome runs mid-
-            // mission tick, so Mission + controller are guaranteed alive.
-            // OnMissionResultReady may or may not fire on vanilla's exit
-            // path (seen empirically failing); don't rely on it alone.
-            if (behavior != null
-                && (outcome == AmbushedOutcome.AmbushedFled
-                    || outcome == AmbushedOutcome.AmbushedHeroWounded))
+        /// <summary>
+        /// Guaranteed-fire teardown callback (verified via decompiled
+        /// Mission.cs:4658 — <c>EndMissionInternal</c> iterates every
+        /// MissionBehavior and calls <c>OnEndMissionInternal</c>, which
+        /// dispatches here). Runs regardless of whether the mission ended
+        /// via our <c>MissionEnded</c> dispatch (which calls
+        /// <c>OnMissionResultReady</c>) or vanilla's direct <c>EndMission()</c>
+        /// path (which does not, see Mission.cs:4637/2873/2889/3876).
+        ///
+        /// Does the Phase F §6 cleanup for Fled/HeroWounded:
+        ///  - snapshots the spawned victim-side characters from the
+        ///    controller (while Mission is still alive)
+        ///  - calls PlayerEncounter.Finish(false) which handles the
+        ///    teleport-out and SetDoNotAttackMainParty internally
+        ///    (verified PlayerEncounter.cs:1072-1078).
+        /// </summary>
+        protected override void OnEndMission()
+        {
+            base.OnEndMission();
+            if (!_outcomeDecided) return;
+
+            var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
+            if (behavior == null) return;
+            var outcome = behavior.LastAmbushedOutcome;
+            if (outcome != AmbushedOutcome.AmbushedFled
+                && outcome != AmbushedOutcome.AmbushedHeroWounded) return;
+
+            // Capture ambusher ref BEFORE Finish — vanilla's
+            // MapEvent.FinalizeEventAux (MapEvent.cs:1727) can call
+            // DestroyPartyAction via HandleMapEventEndForPartyInternal
+            // (MapEventSide.cs:447) when a party's roster collapsed in
+            // combat. OnPartyRemoved then clears
+            // AiAmbushBehavior.CurrentAmbusherOnPlayer, leaving us no ref
+            // for the cooldown record.
+            var aiBehavior = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
+            var ambusher = aiBehavior?.CurrentAmbusherOnPlayer;
+
+            TORCommon.Log(LogLevel.Info, "[AmbushedEndLogic] OnEndMission stash+finish: outcome="
+                + outcome
+                + " committed-types=" + (_ambushedRosterSnapshot?.Count ?? -1)
+                + " ambusher=" + (ambusher?.LeaderHero?.Name?.ToString()
+                                   ?? ambusher?.Name?.ToString() ?? "?")
+                + " PlayerEncounter.Current="
+                + (PlayerEncounter.Current != null ? "ALIVE" : "null"));
+
+            behavior.StashAmbushedRosterSnapshot(_ambushedRosterSnapshot);
+
+            // Phase F cooldown — MainParty is VICTIM, not ambusher. Writes
+            // the record BEFORE Finish so the pair incident is captured
+            // even if the ambusher party gets destroyed during
+            // FinalizeEventAux. OnPlayerBattleEndEvent doesn't fire for
+            // this exit path (vanilla's Finish on a no-winner MapEvent
+            // skips the battle-end dispatch), so the OnPlayerBattleEnd
+            // cooldown block is dead for Fled — must stamp here or the
+            // quarter-hourly AI tick re-ambushes seconds later.
+            // See [[feedback_ambush_role_asymmetry]].
+            if (aiBehavior != null)
             {
-                var controller = Mission.GetMissionBehavior<AmbushMissionController>();
-                int listCount = controller?.VictimSideSpawnedCharacters?.Count ?? -1;
-                TORCommon.Log(LogLevel.Info, "[AmbushedEndLogic] SetOutcome stash: controller="
-                    + (controller != null ? "ok" : "null")
-                    + " victimCharacters.Count=" + listCount);
-                behavior.StashSpawnedCharactersForPhaseF(controller?.VictimSideSpawnedCharacters);
+                aiBehavior.RecordAmbush(
+                    ambusher: (ambusher != null && ambusher.IsActive) ? ambusher : null,
+                    victim: MobileParty.MainParty,
+                    repelled: false,
+                    wasLoud: false);
             }
+
+            if (PlayerEncounter.Current != null)
+                PlayerEncounter.Finish(forcePlayerOutFromSettlement: false);
         }
     }
 }

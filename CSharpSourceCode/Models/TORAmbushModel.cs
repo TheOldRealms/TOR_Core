@@ -542,17 +542,54 @@ namespace TOR_Core.Models
         /// afternoon shatters the band."</summary>
         public virtual float AmbushedFledDoubleFleeExtraMoralePenalty => 20f;
 
+        /// <summary>Fraction of each committed troop type that gets
+        /// shifted from healthy → wounded when the player flees the
+        /// first ambush. Applied per-character-type via the roster
+        /// snapshot taken at mission start. E.g. 0.3 = 30% of each
+        /// troop stack from the ambushed-into-mission commitment ends
+        /// up carrying wounds.</summary>
+        public virtual float AmbushedFledWoundShare => 0.3f;
+
+        /// <summary>Fraction of each committed troop type that gets
+        /// removed from the roster on double-flee (fled the follow-up
+        /// field battle too). Same snapshot semantics as
+        /// <see cref="AmbushedFledWoundShare"/>. These are the "left
+        /// behind for good" — not wounded, gone.</summary>
+        public virtual float AmbushedDoubleFleeRemoveShare => 0.3f;
+
         // ---- Record-cooldown ----
 
+        /// <summary>Protection window after the player gets ambushed:
+        /// hours during which the AI-ambush decision tick refuses to
+        /// re-target MainParty. Distinct from the stealth-rebuild
+        /// cooldown — "I was just ambushed and need to recover" is a
+        /// different mechanical state than "I just ambushed and gave
+        /// away my position." Shorter by default; the player should
+        /// get back to normal campaign play reasonably soon, just not
+        /// get stacked by back-to-back AI ambushes.
+        /// See [[feedback_ambush_role_asymmetry]].</summary>
+        public virtual float AmbushGuardingHours => 3f;
+
         /// <summary>How many game-hours an <see cref="AmbushRecord"/>
-        /// keeps a party on cooldown. Baseline comes from
-        /// <see cref="AmbushCampaignBehavior.CooldownHours"/>; loud
-        /// ambushes (gunpowder / non-Shadow magic) extend it by the
-        /// mission model's <c>LoudnessPenaltyHours</c>. One place for
-        /// the cooldown math — queries on the record list all call
-        /// this instead of baking the length into records.</summary>
+        /// keeps a party on cooldown.
+        ///
+        /// Role-sensitive:
+        ///  - Phase F victim guard (<c>Victim == MainParty</c>, not
+        ///    repelled) → <see cref="AmbushGuardingHours"/>. Protects
+        ///    the player from immediate re-ambush.
+        ///  - Phase D / repelled / AI-vs-AI → baseline from
+        ///    <c>AmbushCampaignBehavior.CooldownHours</c>, plus the
+        ///    mission model's <c>LoudnessPenaltyHours</c> for loud
+        ///    ambushes (gunpowder / non-Shadow magic).</summary>
         public virtual float GetAmbushCooldownHours(AmbushRecord record)
         {
+            if (record != null
+                && record.Victim == MobileParty.MainParty
+                && !record.AmbusherRepelled)
+            {
+                return AmbushGuardingHours;
+            }
+
             float hours = AmbushCampaignBehavior.CooldownHours;
             if (record != null && record.WasLoud)
             {

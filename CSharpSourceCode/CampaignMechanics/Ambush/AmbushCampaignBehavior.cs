@@ -141,7 +141,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// penalty. Transient — not serialised; mission can't survive
         /// save anyway.</summary>
         private bool _followUpFieldBattlePending;
-        private List<CharacterObject> _phaseFSpawnedCharacters;
+
+        // Snapshot of the player's non-hero roster at the moment the
+        // ambush mission started — captured by AmbushedEndLogic.AfterStart,
+        // handed over in OnEndMission via StashAmbushedRosterSnapshot.
+        // Drives the "troops committed to this ambush take a share of
+        // wounds (on first flee) or disappear (on double flee)" model.
+        // Keyed by CharacterObject; value is the healthy count at
+        // commitment time.
+        private Dictionary<CharacterObject, int> _ambushedRosterSnapshot;
 
         /// <summary>Phase F §6: the ambusher that pressed the attack is
         /// stashed here from <c>HandleAmbushedFledFollowUp</c> and the
@@ -160,15 +168,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// on the first tick after <c>Mission.Current == null</c>, so
         /// the mission is fully torn down before we interact with
         /// vanilla UI again. See outcome-graph.md.</summary>
-        private AmbushedOutcome _pendingPhaseFOutcome = AmbushedOutcome.None;
-        private MobileParty _pendingPhaseFAmbusher;
+        private AmbushedOutcome _pendingAmbushedOutcome = AmbushedOutcome.None;
+        private MobileParty _pendingAmbushedAttacker;
 
         /// <summary>Branch result cached by the outcome menu's init
         /// delegate so the "Continue" option knows what to do without
         /// re-running the <c>AmbusherPressesAttack</c> roll (keeps the
         /// menu description and the consequence consistent — one roll,
         /// one outcome).</summary>
-        private bool _phaseFOutcomeMenuPressBranch;
+        private bool _ambushedOutcomeMenuPressBranch;
 
         public bool IsPartyInStealth(MobileParty party)
         {
@@ -599,7 +607,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// Vanish → light morale penalty, done.</summary>
         private void HandleAmbushedFledFollowUp(MobileParty ambusher)
         {
-            PromoteSpawnedParticipantsToWounded();
+            WoundAmbushedCommittedTroops();
             var model = Campaign.Current?.Models?.GetAmbushModel();
             if (model == null || ambusher == null || !ambusher.IsActive)
             {
@@ -640,73 +648,101 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// participant from healthy → wounded on the main party.
         /// Pulls the participant list from the mission controller
         /// before the mission tears down, into
-        /// <see cref="_phaseFSpawnedCharacters"/>, where
+        /// <see cref="_ambushedRosterSnapshot"/>, where
         /// <see cref="OnPlayerBattleEnd"/> can still see them for the
         /// double-flee removal.</summary>
-        /// <summary>Called from <c>AmbushedEndLogic.OnMissionResultReady</c>
-        /// — the last in-mission callback where
-        /// <c>Mission.GetMissionBehavior&lt;AmbushMissionController&gt;()</c>
-        /// still resolves. Snapshots the spawned victim-side participants
-        /// so both the wound-promotion (first flee) and scatter-removal
-        /// (double flee) can run after the mission has torn down.</summary>
-        public void StashSpawnedCharactersForPhaseF(IList<CharacterObject> chars)
+        /// <summary>Called from <c>AmbushedEndLogic.OnEndMission</c> with
+        /// the roster snapshot captured at mission-start (AfterStart,
+        /// before combat touched the roster). Hands "troops committed to
+        /// this ambush" over for the Fled wound/remove flows.</summary>
+        public void StashAmbushedRosterSnapshot(Dictionary<CharacterObject, int> snapshot)
         {
-            _phaseFSpawnedCharacters = (chars != null && chars.Count > 0)
-                ? new List<CharacterObject>(chars) : null;
+            _ambushedRosterSnapshot = (snapshot != null && snapshot.Count > 0)
+                ? new Dictionary<CharacterObject, int>(snapshot) : null;
         }
 
-        private void PromoteSpawnedParticipantsToWounded()
+        /// <summary>First-flee cost. For each troop type in the committed
+        /// snapshot, shifts <c>ceil(startCount * AmbushedFledWoundShare)</c>
+        /// of that type from healthy → wounded on the current roster,
+        /// capped at currently-healthy of that type (vanilla's combat
+        /// casualty flow may already have taken some).</summary>
+        private void WoundAmbushedCommittedTroops()
         {
-            if (_phaseFSpawnedCharacters == null || _phaseFSpawnedCharacters.Count == 0)
+            if (_ambushedRosterSnapshot == null || _ambushedRosterSnapshot.Count == 0)
             {
-                TORCommon.Log(LogLevel.Info, "[Ambush] wound-promote: no stashed spawned list (0 troops wounded)");
+                TORCommon.Log(LogLevel.Info, "[Ambush] wound-committed: no snapshot (0 troops wounded)");
                 return;
             }
             var roster = MobileParty.MainParty?.MemberRoster;
             if (roster == null) return;
-            int wounded = 0;
-            foreach (var c in _phaseFSpawnedCharacters)
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            float share = model?.AmbushedFledWoundShare ?? 0.3f;
+
+            int typesProcessed = 0;
+            int totalWounded = 0;
+            foreach (var kv in _ambushedRosterSnapshot)
             {
+                var c = kv.Key;
+                int startCount = kv.Value;
                 if (c == null || c.IsHero) continue;
                 int idx = roster.FindIndexOfTroop(c);
                 if (idx < 0) continue;
-                var el = roster.GetElementCopyAtIndex(idx);
-                int available = el.Number - el.WoundedNumber;
-                if (available <= 0) continue;
-                roster.AddToCountsAtIndex(idx, 0, woundedCountChange: 1);
-                wounded++;
+                int currentlyHealthy = roster.GetElementNumber(idx) - roster.GetElementWoundedNumber(idx);
+                if (currentlyHealthy <= 0) continue;
+
+                int wantToWound = (int)System.Math.Ceiling(startCount * share);
+                int actually = System.Math.Min(currentlyHealthy, wantToWound);
+                if (actually <= 0) continue;
+                roster.AddToCountsAtIndex(idx, 0, actually);
+                typesProcessed++;
+                totalWounded += actually;
             }
-            TORCommon.Log(LogLevel.Info, "[Ambush] wound-promote: " + wounded + " of "
-                + _phaseFSpawnedCharacters.Count + " spawned troops shifted healthy→wounded");
+            TORCommon.Log(LogLevel.Info, "[Ambush] wound-committed: wounded "
+                + totalWounded + " troops across " + typesProcessed + " types"
+                + " (snapshot had " + _ambushedRosterSnapshot.Count + " types, share=" + share + ")");
         }
 
-        /// <summary>Double-flee consequence — the troops wounded on first
-        /// flee are now lost. Removes one instance per stashed spawned
-        /// character, preferring to drop wounded (first flee already
-        /// wounded them).</summary>
-        private void RemovePhaseFSpawnedTroops()
+        /// <summary>Double-flee cost. For each troop type in the committed
+        /// snapshot, removes <c>ceil(startCount * AmbushedDoubleFleeRemoveShare)</c>
+        /// of that type from the current roster — prefers to drop wounded
+        /// first (they were marked wounded by WoundAmbushedCommittedTroops
+        /// on the first flee), then healthy.</summary>
+        private void RemoveAmbushedCommittedTroops()
         {
-            if (_phaseFSpawnedCharacters == null || _phaseFSpawnedCharacters.Count == 0)
+            if (_ambushedRosterSnapshot == null || _ambushedRosterSnapshot.Count == 0)
             {
-                TORCommon.Log(LogLevel.Info, "[Ambush] double-flee scatter: no stashed spawned list (0 troops removed)");
+                TORCommon.Log(LogLevel.Info, "[Ambush] double-flee: no snapshot (0 troops removed)");
                 return;
             }
             var roster = MobileParty.MainParty?.MemberRoster;
             if (roster == null) return;
-            int removed = 0;
-            foreach (var c in _phaseFSpawnedCharacters)
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            float share = model?.AmbushedDoubleFleeRemoveShare ?? 0.3f;
+
+            int typesProcessed = 0;
+            int totalRemoved = 0;
+            foreach (var kv in _ambushedRosterSnapshot)
             {
+                var c = kv.Key;
+                int startCount = kv.Value;
                 if (c == null || c.IsHero) continue;
                 int idx = roster.FindIndexOfTroop(c);
                 if (idx < 0) continue;
-                var el = roster.GetElementCopyAtIndex(idx);
-                if (el.Number <= 0) continue;
-                int woundedDelta = el.WoundedNumber > 0 ? -1 : 0;
-                roster.AddToCountsAtIndex(idx, -1, woundedCountChange: woundedDelta);
-                removed++;
+
+                int wantToRemove = (int)System.Math.Ceiling(startCount * share);
+                int presentNow = roster.GetElementNumber(idx);
+                int actually = System.Math.Min(presentNow, wantToRemove);
+                if (actually <= 0) continue;
+
+                int wounded = roster.GetElementWoundedNumber(idx);
+                int takeFromWounded = System.Math.Min(wounded, actually);
+                roster.AddToCountsAtIndex(idx, -actually, woundedCountChange: -takeFromWounded);
+                typesProcessed++;
+                totalRemoved += actually;
             }
-            TORCommon.Log(LogLevel.Info, "[Ambush] double-flee scatter: removed "
-                + removed + " of " + _phaseFSpawnedCharacters.Count + " spawned troops");
+            TORCommon.Log(LogLevel.Info, "[Ambush] double-flee: removed "
+                + totalRemoved + " troops across " + typesProcessed + " types"
+                + " (share=" + share + ")");
         }
 
         /// <summary>Opens a vanilla field battle on the campaign map with
@@ -755,8 +791,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
             var ambusher = Campaign.Current
                 ?.GetCampaignBehavior<AiAmbushBehavior>()?.CurrentAmbusherOnPlayer;
-            _pendingPhaseFOutcome = LastAmbushedOutcome;
-            _pendingPhaseFAmbusher = ambusher;
+            _pendingAmbushedOutcome = LastAmbushedOutcome;
+            _pendingAmbushedAttacker = ambusher;
             TORCommon.Log(LogLevel.Info, "[Ambush] OnMissionEnded: activating menu for "
                 + LastAmbushedOutcome + " ambusher="
                 + (ambusher?.LeaderHero?.Name?.ToString()
@@ -807,7 +843,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     var model = Campaign.Current?.Models?.GetAmbushModel();
                     if (model != null)
                         ApplyMoraleDelta(-model.AmbushedFledDoubleFleeExtraMoralePenalty);
-                    RemovePhaseFSpawnedTroops();
+                    RemoveAmbushedCommittedTroops();
                     TORCommon.Say("The second rout breaks your band. Troops scatter.");
                     TORCommon.Log(LogLevel.Info, "[Ambush] double-flee penalty applied: -"
                         + (model?.AmbushedFledDoubleFleeExtraMoralePenalty ?? 0f)
@@ -834,7 +870,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 }
                 if (aiBehavior != null) aiBehavior.CurrentAmbusherOnPlayer = null;
                 _followUpFieldBattlePending = false;
-                _phaseFSpawnedCharacters = null;
+                _ambushedRosterSnapshot = null;
             }
 
             if (_playerInStealth) LeaveStealth(MobileParty.MainParty);
@@ -967,8 +1003,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
                         // pattern Phase D uses for AmbushEscape. The
                         // menu's init-delegate reads the stashed fields
                         // for flavor + press/vanish branch.
-                        _pendingPhaseFOutcome = LastAmbushedOutcome;
-                        _pendingPhaseFAmbusher = ambusher;
+                        _pendingAmbushedOutcome = LastAmbushedOutcome;
+                        _pendingAmbushedAttacker = ambusher;
                         TORCommon.Log(LogLevel.Info, "[Ambush] Phase F outcome menu opening for "
                             + LastAmbushedOutcome + " ambusher="
                             + (ambusher?.LeaderHero?.Name?.ToString()
@@ -1239,7 +1275,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 "{=tor_ambushed_fled_outcome_continue}Continue.",
                 args =>
                 {
-                    args.optionLeaveType = _phaseFOutcomeMenuPressBranch
+                    args.optionLeaveType = _ambushedOutcomeMenuPressBranch
                         ? GameMenuOption.LeaveType.HostileAction
                         : GameMenuOption.LeaveType.Continue;
                     return true;
@@ -1256,10 +1292,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// can act on it. Clears the pending-outcome fields.</summary>
         private void OnAmbushedFledOutcomeMenuInit(MenuCallbackArgs args)
         {
-            var outcome = _pendingPhaseFOutcome;
-            var ambusher = _pendingPhaseFAmbusher;
-            _pendingPhaseFOutcome = AmbushedOutcome.None;
-            _pendingPhaseFAmbusher = null;
+            var outcome = _pendingAmbushedOutcome;
+            var ambusher = _pendingAmbushedAttacker;
+            _pendingAmbushedOutcome = AmbushedOutcome.None;
+            _pendingAmbushedAttacker = null;
 
             // Vanilla re-fires menu init when the campaign screen resumes
             // after the mission screen tears down — the pending fields were
@@ -1271,12 +1307,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
             TextObject flavor;
             if (outcome == AmbushedOutcome.AmbushedFled)
             {
-                PromoteSpawnedParticipantsToWounded();
+                WoundAmbushedCommittedTroops();
                 var model = Campaign.Current?.Models?.GetAmbushModel();
                 bool presses = model != null
                                && ambusher != null && ambusher.IsActive
                                && model.AmbusherPressesAttack(ambusher, MobileParty.MainParty);
-                _phaseFOutcomeMenuPressBranch = presses;
+                _ambushedOutcomeMenuPressBranch = presses;
 
                 if (presses)
                 {
@@ -1296,13 +1332,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
             else if (outcome == AmbushedOutcome.AmbushedHeroWounded)
             {
-                _phaseFOutcomeMenuPressBranch = false;
+                _ambushedOutcomeMenuPressBranch = false;
                 flavor = new TextObject("{=tor_ambushed_outcome_hero_wounded}You were cut down in the ambush. Your troops carried you clear of the fighting; the enemy did not pursue.");
                 TORCommon.Log(LogLevel.Info, "[Ambush] outcome menu opened: AmbushedHeroWounded");
             }
             else
             {
-                _phaseFOutcomeMenuPressBranch = false;
+                _ambushedOutcomeMenuPressBranch = false;
                 flavor = new TextObject("{=tor_ambushed_outcome_generic}The ambush is over.");
                 TORCommon.Log(LogLevel.Info, "[Ambush] outcome menu opened: fallthrough outcome=" + outcome);
             }
@@ -1320,7 +1356,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             var aiBehavior = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
             var ambusher = aiBehavior?.CurrentAmbusherOnPlayer;
 
-            if (_phaseFOutcomeMenuPressBranch
+            if (_ambushedOutcomeMenuPressBranch
                 && ambusher != null && ambusher.IsActive)
             {
                 _pendingFollowUpAmbusher = ambusher;
@@ -1330,39 +1366,20 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 return;
             }
 
-            // Vanish branch — morale penalty, pair-record, teleport the
-            // ambusher off the player tile (otherwise vanilla engagement AI
-            // re-encounters them on the very next tick — they were
-            // teleported onto the player in TriggerAmbushAgainstPlayer and
-            // never moved since). Then back to map.
+            // Vanish branch — morale penalty, back to map.
+            // Physical separation (player teleport + 2-tick ignore) and
+            // the Phase F cooldown pair-record are both already handled
+            // by AmbushedEndLogic.OnEndMission before this menu opens.
+            // See decompiled PlayerEncounter.cs:1072-1078 for the
+            // teleport-and-ignore, and [[feedback_ambush_role_asymmetry]]
+            // for the record semantics.
             var model = Campaign.Current?.Models?.GetAmbushModel();
             float moraleHit = model?.AmbushedFledVanishMoralePenalty ?? 5f;
             ApplyMoraleDelta(-moraleHit);
             TORCommon.Say("The ambushers melt back into cover. Your troops lick their wounds. (Morale -" + moraleHit + ")");
-            if (aiBehavior != null && ambusher != null && ambusher.IsActive)
-            {
-                var main = MobileParty.MainParty;
-                if (main != null)
-                {
-                    var away = CampaignVec2.Normalized(ambusher.Position - main.Position);
-                    // If the ambusher is exactly on the player, Normalized
-                    // returns zero — fall back to a fixed easterly offset
-                    // so we don't leave them stacked.
-                    var awayV = away.ToVec2();
-                    if (awayV.x == 0f && awayV.y == 0f) away = new CampaignVec2(new Vec2(1f, 0f), true);
-                    ambusher.Position = main.Position + away * AmbushEscapeTeleportDistance;
-                }
-                aiBehavior.RecordAmbush(ambusher, MobileParty.MainParty,
-                    repelled: false, wasLoud: false);
-            }
-            // Clear the Phase F ambusher ref now that the vanish branch
-            // consumed it (press branch keeps it for OpenFollowUpFieldBattle
-            // to teleport the ambusher onto the player).
-            if (aiBehavior != null && !_phaseFOutcomeMenuPressBranch)
+            if (aiBehavior != null && !_ambushedOutcomeMenuPressBranch)
                 aiBehavior.CurrentAmbusherOnPlayer = null;
             TORCommon.Log(LogLevel.Info, "[Ambush] outcome menu continue: vanish — morale -" + moraleHit
-                + " ambusher teleported "
-                + (ambusher != null ? AmbushEscapeTeleportDistance + "u away" : "(none)")
                 + " PlayerEncounter.Current="
                 + (TaleWorlds.CampaignSystem.Encounters.PlayerEncounter.Current != null ? "ALIVE" : "null"));
 
