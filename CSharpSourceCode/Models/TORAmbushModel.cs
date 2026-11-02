@@ -557,6 +557,58 @@ namespace TOR_Core.Models
         /// behind for good" — not wounded, gone.</summary>
         public virtual float AmbushedDoubleFleeRemoveShare => 0.3f;
 
+        // ---- Preparation time (§19) ----
+
+        /// <summary>Minimum prep window for an ambush, in game-minutes.
+        /// Applied regardless of party size — a solo scout still needs
+        /// at least this long to pick a position. Full design in §19 of
+        /// campaign-stealth-design.md.</summary>
+        public virtual float BasePreparationMinutes => 15f;
+
+        /// <summary>Party sizes at or below this get the base floor only;
+        /// extra troops beyond this threshold stack
+        /// <see cref="PerTroopMinutes"/> each. Fiction: a small group
+        /// disperses into cover in minutes.</summary>
+        public virtual int SmallPartyThreshold => 25;
+
+        /// <summary>Added game-minutes per troop above
+        /// <see cref="SmallPartyThreshold"/>. 0.1 means a 100-man party
+        /// pays 7.5 extra minutes on top of base before the concealment
+        /// multiplier.</summary>
+        public virtual float PerTroopMinutes => 0.1f;
+
+        /// <summary>Floor on the concealment multiplier `(2 - stealthScore)`.
+        /// Clamps the worst-case penalty so an awful stealth-score party
+        /// still can set up eventually; also guards against an unexpected
+        /// stealthScore > 2 value from an edge case.</summary>
+        public virtual float MinimumConcealmentFactor => 0.3f;
+
+        /// <summary>AI only: scan radius around a candidate ambusher for
+        /// hostile parties when evaluating "could a pursuer intercept
+        /// before setup completes?" Larger than
+        /// <c>AiOpportunityScanRadius</c> so we see pursuers who are
+        /// slightly farther out but moving fast.</summary>
+        public virtual float AiPrepPursuitRejectionRadius => 25f;
+
+        /// <summary>Game-minutes needed to set up an ambush, given the
+        /// party's size and troop composition. See §19 for the derivation
+        /// and target curve (solo scout → ~12 min, 300-man knight army
+        /// → ~98 min).</summary>
+        public virtual float CalculatePreparationMinutes(MobileParty party)
+        {
+            if (party == null) return BasePreparationMinutes;
+            int size = party.MemberRoster?.TotalHealthyCount ?? 0;
+
+            int excess = System.Math.Max(0, size - SmallPartyThreshold);
+            float sizeMinutes = excess * PerTroopMinutes;
+
+            float stealthScore = AmbushTroopStealthScore.GetBasePartyScore(party);
+            float concealmentFactor = System.Math.Max(MinimumConcealmentFactor,
+                                                      2f - stealthScore);
+
+            return (BasePreparationMinutes + sizeMinutes) * concealmentFactor;
+        }
+
         // ---- Record-cooldown ----
 
         /// <summary>Protection window after the player gets ambushed:

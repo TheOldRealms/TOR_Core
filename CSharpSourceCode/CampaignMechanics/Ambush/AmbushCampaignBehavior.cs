@@ -55,6 +55,16 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private bool _playerInStealth;
         private CampaignTime _stealthEnteredAt = CampaignTime.Zero;
+
+        // Prep state (§19 campaign-stealth-design.md). Player is "setting
+        // up the ambush" between hotkey press and the model's
+        // CalculatePreparationMinutes elapsing. Not yet IsPlayerInStealth
+        // — Scouting bonus (§17) stays off during prep by design.
+        // Only start-time is stored; the total prep window is recomputed
+        // from the model on each tick (party is held in place during
+        // prep, so size/composition don't drift).
+        private bool _playerPreppingStealth;
+        private CampaignTime _playerStealthPrepStartedAt = CampaignTime.Zero;
         // Player ambush cooldown is derived from the record list on
         // AiAmbushBehavior (one source of truth across the two
         // behaviours). See IsOnAmbushCooldown / PlayerAmbushCooldownUntil
@@ -76,6 +86,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
         public int LastAmbushLoudness { get; set; }
 
         public bool IsPlayerInStealth => _playerInStealth;
+        public bool IsPlayerPreppingStealth => _playerPreppingStealth;
+        public CampaignTime PlayerStealthPrepStartedAt => _playerStealthPrepStartedAt;
         public CampaignTime PlayerAmbushCooldownUntil
             => Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>()
                 ?.GetCooldownExpiresAt(MobileParty.MainParty) ?? CampaignTime.Zero;
@@ -196,6 +208,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
             if (!CanToggleStealth()) return;
 
+            // Hotkey during prep → cancel setup. No cooldown stamp, nothing
+            // happened — the ambush was never set.
+            if (_playerPreppingStealth)
+            {
+                CancelPlayerStealthPrep();
+                _lastHotkeyRealTime = nowRealTime;
+                return;
+            }
+
             if (_playerInStealth)
             {
                 LeaveStealth(MobileParty.MainParty);
@@ -227,10 +248,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 }
             }
 
-            EnterStealth(MobileParty.MainParty);
+            BeginPlayerStealthPrep(MobileParty.MainParty);
 
-            // One-shot diagnostic so the next tuning cycle can lock the
-            // X anchor precisely instead of eyeballing it from a screenshot.
             if (model != null)
             {
                 var main = MobileParty.MainParty;
@@ -268,29 +287,115 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return result;
         }
 
+        /// <summary>§19 prep entry — hotkey put us into "setting up the
+        /// ambush." Party is held in place; <see cref="IsPlayerInStealth"/>
+        /// stays false (so the §17 Scouting bonus doesn't kick in yet).
+        /// <see cref="TickPlayerStealthPrep"/> finalizes once the model's
+        /// <c>CalculatePreparationMinutes</c> elapses.</summary>
+        private void BeginPlayerStealthPrep(MobileParty party)
+        {
+            if (party != MobileParty.MainParty) return;
+            if (_playerInStealth || _playerPreppingStealth) return;
+
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            float totalMinutes = model?.CalculatePreparationMinutes(party) ?? 15f;
+            _playerStealthPrepStartedAt = CampaignTime.Now;
+            _playerPreppingStealth = true;
+
+            party.Ai.SetDoNotMakeNewDecisions(true);
+            party.SetMoveModeHold();
+            // Same long-ignore pattern as the finalized stealth: pursuers
+            // shouldn't engage a party actively prepping an ambush either.
+            party.IgnoreByOtherPartiesTill(CampaignTime.YearsFromNow(100f));
+
+            _cachedTimeControlMode = Campaign.Current.TimeControlMode;
+
+            TORCommon.Say("Setting up the ambush (~"
+                + totalMinutes.ToString("F0") + " minutes).");
+            GameMenu.ActivateGameMenu(StealthMenuId);
+            Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
+
+            TORCommon.Log(LogLevel.Info, "[Ambush] prep begin: minutes="
+                + totalMinutes.ToString("F1")
+                + " size=" + (party.MemberRoster?.TotalHealthyCount ?? 0));
+        }
+
+        /// <summary>Called from <see cref="OnCampaignTick"/>. If enough
+        /// game-time elapsed, flip into full stealth stance. Scouting
+        /// bonus (§17) activates here via <see cref="IsPlayerInStealth"/>
+        /// flipping true. Total prep window is recomputed from the model
+        /// — same inputs as entry, so the result is stable while the
+        /// party is held in place.</summary>
+        private void TickPlayerStealthPrep()
+        {
+            if (!_playerPreppingStealth) return;
+            float elapsed = (float)(CampaignTime.Now - _playerStealthPrepStartedAt).ToMinutes;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            float totalMinutes = model?.CalculatePreparationMinutes(MobileParty.MainParty) ?? 15f;
+
+            // Refresh the stealth menu's prep progress text so the player
+            // sees the bar fill. RefreshStealthMenuTargets branches on
+            // _playerPreppingStealth to render BuildStealthPrepText.
+            if (Campaign.Current?.CurrentMenuContext?.GameMenu?.StringId == StealthMenuId)
+                RefreshStealthMenuTargets();
+
+            if (elapsed < totalMinutes) return;
+
+            _playerPreppingStealth = false;
+            _playerInStealth = true;
+            _stealthEnteredAt = CampaignTime.Now;
+            TORCommon.Say("Ambush is set.");
+            TORCommon.Log(LogLevel.Info, "[Ambush] prep complete: elapsed="
+                + elapsed.ToString("F1") + " of " + totalMinutes.ToString("F1"));
+
+            // Final refresh — flip into "in cover" mode text + strike list.
+            if (Campaign.Current?.CurrentMenuContext?.GameMenu?.StringId == StealthMenuId)
+                RefreshStealthMenuTargets();
+        }
+
+        /// <summary>Hotkey during prep cancels setup. No cooldown stamp
+        /// (nothing happened) — party resumes normal campaign play.</summary>
+        private void CancelPlayerStealthPrep()
+        {
+            if (!_playerPreppingStealth) return;
+            _playerPreppingStealth = false;
+
+            var party = MobileParty.MainParty;
+            if (party != null)
+            {
+                party.Ai.SetDoNotMakeNewDecisions(false);
+                party.IgnoreByOtherPartiesTill(CampaignTime.Zero);
+            }
+            if (Campaign.Current?.CurrentMenuContext?.GameMenu?.StringId == StealthMenuId)
+                GameMenu.ExitToLast();
+            Campaign.Current.TimeControlMode = _cachedTimeControlMode;
+
+            TORCommon.Say("Ambush setup aborted.");
+            TORCommon.Log(LogLevel.Info, "[Ambush] prep cancelled");
+        }
+
+        /// <summary>Legacy entry point — now just a direct finalize for
+        /// debug-command / forced entry paths. Normal player entry goes
+        /// through <see cref="BeginPlayerStealthPrep"/> → tick-driven
+        /// finalize. Kept so the console <c>trigger_stealth</c> command
+        /// still works without a prep window.</summary>
         public void EnterStealth(MobileParty party)
         {
             if (party != MobileParty.MainParty) return;
             if (_playerInStealth) return;
+            _playerPreppingStealth = false;
 
             _playerInStealth = true;
             _stealthEnteredAt = CampaignTime.Now;
 
             party.Ai.SetDoNotMakeNewDecisions(true);
             party.SetMoveModeHold();
-
-            // Phase B: drop the party off the AI target list. AiEngagePartyBehavior skips
-            // targets where ShouldBeIgnored is true. Set a far-future expiry so the ignore flag
-            // persists until LeaveStealth clears it.
             party.IgnoreByOtherPartiesTill(CampaignTime.YearsFromNow(100f));
 
             _cachedTimeControlMode = Campaign.Current.TimeControlMode;
 
             TORCommon.Say("Entered stealth stance.");
             GameMenu.ActivateGameMenu(StealthMenuId);
-            // ActivateGameMenu + the wait-menu's internal StartWait set TimeControlMode to
-            // UnstoppableFastForward; override back to Stop so the player starts paused and can
-            // choose their own speed via the UI arrows.
             Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
         }
 
@@ -516,6 +621,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 mapScreen.AddMapView<AmbushMapView>();
             if (mapScreen.GetMapView<AmbushRangeDebugMapView>() == null)
                 mapScreen.AddMapView<AmbushRangeDebugMapView>();
+            if (mapScreen.GetMapView<AmbushPrepOverlayMapView>() == null)
+                mapScreen.AddMapView<AmbushPrepOverlayMapView>();
         }
 
         /// <summary>
@@ -555,6 +662,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private void OnCampaignTick(float dt)
         {
+            TickPlayerStealthPrep();
+
             // Phase F §6: open the follow-up field battle one tick AFTER
             // the outcome menu's "Continue" picks the press branch (which
             // stashes the ambusher). Opening the vanilla PlayerEncounter
@@ -1465,6 +1574,19 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private void RefreshStealthMenuTargets()
         {
             _currentTargets.Clear();
+
+            // §19 prep mode — the Gauntlet overlay (AmbushPrepOverlayMapView)
+            // handles the visual bar; the stealth menu stays empty so the
+            // UI reads as one clean indicator. Strike-slot condition
+            // delegates gate on _playerInStealth, which is false during
+            // prep, so no stale strike options appear.
+            if (_playerPreppingStealth)
+            {
+                MBTextManager.SetTextVariable("STEALTH_MENU_TEXT",
+                    new TextObject("{=tor_ambush_menu_preparing}Preparing ambush..."));
+                return;
+            }
+
             _currentTargets.AddRange(GetAmbushTargets(MobileParty.MainParty));
 
             var intro = new TextObject("{=tor_ambush_menu_intro}You crouch in cover. Nothing moves nearby.");
@@ -1624,6 +1746,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             dataStore.SyncData("_playerInStealth", ref _playerInStealth);
             dataStore.SyncData("_stealthEnteredAt", ref _stealthEnteredAt);
+            dataStore.SyncData("_playerPreppingStealth", ref _playerPreppingStealth);
+            dataStore.SyncData("_playerStealthPrepStartedAt", ref _playerStealthPrepStartedAt);
             // _playerAmbushCooldownUntil removed — player cooldown is
             // now derived from AiAmbushBehavior._ambushRecords.
         }

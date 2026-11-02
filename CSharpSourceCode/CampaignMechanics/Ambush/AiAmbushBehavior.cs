@@ -39,6 +39,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private Dictionary<MobileParty, CampaignTime> _stealthedParties
             = new Dictionary<MobileParty, CampaignTime>();
 
+        // §19 preparation window. Parties mid-setup live here instead of
+        // _stealthedParties — detection + strike-trigger ignore them. On
+        // quarter-hourly tick, if the prep window elapsed the party moves
+        // from here into _stealthedParties. Only start time stored; the
+        // total prep window is recomputed from the model on each tick
+        // (party is held in place, so size/composition don't drift).
+        private Dictionary<MobileParty, CampaignTime> _preppingPartiesStartedAt
+            = new Dictionary<MobileParty, CampaignTime>();
+
         // The single source of truth for all ambush-cooldown and
         // reveal logic. Every record is one ambush incident; every
         // query ("is party X on cooldown?", "is party Y a repelled
@@ -222,6 +231,26 @@ namespace TOR_Core.CampaignMechanics.Ambush
             AmbushTroopStealthScore.PrecomputeAll();
             TORCommon.Log(LogLevel.Info, "[AI Ambush] stealth-score base precomputed");
 
+            // Session-launch sanity scrub for any mid-prep parties — same
+            // reasoning as the stealthed clear below. Prep is transient
+            // state; a loaded game shouldn't resume someone else's
+            // half-committed setup.
+            if (_preppingPartiesStartedAt.Count > 0)
+            {
+                var prepSnapshot = new List<MobileParty>(_preppingPartiesStartedAt.Keys);
+                foreach (var party in prepSnapshot)
+                {
+                    _preppingPartiesStartedAt.Remove(party);
+                    if (party != null && party.IsActive)
+                    {
+                        party.Ai.SetDoNotMakeNewDecisions(false);
+                        party.IgnoreByOtherPartiesTill(CampaignTime.Zero);
+                    }
+                }
+                TORCommon.Log(LogLevel.Info, "[AI Ambush] OnSessionLaunched: cleared "
+                    + prepSnapshot.Count + " prepping parties from loaded save");
+            }
+
             if (_stealthedParties.Count == 0) return;
             var snapshot = new List<MobileParty>(_stealthedParties.Keys);
             foreach (var party in snapshot)
@@ -237,6 +266,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             dataStore.SyncData("_stealthedParties", ref _stealthedParties);
             dataStore.SyncData("_ambushRecords", ref _ambushRecords);
+            dataStore.SyncData("_preppingPartiesStartedAt", ref _preppingPartiesStartedAt);
         }
 
         /// <summary>True while <paramref name="party"/> is in AI stealth
@@ -312,13 +342,60 @@ namespace TOR_Core.CampaignMechanics.Ambush
         // HostileAiParty call-sites read like before.
         private bool IsOnCooldown(MobileParty party) => IsOnAmbushCooldown(party);
 
+        /// <summary>§19 — true if any hostile within
+        /// <c>AiPrepPursuitRejectionRadius</c> would close the distance
+        /// to <paramref name="party"/> within <paramref name="prepMinutes"/>
+        /// at its current speed, AND is actually moving toward the party
+        /// (dot of normalized velocity vs vector-to-ambusher &gt; 0).</summary>
+        private bool WouldPursuerInterceptBeforePrepCompletes(MobileParty party,
+            float prepMinutes, TORAmbushModel model)
+        {
+            var selfPos = party.Position.ToVec2();
+            float rejectionRadius = model.AiPrepPursuitRejectionRadius;
+            var query = MobileParty.StartFindingLocatablesAroundPosition(selfPos, rejectionRadius);
+            for (var p = MobileParty.FindNextLocatable(ref query); p != null;
+                 p = MobileParty.FindNextLocatable(ref query))
+            {
+                if (p == null || !p.IsActive || p == party) continue;
+                if (p.MapFaction == null) continue;
+                if (!FactionManager.IsAtWarAgainstFaction(party.MapFaction, p.MapFaction)) continue;
+
+                float dist = (p.Position.ToVec2() - selfPos).Length;
+                // Vanilla MovementSpeed is in map-u/hour (reads ~5-6 for
+                // normal parties). Convert to u/minute for prep math.
+                float speedPerMinute = p.Speed / 60f;
+                float interceptDistance = prepMinutes * speedPerMinute;
+                if (dist > interceptDistance) continue;
+
+                // Direction gate — a pursuer moving away isn't a credible
+                // threat. Normalized vector-to-ambusher dotted with
+                // normalized pursuer-heading: dot > 0 means pursuer is
+                // headed toward us. If TargetPosition is effectively the
+                // pursuer's current position (idle party), skip the gate
+                // and treat distance alone as the signal.
+                var pPos = p.Position.ToVec2();
+                var toSelf = (selfPos - pPos).Normalized();
+                var headingRaw = p.TargetPosition.ToVec2() - pPos;
+                if (headingRaw.LengthSquared > 0.01f)
+                {
+                    var heading = headingRaw.Normalized();
+                    float dot = heading.x * toSelf.x + heading.y * toSelf.y;
+                    if (dot < 0f) continue;  // pursuer heading away
+                }
+                return true;
+            }
+            return false;
+        }
+
         private void OnQuarterHourlyTick()
         {
             if (Campaign.Current == null) return;
 
-            TORCommon.Log(LogLevel.Info, "[AI Ambush] tick: start, stealthed=" + _stealthedParties.Count);
+            TORCommon.Log(LogLevel.Info, "[AI Ambush] tick: start, stealthed=" + _stealthedParties.Count
+                + " prepping=" + _preppingPartiesStartedAt.Count);
             PruneStealthedParties();
             TORCommon.Log(LogLevel.Info, "[AI Ambush] tick: pruned, stealthed=" + _stealthedParties.Count);
+            TickPrepping();
             TickDecisions();
             TORCommon.Log(LogLevel.Info, "[AI Ambush] tick: decisions done, stealthed=" + _stealthedParties.Count);
             TickTargetDetection();
@@ -334,6 +411,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             {
                 if (!IsEligibleAmbusher(party)) continue;
                 if (_stealthedParties.ContainsKey(party)) continue;
+                if (_preppingPartiesStartedAt.ContainsKey(party)) continue;
                 if (IsOnCooldown(party)) continue;
 
                 float propensity = model.GetAmbushPropensity(party);
@@ -372,7 +450,17 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 if (entryChance < model.MinEntryChance) entryChance = model.MinEntryChance;
                 if (MBRandom.RandomFloat >= entryChance) continue;
 
-                EnterAiStealth(party);
+                // §19 chase-geometry gate — reject stealth entry if any
+                // hostile is close enough to intercept during the prep
+                // window. Fixes the "AI cheeses the chase by vanishing
+                // into stealth" exploit: a pursued party can't commit to
+                // setup when a pursuer would overrun the position before
+                // it's set.
+                float prepMinutes = model.CalculatePreparationMinutes(party);
+                if (WouldPursuerInterceptBeforePrepCompletes(party, prepMinutes, model))
+                    continue;
+
+                StartAiStealthPrep(party, prepMinutes);
             }
         }
 
@@ -693,24 +781,63 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 + " ambusher=" + PartyLabel(ambusher));
         }
 
-        private void EnterAiStealth(MobileParty party)
+        /// <summary>§19 — start the preparation window for an AI party.
+        /// Party is held in place and ignored by other AI, but NOT yet
+        /// in <c>_stealthedParties</c>: strike-triggering and the
+        /// IsVisibilityPersistent-based reveal path skip it until prep
+        /// completes. <see cref="TickPrepping"/> finalizes once elapsed.
+        /// </summary>
+        private void StartAiStealthPrep(MobileParty party, float totalMinutes)
         {
-            _stealthedParties[party] = CampaignTime.Now;
+            _preppingPartiesStartedAt[party] = CampaignTime.Now;
             party.Ai.SetDoNotMakeNewDecisions(true);
             party.SetMoveModeHold();
             // Cap the ignore window at the max stealth hold (48h). If
-            // LeaveAiStealth ever misses, the party clears on its own
-            // instead of being permanently invisible to other AI
-            // (previous +100 years was a time bomb for stuck parties).
+            // the prep/finalize cycle misses, the party unfreezes on its
+            // own instead of being permanently invisible to other AI.
             party.IgnoreByOtherPartiesTill(CampaignTime.HoursFromNow(MaxStealthHoldHours));
-            // Actually vanish from the campaign map. This is the other
-            // side of the ambush model — the stealth value isn't just
-            // "AI leaves them alone", it's "nobody sees them". Lets
-            // weaker parties lurk until a bigger threat passes.
+            // Prep does NOT vanish the party from the map — they're
+            // still visibly moving into position. Only after finalize
+            // do they become invisible (§19 fiction + chase-geometry
+            // consistency: a pursuing player should see the enemy "stop
+            // and set up" rather than magically disappear).
+            TORCommon.Log(LogLevel.Info, "[AI Ambush] " + PartyLabel(party)
+                + " (" + CultureLabel(party) + ") begin prep at "
+                + party.Position.ToVec2() + " minutes=" + totalMinutes.ToString("F1"));
+        }
+
+        /// <summary>Promote a prep-complete party into full stealth
+        /// stance. Mirrors the previous <c>EnterAiStealth</c> body:
+        /// register in <c>_stealthedParties</c> and vanish from the
+        /// map.</summary>
+        private void FinalizeAiStealth(MobileParty party)
+        {
+            _preppingPartiesStartedAt.Remove(party);
+            _stealthedParties[party] = CampaignTime.Now;
             party.IsVisible = false;
             TORCommon.Log(LogLevel.Info, "[AI Ambush] " + PartyLabel(party)
                 + " (" + CultureLabel(party) + ") entered stealth stance at "
-                + party.Position.ToVec2());
+                + party.Position.ToVec2() + " (prep complete)");
+        }
+
+        /// <summary>Quarter-hourly check — any party whose prep window
+        /// has elapsed graduates into full stealth stance. Called from
+        /// <see cref="OnQuarterHourlyTick"/>.</summary>
+        private void TickPrepping()
+        {
+            if (_preppingPartiesStartedAt.Count == 0) return;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return;
+            var now = CampaignTime.Now;
+            var toFinalize = new List<MobileParty>();
+            foreach (var kv in _preppingPartiesStartedAt)
+            {
+                if (kv.Key == null || !kv.Key.IsActive) continue;
+                float elapsed = (float)(now - kv.Value).ToMinutes;
+                float totalMinutes = model.CalculatePreparationMinutes(kv.Key);
+                if (elapsed >= totalMinutes) toFinalize.Add(kv.Key);
+            }
+            foreach (var party in toFinalize) FinalizeAiStealth(party);
         }
 
         private void LeaveAiStealth(MobileParty party)
@@ -776,6 +903,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             if (party?.MobileParty == null) return;
             _stealthedParties.Remove(party.MobileParty);
+            _preppingPartiesStartedAt.Remove(party.MobileParty);
             // Null out any record referencing the removed party so
             // queries don't match dangling refs. Keep the record (for
             // history completeness); nulled refs just stop matching.
