@@ -175,7 +175,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             if (!Hero.MainHero.HasAnyCareer()) return false;
             if (affectorAgent.IsMount || affectedAgent.IsMount) return false;
 
-            if (Hero.MainHero.HasCareer(TORCareers.Necromancer) && affectorAgent.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION)) return true;
+            if (Hero.MainHero.HasCareer(TORCareers.Necromancer) && affectorAgent.Character.IsNecromancerChampion()) return true;
 
             return affectorAgent.BelongsToMainParty() || affectedAgent.BelongsToMainParty();
         }

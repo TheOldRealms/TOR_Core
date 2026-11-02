@@ -592,7 +592,7 @@ namespace TOR_Core.Models
                 agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent, swingSpeedMultiplier);
             }
             else
-            {
+            {//Sly: does this account for effects that grant bonuses which are not derived from status effects? Would this cause banner effects to disappear? Enchantments? Other?
                 agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent, 1f); //I have the feeling this call is not necessary given the many updates that are done per frame.
             }
 

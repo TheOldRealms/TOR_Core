@@ -29,11 +29,11 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
         //    if (agent.IsHuman)
         //    {
-        //        if (!agent.IsHero && agent.Character != null && agent.Character.HasAttribute(CharacterAttributes.HAS_ANIMATION_TRIGGERED_EFFECTS))
+        //        if (!agent.IsHero && agent.Character != null && agent.Character.HasAttribute(CharacterAttributes.MONSTROUS))
         //        {
         //            _trackedAgents.Add(agent, new MBList<AnimationTriggerTuple>());
         //        }
-        //        else if (agent.IsHero && agent.GetHero() != null && agent.GetHero().HasAttribute(CharacterAttributes.HAS_ANIMATION_TRIGGERED_EFFECTS))
+        //        else if (agent.IsHero && agent.GetHero() != null && agent.GetHero().HasAttribute(CharacterAttributes.MONSTROUS))
         //        {
         //            _trackedAgents.Add(agent, new MBList<AnimationTriggerTuple>());
         //        }

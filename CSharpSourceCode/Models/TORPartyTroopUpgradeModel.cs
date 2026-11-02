@@ -22,7 +22,7 @@ namespace TOR_Core.Models
 
             if (characterObject.Culture.StringId == TORConstants.Cultures.DAWI)
             {
-                if (characterObject.HasAttribute(CharacterAttributes.DWARF_GUN) || upgradeTarget.HasAttribute(CharacterAttributes.DWARF_GUN))
+                if (characterObject.IsDwarfGunUnit() || upgradeTarget.IsDwarfGunUnit())
                 {
                     if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_2))
                     {
@@ -50,7 +50,7 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (characterObject.HasAttribute(CharacterAttributes.IRONBREAKER))
+                if (characterObject.IsIronbreakerUnit())
                 {
                     explainedNumber.Add(explainedNumber.BaseNumber * 3);
                     if (Hero.MainHero.HasAttribute(CharacterAttributes.GUILD_RUNESMITH_3))

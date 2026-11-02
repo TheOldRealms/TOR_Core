@@ -4561,6 +4561,11 @@
   <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead - not affected by morale, and instead of fleeing, shall crumble to dust. If defeated, this unit cannot be wounded." />
   <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew - required to operate most artillery pieces." />
   <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale." />
+  <string id="tor_extendedInfo.Expendable" text="{=str_tor_extendedinfo_expendable}Expendable - Losses of this unit cause no morale shock (...)" />
+  <string id="tor_extendedInfo.Crushing" text="{=str_tor_extendedinfo_crushing}Crushing - Attacks cannot be blocked or parried with weapons. (...)" />
+  <string id="tor_extendedInfo.Slice" text="{=str_tor_extendedinfo_slice}Slice - Melee attacks can cut through enemies(...)" />
+  <string id="tor_extendedInfo.TreeSpirit" text="{=str_tor_extendedinfo_treespirit}Tree Spirit - Tree Spirit (...)" />
+  <string id="tor_extendedInfo.Crew" text="{=str_tor_extendedinfo_crew}Artillery Crew - {VALUE}% faster cannon reloads and can load cannons (...)" />
   <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage." />
   <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Piercing - {VALUE}% Armor Penetration(...)" />
   <string id="tor_damagetype.Invalid" text="{=str_tor_damagetype_invalid}Invalid" />
@@ -4603,7 +4608,7 @@
   <string id="tor_extendedInfo.TheHunger" text="{=str_tor_extendedinfo_the_hunger}The Hunger - Restores {VALUE}% Maximum Health after Killing an enemy(...)" />
 
   <!-- ExtendedInfo.Frenzy -->
-  <string id="tor_extendedInfo.Frenzy" text="{=str_tor_extendedinfo_frenzy}Frenzy - Kill Grants 10% Movement Speed 15% Attack Speed for {DURATION} (...)" />
+  <string id="tor_extendedInfo.Frenzy" text="{=str_tor_extendedinfo_frenzy}Frenzy - Kill grants {MOVEMENT}% Movement Speed and {ATTACK}% Attack Speed for {DURATION} seconds(...)" />
 
   <!-- ExtendedInfo.UndeadSlayer -->
   <string id="tor_extendedInfo.UndeadSlayer" text="{=str_tor_extendedinfo_undead_slayer}Undead Slayer - +{VALUE}% Damage against Undead Units (...)" />
@@ -4616,6 +4621,7 @@
 
   <!-- ExtendedInfo.Ethereal -->
   <string id="tor_extendedInfo.Ethereal" text="{=str_tor_extendedinfo_ethereal}Ethereal - {VALUE}% Chance to Ignore Purely Physical Hits(...)" />
+  <string id="tor_ethereal_hit_ignored" text="{=str_tor_ethereal_hit_ignored}Your blow passes harmlessly through the ethereal form!" />
 
   <!-- ExtendedInfo.KillingBlow -->
   <string id="tor_extendedInfo.KillingBlow" text="{=str_tor_extendedinfo_killing_blow}Killing Blow - has a chance to instantly kill enemy units(...)" />

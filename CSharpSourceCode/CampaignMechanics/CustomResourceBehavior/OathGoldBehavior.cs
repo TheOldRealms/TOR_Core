@@ -1261,7 +1261,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         {
             if (type != PartyScreenLogic.TroopType.Member) return false;
             if (character.IsHero) return false;
-            return character.Culture.StringId == TORConstants.Cultures.DAWI && character.HasAttribute(CharacterAttributes.DWARF_MINER);
+            return character.Culture.StringId == TORConstants.Cultures.DAWI && character.IsDwarfMinerUnit();
         }
     }
 

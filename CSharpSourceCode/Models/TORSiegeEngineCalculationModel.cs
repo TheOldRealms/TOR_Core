@@ -1,4 +1,5 @@
 ﻿using TaleWorlds.CampaignSystem;
+﻿using System.Collections.Generic;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.ComponentInterfaces;
 using TOR_Core.Extensions;
@@ -13,29 +14,25 @@ namespace TOR_Core.Models
 
         public static TORSiegeEngineCalculationModel Current => Campaign.Current?.Models?.GetSiegeEngineCalculationModel();
 
+        public static float GetCannonCrewReloadBonus(List<string> attributes)
+        {
+            if (attributes.Contains(CharacterAttributes.CREW_3)) return 0.35f;
+            if (attributes.Contains(CharacterAttributes.CREW_2)) return 0.20f;
+            return 0f;
+        }
+
         public float CalculateCannonReloadSpeed(float cannonReloadSpeed, Agent user , Agent reloader)
         {
+            if (user == null || reloader == null) return cannonReloadSpeed;
+
             var explainedNumber = new ExplainedNumber(cannonReloadSpeed);
-            if (user == null) return cannonReloadSpeed;
-            else
+            foreach (var crewMember in new[] { user, reloader })
             {
-                if(user.HasAttribute(CharacterAttributes.CREW_2)) // mid tier Cannoneer troops
+                var reloadBonus = GetCannonCrewReloadBonus(crewMember.GetAttributes());
+                if (reloadBonus > 0f)
                 {
-                    explainedNumber.AddFactor(-0.15f);
+                    explainedNumber.AddFactor(-reloadBonus);
                 }
-                else if(user.HasAttribute(CharacterAttributes.CREW_3))   //Elite Cannoneer units can reload very fast
-                {
-                    explainedNumber.AddFactor(-0.30f);
-                }
-            }
-            if (reloader == null) return cannonReloadSpeed;
-            if(reloader.HasAttribute(CharacterAttributes.CREW_2)) // mid tier Cannoneer troops
-            {
-                explainedNumber.AddFactor(-0.20f);
-            }
-            else if(reloader.HasAttribute(CharacterAttributes.CREW_3))   //Elite Cannoneer units can reload very fast
-            {
-                explainedNumber.AddFactor(-0.35f);
             }
 
             return explainedNumber.ResultNumber;
