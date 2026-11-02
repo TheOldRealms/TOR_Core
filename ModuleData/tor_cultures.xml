@@ -2,6 +2,7 @@
 <SPCultures>
 	<Culture 
 		id="empire"
+		executioner="NPCCharacter.tor_empire_halberdier"
 		name="{=empirefaction}Empire of Men"
 		is_main_culture="true"
 		color="0xFF612121"
@@ -1409,6 +1410,7 @@
 		</basic_mercenary_troops>
 	</Culture>
 	<Culture id="khuzait"
+		executioner="NPCCharacter.tor_vc_empire_sergeant"
 		name="{=vampirefaction}Vampire Counts"
 		is_main_culture="true"
 		color="0xFF303030"
@@ -2789,6 +2791,7 @@
 		</basic_mercenary_troops>
 	</Culture>
 	<Culture id="blooddragons"
+		executioner="NPCCharacter.tor_bd_blooddragon_knight"
 		name="{=blooddragonfaction}Blood Dragons"
 		is_main_culture="false"
 		color="0xFF303030"
@@ -4170,6 +4173,7 @@
 		</basic_mercenary_troops>
 	</Culture>
 	<Culture id="vlandia"
+		executioner="NPCCharacter.tor_br_manatarms_halberd"
 		name="{=bretonniafaction}Bretonnia"
 		is_main_culture="true"
 		color="0xff8D291A"
@@ -4812,6 +4816,7 @@
 		</basic_mercenary_troops>
 	</Culture>
 	<Culture id="mousillon"
+		executioner="NPCCharacter.tor_m_manatarms_halberd"
 		name="{=mousillonfaction}Mousillon"
 		is_main_culture="true"
 		color="0xff8D291A"
@@ -5454,6 +5459,7 @@
 		</basic_mercenary_troops>
 	</Culture>
 	<Culture id="beastmen"
+		executioner="NPCCharacter.tor_beastmen_gor"
 		name="{=str_tor_culture_beastmen}Beastmen"
 		is_main_culture="true"
 		color="0xff4A2820"
@@ -6089,6 +6095,7 @@
 		</basic_mercenary_troops>
 	</Culture>
 	<Culture id="eonir"
+		executioner="NPCCharacter.tor_eo_cityborn_guard"
 		name="{=str_tor_eonirfaction}Eonir"
 		is_main_culture="true"
 		color="0xff8D291A"
@@ -6489,6 +6496,7 @@
 		</basic_mercenary_troops>
 	</Culture>
 	<Culture id="looters"
+		executioner="NPCCharacter.tor_looter_leader"
 		name="{=str_tor_looterfaction}Goblin Raiders"
 		elite_basic_troop="NPCCharacter.tor_looter_leader"
 		basic_troop="NPCCharacter.tor_looter"
@@ -6505,6 +6513,7 @@
 		</banner_bearer_replacement_weapons>
 	</Culture>
 	<Culture id="mountain_bandits"
+		executioner="NPCCharacter.tor_empire_deserter_scout"
 		name="{=str_tor_deserterfaction}Empire Deserters"
 		bandit_chief="NPCCharacter.tor_empire_deserter_sergeant"
 		bandit_raider="NPCCharacter.tor_empire_deserter_scout"
@@ -6526,6 +6535,7 @@
 		</banner_bearer_replacement_weapons>
 	</Culture>
 	<Culture id="forest_bandits"
+		executioner="NPCCharacter.tor_chaos_cult_darksoul"
 		name="{=str_tor_cultistfaction}Chaos Cultists"
 		bandit_chief="NPCCharacter.tor_chaos_cult_magister"
 		bandit_raider="NPCCharacter.tor_chaos_cult_darksoul"
@@ -6546,6 +6556,7 @@
 		</banner_bearer_replacement_weapons>
 	</Culture>
 	<Culture id="steppe_bandits"
+		executioner="NPCCharacter.tor_beast_bandit_ungor_halfhorn_chief"
 		name="{=str_tor_beastmenfaction}Beastmen Warband"
 		bandit_chief="NPCCharacter.tor_beast_bandit_ungor_halfhorn_chief"
 		bandit_raider="NPCCharacter.tor_beast_bandit_ungor_raider"
@@ -6566,6 +6577,7 @@
 		</banner_bearer_replacement_weapons>
 	</Culture>
 	<Culture id="sea_raiders"
+		executioner="NPCCharacter.tor_bandit_norscan_marauder"
 		name="{=str_tor_norscaraidersfaction}Norscan Raiders"
 		bandit_chief="NPCCharacter.tor_bandit_norscan_marauder"
 		bandit_raider="NPCCharacter.tor_bandit_norscan_whaler"
@@ -6586,6 +6598,7 @@
 		</banner_bearer_replacement_weapons>
 	</Culture>
 	<Culture id="desert_bandits"
+		executioner="NPCCharacter.tor_br_bandit_scout"
 		name="{=str_tor_bretonnianbanditfaction}Herrimaults"
 		bandit_chief="NPCCharacter.tor_br_bandit_leader"
 		bandit_raider="NPCCharacter.tor_br_bandit_scout"
@@ -6606,6 +6619,7 @@
 		</banner_bearer_replacement_weapons>
 	</Culture>
 	<Culture id="greenskin_bandit"
+		executioner="NPCCharacter.tor_gs_bandit_raider_boss"
 		name="{=str_tor_greenskinbanditfaction}Orc Raiders"
 		bandit_chief="NPCCharacter.tor_gs_bandit_raider_boss"
 		bandit_raider="NPCCharacter.tor_gs_bandit_raider"
@@ -6627,6 +6641,7 @@
 	</Culture>
 	<!-- The neutral_culture default rosters are the fallback if a character object is ever missing an equipment set in their definition.-->
 	<Culture id="neutral_culture"
+		executioner="NPCCharacter.tor_empire_halberdier"
 		name="{=jKviMpbP}Neutral"
 		elite_basic_troop="NPCCharacter.guard"
 		basic_troop="NPCCharacter.guard"
@@ -6635,6 +6650,7 @@
 		default_stealth_equipment_roster="EquipmentRoster.default_stealth_equipment_roster">
 	</Culture>
 	<Culture id="exotic"
+		executioner="NPCCharacter.tor_empire_halberdier"
 		name="{=str_exotic_culture}Exotic"
 		elite_basic_troop="NPCCharacter.guard"
 		basic_troop="NPCCharacter.guard"
@@ -6643,6 +6659,7 @@
 		default_stealth_equipment_roster="EquipmentRoster.default_stealth_equipment_roster">
 	</Culture>
 	<Culture id="druchii"
+		executioner="NPCCharacter.tor_de_dreadspear"
 		name="{=str_darkelves_culture}Druchii"
 		elite_basic_troop="NPCCharacter.guard"
 		basic_troop="NPCCharacter.guard"
@@ -6652,6 +6669,7 @@
 		default_stealth_equipment_roster="EquipmentRoster.default_stealth_equipment_roster">
 	</Culture>
 	<Culture id="asur"
+		executioner="NPCCharacter.tor_he_white_lion_chrace"
 		name="{=str_highelves_culture}Asur"
 		elite_basic_troop="NPCCharacter.guard"
 		basic_troop="NPCCharacter.guard"
@@ -6660,6 +6678,7 @@
 		default_stealth_equipment_roster="EquipmentRoster.default_stealth_equipment_roster">
 	</Culture>
 	<Culture id="aserai"
+		executioner="NPCCharacter.tor_gs_orc_boy"
 		name="{=str_greenskins_culture}Greenskins"
 		color="0xFF001bc9"
 		color2="0xFF009fc7"
@@ -7043,6 +7062,7 @@
 		</basic_mercenary_troops>
 	</Culture>
 	<Culture id="battania"
+		executioner="NPCCharacter.tor_we_eternal_guard"
 		name="{=str_woodelves_culture}Wood Elves"
 		is_main_culture="true"
 		color="0xff284E19"
@@ -7434,6 +7454,7 @@
 		</basic_mercenary_troops>
 	</Culture>
 	<Culture id="sturgia"
+		executioner="NPCCharacter.tor_dw_warrior"
 		name="{=str_dwarves_culture}Dwarfs"
 		color="0xFF001bc9"
 		color2="0xFF009fc7"
@@ -7780,6 +7801,7 @@
 		</basic_mercenary_troops>
 	</Culture>
 	<Culture id="chaos_culture"
+		executioner="NPCCharacter.tor_chaos_norscan_marauder"
 		name="{=str_tor_chaos_culture}Chaos"
 		color="0xFF612121"
 		color2="0xFFededed"

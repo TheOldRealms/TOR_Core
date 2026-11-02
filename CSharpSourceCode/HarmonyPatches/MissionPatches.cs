@@ -54,6 +54,16 @@ namespace TOR_Core.HarmonyPatches
         }
 
         [HarmonyPrefix]
+        [HarmonyPatch(typeof(MissionCombatMechanicsHelper), "GetDefendCollisionResults")]
+        public static void CrushingCannotBeChamberBlocked(Agent attackerAgent, ref CombatCollisionResult collisionResult)
+        {
+            if (collisionResult == CombatCollisionResult.ChamberBlocked && attackerAgent.HasCrushing())
+            {
+                collisionResult = CombatCollisionResult.Parried;
+            }
+        }
+
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(Mission), nameof(Mission.SpawnAgent))]
         public static void GreenKnightClothingColors(AgentBuildData agentBuildData)
         {
@@ -243,8 +253,8 @@ namespace TOR_Core.HarmonyPatches
             
             if (Hero.MainHero != null && Hero.MainHero.HasCareer(TORCareers.Necromancer))
             {
-                // Check if any agent has the NecromancerChampion attribute
-                if (__instance.Agents.AnyQ(x => x.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION)))
+                // Check for a summoned necromancer champion
+                if (__instance.Agents.AnyQ(x => x.Character.IsNecromancerChampion()))
                 {
                     // Prevent the retreat by returning false (skips the original method)
                     InformationManager.DisplayMessage(new InformationMessage("Cannot retreat while your Champion is still active.", Colors.Red));

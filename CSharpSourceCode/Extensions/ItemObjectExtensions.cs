@@ -199,27 +199,32 @@ namespace TOR_Core.Extensions
         /// <summary>
         /// True if the item is, or can have, ammo and its id contains "grenade" or is WeaponClass.Boulder
         /// </summary>
-        /// <remarks>Has a usage in the dismemberment system to determine if the body parts need to be flung away from the impact point.</remarks>
+        /// <remarks>
+        /// Has a usage in the dismemberment system to determine if the body parts need to be flung away from the impact point.
+        /// </remarks>
         public static bool IsExplosiveAmmunition(this ItemObject itemObject)
         {
-            return IsAmmunitionItem(itemObject) && itemObject.StringId.Contains("grenade") ||
-                itemObject.WeaponComponent?.PrimaryWeapon.WeaponClass == WeaponClass.Boulder;
+            return itemObject.WeaponComponent?.PrimaryWeapon.WeaponClass == WeaponClass.Boulder || 
+                IsAreaAffectingAmmunition(itemObject) && (itemObject.StringId is "tor_dw_weapon_blasting_charges" or
+                    "tor_dw_iron_drake_trollhammer_torpedo" || itemObject.StringId.Contains("grenade"));
         }
 
         /// <summary>
-        /// True if the item has a weapon component of IsRangedWeapon or IsAmmo and has one of the AffectsArea flags.
+        /// True if the item has a weapon component of IsAmmo and has one of the AffectsArea flags.
         /// </summary>
-        /// <remarks>Introduced for the Bullet Proof gunpowder perk to exclude both grenades and flamethrowers as IsExplosiveAmmunition couldn't be adapted without affecting its usage in the dismemberment system and drakegun canisters are cartridge-typed ammos like musket balls.</remarks>
+        /// <remarks>Introduced for the Bullet Proof gunpowder perk to exclude both grenades and flamethrowers as IsExplosiveAmmunition couldn't be adapted without affecting its usage in the dismemberment system and drakegun canisters are cartridge-typed ammos like musket balls.
+        /// </remarks>
         public static bool IsAreaAffectingAmmunition(this ItemObject itemObject)
         {
-            //IsAmmunitionItem has built-in null checks for itemObject, WeaponComponent, and PrimaryWeapon
-            return IsAmmunitionItem(itemObject) && itemObject.WeaponComponent.PrimaryWeapon.WeaponFlags.HasAnyFlag(WeaponFlags.AffectsArea | WeaponFlags.AffectsAreaBig);
+            return IsAmmoItem(itemObject) && itemObject.WeaponComponent.PrimaryWeapon.WeaponFlags.HasAnyFlag(WeaponFlags.AffectsArea | WeaponFlags.AffectsAreaBig);
         }
 
+        //Sly : this should be used by a gunpowder perk but the code is currently missing.
         /// <summary>
-        /// True if the the item is an arrow, bolt, or cartridge, and has no AffectArea flag.
+        /// True if the the item is a simple projectile shot from a ranged weapon, and has no AffectArea flag.
         /// </summary>
-        /// <remarks>Current usage is by TORAgentApplyDamageModel where !weapon.IsEmpty; may need to add IsAmmunitionItem in the future if its usage is expanded to include contexts that can have null items, components, etc...</remarks>
+        /// <remarks>Current usage is by TORAgentApplyDamageModel where !weapon.IsEmpty; may need to add IsAmmunitionItem in the future if its usage is expanded to include contexts that can have null items, components, etc...
+        /// </remarks>
         public static bool IsSmallArmsAmmunition(this ItemObject itemObject)
         {
             return itemObject.WeaponComponent.PrimaryWeapon.IsSmallArmsAmmunition() && !itemObject.IsAreaAffectingAmmunition();
@@ -245,7 +250,7 @@ namespace TOR_Core.Extensions
         public static bool IsMagicalStaff(this ItemObject itemObject)
         {
             if (itemObject == null) return false;
-            return itemObject.StringId.Contains("staff") && itemObject.WeaponComponent.PrimaryWeapon.IsMeleeWeapon;
+            return itemObject.WeaponComponent.PrimaryWeapon.IsMeleeWeapon && itemObject.StringId.Contains("staff");
         }
 
         public static bool IsGunPowderWeapon(this ItemObject itemObject)
@@ -268,44 +273,44 @@ namespace TOR_Core.Extensions
         // ===== Weapon Platform Checks =====
         public static bool IsDrakeGunWeapon(this ItemObject itemObject)
         {
-            if (!IsAmmunitionItem(itemObject)) return false;
+            if (!IsRangedItem(itemObject)) return false;
             return itemObject.StringId.Contains("weapon_gun_drakegun");
         }
 
         public static bool IsTrollhammerWeapon(this ItemObject itemObject)
         {
-            if (!IsAmmunitionItem(itemObject)) return false;
+            if (!IsRangedItem(itemObject)) return false;
             return itemObject.StringId.Contains("weapon_gun_trollhammer");
         }
 
         public static bool IsBlunderbussWeapon(this ItemObject itemObject)
         {
-            if (!IsAmmunitionItem(itemObject)) return false;
+            if (!IsRangedItem(itemObject)) return false;
             return itemObject.StringId.Contains("blunderbuss");
         }
 
         // ===== Ammo Type Checks =====
         public static bool IsDrakeGunCanister(this ItemObject itemObject)
         {
-            if (!IsAmmunitionItem(itemObject)) return false;
+            if (!IsAmmoItem(itemObject)) return false;
             return itemObject.StringId.Contains("canister") || itemObject.StringId.Contains("drakefire");
         }
 
         public static bool IsTrollhammerTorpedo(this ItemObject itemObject)
         {
-            if (!IsAmmunitionItem(itemObject)) return false;
+            if (!IsAmmoItem(itemObject)) return false;
             return itemObject.StringId.Contains("trollhammer_torpedo");
         }
 
         public static bool IsScatterShot(this ItemObject itemObject)
         {
-            if (!IsAmmunitionItem(itemObject)) return false;
+            if (!IsAmmoItem(itemObject)) return false;
             return itemObject.StringId.Contains("scatter");
         }
 
         public static bool IsGrenadeAmmo(this ItemObject itemObject)
         {
-            if (!IsAmmunitionItem(itemObject)) return false;
+            if (!IsAmmoItem(itemObject)) return false;
             return itemObject.StringId.Contains("grenade");
         }
 
@@ -340,7 +345,7 @@ namespace TOR_Core.Extensions
         /// </summary>
         public static bool IsDwarfShotgunWeapon(this ItemObject itemObject)
         {
-            if (!IsAmmunitionItem(itemObject)) return false;
+            if (!IsRangedItem(itemObject)) return false;
             return itemObject.StringId.Contains("grudge_raker") || itemObject.StringId.Contains("dronazgrund");
         }
 
@@ -349,7 +354,7 @@ namespace TOR_Core.Extensions
         /// </summary>
         public static bool IsDwarfBuckshot(this ItemObject itemObject)
         {
-            if (!IsAmmunitionItem(itemObject)) return false;
+            if (!IsAmmoItem(itemObject)) return false;
             return itemObject.StringId.Contains("tor_dw_weapon_ammo_buckshot");
         }
 
@@ -367,16 +372,36 @@ namespace TOR_Core.Extensions
         /// </summary>
         public static bool IsFlameThrowerItem(this ItemObject itemObject)
         {
-            if (!IsAmmunitionItem(itemObject)) return false;
+            if (!IsRangedOrAmmoItem(itemObject)) return false;
             return itemObject.IsDrakeGunWeapon() || itemObject.IsDrakeGunCanister();
         }
 
-        public static bool IsAmmunitionItem(this ItemObject itemObject)
+        public static bool IsRangedOrAmmoItem(this ItemObject itemObject)
         {
             if (itemObject?.WeaponComponent?.PrimaryWeapon == null) return false;
 
             return itemObject.WeaponComponent.PrimaryWeapon.IsRangedWeapon ||
                    itemObject.WeaponComponent.PrimaryWeapon.IsAmmo;
+        }
+
+        /// <summary>
+        /// Returns true when an item has a PrimaryWeapon that is Ranged.
+        /// </summary>
+        public static bool IsRangedItem(this ItemObject itemObject)
+        {
+            if (itemObject?.WeaponComponent?.PrimaryWeapon == null) return false;
+
+            return itemObject.WeaponComponent.PrimaryWeapon.IsRangedWeapon;
+        }
+        
+        /// <summary>
+        /// Returns true when an item has a PrimaryWeapon that is Ammo.
+        /// </summary>
+        public static bool IsAmmoItem(this ItemObject itemObject)
+        {
+            if (itemObject?.WeaponComponent?.PrimaryWeapon == null) return false;
+
+            return itemObject.WeaponComponent.PrimaryWeapon.IsAmmo;
         }
 
         public static void CopyPropertiesFrom(this ItemObject item, ItemObject other)

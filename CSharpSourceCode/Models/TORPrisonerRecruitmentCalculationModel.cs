@@ -1,6 +1,7 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
+using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
@@ -8,15 +9,21 @@ namespace TOR_Core.Models
     public class TORPrisonerRecruitmentCalculationModel : DefaultPrisonerRecruitmentCalculationModel
     {
         /// <summary>
-        /// Stops AI parties from recruiting cross-culture prisoners.
+        /// Stops AI parties from recruiting cross-culture prisoners. Sufficiently similar cultures, eg. greenskins and greenskin bandits are considered equivalent.
         /// </summary>
         /// <remarks>
         /// GetConformityChangePerHour is used to prevent conformity gain for both player and AI. This method sits as a fallback.
         /// </remarks>
         public override bool IsPrisonerRecruitable(PartyBase party, CharacterObject prisoner, out int conformityNeeded)
         {
+            //if (party.MobileParty?.IsBandit == true)
+            //{
+            //    conformityNeeded = 0;
+            //    return false;
+            //}
+
             var partyCulture = party.MobileParty?.ActualClan?.Culture ?? party.MapFaction?.Culture;
-            if (partyCulture != prisoner.Culture)
+            if (!partyCulture.IsEquivalentCulture(prisoner.Culture))
             {
                 conformityNeeded = 0;
                 return false;
@@ -37,15 +44,18 @@ namespace TOR_Core.Models
         }
 
         /// <summary>
-        /// Prevents cross-culture prisoner conversion.
+        /// Prevents cross-culture prisoner conversion. Sufficiently similar cultures, eg. greenskins and greenskin bandits are considered equivalent.
         /// </summary>
         /// <remarks>
         /// I originally tried CalculateRecruitableNumber, but it sets the recruitable number to 0 and stops you from clicking the "recruit prisoner" button despite conformity still being generated and the UI telling the player they can recruit X number despite the button being greyed out.
         /// </remarks>
         public override ExplainedNumber GetConformityChangePerHour(PartyBase party, CharacterObject prisoner)
         {
+            //if (party.MobileParty?.IsBandit == true) return new ExplainedNumber();
+
             var partyCulture = party.MobileParty?.ActualClan?.Culture ?? party.MapFaction?.Culture;
-            if (partyCulture != prisoner.Culture) return new ExplainedNumber();
+
+            if (!partyCulture.IsEquivalentCulture(prisoner.Culture)) return new ExplainedNumber();
             
             //Undead and treespirits have 0 wage and cause division errors during recruitment for ai parties in RecruitPrisonersCampaignBehavior. Conformity calculations cut off here to avoid wastage.
             if (!party.MobileParty.IsMainParty)

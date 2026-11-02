@@ -433,8 +433,7 @@ namespace TOR_Core.Models
             // Apply career passives for damage values
             TORDamageHelper.ApplyCareerPassives(attackerAgent, victimAgent, attackTypeMask, additionalDamagePercentages, resistancePercentages);
 
-            if (collisionData.IsMissile &&
-                TORDamageHelper.IsNonMagicalSiegeOrExplosiveAmmunition(attackInformation.AttackerWeapon.Item))
+            if (collisionData.IsMissile && attackInformation.AttackerWeapon.Item.IsExplosiveAmmunition())
             {
                 TORDamageHelper.ApplyNestCleansingExplosionResistance(victimAgent, resistancePercentages);
             }
@@ -1039,20 +1038,20 @@ namespace TOR_Core.Models
                 }
             }
 
-            if (agent.Character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION))
+            if (agent.Character.IsNecromancerChampion())
             {
                 if ((attackMask == AttackTypeMask.Melee && mask == PropertyMask.Attack))
                 {
                     if (agent.Controller == AgentControllerType.Player)
                     {
 
-                        if (mask == PropertyMask.Attack && agent.Character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION) && choices.Contains("LiberMortisKeystone"))
+                        if (mask == PropertyMask.Attack && agent.Character.IsNecromancerChampion() && choices.Contains("LiberMortisKeystone"))
                         {
                             var choice = TORCareerChoices.GetChoice("LiberMortisKeystone");
                             damageBonuses[(int)DamageType.Physical] += choice.GetPassiveValue();
                         }
 
-                        if (mask == PropertyMask.Attack && agent.Character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION) && choices.Contains("BooksOfNagashKeystone"))
+                        if (mask == PropertyMask.Attack && agent.Character.IsNecromancerChampion() && choices.Contains("BooksOfNagashKeystone"))
                         {
                             var choice = TORCareerChoices.GetChoice("BooksOfNagashKeystone");
                             damageBonuses[(int)DamageType.Magical] += choice.GetPassiveValue();
@@ -1203,39 +1202,57 @@ namespace TOR_Core.Models
             return result.ResultNumber;
         }
 
-        public bool ShouldCutThrough(AttackCollisionData collisionData, Agent attacker, Agent victim)
+        public bool ShouldCutThrough(AttackCollisionData collisionData, Agent attacker, Agent victim, in MissionWeapon attackerWeapon)
         {
+            if (victim == null || collisionData.CollisionResult != CombatCollisionResult.StrikeAgent ||
+                collisionData.AttackBlockedWithShield || collisionData.CollidedWithShieldOnBack || attackerWeapon.IsEmpty)
+                return false;
 
-            if (attacker.IsHero && attacker.WieldedWeapon.Item.HasAnyTrait())
+            if (attacker.IsHero && attackerWeapon.Item.HasAnyTrait())
             {
-                var traits = attacker.WieldedWeapon.Item.GetTraits();
-
+                var traits = attackerWeapon.Item.GetTraits();
                 if (traits.AnyQ(trait => trait.StatsTuple?.StatType == ItemTraitStatType.Cleave))
-                {
                     return true;
-                }
             }
-            if (attacker.HasSlice())
-                return true;
 
-            return false;
+            return attacker.HasSlice();
         }
+
 
         public override float CalculateRemainingMomentum(float originalMomentum, in Blow b, in AttackCollisionData collisionData, Agent attacker, Agent victim, in MissionWeapon attackerWeapon, bool isCrushThrough)
         {
-            float newMomentum = 0f;
+            if (isCrushThrough)
+                return originalMomentum * 0.3f;
 
-            if (isCrushThrough || ShouldCutThrough(collisionData, attacker, victim))//Sly : native uses 0.3 multiplier for CrushThrough, I've put it here directly to skip a method call and to have an equality between CrushThrough and CutThrough for remaining momentum. It would probably be more realistic if CutThrough had higher momentum as the weapon has less resistance from the body and armour and it has a far smaller contact area to mitigate received force. Future balance thought.
+
+            if (ShouldCutThrough(collisionData, attacker, victim, in attackerWeapon))
             {
-                newMomentum = originalMomentum * 0.3f;
+                var weaponWeight = attackerWeapon.Item.Weight;
+                var weaponClass = attackerWeapon.CurrentUsageItem.WeaponClass;
+                var effectiveWeaponWeight = weaponWeight;
+
+                if (weaponClass == WeaponClass.OneHandedAxe ||
+                    weaponClass == WeaponClass.TwoHandedAxe ||
+                    weaponClass == WeaponClass.Mace ||
+                    weaponClass == WeaponClass.TwoHandedMace)
+                {
+                    effectiveWeaponWeight *= 2f;
+                }
+
+                var armor = victim.GetBaseArmorEffectivenessForBodyPart(collisionData.VictimHitBodyPart);
+
+                var weightPower = Math.Pow(weaponWeight, 6);
+                var lightWeaponFactor = weightPower / (weightPower + Math.Pow(1.35, 6));
+                var momentumWeightFactor = effectiveWeaponWeight / (effectiveWeaponWeight + 2f);
+                var armorFactor = Math.Exp(-Math.Pow(armor / 58f, 7));
+
+                return originalMomentum * (float)(lightWeaponFactor * momentumWeightFactor * armorFactor);
             }
-            else
-            {
-                newMomentum = base.CalculateRemainingMomentum(originalMomentum, in b, in collisionData, attacker, victim, in attackerWeapon, isCrushThrough);
-            }
-                
-            return newMomentum;
+
+
+            return base.CalculateRemainingMomentum(originalMomentum, in b, in collisionData, attacker, victim, in attackerWeapon, isCrushThrough);
         }
+
 
         // for crush through blocks returns the overhead swing base chance coming purely from skill diff and ramps up with a exponential curve
         private static float CalculateExtraCtbOverheadChanceFromSkillDiff(int attackerSkillValue, int defenderSkillValue)
@@ -1296,34 +1313,11 @@ namespace TOR_Core.Models
 
         public override bool DecideCrushedThrough(Agent attackerAgent, Agent defenderAgent, float totalAttackEnergy, Agent.UsageDirection attackDirection, StrikeType strikeType, WeaponComponentData defendItem, bool isPassiveUsage)
         {
-            // Monster attacks (trolls, minotaurs, etc.) can only be blocked with shields
+            // Crushing ignores weapon blocks and parries
             bool isShieldBlock = defendItem != null && defendItem.IsShield;
-            if (attackerAgent != null && attackerAgent.HasMonsterAttack())
+            if (attackerAgent != null && attackerAgent.HasCrushing())
             {
-                if (defendItem == null || !defendItem.IsShield)
-                {
-                    return true;
-                }
-
-                EquipmentIndex equipmentIndex = attackerAgent.GetOffhandWieldedItemIndex();
-                if (equipmentIndex == EquipmentIndex.None)
-                {
-                    equipmentIndex = attackerAgent.GetPrimaryWieldedItemIndex();
-                }
-
-                if (((equipmentIndex != EquipmentIndex.None) ? attackerAgent.Equipment[equipmentIndex].CurrentUsageItem : null) == null || isPassiveUsage || strikeType != 0)
-                {
-                    return false;
-                }
-
-                float num = 58f;
-                if (defendItem != null && defendItem.IsShield)
-                {
-                    num *= 1.2f;
-                }
-
-                bool passed = totalAttackEnergy > num;
-                return passed;
+                return !isShieldBlock;
             }
 
             EquipmentIndex equipmentIndexNonMonster = attackerAgent.GetPrimaryWieldedItemIndex();
@@ -1445,7 +1439,8 @@ namespace TOR_Core.Models
             base.DecideWeaponCollisionReaction(registeredBlow, collisionData, attacker, defender, attackerWeapon, isFatalHit, isShruggedOff, momentumRemaining, out colReaction);
 
             if (defender == null) return;
-            if (collisionData.CollisionResult == CombatCollisionResult.HitWorld) return;
+            if (collisionData.CollisionResult != CombatCollisionResult.StrikeAgent) return;
+            if (collisionData.AttackBlockedWithShield || collisionData.CollidedWithShieldOnBack) return;
             if (momentumRemaining == 0) return;
 
             

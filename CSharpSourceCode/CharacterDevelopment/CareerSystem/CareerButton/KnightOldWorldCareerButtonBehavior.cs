@@ -215,7 +215,7 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
 
         if (characterObject.IsKnightUnit() && characterObject.Culture.StringId != TORConstants.Cultures.BRETONNIA) return true;
 
-        if (characterObject.HasAttribute(CharacterAttributes.KNIGHTLY))
+        if (characterObject.HasAttribute(CharacterAttributes.EMPIRE_KNIGHT))
         {
             return true;
         }

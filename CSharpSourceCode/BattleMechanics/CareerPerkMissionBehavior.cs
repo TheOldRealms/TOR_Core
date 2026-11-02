@@ -393,7 +393,7 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
 
-                if (affectorAgent.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION))
+                if (affectorAgent.Character.IsNecromancerChampion())
                 {
                     if (choices.Contains("GrimoireNecrisKeystone"))
                     {

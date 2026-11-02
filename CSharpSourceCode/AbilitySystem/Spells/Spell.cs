@@ -33,7 +33,7 @@ namespace TOR_Core.AbilitySystem.Spells
             {
                 var info = hero.GetExtendedInfo();
                 var windsCost = hero.GetEffectiveWindsCostForSpell(this);
-                info.AddCustomResource("WindsOfMagic", -windsCost);
+                info.AddCustomResource("WindsOfMagic", -windsCost);//Sly : this causes catalyst and other WoM bonuses to be lost on the first cast during battle if they exceeded maximum wom. A design choice will have to be made here to clarify intention in the future.
 
                 if (Template.StringID == "GazeUvMork" && hero.HasAttribute("FreeGazeUvMorkNextCast"))
                 {

@@ -12,6 +12,7 @@ using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.Reinforcements
 {
@@ -28,6 +29,7 @@ namespace TOR_Core.BattleMechanics.Reinforcements
         private readonly int[] _nextReinforcementSpawnPosition = new int[2];
         private readonly bool[] _pendingTroopsKeepSideAlive = new bool[2];
         private readonly Dictionary<Agent, BattleSideEnum> _spawnedReinforcements = new();
+        private readonly PreparedReinforcementTroop[] _preparedTroops = new PreparedReinforcementTroop[2];
 
         private DefaultBattleMissionAgentSpawnLogic _spawnLogic;
         private MissionBattleSideSpawnContext[] _spawnContexts;
@@ -61,6 +63,20 @@ namespace TOR_Core.BattleMechanics.Reinforcements
                 Origin = origin;
                 SpawnPosition = spawnPosition;
                 ArrivalGroup = arrivalGroup;
+            }
+        }
+
+        private sealed class PreparedReinforcementTroop
+        {
+            public AgentBuildData BuildData { get; }
+            public Equipment SpawnEquipment { get; }
+            public ItemObject FormationBannerItem { get; }
+
+            public PreparedReinforcementTroop(AgentBuildData buildData, Equipment spawnEquipment, ItemObject formationBannerItem)
+            {
+                BuildData = buildData;
+                SpawnEquipment = spawnEquipment;
+                FormationBannerItem = formationBannerItem;
             }
         }
 
@@ -102,6 +118,10 @@ namespace TOR_Core.BattleMechanics.Reinforcements
             _state = behavior.GetOrCreateBattleState(_battle);
             if (!_state.SnapshotTaken)
                 TakeReinforcementSnapshot();
+
+            var candidates = _state.Candidates.Where(x => !x.Resolved).ToList();
+            var candidateInfo = string.Join(", ", candidates.Select(x => $"{x.Party.StringId}:{x.Side}:{x.RemainingArrivalTime:F0}s"));
+            TORCommon.Log($"reinforcement candidates | battle={_battle.EventType} | count={candidates.Count} | {candidateInfo}", NLog.LogLevel.Info);
         }
 
         private void TakeReinforcementSnapshot()
@@ -242,11 +262,17 @@ namespace TOR_Core.BattleMechanics.Reinforcements
                     else
                     {
                         var party = candidate.Party;
+                        TORCommon.Log($"reinforcement declined | party={party.StringId} | side={candidate.Side}", NLog.LogLevel.Info);
                         var partyName = party.Army?.LeaderParty == party ? party.ArmyName : party.Name;
                         var message = new TextObject("{=tor_reinforcement_did_not_join}{PARTY_NAME} didn't join the battle.");
                         message.SetTextVariable("PARTY_NAME", partyName);
                         InformationManager.DisplayMessage(new InformationMessage(message.ToString()));
                     }
+                }
+                else
+                {
+                    var party = candidate.Party;
+                    TORCommon.Log($"reinforcement ineligible | party={party.StringId} | side={candidate.Side} | active={party.IsActive} | in_event={party.MapEvent != null} | settlement={party.CurrentSettlement != null} | besieger={party.BesiegerCamp != null}", NLog.LogLevel.Info);
                 }
             }
 
@@ -361,6 +387,10 @@ namespace TOR_Core.BattleMechanics.Reinforcements
 
         private void RegisterReinforcingParty(MobileParty party, BattleSideEnum side)
         {
+            var spawnPosition = GetReinforcementSpawnPosition(side);
+            if (!spawnPosition.HasValue)
+                return;
+
             var mapEventSide = _battle.GetMapEventSide(side);
             var partiesBeforeJoin = new HashSet<PartyBase>(_battle.InvolvedParties);
             var sideStrengthBeforeJoin = _battle.StrengthOfSide[(int)side];
@@ -385,7 +415,6 @@ namespace TOR_Core.BattleMechanics.Reinforcements
                 _battle.DefenderSide.CalculateRenownAndInfluenceValuesOnPartyInvolved(_battle.StrengthOfSide);
             }
 
-            var spawnPosition = GetReinforcementSpawnPosition(side);
             var allocatedTroops = (Dictionary<UniqueTroopDescriptor, MapEventParty>)AllocatedTroopsField.GetValue(mapEventSide);
             var arrivalGroup = new ReinforcementArrivalGroup(joinedParties, side == _battle.PlayerSide);
             var reinforcementGroup = new List<PendingReinforcementTroop>();
@@ -400,7 +429,7 @@ namespace TOR_Core.BattleMechanics.Reinforcements
                     allocatedTroops.Add(rosterElement.Descriptor, joinedParty);
 
                     var origin = new ReinforcementPartyAgentOrigin(mapEventSide, joinedParty.Party, rosterElement.Troop, rosterElement.Descriptor, _nextTroopRank++);
-                    reinforcementGroup.Add(new PendingReinforcementTroop(origin, spawnPosition, arrivalGroup));
+                    reinforcementGroup.Add(new PendingReinforcementTroop(origin, spawnPosition.Value, arrivalGroup));
                 }
             }
 
@@ -431,13 +460,18 @@ namespace TOR_Core.BattleMechanics.Reinforcements
             {
                 _delayedReinforcementGroups[sideIndex].Enqueue(reinforcementGroup);
             }
+
+            TORCommon.Log($"reinforcement joined | party={party.StringId} | side={side} | parties={joinedParties.Count} | troops={reinforcementGroup.Count} | wave={(joinCurrentWave ? "current" : "delayed")}", NLog.LogLevel.Info);
         }
 
         public void QueueReinforcementGroup(IEnumerable<IAgentOriginBase> origins, BattleSideEnum side)
         {
             var spawnPosition = GetReinforcementSpawnPosition(side);
+            if (!spawnPosition.HasValue)
+                return;
+
             foreach (var origin in origins)
-                _pendingTroops[(int)side].Enqueue(new PendingReinforcementTroop(origin, spawnPosition));
+                _pendingTroops[(int)side].Enqueue(new PendingReinforcementTroop(origin, spawnPosition.Value));
         }
 
         private void ReleaseDelayedReinforcements(BattleSideEnum side)
@@ -472,7 +506,11 @@ namespace TOR_Core.BattleMechanics.Reinforcements
                 var escapePosition = fleePosition.GetClosestPointToEscape(referencePosition);
                 var escapeWorldPosition = new WorldPosition(Mission.Scene, UIntPtr.Zero, escapePosition, false);
                 if (Mission.Scene.GetPathDistanceBetweenPositions(ref formationWorldPosition, ref escapeWorldPosition, 0f, out var pathDistance))
-                    validSpawnPositions.Add((pathDistance, escapeWorldPosition.GetGroundVec3MT()));
+                {
+                    var groundPosition = escapeWorldPosition.GetGroundVec3MT();
+                    if (!float.IsNaN(groundPosition.z))
+                        validSpawnPositions.Add((pathDistance, groundPosition));
+                }
             }
 
             var spawnPositions = _reinforcementSpawnPositions[(int)boundarySide];
@@ -481,14 +519,34 @@ namespace TOR_Core.BattleMechanics.Reinforcements
                 spawnPositions.Add(position.Position);
 
             if (spawnPositions.Count == 0)
-                spawnPositions.Add(Mission.GetClosestBoundaryPosition(referencePosition).ToVec3(0f));
+            {
+                var boundaryPosition = Mission.GetClosestBoundaryPosition(referencePosition);
+                var reachablePosition = Mission.Scene.GetLastPointOnNavigationMeshFromWorldPositionToDestination(ref formationWorldPosition, boundaryPosition);
+                if (reachablePosition.IsValid)
+                {
+                    var reachableWorldPosition = new WorldPosition(Mission.Scene, UIntPtr.Zero, reachablePosition, false);
+                    if (reachableWorldPosition.GetNavMeshMT() != UIntPtr.Zero &&
+                        Mission.Scene.GetPathDistanceBetweenPositions(ref formationWorldPosition, ref reachableWorldPosition, 0f, out _))
+                    {
+                        var groundPosition = reachableWorldPosition.GetGroundVec3MT();
+                        if (!float.IsNaN(groundPosition.z))
+                            spawnPositions.Add(groundPosition);
+                    }
+                }
+
+                if (spawnPositions.Count == 0)
+                    TORCommon.Log($"reinforcement spawn not found | scene={Mission.Scene.GetName()} | side={boundarySide} | flee_positions={Mission.GetFleePositionsForSide(boundarySide).Count} | fallback_reachable={reachablePosition.IsValid} | formation={referencePosition} | boundary={boundaryPosition}", NLog.LogLevel.Warn);
+            }
         }
 
-        private Vec3 GetReinforcementSpawnPosition(BattleSideEnum side)
+        private Vec3? GetReinforcementSpawnPosition(BattleSideEnum side)
         {
             // siege relief forces comes from the attackers side since it is an outside force breaking in
             var boundarySide = _battle.IsSiegeAssault ? BattleSideEnum.Attacker : side;
             var spawnPositions = _reinforcementSpawnPositions[(int)boundarySide];
+            if (spawnPositions.Count == 0)
+                return null;
+
             var nextPosition = _nextReinforcementSpawnPosition[(int)boundarySide]++;
             return spawnPositions[nextPosition % spawnPositions.Count];
         }
@@ -510,31 +568,52 @@ namespace TOR_Core.BattleMechanics.Reinforcements
             }
 
             // rechecking shared agent cap for an upcoming reinforcement wave and outer reinforcements
-            var nextTroop = queue.Peek();
-            var requiredAgentSlots = nextTroop.Origin.Troop.HasMount() ? 2 : 1;
-            if (Mission.AllAgents.Count + requiredAgentSlots > DefaultBattleMissionAgentSpawnLogic.MaxNumberOfAgentsForMission)
+            var availableAgentSlots = DefaultBattleMissionAgentSpawnLogic.MaxNumberOfAgentsForMission - Mission.AllAgents.Count;
+            if (availableAgentSlots <= 0)
                 return false;
 
-            var isPlayerSide = side == _battle.PlayerSide;
-            var team = TaleWorlds.MountAndBlade.Mission.GetAgentTeam(nextTroop.Origin, isPlayerSide);
-            var initialDirection = (Mission.GetFormationSpawnPosition(team, FormationClass.Infantry) - nextTroop.SpawnPosition.AsVec2).Normalized();
+            var nextTroop = queue.Peek();
+            var preparedTroop = _preparedTroops[(int)side];
+            if (preparedTroop == null)
+            {
+                var isPlayerSide = side == _battle.PlayerSide;
+                var team = TaleWorlds.MountAndBlade.Mission.GetAgentTeam(nextTroop.Origin, isPlayerSide);
+                var initialDirection = (Mission.GetFormationSpawnPosition(team, FormationClass.Infantry) - nextTroop.SpawnPosition.AsVec2).Normalized();
 
-            // fow now reinforcing a defensive siege spawns with mounts. tbd
-            var agent = Mission.SpawnTroop(
-                nextTroop.Origin,
-                isPlayerSide,
-                hasFormation: true,
-                spawnWithHorse: true,
-                isReinforcement: true,
-                formationTroopCount: 1,
-                formationTroopIndex: 0,
-                isAlarmed: true,
-                wieldInitialWeapons: true,
-                initialPosition: nextTroop.SpawnPosition,
-                initialDirection: initialDirection,
-                formationIndex: FormationClass.Unset);
+                // fow now reinforcing a defensive siege spawns with mounts. tbd
+                var agentBuildData = Mission.GetAgentBuildDataToSpawnTroop(
+                    nextTroop.Origin,
+                    isPlayerSide,
+                    hasFormation: true,
+                    spawnWithHorse: true,
+                    isReinforcement: true,
+                    formationTroopCount: 1,
+                    formationTroopIndex: 0,
+                    initialPosition: nextTroop.SpawnPosition,
+                    initialDirection: initialDirection,
+                    formationIndex: FormationClass.Unset);
+
+                if (agentBuildData.AgentCharacter.IsHero)
+                    agentBuildData.FixedEquipment(true);
+
+                var spawnEquipment = Mission.DecideAgentSpawnEquipment(agentBuildData, out var formationBannerItem);
+                preparedTroop = new PreparedReinforcementTroop(agentBuildData, spawnEquipment, formationBannerItem);
+            }
+
+            var mount = preparedTroop.SpawnEquipment[EquipmentIndex.ArmorItemEndSlot].Item;
+            var requiredAgentSlots = mount != null && mount.HasHorseComponent && mount.HorseComponent.IsRideable ? 2 : 1;
+            if (requiredAgentSlots > availableAgentSlots)
+            {
+                _preparedTroops[(int)side] = preparedTroop;
+                return false;
+            }
+
+            var agent = Mission.SpawnTroopWithAgentBuildDataAndEquipment(
+                preparedTroop.BuildData, preparedTroop.SpawnEquipment, preparedTroop.FormationBannerItem,
+                isAlarmed: true, wieldInitialWeapons: true);
 
             queue.Dequeue();
+            _preparedTroops[(int)side] = null;
             _spawnedReinforcements.Add(agent, side);
             ChangeActiveTroopCount(side, 1);
 
@@ -542,6 +621,7 @@ namespace TOR_Core.BattleMechanics.Reinforcements
             {
                 nextTroop.ArrivalGroup.Notified = true;
                 ReinforcementArrivalNotifier.Show(nextTroop.ArrivalGroup.JoinedParties, nextTroop.ArrivalGroup.ReinforcesPlayer);
+                TORCommon.Log($"reinforcement arrival notified | party={nextTroop.ArrivalGroup.JoinedParties[0].Party.Id} | side={side} | troop={nextTroop.Origin.Troop.StringId}", NLog.LogLevel.Info);
             }
 
             if (queue.Count == 0 && _pendingTroopsKeepSideAlive[(int)side])
@@ -555,6 +635,15 @@ namespace TOR_Core.BattleMechanics.Reinforcements
 
         protected override void OnEndMission()
         {
+            if (_spawnLogic != null)
+            {
+                var unresolved = _state.Candidates.Count(x => !x.Resolved);
+                var pending = _pendingTroops.Sum(x => x.Count);
+                var delayed = _delayedReinforcementGroups.Sum(x => x.Count);
+                if (unresolved > 0 || pending > 0 || delayed > 0)
+                    TORCommon.Log($"reinforcement unfinished | unresolved={unresolved} | pending={pending} | delayed_groups={delayed}", NLog.LogLevel.Info);
+            }
+
             ReinforcementArrivalNotifier.ResetArrivalNotification();
         }
 
