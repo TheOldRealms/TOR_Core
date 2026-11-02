@@ -143,10 +143,13 @@ namespace TOR_Core.Missions.AmbushMission
         public override void OnMissionResultReady(MissionResult missionResult)
         {
             base.OnMissionResultReady(missionResult);
+            TORCommon.Log(LogLevel.Info, "[AmbushedEndLogic] OnMissionResultReady fired. missionResult="
+                + (missionResult != null ? "ok" : "null"));
             if (missionResult == null) return;
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
             if (behavior == null) return;
             var outcome = behavior.LastAmbushedOutcome;
+            TORCommon.Log(LogLevel.Info, "[AmbushedEndLogic] OnMissionResultReady outcome=" + outcome);
 
             if (outcome == AmbushedOutcome.AmbushRepelled)
             {
@@ -160,6 +163,18 @@ namespace TOR_Core.Missions.AmbushMission
             if (outcome == AmbushedOutcome.AmbushedFled
                 || outcome == AmbushedOutcome.AmbushedHeroWounded)
             {
+                // Snapshot the spawned victim-side participants NOW —
+                // Mission.Current goes null between here and the outcome
+                // menu's init-delegate, so the controller's list isn't
+                // reachable from the menu. This in-mission callback is
+                // the only reliable moment.
+                var controller = Mission.GetMissionBehavior<AmbushMissionController>();
+                int listCount = controller?.VictimSideSpawnedCharacters?.Count ?? -1;
+                TORCommon.Log(LogLevel.Info, "[AmbushedEndLogic] stash: controller="
+                    + (controller != null ? "ok" : "null")
+                    + " victimCharacters.Count=" + listCount);
+                behavior.StashSpawnedCharactersForPhaseF(controller?.VictimSideSpawnedCharacters);
+
                 // Vanilla leaves PlayerEncounter alive for these outcomes
                 // (MissionResult.CreateSuccessful doesn't close the
                 // encounter the way SetPlayerVictorious does). Call
@@ -183,9 +198,25 @@ namespace TOR_Core.Missions.AmbushMission
                 : MissionResult.CreateDefeated(Mission);
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
             if (behavior != null) behavior.LastAmbushedOutcome = outcome;
-            TORCommon.Log(LogLevel.Info, 
+            TORCommon.Log(LogLevel.Info,
                 "[AmbushedEndLogic] outcome=" + outcome + " successful=" + successful
                 + " (" + reason + ")");
+
+            // Stash the spawned list here as well — SetOutcome runs mid-
+            // mission tick, so Mission + controller are guaranteed alive.
+            // OnMissionResultReady may or may not fire on vanilla's exit
+            // path (seen empirically failing); don't rely on it alone.
+            if (behavior != null
+                && (outcome == AmbushedOutcome.AmbushedFled
+                    || outcome == AmbushedOutcome.AmbushedHeroWounded))
+            {
+                var controller = Mission.GetMissionBehavior<AmbushMissionController>();
+                int listCount = controller?.VictimSideSpawnedCharacters?.Count ?? -1;
+                TORCommon.Log(LogLevel.Info, "[AmbushedEndLogic] SetOutcome stash: controller="
+                    + (controller != null ? "ok" : "null")
+                    + " victimCharacters.Count=" + listCount);
+                behavior.StashSpawnedCharactersForPhaseF(controller?.VictimSideSpawnedCharacters);
+            }
         }
     }
 }
