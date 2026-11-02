@@ -291,6 +291,8 @@
     <Compile Include="CampaignMechanics\Ambush\AmbushOutcome.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushPrepOverlayMapView.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushPrepOverlayVM.cs" />
+    <Compile Include="CampaignMechanics\MapNotifications\AmbushDetectedMapNotification.cs" />
+    <Compile Include="CampaignMechanics\MapNotifications\AmbushDetectedNotificationItemVM.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushOutcomeTier.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushRecord.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushedOutcome.cs" />

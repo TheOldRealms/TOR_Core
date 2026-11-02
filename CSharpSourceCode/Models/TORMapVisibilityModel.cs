@@ -118,6 +118,13 @@ namespace TOR_Core.Models
                 // on IsVisible since the whole point is keeping them
                 // visible when vanilla would otherwise hide them.
                 if (ai.IsPartyRevealed(mobileParty)) return true;
+                // Player-detection persistence (§6, deferred-landed): a
+                // party the player just spotted stays visible for
+                // PlayerDetectionRevealHours even if they move out of
+                // Scouting range. Short-lived vs the full IsPartyRevealed
+                // window so a genuinely-stealthy party can still fade if
+                // the player loses them for a while.
+                if (ai.IsRecentlyPlayerDetected(mobileParty)) return true;
             }
             return base.IsVisibilityPersistent(mobileParty);
         }

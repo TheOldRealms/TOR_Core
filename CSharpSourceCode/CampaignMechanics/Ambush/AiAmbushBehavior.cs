@@ -48,6 +48,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private Dictionary<MobileParty, CampaignTime> _preppingPartiesStartedAt
             = new Dictionary<MobileParty, CampaignTime>();
 
+        // Player-spotted parties — timestamp when the quarter-hourly
+        // detection roll succeeded. Within model.PlayerDetectionRevealHours
+        // from this timestamp, TORMapVisibilityModel.IsVisibilityPersistent
+        // returns true for the party, holding them visible on the
+        // player's map despite fog-of-war distance. Short-lived: 2h by
+        // default. Design: ai-ambushes-player-design.md §6.
+        private Dictionary<MobileParty, CampaignTime> _playerDetectedParties
+            = new Dictionary<MobileParty, CampaignTime>();
+
         // The single source of truth for all ambush-cooldown and
         // reveal logic. Every record is one ambush incident; every
         // query ("is party X on cooldown?", "is party Y a repelled
@@ -267,6 +276,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             dataStore.SyncData("_stealthedParties", ref _stealthedParties);
             dataStore.SyncData("_ambushRecords", ref _ambushRecords);
             dataStore.SyncData("_preppingPartiesStartedAt", ref _preppingPartiesStartedAt);
+            dataStore.SyncData("_playerDetectedParties", ref _playerDetectedParties);
         }
 
         /// <summary>True while <paramref name="party"/> is in AI stealth
@@ -313,6 +323,38 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             if (party == null || !_stealthedParties.ContainsKey(party)) return;
             LeaveAiStealth(party);
+        }
+
+        /// <summary>Timestamp a player-detection event on
+        /// <paramref name="party"/>. Within
+        /// <c>TORAmbushModel.PlayerDetectionRevealHours</c> from now,
+        /// <see cref="IsRecentlyPlayerDetected"/> returns true, which
+        /// <c>TORMapVisibilityModel.IsVisibilityPersistent</c> uses to
+        /// hold the party visible on the player's map despite fog-of-war.
+        /// Called from <c>AmbushCampaignBehavior.RunPlayerDetectsAiPass</c>
+        /// right after the detection roll succeeds. Idempotent — a repeat
+        /// detection resets the window.</summary>
+        public void RecordPlayerDetection(MobileParty party)
+        {
+            if (party == null) return;
+            _playerDetectedParties[party] = CampaignTime.Now;
+        }
+
+        /// <summary>True if <paramref name="party"/> was spotted by the
+        /// player within the <c>PlayerDetectionRevealHours</c> window.
+        /// Called from <see cref="TORMapVisibilityModel.IsVisibilityPersistent"/>.
+        /// Lazy prune: expired entries are dropped here instead of in a
+        /// dedicated tick so the window check and the cleanup share the
+        /// same pass.</summary>
+        public bool IsRecentlyPlayerDetected(MobileParty party)
+        {
+            if (party == null || _playerDetectedParties.Count == 0) return false;
+            if (!_playerDetectedParties.TryGetValue(party, out var at)) return false;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            float windowHours = model?.PlayerDetectionRevealHours ?? 2f;
+            if ((CampaignTime.Now - at).ToHours < windowHours) return true;
+            _playerDetectedParties.Remove(party);
+            return false;
         }
 
         /// <summary>Count already-stealthed friendly parties within
@@ -596,7 +638,21 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // Either way, the player is "alert" and can't be surprised
             // again for the cooldown window. Prevents the "two different
             // ambushers back-to-back" scenario entirely.
-            if (behavior != null && behavior.IsOnAmbushCooldown) return false;
+            //
+            // Positive-evidence log: seeing this line in TOR_log confirms
+            // the AmbushGuarding (TORAmbushModel.AmbushGuardingHours)
+            // protection is firing for Phase F victim records. If the
+            // 3h window elapses or no record is written, the gate falls
+            // through and the AI tick continues as normal — meaning the
+            // ABSENCE of this line across a few successful post-flee
+            // ticks is not itself evidence of a bug. The user cannot
+            // directly force a re-ambush within the window; use the
+            // log line as cross-check.
+            if (behavior != null && behavior.IsOnAmbushCooldown)
+            {
+                TORCommon.Log(LogLevel.Info, "[AI Ambush] player skip: on guarding cooldown");
+                return false;
+            }
 
             // Only ambush when the player is actually on the map screen.
             // If any other GameState is active (options, inventory, encounter,
@@ -904,6 +960,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             if (party?.MobileParty == null) return;
             _stealthedParties.Remove(party.MobileParty);
             _preppingPartiesStartedAt.Remove(party.MobileParty);
+            _playerDetectedParties.Remove(party.MobileParty);
             // Null out any record referencing the removed party so
             // queries don't match dangling refs. Keep the record (for
             // history completeness); nulled refs just stop matching.

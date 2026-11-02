@@ -590,6 +590,17 @@ namespace TOR_Core.Models
         /// slightly farther out but moving fast.</summary>
         public virtual float AiPrepPursuitRejectionRadius => 25f;
 
+        /// <summary>Short-lived persistence window after the player spots
+        /// a stealthed AI party via the quarter-hourly detection roll.
+        /// For the window length the detected party stays visible on the
+        /// player's map regardless of fog-of-war distance. Lets the
+        /// player actually chase the detected party instead of having
+        /// them fade back into fog the second they walk out of Scouting
+        /// range. Full design in ai-ambushes-player-design.md §6
+        /// "Deferred — persistent on-map display for the detected party."
+        /// </summary>
+        public virtual float PlayerDetectionRevealHours => 2f;
+
         /// <summary>Game-minutes needed to set up an ambush, given the
         /// party's size and troop composition. See §19 for the derivation
         /// and target curve (solo scout → ~12 min, 300-man knight army

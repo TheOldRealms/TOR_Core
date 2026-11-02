@@ -588,6 +588,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 if (!model.TryDetect(mainParty, stealthed, ai.GetStealthEnteredAt(stealthed), out _))
                     continue;
 
+                // Record detection BEFORE BreakStealthByDetection — the
+                // latter clears the party from _stealthedParties, which
+                // means the IsPartyStealthed check won't short-circuit
+                // IsVisibilityPersistent. The player-detection record
+                // takes over for the short reveal window.
+                var spotPos = stealthed.Position.ToVec2();
+                ai.RecordPlayerDetection(stealthed);
                 ai.BreakStealthByDetection(stealthed);
 
                 var who = stealthed.LeaderHero?.Name?.ToString()
@@ -596,9 +603,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 var text = new TextObject("{=!}{NAME} was spotted lying in wait!");
                 text.SetTextVariable("NAME", who);
                 Campaign.Current?.CampaignInformationManager?.NewMapNoticeAdded(
-                    new CampaignMechanics.MapNotifications.TORMapNotification(
+                    new CampaignMechanics.MapNotifications.AmbushDetectedMapNotification(
                         text, "tor_ambush_detected",
-                        "event:/ui/notification/hideout_found"));
+                        "event:/ui/notification/hideout_found",
+                        spotPos));
 
                 // Mirror vanilla's OnHideoutSpotted → Scouting XP for the
                 // Scout role. Partied-hero fallback to MainHero when no
