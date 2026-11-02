@@ -1476,7 +1476,7 @@ namespace TOR_Core.Utilities
         /// </summary>
         private const float DebugAmbusherSearchRadius = 30f;
 
-        [CommandLineFunctionality.CommandLineArgumentFunction("trigger_ambushed", "tor_ambush")]
+        [CommandLineFunctionality.CommandLineArgumentFunction("trigger_ambushed", "tor")]
         public static string TriggerAmbushed(List<string> arguments)
         {
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))

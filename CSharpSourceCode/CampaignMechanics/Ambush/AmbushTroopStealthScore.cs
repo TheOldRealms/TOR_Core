@@ -124,7 +124,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             float score = Baseline;
             score += RaceFactor(c);
             if (c.IsMounted) score += MountedPenalty;
-            if (c.HasAttribute(CharacterAttributes.KNIGHTLY)) score += KnightlyPenalty;
+            if (IsKnightlyTier(c)) score += KnightlyPenalty;
             score -= WeightPenalty(c);
             // MasterAmbusher: floor at a specialist-worthy value, don't
             // let mount / plate / weight pull it below. Deliberately
@@ -138,6 +138,19 @@ namespace TOR_Core.CampaignMechanics.Ambush
             if (score < ScoreFloor) score = ScoreFloor;
             if (score > ScoreCeiling) score = ScoreCeiling;
             return score;
+        }
+
+        /// <summary>True when the troop carries any of TOR's culture-
+        /// specific knightly-tier attribute tags. There's no generic
+        /// "Knightly" flag — knights are marked per culture
+        /// (<c>EmpireKnight</c>, <c>BretonnianKnight</c>). Grouped here
+        /// so new culture-knight tags (Blood Knight, Chaos Knight, …)
+        /// can extend the clause in one spot without touching
+        /// <see cref="ComputeBase"/>.</summary>
+        private static bool IsKnightlyTier(CharacterObject c)
+        {
+            return c.HasAttribute(CharacterAttributes.EMPIRE_KNIGHT)
+                || c.HasAttribute(CharacterAttributes.BRETONNIAN_KNIGHT);
         }
 
         private static float RaceFactor(CharacterObject c)

@@ -160,18 +160,19 @@ namespace TOR_Core.Missions.AmbushMission
             if (outcome == AmbushedOutcome.AmbushedFled
                 || outcome == AmbushedOutcome.AmbushedHeroWounded)
             {
-                // These outcomes don't close PlayerEncounter, so
-                // OnPlayerBattleEnd never fires for them. Queue the
-                // narrative outcome menu — AmbushCampaignBehavior's
-                // OnCampaignTick activates it once the mission has
-                // fully torn down. See outcome-graph.md.
-                var ambusher = Campaign.Current
-                    ?.GetCampaignBehavior<AiAmbushBehavior>()
-                    ?.CurrentAmbusherOnPlayer;
-                behavior.QueuePhaseFOutcomeMenu(outcome, ambusher);
+                // Vanilla leaves PlayerEncounter alive for these outcomes
+                // (MissionResult.CreateSuccessful doesn't close the
+                // encounter the way SetPlayerVictorious does). Call
+                // Finish() explicitly so the encounter resolves and
+                // OnPlayerBattleEnd fires — that handler activates
+                // AmbushedFledOutcomeMenuId with the proper flavor /
+                // branch state.
+                if (PlayerEncounter.Current != null)
+                    PlayerEncounter.Finish(forcePlayerOutFromSettlement: false);
             }
             // AmbushedWiped: MissionResult.CreateDefeated — vanilla's
-            // defeat flow fires OnPlayerBattleEnd naturally.
+            // defeat flow closes PlayerEncounter and fires
+            // OnPlayerBattleEnd naturally.
         }
 
         private void SetOutcome(AmbushedOutcome outcome, bool successful, string reason)
