@@ -823,6 +823,30 @@ namespace TOR_Core.CampaignMechanics.Ambush
             foreach (var p in snapshot) EndBluffOn(p);
         }
 
+        /// <summary>Bluff every party on the ambusher's side of the
+        /// current PlayerEncounter MapEvent. The initial trigger only
+        /// knows the lead ambusher party; vanilla pulls in nearby
+        /// hostile parties onto the same MapEvent side when the
+        /// encounter opens (joined-side reinforcements). Each of them
+        /// otherwise exposes real troop counts in the hover tooltip
+        /// since IsInfoHidden isn't set on them.</summary>
+        public void BeginBluffOnAmbusherSide(MobileParty ambusher)
+        {
+            if (ambusher == null) return;
+            BeginBluffOn(ambusher);
+            var mapEvent = ambusher.MapEvent;
+            if (mapEvent == null) return;
+            var ambusherSide = ambusher.Party?.Side ?? BattleSideEnum.None;
+            if (ambusherSide == BattleSideEnum.None) return;
+            var side = mapEvent.GetMapEventSide(ambusherSide);
+            if (side == null) return;
+            foreach (var mep in side.Parties)
+            {
+                var p = mep.Party?.MobileParty;
+                if (p != null && p != ambusher) BeginBluffOn(p);
+            }
+        }
+
         /// <summary>First-flee cost. For each troop type in the committed
         /// snapshot, shifts <c>ceil(startCount * AmbushedFledWoundShare)</c>
         /// of that type from healthy → wounded on the current roster,
@@ -935,6 +959,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 TaleWorlds.CampaignSystem.Encounters.PlayerEncounter.StartBattle();
                 TaleWorlds.CampaignSystem.Encounters.PlayerEncounter.Update();
             }
+            // Vanilla pulls nearby hostile parties onto the ambusher's
+            // MapEvent side as the encounter opens — those joiners have
+            // their own IsInfoHidden=false unless we flip them here.
+            BeginBluffOnAmbusherSide(ambusher);
         }
 
         private static void ApplyMoraleDelta(float delta)

@@ -826,21 +826,18 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // outcome Y" as separate events.
             CurrentAmbusherOnPlayer = ambusher;
 
-            // §6 bluff — hide the ambusher's troop count across the
-            // vanilla UI pipeline (nameplate Count, encounter screen
-            // party-count labels, troop composition tooltips). Vanilla
-            // itself reads MobileParty.IsInfoHidden; the Phase F outcome
-            // handlers clear this when the encounter resolves (vanish,
-            // repelled, double-flee, etc.).
-            Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>()
-                ?.BeginBluffOn(ambusher);
-
             PlayerEncounter.RestartPlayerEncounter(PartyBase.MainParty, ambusher.Party, false);
             if (PlayerEncounter.Battle == null)
             {
                 PlayerEncounter.StartBattle();
                 PlayerEncounter.Update();
             }
+            // §6 bluff — hide troop counts across the whole ambusher
+            // side (lead ambusher + any parties vanilla pulled onto the
+            // same MapEvent side as reinforcements). Called AFTER
+            // RestartPlayerEncounter so MapEvent.Parties is populated.
+            Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>()
+                ?.BeginBluffOnAmbusherSide(ambusher);
             GameMenu.ActivateGameMenu(AmbushCampaignBehavior.AmbushedIntroMenuId);
             TORCommon.Say("Ambush! " + (ambusher.LeaderHero?.Name?.ToString()
                                         ?? ambusher.Name?.ToString()
