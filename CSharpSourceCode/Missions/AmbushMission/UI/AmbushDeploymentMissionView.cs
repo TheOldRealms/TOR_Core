@@ -1,49 +1,57 @@
+using NLog;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade.View.MissionViews.Singleplayer;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Missions.AmbushMission.UI
 {
     /// <summary>
-    /// Replaces vanilla's <see cref="DeploymentMissionView"/> for the ambush
-    /// mission type only. Keeps vanilla's deployment-mode freeze (owned by
-    /// <c>BattleDeploymentMissionController</c> / <c>BattleDeploymentHandler</c>)
-    /// but swaps out the drag-polygon UI for ours.
+    /// Replaces vanilla's <see cref="DeploymentMissionView"/> for ambush
+    /// missions. Keeps vanilla's deployment-mode freeze (owned by
+    /// <c>BattleDeploymentMissionController</c> + <c>BattleDeploymentHandler</c>)
+    /// but suppresses terrain click-to-place input so the only placement
+    /// mechanism is spot-assignment via the sidebar UI.
     ///
-    /// When the player is the ambusher, this view is a placeholder — a
-    /// subsequent task fills the sidebar + overlay + Confirm UI. For now the
-    /// drag-polygon UI is gone (we replaced the view) and vanilla's freeze
-    /// stays in effect until something triggers end-of-deployment.
-    ///
-    /// When the player is the ambush victim, <see cref="AmbushMissionController"/>
-    /// auto-triggers end-of-deployment via the vanilla controller's
-    /// OnAfterSetupTeams event — this view has nothing to do on that path.
-    ///
-    /// On a non-ambush mission (defensive — shouldn't happen since we can't
-    /// register this view conditionally) the override is a no-op pass-through.
+    /// Registered by Harmony-postfixing <c>SandBox.View.ViewCreator.OpenBattleMission</c>:
+    /// vanilla instantiates DeploymentMissionView directly with <c>new</c>
+    /// rather than via the ViewCreatorManager override registry, so the
+    /// <c>[OverrideView]</c> attribute has no effect on it. The postfix
+    /// removes vanilla's instance and adds ours when the mission is an
+    /// ambush.
     /// </summary>
-    [OverrideView(typeof(DeploymentMissionView))]
     public class AmbushDeploymentMissionView : DeploymentMissionView
     {
+        private bool _isAmbusherPath;
+        private int _suspendLogCounter;
+
         public override void AfterStart()
         {
             base.AfterStart();
-            // The victim-side auto-skip lives in AmbushMissionController via
-            // BattleDeploymentMissionController.OnAfterSetupTeams. On the
-            // ambusher side, suppress vanilla's terrain click-to-place input.
-            // Our mechanic is spot-assignment via the sidebar UI only; letting
-            // the player nudge formations by clicking the ground breaks the
-            // layout (no global "forward" direction) and can glitch troops.
             var controller = Mission.GetMissionBehavior<AmbushMissionController>();
-            if (controller == null)
+            _isAmbusherPath = controller != null && controller.IsPlayerAmbusher;
+            TORCommon.Log(LogLevel.Info,
+                "[AmbushDeploymentView] AfterStart: ambusherPath=" + _isAmbusherPath
+                + " orderTroopPlacer=" + (_orderTroopPlacer == null ? "null" : "set"));
+        }
+
+        public override void OnMissionScreenTick(float dt)
+        {
+            base.OnMissionScreenTick(dt);
+            if (!_isAmbusherPath) return;
+            // Only suppress during the deployment phase. Once FinishDeployment
+            // flips the mission into Battle mode, give orders via terrain
+            // click must work normally.
+            if (Mission.Mode != TaleWorlds.Core.MissionMode.Deployment) return;
+            var placer = _orderTroopPlacer
+                ?? Mission.GetMissionBehavior<TaleWorlds.MountAndBlade.View.MissionViews.Order.OrderTroopPlacer>();
+            if (placer == null) return;
+            if (!placer.SuspendTroopPlacer)
             {
-                TORCommon.Say("[AmbushDeploymentView] no controller, passthrough");
-                return;
-            }
-            if (controller.IsPlayerAmbusher && _orderTroopPlacer != null)
-            {
-                _orderTroopPlacer.SuspendTroopPlacer = true;
+                placer.SuspendTroopPlacer = true;
+                if (_suspendLogCounter++ < 3)
+                {
+                    TORCommon.Log(LogLevel.Info,"[AmbushDeploymentView] SuspendTroopPlacer flipped true (deployment)");
+                }
             }
         }
     }
