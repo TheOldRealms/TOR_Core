@@ -334,6 +334,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// Called from <c>AmbushCampaignBehavior.RunPlayerDetectsAiPass</c>
         /// right after the detection roll succeeds. Idempotent — a repeat
         /// detection resets the window.</summary>
+        /// <summary>Enumerate currently-prepping AI parties. Used by
+        /// <c>AmbushCampaignBehavior.OnSessionLaunched</c> to restore the
+        /// runtime-only bluff shadow after save/load.</summary>
+        public IEnumerable<MobileParty> PreppingParties => _preppingPartiesStartedAt.Keys;
+
         public void RecordPlayerDetection(MobileParty party)
         {
             if (party == null) return;
@@ -821,6 +826,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // outcome Y" as separate events.
             CurrentAmbusherOnPlayer = ambusher;
 
+            // §6 bluff — hide the ambusher's troop count across the
+            // vanilla UI pipeline (nameplate Count, encounter screen
+            // party-count labels, troop composition tooltips). Vanilla
+            // itself reads MobileParty.IsInfoHidden; the Phase F outcome
+            // handlers clear this when the encounter resolves (vanish,
+            // repelled, double-flee, etc.).
+            Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>()
+                ?.BeginBluffOn(ambusher);
+
             PlayerEncounter.RestartPlayerEncounter(PartyBase.MainParty, ambusher.Party, false);
             if (PlayerEncounter.Battle == null)
             {
@@ -852,6 +866,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // the prep/finalize cycle misses, the party unfreezes on its
             // own instead of being permanently invisible to other AI.
             party.IgnoreByOtherPartiesTill(CampaignTime.HoursFromNow(MaxStealthHoldHours));
+            // §6 bluff — prepping parties are visible on the map (per
+            // §19 fiction) but their troop counts hide. All ambushing
+            // parties bluff; perk-driven "see through bluff" is a
+            // future design extension.
+            Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>()
+                ?.BeginBluffOn(party);
             // Prep does NOT vanish the party from the map — they're
             // still visibly moving into position. Only after finalize
             // do they become invisible (§19 fiction + chase-geometry
@@ -907,6 +927,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // justify an ambush cooldown. Pair-ambush records (player
             // or AI victim) get added separately at the trigger sites.
             RecordAmbush(party, null, repelled: false);
+            // §6 bluff clear — leaving stealth exposes the party,
+            // numbers back to normal. Safe against vanilla-set hiding
+            // (hideouts etc.) because BeginBluffOn only tracks parties
+            // we flipped from false → true.
+            Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>()
+                ?.EndBluffOn(party);
             if (party.IsActive)
             {
                 party.Ai.SetDoNotMakeNewDecisions(false);
@@ -961,6 +987,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
             _stealthedParties.Remove(party.MobileParty);
             _preppingPartiesStartedAt.Remove(party.MobileParty);
             _playerDetectedParties.Remove(party.MobileParty);
+            // §6 bluff cleanup — safety net, usually the AmbushCampaignBehavior
+            // paths clear it first, but a destroyed party here means we
+            // can't restore IsInfoHidden to false anyway (party is gone).
+            Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>()
+                ?.EndBluffOn(party.MobileParty);
             // Null out any record referencing the removed party so
             // queries don't match dangling refs. Keep the record (for
             // history completeness); nulled refs just stop matching.

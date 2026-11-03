@@ -154,6 +154,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// save anyway.</summary>
         private bool _followUpFieldBattlePending;
 
+        // §6 bluff mechanic: parties we flipped MobileParty.IsInfoHidden
+        // on, so the vanilla UI (nameplate Count, encounter screen
+        // party-count labels, troop composition tooltips) renders "?"
+        // instead of the real number. Tracked so we only revert
+        // IsInfoHidden on parties WE changed — safe against parties
+        // that were info-hidden by vanilla for other reasons.
+        private Dictionary<MobileParty, bool> _bluffingParties
+            = new Dictionary<MobileParty, bool>();
+
         // Snapshot of the player's non-hero roster at the moment the
         // ambush mission started — captured by AmbushedEndLogic.AfterStart,
         // handed over in OnEndMission via StashAmbushedRosterSnapshot.
@@ -778,6 +787,42 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 ? new Dictionary<CharacterObject, int>(snapshot) : null;
         }
 
+        /// <summary>§6 bluff mechanic — flip
+        /// <see cref="MobileParty.IsInfoHidden"/> on so vanilla's UI
+        /// pipeline displays "?" instead of troop counts for this party.
+        /// Only touches parties that were visible before (so we don't
+        /// steal credit for vanilla's own hideout / bandit info-hiding).
+        /// Idempotent — repeat calls are a no-op.</summary>
+        public void BeginBluffOn(MobileParty party)
+        {
+            if (party == null || !party.IsActive) return;
+            if (_bluffingParties.ContainsKey(party)) return;
+            if (party.IsInfoHidden) return;   // vanilla already hiding it
+            party.IsInfoHidden = true;
+            _bluffingParties[party] = true;
+        }
+
+        /// <summary>Clear the bluff on this party — restores
+        /// <see cref="MobileParty.IsInfoHidden"/> to false. Only reverts
+        /// parties we previously bluffed (safe against parties vanilla
+        /// info-hid for other reasons).</summary>
+        public void EndBluffOn(MobileParty party)
+        {
+            if (party == null) return;
+            if (!_bluffingParties.Remove(party)) return;
+            if (party.IsActive) party.IsInfoHidden = false;
+        }
+
+        /// <summary>Clear bluff state on every party we touched. Safety-
+        /// net for teardown paths (OnPartyRemoved cascade, outcome menu
+        /// cleanup).</summary>
+        public void EndAllBluffs()
+        {
+            if (_bluffingParties.Count == 0) return;
+            var snapshot = new List<MobileParty>(_bluffingParties.Keys);
+            foreach (var p in snapshot) EndBluffOn(p);
+        }
+
         /// <summary>First-flee cost. For each troop type in the committed
         /// snapshot, shifts <c>ceil(startCount * AmbushedFledWoundShare)</c>
         /// of that type from healthy → wounded on the current roster,
@@ -870,6 +915,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             if (ambusher == null || !ambusher.IsActive) return;
             _followUpFieldBattlePending = true;
+            // §6 bluff carries over to the follow-up encounter screen —
+            // keep IsInfoHidden on so the "stand or retreat" decision
+            // bar shows "?" instead of the ambusher's actual (possibly
+            // depleted) count. Idempotent if the initial trigger already
+            // set it.
+            BeginBluffOn(ambusher);
             TORCommon.Say((ambusher.LeaderHero?.Name?.ToString()
                            ?? ambusher.Name?.ToString()
                            ?? "The ambushers")
@@ -936,6 +987,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
             TORCommon.Log(LogLevel.Info, "[Ambush] OnPlayerBattleEnd fired. LastAmbushOutcome="
                 + LastAmbushOutcome + " LastAmbushedOutcome=" + LastAmbushedOutcome
                 + " followUpPending=" + _followUpFieldBattlePending);
+
+            // §6 bluff — any player battle end resolves the ambush
+            // engagement one way or another (Repelled, Wiped,
+            // double-flee, follow-up stand). Troop counts are revealed
+            // (via combat) or no longer meaningful; drop IsInfoHidden
+            // on everything we tagged.
+            EndAllBluffs();
 
             // Phase F §6 double-flee check: fires ONLY when the player
             // pressed retreat during the follow-up field battle — not
@@ -1198,6 +1256,24 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 _currentTargets.Clear();
                 MobileParty.MainParty?.Ai?.SetDoNotMakeNewDecisions(false);
                 MobileParty.MainParty?.IgnoreByOtherPartiesTill(CampaignTime.Zero);
+            }
+
+            // §6 bluff restore — _bluffingParties is runtime-only, but
+            // the vanilla IsInfoHidden flag persisted across save/load.
+            // Rebuild our shadow set so EndBluffOn can safely revert
+            // parties we were responsible for. Reads live ambush state
+            // from AiAmbushBehavior (prepping + current ambusher on
+            // player). AI-vs-AI stealthed parties stay IsVisible=false
+            // so UI doesn't matter — bluff restore only cares about
+            // visible-on-map ambushers.
+            var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
+            if (ai != null)
+            {
+                foreach (var p in ai.PreppingParties)
+                    if (p != null && p.IsActive && p.IsInfoHidden) _bluffingParties[p] = true;
+                var curAmbusher = ai.CurrentAmbusherOnPlayer;
+                if (curAmbusher != null && curAmbusher.IsActive && curAmbusher.IsInfoHidden)
+                    _bluffingParties[curAmbusher] = true;
             }
         }
 
@@ -1494,6 +1570,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             float moraleHit = model?.AmbushedFledVanishMoralePenalty ?? 5f;
             ApplyMoraleDelta(-moraleHit);
             TORCommon.Say("The ambushers melt back into cover. Your troops lick their wounds. (Morale -" + moraleHit + ")");
+            // §6 bluff ends on vanish — the ambusher melted away, so
+            // their actual size no longer matters to this engagement.
+            if (ambusher != null) EndBluffOn(ambusher);
             if (aiBehavior != null && !_ambushedOutcomeMenuPressBranch)
                 aiBehavior.CurrentAmbusherOnPlayer = null;
             TORCommon.Log(LogLevel.Info, "[Ambush] outcome menu continue: vanish — morale -" + moraleHit
@@ -1756,6 +1835,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
             dataStore.SyncData("_stealthEnteredAt", ref _stealthEnteredAt);
             dataStore.SyncData("_playerPreppingStealth", ref _playerPreppingStealth);
             dataStore.SyncData("_playerStealthPrepStartedAt", ref _playerStealthPrepStartedAt);
+            // _bluffingParties is NOT SyncData'd — the bluff state is
+            // derivable from the live ambush state (prepping / currently
+            // ambushing). OnSessionLaunched re-populates by reading those
+            // live states; vanilla's IsInfoHidden itself is a SaveableField
+            // so the UI effect persists across save/load regardless.
             // _playerAmbushCooldownUntil removed — player cooldown is
             // now derived from AiAmbushBehavior._ambushRecords.
         }
