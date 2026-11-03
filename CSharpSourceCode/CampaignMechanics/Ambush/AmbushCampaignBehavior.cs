@@ -154,14 +154,16 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// save anyway.</summary>
         private bool _followUpFieldBattlePending;
 
-        // §6 bluff mechanic: parties we flipped MobileParty.IsInfoHidden
-        // on, so the vanilla UI (nameplate Count, encounter screen
-        // party-count labels, troop composition tooltips) renders "?"
-        // instead of the real number. Tracked so we only revert
-        // IsInfoHidden on parties WE changed — safe against parties
-        // that were info-hidden by vanilla for other reasons.
-        private Dictionary<MobileParty, bool> _bluffingParties
-            = new Dictionary<MobileParty, bool>();
+        // §6 bluff mechanic: parties flip MobileParty.IsInfoHidden on
+        // when they enter ambush/prep/active-ambusher state, so the
+        // vanilla UI renders "?" instead of real numbers. No shadow set
+        // — "is this party bluffing?" is derived from live ambush state
+        // + the vanilla IsInfoHidden flag itself. Cleanup is unconditional:
+        // when ambush state ends, flip IsInfoHidden back to false. Small
+        // trade-off: if a party vanilla info-hid for another reason
+        // happened to be an ambusher, we'd strip the hiding on cleanup.
+        // Lord parties / bandit war-parties never fall into that case so
+        // the risk is theoretical.
 
         // Snapshot of the player's non-hero roster at the moment the
         // ambush mission started — captured by AmbushedEndLogic.AfterStart,
@@ -790,37 +792,52 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// <summary>§6 bluff mechanic — flip
         /// <see cref="MobileParty.IsInfoHidden"/> on so vanilla's UI
         /// pipeline displays "?" instead of troop counts for this party.
-        /// Only touches parties that were visible before (so we don't
-        /// steal credit for vanilla's own hideout / bandit info-hiding).
-        /// Idempotent — repeat calls are a no-op.</summary>
+        /// Idempotent.</summary>
         public void BeginBluffOn(MobileParty party)
         {
             if (party == null || !party.IsActive) return;
-            if (_bluffingParties.ContainsKey(party)) return;
-            if (party.IsInfoHidden) return;   // vanilla already hiding it
             party.IsInfoHidden = true;
-            _bluffingParties[party] = true;
         }
 
-        /// <summary>Clear the bluff on this party — restores
-        /// <see cref="MobileParty.IsInfoHidden"/> to false. Only reverts
-        /// parties we previously bluffed (safe against parties vanilla
-        /// info-hid for other reasons).</summary>
+        /// <summary>Clear the bluff on this party.</summary>
         public void EndBluffOn(MobileParty party)
         {
-            if (party == null) return;
-            if (!_bluffingParties.Remove(party)) return;
-            if (party.IsActive) party.IsInfoHidden = false;
+            if (party == null || !party.IsActive) return;
+            party.IsInfoHidden = false;
         }
 
-        /// <summary>Clear bluff state on every party we touched. Safety-
-        /// net for teardown paths (OnPartyRemoved cascade, outcome menu
-        /// cleanup).</summary>
-        public void EndAllBluffs()
+        /// <summary>True when the player's current MapEvent has at least
+        /// one enemy party flagged as info-hidden — i.e. we're actively
+        /// in a battle against a bluffing ambusher. Scoped to the
+        /// current engagement, so unrelated battles (fighting a looter
+        /// band while an Ungor warband preps an ambush 500u away) don't
+        /// suppress the scoreboard.</summary>
+        public bool IsCurrentMissionBluffed
         {
-            if (_bluffingParties.Count == 0) return;
-            var snapshot = new List<MobileParty>(_bluffingParties.Keys);
-            foreach (var p in snapshot) EndBluffOn(p);
+            get
+            {
+                var mapEvent = MapEvent.PlayerMapEvent;
+                if (mapEvent == null) return false;
+                foreach (var p in mapEvent.InvolvedParties)
+                {
+                    var mp = p?.MobileParty;
+                    if (mp != null && mp != MobileParty.MainParty && mp.IsInfoHidden)
+                        return true;
+                }
+                return false;
+            }
+        }
+
+        /// <summary>Clear bluff state on every party on the ambusher's
+        /// side of a mapEvent. Teardown safety net.</summary>
+        public void EndBluffOnAmbusherSide(MapEvent mapEvent)
+        {
+            if (mapEvent == null) return;
+            foreach (var p in mapEvent.InvolvedParties)
+            {
+                var mp = p?.MobileParty;
+                if (mp != null && mp != MobileParty.MainParty) EndBluffOn(mp);
+            }
         }
 
         /// <summary>Bluff every party on the ambusher's side of the
@@ -1020,8 +1037,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // engagement one way or another (Repelled, Wiped,
             // double-flee, follow-up stand). Troop counts are revealed
             // (via combat) or no longer meaningful; drop IsInfoHidden
-            // on everything we tagged.
-            EndAllBluffs();
+            // on every party on the mapEvent's enemy side.
+            EndBluffOnAmbusherSide(mapEvent);
 
             // Phase F §6 double-flee check: fires ONLY when the player
             // pressed retreat during the follow-up field battle — not
@@ -1286,23 +1303,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 MobileParty.MainParty?.IgnoreByOtherPartiesTill(CampaignTime.Zero);
             }
 
-            // §6 bluff restore — _bluffingParties is runtime-only, but
-            // the vanilla IsInfoHidden flag persisted across save/load.
-            // Rebuild our shadow set so EndBluffOn can safely revert
-            // parties we were responsible for. Reads live ambush state
-            // from AiAmbushBehavior (prepping + current ambusher on
-            // player). AI-vs-AI stealthed parties stay IsVisible=false
-            // so UI doesn't matter — bluff restore only cares about
-            // visible-on-map ambushers.
-            var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
-            if (ai != null)
-            {
-                foreach (var p in ai.PreppingParties)
-                    if (p != null && p.IsActive && p.IsInfoHidden) _bluffingParties[p] = true;
-                var curAmbusher = ai.CurrentAmbusherOnPlayer;
-                if (curAmbusher != null && curAmbusher.IsActive && curAmbusher.IsInfoHidden)
-                    _bluffingParties[curAmbusher] = true;
-            }
+            // §6 bluff — IsInfoHidden is a vanilla SaveableField, so UI
+            // state persists across save/load without any work from us.
+            // No shadow set to rebuild.
         }
 
         private void RegisterMenus(CampaignGameStarter starter)
@@ -1863,11 +1866,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
             dataStore.SyncData("_stealthEnteredAt", ref _stealthEnteredAt);
             dataStore.SyncData("_playerPreppingStealth", ref _playerPreppingStealth);
             dataStore.SyncData("_playerStealthPrepStartedAt", ref _playerStealthPrepStartedAt);
-            // _bluffingParties is NOT SyncData'd — the bluff state is
-            // derivable from the live ambush state (prepping / currently
-            // ambushing). OnSessionLaunched re-populates by reading those
-            // live states; vanilla's IsInfoHidden itself is a SaveableField
-            // so the UI effect persists across save/load regardless.
+            // No bluff state to sync — IsInfoHidden is a vanilla
+            // SaveableField, no shadow dict to persist.
             // _playerAmbushCooldownUntil removed — player cooldown is
             // now derived from AiAmbushBehavior._ambushRecords.
         }

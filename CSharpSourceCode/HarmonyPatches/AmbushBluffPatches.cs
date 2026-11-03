@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using HarmonyLib;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.GameMenu.Overlay;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
@@ -45,4 +46,21 @@ namespace TOR_Core.HarmonyPatches
             }
         }
     }
+
+    // Formation marker count hide: see
+    // AmbushBluffFormationMarkerExtension (TOR VM extension pattern).
+    //
+    // Scoreboard suppression — REMOVED. Blocking the ShowScoreboard
+    // setter via Harmony prefix caused vanilla to spin: something
+    // (SPScoreboardVM.OnMissionResultReady?) sets ShowScoreboard=true
+    // every frame, and when our prefix skipped the setter the backing
+    // field never flipped so the caller kept retrying. Observed ~200+
+    // setter calls per second plus visible input freeze (TOR mission
+    // behaviors ticked fine but vanilla input stopped responding).
+    //
+    // Future approach for scoreboard hide: VM extension on ScoreboardBaseVM
+    // + override SPScoreboardOverlay.xml with IsHidden="@IsBluffSuppressed"
+    // on the root widget. Vanilla's internal state stays as it wants;
+    // we just hide the rendered UI. Same TOR extension pattern as the
+    // formation marker.
 }
