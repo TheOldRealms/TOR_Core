@@ -75,6 +75,15 @@ namespace TOR_Core.Missions.AmbushMission
         /// flips from false to true.</summary>
         public event System.Action InitialPatrolDefeated;
 
+        /// <summary>True when the local player's party is the ambusher side
+        /// (the player launched the ambush). False when the player is the
+        /// victim (an AI party ambushed the player). Drives the deployment-UI
+        /// gate — only the ambusher gets a placement screen; the victim is
+        /// dropped straight into combat.</summary>
+        public bool IsPlayerAmbusher
+            => _ambusherParty != null
+               && _ambusherParty.MobileParty == MobileParty.MainParty;
+
         public AmbushMissionController(PartyBase ambusherParty, PartyBase victimParty)
         {
             _ambusherParty = ambusherParty;
@@ -95,6 +104,37 @@ namespace TOR_Core.Missions.AmbushMission
             _spawnLogic = Mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>();
             _model = Campaign.Current?.Models?.GetMissionAmbushModel() ?? new TORMissionAmbushModel();
             AmbushRetreatZone.ProceduralFallbackRadius = _model.ProceduralFallbackRadius;
+
+            // If the player is the victim (AI ambushed the player), there's no
+            // placement choice — the mission kicks straight into combat. Keep
+            // the vanilla deployment controller (it owns agent spawn kickoff
+            // + player-agent handoff — reimplementing that broke the mission
+            // in interesting ways: loading-screen hang when fully bypassed,
+            // spectator view when half-done). Subscribe to its OnAfterSetupTeams
+            // event instead: it fires on the first mission tick after the
+            // scene is ready, which is exactly when vanilla has done the
+            // per-side SetSpawnTroops + SetupAgentAIStates work and is just
+            // waiting for the player to click Confirm. Call FinishDeployment
+            // from there and the mission transitions as if Confirm had been
+            // pressed.
+            if (!IsPlayerAmbusher)
+            {
+                var deploymentController =
+                    Mission.GetMissionBehavior<BattleDeploymentMissionController>();
+                if (deploymentController != null)
+                {
+                    deploymentController.OnAfterSetupTeams += AutoFinishDeploymentForVictim;
+                }
+            }
+        }
+
+        private void AutoFinishDeploymentForVictim()
+        {
+            var deploymentController =
+                Mission.GetMissionBehavior<BattleDeploymentMissionController>();
+            if (deploymentController == null) return;
+            deploymentController.OnAfterSetupTeams -= AutoFinishDeploymentForVictim;
+            deploymentController.FinishDeployment();
         }
 
         public override void AfterStart()

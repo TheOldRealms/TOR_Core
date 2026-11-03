@@ -375,6 +375,15 @@ namespace TOR_Core.Missions
                 list.Add(new MissionBoundaryCrossingHandler());
                 list.Add(new HighlightsController());
                 list.Add(new BattleHighlightsController());
+                // Player is the ambush victim here, caught by surprise — no
+                // placement step. Keep the vanilla deployment behaviours
+                // anyway: they own agent spawn kickoff + initial-player-agent
+                // handoff via FinishDeployment. AmbushMissionController
+                // subscribes to BattleDeploymentMissionController.OnAfterSetupTeams
+                // and calls FinishDeployment immediately on that event, so the
+                // player sees no deployment UI and the mission drops straight
+                // into combat without us re-implementing vanilla's spawn
+                // lifecycle.
                 list.Add(new BattleDeploymentMissionController(false));
                 list.Add(new BattleDeploymentHandler(false));
                 return list.ToArray();
