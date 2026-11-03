@@ -239,7 +239,6 @@
   <CharacterExtendedInfo id="tor_empire_novice_engineer">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Crew</string>
     </Attributes>
     <Resistances />
@@ -251,7 +250,6 @@
   <CharacterExtendedInfo id="tor_empire_trainee_artillery_crew">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Crew</string>
     </Attributes>
     <Resistances />
@@ -264,7 +262,6 @@
   <CharacterExtendedInfo id="tor_empire_apprentice_engineer">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Crew</string>
     </Attributes>
     <Resistances />
@@ -287,7 +284,6 @@
   <CharacterExtendedInfo id="tor_empire_experienced_artillery_crew">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Crew2</string>
     </Attributes>
     <Resistances />
@@ -300,7 +296,6 @@
   <CharacterExtendedInfo id="tor_empire_associate_engineer">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Piercing</string>
       <string>Crew2</string>
     </Attributes>
@@ -326,7 +321,6 @@
   <CharacterExtendedInfo id="tor_empire_veteran_artillery_crew">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Crew3</string>
     </Attributes>
     <Resistances />
@@ -339,7 +333,6 @@
   <CharacterExtendedInfo id="tor_empire_master_engineer">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Piercing</string>
       <string>Crew2</string>
     </Attributes>
@@ -1675,7 +1668,6 @@
   <CharacterExtendedInfo id="tor_dw_artillery_crew">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Crew2</string>
     </Attributes>
     <Resistances>
@@ -1691,7 +1683,6 @@
   <CharacterExtendedInfo id="tor_dw_artillery_gunner">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Crew3</string>
     </Attributes>
     <Resistances>

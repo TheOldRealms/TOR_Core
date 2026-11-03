@@ -230,6 +230,15 @@ namespace TOR_Core.Extensions
             return characterObject.IsHero && characterObject.HasAttribute(CharacterAttributes.RUNESMITH);
         }
 
+        public static bool CanOperateArtillery(this BasicCharacterObject characterObject)
+        {
+            var attributes = characterObject.GetAttributes();
+            return attributes.Contains(CharacterAttributes.CREW_1) ||
+                   attributes.Contains(CharacterAttributes.CREW_2) ||
+                   attributes.Contains(CharacterAttributes.CREW_3);
+        }
+
+
         public static bool HasUnitRune(this BasicCharacterObject characterObject)
         {
             var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);

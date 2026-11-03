@@ -356,7 +356,6 @@ namespace TOR_Core.Utilities
             
             //Characters? generic?
             public const string DWARF_WARRIOR = "DwarfWarrior";
-            public const string ARTILLERY_CREW = "ArtilleryCrew";
             public const string CREW_1 = "Crew";
             public const string CREW_2 = "Crew2";
             public const string CREW_3 = "Crew3";
