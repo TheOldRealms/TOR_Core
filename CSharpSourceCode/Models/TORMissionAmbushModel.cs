@@ -126,5 +126,43 @@ namespace TOR_Core.Models
         /// See ai-ambushes-player-design.md § 3 row 4.
         /// </summary>
         public virtual float AmbushedFledCountdownSeconds => 10f;
+
+        // ---- Formation auto-chunking ----
+
+        /// <summary>
+        /// Troop-count threshold above which a single-class formation gets
+        /// split in player mode. 60 infantry crosses the threshold and
+        /// becomes two 30-troop formations; 20 infantry stays as one.
+        /// </summary>
+        public virtual int PlayerChunkThreshold => 25;
+
+        /// <summary>
+        /// Maximum formations per <c>FormationClass</c> in player mode. Keeps
+        /// the deployment sidebar legible: a 240-infantry roster becomes two
+        /// 120-troop formations, not ten 24-troop formations.
+        /// </summary>
+        public virtual int PlayerMaxChunksPerClass => 2;
+
+        /// <summary>
+        /// Floor size per auto-chunked formation in AI mode. Prevents the
+        /// spread-to-fill logic from producing tiny formations on small AI
+        /// rosters: 20 archers across 2 archer spots stays as one formation
+        /// of 20, not two of 10.
+        /// </summary>
+        public virtual int MinAiFormationSize => 15;
+
+        /// <summary>Weight for the Concentrated AI distribution pattern
+        /// (all troops of a class in one spot, other matching spots empty).
+        /// Relative to <see cref="AiDistributionEvenWeight"/> and
+        /// <see cref="AiDistributionAsymmetricWeight"/>.</summary>
+        public virtual float AiDistributionConcentratedWeight => 0.3f;
+
+        /// <summary>Weight for the Even AI distribution pattern (equal
+        /// split across matching spots).</summary>
+        public virtual float AiDistributionEvenWeight => 0.5f;
+
+        /// <summary>Weight for the Asymmetric AI distribution pattern
+        /// (skewed split like 25/75 across matching spots).</summary>
+        public virtual float AiDistributionAsymmetricWeight => 0.2f;
     }
 }
