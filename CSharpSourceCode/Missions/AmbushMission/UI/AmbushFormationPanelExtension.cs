@@ -94,5 +94,36 @@ namespace TOR_Core.Missions.AmbushMission.UI
             }
             return -1;
         }
+
+        /// <summary>
+        /// Click handler for the spot chip in the OoB prefab override.
+        /// Resolved by the TOR extension framework via reflection
+        /// (BaseViewModelExtension.ExecuteCommand). Selects the formation
+        /// first (same effect as clicking the parent panel) so the chip
+        /// click doubles as a formation picker; then opens the spot
+        /// picker (dropdown + reassignment logic come in follow-ups).
+        /// Selecting first also fixes a sporadic "click not registered"
+        /// behaviour where the chip's ButtonWidget would not fire until
+        /// the formation had been activated some other way.
+        /// </summary>
+        public void ExecuteOpenSpotPicker()
+        {
+            var panel = _vm as OrderOfBattleFormationItemVM;
+            if (panel == null) return;
+            InvokeVanillaSelection(panel);
+            NLog.LogManager.GetCurrentClassLogger().Info(
+                "[AmbushFormationPanel] ExecuteOpenSpotPicker fired, class="
+                + panel.Formation?.FormationIndex);
+        }
+
+        private static void InvokeVanillaSelection(OrderOfBattleFormationItemVM panel)
+        {
+            var method = typeof(OrderOfBattleFormationItemVM).GetMethod(
+                "ExecuteSelection",
+                System.Reflection.BindingFlags.Instance
+                | System.Reflection.BindingFlags.Public
+                | System.Reflection.BindingFlags.NonPublic);
+            method?.Invoke(panel, null);
+        }
     }
 }

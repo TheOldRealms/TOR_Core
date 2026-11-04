@@ -268,12 +268,13 @@
              HorizontalLeftToRight, so the chip renders attached to the
              right edge of the card. Hidden outside an ambush mission
              (HasSpotAssignment false) so the regular OoB screen is
-             unchanged. Driven by AmbushFormationPanelExtension. -->
-        <BrushWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="40" VerticalAlignment="Center" MarginLeft="10" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" IsVisible="@HasSpotAssignment">
+             unchanged. Clicking opens the spot-picker (handled by
+             AmbushFormationPanelExtension.ExecuteOpenSpotPicker). -->
+        <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="40" VerticalAlignment="Center" MarginLeft="10" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" IsVisible="@HasSpotAssignment" Command.Click="ExecuteOpenSpotPicker">
           <Children>
             <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Text="@SpotLabel" Brush.FontSize="20"/>
           </Children>
-        </BrushWidget>
+        </ButtonWidget>
 
       </Children>
     </OrderOfBattleFormationItemListPanel>
