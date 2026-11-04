@@ -44,13 +44,15 @@ namespace TOR_Core.Missions.AmbushMission
         private BattleSideEnum _ambusherSide;
         private BattleSideEnum _victimSide;
 
-        // Scener-authored attacker spawn positions, grouped by formation class.
-        // Each class maps to a list of world-space Vec3s pulled from entities
-        // tagged `attacker_<role>`. Agents land at a role-matching position via
-        // OnAgentCreated; the counter in _attackerSpawnIndex per class round-robins
-        // through the list when a class has more agents than slots.
+        // Per-class flat position + yaw lists built from the AmbushFormationLayout
+        // result: for each AmbushFormation chunk with N troops bound to a spot
+        // at (pos, yaw), the lists hold N copies of pos and yaw. OnAgentCreated
+        // round-robins through the matching-class list, so agents distribute
+        // across spots in proportion to each chunk's troop count.
         private readonly Dictionary<FormationClass, List<Vec3>> _attackerSpawnPositions
             = new Dictionary<FormationClass, List<Vec3>>();
+        private readonly Dictionary<FormationClass, List<float>> _attackerSpawnYaws
+            = new Dictionary<FormationClass, List<float>>();
         private readonly Dictionary<FormationClass, int> _attackerSpawnIndex
             = new Dictionary<FormationClass, int>();
         // Legacy fallback for scenes authored before the role-tag scheme —
@@ -58,6 +60,15 @@ namespace TOR_Core.Missions.AmbushMission
         // specific lists come up empty.
         private readonly List<Vec3> _legacyAttackerSpawnPositions = new List<Vec3>();
         private int _legacyAttackerSpawnIndex;
+
+        /// <summary>
+        /// Auto-chunked formation list plus default spot assignments from
+        /// <see cref="AmbushFormationLayout.Compute"/>. Computed at AfterStart
+        /// time. Null if the scene uses the legacy flat <c>ambush_attacker</c>
+        /// tag (no spot buckets) or has no attacker spawns at all. Readers:
+        /// the deployment UI binds sidebar panels / spot markers to this.
+        /// </summary>
+        public AmbushLayoutResult Layout { get; private set; }
 
         // Snapshot of defender agents present at OnDeploymentFinished — the
         // "initial patrol". Reinforcement waves are NOT in this set. Phase 1
@@ -150,34 +161,90 @@ namespace TOR_Core.Missions.AmbushMission
         }
 
         /// <summary>
-        /// Reads the scener-tagged attacker spawn entities and buckets them by
-        /// formation class, so <see cref="OnAgentCreated"/> can teleport each
-        /// agent to a role-matching position. The scener's convention is:
-        /// `attacker_infantry` / `attacker_archer` / `attacker_cavalry` /
-        /// `attacker_horsearcher`. If none of those exist in the scene, we
-        /// fall back to a flat `ambush_attacker` tag (legacy pre-slot scheme).
+        /// Collects attacker spot entities from the scene (ambush_attacker_*
+        /// tags), runs <see cref="AmbushFormationLayout.Compute"/> against
+        /// the ambusher roster, and builds per-class flat teleport lists that
+        /// <see cref="OnAgentCreated"/> consumes. Scener convention (short
+        /// tags): attacker_infantry / attacker_archer / attacker_cavalry /
+        /// attacker_horsearcher. If none exist, falls back to the legacy
+        /// flat <c>ambush_attacker</c> tag with no layout computation.
         /// </summary>
         private void CollectAttackerSpawnPositions()
         {
             _attackerSpawnPositions.Clear();
+            _attackerSpawnYaws.Clear();
             _attackerSpawnIndex.Clear();
-            _attackerSpawnPositions[FormationClass.Infantry]    = CollectPositionsForTag("attacker_infantry");
-            _attackerSpawnPositions[FormationClass.Ranged]      = CollectPositionsForTag("attacker_archer");
-            _attackerSpawnPositions[FormationClass.Cavalry]     = CollectPositionsForTag("attacker_cavalry");
-            _attackerSpawnPositions[FormationClass.HorseArcher] = CollectPositionsForTag("attacker_horsearcher");
-            foreach (var kv in _attackerSpawnPositions) _attackerSpawnIndex[kv.Key] = 0;
-
             _legacyAttackerSpawnPositions.Clear();
-            _legacyAttackerSpawnPositions.AddRange(CollectPositionsForTag("ambush_attacker"));
             _legacyAttackerSpawnIndex = 0;
+            Layout = null;
+
+            var spots = CollectAmbushSpots();
+            if (spots.Count == 0)
+            {
+                _legacyAttackerSpawnPositions.AddRange(CollectPositionsForTag("ambush_attacker"));
+                Debug.Print(
+                    "[AmbushMission] no typed attacker spots, legacy="
+                    + _legacyAttackerSpawnPositions.Count);
+                return;
+            }
+
+            var roster = _ambusherParty?.MemberRoster;
+            if (roster == null || roster.Count == 0)
+            {
+                Debug.Print("[AmbushMission] no ambusher roster, skipping layout");
+                return;
+            }
+
+            var mode = IsPlayerAmbusher ? LayoutMode.Player : LayoutMode.AI;
+            Layout = AmbushFormationLayout.Compute(roster, spots, mode, _model);
+
+            foreach (var chunk in Layout.Formations)
+            {
+                if (!chunk.AssignedSpot.HasValue) continue;
+                var cls = chunk.Class;
+                if (!_attackerSpawnPositions.ContainsKey(cls))
+                {
+                    _attackerSpawnPositions[cls] = new List<Vec3>();
+                    _attackerSpawnYaws[cls] = new List<float>();
+                    _attackerSpawnIndex[cls] = 0;
+                }
+                var spot = chunk.AssignedSpot.Value;
+                for (int i = 0; i < chunk.Count; i++)
+                {
+                    _attackerSpawnPositions[cls].Add(spot.Position);
+                    _attackerSpawnYaws[cls].Add(spot.Yaw);
+                }
+            }
 
             Debug.Print(
-                "[AmbushMission] attacker spawn slots:"
-                + " infantry=" + _attackerSpawnPositions[FormationClass.Infantry].Count
-                + " archer=" + _attackerSpawnPositions[FormationClass.Ranged].Count
-                + " cavalry=" + _attackerSpawnPositions[FormationClass.Cavalry].Count
-                + " horsearcher=" + _attackerSpawnPositions[FormationClass.HorseArcher].Count
-                + " legacy=" + _legacyAttackerSpawnPositions.Count);
+                "[AmbushMission] layout: " + Layout.Formations.Count + " formations, "
+                + "spots found=" + spots.Count + " mode=" + mode);
+        }
+
+        private List<AmbushSpot> CollectAmbushSpots()
+        {
+            var list = new List<AmbushSpot>();
+            AddSpotsForTag(list, "attacker_infantry",    SpotClass.Infantry);
+            AddSpotsForTag(list, "attacker_archer",      SpotClass.Archer);
+            AddSpotsForTag(list, "attacker_cavalry",     SpotClass.Cavalry);
+            AddSpotsForTag(list, "attacker_horsearcher", SpotClass.HorseArcher);
+            return list;
+        }
+
+        private void AddSpotsForTag(List<AmbushSpot> list, string tag, SpotClass cls)
+        {
+            foreach (var e in Mission.Scene.FindEntitiesWithTag(tag))
+            {
+                var frame = e.GetGlobalFrame();
+                list.Add(new AmbushSpot
+                {
+                    Tag = tag,
+                    Class = cls,
+                    Bucket = cls.Bucket(),
+                    Position = frame.origin,
+                    Yaw = frame.rotation.f.AsVec2.RotationInRadians,
+                });
+            }
         }
 
         private List<Vec3> CollectPositionsForTag(string tag)
@@ -206,7 +273,15 @@ namespace TOR_Core.Missions.AmbushMission
                 && positions.Count > 0)
             {
                 int idx = _attackerSpawnIndex[formationClass]++;
-                agent.TeleportToPosition(positions[idx % positions.Count]);
+                int at = idx % positions.Count;
+                agent.TeleportToPosition(positions[at]);
+                if (_attackerSpawnYaws.TryGetValue(formationClass, out var yaws)
+                    && at < yaws.Count)
+                {
+                    float yaw = yaws[at];
+                    var dir = new Vec2((float)System.Math.Cos(yaw), (float)System.Math.Sin(yaw));
+                    agent.SetMovementDirection(in dir);
+                }
                 return;
             }
 
