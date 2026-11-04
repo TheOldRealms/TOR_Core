@@ -4,34 +4,32 @@ using TaleWorlds.Library;
 namespace TOR_Core.Missions.AmbushMission.UI
 {
     /// <summary>
-    /// One row in the spot-picker dropdown. Carries the localized group
-    /// label the player sees and fires the selection callback on click.
-    /// The grid layout variant will add a <c>GroupTag</c> / <c>IndexInGroup</c>
-    /// pair; for now this stays flat and the chip label is what differentiates.
+    /// One cell under a group column in the spot-picker. Displays the
+    /// global spot number and fires the selection callback on click.
     /// </summary>
     public class AmbushSpotPickerItemVM : ViewModel
     {
         private readonly Action<AmbushSpotPickerItemVM> _onSelected;
-        private string _label;
+        private int _number;
         private bool _isCurrent;
 
-        public AmbushSpotPickerItemVM(string label, bool isCurrent,
+        public AmbushSpotPickerItemVM(int number, bool isCurrent,
                                        Action<AmbushSpotPickerItemVM> onSelected)
         {
-            _label = label;
+            _number = number;
             _isCurrent = isCurrent;
             _onSelected = onSelected;
         }
 
         [DataSourceProperty]
-        public string Label
+        public int Number
         {
-            get => _label;
+            get => _number;
             set
             {
-                if (value == _label) return;
-                _label = value;
-                OnPropertyChangedWithValue(value, nameof(Label));
+                if (value == _number) return;
+                _number = value;
+                OnPropertyChangedWithValue(value, nameof(Number));
             }
         }
 

@@ -279,21 +279,34 @@
               </Children>
             </ButtonWidget>
 
-            <!-- Spot picker popup: stacked vertically directly below the
-                 chip, visible when IsSpotPickerOpen. Items are compact
-                 (28 px tall, small gap) so the full list stays inside
-                 the OoB panel's vertical span and the next sidebar
-                 panel doesn't render on top of the lower items. Row
-                 click invokes ExecuteSelect, which closes the picker
-                 and (future iteration) swaps the formation to that
-                 spot. -->
-            <ListPanel DataSource="{SpotPickerItems}" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="90" HorizontalAlignment="Center" VerticalAlignment="Top" PositionYOffset="42" IsVisible="@IsSpotPickerOpen" StackLayout.LayoutMethod="VerticalTopToBottom">
+            <!-- Spot picker grid: horizontal row of group columns anchored
+                 below the chip. Each column has a header TextWidget bound
+                 to @Header (localized group name, e.g. "Hill", "Street")
+                 and an inner vertical ListPanel of numbered spot buttons
+                 bound to {Items}. Numbers are global across groups, so a
+                 scene with Street+Hill renders Street:1-4, Hill:5-8.
+                 Button click invokes ExecuteSelect on the inner item VM,
+                 which closes the picker and reassigns the formation. -->
+            <ListPanel DataSource="{SpotPickerGroups}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Top" PositionYOffset="42" IsVisible="@IsSpotPickerOpen" StackLayout.LayoutMethod="HorizontalLeftToRight">
               <ItemTemplate>
-                <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="110" SuggestedHeight="28" MarginTop="1" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" Command.Click="ExecuteSelect">
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="90" MarginLeft="2" MarginRight="2">
                   <Children>
-                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Text="@Label" Brush.FontSize="18"/>
+                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Top" StackLayout.LayoutMethod="VerticalTopToBottom">
+                      <Children>
+                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="24" Text="@Header" Brush.FontSize="18" Brush.TextHorizontalAlignment="Center"/>
+                        <ListPanel DataSource="{Items}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
+                          <ItemTemplate>
+                            <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="28" MarginTop="2" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" Command.Click="ExecuteSelect">
+                              <Children>
+                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" IntText="@Number" Brush.FontSize="18"/>
+                              </Children>
+                            </ButtonWidget>
+                          </ItemTemplate>
+                        </ListPanel>
+                      </Children>
+                    </ListPanel>
                   </Children>
-                </ButtonWidget>
+                </Widget>
               </ItemTemplate>
             </ListPanel>
 

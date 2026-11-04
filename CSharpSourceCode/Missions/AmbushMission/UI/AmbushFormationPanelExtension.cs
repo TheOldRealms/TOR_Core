@@ -24,8 +24,8 @@ namespace TOR_Core.Missions.AmbushMission.UI
         private string _spotLabel = "";
         private bool _hasSpotAssignment;
         private bool _isSpotPickerOpen;
-        private MBBindingList<AmbushSpotPickerItemVM> _spotPickerItems
-            = new MBBindingList<AmbushSpotPickerItemVM>();
+        private MBBindingList<AmbushSpotPickerGroupVM> _spotPickerGroups
+            = new MBBindingList<AmbushSpotPickerGroupVM>();
 
         public AmbushFormationPanelExtension(ViewModel vm) : base(vm) { }
 
@@ -66,14 +66,14 @@ namespace TOR_Core.Missions.AmbushMission.UI
         }
 
         [DataSourceProperty]
-        public MBBindingList<AmbushSpotPickerItemVM> SpotPickerItems
+        public MBBindingList<AmbushSpotPickerGroupVM> SpotPickerGroups
         {
-            get => _spotPickerItems;
+            get => _spotPickerGroups;
             set
             {
-                if (value == _spotPickerItems) return;
-                _spotPickerItems = value;
-                _vm?.OnPropertyChangedWithValue(value, nameof(SpotPickerItems));
+                if (value == _spotPickerGroups) return;
+                _spotPickerGroups = value;
+                _vm?.OnPropertyChangedWithValue(value, nameof(SpotPickerGroups));
             }
         }
 
@@ -201,20 +201,32 @@ namespace TOR_Core.Missions.AmbushMission.UI
 
         private void PopulateSpotPickerItems()
         {
-            SpotPickerItems.Clear();
+            SpotPickerGroups.Clear();
             var panel = _vm as OrderOfBattleFormationItemVM;
             var controller = Mission.Current?.GetMissionBehavior<AmbushMissionController>();
             if (panel?.Formation == null || controller == null) return;
             var ambushFormation = GetOrCreateAmbushFormation(controller, panel.Formation);
             if (ambushFormation == null) return;
             var currentPos = ambushFormation.AssignedSpot?.Position;
+
+            // Scene-order global numbering, one group column per unique
+            // GroupTag in first-appearance order. Columns stack horizontally
+            // in the prefab; cells stack vertically within each column.
+            var groupByTag = new System.Collections.Generic.Dictionary<string, AmbushSpotPickerGroupVM>();
+            int globalNumber = 1;
             foreach (var spot in controller.SceneSpots)
             {
+                if (!groupByTag.TryGetValue(spot.GroupTag, out var group))
+                {
+                    group = new AmbushSpotPickerGroupVM(LocalizedGroupName(spot.GroupTag));
+                    groupByTag[spot.GroupTag] = group;
+                    SpotPickerGroups.Add(group);
+                }
                 bool isCurrent = currentPos.HasValue
                                  && currentPos.Value.NearlyEquals(spot.Position, 0.01f);
                 var spotLocal = spot;
-                SpotPickerItems.Add(new AmbushSpotPickerItemVM(
-                    label: LocalizedGroupName(spot.GroupTag),
+                group.Items.Add(new AmbushSpotPickerItemVM(
+                    number: globalNumber++,
                     isCurrent: isCurrent,
                     onSelected: _ => AssignSpot(ambushFormation, spotLocal, controller)));
             }
