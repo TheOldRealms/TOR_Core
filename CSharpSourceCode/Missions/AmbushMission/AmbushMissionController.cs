@@ -1,3 +1,4 @@
+using NLog;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -8,6 +9,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Missions.AmbushMission
 {
@@ -246,6 +248,14 @@ namespace TOR_Core.Missions.AmbushMission
             Debug.Print(
                 "[AmbushMission] layout: " + Layout.Formations.Count + " formations, "
                 + "spots found=" + spots.Count + " mode=" + mode);
+            for (int i = 0; i < SceneSpots.Count; i++)
+                TORCommon.Log(LogLevel.Info,
+                    "[AmbushMission] SceneSpots[" + i + "] group=" + SceneSpots[i].GroupTag
+                    + " pos=" + SceneSpots[i].Position);
+            foreach (var kv in _attackerSpawnPositions)
+                TORCommon.Log(LogLevel.Info,
+                    "[AmbushMission] _attackerSpawnPositions[" + kv.Key + "] count=" + kv.Value.Count
+                    + " first=" + (kv.Value.Count > 0 ? kv.Value[0].ToString() : "n/a"));
         }
 
         /// <summary>
@@ -304,33 +314,75 @@ namespace TOR_Core.Missions.AmbushMission
             base.OnAgentCreated(agent);
             if (agent == null || !agent.IsHuman) return;
 
-            if (agent.Team == null || agent.Team.Side != _ambusherSide) return;
+            // Only reject agents we know are on the WRONG side. A null team
+            // (sometimes the player hero at first-tick) still gets our
+            // teleport so they don't drop at (0, 0, 0) and hang the walkable
+            // area check.
+            if (agent.Team != null && agent.Team.Side != _ambusherSide) return;
+
+            TORCommon.Log(LogLevel.Info,
+                "[AmbushMission] OnAgentCreated char=" + (agent.Character?.StringId ?? "?")
+                + " class=" + (agent.Character?.DefaultFormationClass.ToString() ?? "?")
+                + " team=" + (agent.Team == null ? "null" : agent.Team.Side.ToString()));
 
             var formationClass = agent.Character?.DefaultFormationClass ?? FormationClass.Infantry;
-            if (_attackerSpawnPositions.TryGetValue(formationClass, out var positions)
-                && positions.Count > 0)
+            // Flag the engine so its walkable-area check waits for our
+            // teleport before firing. Without this, the check runs on the
+            // agent's (0, 0, 0) initial frame and hangs the deployment.
+            bool prevTeleport = Mission.IsTeleportingAgents;
+            Mission.IsTeleportingAgents = true;
+            try
             {
-                int idx = _attackerSpawnIndex[formationClass]++;
-                int at = idx % positions.Count;
-                agent.TeleportToPosition(positions[at]);
-                if (_attackerSpawnYaws.TryGetValue(formationClass, out var yaws)
-                    && at < yaws.Count)
+                if (_attackerSpawnPositions.TryGetValue(formationClass, out var positions)
+                    && positions.Count > 0)
                 {
-                    float yaw = yaws[at];
-                    var dir = new Vec2((float)System.Math.Cos(yaw), (float)System.Math.Sin(yaw));
-                    agent.SetMovementDirection(in dir);
+                    int idx = _attackerSpawnIndex[formationClass]++;
+                    int at = idx % positions.Count;
+                    TORCommon.Log(LogLevel.Info,
+                        "[AmbushMission] teleport class=" + formationClass
+                        + " idx=" + at + "/" + positions.Count + " to " + positions[at]);
+                    agent.TeleportToPosition(positions[at]);
+                    if (_attackerSpawnYaws.TryGetValue(formationClass, out var yaws)
+                        && at < yaws.Count)
+                    {
+                        float yaw = yaws[at];
+                        var dir = new Vec2((float)System.Math.Cos(yaw), (float)System.Math.Sin(yaw));
+                        agent.SetMovementDirection(in dir);
+                    }
+                    return;
                 }
+                TORCommon.Log(LogLevel.Info,
+                    "[AmbushMission] NO class match for " + formationClass
+                    + " falling back to SceneSpots");
+
+            // Class has no bound chunk (e.g. a hero whose FormationClass
+            // doesn't match any troop class in the roster, so autochunk
+            // didn't produce a chunk for it). Drop the agent at any spot
+            // the scene has rather than let vanilla spawn them at (0, 0),
+            // which triggers the "agent initial frame is out of walkable
+            // area" fatal + hangs the deployment screen.
+            if (SceneSpots != null && SceneSpots.Count > 0)
+            {
+                var spot = SceneSpots[0];
+                agent.TeleportToPosition(spot.Position);
+                var dir = new Vec2((float)System.Math.Cos(spot.Yaw),
+                                   (float)System.Math.Sin(spot.Yaw));
+                agent.SetMovementDirection(in dir);
                 return;
             }
 
-            // Legacy fallback: scene has no role-typed slots but has the flat
-            // `ambush_attacker` tag. Mixes all classes in one list; worse but
-            // still better than default spawn.
+            // Legacy fallback: scene has no typed spots and no new scheme
+            // either; use the flat `ambush_attacker` tag list.
             if (_legacyAttackerSpawnPositions.Count > 0)
             {
                 int idx = _legacyAttackerSpawnIndex++;
                 agent.TeleportToPosition(
                     _legacyAttackerSpawnPositions[idx % _legacyAttackerSpawnPositions.Count]);
+            }
+            }
+            finally
+            {
+                Mission.IsTeleportingAgents = prevTeleport;
             }
         }
 
