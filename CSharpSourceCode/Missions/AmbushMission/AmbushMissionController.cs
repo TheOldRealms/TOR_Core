@@ -497,11 +497,14 @@ namespace TOR_Core.Missions.AmbushMission
                 }
                 if (groupTag == null) continue;
                 var frame = e.GetGlobalFrame();
+                var script = e.GetFirstScriptOfType<AmbushSpawnPointScript>();
                 list.Add(new AmbushSpot
                 {
                     GroupTag = groupTag,
                     Position = frame.origin,
                     Yaw = frame.rotation.f.AsVec2.RotationInRadians,
+                    MaxFormations = script?.MaxFormations ?? 0,
+                    MaxWidth = script?.MaxWidth ?? 0f,
                 });
             }
             return list;

@@ -315,7 +315,7 @@
                             <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="24" Text="@Header" Brush.FontSize="18" Brush.TextHorizontalAlignment="Center"/>
                             <ListPanel DataSource="{Items}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
                               <ItemTemplate>
-                                <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="28" MarginTop="2" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" Command.Click="ExecuteSelect">
+                                <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="28" MarginTop="2" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" Command.Click="ExecuteSelect" IsEnabled="@IsEnabled">
                                   <Children>
                                     <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" IntText="@Number" Brush.FontSize="18"/>
                                   </Children>

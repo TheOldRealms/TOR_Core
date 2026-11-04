@@ -1,10 +1,12 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.ViewModelCollection.OrderOfBattle;
 using TOR_Core.Extensions.UI;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Missions.AmbushMission.UI
 {
@@ -18,7 +20,13 @@ namespace TOR_Core.Missions.AmbushMission.UI
     /// split (follow-up slice can switch to per-vanilla-index chunking
     /// so each panel binds 1:1 to a chunk).
     /// </summary>
-    [ViewModelExtension(typeof(OrderOfBattleFormationItemVM), "RefreshValues")]
+    // Hook Tick (per-frame) rather than RefreshValues. Vanilla's OoB
+    // panel only calls RefreshValues on localization refresh and a few
+    // explicit state changes — notably NOT when the class-weight lever
+    // flips an empty slot into a valid formation. Tick runs every frame
+    // on these panels so Recompute picks up the transition immediately
+    // and the chip appears the moment the lever activates the formation.
+    [ViewModelExtension(typeof(OrderOfBattleFormationItemVM), "Tick")]
     public class AmbushFormationPanelExtension : BaseViewModelExtension
     {
         private string _spotLabel = "";
@@ -77,10 +85,24 @@ namespace TOR_Core.Missions.AmbushMission.UI
             }
         }
 
+        // Bumped whenever any panel reassigns a spot, so every extension
+        // instance can notice (next time its own RefreshValues runs) that
+        // somewhere a formation moved and re-dirty its cached plate
+        // position. This is how sibling formations keep their troop plate
+        // in sync when a share-spot reassignment shifts them laterally
+        // without them being the one the user clicked.
+        private static int s_moveGeneration;
+        private int _lastSeenMoveGeneration;
+
         public override void RefreshValues()
         {
             base.RefreshValues();
             Recompute();
+            if (_lastSeenMoveGeneration != s_moveGeneration)
+            {
+                _lastSeenMoveGeneration = s_moveGeneration;
+                (_vm as OrderOfBattleFormationItemVM)?.MakeMarkerWorldPositionDirty();
+            }
         }
 
         private string _lastHideReason;
@@ -123,9 +145,12 @@ namespace TOR_Core.Missions.AmbushMission.UI
         }
 
         /// <summary>
-        /// Fires an NLog line only when the hide reason changes, so a
-        /// chip that stays hidden across many ticks produces one entry
-        /// per state transition instead of 60 lines per second.
+        /// Fires an NLog line and an in-game message only when the hide
+        /// reason changes, so a chip that stays hidden across many ticks
+        /// produces one entry per state transition instead of 60 lines per
+        /// second. The in-game echo is loud on purpose for the current
+        /// debugging slice: split-formation panels aren't always showing
+        /// the chip and we need the user to see why live.
         /// </summary>
         private void LogHideTransition(string reason)
         {
@@ -133,6 +158,7 @@ namespace TOR_Core.Missions.AmbushMission.UI
             _lastHideReason = reason;
             NLog.LogManager.GetCurrentClassLogger().Info(
                 "[AmbushFormationPanel] chip hidden: " + reason);
+            TORCommon.Say("[Ambush] chip hidden: " + reason);
         }
 
         /// <summary>
@@ -224,14 +250,19 @@ namespace TOR_Core.Missions.AmbushMission.UI
                     return f;
                 }
             }
+            var fallbackSpot = FindFirstUnusedSpot(controller);
             var created = new AmbushFormation
             {
                 Class = vanilla.FormationIndex,
                 Troops = new System.Collections.Generic.List<CharacterObject>(),
                 VanillaFormation = vanilla,
-                AssignedSpot = FindFirstUnusedSpot(controller),
+                AssignedSpot = fallbackSpot,
             };
             controller.Layout.Formations.Add(created);
+            TORCommon.Say("[Ambush] new chunk class=" + vanilla.FormationIndex
+                          + " spot=" + (fallbackSpot.HasValue
+                              ? fallbackSpot.Value.GroupTag ?? "(null-tag)"
+                              : "(no-spot)"));
             return created;
         }
 
@@ -302,6 +333,22 @@ namespace TOR_Core.Missions.AmbushMission.UI
                 }
                 bucket.Add(spot);
             }
+            // Per-spot occupancy: how many *other* ambush formations are
+            // currently sitting here. Excludes the formation being
+            // reassigned so its own current spot stays clickable (lets
+            // the player cancel an in-progress click by re-picking the
+            // same spot). Spots with MaxFormations > 0 and occupancy
+            // >= MaxFormations render as disabled buttons.
+            var occupancy = new System.Collections.Generic.Dictionary<Vec3, int>();
+            foreach (var f in controller.Layout.Formations)
+            {
+                if (f == ambushFormation) continue;
+                if (!f.AssignedSpot.HasValue) continue;
+                var p = f.AssignedSpot.Value.Position;
+                occupancy.TryGetValue(p, out int c);
+                occupancy[p] = c + 1;
+            }
+
             int number = 1;
             foreach (var tag in tagOrder)
             {
@@ -311,10 +358,14 @@ namespace TOR_Core.Missions.AmbushMission.UI
                 {
                     bool isCurrent = currentPos.HasValue
                                      && currentPos.Value.NearlyEquals(spot.Position, 0.01f);
+                    occupancy.TryGetValue(spot.Position, out int occ);
+                    bool atCap = spot.MaxFormations > 0 && occ >= spot.MaxFormations;
+                    bool isEnabled = isCurrent || !atCap;
                     var spotLocal = spot;
                     group.Items.Add(new AmbushSpotPickerItemVM(
                         number: number++,
                         isCurrent: isCurrent,
+                        isEnabled: isEnabled,
                         onSelected: _ => AssignSpot(ambushFormation, spotLocal, controller)));
                 }
             }
@@ -326,35 +377,138 @@ namespace TOR_Core.Missions.AmbushMission.UI
             NLog.LogManager.GetCurrentClassLogger().Info(
                 "[AmbushFormationPanel] AssignSpot class=" + formation.Class
                 + " -> group " + spot.GroupTag);
+            var oldSpot = formation.AssignedSpot;
             formation.AssignedSpot = spot;
             IsSpotPickerOpen = false;
-            TeleportFormationAgentsToSpot(formation, spot);
-            (_vm as OrderOfBattleFormationItemVM)?.RefreshValues();
+
+            // Reposition every formation sitting on the newly-picked spot
+            // (including this one) so share-spot formations lay out
+            // side-by-side instead of stacking. If this formation just
+            // vacated a different spot, re-lay-out the formations that
+            // are left there too, so a two-formation spot that now only
+            // has one re-centers cleanly instead of staying offset.
+            RepositionSpotGroup(spot, controller);
+            if (oldSpot.HasValue
+                && !oldSpot.Value.Position.NearlyEquals(spot.Position, 0.01f))
+            {
+                RepositionSpotGroup(oldSpot.Value, controller);
+            }
+            s_moveGeneration++;
+
+            var panel = _vm as OrderOfBattleFormationItemVM;
+            panel?.MakeMarkerWorldPositionDirty();
+            panel?.RefreshValues();
         }
 
+        // Gap between neighbouring formation centres when two or more
+        // formations share the same AmbushSpot. Narrow enough to feel
+        // like one deployment "cluster" but wide enough that the two
+        // formations read as separate.
+        private const float ShareSpotSpacing = 10f;
+        // Width used for each formation when sharing. Vanilla picks a
+        // width from desired-troop-count; forcing a narrow custom width
+        // via SetFormOrder gives the "two deeper columns" look the user
+        // wants instead of one wide line overlapping another wide line.
+        private const float ShareSpotWidth = 6f;
+
         /// <summary>
-        /// Moves the agents of this AmbushFormation's bound vanilla Formation
-        /// to the newly picked spot. Agents are already spawned during
-        /// deployment setup via AmbushMissionController.OnAgentCreated using
-        /// the initial layout, so reassigning AmbushFormation.AssignedSpot
-        /// alone changes nothing visible. Iterates via the vanilla Formation
-        /// directly so that a second formation of the same class (e.g. from
-        /// a player split) does not get its agents dragged along.
+        /// Repositions every AmbushFormation currently assigned to the
+        /// given spot. Single-formation spots place the formation at the
+        /// spot's exact position with a wide line; shared spots lay the
+        /// formations side-by-side along the perpendicular to the spot's
+        /// facing, each compressed to <see cref="ShareSpotWidth"/> so the
+        /// extra depth shows instead of overlapping wide lines.
+        ///
+        /// Each per-formation move mirrors vanilla
+        /// BattleDeploymentHandler.AutoDeployTeamUsingDeploymentPlan:
+        /// wrap in Mission.IsTeleportingAgents, SetMovementOrder(Move),
+        /// SetPositioning (which also updates the formation plate's
+        /// cached world point), teleport + ForceUpdate each agent, clear
+        /// pending positions, finish with SetMovementOrder(Stop). A bare
+        /// per-agent TeleportToPosition leaves the plate stuck on the
+        /// old spot.
         /// </summary>
-        private void TeleportFormationAgentsToSpot(AmbushFormation formation, AmbushSpot spot)
+        private static void RepositionSpotGroup(AmbushSpot spot,
+                                                AmbushMissionController controller)
         {
-            var vanilla = formation.VanillaFormation;
-            if (vanilla == null) return;
-            int moved = 0;
-            vanilla.ApplyActionOnEachUnit(agent =>
+            var mission = Mission.Current;
+            var scene = mission?.Scene;
+            if (scene == null || controller?.Layout?.Formations == null) return;
+
+            var shared = new System.Collections.Generic.List<AmbushFormation>();
+            foreach (var f in controller.Layout.Formations)
             {
-                if (agent == null) return;
-                agent.TeleportToPosition(spot.Position);
-                moved++;
-            });
-            NLog.LogManager.GetCurrentClassLogger().Info(
-                "[AmbushFormationPanel] teleported " + moved + " agents of class "
-                + formation.Class + " to spot at " + spot.Position);
+                if (f.VanillaFormation == null) continue;
+                if (!f.AssignedSpot.HasValue) continue;
+                if (!f.AssignedSpot.Value.Position.NearlyEquals(spot.Position, 0.01f))
+                    continue;
+                shared.Add(f);
+            }
+            // Deterministic ordering so the same formation ends up on
+            // the same side of the spot across reassignments.
+            shared.Sort((a, b) => ((int)a.Class).CompareTo((int)b.Class));
+
+            int n = shared.Count;
+            if (n == 0) return;
+
+            // Facing convention matches AmbushMissionController's existing
+            // use of yaw -> (cos, sin). Perpendicular is 90° CCW from
+            // facing, so share-spot formations spread left/right of the
+            // line the formation looks down.
+            var facing = new Vec2((float)System.Math.Cos(spot.Yaw),
+                                  (float)System.Math.Sin(spot.Yaw));
+            if (facing.LengthSquared < 0.0001f) facing = new Vec2(0f, 1f);
+            var perp = new Vec2(-facing.Y, facing.X);
+
+            for (int i = 0; i < n; i++)
+            {
+                var f = shared[i];
+                float lateral = (n == 1) ? 0f : (i - (n - 1) / 2f) * ShareSpotSpacing;
+                var pos = spot.Position
+                          + new Vec3(perp.X * lateral, perp.Y * lateral, 0f);
+                RepositionFormation(f.VanillaFormation, pos, scene,
+                                    narrowWidth: n > 1 ? (float?)ShareSpotWidth : null);
+                TORCommon.Say("[Ambush] " + spot.GroupTag + "[" + (i + 1) + "/" + n + "]"
+                              + " class=" + f.Class
+                              + " lateral=" + lateral.ToString("F1"));
+            }
+        }
+
+        private static void RepositionFormation(TaleWorlds.MountAndBlade.Formation vanilla,
+                                                Vec3 pos,
+                                                Scene scene,
+                                                float? narrowWidth)
+        {
+            var mission = Mission.Current;
+            var worldPos = new WorldPosition(scene, pos);
+            bool prevTeleporting = mission.IsTeleportingAgents;
+            mission.IsTeleportingAgents = true;
+            try
+            {
+                vanilla.SetFormOrder(narrowWidth.HasValue
+                    ? FormOrder.FormOrderCustom(narrowWidth.Value)
+                    : FormOrder.FormOrderWide);
+                vanilla.SetMovementOrder(MovementOrder.MovementOrderMove(worldPos));
+                vanilla.SetPositioning(worldPos);
+                vanilla.ApplyActionOnEachUnit(agent =>
+                {
+                    if (agent == null) return;
+                    agent.TeleportToPosition(pos);
+                    agent.ForceUpdateCachedAndFormationValues(
+                        updateOnlyMovement: true,
+                        arrangementChangeAllowed: false);
+                });
+                vanilla.SetHasPendingUnitPositions(hasPendingUnitPositions: false);
+                vanilla.SetMovementOrder(MovementOrder.MovementOrderStop);
+            }
+            catch (System.Exception e)
+            {
+                TORCommon.Say("[Ambush] reposition failed: " + e.Message);
+            }
+            finally
+            {
+                mission.IsTeleportingAgents = prevTeleporting;
+            }
         }
 
         private static void InvokeVanillaSelection(OrderOfBattleFormationItemVM panel)

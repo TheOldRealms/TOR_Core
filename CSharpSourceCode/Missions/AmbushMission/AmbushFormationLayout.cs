@@ -31,6 +31,10 @@ namespace TOR_Core.Missions.AmbushMission
         public string GroupTag;
         public Vec3 Position;
         public float Yaw;
+        /// <summary>Per-spot cap from the scene-attached AmbushSpawnPointScript. Zero = unlimited.</summary>
+        public int MaxFormations;
+        /// <summary>Per-spot width budget from the scene-attached AmbushSpawnPointScript. Zero = unlimited.</summary>
+        public float MaxWidth;
     }
 
     /// <summary>

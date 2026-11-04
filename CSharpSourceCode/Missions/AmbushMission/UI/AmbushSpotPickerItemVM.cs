@@ -12,12 +12,14 @@ namespace TOR_Core.Missions.AmbushMission.UI
         private readonly Action<AmbushSpotPickerItemVM> _onSelected;
         private int _number;
         private bool _isCurrent;
+        private bool _isEnabled;
 
-        public AmbushSpotPickerItemVM(int number, bool isCurrent,
+        public AmbushSpotPickerItemVM(int number, bool isCurrent, bool isEnabled,
                                        Action<AmbushSpotPickerItemVM> onSelected)
         {
             _number = number;
             _isCurrent = isCurrent;
+            _isEnabled = isEnabled;
             _onSelected = onSelected;
         }
 
@@ -45,6 +47,22 @@ namespace TOR_Core.Missions.AmbushMission.UI
             }
         }
 
-        public void ExecuteSelect() => _onSelected?.Invoke(this);
+        [DataSourceProperty]
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set
+            {
+                if (value == _isEnabled) return;
+                _isEnabled = value;
+                OnPropertyChangedWithValue(value, nameof(IsEnabled));
+            }
+        }
+
+        public void ExecuteSelect()
+        {
+            if (!_isEnabled) return;
+            _onSelected?.Invoke(this);
+        }
     }
 }
