@@ -4,34 +4,34 @@ using TaleWorlds.Library;
 namespace TOR_Core.Missions.AmbushMission.UI
 {
     /// <summary>
-    /// One row in the spot-picker dropdown. Represents a spot the clicked
-    /// formation can be reassigned to. Follow-ups wire the selection to
-    /// the controller's layout so the chip label and the in-mission
-    /// teleport pick it up.
+    /// One row in the spot-picker dropdown. Carries the localized group
+    /// label the player sees and fires the selection callback on click.
+    /// The grid layout variant will add a <c>GroupTag</c> / <c>IndexInGroup</c>
+    /// pair; for now this stays flat and the chip label is what differentiates.
     /// </summary>
     public class AmbushSpotPickerItemVM : ViewModel
     {
         private readonly Action<AmbushSpotPickerItemVM> _onSelected;
-        private int _number;
+        private string _label;
         private bool _isCurrent;
 
-        public AmbushSpotPickerItemVM(int number, bool isCurrent,
+        public AmbushSpotPickerItemVM(string label, bool isCurrent,
                                        Action<AmbushSpotPickerItemVM> onSelected)
         {
-            _number = number;
+            _label = label;
             _isCurrent = isCurrent;
             _onSelected = onSelected;
         }
 
         [DataSourceProperty]
-        public int Number
+        public string Label
         {
-            get => _number;
+            get => _label;
             set
             {
-                if (value == _number) return;
-                _number = value;
-                OnPropertyChangedWithValue(value, nameof(Number));
+                if (value == _label) return;
+                _label = value;
+                OnPropertyChangedWithValue(value, nameof(Label));
             }
         }
 

@@ -9,27 +9,6 @@ using TOR_Core.Models;
 namespace TOR_Core.Missions.AmbushMission
 {
     /// <summary>
-    /// Role tag encoded in the scene entity (ambush_attacker_infantry etc).
-    /// </summary>
-    public enum SpotClass
-    {
-        Infantry,
-        Archer,
-        Cavalry,
-        HorseArcher
-    }
-
-    /// <summary>
-    /// Reassignment bucket: a formation can be moved only within its bucket.
-    /// Foot covers Infantry + Archer, Mounted covers Cavalry + HorseArcher.
-    /// </summary>
-    public enum AmbushBucket
-    {
-        Foot,
-        Mounted
-    }
-
-    /// <summary>
     /// Player mode keeps the sidebar legible (max 2 formations per class);
     /// AI mode spreads to fill matching spots with distribution randomness
     /// so repeat ambushes feel different.
@@ -40,44 +19,24 @@ namespace TOR_Core.Missions.AmbushMission
         AI
     }
 
-    public static class SpotClassExtensions
-    {
-        public static AmbushBucket Bucket(this SpotClass c)
-            => c == SpotClass.Infantry || c == SpotClass.Archer
-                ? AmbushBucket.Foot
-                : AmbushBucket.Mounted;
-
-        public static SpotClass FromFormationClass(FormationClass f)
-        {
-            switch (f)
-            {
-                case FormationClass.Infantry:        return SpotClass.Infantry;
-                case FormationClass.Ranged:          return SpotClass.Archer;
-                case FormationClass.Cavalry:         return SpotClass.Cavalry;
-                case FormationClass.HorseArcher:     return SpotClass.HorseArcher;
-                default:                             return SpotClass.Infantry;
-            }
-        }
-    }
-
     /// <summary>
-    /// A scener-authored spawn position on the ambush scene. One struct per
-    /// entity tagged <c>ambush_attacker_*</c>.
+    /// A scener-authored spawn position on the ambush scene. Each entity
+    /// tagged <c>attacker_ambush_spawnpoint</c> carries one additional group
+    /// tag (e.g. <c>attacker_ambush_hill</c>, <c>attacker_ambush_street</c>)
+    /// that the picker UI uses for column headers and the chip label uses
+    /// for localized display.
     /// </summary>
     public struct AmbushSpot
     {
-        public string Tag;
-        public SpotClass Class;
-        public AmbushBucket Bucket;
+        public string GroupTag;
         public Vec3 Position;
         public float Yaw;
     }
 
     /// <summary>
     /// One player-side deployable troop group (auto-chunked roster subset).
-    /// Becomes a vanilla <see cref="Formation"/> at mission start. Up to
-    /// 8 per mission (2 per class × 4 classes in player mode; capped by
-    /// matching spot count in AI mode).
+    /// Becomes a vanilla <see cref="TaleWorlds.MountAndBlade.Formation"/> at
+    /// mission start.
     /// </summary>
     public class AmbushFormation
     {
@@ -85,15 +44,14 @@ namespace TOR_Core.Missions.AmbushMission
         public List<CharacterObject> Troops;
         public int Count => Troops?.Count ?? 0;
         public AmbushSpot? AssignedSpot;
+        /// <summary>
+        /// The vanilla <see cref="Formation"/> this chunk is bound to.
+        /// Set lazily the first time an <c>OrderOfBattleFormationItemVM</c>
+        /// panel for a vanilla Formation runs through Recompute.
+        /// </summary>
+        public TaleWorlds.MountAndBlade.Formation VanillaFormation;
     }
 
-    /// <summary>
-    /// Result of <see cref="AmbushFormationLayout.Compute"/>: the auto-chunked
-    /// formations plus a default spot assignment per formation. The UI binds
-    /// the formations to sidebar panels; player reassignments via the
-    /// click-rectangle dropdown update <see cref="AmbushFormation.AssignedSpot"/>
-    /// in place.
-    /// </summary>
     public class AmbushLayoutResult
     {
         public List<AmbushFormation> Formations = new List<AmbushFormation>();
@@ -102,10 +60,10 @@ namespace TOR_Core.Missions.AmbushMission
     }
 
     /// <summary>
-    /// Pure data model. No Mission access, no UI. Computes the formation
-    /// list + default spot bindings from a roster plus the scene's spot
-    /// entities. Caller feeds the output into <see cref="AmbushMissionController"/>
-    /// at mission open and <see cref="AmbushDeploymentVM"/> for the sidebar.
+    /// Pure data model. Produces the formation list + default spot bindings
+    /// from a roster plus the scene's spot entities. Caller feeds the output
+    /// into <see cref="AmbushMissionController"/> at mission open and the
+    /// deployment UI for the sidebar + picker.
     /// </summary>
     public static class AmbushFormationLayout
     {
@@ -125,13 +83,10 @@ namespace TOR_Core.Missions.AmbushMission
                 var cls = kv.Key;
                 var troops = kv.Value;
                 if (troops.Count == 0) continue;
-                var matchingSpots = spots
-                    .Where(s => s.Class == SpotClassExtensions.FromFormationClass(cls))
-                    .ToList();
                 var formations = mode == LayoutMode.Player
                     ? ChunkForPlayer(cls, troops, model)
-                    : ChunkForAi(cls, troops, matchingSpots.Count, model);
-                AssignDefaultSpots(formations, matchingSpots, spots, result);
+                    : ChunkForAi(cls, troops, spots.Count, model);
+                AssignDefaultSpots(formations, spots, result);
                 result.Formations.AddRange(formations);
             }
             return result;
@@ -153,8 +108,6 @@ namespace TOR_Core.Missions.AmbushMission
             return dict;
         }
 
-        // ---- Player chunking ----
-
         private static List<AmbushFormation> ChunkForPlayer(FormationClass cls,
             List<CharacterObject> troops, TORMissionAmbushModel model)
         {
@@ -169,16 +122,14 @@ namespace TOR_Core.Missions.AmbushMission
             return list;
         }
 
-        // ---- AI chunking with distribution randomness ----
-
         private static List<AmbushFormation> ChunkForAi(FormationClass cls,
-            List<CharacterObject> troops, int matchingSpotCount,
+            List<CharacterObject> troops, int spotCount,
             TORMissionAmbushModel model)
         {
             var list = new List<AmbushFormation>();
             int n = troops.Count;
             int maxByFloor = n / System.Math.Max(1, model.MinAiFormationSize);
-            int targetCount = MBMath.ClampInt(matchingSpotCount, 1, System.Math.Max(1, maxByFloor));
+            int targetCount = MBMath.ClampInt(spotCount, 1, System.Math.Max(1, maxByFloor));
             if (targetCount <= 1)
             {
                 list.Add(new AmbushFormation { Class = cls, Troops = troops });
@@ -187,17 +138,23 @@ namespace TOR_Core.Missions.AmbushMission
             var pattern = RollDistributionPattern(model);
             var weights = BuildWeights(pattern, targetCount);
             SplitByWeights(troops, weights, cls, list);
-            if (list.Any(f => f.Count < model.MinAiFormationSize))
+            if (ContainsUndersized(list, model.MinAiFormationSize))
             {
                 list.Clear();
                 SplitEven(troops, targetCount, cls, list);
-                if (list.Any(f => f.Count < model.MinAiFormationSize))
+                if (ContainsUndersized(list, model.MinAiFormationSize))
                 {
                     list.Clear();
                     list.Add(new AmbushFormation { Class = cls, Troops = troops });
                 }
             }
             return list;
+        }
+
+        private static bool ContainsUndersized(List<AmbushFormation> list, int min)
+        {
+            foreach (var f in list) if (f.Count < min) return true;
+            return false;
         }
 
         private enum DistPattern { Concentrated, Even, Asymmetric }
@@ -282,35 +239,32 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
-        // ---- Default spot assignment ----
-
+        /// <summary>
+        /// Default spot assignment: first-unused spot in scene iteration order,
+        /// no class or bucket filtering. The player can reassign via the UI
+        /// after deployment opens.
+        /// </summary>
         private static void AssignDefaultSpots(List<AmbushFormation> formations,
-            List<AmbushSpot> matchingClassSpots, IList<AmbushSpot> allSpots,
-            AmbushLayoutResult result)
+            IList<AmbushSpot> spots, AmbushLayoutResult result)
         {
-            var usedPositions = new HashSet<Vec3>(result.DefaultAssignments.Values.Select(s => s.Position));
+            var usedPositions = new HashSet<Vec3>(
+                result.DefaultAssignments.Values.Select(s => s.Position));
             foreach (var f in formations)
             {
-                var spot = PickFirstUnused(matchingClassSpots, usedPositions);
-                if (!spot.HasValue)
+                AmbushSpot? picked = null;
+                foreach (var s in spots)
                 {
-                    var bucket = SpotClassExtensions.FromFormationClass(f.Class).Bucket();
-                    var bucketSpots = allSpots.Where(s => s.Bucket == bucket).ToList();
-                    spot = PickFirstUnused(bucketSpots, usedPositions);
+                    if (!usedPositions.Contains(s.Position))
+                    {
+                        picked = s;
+                        break;
+                    }
                 }
-                if (!spot.HasValue) continue;
-                f.AssignedSpot = spot.Value;
-                result.DefaultAssignments[f] = spot.Value;
-                usedPositions.Add(spot.Value.Position);
+                if (!picked.HasValue) continue;
+                f.AssignedSpot = picked.Value;
+                result.DefaultAssignments[f] = picked.Value;
+                usedPositions.Add(picked.Value.Position);
             }
-        }
-
-        private static AmbushSpot? PickFirstUnused(IList<AmbushSpot> candidates,
-            HashSet<Vec3> used)
-        {
-            foreach (var s in candidates)
-                if (!used.Contains(s.Position)) return s;
-            return null;
         }
     }
 }

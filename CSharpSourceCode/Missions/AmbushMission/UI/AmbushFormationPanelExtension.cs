@@ -1,4 +1,5 @@
 using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -85,34 +86,92 @@ namespace TOR_Core.Missions.AmbushMission.UI
         private void Recompute()
         {
             var panel = _vm as OrderOfBattleFormationItemVM;
-            var formation = panel?.Formation;
-            if (formation == null)
+            var vanillaFormation = panel?.Formation;
+            if (vanillaFormation == null)
             {
                 HasSpotAssignment = false;
                 SpotLabel = "";
                 return;
             }
             var controller = Mission.Current?.GetMissionBehavior<AmbushMissionController>();
-            var ambushFormation = FindAmbushFormation(controller, formation.FormationIndex);
+            var ambushFormation = GetOrCreateAmbushFormation(controller, vanillaFormation);
             var spot = ambushFormation?.AssignedSpot;
-            if (controller == null || ambushFormation == null || !spot.HasValue
-                || !controller.SpotNumbers.TryGetValue(spot.Value.Position, out var number))
+            if (spot == null || string.IsNullOrEmpty(spot.Value.GroupTag))
             {
                 HasSpotAssignment = false;
                 SpotLabel = "";
                 return;
             }
             HasSpotAssignment = true;
-            SpotLabel = "Spot " + number;
+            SpotLabel = LocalizedGroupName(spot.Value.GroupTag);
         }
 
-        private static AmbushFormation FindAmbushFormation(AmbushMissionController controller,
-                                                            FormationClass cls)
+        /// <summary>
+        /// Looks up the localized display name for a spot group tag via
+        /// GameTexts (ID shape <c>tor_ambush_spawnpoint_tag.&lt;tag&gt;</c>).
+        /// Falls back to the raw tag when no entry exists, so scener-added
+        /// tags still render something human-readable until the strings
+        /// file is extended.
+        /// </summary>
+        private static string LocalizedGroupName(string groupTag)
+        {
+            var text = TaleWorlds.Core.GameTexts.FindText(
+                "tor_ambush_spawnpoint_tag", groupTag);
+            var result = text?.ToString();
+            return string.IsNullOrEmpty(result) || result == "ERROR"
+                ? groupTag
+                : result;
+        }
+
+        /// <summary>
+        /// Resolves which AmbushFormation chunk this vanilla panel represents.
+        /// Three cases, in order:
+        /// (1) Already bound (VanillaFormation == this one). Reuse it.
+        /// (2) Unbound chunk of matching class exists from the initial autochunk.
+        ///     Bind it to this vanilla formation.
+        /// (3) No matching chunk left (e.g. player just split a formation into a
+        ///     new one). Create a new AmbushFormation, assign the first unused
+        ///     spot in the matching bucket, and append it to the layout.
+        /// </summary>
+        private static AmbushFormation GetOrCreateAmbushFormation(
+            AmbushMissionController controller,
+            TaleWorlds.MountAndBlade.Formation vanilla)
         {
             if (controller?.Layout?.Formations == null) return null;
             foreach (var f in controller.Layout.Formations)
-                if (f.Class == cls) return f;
-            return null;
+                if (f.VanillaFormation == vanilla) return f;
+            foreach (var f in controller.Layout.Formations)
+            {
+                if (f.VanillaFormation == null && f.Class == vanilla.FormationIndex)
+                {
+                    f.VanillaFormation = vanilla;
+                    return f;
+                }
+            }
+            var created = new AmbushFormation
+            {
+                Class = vanilla.FormationIndex,
+                Troops = new System.Collections.Generic.List<CharacterObject>(),
+                VanillaFormation = vanilla,
+                AssignedSpot = FindFirstUnusedSpot(controller),
+            };
+            controller.Layout.Formations.Add(created);
+            return created;
+        }
+
+        private static AmbushSpot? FindFirstUnusedSpot(AmbushMissionController controller)
+        {
+            if (controller.SceneSpots == null) return null;
+            var used = new System.Collections.Generic.HashSet<TaleWorlds.Library.Vec3>();
+            foreach (var f in controller.Layout.Formations)
+                if (f.AssignedSpot.HasValue) used.Add(f.AssignedSpot.Value.Position);
+            foreach (var s in controller.SceneSpots)
+                if (!used.Contains(s.Position)) return s;
+            // All spots are already assigned. Return the first one so the
+            // new formation has at least a valid spot to render.
+            return controller.SceneSpots.Count > 0
+                ? (AmbushSpot?)controller.SceneSpots[0]
+                : null;
         }
 
         /// <summary>
@@ -146,34 +205,56 @@ namespace TOR_Core.Missions.AmbushMission.UI
             var panel = _vm as OrderOfBattleFormationItemVM;
             var controller = Mission.Current?.GetMissionBehavior<AmbushMissionController>();
             if (panel?.Formation == null || controller == null) return;
-            var ambushFormation = FindAmbushFormation(controller, panel.Formation.FormationIndex);
+            var ambushFormation = GetOrCreateAmbushFormation(controller, panel.Formation);
             if (ambushFormation == null) return;
-            var bucket = SpotClassExtensions
-                .FromFormationClass(ambushFormation.Class)
-                .Bucket();
             var currentPos = ambushFormation.AssignedSpot?.Position;
-            foreach (var spot in controller.SceneSpots.Where(s => s.Bucket == bucket))
+            foreach (var spot in controller.SceneSpots)
             {
-                if (!controller.SpotNumbers.TryGetValue(spot.Position, out var number)) continue;
                 bool isCurrent = currentPos.HasValue
                                  && currentPos.Value.NearlyEquals(spot.Position, 0.01f);
+                var spotLocal = spot;
                 SpotPickerItems.Add(new AmbushSpotPickerItemVM(
-                    number: number,
+                    label: LocalizedGroupName(spot.GroupTag),
                     isCurrent: isCurrent,
-                    onSelected: item => AssignSpot(ambushFormation, spot, controller)));
+                    onSelected: _ => AssignSpot(ambushFormation, spotLocal, controller)));
             }
         }
 
         private void AssignSpot(AmbushFormation formation, AmbushSpot spot,
                                 AmbushMissionController controller)
         {
+            NLog.LogManager.GetCurrentClassLogger().Info(
+                "[AmbushFormationPanel] AssignSpot class=" + formation.Class
+                + " -> group " + spot.GroupTag);
             formation.AssignedSpot = spot;
             IsSpotPickerOpen = false;
-            // Refresh the chip label to reflect the new binding. The vanilla
-            // VM's RefreshValues walks through our RefreshValues too, so
-            // asking the panel to refresh pushes the Recompute into
-            // HasSpotAssignment + SpotLabel updates.
+            TeleportFormationAgentsToSpot(formation, spot);
             (_vm as OrderOfBattleFormationItemVM)?.RefreshValues();
+        }
+
+        /// <summary>
+        /// Moves the agents of this AmbushFormation's bound vanilla Formation
+        /// to the newly picked spot. Agents are already spawned during
+        /// deployment setup via AmbushMissionController.OnAgentCreated using
+        /// the initial layout, so reassigning AmbushFormation.AssignedSpot
+        /// alone changes nothing visible. Iterates via the vanilla Formation
+        /// directly so that a second formation of the same class (e.g. from
+        /// a player split) does not get its agents dragged along.
+        /// </summary>
+        private void TeleportFormationAgentsToSpot(AmbushFormation formation, AmbushSpot spot)
+        {
+            var vanilla = formation.VanillaFormation;
+            if (vanilla == null) return;
+            int moved = 0;
+            vanilla.ApplyActionOnEachUnit(agent =>
+            {
+                if (agent == null) return;
+                agent.TeleportToPosition(spot.Position);
+                moved++;
+            });
+            NLog.LogManager.GetCurrentClassLogger().Info(
+                "[AmbushFormationPanel] teleported " + moved + " agents of class "
+                + formation.Class + " to spot at " + spot.Position);
         }
 
         private static void InvokeVanillaSelection(OrderOfBattleFormationItemVM panel)

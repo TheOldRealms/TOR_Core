@@ -289,9 +289,9 @@
                  spot. -->
             <ListPanel DataSource="{SpotPickerItems}" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="90" HorizontalAlignment="Center" VerticalAlignment="Top" PositionYOffset="42" IsVisible="@IsSpotPickerOpen" StackLayout.LayoutMethod="VerticalTopToBottom">
               <ItemTemplate>
-                <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="28" MarginTop="1" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" Command.Click="ExecuteSelect">
+                <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="110" SuggestedHeight="28" MarginTop="1" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" Command.Click="ExecuteSelect">
                   <Children>
-                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" IntText="@Number" Brush.FontSize="18"/>
+                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Text="@Label" Brush.FontSize="18"/>
                   </Children>
                 </ButtonWidget>
               </ItemTemplate>

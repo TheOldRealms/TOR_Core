@@ -80,6 +80,10 @@
   <string id="tor_race_name.spirit_host" text="{=str_tor_race_name_spirit_host}Spirit Host" />
   <string id="tor_race_name.troll" text="{=str_tor_race_name_troll}Troll" />
 
+  <!-- UI - Ambush deployment -->
+  <string id="tor_ambush_spawnpoint_tag.attacker_ambush_hill" text="{=str_tor_ambush_spawnpoint_tag.attacker_ambush_hill}Hill" />
+  <string id="tor_ambush_spawnpoint_tag.attacker_ambush_street" text="{=str_tor_ambush_spawnpoint_tag.attacker_ambush_street}Street" />
+
   <!-- Oathgold -->
   <string id="tor_party_size_desc.FriendOfUndead" text="{=str_tor_party_size_desc_friendofundead}Friend of undead" />
   <string id="tor_party_size_desc.CaravanOfDeath" text="{=str_tor_party_size_desc_caravanofdeath}Caravan of death" />
@@ -4561,11 +4565,6 @@
   <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead - not affected by morale, and instead of fleeing, shall crumble to dust. If defeated, this unit cannot be wounded." />
   <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew - required to operate most artillery pieces." />
   <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale." />
-  <string id="tor_extendedInfo.Expendable" text="{=str_tor_extendedinfo_expendable}Expendable - Losses of this unit cause no morale shock (...)" />
-  <string id="tor_extendedInfo.Crushing" text="{=str_tor_extendedinfo_crushing}Crushing - Attacks cannot be blocked or parried with weapons. (...)" />
-  <string id="tor_extendedInfo.Slice" text="{=str_tor_extendedinfo_slice}Slice - Melee attacks can cut through enemies(...)" />
-  <string id="tor_extendedInfo.TreeSpirit" text="{=str_tor_extendedinfo_treespirit}Tree Spirit - Tree Spirit (...)" />
-  <string id="tor_extendedInfo.Crew" text="{=str_tor_extendedinfo_crew}Artillery Crew - {VALUE}% faster cannon reloads and can load cannons (...)" />
   <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage." />
   <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Piercing - {VALUE}% Armor Penetration(...)" />
   <string id="tor_damagetype.Invalid" text="{=str_tor_damagetype_invalid}Invalid" />
@@ -4575,6 +4574,21 @@
   <string id="tor_damagetype.Holy" text="{=str_tor_damagetype_holy}Holy" />
   <string id="tor_damagetype.Frost" text="{=str_tor_damagetype_frost}Frost" />
   <string id="tor_damagetype.Lightning" text="{=str_tor_damagetype_lightning}Lightning" />
+
+  <!-- ExtendedInfo.Expendable -->
+  <string id="tor_extendedInfo.Expendable" text="{=str_tor_extendedinfo_expendable}Expendable - Losses of this unit cause no morale shock (...)" />
+
+  <!-- ExtendedInfo.Crushing -->
+  <string id="tor_extendedInfo.Crushing" text="{=str_tor_extendedinfo_crushing}Crushing - Attacks cannot be blocked or parried with weapons. (...)" />
+
+  <!-- ExtendedInfo.Slice -->
+  <string id="tor_extendedInfo.Slice" text="{=str_tor_extendedinfo_slice}Slice - Melee attacks can cut through enemies(...)" />
+
+  <!-- ExtendedInfo.TreeSpirit -->
+  <string id="tor_extendedInfo.TreeSpirit" text="{=str_tor_extendedinfo_treespirit}Tree Spirit - Tree Spirit (...)" />
+
+  <!-- ExtendedInfo.Crew -->
+  <string id="tor_extendedInfo.Crew" text="{=str_tor_extendedinfo_crew}Artillery Crew - {VALUE}% faster cannon reloads and can load cannons (...)" />
 
   <!-- ExtendedInfo.Monstrous -->
   <string id="tor_extendedInfo.Monstrous" text="{=str_tor_extendedinfo_monstrous}Monstrous - Attacks gates (...)" />
@@ -4621,6 +4635,8 @@
 
   <!-- ExtendedInfo.Ethereal -->
   <string id="tor_extendedInfo.Ethereal" text="{=str_tor_extendedinfo_ethereal}Ethereal - {VALUE}% Chance to Ignore Purely Physical Hits(...)" />
+
+  <!-- Ethereal -->
   <string id="tor_ethereal_hit_ignored" text="{=str_tor_ethereal_hit_ignored}Your blow passes harmlessly through the ethereal form!" />
 
   <!-- ExtendedInfo.KillingBlow -->

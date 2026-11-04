@@ -248,30 +248,41 @@ namespace TOR_Core.Missions.AmbushMission
                 + "spots found=" + spots.Count + " mode=" + mode);
         }
 
+        /// <summary>
+        /// Reads every entity tagged <c>attacker_ambush_spawnpoint</c>; each
+        /// is paired with one group tag (e.g. <c>attacker_ambush_hill</c>)
+        /// that drives the picker grouping and the chip's localized label.
+        /// The group tag is whichever remaining tag on the entity carries
+        /// the <c>attacker_ambush_</c> prefix. Entities missing a group tag
+        /// are logged and dropped so the picker stays usable.
+        /// </summary>
         private List<AmbushSpot> CollectAmbushSpots()
         {
+            const string MarkerTag = "attacker_ambush_spawnpoint";
+            const string GroupPrefix = "attacker_ambush_";
             var list = new List<AmbushSpot>();
-            AddSpotsForTag(list, "attacker_infantry",    SpotClass.Infantry);
-            AddSpotsForTag(list, "attacker_archer",      SpotClass.Archer);
-            AddSpotsForTag(list, "attacker_cavalry",     SpotClass.Cavalry);
-            AddSpotsForTag(list, "attacker_horsearcher", SpotClass.HorseArcher);
-            return list;
-        }
-
-        private void AddSpotsForTag(List<AmbushSpot> list, string tag, SpotClass cls)
-        {
-            foreach (var e in Mission.Scene.FindEntitiesWithTag(tag))
+            foreach (var e in Mission.Scene.FindEntitiesWithTag(MarkerTag))
             {
+                string groupTag = null;
+                foreach (var t in e.Tags)
+                {
+                    if (string.IsNullOrEmpty(t) || t == MarkerTag) continue;
+                    if (t.StartsWith(GroupPrefix))
+                    {
+                        groupTag = t;
+                        break;
+                    }
+                }
+                if (groupTag == null) continue;
                 var frame = e.GetGlobalFrame();
                 list.Add(new AmbushSpot
                 {
-                    Tag = tag,
-                    Class = cls,
-                    Bucket = cls.Bucket(),
+                    GroupTag = groupTag,
                     Position = frame.origin,
                     Yaw = frame.rotation.f.AsVec2.RotationInRadians,
                 });
             }
+            return list;
         }
 
         private List<Vec3> CollectPositionsForTag(string tag)
