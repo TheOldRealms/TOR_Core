@@ -249,10 +249,25 @@ namespace TOR_Core.Missions
             var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All);
             return MissionState.OpenNew("Battle", rec, delegate (Mission mission)
             {
+                // Share the attacker supplier instance between vanilla's spawn
+                // logic and the AmbushMissionController. The controller drains
+                // it in AfterStart (ambusher custom spawn) so vanilla's later
+                // SetSpawnTroops(Attacker, enforceSpawning: true) sees an
+                // empty supplier and skips the (0, 0, 0) initial placement
+                // that would otherwise hang the deployment screen.
+                var ambusherSupplier = new PartyGroupTroopSupplier(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Attacker);
+                // Vanilla's defender spawn drops specific troops (e.g. Ungor
+                // Raider in the current test scene) at (0, 0, 0) on the first
+                // mission tick, which hangs the walkable-area check. Share
+                // the defender supplier too so AmbushMissionController can
+                // drain it and spawn at sp_defender_<class> positions.
+                var victimSupplier = new PartyGroupTroopSupplier(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Defender);
                 IMissionTroopSupplier[] suppliers =
                 [
-                    new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Defender),
-                    new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Attacker),
+                    victimSupplier,
+                    ambusherSupplier,
                 ];
                 // Phase D: player (ambusher) sits on Attacker, target
                 // (victim) on Defender. Pass the two parties through to the
@@ -266,7 +281,7 @@ namespace TOR_Core.Missions
                     new DefaultBattleMissionAgentSpawnLogic(suppliers, BattleSideEnum.Attacker, BattleSizeType.Battle),
                     new BattlePowerCalculationLogic(),
                     new BattleSpawnLogic("battle_set"),
-                    new AmbushMission.AmbushMissionController(ambusherParty, victimParty),
+                    new AmbushMission.AmbushMissionController(ambusherParty, victimParty, ambusherSupplier, victimSupplier),
                     new AmbushMission.AmbushEndLogic(),
                     new AmbushMission.AmbushLoudnessTracker(),
                     new MissionExperienceBehavior(),

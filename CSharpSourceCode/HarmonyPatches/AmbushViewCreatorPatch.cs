@@ -1,5 +1,6 @@
 using HarmonyLib;
 using SandBox.View.Missions;
+using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.MountAndBlade.View.MissionViews.Order;

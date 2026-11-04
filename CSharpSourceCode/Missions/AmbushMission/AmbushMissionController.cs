@@ -2,7 +2,9 @@ using NLog;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.TroopSuppliers;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
@@ -112,10 +114,26 @@ namespace TOR_Core.Missions.AmbushMission
             => _ambusherParty != null
                && _ambusherParty.MobileParty == MobileParty.MainParty;
 
-        public AmbushMissionController(PartyBase ambusherParty, PartyBase victimParty)
+        /// <summary>
+        /// Optional shared reference to the attacker-side troop supplier
+        /// vanilla's DefaultBattleMissionAgentSpawnLogic also holds. When set,
+        /// AfterStart drains it and spawns the ambusher roster manually at
+        /// AmbushFormation chunk positions, so vanilla's SetupTeams runs
+        /// against an empty supplier and places no agents at (0, 0, 0).
+        /// Null for player-victim missions (we don't take over the spawn
+        /// pipeline there).
+        /// </summary>
+        private readonly IMissionTroopSupplier _ambusherSupplier;
+        private readonly IMissionTroopSupplier _victimSupplier;
+
+        public AmbushMissionController(PartyBase ambusherParty, PartyBase victimParty,
+                                        IMissionTroopSupplier ambusherSupplier = null,
+                                        IMissionTroopSupplier victimSupplier = null)
         {
             _ambusherParty = ambusherParty;
             _victimParty = victimParty;
+            _ambusherSupplier = ambusherSupplier;
+            _victimSupplier = victimSupplier;
         }
 
         public override void OnBehaviorInitialize()
@@ -145,6 +163,23 @@ namespace TOR_Core.Missions.AmbushMission
             // waiting for the player to click Confirm. Call FinishDeployment
             // from there and the mission transitions as if Confirm had been
             // pressed.
+            // If the player is the ambusher, vanilla's auto-spawn drops every
+            // attacker at (0, 0, 0) because the new scene uses sp_ambush_attacker_point
+            // entities instead of vanilla's sp_attacker_<class> names. Rather than
+            // chase the scene-side fix across every ambush scene we end up
+            // shipping, we intercept the deployment-controller's OnAfterSetupTeams
+            // (fires once per mission, after both sides' setup, before the first
+            // spawn tick), disable vanilla's attacker spawn there, and spawn our
+            // own agents at the AmbushFormation chunk positions. Decoupling us
+            // from vanilla's spawn pipeline is also what lets the pending
+            // "player ambushes with a subset of the party" feature land cleanly
+            // later: we already own the roster iteration, we can filter it.
+            // Ambusher custom spawn is driven by a Harmony prefix on
+            // BattleDeploymentMissionController.OnSetupTeamsOfSide, not by an
+            // event subscription here. See AmbusherCustomSpawnPatch. We
+            // tried OnAfterSetupTeams first; it fires one tick after the
+            // bad (0, 0, 0) spawn, too late to help.
+
             if (!IsPlayerAmbusher)
             {
                 var deploymentController =
@@ -154,6 +189,92 @@ namespace TOR_Core.Missions.AmbushMission
                     deploymentController.OnAfterSetupTeams += AutoFinishDeploymentForVictim;
                 }
             }
+        }
+
+        /// <summary>
+        /// Disables vanilla's attacker auto-spawn (which places agents at
+        /// (0, 0, 0) because the scene lacks vanilla sp_attacker_<class>
+        /// entities) and spawns the ambusher roster ourselves at each
+        /// AmbushFormation chunk's AssignedSpot. Called once per mission
+        /// via BattleDeploymentMissionController.OnAfterSetupTeams, which
+        /// fires after per-side team setup but before the first spawn
+        /// tick, giving us a clean window to take over.
+        /// </summary>
+        private void DoCustomAmbusherSpawn()
+        {
+            TORCommon.Log(LogLevel.Info, "[AmbushMission] DoCustomAmbusherSpawn entry");
+            if (Layout == null || SceneSpots == null || SceneSpots.Count == 0)
+            {
+                TORCommon.Log(LogLevel.Warn,
+                    "[AmbushMission] DoCustomAmbusherSpawn skipped: no layout/spots");
+                return;
+            }
+            if (_ambusherSupplier == null)
+            {
+                TORCommon.Log(LogLevel.Warn,
+                    "[AmbushMission] DoCustomAmbusherSpawn skipped: no shared supplier passed in");
+                return;
+            }
+
+            // Drain the same supplier instance vanilla's spawn logic holds, so
+            // vanilla's later SetSpawnTroops(..., enforceSpawning: true) has
+            // nothing to allocate and places no agents at (0, 0, 0).
+            var origins = _ambusherSupplier.SupplyTroops(int.MaxValue).ToList();
+            bool isPlayerSide = _ambusherSide == BattleSideEnum.Attacker
+                                && IsPlayerAmbusher;
+
+            int spawned = 0;
+            foreach (var origin in origins)
+            {
+                var spot = ChooseSpotForOrigin(origin);
+                if (!spot.HasValue) continue;
+                var dir = new Vec2((float)System.Math.Cos(spot.Value.Yaw),
+                                    (float)System.Math.Sin(spot.Value.Yaw));
+                var buildData = Mission.GetAgentBuildDataToSpawnTroop(
+                    origin,
+                    isPlayerSide: isPlayerSide,
+                    hasFormation: true,
+                    spawnWithHorse: true,
+                    isReinforcement: false,
+                    formationTroopCount: 1,
+                    formationTroopIndex: 0,
+                    initialPosition: spot.Value.Position,
+                    initialDirection: dir,
+                    formationIndex: origin.Troop.GetFormationClass());
+
+                if (origin.Troop.IsHero)
+                {
+                    buildData.FixedEquipment(true);
+                    if (origin.Troop == CharacterObject.PlayerCharacter)
+                        buildData.Controller(AgentControllerType.Player);
+                }
+
+                Mission.SpawnAgent(buildData, false);
+                spawned++;
+            }
+            TORCommon.Log(LogLevel.Info,
+                "[AmbushMission] DoCustomAmbusherSpawn: spawned=" + spawned
+                + "/" + origins.Count);
+        }
+
+        /// <summary>
+        /// Picks the spot an incoming troop should land on. Current rule:
+        /// first AmbushFormation chunk whose Class matches the troop's
+        /// FormationClass; if nothing matches, first SceneSpot so we never
+        /// drop a troop at (0, 0, 0).
+        /// </summary>
+        private AmbushSpot? ChooseSpotForOrigin(IAgentOriginBase origin)
+        {
+            var cls = origin.Troop.GetFormationClass();
+            if (Layout?.Formations != null)
+            {
+                foreach (var f in Layout.Formations)
+                {
+                    if (f.Class == cls && f.AssignedSpot.HasValue)
+                        return f.AssignedSpot.Value;
+                }
+            }
+            return SceneSpots.Count > 0 ? SceneSpots[0] : (AmbushSpot?)null;
         }
 
         private void AutoFinishDeploymentForVictim()
@@ -175,6 +296,97 @@ namespace TOR_Core.Missions.AmbushMission
             _victimSide = _victimParty?.MapEventSide?.MissionSide ?? BattleSideEnum.Defender;
             SetupInitialSpawn();
             CollectAttackerSpawnPositions();
+            // Ambusher custom spawn: drain the shared supplier and place our
+            // own agents before vanilla's first OnMissionTick fires its
+            // SetupTeams -> OnSetupTeamsOfSide(Attacker) -> SetSpawnTroops(..
+            // enforceSpawning: true), which synchronously spawns from the
+            // same supplier. By draining here, vanilla finds nothing left
+            // and never drops agents at (0, 0, 0).
+            if (IsPlayerAmbusher)
+            {
+                DoCustomAmbusherSpawn();
+                DoCustomVictimSpawn();
+            }
+        }
+
+        /// <summary>
+        /// Vanilla's defender spawn occasionally drops specific troops (seen
+        /// with Ungor Raider in the test scene) at (0, 0, 0), which hangs
+        /// the walkable-area check on the deployment screen. The scene has
+        /// valid sp_defender_* entities, so we place the entire victim
+        /// roster at their world positions ourselves, same strategy as the
+        /// ambusher spawn. If the supplier isn't shared or the scene lacks
+        /// sp_defender_&lt;class&gt; entities we log and skip, letting
+        /// vanilla try.
+        /// </summary>
+        private void DoCustomVictimSpawn()
+        {
+            TORCommon.Log(LogLevel.Info, "[AmbushMission] DoCustomVictimSpawn entry");
+            if (_victimSupplier == null)
+            {
+                TORCommon.Log(LogLevel.Warn,
+                    "[AmbushMission] DoCustomVictimSpawn skipped: no shared victim supplier");
+                return;
+            }
+            var spots = CollectDefenderSceneSpots();
+            if (spots.Count == 0)
+            {
+                TORCommon.Log(LogLevel.Warn,
+                    "[AmbushMission] DoCustomVictimSpawn skipped: no sp_defender_* entities in scene");
+                return;
+            }
+            var origins = _victimSupplier.SupplyTroops(int.MaxValue).ToList();
+            int spawned = 0;
+            foreach (var origin in origins)
+            {
+                var cls = origin.Troop.GetFormationClass();
+                var pos = spots.TryGetValue(cls, out var p) ? p
+                        : spots.Values.First();
+                var dir = new Vec2(1f, 0f);
+                var buildData = Mission.GetAgentBuildDataToSpawnTroop(
+                    origin,
+                    isPlayerSide: false,
+                    hasFormation: true,
+                    spawnWithHorse: true,
+                    isReinforcement: false,
+                    formationTroopCount: 1,
+                    formationTroopIndex: 0,
+                    initialPosition: pos,
+                    initialDirection: dir,
+                    formationIndex: cls);
+                if (origin.Troop.IsHero) buildData.FixedEquipment(true);
+                Mission.SpawnAgent(buildData, false);
+                spawned++;
+            }
+            TORCommon.Log(LogLevel.Info,
+                "[AmbushMission] DoCustomVictimSpawn: spawned=" + spawned
+                + "/" + origins.Count);
+        }
+
+        private Dictionary<FormationClass, Vec3> CollectDefenderSceneSpots()
+        {
+            // Vanilla defender entities carry tags without the sp_ prefix
+            // (the sp_ is only in the entity name). Archer entity carries
+            // both `defender_archer` and `defender_ranged` so FormationClass.Ranged
+            // can be found via either.
+            var dict = new Dictionary<FormationClass, Vec3>();
+            TryAdd(dict, FormationClass.Infantry,    "defender_infantry");
+            TryAdd(dict, FormationClass.Ranged,      "defender_ranged");
+            if (!dict.ContainsKey(FormationClass.Ranged))
+                TryAdd(dict, FormationClass.Ranged,  "defender_archer");
+            TryAdd(dict, FormationClass.Cavalry,     "defender_cavalry");
+            TryAdd(dict, FormationClass.HorseArcher, "defender_horsearcher");
+            return dict;
+        }
+
+        private void TryAdd(Dictionary<FormationClass, Vec3> dict,
+                            FormationClass cls, string tag)
+        {
+            foreach (var e in Mission.Scene.FindEntitiesWithTag(tag))
+            {
+                dict[cls] = e.GetGlobalFrame().origin;
+                return;
+            }
         }
 
         /// <summary>
@@ -313,6 +525,13 @@ namespace TOR_Core.Missions.AmbushMission
         {
             base.OnAgentCreated(agent);
             if (agent == null || !agent.IsHuman) return;
+
+            // Note: Agent.Position at OnAgentCreated time is (0, 0, 0)
+            // even for agents vanilla is about to position via AgentBuildData.
+            // The engine's "Agent initial frame is out of walkable area"
+            // warning fires for the same transient reason. Do not attempt
+            // to "fix" the position here; positioning happens after this
+            // callback returns.
 
             // Only reject agents we know are on the WRONG side. A null team
             // (sometimes the player hero at first-tick) still gets our
