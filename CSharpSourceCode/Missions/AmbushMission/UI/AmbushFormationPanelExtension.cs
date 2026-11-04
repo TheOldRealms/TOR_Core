@@ -83,14 +83,23 @@ namespace TOR_Core.Missions.AmbushMission.UI
             Recompute();
         }
 
+        private string _lastHideReason;
+
         private void Recompute()
         {
             var panel = _vm as OrderOfBattleFormationItemVM;
             var vanillaFormation = panel?.Formation;
-            if (vanillaFormation == null)
+            // Hide the chip for empty / unassigned formation slots: the
+            // sidebar still renders a card for every FormationClass, but
+            // the ambush layout only cares about ones with troops in them.
+            if (vanillaFormation == null || !PanelHasFormation(panel))
             {
                 HasSpotAssignment = false;
+                IsSpotPickerOpen = false;
                 SpotLabel = "";
+                LogHideTransition("empty-slot "
+                    + (vanillaFormation == null ? "noFormation" : "noHasFormation")
+                    + " class=" + vanillaFormation?.FormationIndex);
                 return;
             }
             var controller = Mission.Current?.GetMissionBehavior<AmbushMissionController>();
@@ -100,10 +109,77 @@ namespace TOR_Core.Missions.AmbushMission.UI
             {
                 HasSpotAssignment = false;
                 SpotLabel = "";
+                LogHideTransition("no-spot "
+                    + (controller == null ? "noController" :
+                       ambushFormation == null ? "noAmbushFormation" :
+                       spot == null ? "noAssignedSpot" : "emptyGroupTag")
+                    + " class=" + vanillaFormation.FormationIndex);
                 return;
             }
+            _lastHideReason = null;
             HasSpotAssignment = true;
-            SpotLabel = LocalizedGroupName(spot.Value.GroupTag);
+            SpotLabel = LocalizedGroupName(spot.Value.GroupTag)
+                       + " " + GlobalSpotNumber(controller, spot.Value);
+        }
+
+        /// <summary>
+        /// Fires an NLog line only when the hide reason changes, so a
+        /// chip that stays hidden across many ticks produces one entry
+        /// per state transition instead of 60 lines per second.
+        /// </summary>
+        private void LogHideTransition(string reason)
+        {
+            if (reason == _lastHideReason) return;
+            _lastHideReason = reason;
+            NLog.LogManager.GetCurrentClassLogger().Info(
+                "[AmbushFormationPanel] chip hidden: " + reason);
+        }
+
+        /// <summary>
+        /// Mirrors the vanilla VM's own <c>HasFormation</c> flag (the one
+        /// the prefab uses to show "Formation is empty" text at line 255).
+        /// Accessed via reflection so the extension doesn't take a hard
+        /// dependency on the exact property name should TaleWorlds rename
+        /// it; falls back to a troop-count check if the property is gone.
+        /// </summary>
+        private static bool PanelHasFormation(OrderOfBattleFormationItemVM panel)
+        {
+            if (panel == null) return false;
+            var prop = panel.GetType().GetProperty("HasFormation",
+                System.Reflection.BindingFlags.Instance
+                | System.Reflection.BindingFlags.Public
+                | System.Reflection.BindingFlags.NonPublic);
+            if (prop != null && prop.PropertyType == typeof(bool))
+                return (bool)prop.GetValue(panel);
+            return panel.Formation != null && panel.Formation.CountOfUnits > 0;
+        }
+
+        /// <summary>
+        /// Display number of the assigned spot, matching the picker's
+        /// group-then-count layout: spots are first bucketed by GroupTag
+        /// in first-appearance order, then numbered continuously across
+        /// buckets starting at 1. So on a scene with Hill(4) + Street(4),
+        /// the chip reads "Hill 3" ↔ third button in the Hill column and
+        /// "Street 6" ↔ second button in the Street column (continues
+        /// the global count, doesn't restart per group).
+        /// </summary>
+        private static int GlobalSpotNumber(AmbushMissionController controller, AmbushSpot spot)
+        {
+            var list = controller?.SceneSpots;
+            if (list == null) return 0;
+            var tagOrder = new System.Collections.Generic.List<string>();
+            foreach (var s in list)
+                if (!tagOrder.Contains(s.GroupTag)) tagOrder.Add(s.GroupTag);
+            int n = 1;
+            foreach (var tag in tagOrder)
+                foreach (var s in list)
+                {
+                    if (s.GroupTag != tag) continue;
+                    if (s.Position.NearlyEquals(spot.Position, 0.01f))
+                        return n;
+                    n++;
+                }
+            return 0;
         }
 
         /// <summary>
@@ -209,26 +285,38 @@ namespace TOR_Core.Missions.AmbushMission.UI
             if (ambushFormation == null) return;
             var currentPos = ambushFormation.AssignedSpot?.Position;
 
-            // Scene-order global numbering, one group column per unique
-            // GroupTag in first-appearance order. Columns stack horizontally
-            // in the prefab; cells stack vertically within each column.
-            var groupByTag = new System.Collections.Generic.Dictionary<string, AmbushSpotPickerGroupVM>();
-            int globalNumber = 1;
+            // Bucket SceneSpots by GroupTag in first-appearance order so
+            // each column lists its own spots consecutively. Then number
+            // continuously across buckets starting at 1, so Hill:1-4
+            // + Street:5-8 instead of the interleaved 1,3,4,6 / 2,5,7,8
+            // you'd get if we numbered in raw scene-XML order.
+            var tagOrder = new System.Collections.Generic.List<string>();
+            var buckets = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<AmbushSpot>>();
             foreach (var spot in controller.SceneSpots)
             {
-                if (!groupByTag.TryGetValue(spot.GroupTag, out var group))
+                if (!buckets.TryGetValue(spot.GroupTag, out var bucket))
                 {
-                    group = new AmbushSpotPickerGroupVM(LocalizedGroupName(spot.GroupTag));
-                    groupByTag[spot.GroupTag] = group;
-                    SpotPickerGroups.Add(group);
+                    bucket = new System.Collections.Generic.List<AmbushSpot>();
+                    buckets[spot.GroupTag] = bucket;
+                    tagOrder.Add(spot.GroupTag);
                 }
-                bool isCurrent = currentPos.HasValue
-                                 && currentPos.Value.NearlyEquals(spot.Position, 0.01f);
-                var spotLocal = spot;
-                group.Items.Add(new AmbushSpotPickerItemVM(
-                    number: globalNumber++,
-                    isCurrent: isCurrent,
-                    onSelected: _ => AssignSpot(ambushFormation, spotLocal, controller)));
+                bucket.Add(spot);
+            }
+            int number = 1;
+            foreach (var tag in tagOrder)
+            {
+                var group = new AmbushSpotPickerGroupVM(LocalizedGroupName(tag));
+                SpotPickerGroups.Add(group);
+                foreach (var spot in buckets[tag])
+                {
+                    bool isCurrent = currentPos.HasValue
+                                     && currentPos.Value.NearlyEquals(spot.Position, 0.01f);
+                    var spotLocal = spot;
+                    group.Items.Add(new AmbushSpotPickerItemVM(
+                        number: number++,
+                        isCurrent: isCurrent,
+                        onSelected: _ => AssignSpot(ambushFormation, spotLocal, controller)));
+                }
             }
         }
 

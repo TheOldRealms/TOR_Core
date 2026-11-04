@@ -263,55 +263,76 @@
           </Children>
         </Widget>
 
-        <!-- TOR: spot chip. Sibling of FormationItemChild inside the
-             outer OrderOfBattleFormationItemListPanel, which stacks
+        <!-- TOR: spot chip + picker. Sibling of FormationItemChild inside
+             the outer OrderOfBattleFormationItemListPanel, which stacks
              HorizontalLeftToRight, so the chip renders attached to the
              right edge of the card. Hidden outside an ambush mission
              (HasSpotAssignment false) so the regular OoB screen is
-             unchanged. Clicking opens the spot-picker (handled by
-             AmbushFormationPanelExtension.ExecuteOpenSpotPicker). -->
-        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="10" IsVisible="@HasSpotAssignment">
+             unchanged.
+
+             Container is a ListPanel with HorizontalLeftToRight so the
+             chip and the expanded picker lay out as a proper horizontal
+             strip. Earlier use of a plain Widget + PositionXOffset on
+             the picker made the container measure as chip-wide only
+             (~90 px); clicks past that fell outside the parent's hit
+             rect and never reached the picker buttons, so the right
+             column of the grid was dead. With ListPanel the container's
+             width tracks chip + picker so all buttons get events. -->
+        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="10" IsVisible="@HasSpotAssignment" StackLayout.LayoutMethod="HorizontalLeftToRight">
           <Children>
 
             <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="40" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" Command.Click="ExecuteOpenSpotPicker">
               <Children>
-                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Text="@SpotLabel" Brush.FontSize="20"/>
+                <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Text="@SpotLabel" Brush.FontSize="20"/>
               </Children>
             </ButtonWidget>
 
-            <!-- Spot picker grid: horizontal row of group columns anchored
-                 below the chip. Each column has a header TextWidget bound
-                 to @Header (localized group name, e.g. "Hill", "Street")
-                 and an inner vertical ListPanel of numbered spot buttons
-                 bound to {Items}. Numbers are global across groups, so a
-                 scene with Street+Hill renders Street:1-4, Hill:5-8.
-                 Button click invokes ExecuteSelect on the inner item VM,
-                 which closes the picker and reassigns the formation. -->
-            <ListPanel DataSource="{SpotPickerGroups}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Top" PositionYOffset="42" IsVisible="@IsSpotPickerOpen" StackLayout.LayoutMethod="HorizontalLeftToRight">
-              <ItemTemplate>
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="90" MarginLeft="2" MarginRight="2">
-                  <Children>
-                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Top" StackLayout.LayoutMethod="VerticalTopToBottom">
+            <!-- Spot picker grid: horizontal row of group columns, sits
+                 to the right of the chip inside the outer ListPanel.
+                 Each column has a header TextWidget bound to @Header
+                 (localized group name) and an inner vertical ListPanel
+                 of numbered spot buttons bound to {Items}. Numbers are
+                 global across groups, so a scene with Hill+Street reads
+                 Hill:1-4, Street:5-8. Button click invokes ExecuteSelect
+                 on the inner item VM, which closes the picker and
+                 reassigns the formation.
+
+                 The whole grid is wrapped in a plain Widget because the
+                 inner ListPanel has DataSource="{SpotPickerGroups}" —
+                 binding @IsSpotPickerOpen on the ListPanel itself would
+                 be resolved against that collection (no such property)
+                 and the picker would never collapse. The wrapper keeps
+                 the vanilla VM as its data context so the visibility
+                 toggle actually works. -->
+            <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="5" IsVisible="@IsSpotPickerOpen">
+              <Children>
+                <ListPanel DataSource="{SpotPickerGroups}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalLeftToRight">
+                  <ItemTemplate>
+                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="90" MarginLeft="2" MarginRight="2">
                       <Children>
-                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="24" Text="@Header" Brush.FontSize="18" Brush.TextHorizontalAlignment="Center"/>
-                        <ListPanel DataSource="{Items}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
-                          <ItemTemplate>
-                            <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="28" MarginTop="2" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" Command.Click="ExecuteSelect">
-                              <Children>
-                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" IntText="@Number" Brush.FontSize="18"/>
-                              </Children>
-                            </ButtonWidget>
-                          </ItemTemplate>
+                        <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Top" StackLayout.LayoutMethod="VerticalTopToBottom">
+                          <Children>
+                            <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="24" Text="@Header" Brush.FontSize="18" Brush.TextHorizontalAlignment="Center"/>
+                            <ListPanel DataSource="{Items}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
+                              <ItemTemplate>
+                                <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="28" MarginTop="2" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" Command.Click="ExecuteSelect">
+                                  <Children>
+                                    <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" IntText="@Number" Brush.FontSize="18"/>
+                                  </Children>
+                                </ButtonWidget>
+                              </ItemTemplate>
+                            </ListPanel>
+                          </Children>
                         </ListPanel>
                       </Children>
-                    </ListPanel>
-                  </Children>
-                </Widget>
-              </ItemTemplate>
-            </ListPanel>
+                    </Widget>
+                  </ItemTemplate>
+                </ListPanel>
+              </Children>
+            </Widget>
 
           </Children>
-        </Widget>
+        </ListPanel>
 
       </Children>
     </OrderOfBattleFormationItemListPanel>
