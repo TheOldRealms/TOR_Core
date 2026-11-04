@@ -1,4 +1,5 @@
 using NLog;
+using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View.MissionViews.Singleplayer;
 using TOR_Core.Utilities;
@@ -23,6 +24,8 @@ namespace TOR_Core.Missions.AmbushMission.UI
     {
         private bool _isAmbusherPath;
         private int _suspendLogCounter;
+        private AmbushDeploymentVM _vm;
+        private GauntletLayer _layer;
 
         public override void AfterStart()
         {
@@ -32,6 +35,23 @@ namespace TOR_Core.Missions.AmbushMission.UI
             TORCommon.Log(LogLevel.Info,
                 "[AmbushDeploymentView] AfterStart: ambusherPath=" + _isAmbusherPath
                 + " orderTroopPlacer=" + (_orderTroopPlacer == null ? "null" : "set"));
+
+            if (!_isAmbusherPath) return;
+            _vm = new AmbushDeploymentVM();
+            _layer = new GauntletLayer("GauntletLayer", 50);
+            _layer.LoadMovie("AmbushDeployment", _vm);
+            MissionScreen.AddLayer(_layer);
+        }
+
+        public override void OnRemoveBehavior()
+        {
+            if (_layer != null)
+            {
+                MissionScreen.RemoveLayer(_layer);
+                _layer = null;
+            }
+            _vm = null;
+            base.OnRemoveBehavior();
         }
 
         public override void OnMissionScreenTick(float dt)

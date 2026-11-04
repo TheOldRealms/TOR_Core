@@ -1,0 +1,32 @@
+using TaleWorlds.Library;
+
+namespace TOR_Core.Missions.AmbushMission.UI
+{
+    /// <summary>
+    /// Root view model for the ambusher deployment screen. First slice only
+    /// carries a visible header to confirm the Gauntlet layer is loading
+    /// against the right prefab. Formation panels, spot markers, and the
+    /// reassignment dropdown bind here in follow-ups.
+    /// </summary>
+    public class AmbushDeploymentVM : ViewModel
+    {
+        private string _headerText;
+
+        public AmbushDeploymentVM()
+        {
+            _headerText = "Ambush Deployment";
+        }
+
+        [DataSourceProperty]
+        public string HeaderText
+        {
+            get => _headerText;
+            set
+            {
+                if (value == _headerText) return;
+                _headerText = value;
+                OnPropertyChangedWithValue(value, nameof(HeaderText));
+            }
+        }
+    }
+}

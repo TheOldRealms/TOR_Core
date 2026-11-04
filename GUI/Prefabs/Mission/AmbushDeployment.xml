@@ -1,0 +1,9 @@
+<Prefab>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+      <Children>
+        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="40" Text="@HeaderText" Brush.FontSize="42" Brush.TextColor="#FFFFFFFF"/>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>
