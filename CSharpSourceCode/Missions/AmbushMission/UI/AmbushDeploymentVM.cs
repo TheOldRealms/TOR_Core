@@ -3,10 +3,10 @@ using TaleWorlds.Library;
 namespace TOR_Core.Missions.AmbushMission.UI
 {
     /// <summary>
-    /// Root view model for the ambusher deployment screen. First slice only
-    /// carries a visible header to confirm the Gauntlet layer is loading
-    /// against the right prefab. Formation panels, spot markers, and the
-    /// reassignment dropdown bind here in follow-ups.
+    /// Root view model for the ambusher deployment screen. Carries the header
+    /// only. Sidebar panels are vanilla's OoB panels augmented via
+    /// AmbushFormationPanelExtension; scene spot markers live on the next
+    /// slice.
     /// </summary>
     public class AmbushDeploymentVM : ViewModel
     {

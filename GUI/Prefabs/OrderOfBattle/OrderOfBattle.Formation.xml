@@ -1,0 +1,282 @@
+<Prefab>
+  <Constants>
+
+    <!-- Hero Positioning Constants -->
+    <Constant Name="HeroTroopsWidth"         Value="165" />
+    <Constant Name="HeroTroopWidth"         Value="40" />
+
+    <!-- Filter Brush Constants -->
+    <Constant Name="FilterUnsetBrush"           Value="OrderOfBattle.Filter.Unset" />
+    <Constant Name="SpearBrush"                 Value="OrderOfBattle.Filter.Spear" />
+    <Constant Name="ShieldBrush"                Value="OrderOfBattle.Filter.Shield" />
+    <Constant Name="ThrownBrush"                Value="OrderOfBattle.Filter.Thrown" />
+    <Constant Name="HeavyBrush"                 Value="OrderOfBattle.Filter.Heavy" />
+    <Constant Name="HighTierBrush"              Value="OrderOfBattle.Filter.HighTier" />
+    <Constant Name="LowTierBrush"               Value="OrderOfBattle.Filter.LowTier" />
+
+    <!-- Class Brush Constants -->
+    <Constant Name="UnsetBrush"                 Value="OrderOfBattle.FormationClass.Unset" />
+    <Constant Name="InfantryBrush"              Value="OrderOfBattle.FormationClass.Infantry" />
+    <Constant Name="RangedBrush"                Value="OrderOfBattle.FormationClass.Ranged" />
+    <Constant Name="CavalryBrush"               Value="OrderOfBattle.FormationClass.Cavalry" />
+    <Constant Name="HorseArcherBrush"           Value="OrderOfBattle.FormationClass.HorseArcher" />
+    <Constant Name="InfantryAndRangedBrush"     Value="OrderOfBattle.FormationClass.InfantryAndRanged" />
+    <Constant Name="CavalryAndHorseArcherBrush" Value="OrderOfBattle.FormationClass.CavalryAndHorseArcher" />
+
+    <Constant Name="AssignIcon.Width" Value="61" />
+    <Constant Name="AssignIcon.Height" Value="48" />
+  </Constants>
+  <Window>
+
+    <OrderOfBattleFormationItemListPanel Id="FormationItem" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" IsSelected="@IsSelected" HasFormation="@HasFormation" CardWidget="FormationItemChild\Card" FormationClassDropdown="FormationItemChild\Card\FormationClassDropdownParent\FormationClassDropdown" IsControlledByPlayer="@IsControlledByPlayer" IsClassDropdownEnabled="@IsClassSelectionActive" DefaultFocusYOffsetFromCenter="30" NoFormationFocusYOffsetFromCenter="-95" Canvas="FormationItemChild\Card\Canvas" DoNotAcceptEvents="true" UpdateChildrenStates="true" StackLayout.LayoutMethod="HorizontalLeftToRight">
+      <Children>
+
+        <Widget Id="FormationItemChild" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="300" SuggestedHeight="220" HorizontalAlignment="Left" MarginTop="20" MarginBottom="25" UpdateChildrenStates="true">
+          <Children>
+            <!-- Card Background -->
+            <BrushWidget Id="Card" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+              <Children>
+
+                <ButtonWidget Id="Canvas" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="OrderOfBattle.Formation.Canvas" Command.Click="ExecuteSelection" IsEnabled="@IsSelectable" IsSelected="@IsSelected" MarginTop="20" UpdateChildrenStates="true">
+                  <Children>
+                    <!--Formation Name-->
+                    <BrushWidget DoNotAcceptEvents="true" DoNotPassEventsToChildren="true" UpdateChildrenStates="true" HeightSizePolicy="Fixed" WidthSizePolicy="Fixed" SuggestedWidth="55" SuggestedHeight="40" HorizontalAlignment="Right" VerticalAlignment="Top" PositionYOffset="-20" MarginRight="15" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" IsVisible="@HasFormation">
+                      <Children>
+                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Center" Text="@TitleText"/>
+                      </Children>
+                    </BrushWidget>
+
+                    <!-- Troop Distribution Tooltip -->
+                    <HintWidget DataSource="{Tooltip}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint"/>
+
+                    <!-- Count Text -->
+                    <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Top" MarginLeft="10" MarginTop="8" Brush.FontSize="24" Brush.TextHorizontalAlignment="Left" IntText="@TroopCount" IsVisible="@HasFormation" />
+
+                    <!-- Banner Bearer Count -->
+                    <ValueBasedVisibilityWidget DoNotPassEventsToChildren="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" SuggestedHeight="24" HorizontalAlignment="Left" VerticalAlignment="Top" MarginLeft="50" MarginTop="8" IndexToBeVisible="0" WatchType="BiggerThan" IndexToWatch="@BannerBearerCount">
+                      <Children>
+                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" VerticalAlignment="Center" Sprite="General\EquipmentIcons\equipment_type_banner" />
+                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="20" Brush.FontSize="24" Brush.TextHorizontalAlignment="Left" IntText="@BannerBearerCount" />
+                        <HintWidget DataSource="{BannerBearerTooltip}" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint"/>
+                      </Children>
+                    </ValueBasedVisibilityWidget>
+
+                  </Children>
+                </ButtonWidget>
+
+                <!-- Formation Class Dropdown -->
+                <NavigationScopeTargeter ScopeID="OrderOfBattleFormationClassDropdownScope" ScopeParent="..\FormationClassDropdownParent" ScopeMovements="Vertical" />
+                <Widget Id="FormationClassDropdownParent" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" UpdateChildrenStates="true" IsEnabled="@IsAdjustable">
+                  <Children>
+                    <DropdownWidget Id="FormationClassDropdown" DataSource="{FormationClassSelector}" UpdateChildrenStates="true"  WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" ListPanel="SelectionList" Button="DropdownButton" TextWidget="DropdownButton\SelectedTextWidget" CurrentSelectedIndex="@SelectedIndex" GamepadNavigationIndex="0">
+                      <Children>
+                        <ButtonWidget Id="DropdownButton" ButtonType="Toggle" DoNotPassEventsToChildren="true" UpdateChildrenStates="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="100" SuggestedHeight="40" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" >
+                          <Children>
+                            <OrderOfBattleFormationClassBrushWidget DataSource="{SelectedItem}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="75" SuggestedHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center" FormationClass="@FormationClassInt" UnsetBrush="!UnsetBrush" InfantryBrush="!InfantryBrush" RangedBrush="!RangedBrush" CavalryBrush="!CavalryBrush" HorseArcherBrush="!HorseArcherBrush" InfantryAndRangedBrush="!InfantryAndRangedBrush" CavalryAndHorseArcherBrush="!CavalryAndHorseArcherBrush" />
+                            <BrushWidget DataSource="{..}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="10" SuggestedHeight="10" Brush="OrderOfBattle.ClassDropdown.Arrow" VerticalAlignment="Center" HorizontalAlignment="Right" MarginRight="8" IsVisible="@IsAdjustable" />
+                          </Children>
+                        </ButtonWidget>
+
+                        <ListPanel Id="SelectionList" DataSource="{ItemList}" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="65" VerticalAlignment="Top" Sprite="BlankWhiteSquare_9" Color="#100404FF"  IsVisible="false" StackLayout.LayoutMethod="VerticalTopToBottom" UpdateChildrenStates="true">
+                          <ItemTemplate>
+                            <OrderOfBattleFormationClassDropdownListButtonWidget DoNotPassEventsToChildren="true" UpdateChildrenStates="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" ButtonType="Radio" IsVisible="@CanBeSelected" Color="#F4E1C4FF" FormationClass="@FormationClassInt" UnsetBrush="!UnsetBrush" InfantryBrush="!InfantryBrush" RangedBrush="!RangedBrush" CavalryBrush="!CavalryBrush" HorseArcherBrush="!HorseArcherBrush" InfantryAndRangedBrush="!InfantryAndRangedBrush" CavalryAndHorseArcherBrush="!CavalryAndHorseArcherBrush">
+                              <Children>
+                                <ImageWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="0" MarginRight="0" Brush="Standard.DropdownItem" />
+                                <HintWidget DataSource="{Hint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="30" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                              </Children>
+                            </OrderOfBattleFormationClassDropdownListButtonWidget>
+                          </ItemTemplate>
+                        </ListPanel>
+                      </Children>
+                    </DropdownWidget>
+
+                    <TutorialHighlightItemBrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="TutorialHighlightBrush" IsHighlightEnabled="@IsTypeSelectionHighlightActive" IsVisible="false" />
+                  </Children>
+                </Widget>
+
+                <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="120" SuggestedHeight="40" HorizontalAlignment="Center" IsHidden="@IsAdjustable">
+                  <Children>
+                    <HintWidget DataSource="{CantAdjustHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                  </Children>
+                </ButtonWidget>
+
+                <!-- Class Weights -->
+                <ListPanel Id="ClassWeightsList" DoNotAcceptEvents="true" DataSource="{Classes}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="50" StackLayout.LayoutMethod="VerticalTopToBottom">
+                  <ItemTemplate>
+                    <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="2" MarginBottom="2" MarginRight="20" HorizontalAlignment="Center" IsHidden="@IsUnset" >
+                      <Children>
+                        <NavigationScopeTargeter ScopeID="OrderOfBattleFormationClassWeightScope" ScopeParent="..\." ScopeMovements="Horizontal" />
+
+                        <!-- Troop Count -->
+                        <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Brush.FontSize="18" Text="@TroopCountText"/>
+
+                        <ListPanel Id="Container" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" SuggestedWidth="300" HeightSizePolicy="CoverChildren" MarginTop="12" HorizontalAlignment="Center"  StackLayout.LayoutMethod="HorizontalLeftToRight">
+                          <Children>
+
+                            <!-- Class Type -->
+                            <Widget DoNotAcceptEvents="true" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="25" SuggestedHeight="30" PositionXOffset="-5" >
+                              <Children>
+                                <OrderOfBattleFormationClassBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="75" HorizontalAlignment="Center" VerticalAlignment="Center"  FormationClass="@ShownFormationClass" UnsetBrush="!UnsetBrush" InfantryBrush="!InfantryBrush" RangedBrush="!RangedBrush" CavalryBrush="!CavalryBrush" HorseArcherBrush="!HorseArcherBrush" InfantryAndRangedBrush="!InfantryAndRangedBrush" CavalryAndHorseArcherBrush="!CavalryAndHorseArcherBrush"  />
+                              </Children>
+                            </Widget>
+
+                            <!-- Weight Slider -->
+                            <SliderWidget Id="WeightSlider" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="200" SuggestedHeight="24" HorizontalAlignment="Center" VerticalAlignment="Center" DoNotUpdateHandleSize="true" Filler="Filler" Handle="SliderHandleParent\SliderHandle" IsDiscrete="true" MaxValueInt="100" MinValueInt="0" ValueInt="@Weight" IsEnabled="@IsAdjustable" Locked="@IsLocked" DoNotAcceptEvents="@IsLocked" UpdateChildrenStates="true">
+                              <Children>
+                                <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="200" SuggestedHeight="25" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="minimal_slider_bed_9"/>
+                                <Widget Id="Filler" ClipContents="true" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="13" PositionXOffset="3" VerticalAlignment="Center" UpdateChildrenStates="true">
+                                  <Children>
+                                    <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="194" Brush="OrderOfBattle.FormationClass.Slider.Fill"/>
+                                  </Children>
+                                </Widget>
+                                <Widget Id="SliderHandleParent" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Center" IsHidden="@IsLocked">
+                                  <Children>
+                                    <ImageWidget Id="SliderHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="11" SuggestedHeight="27" Brush="OrderOfBattle.Slider.SliderHandle" IsVisible="@IsAdjustable" GamepadNavigationIndex="0"/>
+                                  </Children>
+                                </Widget>
+                              </Children>
+                            </SliderWidget>
+
+
+                            <!-- Lock Toggle -->
+                            <ButtonWidget DoNotPassEventsToChildren="true" UpdateChildrenStates="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="25" SuggestedHeight="25" ButtonType="Toggle" IsSelected="@IsLocked" GamepadNavigationIndex="1">
+                              <Children>
+                                <OrderOfBattleFormationClassLockBrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" LockedBrush="OrderOfBattle.Formation.Class.Locked" UnlockedBrush="OrderOfBattle.Formation.Class.Unlocked" IsLocked="@IsLocked" />
+                                <HintWidget DataSource="{LockWeightHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                              </Children>
+                            </ButtonWidget>
+
+                          </Children>
+                        </ListPanel>
+
+                        <TutorialHighlightItemBrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="TutorialHighlightBrush" IsHighlightEnabled="@IsWeightHighlightActive" IsVisible="false" />
+
+                      </Children>
+                    </Widget>
+
+                  </ItemTemplate>
+                </ListPanel>
+
+
+                <!-- Captain -->
+                <NavigationScopeTargeter ScopeID="OrderOfBattleFormationCaptainButtonScope" ScopeParent="..\CaptainButton" IsScopeDisabled="@IsAcceptingCaptain" />
+                <Widget Id="CaptainButton" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Bottom" MarginLeft="10" MarginBottom="10" UpdateChildrenStates="true" IsVisible="@HasCaptain" GamepadNavigationIndex="0">
+                  <Children>
+                    <OrderOfBattle.Hero DataSource="{Captain}" Parameter.DragWidgetDataSource="{..\..\..\..\..}" />
+                  </Children>
+                </Widget>
+
+                <!-- Hero Troops -->
+                <NavigationScopeTargeter ScopeID="OrderOfBattleFormationHeroTroopsScope" ScopeParent="..\HeroTroopsParent" ScopeMovements="Horizontal" AlternateScopeMovements="Vertical" AlternateMovementStepSize="4" IsScopeDisabled="@IsAcceptingHeroTroops" />
+                <Widget Id="HeroTroopsParent" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!HeroTroopsWidth" SuggestedHeight="70" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginRight="30" MarginBottom="10" UpdateChildrenStates="true" IsVisible="@HasHeroTroops" ClipContents="true">
+                  <Children>
+                    <NavigatableGridWidget DataSource="{HeroTroops}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" ColumnCount="4" DefaultCellWidth="!HeroTroopWidth" DefaultCellHeight="35" LayoutImp="GridLayout" EmptyNavigationWidget="..\..\.">
+                      <ItemTemplate>
+                        <OrderOfBattle.Hero Parameter.IsSmall="true" IsVisible="@IsShown" Parameter.DragWidgetDataSource="{..\..\..\..}" />
+                      </ItemTemplate>
+                    </NavigatableGridWidget>
+
+                    <!-- Overflown Hero Troop Count Text -->
+                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="60" SuggestedHeight="60" PositionXOffset="9" PositionYOffset="12" HorizontalAlignment="Right" VerticalAlignment="Bottom" Sprite="General\RadialMenu\radial_menu_bg" Color="#000000FF" IsVisible="@IsHeroTroopsOverflowing">
+                      <Children>
+                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Text="@OverflowHeroTroopCountText" Brush="OrderOfBattle.AssignHero.Text" />
+                      </Children>
+                    </Widget>
+                  </Children>
+                </Widget>
+
+                <!-- Captain Empty Slot -->
+                <ButtonWidget Id="CaptainEmptySlot" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="92.5" SuggestedHeight="70" ExtendTop="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" MarginLeft="10" MarginBottom="10" IsHidden="@HasCaptain" GamepadNavigationIndex="0">
+                  <Children>
+                    <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" UpdateChildrenStates="true" IsVisible="@HasFormation">
+                      <Children>
+                        <HintWidget DataSource="{CaptainSlotHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false" />
+                      </Children>
+                    </ButtonWidget>
+                    <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!AssignIcon.Width" SuggestedHeight="!AssignIcon.Height" Brush="OrderOfBattle.Add.Captain.Icon" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="@HasFormation" DoNotAcceptEvents="true" />
+                    <TutorialHighlightItemBrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="TutorialHighlightBrush" IsHighlightEnabled="@IsCaptainSlotHighlightActive" IsVisible="false" />
+                  </Children>
+                </ButtonWidget>
+
+                <!-- Hero Troops Empty Slot -->
+                <ButtonWidget Id="HeroTroopsEmptySlot" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!HeroTroopsWidth" SuggestedHeight="70" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginRight="30" MarginBottom="10" IsHidden="@HasHeroTroops" GamepadNavigationIndex="0">
+                  <Children>
+                    <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" UpdateChildrenStates="true" IsVisible="@HasFormation">
+                      <Children>
+                        <HintWidget DataSource="{HeroTroopSlotHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false" />
+                      </Children>
+                    </ButtonWidget>
+                    <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!AssignIcon.Width" SuggestedHeight="!AssignIcon.Height" Brush="OrderOfBattle.Add.HeroTroop.Icon" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="@HasFormation" DoNotAcceptEvents="true" />
+                  </Children>
+                </ButtonWidget>
+
+                <!-- Captain Drag/Select Slot -->
+                <NavigationScopeTargeter ScopeID="OrderOfBattleFormationCaptainEmptyButtonScope" ScopeParent="..\CaptainAcceptArea" IsScopeEnabled="@IsAcceptingCaptain" />
+                <OrderOfBattleHeroDropWidget Id="CaptainAcceptArea" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="92.5" SuggestedHeight="70" ExtendTop="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" MarginLeft="10" MarginBottom="10" Brush="OrderOfBattle.Formation.HeroSlot" DoNotPassEventsToChildren="true" UpdateChildrenStates="true" AcceptDrop="true" Command.Click="ExecuteAcceptCaptain" Command.Drop="ExecuteAcceptCaptain" IsVisible="@IsAcceptingCaptain" FormationClass="@OrderOfBattleFormationClassInt" GamepadNavigationIndex="0">
+                  <Children>
+                    <HintWidget DataSource="{AssignCaptainHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.DragHoverBegin="ExecuteBeginHint" Command.DragHoverEnd="ExecuteEndHint" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                    <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!AssignIcon.Width" SuggestedHeight="!AssignIcon.Height" Brush="OrderOfBattle.Add.Captain.Icon" HorizontalAlignment="Center" VerticalAlignment="Center" IsHidden="@HasCaptain" DoNotAcceptEvents="true" />
+                    <TutorialHighlightItemBrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="TutorialHighlightBrush" IsHighlightEnabled="@IsCaptainSlotHighlightActive" IsVisible="false" />
+                  </Children>
+                </OrderOfBattleHeroDropWidget>
+
+                <!-- Hero Troop Drag/Select Slot -->
+                <NavigationScopeTargeter ScopeID="OrderOfBattleFormationHeroTroopsEmptySelectionScope" ScopeParent="..\HeroTroopsAcceptArea" IsScopeEnabled="@IsAcceptingHeroTroops" />
+                <OrderOfBattleHeroDropWidget Id="HeroTroopsAcceptArea" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!HeroTroopsWidth" SuggestedHeight="70" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginRight="30" MarginBottom="10" Brush="OrderOfBattle.Formation.HeroSlot" DoNotPassEventsToChildren="true" UpdateChildrenStates="true" AcceptDrop="true" Command.Click="ExecuteAcceptHeroTroops" Command.Drop="ExecuteAcceptHeroTroops" IsVisible="@IsAcceptingHeroTroops" FormationClass="@OrderOfBattleFormationClassInt" GamepadNavigationIndex="0">
+                  <Children>
+                    <HintWidget DataSource="{AssignHeroTroopHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.DragHoverBegin="ExecuteBeginHint" Command.DragHoverEnd="ExecuteEndHint" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint"/>
+                    <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!AssignIcon.Width" SuggestedHeight="!AssignIcon.Height" Brush="OrderOfBattle.Add.HeroTroop.Icon" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="@HasFormation" DoNotAcceptEvents="true" />
+                  </Children>
+                </OrderOfBattleHeroDropWidget>
+
+                <!-- Filters -->
+                <Widget DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Right" MarginRight="5" MarginTop="20" IsVisible="@HasFormation">
+                  <Children>
+                    <NavigationScopeTargeter ScopeID="OrderOfBattleFormationFiltersListScope" ScopeParent="..\FiltersList" ScopeMovements="Vertical" />
+                    <NavigatableListPanel Id="FiltersList" DataSource="{FilterItems}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalTopToBottom">
+                      <ItemTemplate>
+
+                        <ButtonWidget Id="FilterItemToggle" DoNotPassEventsToChildren="true" UpdateChildrenStates="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="25" SuggestedHeight="25" HorizontalAlignment="Center" ButtonType="Toggle" IsSelected="@IsActive" IsEnabled="@IsEnabled">
+                          <Children>
+                            <OrderOfBattleFormationFilterVisualBrushWidget DoNotPassEventsToChildren="true" UpdateChildrenStates="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Center" VerticalAlignment="Center" FormationFilter="@FilterTypeValue" UnsetBrush="!FilterUnsetBrush" SpearBrush="!SpearBrush" ShieldBrush="!ShieldBrush" ThrownBrush="!ThrownBrush" HeavyBrush="!HeavyBrush" HighTierBrush="!HighTierBrush" LowTierBrush="!LowTierBrush"/>
+                            <HintWidget DataSource="{Hint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="30" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                            <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="12" SuggestedHeight="12" HorizontalAlignment="Right" VerticalAlignment="Top" PositionXOffset="2" PositionYOffset="15" Brush="OrderOfBattle.Filters.Checkmark" IsVisible="@IsActive" DoNotAcceptEvents="true" />
+                          </Children>
+                        </ButtonWidget>
+
+                      </ItemTemplate>
+                    </NavigatableListPanel>
+                  </Children>
+                </Widget>
+
+                <!-- Formation Number Text -->
+                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush.FontSize="46" IsHidden="@HasFormation" Text="@TitleText" />
+
+                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="15" Brush="OrderOfBattle.NoFormation.Text" Text="@FormationIsEmptyText" IsHidden="@HasFormation" />
+
+                <!-- Captain's Mount Does Not Match With Formation Text -->
+                <TextWidget DataSource="{Captain}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="24" Brush="OrderOfBattle.Mismatched.Assignment.Text" Brush.FontSize="20" Text="@MismatchedAssignmentDescriptionText" IsVisible="@HasMismatchedAssignment" />
+
+              </Children>
+            </BrushWidget>
+
+          </Children>
+        </Widget>
+
+        <!-- TOR: spot chip. Sibling of FormationItemChild inside the
+             outer OrderOfBattleFormationItemListPanel, which stacks
+             HorizontalLeftToRight, so the chip renders attached to the
+             right edge of the card. Hidden outside an ambush mission
+             (HasSpotAssignment false) so the regular OoB screen is
+             unchanged. Driven by AmbushFormationPanelExtension. -->
+        <BrushWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="40" VerticalAlignment="Center" MarginLeft="10" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" IsVisible="@HasSpotAssignment">
+          <Children>
+            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Text="@SpotLabel" Brush.FontSize="20"/>
+          </Children>
+        </BrushWidget>
+
+      </Children>
+    </OrderOfBattleFormationItemListPanel>
+
+  </Window>
+</Prefab>
