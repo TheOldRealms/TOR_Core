@@ -1,3 +1,4 @@
+using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -21,6 +22,9 @@ namespace TOR_Core.Missions.AmbushMission.UI
     {
         private string _spotLabel = "";
         private bool _hasSpotAssignment;
+        private bool _isSpotPickerOpen;
+        private MBBindingList<AmbushSpotPickerItemVM> _spotPickerItems
+            = new MBBindingList<AmbushSpotPickerItemVM>();
 
         public AmbushFormationPanelExtension(ViewModel vm) : base(vm) { }
 
@@ -48,6 +52,30 @@ namespace TOR_Core.Missions.AmbushMission.UI
             }
         }
 
+        [DataSourceProperty]
+        public bool IsSpotPickerOpen
+        {
+            get => _isSpotPickerOpen;
+            set
+            {
+                if (value == _isSpotPickerOpen) return;
+                _isSpotPickerOpen = value;
+                _vm?.OnPropertyChangedWithValue(value, nameof(IsSpotPickerOpen));
+            }
+        }
+
+        [DataSourceProperty]
+        public MBBindingList<AmbushSpotPickerItemVM> SpotPickerItems
+        {
+            get => _spotPickerItems;
+            set
+            {
+                if (value == _spotPickerItems) return;
+                _spotPickerItems = value;
+                _vm?.OnPropertyChangedWithValue(value, nameof(SpotPickerItems));
+            }
+        }
+
         public override void RefreshValues()
         {
             base.RefreshValues();
@@ -65,34 +93,26 @@ namespace TOR_Core.Missions.AmbushMission.UI
                 return;
             }
             var controller = Mission.Current?.GetMissionBehavior<AmbushMissionController>();
-            var layout = controller?.Layout;
-            if (layout == null)
-            {
-                HasSpotAssignment = false;
-                SpotLabel = "";
-                return;
-            }
-            var targetClass = formation.FormationIndex;
-            var spotNumber = FindSpotNumberForClass(layout, targetClass);
-            if (spotNumber < 0)
+            var ambushFormation = FindAmbushFormation(controller, formation.FormationIndex);
+            var spot = ambushFormation?.AssignedSpot;
+            if (controller == null || ambushFormation == null || !spot.HasValue
+                || !controller.SpotNumbers.TryGetValue(spot.Value.Position, out var number))
             {
                 HasSpotAssignment = false;
                 SpotLabel = "";
                 return;
             }
             HasSpotAssignment = true;
-            SpotLabel = "Spot " + (spotNumber + 1);
+            SpotLabel = "Spot " + number;
         }
 
-        private static int FindSpotNumberForClass(AmbushLayoutResult layout, FormationClass cls)
+        private static AmbushFormation FindAmbushFormation(AmbushMissionController controller,
+                                                            FormationClass cls)
         {
-            int index = 0;
-            foreach (var kv in layout.DefaultAssignments)
-            {
-                if (kv.Key.Class == cls) return index;
-                index++;
-            }
-            return -1;
+            if (controller?.Layout?.Formations == null) return null;
+            foreach (var f in controller.Layout.Formations)
+                if (f.Class == cls) return f;
+            return null;
         }
 
         /// <summary>
@@ -111,9 +131,49 @@ namespace TOR_Core.Missions.AmbushMission.UI
             var panel = _vm as OrderOfBattleFormationItemVM;
             if (panel == null) return;
             InvokeVanillaSelection(panel);
-            NLog.LogManager.GetCurrentClassLogger().Info(
-                "[AmbushFormationPanel] ExecuteOpenSpotPicker fired, class="
-                + panel.Formation?.FormationIndex);
+            if (IsSpotPickerOpen)
+            {
+                IsSpotPickerOpen = false;
+                return;
+            }
+            PopulateSpotPickerItems();
+            IsSpotPickerOpen = true;
+        }
+
+        private void PopulateSpotPickerItems()
+        {
+            SpotPickerItems.Clear();
+            var panel = _vm as OrderOfBattleFormationItemVM;
+            var controller = Mission.Current?.GetMissionBehavior<AmbushMissionController>();
+            if (panel?.Formation == null || controller == null) return;
+            var ambushFormation = FindAmbushFormation(controller, panel.Formation.FormationIndex);
+            if (ambushFormation == null) return;
+            var bucket = SpotClassExtensions
+                .FromFormationClass(ambushFormation.Class)
+                .Bucket();
+            var currentPos = ambushFormation.AssignedSpot?.Position;
+            foreach (var spot in controller.SceneSpots.Where(s => s.Bucket == bucket))
+            {
+                if (!controller.SpotNumbers.TryGetValue(spot.Position, out var number)) continue;
+                bool isCurrent = currentPos.HasValue
+                                 && currentPos.Value.NearlyEquals(spot.Position, 0.01f);
+                SpotPickerItems.Add(new AmbushSpotPickerItemVM(
+                    number: number,
+                    isCurrent: isCurrent,
+                    onSelected: item => AssignSpot(ambushFormation, spot, controller)));
+            }
+        }
+
+        private void AssignSpot(AmbushFormation formation, AmbushSpot spot,
+                                AmbushMissionController controller)
+        {
+            formation.AssignedSpot = spot;
+            IsSpotPickerOpen = false;
+            // Refresh the chip label to reflect the new binding. The vanilla
+            // VM's RefreshValues walks through our RefreshValues too, so
+            // asking the panel to refresh pushes the Recompute into
+            // HasSpotAssignment + SpotLabel updates.
+            (_vm as OrderOfBattleFormationItemVM)?.RefreshValues();
         }
 
         private static void InvokeVanillaSelection(OrderOfBattleFormationItemVM panel)

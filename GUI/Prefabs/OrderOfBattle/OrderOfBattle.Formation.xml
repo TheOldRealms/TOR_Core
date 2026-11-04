@@ -270,11 +270,35 @@
              (HasSpotAssignment false) so the regular OoB screen is
              unchanged. Clicking opens the spot-picker (handled by
              AmbushFormationPanelExtension.ExecuteOpenSpotPicker). -->
-        <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="40" VerticalAlignment="Center" MarginLeft="10" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" IsVisible="@HasSpotAssignment" Command.Click="ExecuteOpenSpotPicker">
+        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="10" IsVisible="@HasSpotAssignment">
           <Children>
-            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Text="@SpotLabel" Brush.FontSize="20"/>
+
+            <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="40" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" Command.Click="ExecuteOpenSpotPicker">
+              <Children>
+                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Text="@SpotLabel" Brush.FontSize="20"/>
+              </Children>
+            </ButtonWidget>
+
+            <!-- Spot picker popup: stacked vertically directly below the
+                 chip, visible when IsSpotPickerOpen. Items are compact
+                 (28 px tall, small gap) so the full list stays inside
+                 the OoB panel's vertical span and the next sidebar
+                 panel doesn't render on top of the lower items. Row
+                 click invokes ExecuteSelect, which closes the picker
+                 and (future iteration) swaps the formation to that
+                 spot. -->
+            <ListPanel DataSource="{SpotPickerItems}" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="90" HorizontalAlignment="Center" VerticalAlignment="Top" PositionYOffset="42" IsVisible="@IsSpotPickerOpen" StackLayout.LayoutMethod="VerticalTopToBottom">
+              <ItemTemplate>
+                <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="90" SuggestedHeight="28" MarginTop="1" Brush="OrderOfBattle.FormationTypeSelection.Dropdown" Command.Click="ExecuteSelect">
+                  <Children>
+                    <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" IntText="@Number" Brush.FontSize="18"/>
+                  </Children>
+                </ButtonWidget>
+              </ItemTemplate>
+            </ListPanel>
+
           </Children>
-        </ButtonWidget>
+        </Widget>
 
       </Children>
     </OrderOfBattleFormationItemListPanel>

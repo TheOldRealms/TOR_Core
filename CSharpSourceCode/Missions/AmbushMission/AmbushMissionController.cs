@@ -70,6 +70,21 @@ namespace TOR_Core.Missions.AmbushMission
         /// </summary>
         public AmbushLayoutResult Layout { get; private set; }
 
+        /// <summary>
+        /// Every attacker spot the scener placed, in scene-order. Readers:
+        /// the deployment UI's spot-picker filters this to spots in the
+        /// clicked formation's bucket. Public list so VMs can read directly.
+        /// </summary>
+        public List<AmbushSpot> SceneSpots { get; private set; } = new List<AmbushSpot>();
+
+        /// <summary>
+        /// Stable 1-based number per spot, keyed by its scene position. Used
+        /// across the sidebar chips, the spot-picker rows, and the (deferred)
+        /// scene markers so the player sees the same "Spot 3" everywhere.
+        /// </summary>
+        public Dictionary<Vec3, int> SpotNumbers { get; private set; }
+            = new Dictionary<Vec3, int>();
+
         // Snapshot of defender agents present at OnDeploymentFinished — the
         // "initial patrol". Reinforcement waves are NOT in this set. Phase 1
         // → Phase 2 transition fires when every member is inactive.
@@ -177,8 +192,20 @@ namespace TOR_Core.Missions.AmbushMission
             _legacyAttackerSpawnPositions.Clear();
             _legacyAttackerSpawnIndex = 0;
             Layout = null;
+            SceneSpots.Clear();
+            SpotNumbers.Clear();
 
             var spots = CollectAmbushSpots();
+            SceneSpots.AddRange(spots);
+            int number = 1;
+            foreach (var s in spots)
+            {
+                if (!SpotNumbers.ContainsKey(s.Position))
+                {
+                    SpotNumbers[s.Position] = number;
+                    number++;
+                }
+            }
             if (spots.Count == 0)
             {
                 _legacyAttackerSpawnPositions.AddRange(CollectPositionsForTag("ambush_attacker"));
