@@ -648,22 +648,38 @@ namespace TOR_Core.AbilitySystem
         {
             foreach (var team in Mission.Teams)
             {
-                if (team.TeamAgents.IsEmpty()) continue;
-
-                var leader = team.Leader ?? team.TeamAgents.FirstOrDefault();
-
-                if (team.Side == BattleSideEnum.Attacker && _attackerSummoningCombatant == null)
+                try
                 {
-                    var culture = leader.Character.Culture;
-                    // BasicBattleAgentOrigin has no BattleCombatant. agent resolves the mission environment and fallback
-                    var battleEnvironment = leader.CurrentBattleEnvironment;
-                    _attackerSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
+                    if (team.TeamAgents.IsEmpty()) continue;
+
+                    var leader = team.Leader ?? team.TeamAgents.FirstOrDefault();
+                    if (leader?.Character == null)
+                    {
+                        TOR_Core.Utilities.TORCommon.Log(NLog.LogLevel.Warn,
+                            "[AbilityManager] InitSummoningCombatants skip team side="
+                            + team.Side + " leader=" + (leader == null ? "null" : "no-character"));
+                        continue;
+                    }
+
+                    if (team.Side == BattleSideEnum.Attacker && _attackerSummoningCombatant == null)
+                    {
+                        var culture = leader.Character.Culture;
+                        // BasicBattleAgentOrigin has no BattleCombatant. agent resolves the mission environment and fallback
+                        var battleEnvironment = leader.CurrentBattleEnvironment;
+                        _attackerSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
+                    }
+                    else if (team.Side == BattleSideEnum.Defender && _defenderSummoningCombatant == null)
+                    {
+                        var culture = leader.Character.Culture;
+                        var battleEnvironment = leader.CurrentBattleEnvironment;
+                        _defenderSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
+                    }
                 }
-                else if (team.Side == BattleSideEnum.Defender && _defenderSummoningCombatant == null)
+                catch (Exception e)
                 {
-                    var culture = leader.Character.Culture;
-                    var battleEnvironment = leader.CurrentBattleEnvironment;
-                    _defenderSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
+                    TOR_Core.Utilities.TORCommon.Log(NLog.LogLevel.Error,
+                        "[AbilityManager] InitSummoningCombatants team side=" + team.Side
+                        + " EXCEPTION: " + e);
                 }
             }
         }

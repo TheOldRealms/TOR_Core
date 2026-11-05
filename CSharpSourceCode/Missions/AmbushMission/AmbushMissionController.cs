@@ -34,6 +34,10 @@ namespace TOR_Core.Missions.AmbushMission
         private const float FallbackGraceSeconds = 2f;
 
         private DefaultBattleMissionAgentSpawnLogic _spawnLogic;
+        // Guard flag read by OnAgentCreated so our own custom spawn
+        // pipeline doesn't re-teleport the agents we've just placed at
+        // the correct grid position via AgentBuildData.InitialPosition.
+        private bool _customSpawnInProgress;
         private AmbushReinforcementSpawnTimer _reinforcementTimer;
         private BasicMissionTimer _fallbackGraceTimer;
         private bool _fallbackResolved;
@@ -222,50 +226,130 @@ namespace TOR_Core.Missions.AmbushMission
             var origins = _ambusherSupplier.SupplyTroops(int.MaxValue).ToList();
             bool isPlayerSide = _ambusherSide == BattleSideEnum.Attacker
                                 && IsPlayerAmbusher;
+            _customSpawnInProgress = true;
 
-            int spawned = 0;
+            // Group by FormationClass so a class's agents spawn as one
+            // line (or grid when the spot has a MaxWidth budget) instead
+            // of all piling onto spot.Position.
+            var agentsByClass = new Dictionary<FormationClass, List<IAgentOriginBase>>();
             foreach (var origin in origins)
             {
-                var spot = ChooseSpotForOrigin(origin);
-                if (!spot.HasValue) continue;
-                var dir = new Vec2((float)System.Math.Cos(spot.Value.Yaw),
-                                    (float)System.Math.Sin(spot.Value.Yaw));
-                var buildData = Mission.GetAgentBuildDataToSpawnTroop(
-                    origin,
-                    isPlayerSide: isPlayerSide,
-                    hasFormation: true,
-                    spawnWithHorse: true,
-                    isReinforcement: false,
-                    formationTroopCount: 1,
-                    formationTroopIndex: 0,
-                    initialPosition: spot.Value.Position,
-                    initialDirection: dir,
-                    formationIndex: origin.Troop.GetFormationClass());
-
-                if (origin.Troop.IsHero)
+                var formationClass = origin.Troop.GetFormationClass();
+                if (!agentsByClass.TryGetValue(formationClass, out var list))
                 {
-                    buildData.FixedEquipment(true);
-                    if (origin.Troop == CharacterObject.PlayerCharacter)
-                        buildData.Controller(AgentControllerType.Player);
+                    list = new List<IAgentOriginBase>();
+                    agentsByClass[formationClass] = list;
                 }
+                list.Add(origin);
+            }
 
-                Mission.SpawnAgent(buildData, false);
-                spawned++;
+            int spawned = 0;
+            try
+            {
+                foreach (var classGroup in agentsByClass)
+                {
+                    var formationClass = classGroup.Key;
+                    var agents = classGroup.Value;
+                    var spot = ChooseSpotForClass(formationClass);
+                    if (!spot.HasValue) continue;
+                    var facing = FacingFromYaw(spot.Value.Yaw);
+                    var perp = new Vec2(-facing.Y, facing.X);
+                    int cols = ColumnsForLayout(agents.Count, spot.Value.MaxWidth);
+
+                    for (int i = 0; i < agents.Count; i++)
+                    {
+                        var origin = agents[i];
+                        var pos = GridPositionFor(spot.Value.Position, facing, perp,
+                                                  i, agents.Count, cols);
+
+                        var buildData = Mission.GetAgentBuildDataToSpawnTroop(
+                            origin,
+                            isPlayerSide: isPlayerSide,
+                            hasFormation: true,
+                            spawnWithHorse: true,
+                            isReinforcement: false,
+                            formationTroopCount: 1,
+                            formationTroopIndex: 0,
+                            initialPosition: pos,
+                            initialDirection: facing,
+                            formationIndex: formationClass);
+
+                        bool isPlayerChar = origin.Troop == CharacterObject.PlayerCharacter;
+                        if (origin.Troop.IsHero)
+                        {
+                            buildData.FixedEquipment(true);
+                            if (isPlayerChar)
+                                buildData.Controller(AgentControllerType.Player);
+                        }
+
+                        var agent = Mission.SpawnAgent(buildData, false);
+                        if (isPlayerChar)
+                        {
+                            TORCommon.Log(LogLevel.Info,
+                                "[AmbushMission] player spawned ctrl=" + agent.Controller
+                                + " initialPlayerAgent set=" + (Mission.InitialPlayerAgent != null));
+                        }
+                        spawned++;
+                    }
+                }
+            }
+            finally
+            {
+                _customSpawnInProgress = false;
             }
             TORCommon.Log(LogLevel.Info,
                 "[AmbushMission] DoCustomAmbusherSpawn: spawned=" + spawned
                 + "/" + origins.Count);
         }
 
-        /// <summary>
-        /// Picks the spot an incoming troop should land on. Current rule:
-        /// first AmbushFormation chunk whose Class matches the troop's
-        /// FormationClass; if nothing matches, first SceneSpot so we never
-        /// drop a troop at (0, 0, 0).
-        /// </summary>
-        private AmbushSpot? ChooseSpotForOrigin(IAgentOriginBase origin)
+        // Shared helpers so attacker + defender spawns use the same
+        // line-/grid-layout math. Agents form a single row along the
+        // perpendicular to the spot's facing; when the spot carries a
+        // MaxWidth budget we wrap into additional rows that stack
+        // backward along the facing (behind the front row).
+        private const float AmbushSpawnUnitSpacing = 1.5f;
+
+        private static Vec2 FacingFromYaw(float yaw)
         {
-            var cls = origin.Troop.GetFormationClass();
+            var f = new Vec2((float)System.Math.Cos(yaw),
+                             (float)System.Math.Sin(yaw));
+            return f.LengthSquared > 0.0001f ? f : new Vec2(0f, 1f);
+        }
+
+        private static int ColumnsForLayout(int groupCount, float maxWidth)
+        {
+            if (groupCount <= 0) return 1;
+            if (maxWidth <= 0.001f) return groupCount;
+            int cols = (int)(maxWidth / AmbushSpawnUnitSpacing);
+            return System.Math.Max(1, System.Math.Min(groupCount, cols));
+        }
+
+        private static Vec3 GridPositionFor(Vec3 center, Vec2 facing, Vec2 perp,
+                                            int index, int groupCount, int cols)
+        {
+            // Temporarily disabled: per-agent lateral offsets occasionally
+            // land off the scene's navmesh (cliffs, water, etc). The engine
+            // tolerates that at spawn time but hard-crashes during the
+            // deployment -> battle mode switch when it tries to initialize
+            // pathfinding from the invalid frame. Return the raw spot
+            // center so all troops stack at one point (the pre-refactor
+            // behaviour); re-enable once we clamp lateral/depth to the
+            // navmesh via Mission.DeploymentPlan.ProjectPositionToDeploymentBoundaries.
+            _ = facing;
+            _ = perp;
+            _ = index;
+            _ = groupCount;
+            _ = cols;
+            return center;
+        }
+
+        /// <summary>
+        /// First AmbushFormation chunk whose Class matches the requested
+        /// class; falls back to SceneSpots[0] if the layout has nothing
+        /// bound to the class so a troop never lands at (0, 0, 0).
+        /// </summary>
+        private AmbushSpot? ChooseSpotForClass(FormationClass cls)
+        {
             if (Layout?.Formations != null)
             {
                 foreach (var f in Layout.Formations)
@@ -336,40 +420,81 @@ namespace TOR_Core.Missions.AmbushMission
                 return;
             }
             var origins = _victimSupplier.SupplyTroops(int.MaxValue).ToList();
-            int spawned = 0;
+            _customSpawnInProgress = true;
+
+            // Same grid layout as the ambusher side, grouped per
+            // FormationClass. Position + Yaw read off each defender
+            // scene entity so the line faces the direction the scener
+            // oriented the marker (not a hard-coded +X).
+            var agentsByClass = new Dictionary<FormationClass, List<IAgentOriginBase>>();
             foreach (var origin in origins)
             {
-                var cls = origin.Troop.GetFormationClass();
-                var pos = spots.TryGetValue(cls, out var p) ? p
-                        : spots.Values.First();
-                var dir = new Vec2(1f, 0f);
-                var buildData = Mission.GetAgentBuildDataToSpawnTroop(
-                    origin,
-                    isPlayerSide: false,
-                    hasFormation: true,
-                    spawnWithHorse: true,
-                    isReinforcement: false,
-                    formationTroopCount: 1,
-                    formationTroopIndex: 0,
-                    initialPosition: pos,
-                    initialDirection: dir,
-                    formationIndex: cls);
-                if (origin.Troop.IsHero) buildData.FixedEquipment(true);
-                Mission.SpawnAgent(buildData, false);
-                spawned++;
+                var formationClass = origin.Troop.GetFormationClass();
+                if (!agentsByClass.TryGetValue(formationClass, out var list))
+                {
+                    list = new List<IAgentOriginBase>();
+                    agentsByClass[formationClass] = list;
+                }
+                list.Add(origin);
+            }
+
+            int spawned = 0;
+            try
+            {
+                foreach (var classGroup in agentsByClass)
+                {
+                    var formationClass = classGroup.Key;
+                    var agents = classGroup.Value;
+                    var slot = spots.TryGetValue(formationClass, out var s) ? s
+                             : spots.Values.First();
+                    var center = slot.Position;
+                    var facing = FacingFromYaw(slot.Yaw);
+                    var perp = new Vec2(-facing.Y, facing.X);
+                    // Victim entities carry no MaxWidth script yet; keep
+                    // them in a single line (cols = groupCount).
+                    int cols = ColumnsForLayout(agents.Count, 0f);
+
+                    for (int i = 0; i < agents.Count; i++)
+                    {
+                        var origin = agents[i];
+                        var pos = GridPositionFor(center, facing, perp,
+                                                  i, agents.Count, cols);
+                        var buildData = Mission.GetAgentBuildDataToSpawnTroop(
+                            origin,
+                            isPlayerSide: false,
+                            hasFormation: true,
+                            spawnWithHorse: true,
+                            isReinforcement: false,
+                            formationTroopCount: 1,
+                            formationTroopIndex: 0,
+                            initialPosition: pos,
+                            initialDirection: facing,
+                            formationIndex: formationClass);
+                        if (origin.Troop.IsHero) buildData.FixedEquipment(true);
+                        Mission.SpawnAgent(buildData, false);
+                        spawned++;
+                    }
+                }
+            }
+            finally
+            {
+                _customSpawnInProgress = false;
             }
             TORCommon.Log(LogLevel.Info,
                 "[AmbushMission] DoCustomVictimSpawn: spawned=" + spawned
                 + "/" + origins.Count);
         }
 
-        private Dictionary<FormationClass, Vec3> CollectDefenderSceneSpots()
+        private Dictionary<FormationClass, (Vec3 Position, float Yaw)> CollectDefenderSceneSpots()
         {
             // Vanilla defender entities carry tags without the sp_ prefix
             // (the sp_ is only in the entity name). Archer entity carries
             // both `defender_archer` and `defender_ranged` so FormationClass.Ranged
-            // can be found via either.
-            var dict = new Dictionary<FormationClass, Vec3>();
+            // can be found via either. Yaw is read off the entity's global
+            // frame rotation so the defender troops line up facing the
+            // direction the scener placed the marker, instead of a hard-
+            // coded +X default.
+            var dict = new Dictionary<FormationClass, (Vec3, float)>();
             TryAdd(dict, FormationClass.Infantry,    "defender_infantry");
             TryAdd(dict, FormationClass.Ranged,      "defender_ranged");
             if (!dict.ContainsKey(FormationClass.Ranged))
@@ -379,12 +504,13 @@ namespace TOR_Core.Missions.AmbushMission
             return dict;
         }
 
-        private void TryAdd(Dictionary<FormationClass, Vec3> dict,
+        private void TryAdd(Dictionary<FormationClass, (Vec3, float)> dict,
                             FormationClass cls, string tag)
         {
             foreach (var e in Mission.Scene.FindEntitiesWithTag(tag))
             {
-                dict[cls] = e.GetGlobalFrame().origin;
+                var frame = e.GetGlobalFrame();
+                dict[cls] = (frame.origin, frame.rotation.f.AsVec2.RotationInRadians);
                 return;
             }
         }
@@ -529,6 +655,16 @@ namespace TOR_Core.Missions.AmbushMission
             base.OnAgentCreated(agent);
             if (agent == null || !agent.IsHuman) return;
 
+            // Our shared-supplier custom spawn runs Mission.SpawnAgent
+            // with AgentBuildData.InitialPosition pre-set to the grid
+            // coordinates we want; teleporting the agent here would snap
+            // every troop of the same class onto one point and undo the
+            // line/grid layout. Skip the safety-net teleport while we're
+            // the ones doing the spawning. The teleport still runs for
+            // any vanilla-triggered spawn later (reinforcement etc.)
+            // so the (0, 0, 0) walkable-area hang stays covered.
+            if (_customSpawnInProgress) return;
+
             // Note: Agent.Position at OnAgentCreated time is (0, 0, 0)
             // even for agents vanilla is about to position via AgentBuildData.
             // The engine's "Agent initial frame is out of walkable area"
@@ -610,6 +746,11 @@ namespace TOR_Core.Missions.AmbushMission
 
         public override void OnDeploymentFinished()
         {
+            TORCommon.Log(LogLevel.Info,
+                "[AmbushMission] OnDeploymentFinished enter"
+                + " initialPlayerAgent=" + (Mission.InitialPlayerAgent != null)
+                + " mainAgent=" + (Mission.MainAgent != null)
+                + " defenderTeam=" + (Mission.DefenderTeam != null));
             base.OnDeploymentFinished();
 
             // Attacker initial placement happens per-agent via OnAgentCreated
@@ -637,6 +778,7 @@ namespace TOR_Core.Missions.AmbushMission
             // and plants the fallback on the player, which auto-triggers
             // extraction. See FallbackGraceSeconds.
             _fallbackGraceTimer = new BasicMissionTimer();
+            TORCommon.Log(LogLevel.Info, "[AmbushMission] OnDeploymentFinished exit");
         }
 
         public override InquiryData OnEndMissionRequest(out bool canLeave)
