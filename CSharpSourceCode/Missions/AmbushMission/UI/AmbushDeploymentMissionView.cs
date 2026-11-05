@@ -1,6 +1,4 @@
 using NLog;
-using TaleWorlds.Engine.GauntletUI;
-using TaleWorlds.InputSystem;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View.MissionViews.Singleplayer;
 using TOR_Core.Utilities;
@@ -20,13 +18,18 @@ namespace TOR_Core.Missions.AmbushMission.UI
     /// <c>[OverrideView]</c> attribute has no effect on it. The postfix
     /// removes vanilla's instance and adds ours when the mission is an
     /// ambush.
+    ///
+    /// Previous iteration also owned a GauntletLayer with on-screen spot
+    /// markers (the brown "1"/"2" chips). They were misaligned, stayed
+    /// visible into the battle, and the per-frame projection loop had no
+    /// mission-end guard — a plausible contributor to the post-TotalVictory
+    /// freeze. Removed entirely; the spot-picker in the OoB sidebar is
+    /// enough.
     /// </summary>
     public class AmbushDeploymentMissionView : DeploymentMissionView
     {
         private bool _isAmbusherPath;
         private int _suspendLogCounter;
-        private AmbushDeploymentVM _vm;
-        private GauntletLayer _layer;
 
         public override void AfterStart()
         {
@@ -36,23 +39,6 @@ namespace TOR_Core.Missions.AmbushMission.UI
             TORCommon.Log(LogLevel.Info,
                 "[AmbushDeploymentView] AfterStart: ambusherPath=" + _isAmbusherPath
                 + " orderTroopPlacer=" + (_orderTroopPlacer == null ? "null" : "set"));
-
-            if (!_isAmbusherPath) return;
-            _vm = new AmbushDeploymentVM(controller.Layout);
-            _layer = new GauntletLayer("GauntletLayer", 50);
-            _layer.LoadMovie("AmbushDeployment", _vm);
-            MissionScreen.AddLayer(_layer);
-        }
-
-        public override void OnRemoveBehavior()
-        {
-            if (_layer != null)
-            {
-                MissionScreen.RemoveLayer(_layer);
-                _layer = null;
-            }
-            _vm = null;
-            base.OnRemoveBehavior();
         }
 
         public override void OnMissionScreenTick(float dt)
@@ -60,7 +46,7 @@ namespace TOR_Core.Missions.AmbushMission.UI
             base.OnMissionScreenTick(dt);
             if (!_isAmbusherPath) return;
             // Only suppress during the deployment phase. Once FinishDeployment
-            // flips the mission into Battle mode, give orders via terrain
+            // flips the mission into Battle mode, give-orders via terrain
             // click must work normally.
             if (Mission.Mode != TaleWorlds.Core.MissionMode.Deployment) return;
             var placer = _orderTroopPlacer
@@ -70,29 +56,9 @@ namespace TOR_Core.Missions.AmbushMission.UI
                 placer.SuspendTroopPlacer = true;
                 if (_suspendLogCounter++ < 3)
                 {
-                    TORCommon.Log(LogLevel.Info,"[AmbushDeploymentView] SuspendTroopPlacer flipped true (deployment)");
+                    TORCommon.Log(LogLevel.Info,
+                        "[AmbushDeploymentView] SuspendTroopPlacer flipped true (deployment)");
                 }
-            }
-            UpdateSpotMarkers();
-        }
-
-        private void UpdateSpotMarkers()
-        {
-            if (_vm?.SpotMarkers == null) return;
-            var cam = MissionScreen.CombatCamera;
-            if (cam == null) return;
-            foreach (var marker in _vm.SpotMarkers)
-            {
-                var world = marker.Spot.Position;
-                float screenX = 0f;
-                float screenY = 0f;
-                float depth = 0f;
-                MBWindowManager.WorldToScreen(cam, world, ref screenX, ref screenY, ref depth);
-                bool onScreen = depth > 0f;
-                marker.IsVisible = onScreen;
-                if (!onScreen) continue;
-                marker.ScreenX = screenX;
-                marker.ScreenY = screenY;
             }
         }
     }

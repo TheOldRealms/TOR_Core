@@ -97,6 +97,18 @@ namespace TOR_Core.Missions.AmbushMission.UI
         public override void RefreshValues()
         {
             base.RefreshValues();
+            // Hooked on OrderOfBattleFormationItemVM.Tick so we fire per
+            // frame during deployment. After mission end the VMs are
+            // mid-teardown: Formation references become disposed, Mission
+            // .Current flips to null, and vanilla's own Tick inside those
+            // VMs starts reading dead state. Our Recompute reads from the
+            // same places (Mission.Current, panel.Formation, the ambush
+            // controller) and setting any [DataSourceProperty] on a
+            // tearing-down VM fires OnPropertyChangedWithValue into a
+            // Gauntlet layer that can wedge the UI thread. Bail the
+            // moment Mission.Current is gone — our chip / spot picker is
+            // a deployment-time widget, nothing we show matters after.
+            if (Mission.Current == null || _vm == null) return;
             Recompute();
             if (_lastSeenMoveGeneration != s_moveGeneration)
             {
