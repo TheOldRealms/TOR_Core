@@ -42,6 +42,15 @@ namespace TOR_Core.Missions.AmbushMission
         /// spots before wildcards.
         /// </summary>
         public int PreferredClass;
+        /// <summary>
+        /// Child <see cref="TaleWorlds.MountAndBlade.TacticalPosition"/>
+        /// entities authored under the spawn-point entity. Empty when the
+        /// scener didn't attach any. Used by the ranged-anchor behavior:
+        /// the formation's plate still sits at <see cref="Position"/> but
+        /// individual archers scripted-position onto these children so
+        /// they stand on the authored high-ground / cover slots.
+        /// </summary>
+        public List<Vec3> TacticalChildren;
     }
 
     /// <summary>

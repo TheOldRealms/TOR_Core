@@ -497,7 +497,7 @@ namespace TOR_Core.Missions.AmbushMission.UI
                 float lateral = (n == 1) ? 0f : (i - (n - 1) / 2f) * ShareSpotSpacing;
                 var pos = spot.Position
                           + new Vec3(perp.X * lateral, perp.Y * lateral, 0f);
-                RepositionFormation(f.VanillaFormation, pos, scene,
+                RepositionFormation(f.VanillaFormation, pos, facing, scene,
                                     narrowWidth: n > 1 ? (float?)ShareSpotWidth : null);
                 TORCommon.Say("[Ambush] " + spot.GroupTag + "[" + (i + 1) + "/" + n + "]"
                               + " class=" + f.Class
@@ -507,6 +507,7 @@ namespace TOR_Core.Missions.AmbushMission.UI
 
         private static void RepositionFormation(TaleWorlds.MountAndBlade.Formation vanilla,
                                                 Vec3 pos,
+                                                Vec2 facing,
                                                 Scene scene,
                                                 float? narrowWidth)
         {
@@ -520,7 +521,11 @@ namespace TOR_Core.Missions.AmbushMission.UI
                     ? FormOrder.FormOrderCustom(narrowWidth.Value)
                     : FormOrder.FormOrderWide);
                 vanilla.SetMovementOrder(MovementOrder.MovementOrderMove(worldPos));
-                vanilla.SetPositioning(worldPos);
+                vanilla.SetPositioning(worldPos, facing, vanilla.UnitSpacing);
+                vanilla.SetFacingOrder(FacingOrder.FacingOrderLookAtDirection(facing));
+                // Project each agent forward along facing by its row offset
+                // so the line lies along the perpendicular to facing, same
+                // orientation vanilla uses for a wide formation at spawn.
                 vanilla.ApplyActionOnEachUnit(agent =>
                 {
                     if (agent == null) return;

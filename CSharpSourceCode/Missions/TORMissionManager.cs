@@ -284,6 +284,7 @@ namespace TOR_Core.Missions
                     new AmbushMission.AmbushMissionController(ambusherParty, victimParty, ambusherSupplier, victimSupplier),
                     new AmbushMission.AmbushEndLogic(),
                     new AmbushMission.AmbushLoudnessTracker(),
+                    new AmbushMission.AmbushTacticalAnchorLogic(),
                     new MissionExperienceBehavior(),
                     new CampaignMissionComponent(),
                     new BattleAgentLogic(),

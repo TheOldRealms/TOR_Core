@@ -273,6 +273,7 @@ namespace TOR_Core.Missions.AmbushMission
                     var facing = FacingFromYaw(spot.Value.Yaw);
                     var perp = new Vec2(-facing.Y, facing.X);
                     int cols = ColumnsForLayout(agents.Count, spot.Value.MaxWidth);
+                    Formation chunkFormation = null;
 
                     for (int i = 0; i < agents.Count; i++)
                     {
@@ -302,6 +303,7 @@ namespace TOR_Core.Missions.AmbushMission
 
                         var agent = Mission.SpawnAgent(buildData, false);
                         BumpSpawnedCount(_ambusherSide);
+                        if (chunkFormation == null) chunkFormation = agent.Formation;
                         if (isPlayerChar)
                         {
                             TORCommon.Log(LogLevel.Info,
@@ -310,6 +312,8 @@ namespace TOR_Core.Missions.AmbushMission
                         }
                         spawned++;
                     }
+
+                    TryAnchorRangedFormation(chunkFormation, formationClass, spot.Value);
                 }
             }
             finally
@@ -360,6 +364,55 @@ namespace TOR_Core.Missions.AmbushMission
             _ = groupCount;
             _ = cols;
             return center;
+        }
+
+        /// <summary>
+        /// Attaches a tactical-point anchor to a ranged formation so the
+        /// captain AI pins it at the spawn-point (parent) and the
+        /// individual archers scripted-position onto the tactical-child
+        /// entities authored under that spawn-point. Does nothing for
+        /// non-ranged classes or when the spot carries no tactical
+        /// children. Player override is handled by
+        /// <see cref="AmbushTacticalAnchorLogic"/>.
+        /// </summary>
+        private void TryAnchorRangedFormation(Formation formation,
+                                               FormationClass cls,
+                                               AmbushSpot spot)
+        {
+            int tac = spot.TacticalChildren?.Count ?? 0;
+            bool isRanged = cls == FormationClass.Ranged
+                            || cls == FormationClass.Skirmisher
+                            || cls == FormationClass.HorseArcher;
+            if (formation == null || !isRanged || tac == 0)
+            {
+                TORCommon.Log(LogLevel.Info,
+                    "[AmbushMission] anchor skipped class=" + cls
+                    + " formationNull=" + (formation == null)
+                    + " isRanged=" + isRanged
+                    + " tacticalChildren=" + tac
+                    + " spot=" + spot.GroupTag);
+                return;
+            }
+            var anchorLogic = Mission.GetMissionBehavior<AmbushTacticalAnchorLogic>();
+            if (anchorLogic == null)
+            {
+                TORCommon.Log(LogLevel.Warn,
+                    "[AmbushMission] anchor skipped: AmbushTacticalAnchorLogic missing from mission");
+                return;
+            }
+            var scene = Mission.Scene;
+            if (scene == null) return;
+            var parent = new WorldPosition(scene, spot.Position);
+            var children = spot.TacticalChildren
+                .Select(c => new WorldPosition(scene, c))
+                .ToList();
+            formation.SetControlledByAI(true);
+            var behavior = new AmbushBehaviorDefendTacticalPoint(formation, parent, children);
+            formation.AI.AddAiBehavior(behavior);
+            anchorLogic.RegisterAnchor(formation, behavior);
+            TORCommon.Log(LogLevel.Info,
+                "[AmbushMission] anchored " + cls + " to " + children.Count
+                + " tactical points at spot " + spot.GroupTag);
         }
 
         /// <summary>
@@ -694,9 +747,15 @@ namespace TOR_Core.Missions.AmbushMission
                 "[AmbushMission] layout: " + Layout.Formations.Count + " formations, "
                 + "spots found=" + spots.Count + " mode=" + mode);
             for (int i = 0; i < SceneSpots.Count; i++)
+            {
+                var s = SceneSpots[i];
+                int tac = s.TacticalChildren?.Count ?? 0;
                 TORCommon.Log(LogLevel.Info,
-                    "[AmbushMission] SceneSpots[" + i + "] group=" + SceneSpots[i].GroupTag
-                    + " pos=" + SceneSpots[i].Position);
+                    "[AmbushMission] SceneSpots[" + i + "] group=" + s.GroupTag
+                    + " pos=" + s.Position
+                    + " preferredClass=" + s.PreferredClass
+                    + " tacticalChildren=" + tac);
+            }
             foreach (var kv in _attackerSpawnPositions)
                 TORCommon.Log(LogLevel.Info,
                     "[AmbushMission] _attackerSpawnPositions[" + kv.Key + "] count=" + kv.Value.Count
@@ -731,6 +790,28 @@ namespace TOR_Core.Missions.AmbushMission
                 if (groupTag == null) continue;
                 var frame = e.GetGlobalFrame();
                 var script = e.GetFirstScriptOfType<AmbushSpawnPointScript>();
+                var tacticalChildren = new List<Vec3>();
+                int totalChildren = 0;
+                foreach (var child in e.GetChildren())
+                {
+                    if (child == null) continue;
+                    totalChildren++;
+                    // Accept either a vanilla TacticalPosition or StrategicArea
+                    // script. The test scene uses StrategicArea prefabs
+                    // (strategic_archer_point); either is valid authoring.
+                    bool hasTactical = child.HasScriptOfType<TaleWorlds.MountAndBlade.TacticalPosition>();
+                    bool hasStrategic = child.HasScriptOfType<TaleWorlds.MountAndBlade.StrategicArea>();
+                    bool isTacticalChild = hasTactical || hasStrategic;
+                    TORCommon.Log(LogLevel.Info,
+                        "[AmbushMission] spot " + groupTag + " child name=" + child.Name
+                        + " tactical=" + hasTactical
+                        + " strategic=" + hasStrategic
+                        + " pos=" + child.GlobalPosition);
+                    if (isTacticalChild) tacticalChildren.Add(child.GlobalPosition);
+                }
+                if (totalChildren == 0)
+                    TORCommon.Log(LogLevel.Info,
+                        "[AmbushMission] spot " + groupTag + " has no child entities");
                 list.Add(new AmbushSpot
                 {
                     GroupTag = groupTag,
@@ -739,6 +820,7 @@ namespace TOR_Core.Missions.AmbushMission
                     MaxFormations = script?.MaxFormations ?? 0,
                     MaxWidth = script?.MaxWidth ?? 0f,
                     PreferredClass = (int)(script?.PreferredClass ?? AmbushSpotPreferredClass.None),
+                    TacticalChildren = tacticalChildren,
                 });
             }
             return list;
