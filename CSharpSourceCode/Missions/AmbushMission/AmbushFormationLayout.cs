@@ -35,6 +35,13 @@ namespace TOR_Core.Missions.AmbushMission
         public int MaxFormations;
         /// <summary>Per-spot width budget from the scene-attached AmbushSpawnPointScript. Zero = unlimited.</summary>
         public float MaxWidth;
+        /// <summary>
+        /// Preferred FormationClass (cast to int) for this spot, or -1 for
+        /// no preference. Sourced from <see cref="AmbushSpawnPointScript.PreferredClass"/>.
+        /// Read during default-assignment so matching classes claim preferred
+        /// spots before wildcards.
+        /// </summary>
+        public int PreferredClass;
     }
 
     /// <summary>
@@ -90,7 +97,7 @@ namespace TOR_Core.Missions.AmbushMission
                 var formations = mode == LayoutMode.Player
                     ? ChunkForPlayer(cls, troops, model)
                     : ChunkForAi(cls, troops, spots.Count, model);
-                AssignDefaultSpots(formations, spots, result);
+                AssignDefaultSpots(formations, spots, result, mode);
                 result.Formations.AddRange(formations);
             }
             return result;
@@ -244,19 +251,51 @@ namespace TOR_Core.Missions.AmbushMission
         }
 
         /// <summary>
-        /// Default spot assignment: first-unused spot in scene iteration order,
-        /// no class or bucket filtering. The player can reassign via the UI
-        /// after deployment opens.
+        /// Default spot assignment. Two-pass: first claim every spot whose
+        /// <see cref="AmbushSpot.PreferredClass"/> matches the formation's
+        /// class, then fill remaining formations from wildcard spots.
+        /// Spots authored with a preference always win against wildcards
+        /// for the matching class, which is the whole point of the field.
+        ///
+        /// Player mode iterates spots in scene order so the layout is
+        /// stable across restarts (and matches the manual picker's
+        /// scene-ordered chip rows). AI mode shuffles the spot list once
+        /// per pass so repeat ambushes on the same scene feel different
+        /// when multiple spots match a class; the chunking randomness
+        /// in <see cref="ChunkForAi"/> was the only prior source of
+        /// variety and it only moved troop counts, never positions.
         /// </summary>
         private static void AssignDefaultSpots(List<AmbushFormation> formations,
-            IList<AmbushSpot> spots, AmbushLayoutResult result)
+            IList<AmbushSpot> spots, AmbushLayoutResult result, LayoutMode mode)
         {
             var usedPositions = new HashSet<Vec3>(
                 result.DefaultAssignments.Values.Select(s => s.Position));
+            IList<AmbushSpot> order = mode == LayoutMode.AI
+                ? ShuffleCopy(spots)
+                : spots;
+            // Pass 1: match preferred-class spots.
             foreach (var f in formations)
             {
+                if (f.AssignedSpot.HasValue) continue;
                 AmbushSpot? picked = null;
-                foreach (var s in spots)
+                foreach (var s in order)
+                {
+                    if (s.PreferredClass != (int)f.Class) continue;
+                    if (usedPositions.Contains(s.Position)) continue;
+                    picked = s;
+                    break;
+                }
+                if (!picked.HasValue) continue;
+                f.AssignedSpot = picked.Value;
+                result.DefaultAssignments[f] = picked.Value;
+                usedPositions.Add(picked.Value.Position);
+            }
+            // Pass 2: fill from any remaining spot (preferred or wildcard).
+            foreach (var f in formations)
+            {
+                if (f.AssignedSpot.HasValue) continue;
+                AmbushSpot? picked = null;
+                foreach (var s in order)
                 {
                     if (!usedPositions.Contains(s.Position))
                     {
@@ -269,6 +308,17 @@ namespace TOR_Core.Missions.AmbushMission
                 result.DefaultAssignments[f] = picked.Value;
                 usedPositions.Add(picked.Value.Position);
             }
+        }
+
+        private static List<AmbushSpot> ShuffleCopy(IList<AmbushSpot> source)
+        {
+            var copy = new List<AmbushSpot>(source);
+            for (int i = copy.Count - 1; i > 0; i--)
+            {
+                int j = MBRandom.RandomInt(i + 1);
+                var tmp = copy[i]; copy[i] = copy[j]; copy[j] = tmp;
+            }
+            return copy;
         }
     }
 }

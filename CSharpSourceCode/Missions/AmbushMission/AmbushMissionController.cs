@@ -363,6 +363,55 @@ namespace TOR_Core.Missions.AmbushMission
         }
 
         /// <summary>
+        /// Resets every chunked formation back to its initial layout spot
+        /// (the <see cref="AmbushLayoutResult.DefaultAssignments"/> dict
+        /// built once at <c>AfterStart</c>), then repositions every spot
+        /// that gained or lost occupants so the troop plates follow the
+        /// reassignment. Wired to the vanilla "Reset Deployment" button
+        /// via <see cref="HarmonyPatches.AmbushResetDeploymentPatch"/>.
+        /// Safe to call during the deployment phase only; after
+        /// <c>OnDeploymentFinished</c> the formations are already in
+        /// combat and the player has no business resetting.
+        /// </summary>
+        public void ResetAssignments()
+        {
+            if (Layout == null || Layout.Formations == null) return;
+            if (Mission?.Mode != TaleWorlds.Core.MissionMode.Deployment)
+            {
+                TORCommon.Log(LogLevel.Info,
+                    "[AmbushMission] ResetAssignments ignored outside Deployment mode");
+                return;
+            }
+            var touched = new HashSet<Vec3>();
+            foreach (var f in Layout.Formations)
+            {
+                if (f.AssignedSpot.HasValue) touched.Add(f.AssignedSpot.Value.Position);
+                if (Layout.DefaultAssignments != null
+                    && Layout.DefaultAssignments.TryGetValue(f, out var def))
+                {
+                    f.AssignedSpot = def;
+                    touched.Add(def.Position);
+                }
+            }
+            // Deduplicate by position; reposition once per spot so the
+            // share-spot side-by-side logic runs with the final occupants.
+            foreach (var pos in touched)
+            {
+                AmbushSpot? spot = null;
+                foreach (var s in SceneSpots)
+                {
+                    if (s.Position.NearlyEquals(pos, 0.01f)) { spot = s; break; }
+                }
+                if (spot.HasValue)
+                    UI.AmbushFormationPanelExtension.RepositionSpotGroup(spot.Value, this);
+            }
+            UI.AmbushFormationPanelExtension.BumpMoveGeneration();
+            TORCommon.Log(LogLevel.Info,
+                "[AmbushMission] ResetAssignments restored " + Layout.Formations.Count
+                + " formations across " + touched.Count + " spots");
+        }
+
+        /// <summary>
         /// First AmbushFormation chunk whose Class matches the requested
         /// class; falls back to SceneSpots[0] if the layout has nothing
         /// bound to the class so a troop never lands at (0, 0, 0).
@@ -689,6 +738,7 @@ namespace TOR_Core.Missions.AmbushMission
                     Yaw = frame.rotation.f.AsVec2.RotationInRadians,
                     MaxFormations = script?.MaxFormations ?? 0,
                     MaxWidth = script?.MaxWidth ?? 0f,
+                    PreferredClass = (int)(script?.PreferredClass ?? AmbushSpotPreferredClass.None),
                 });
             }
             return list;

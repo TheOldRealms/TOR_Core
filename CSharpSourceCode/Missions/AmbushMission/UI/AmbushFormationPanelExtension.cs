@@ -91,8 +91,14 @@ namespace TOR_Core.Missions.AmbushMission.UI
         // position. This is how sibling formations keep their troop plate
         // in sync when a share-spot reassignment shifts them laterally
         // without them being the one the user clicked.
-        private static int s_moveGeneration;
+        internal static int s_moveGeneration;
         private int _lastSeenMoveGeneration;
+
+        /// <summary>Bump the shared move-generation counter so every
+        /// panel extension re-dirties its cached plate position on the
+        /// next RefreshValues. Called by the controller after Reset
+        /// Deployment reassigns every formation.</summary>
+        public static void BumpMoveGeneration() => s_moveGeneration++;
 
         private bool _warnedLifecycleGone;
 
@@ -453,7 +459,7 @@ namespace TOR_Core.Missions.AmbushMission.UI
         /// per-agent TeleportToPosition leaves the plate stuck on the
         /// old spot.
         /// </summary>
-        private static void RepositionSpotGroup(AmbushSpot spot,
+        public static void RepositionSpotGroup(AmbushSpot spot,
                                                 AmbushMissionController controller)
         {
             var mission = Mission.Current;
