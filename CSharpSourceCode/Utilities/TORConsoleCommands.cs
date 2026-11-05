@@ -1476,6 +1476,60 @@ namespace TOR_Core.Utilities
         /// </summary>
         private const float DebugAmbusherSearchRadius = 30f;
 
+        [CommandLineFunctionality.CommandLineArgumentFunction("trigger_ambush", "tor")]
+        public static string TriggerAmbush(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+            if (Campaign.Current == null) return "no active campaign";
+            var main = MobileParty.MainParty;
+            if (main == null || !main.IsActive) return "main party not active";
+            if (main.CurrentSettlement != null) return "leave the settlement first";
+            if (MapEvent.PlayerMapEvent != null) return "player is already in an encounter";
+
+            var mainFaction = main.MapFaction;
+            var mainPos = main.Position;
+            MobileParty closest = null;
+            float closestDistSq = DebugAmbusherSearchRadius * DebugAmbusherSearchRadius;
+            foreach (var p in MobileParty.All)
+            {
+                if (p == null || !p.IsActive || p == main) continue;
+                if (p.MapFaction == null || mainFaction == null) continue;
+                if (!FactionManager.IsAtWarAgainstFaction(mainFaction, p.MapFaction)) continue;
+                if (!p.IsLordParty && !p.IsBandit) continue;
+                if (p.MemberRoster == null || p.MemberRoster.TotalHealthyCount < 5) continue;
+                float distSq = p.Position.DistanceSquared(mainPos);
+                if (distSq > closestDistSq) continue;
+                closestDistSq = distSq;
+                closest = p;
+            }
+            if (closest == null)
+                return $"no eligible hostile lord/bandit party with 5+ healthy troops within {DebugAmbusherSearchRadius} units";
+
+            // Mirror AmbushCampaignBehavior.OnStrike's success branch:
+            // teleport onto target, open the ambush mission directly. Skips
+            // the chance roll (this is a cheat) and the stealth-prep chain.
+            main.Position = closest.Position;
+
+            // Set _lastAmbushTarget so post-mission paths (OnPlayerBattleEnd,
+            // escape menu, XP math) have the party reference they expect.
+            var behavior = Campaign.Current.GetCampaignBehavior<AmbushCampaignBehavior>();
+            var field = typeof(AmbushCampaignBehavior).GetField("_lastAmbushTarget",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            field?.SetValue(behavior, closest);
+
+            PlayerEncounter.RestartPlayerEncounter(closest.Party, PartyBase.MainParty, false);
+            if (PlayerEncounter.Battle == null)
+            {
+                PlayerEncounter.StartBattle();
+                PlayerEncounter.Update();
+            }
+            AmbushRetreatZone.ResetRegistry();
+            TorMissionManager.OpenAmbushMission(AmbushCampaignBehavior.DefaultAmbushScene);
+
+            return "ambushing " + (closest.LeaderHero?.Name?.ToString() ?? closest.Name?.ToString() ?? "?") + " (forced 100%)";
+        }
+
         [CommandLineFunctionality.CommandLineArgumentFunction("trigger_ambushed", "tor")]
         public static string TriggerAmbushed(List<string> arguments)
         {

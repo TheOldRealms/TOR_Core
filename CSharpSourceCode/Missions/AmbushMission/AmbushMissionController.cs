@@ -38,6 +38,24 @@ namespace TOR_Core.Missions.AmbushMission
         // pipeline doesn't re-teleport the agents we've just placed at
         // the correct grid position via AgentBuildData.InitialPosition.
         private bool _customSpawnInProgress;
+
+        // Cached reflection handles for bumping each side's
+        // MissionBattleSideSpawnContext._numSpawnedTroops as we do our
+        // custom spawn. Vanilla's DefaultBattleMissionAgentSpawnLogic
+        // tracks a per-side "troops the context placed" counter that
+        // reads NumberOfActiveTroops = _numSpawnedTroops - supplier
+        // .NumRemovedTroops. The supplier side of the math still works
+        // for us (PartyGroupAgentOrigin.SetKilled forwards to supplier
+        // .OnTroopKilled as our custom-spawned agents die). But the
+        // _numSpawnedTroops side stays at 0 because our spawn path
+        // bypasses the vanilla SpawnTroops loop that bumps it. Mid-
+        // battle that math goes negative; IsSideDepleted never fires
+        // true; vanilla's post-battle state machine stalls; the
+        // stealth-menu restore / loot-flow chain never completes.
+        // Bumping _numSpawnedTroops per custom-spawned agent matches
+        // vanilla line 386 of MissionBattleSideSpawnContext.SpawnTroops.
+        private System.Reflection.FieldInfo _numSpawnedTroopsField;
+        private System.Array _battleSideSpawnContextsArray;
         private AmbushReinforcementSpawnTimer _reinforcementTimer;
         private BasicMissionTimer _fallbackGraceTimer;
         private bool _fallbackResolved;
@@ -283,6 +301,7 @@ namespace TOR_Core.Missions.AmbushMission
                         }
 
                         var agent = Mission.SpawnAgent(buildData, false);
+                        BumpSpawnedCount(_ambusherSide);
                         if (isPlayerChar)
                         {
                             TORCommon.Log(LogLevel.Info,
@@ -394,6 +413,44 @@ namespace TOR_Core.Missions.AmbushMission
         }
 
         /// <summary>
+        /// Cache the reflection handles once in AfterStart so BumpSpawnedCount
+        /// doesn't do dictionary lookups per agent. Both handles may legitimately
+        /// resolve to null (null-tolerant game versions) — BumpSpawnedCount
+        /// no-ops in that case and the mission runs as before (same stall risk
+        /// but no new failure mode).
+        /// </summary>
+        private void InitSpawnContextReflection()
+        {
+            if (_spawnLogic == null) return;
+            var contextsField = typeof(DefaultBattleMissionAgentSpawnLogic).GetField(
+                "_battleSideSpawnContexts",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            _battleSideSpawnContextsArray = contextsField?.GetValue(_spawnLogic) as System.Array;
+            if (_battleSideSpawnContextsArray == null || _battleSideSpawnContextsArray.Length == 0) return;
+            var sampleContext = _battleSideSpawnContextsArray.GetValue(0);
+            if (sampleContext == null) return;
+            _numSpawnedTroopsField = sampleContext.GetType().GetField(
+                "_numSpawnedTroops",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+        }
+
+        /// <summary>
+        /// Match what vanilla does at MissionBattleSideSpawnContext.SpawnTroops
+        /// line 386: <c>_numSpawnedTroops++</c>. Called per agent in DoCustom
+        /// *Spawn so the context's NumberOfActiveTroops reflects reality.
+        /// </summary>
+        private void BumpSpawnedCount(BattleSideEnum side)
+        {
+            if (_battleSideSpawnContextsArray == null || _numSpawnedTroopsField == null) return;
+            int idx = (int)side;
+            if (idx < 0 || idx >= _battleSideSpawnContextsArray.Length) return;
+            var ctx = _battleSideSpawnContextsArray.GetValue(idx);
+            if (ctx == null) return;
+            int current = (int)_numSpawnedTroopsField.GetValue(ctx);
+            _numSpawnedTroopsField.SetValue(ctx, current + 1);
+        }
+
+        /// <summary>
         /// Vanilla's defender spawn occasionally drops specific troops (seen
         /// with Ungor Raider in the test scene) at (0, 0, 0), which hangs
         /// the walkable-area check on the deployment screen. The scene has
@@ -472,6 +529,7 @@ namespace TOR_Core.Missions.AmbushMission
                             formationIndex: formationClass);
                         if (origin.Troop.IsHero) buildData.FixedEquipment(true);
                         Mission.SpawnAgent(buildData, false);
+                        BumpSpawnedCount(_victimSide);
                         spawned++;
                     }
                 }
@@ -772,6 +830,25 @@ namespace TOR_Core.Missions.AmbushMission
                 }
             }
 
+            // Team membership diagnostic: the ambush-victory check in
+            // AmbushEndLogic triggers TotalVictory on CountActiveHumans
+            // (Mission.DefenderTeam) == 0, so if defenders landed on a
+            // different team the fight ends the moment the mission starts.
+            int attackerActive = 0, attackerHuman = 0;
+            if (Mission.AttackerTeam != null)
+                foreach (var a in Mission.AttackerTeam.ActiveAgents)
+                { attackerActive++; if (a != null && a.IsHuman) attackerHuman++; }
+            int defenderActive = 0, defenderHuman = 0;
+            if (Mission.DefenderTeam != null)
+                foreach (var a in Mission.DefenderTeam.ActiveAgents)
+                { defenderActive++; if (a != null && a.IsHuman) defenderHuman++; }
+            TORCommon.Log(LogLevel.Info,
+                "[AmbushMission] team census: attacker active=" + attackerActive
+                + " human=" + attackerHuman
+                + " | defender active=" + defenderActive
+                + " human=" + defenderHuman
+                + " | initialPatrol=" + _initialPatrol.Count);
+
             // Start the grace clock for the procedural-fallback decision. The
             // actual check happens in OnMissionTick once script OnInits have
             // reliably fired — doing it here races with the script lifecycle
@@ -820,6 +897,30 @@ namespace TOR_Core.Missions.AmbushMission
                     _initialPatrolDefeated = true;
                     _reinforcementTimer?.OnInitialPatrolDefeated();
                     InitialPatrolDefeated?.Invoke();
+
+                    // Who's still on the defender side at the moment Phase 2
+                    // transitions? If this list is empty, Priority 3 should
+                    // fire TotalVictory the same tick. If anyone shows up
+                    // here, that's the agent blocking the clean win — their
+                    // char / isHuman / isActive / running / team membership
+                    // should tell us whether it's a routed stragger,
+                    // a late-added reinforcement, or something else.
+                    if (Mission.DefenderTeam != null)
+                    {
+                        int idx = 0;
+                        foreach (var a in Mission.DefenderTeam.ActiveAgents)
+                        {
+                            if (a == null) continue;
+                            TORCommon.Log(LogLevel.Info,
+                                "[AmbushMission] at Phase2 DefenderTeam[" + idx + "]"
+                                + " char=" + (a.Character?.StringId ?? "?")
+                                + " isHuman=" + a.IsHuman
+                                + " isActive=" + a.IsActive()
+                                + " isRunningAway=" + a.IsRunningAway
+                                + " inInitialPatrol=" + _initialPatrol.Contains(a));
+                            idx++;
+                        }
+                    }
                 }
             }
         }

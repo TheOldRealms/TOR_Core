@@ -289,7 +289,18 @@ namespace TOR_Core.Missions
                     new BattleAgentLogic(),
                     new MountAgentLogic(),
                     new MissionOptionsComponent(),
-                    new BattleEndLogic(),
+                    // AmbushBattleEndLogic : BattleEndLogic. Subclass so all
+                    // the base OnMissionTick side effects still fire
+                    // (victory reactions on AgentVictoryLogic, retreat
+                    // detection, enemy-pullback tracking, battle-won /
+                    // lost messages — the post-mission stealth-menu /
+                    // loot-flow handoff depends on them). Only
+                    // MissionEnded is overridden to return false so
+                    // vanilla's frame-one "IsSideDepleted → instant
+                    // Player Victory" can't win the CheckMissionEnded
+                    // race against AmbushEndLogic, which is the
+                    // authoritative outcome decider.
+                    new AmbushMission.AmbushBattleEndLogic(),
                     new MissionCombatantsLogic(
                         MobileParty.MainParty.MapEvent.InvolvedParties,
                         PartyBase.MainParty,

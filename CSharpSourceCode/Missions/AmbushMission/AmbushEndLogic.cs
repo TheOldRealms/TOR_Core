@@ -88,15 +88,19 @@ namespace TOR_Core.Missions.AmbushMission
                 return;
             }
 
-            // Priority 3 — total victory. Requires both the field clear AND
-            // the reinforcement queue drained. The ReinforcementsSpawnable
-            // check keeps us from firing TotalVictory while 50 queued troops
-            // are seconds away from arriving.
-            if (CountActiveHumans(Mission.DefenderTeam) == 0
-                && !AreReinforcementsStillPending(BattleSideEnum.Defender))
+            // Priority 3 — total victory. The ambush mission does a single
+            // custom spawn in AmbushMissionController.AfterStart and drains
+            // both suppliers at that point; no reinforcement wave can
+            // legitimately arrive later. Field clear = win. The vanilla
+            // IsSideDepleted check (via AreReinforcementsStillPending) is
+            // a scene-driven-reinforcement concept that reports pending=true
+            // for our mission even with the supplier empty, which was
+            // blocking this branch and routing wipes through the extraction
+            // path instead.
+            if (CountActiveHumans(Mission.DefenderTeam) == 0)
             {
                 SetOutcome(AmbushOutcome.TotalVictory, successful: true,
-                    reason: "defender team wiped + reinforcement queue drained");
+                    reason: "defender team wiped");
                 return;
             }
 
@@ -124,6 +128,23 @@ namespace TOR_Core.Missions.AmbushMission
         /// </summary>
         private void TickExtractionBar(float dt, Agent mainAgent)
         {
+            // Safety guard: if the field is already clear, the mission is a
+            // TotalVictory the moment Priority 3 catches it on the next
+            // check. Filling the bar and toasting "Extraction N%" in that
+            // window would read as noise; reset the bar to 0 and bail so
+            // the player never sees the retreat UI for what should be a
+            // clean win.
+            if (CountActiveHumans(Mission.DefenderTeam) == 0)
+            {
+                if (_extractionProgress > 0f)
+                {
+                    _extractionProgress = 0f;
+                    _lastReportedBucket = -1f;
+                    _leftBehindWarningFired = false;
+                }
+                return;
+            }
+
             bool phase2 = _controller != null && _controller.IsInitialPatrolDefeated;
             bool heroInZone = phase2 && AmbushRetreatZone.IsAgentInsideAnyZone(mainAgent);
 
@@ -164,6 +185,17 @@ namespace TOR_Core.Missions.AmbushMission
 
             if (_extractionProgress >= 1f)
             {
+                // Promote to TotalVictory if the field cleared during the
+                // bar fill. The escape-menu flow assumes surviving enemies
+                // are "forming up where you struck" — opening it when the
+                // defender team is empty reads as absurd to the player
+                // and sends them into a menu with no sensible options.
+                if (CountActiveHumans(Mission.DefenderTeam) == 0)
+                {
+                    SetOutcome(AmbushOutcome.TotalVictory, successful: true,
+                        reason: "extraction complete and field also clear");
+                    return;
+                }
                 int leftBehind = CountActiveHumansOutsideZone(Mission.AttackerTeam);
                 var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
                 if (behavior != null) behavior.ExtractionTroopsLeftBehind = leftBehind;
@@ -227,16 +259,36 @@ namespace TOR_Core.Missions.AmbushMission
         /// </summary>
         public override void OnMissionResultReady(MissionResult missionResult)
         {
+            TORCommon.Log(LogLevel.Info,
+                "[AmbushEndLogic] OnMissionResultReady enter"
+                + " result=" + (missionResult == null ? "null"
+                    : (missionResult.PlayerVictory ? "victory"
+                        : missionResult.PlayerDefeated ? "defeated" : "other")));
             base.OnMissionResultReady(missionResult);
-            if (missionResult == null) return;
+            if (missionResult == null)
+            {
+                TORCommon.Log(LogLevel.Info,
+                    "[AmbushEndLogic] OnMissionResultReady exit (null result)");
+                return;
+            }
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
             var outcome = behavior?.LastAmbushOutcome ?? AmbushOutcome.None;
+            TORCommon.Log(LogLevel.Info,
+                "[AmbushEndLogic] OnMissionResultReady outcome=" + outcome
+                + " playerEncounter=" + (PlayerEncounter.Current != null));
             if (outcome == AmbushOutcome.TotalVictory)
             {
                 if (PlayerEncounter.Current != null)
+                {
+                    TORCommon.Log(LogLevel.Info,
+                        "[AmbushEndLogic] calling SetPlayerVictorious");
                     PlayerEncounter.SetPlayerVictorious();
+                    TORCommon.Log(LogLevel.Info,
+                        "[AmbushEndLogic] SetPlayerVictorious returned");
+                }
                 if (behavior != null) behavior.PendingPostAmbushCleanup = true;
             }
+            TORCommon.Log(LogLevel.Info, "[AmbushEndLogic] OnMissionResultReady exit");
         }
 
         private void SetOutcome(AmbushOutcome outcome, bool successful, string reason)

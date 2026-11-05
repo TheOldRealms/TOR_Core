@@ -94,6 +94,8 @@ namespace TOR_Core.Missions.AmbushMission.UI
         private static int s_moveGeneration;
         private int _lastSeenMoveGeneration;
 
+        private bool _warnedLifecycleGone;
+
         public override void RefreshValues()
         {
             base.RefreshValues();
@@ -108,7 +110,18 @@ namespace TOR_Core.Missions.AmbushMission.UI
             // Gauntlet layer that can wedge the UI thread. Bail the
             // moment Mission.Current is gone — our chip / spot picker is
             // a deployment-time widget, nothing we show matters after.
-            if (Mission.Current == null || _vm == null) return;
+            if (Mission.Current == null || _vm == null)
+            {
+                if (!_warnedLifecycleGone)
+                {
+                    _warnedLifecycleGone = true;
+                    NLog.LogManager.GetCurrentClassLogger().Info(
+                        "[AmbushFormationPanel] UI lifecycle gone (mission="
+                        + (Mission.Current != null) + " vm=" + (_vm != null)
+                        + ") — skipping updates");
+                }
+                return;
+            }
             Recompute();
             if (_lastSeenMoveGeneration != s_moveGeneration)
             {
