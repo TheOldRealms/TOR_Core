@@ -51,6 +51,18 @@ namespace TOR_Core.Missions.AmbushMission
         /// they stand on the authored high-ground / cover slots.
         /// </summary>
         public List<Vec3> TacticalChildren;
+        /// <summary>Metres the formation plate can be from this spawn
+        /// point before its tactical children stop being eligible for
+        /// anchor assignment. Sourced from
+        /// <see cref="AmbushTacticalActivationZone.Radius"/> on the
+        /// spawn-point entity, or <c>30</c> if no zone script is
+        /// attached.</summary>
+        public float ActivationRadius;
+        /// <summary>When true the activation volume is a flat XZ-plane
+        /// circle. When false it's a 3D sphere (hill-top spawn-point
+        /// elevation counted against street-level plate positions).
+        /// Sourced from <see cref="AmbushTacticalActivationZone.IgnoreHeight"/>.</summary>
+        public bool ActivationIgnoreHeight;
     }
 
     /// <summary>

@@ -406,13 +406,54 @@ namespace TOR_Core.Missions.AmbushMission
             var children = spot.TacticalChildren
                 .Select(c => new WorldPosition(scene, c))
                 .ToList();
-            formation.SetControlledByAI(true);
-            var behavior = new AmbushBehaviorDefendTacticalPoint(formation, parent, children);
-            formation.AI.AddAiBehavior(behavior);
+            var behavior = new AmbushBehaviorDefendTacticalPoint(
+                formation, parent, children,
+                spot.ActivationRadius, spot.ActivationIgnoreHeight);
             anchorLogic.RegisterAnchor(formation, behavior);
             TORCommon.Log(LogLevel.Info,
                 "[AmbushMission] anchored " + cls + " to " + children.Count
                 + " tactical points at spot " + spot.GroupTag);
+        }
+
+        /// <summary>
+        /// Called by the sidebar spot-picker after a formation is
+        /// reassigned to a new spot. Rebinds the formation's tactical
+        /// anchor to the new spot's children, or unregisters the anchor
+        /// entirely if the new spot has none. Keeps the pinned state in
+        /// sync with the user's UI choice.
+        /// </summary>
+        public void OnFormationSpotReassigned(Formation formation,
+                                               FormationClass cls,
+                                               AmbushSpot newSpot)
+        {
+            if (formation == null) return;
+            var anchorLogic = Mission.GetMissionBehavior<AmbushTacticalAnchorLogic>();
+            if (anchorLogic == null) return;
+            bool isRanged = cls == FormationClass.Ranged
+                            || cls == FormationClass.Skirmisher
+                            || cls == FormationClass.HorseArcher;
+            int tac = newSpot.TacticalChildren?.Count ?? 0;
+            if (!isRanged || tac == 0)
+            {
+                anchorLogic.UnregisterAnchor(formation);
+                TORCommon.Log(LogLevel.Info,
+                    "[AmbushMission] anchor cleared for " + cls
+                    + " on reassignment to spot " + newSpot.GroupTag);
+                return;
+            }
+            var scene = Mission.Scene;
+            if (scene == null) return;
+            var parent = new WorldPosition(scene, newSpot.Position);
+            var children = newSpot.TacticalChildren
+                .Select(c => new WorldPosition(scene, c))
+                .ToList();
+            var behavior = new AmbushBehaviorDefendTacticalPoint(
+                formation, parent, children,
+                newSpot.ActivationRadius, newSpot.ActivationIgnoreHeight);
+            anchorLogic.RebindAnchor(formation, behavior);
+            TORCommon.Log(LogLevel.Info,
+                "[AmbushMission] anchor rebound " + cls + " to " + children.Count
+                + " tactical points at spot " + newSpot.GroupTag);
         }
 
         /// <summary>
@@ -812,6 +853,7 @@ namespace TOR_Core.Missions.AmbushMission
                 if (totalChildren == 0)
                     TORCommon.Log(LogLevel.Info,
                         "[AmbushMission] spot " + groupTag + " has no child entities");
+                var zone = e.GetFirstScriptOfType<AmbushTacticalActivationZone>();
                 list.Add(new AmbushSpot
                 {
                     GroupTag = groupTag,
@@ -821,6 +863,8 @@ namespace TOR_Core.Missions.AmbushMission
                     MaxWidth = script?.MaxWidth ?? 0f,
                     PreferredClass = (int)(script?.PreferredClass ?? AmbushSpotPreferredClass.None),
                     TacticalChildren = tacticalChildren,
+                    ActivationRadius = zone?.Radius ?? 30f,
+                    ActivationIgnoreHeight = zone?.IgnoreHeight ?? false,
                 });
             }
             return list;

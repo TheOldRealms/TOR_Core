@@ -411,6 +411,9 @@ namespace TOR_Core.Missions.AmbushMission.UI
             var oldSpot = formation.AssignedSpot;
             formation.AssignedSpot = spot;
             IsSpotPickerOpen = false;
+            if (formation.VanillaFormation != null)
+                controller.OnFormationSpotReassigned(formation.VanillaFormation,
+                                                     formation.Class, spot);
 
             // Reposition every formation sitting on the newly-picked spot
             // (including this one) so share-spot formations lay out
