@@ -43,6 +43,7 @@ using TOR_Core.CampaignMechanics.CustomResourceBehavior;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.CampaignMechanics.FactionScenes;
+using TOR_Core.CampaignMechanics.Formations;
 using TOR_Core.CampaignMechanics.Menagery;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
@@ -163,6 +164,7 @@ namespace TOR_Core
                 starter.AddBehavior(new UniqueSpawnCampaignBehavior());
                 starter.AddBehavior(new OrionCampaignBehavior());
                 starter.AddBehavior(new ReinforcementBehavior());
+                starter.AddBehavior(new TORFormationCampaignBehavior());
                 starter.AddBehavior(new GreenKnightBehavior());
                 starter.AddBehavior(new CustomDialogCampaignBehavior());
                 starter.AddBehavior(new TORCompanionDialogBehavior());
@@ -269,6 +271,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORAlleyModel());
                 gameStarterObject.AddModel(new TORRaidModel());
                 gameStarterObject.AddModel(new TORBattleBannerBearersModel());
+                gameStarterObject.AddModel(new TORBattleSpawnModel());
                 gameStarterObject.AddModel(new TORKingdomDecisionPermissionModel());
                 gameStarterObject.AddModel(new TORDiplomacyModel());
                 gameStarterObject.AddModel(new TORAllianceModel());
@@ -335,6 +338,7 @@ namespace TOR_Core
 
                 if (mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>() != null)
                 {
+                    mission.AddMissionBehavior(new TORFormationMissionLogic());
                     mission.AddMissionBehavior(new ReinforcementMissionLogic());
                     mission.AddMissionBehavior(new GreenKnightMissionLogic());
                 }

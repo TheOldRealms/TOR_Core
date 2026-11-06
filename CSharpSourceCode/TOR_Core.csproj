@@ -235,6 +235,7 @@
     <Compile Include="BattleMechanics\Reinforcements\ReinforcementArrivalNotifier.cs" />
     <Compile Include="BattleMechanics\Reinforcements\ReinforcementBehavior.cs" />
     <Compile Include="BattleMechanics\Reinforcements\ReinforcementMissionLogic.cs" />
+    <Compile Include="BattleMechanics\TORFormationMissionLogic.cs" />
     <Compile Include="BattleMechanics\Reinforcements\ReinforcementPartyAgentOrigin.cs" />
     <Compile Include="BattleMechanics\CareerPerkMissionBehavior.cs" />
     <Compile Include="BattleMechanics\CinematicCameraMissionView.cs" />
@@ -656,6 +657,7 @@
     <Compile Include="Models\TORAlleyModel.cs" />
     <Compile Include="Models\TORBanditDensityModel.cs" />
     <Compile Include="Models\TORBattleBannerBearersModel.cs" />
+    <Compile Include="Models\TORBattleSpawnModel.cs" />
     <Compile Include="Models\TORBattleMoraleModel.cs" />
     <Compile Include="Models\TORBattleRewardModel.cs" />
     <Compile Include="Models\TORBuildingEffectModel.cs" />
@@ -723,6 +725,9 @@
     <Compile Include="Quests\TORQuestHelper.cs" />
     <Compile Include="SaveGameSystem\SaveableTypeDefiners.cs" />
     <Compile Include="SubModule.cs" />
+    <Compile Include="CampaignMechanics\Formations\TORFormationAssignments.cs" />
+    <Compile Include="CampaignMechanics\Formations\TORFormationCampaignBehavior.cs" />
+    <Compile Include="HarmonyPatches\TOROrderOfBattleFormationsPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\CTBlog.cs" />
     <Compile Include="Utilities\DictionaryExtensions.cs" />
