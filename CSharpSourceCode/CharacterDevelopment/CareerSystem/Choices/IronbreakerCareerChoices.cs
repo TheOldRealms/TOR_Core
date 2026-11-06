@@ -318,7 +318,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
 
         _ironPricePassive1.Initialize(CareerID, "Hits below 15 damage no longer stagger you.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));
         _ironPricePassive2.Initialize(CareerID, "Personal attacks against shields deal increased 'Physical' damage.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.BonusDamageShield, AttackTypeMask.Melee));
-        _ironPricePassive3.Initialize(CareerID, "-25% gold cost when upgrading 'Ironbreaker' troops.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true, characterObject => characterObject.HasAttribute(CharacterAttributes.IRONBREAKER)));
+        _ironPricePassive3.Initialize(CareerID, "-25% gold cost when upgrading 'Ironbreaker' troops.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true, characterObject => characterObject.IsIronbreakerUnit()));
         _ironPricePassive4.Initialize(CareerID, "+10 personal Hitpoints and -25% Oathgold cost when converting Dawi troops into Ironbreakers.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
 
         _shieldwallPassive1.Initialize(CareerID, "+10 personal Hitpoints.", "ShieldWall", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
@@ -328,9 +328,9 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
         _shieldwallPassive4.Initialize(CareerID, "Every Smithing level increases your shield's Hitpoints by 0.5%.", "ShieldWall", false, ChoiceType.Passive, null);
 
         _ironDrakesPassive1.Initialize(CareerID, "+20% Fire damage for 'Irondrake' troops.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Fire, 20), AttackTypeMask.Ranged,
-            (attacker, victim, mask) => attacker.IsPlayerUnit && !attacker.IsHero && attacker.Character.IsIronbreakerUnit() && attacker.Character.HasAttribute(CharacterAttributes.DWARF_GUN)));
+            (attacker, victim, mask) => attacker.IsPlayerUnit && !attacker.IsHero && attacker.Character.IsIronbreakerUnit() && attacker.Character.IsDwarfGunUnit()));
         _ironDrakesPassive2.Initialize(CareerID, "-25% Oathgold upgrade cost for the Ironbreaker troop line.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true,
-            characterObject => characterObject.HasAttribute(CharacterAttributes.IRONBREAKER)));
+            characterObject => characterObject.IsIronbreakerUnit()));
         _ironDrakesPassive3.Initialize(CareerID, "+12 Drakefire canister ammo for you and party companions.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(12));
         _ironDrakesPassive4.Initialize(CareerID, "+1% Ironbreaker troop ammo per Ironbeard troop.", "IronDrakes", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special, true));
 

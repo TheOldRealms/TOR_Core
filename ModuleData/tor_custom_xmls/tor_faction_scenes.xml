@@ -77,4 +77,8 @@
   <Scene trigger="FactionJoin"
          culture="mousillon"
          scene_id="TOR_cutscene_factionjoin_mousillon_01" />
+		 
+  <Scene trigger="FactionJoin"
+         culture="aserai"
+         scene_id="TOR_cutscene_factionjoin_gs_01" />
 </FactionScenes>

@@ -406,8 +406,8 @@
 
   <!-- Main -->
   <string id="tor_main_menu_welcome_title" text="{=str_tor_main_menu_welcome_title}Welcome to The Old Realms!" />
-  <string id="tor_main_menu_welcome_description" text="{=str_tor_main_menu_welcome_description}This is a total conversion mod for Mount and Blade II: Bannerlord. We have put a lot of work and new features into this mod for you to enjoy, so much that we needed a manual to let you know about it all. Don't hesitate to reach out to our discord if you have issues installing or running the mod." />
-  <string id="tor_main_menu_manual_button" text="{=str_tor_main_menu_manual_button}Read Manual" />
+  <string id="tor_main_menu_welcome_description" text="{=str_tor_main_menu_welcome_description}This is a total conversion mod for Mount and Blade II: Bannerlord. We have put a lot of work and new features into this mod for you to enjoy. Visit the TOR Wiki to learn about the mod and its features. Don't hesitate to reach out to our discord if you have issues installing or running the mod." />
+  <string id="tor_main_menu_manual_button" text="{=str_tor_main_menu_manual_button}TOR Wiki" />
   <string id="tor_main_menu_discord_button" text="{=str_tor_main_menu_discord_button}Join Discord" />
   <string id="tor_main_menu_welcome_continue_button" text="{=str_tor_main_menu_welcome_continue_button}Continue" />
   <string id="tor_main_menu_welcome_disable_button" text="{=str_tor_main_menu_welcome_disable_button}Don't Show Again" />
@@ -4559,8 +4559,12 @@
 
   <!-- TOR Information and data -->
   <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead - not affected by morale, and instead of fleeing, shall crumble to dust. If defeated, this unit cannot be wounded." />
-  <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew - required to operate most artillery pieces." />
   <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale." />
+  <string id="tor_extendedInfo.Expendable" text="{=str_tor_extendedinfo_expendable}Expendable - Losses of this unit cause no morale shock (...)" />
+  <string id="tor_extendedInfo.Crushing" text="{=str_tor_extendedinfo_crushing}Crushing - Attacks cannot be blocked or parried with weapons. (...)" />
+  <string id="tor_extendedInfo.Slice" text="{=str_tor_extendedinfo_slice}Slice - Melee attacks can cut through enemies(...)" />
+  <string id="tor_extendedInfo.TreeSpirit" text="{=str_tor_extendedinfo_treespirit}Tree Spirit - Tree Spirit (...)" />
+  <string id="tor_extendedInfo.Crew" text="{=str_tor_extendedinfo_crew}Artillery Crew - {VALUE}% faster cannon reloads and can load cannons (...)" />
   <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage." />
   <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Piercing - {VALUE}% Armor Penetration(...)" />
   <string id="tor_damagetype.Invalid" text="{=str_tor_damagetype_invalid}Invalid" />
@@ -4603,7 +4607,7 @@
   <string id="tor_extendedInfo.TheHunger" text="{=str_tor_extendedinfo_the_hunger}The Hunger - Restores {VALUE}% Maximum Health after Killing an enemy(...)" />
 
   <!-- ExtendedInfo.Frenzy -->
-  <string id="tor_extendedInfo.Frenzy" text="{=str_tor_extendedinfo_frenzy}Frenzy - Kill Grants 10% Movement Speed 15% Attack Speed for {DURATION} (...)" />
+  <string id="tor_extendedInfo.Frenzy" text="{=str_tor_extendedinfo_frenzy}Frenzy - Kill grants {MOVEMENT}% Movement Speed and {ATTACK}% Attack Speed for {DURATION} seconds(...)" />
 
   <!-- ExtendedInfo.UndeadSlayer -->
   <string id="tor_extendedInfo.UndeadSlayer" text="{=str_tor_extendedinfo_undead_slayer}Undead Slayer - +{VALUE}% Damage against Undead Units (...)" />
@@ -6112,4 +6116,14 @@
   <string id="tor_towncomplex_intro.mousillon" text="{=str_tor_towncomplex_intro.mousillon}The alleys of {SETTLEMENT_NAME} reek of damp and rot. Figures huddle in doorways and watch you pass without comment." />
   <string id="tor_towncomplex.sturgia" text="{=str_tor_towncomplex.sturgia}Visit the clan workshops" />
   <string id="tor_towncomplex_intro.sturgia" text="{=str_tor_towncomplex_intro.sturgia}The workshops of {SETTLEMENT_NAME} ring with hammer-blows; smoke and sparks curl up through grates in the stone ceiling." />
+  <!-- Greenskin formations -->
+  <string id="tor_formation.greenskin_1" text="{=str_tor_formation_greenskin_1}Da Boyz" />
+  <string id="tor_formation.greenskin_2" text="{=str_tor_formation_greenskin_2}Da Tuffa Boyz" />
+  <string id="tor_formation.greenskin_3" text="{=str_tor_formation_greenskin_3}Da Choppaz" />
+  <string id="tor_formation.greenskin_4" text="{=str_tor_formation_greenskin_4}Arrer Boyz" />
+  <string id="tor_formation.greenskin_5" text="{=str_tor_formation_greenskin_5}Da Ridaz" />
+  <string id="tor_formation.greenskin_6" text="{=str_tor_formation_greenskin_6}Da Shooty Ridaz" />
+  <string id="tor_formation.greenskin_7" text="{=str_tor_formation_greenskin_7}Da Stompaz" />
+  <string id="tor_formation.greenskin_8" text="{=str_tor_formation_greenskin_8}Whatever mages are called in orc language" />
+
 </strings>

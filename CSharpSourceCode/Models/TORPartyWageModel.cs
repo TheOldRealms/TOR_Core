@@ -230,7 +230,7 @@ namespace TOR_Core.Models
 
                 if (leaderCulture.StringId == TORConstants.Cultures.DAWI)
                 {
-                    if (elementCopyAtIndex.Character.HasAttribute(CharacterAttributes.DWARF_GUN))
+                    if (elementCopyAtIndex.Character.IsDwarfGunUnit())
                     {
                         if (leaderHero.HasAttribute(CharacterAttributes.GUILD_ENGINEERS_3))
                         {

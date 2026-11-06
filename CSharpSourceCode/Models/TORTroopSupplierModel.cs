@@ -41,7 +41,7 @@ namespace TOR_Core.Models
 
 
             var list = battleParty.Troops.ToList();
-            bool partyHasArtilleryCrew = list.AnyQ(x => x.Troop.HasAttribute(CharacterAttributes.ARTILLERY_CREW));
+            bool partyHasArtilleryCrew = list.AnyQ(x => x.Troop.CanOperateArtillery());
             var crewMembers = 0;
             list.Shuffle();
 
@@ -61,7 +61,7 @@ namespace TOR_Core.Models
                         num = 10;
                         if (partyHasArtilleryCrew && crewMembers <= 6)
                         {
-                            if (element.Troop.HasAttribute(CharacterAttributes.ARTILLERY_CREW))
+                            if (element.Troop.CanOperateArtillery())
                             {
                                 num *= 15;
                                 crewMembers++;

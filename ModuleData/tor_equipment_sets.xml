@@ -37040,26 +37040,18 @@
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
     </EquipmentSet>
   </EquipmentRoster>
-  <EquipmentRoster id="tor_beast_cygor_template" culture="Culture.beastmen">
+  <EquipmentRoster id="tor_beast_cygor_template" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Head" id="Item.tor_beastmen_accessories_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_minotaur_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_hands_minotaur_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_accessories_2_001" />
       <Equipment slot="Item0" id="Item.cygor_boulder" />
       <Equipment slot="Item1" id="Item.cygor_boulder" />
       <Equipment slot="Item2" id="Item.cygor_boulder" />
-      <Equipment slot="Item3" id="Item.cygor_boulder" />
+      <Equipment slot="Item3" id="Item.cygor_rock_melee" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Head" id="Item.tor_beastmen_accessories_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_minotaur_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_hands_minotaur_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_accessories_2_001" />
       <Equipment slot="Item0" id="Item.cygor_boulder" />
       <Equipment slot="Item1" id="Item.cygor_boulder" />
       <Equipment slot="Item2" id="Item.cygor_boulder" />
-      <Equipment slot="Item3" id="Item.cygor_boulder" />
+      <Equipment slot="Item3" id="Item.cygor_rock_melee" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_br_bandit_template" culture="Culture.sea_raiders">
@@ -44996,55 +44988,55 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_dw_tournament_template_one_participant_v1" culture="Culture.sturgia">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_004" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_1h_spanner_001" />
       <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_004" />
+      <Equipment slot="Item0" id="Item.dwarf_1h_engineer_hammer_001" />
       <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_004" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_mace_002" />
       <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_004" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_2h_hammer_006" />
       <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_dw_tournament_template_two_participant_v1" culture="Culture.sturgia">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_004" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_1h_spanner_001" />
       <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_004" />
+      <Equipment slot="Item0" id="Item.dwarf_1h_engineer_hammer_001" />
       <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_004" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_mace_002" />
       <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_004" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_2h_hammer_006" />
       <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_dw_tournament_template_four_participant_v1" culture="Culture.sturgia">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_004" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_1h_spanner_001" />
       <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_004" />
+      <Equipment slot="Item0" id="Item.dwarf_1h_engineer_hammer_001" />
       <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_004" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_mace_002" />
       <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_004" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_2h_hammer_006" />
       <Equipment slot="Item1" id="Item.northern_round_sparring_shield" />
     </EquipmentSet>
   </EquipmentRoster>
