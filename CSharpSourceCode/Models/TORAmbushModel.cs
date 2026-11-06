@@ -116,6 +116,15 @@ namespace TOR_Core.Models
         public virtual float StealthDurationDetectionPerHour => 0.1f;    // multiplicative +10% per hour
         public virtual float StealthDurationDetectionCap => 0.5f;        // capped at +50%
 
+        /// <summary>Radius (map units) around the main party within which a
+        /// hostile-faction settlement counts as "proximate." Read today by
+        /// the eye widget (lights the Settlement-nearby icon); the natural
+        /// home for the value when the planned garrison-detection mechanic
+        /// adds a gameplay effect on top. Fed into
+        /// <c>TORCommon.FindNearestSettlement</c> which is backed by
+        /// vanilla's locatable-tree, so lower radius = cheaper query.</summary>
+        public virtual float SettlementProximityRadius => 8f;
+
         // Filter: which parties count as "observers" that can even attempt a detection
         // roll against a stealthed target. Default is hostile parties only — a friendly
         // caravan or allied lord riding past shouldn't blow your cover. Overrides can

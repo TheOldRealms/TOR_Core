@@ -163,6 +163,32 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return false;
         }
 
+        /// <summary>Most recent record where <paramref name="victim"/> was the
+        /// VICTIM of an ambush that still lies within its active cooldown
+        /// window, AND the ambusher was not repelled. Used by the eye-widget
+        /// Backstab icon to light while the player is still in the post-
+        /// ambush guarding window — mechanically a cooldown, fictionally
+        /// "they just hit you, scouts are still searching." Returns
+        /// <c>null</c> if no such record. See
+        /// <see cref="Models.TORAmbushModel.AmbushGuardingHours"/>.</summary>
+        public AmbushRecord GetMostRecentActiveVictimRecord(MobileParty victim)
+        {
+            if (victim == null) return null;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return null;
+            var now = CampaignTime.Now;
+            AmbushRecord best = null;
+            for (int i = _ambushRecords.Count - 1; i >= 0; i--)
+            {
+                var rec = _ambushRecords[i];
+                if (rec.Victim != victim) continue;
+                if (rec.AmbusherRepelled) continue;
+                if ((now - rec.At).ToHours >= model.GetAmbushCooldownHours(rec)) continue;
+                if (best == null || rec.At > best.At) best = rec;
+            }
+            return best;
+        }
+
         /// <summary>Game-time at which <paramref name="party"/>'s
         /// current cooldown expires. Returns <c>CampaignTime.Zero</c>
         /// if no active record involves the party. Used by UI

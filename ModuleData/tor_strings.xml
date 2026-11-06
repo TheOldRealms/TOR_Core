@@ -6133,4 +6133,31 @@
   <string id="tor_towncomplex_intro.mousillon" text="{=str_tor_towncomplex_intro.mousillon}The alleys of {SETTLEMENT_NAME} reek of damp and rot. Figures huddle in doorways and watch you pass without comment." />
   <string id="tor_towncomplex.sturgia" text="{=str_tor_towncomplex.sturgia}Visit the clan workshops" />
   <string id="tor_towncomplex_intro.sturgia" text="{=str_tor_towncomplex_intro.sturgia}The workshops of {SETTLEMENT_NAME} ring with hammer-blows; smoke and sparks curl up through grates in the stone ceiling." />
+
+  <!-- Ambush feature — eye widget tooltips (campaign-stealth-design.md §21) -->
+  <string id="tor_ambush_widget_tt_eye_unavailable" text="{=str_tor_ambush_widget_tt_eye_unavailable}Stealth entry chance unavailable." />
+  <string id="tor_ambush_widget_tt_eye_header" text="{=str_tor_ambush_widget_tt_eye_header}Stealth entry chance: {PCT}%" />
+  <string id="tor_ambush_widget_tt_eye_base" text="{=str_tor_ambush_widget_tt_eye_base}  Base: {PCT}%" />
+  <string id="tor_ambush_widget_tt_eye_observers" text="{=str_tor_ambush_widget_tt_eye_observers}  Hostile observers in range: {COUNT}" />
+  <string id="tor_ambush_widget_tt_eye_night" text="{=str_tor_ambush_widget_tt_eye_night}  Night: +{PCT}%" />
+  <string id="tor_ambush_widget_tt_eye_click_enter" text="{=str_tor_ambush_widget_tt_eye_click_enter}(Click to enter stealth)" />
+  <string id="tor_ambush_widget_tt_eye_click_exit" text="{=str_tor_ambush_widget_tt_eye_click_exit}(In stealth — click to break cover)" />
+
+  <string id="tor_ambush_widget_tt_spotted" text="{=str_tor_ambush_widget_tt_spotted}You were spotted recently. Enemies are alert." />
+  <string id="tor_ambush_widget_tt_alert" text="{=str_tor_ambush_widget_tt_alert}{COUNT} hostile parties in detection range." />
+  <string id="tor_ambush_widget_tt_cooldown_hours" text="{=str_tor_ambush_widget_tt_cooldown_hours}Stealth cooling down — available in {HOURS}h." />
+  <string id="tor_ambush_widget_tt_cooldown_now" text="{=str_tor_ambush_widget_tt_cooldown_now}Stealth cooling down." />
+  <string id="tor_ambush_widget_tt_backstab_hours" text="{=str_tor_ambush_widget_tt_backstab_hours}Recently ambushed — enemies still searching. Clear in {HOURS}h." />
+  <string id="tor_ambush_widget_tt_backstab_now" text="{=str_tor_ambush_widget_tt_backstab_now}Recently ambushed — enemies are still searching." />
+
+  <string id="tor_ambush_widget_tt_terrain_forest" text="{=str_tor_ambush_widget_tt_terrain_forest}Forest — concealing terrain, bonus to entry chance." />
+  <string id="tor_ambush_widget_tt_terrain_mountain" text="{=str_tor_ambush_widget_tt_terrain_mountain}Mountain — concealing terrain, bonus to entry chance." />
+  <string id="tor_ambush_widget_tt_terrain_canyon" text="{=str_tor_ambush_widget_tt_terrain_canyon}Canyon — concealing terrain, bonus to entry chance." />
+  <string id="tor_ambush_widget_tt_terrain_swamp" text="{=str_tor_ambush_widget_tt_terrain_swamp}Swamp — concealing terrain, bonus to entry chance." />
+  <string id="tor_ambush_widget_tt_terrain_open" text="{=str_tor_ambush_widget_tt_terrain_open}Open ground — exposing, penalty to entry chance." />
+
+  <string id="tor_ambush_widget_tt_snowy" text="{=str_tor_ambush_widget_tt_snowy}Snowy weather." />
+  <string id="tor_ambush_widget_tt_rainy" text="{=str_tor_ambush_widget_tt_rainy}Rainy weather." />
+  <string id="tor_ambush_widget_tt_cursed" text="{=str_tor_ambush_widget_tt_cursed}You are inside a cursed region." />
+  <string id="tor_ambush_widget_tt_settlement" text="{=str_tor_ambush_widget_tt_settlement}A hostile settlement is nearby — garrisons are watching." />
 </strings>

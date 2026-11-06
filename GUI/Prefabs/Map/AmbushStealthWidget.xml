@@ -1,0 +1,253 @@
+<Prefab>
+  <Window>
+    <!--
+      Campaign-map stealth widget (campaign-stealth-design.md §21).
+
+      Three visual groups anchored inside a 600x180 outer container that sits
+      at the bottom-centre of the HUD:
+
+        - Triangle socket + eye, above the time widget. One triangle sprite,
+          Color-tinted via BorderColor VM property (gold / red / dark).
+
+        - Event cluster (left): ListPanel pinned to the right side of the outer
+          container via HorizontalAlignment="Right" + MarginRight. The margin
+          positions the panel's right edge just left of the vanilla time widget.
+          XML order is reversed (backstab-first, spotted-last) so that when
+          icons light with LeftToRight flow, the LAST-in-XML entry (spotted)
+          sits at the panel's right edge — nearest the time widget — and
+          additional entries extend leftward.
+
+        - Context cluster (right): mirror — pinned via HorizontalAlignment="Left"
+          + MarginLeft, natural XML order. First-in-XML sits at the left edge
+          (nearest time widget), additional entries extend right.
+
+      Vanilla time widget is roughly 160-180px wide centred at screen bottom,
+      so the MarginRight/MarginLeft values put the clusters about 220-230px from
+      the outer container's edges (which leaves a ~100px gap from screen centre
+      to each cluster's inner edge — tune if the clusters feel too far from the
+      time widget).
+    -->
+    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+            SuggestedWidth="600" SuggestedHeight="180"
+            HorizontalAlignment="Center" VerticalAlignment="Bottom"
+            PositionYOffset="0"
+            IsVisible="@IsVisible">
+      <Children>
+
+        <!-- ========== Triangle socket + eye ========== -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                SuggestedWidth="72" SuggestedHeight="72"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                PositionYOffset="-40">
+          <Children>
+
+            <!-- Single triangle sprite, VM-tinted via Color. Needs restart to pick up prefab changes. -->
+            <Widget DoNotAcceptEvents="true"
+                    WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                    Sprite="ambush_watch_triangle"
+                    Color="@BorderColor"/>
+
+            <!-- Clickable eye, socketed inside the triangle — nudged upward so
+                 the eye sits closer to the triangle's optical centre, not its base. -->
+            <ButtonWidget DoNotPassEventsToChildren="true"
+                          WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                          SuggestedWidth="36" SuggestedHeight="36"
+                          HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                          PositionYOffset="-18"
+                          Command.Click="ExecuteToggle"
+                          Sprite="@EyeSprite">
+              <Children>
+                <HintWidget DataSource="{EyeTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </ButtonWidget>
+          </Children>
+        </Widget>
+
+        <!-- ========== Event cluster (left of time widget) ==========
+             Anchored to the RIGHT edge of the panel (near eye) via MarginRight;
+             icons grow LEFTWARD away from the eye as more light up. XML order
+             is reversed (backstab-first, spotted-last) so that with LTR flow
+             the LAST-in-XML entry pins to the panel's right edge (near eye)
+             and earlier entries extend left. -->
+        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed"
+                   SuggestedHeight="40"
+                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                   MarginRight="380" PositionYOffset="-45"
+                   StackLayout.LayoutMethod="HorizontalLeftToRight">
+          <Children>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="32" SuggestedHeight="32"
+                    MarginRight="3"
+                    Sprite="ambush_event_backstab"
+                    IsVisible="@IsEventBackstab">
+              <Children>
+                <HintWidget DataSource="{BackstabTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </Widget>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="32" SuggestedHeight="32"
+                    MarginRight="3"
+                    Sprite="ambush_event_cooldown"
+                    IsVisible="@IsEventCooldown">
+              <Children>
+                <HintWidget DataSource="{CooldownTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </Widget>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="32" SuggestedHeight="32"
+                    MarginRight="3"
+                    Sprite="ambush_event_alert"
+                    IsVisible="@IsEventAlert">
+              <Children>
+                <HintWidget DataSource="{AlertTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </Widget>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="32" SuggestedHeight="32"
+                    MarginRight="3"
+                    Sprite="ambush_event_spotted"
+                    IsVisible="@IsEventSpotted">
+              <Children>
+                <HintWidget DataSource="{SpottedTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </Widget>
+          </Children>
+        </ListPanel>
+
+        <!-- ========== Context cluster (right of time widget) ========== -->
+        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed"
+                   SuggestedHeight="40"
+                   HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                   MarginLeft="380" PositionYOffset="-45"
+                   StackLayout.LayoutMethod="HorizontalLeftToRight">
+          <Children>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="32" SuggestedHeight="32"
+                    MarginRight="3"
+                    Sprite="ambush_terrain_forest"
+                    IsVisible="@IsTerrainForest">
+              <Children>
+                <HintWidget DataSource="{TerrainTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </Widget>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="32" SuggestedHeight="32"
+                    MarginRight="3"
+                    Sprite="ambush_terrain_mountain"
+                    IsVisible="@IsTerrainMountain">
+              <Children>
+                <HintWidget DataSource="{TerrainTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </Widget>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="32" SuggestedHeight="32"
+                    MarginRight="3"
+                    Sprite="ambush_terrain_canyon"
+                    IsVisible="@IsTerrainCanyon">
+              <Children>
+                <HintWidget DataSource="{TerrainTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </Widget>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="32" SuggestedHeight="32"
+                    MarginRight="3"
+                    Sprite="ambush_terrain_swamp"
+                    IsVisible="@IsTerrainSwamp">
+              <Children>
+                <HintWidget DataSource="{TerrainTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </Widget>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="32" SuggestedHeight="32"
+                    MarginRight="3"
+                    Sprite="ambush_terrain_open"
+                    IsVisible="@IsTerrainOpen">
+              <Children>
+                <HintWidget DataSource="{TerrainTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </Widget>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="32" SuggestedHeight="32"
+                    MarginRight="3"
+                    Sprite="ambush_context_snowy"
+                    IsVisible="@IsContextSnowy">
+              <Children>
+                <HintWidget DataSource="{SnowyTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </Widget>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="32" SuggestedHeight="32"
+                    MarginRight="3"
+                    Sprite="ambush_context_rainy"
+                    IsVisible="@IsContextRainy">
+              <Children>
+                <HintWidget DataSource="{RainyTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </Widget>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="32" SuggestedHeight="32"
+                    MarginRight="3"
+                    Sprite="ambush_context_cursed"
+                    IsVisible="@IsContextCursed">
+              <Children>
+                <HintWidget DataSource="{CursedTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </Widget>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="32" SuggestedHeight="32"
+                    MarginRight="3"
+                    Sprite="ambush_context_settlement"
+                    IsVisible="@IsContextSettlement">
+              <Children>
+                <HintWidget DataSource="{SettlementTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </Widget>
+          </Children>
+        </ListPanel>
+
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

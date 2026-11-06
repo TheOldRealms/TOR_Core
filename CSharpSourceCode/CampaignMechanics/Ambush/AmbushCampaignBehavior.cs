@@ -85,6 +85,25 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// StampAmbushCooldown and the TotalVictory cooldown-zero gate.</summary>
         public int LastAmbushLoudness { get; set; }
 
+        // ---- Eye-widget state (§21) ----
+
+        /// <summary>Timestamp of the last successful detection-roll against
+        /// the main party. Used by the eye-widget VM to light the
+        /// "recently spotted" event icon for a model-tunable window after
+        /// detection fires. Zero when no detection has fired yet (or the
+        /// window has fully decayed before being reset).</summary>
+        private CampaignTime _spottedAt = CampaignTime.Zero;
+
+        /// <summary>Hostile observers inside <c>DetectionScanRadius</c> as
+        /// of the last <see cref="OnQuarterHourlyTick"/>. Cached here so
+        /// the per-frame VM refresh doesn't have to re-iterate
+        /// <c>MobileParty.All</c>. Written in the tick's observer loop,
+        /// read by <c>AmbushButtonVM.Refresh</c>.</summary>
+        private readonly List<MobileParty> _cachedObserversInRange = new List<MobileParty>();
+
+        public CampaignTime PlayerSpottedAt => _spottedAt;
+        public IReadOnlyList<MobileParty> CachedObserversInRange => _cachedObserversInRange;
+
         public bool IsPlayerInStealth => _playerInStealth;
         public bool IsPlayerPreppingStealth => _playerPreppingStealth;
         public CampaignTime PlayerStealthPrepStartedAt => _playerStealthPrepStartedAt;
@@ -507,6 +526,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private void OnQuarterHourlyTick()
         {
+            // Rebuild the hostile-observer cache before the stealth branch split.
+            // The eye widget reads this every frame (via CachedObserversInRange)
+            // to drive the Alert icon and the CalculateEntryChance call that
+            // sets the eye's openness — it needs fresh data regardless of
+            // whether the player is currently stealthed.
+            RefreshCachedObservers();
+
             // Player stealth and player-side scanning are mutually exclusive:
             // hiding is passive, you can't both lie in wait AND actively
             // scout. When the player is not hiding, run the mirror pass —
@@ -533,28 +559,22 @@ namespace TOR_Core.CampaignMechanics.Ambush
             var model = Campaign.Current?.Models?.GetAmbushModel();
             if (model == null) return;
 
-            float scanRadius = model.DetectionScanRadius;
-            var mainPos = mainParty.Position.ToVec2();
-            float scanRadiusSq = scanRadius * scanRadius;
-
-            // Collect eligible observers once per tick so we can both roll detection
-            // AND award hidden-tick Roguery XP on the "not revealed" path.
-            int observerCount = 0;
+            // Observers were cached at the top of this tick by
+            // RefreshCachedObservers — reuse here for both the detection
+            // roll AND the hidden-tick Roguery XP calculation.
+            int observerCount = _cachedObserversInRange.Count;
             int highestObserverScouting = 0;
-            foreach (var observer in MobileParty.All)
+            foreach (var observer in _cachedObserversInRange)
             {
-                if (observer == null || !observer.IsActive) continue;
-                if (!observer.IsVisible) continue;   // fog-of-war-hidden parties don't observe us either
-                if (observer.Position.ToVec2().DistanceSquared(mainPos) > scanRadiusSq) continue;
-                if (!model.CanDetect(observer, mainParty)) continue;
-
-                observerCount++;
                 int s = observer.LeaderHero?.GetSkillValue(DefaultSkills.Scouting) ?? 0;
                 if (s > highestObserverScouting) highestObserverScouting = s;
 
                 if (model.TryDetect(observer, mainParty, _stealthEnteredAt, out string reason))
                 {
                     TORCommon.Say(reason);
+                    // §21 eye-widget: stamp "recently spotted" timestamp so the
+                    // Spotted event icon lights for the model's display window.
+                    _spottedAt = CampaignTime.Now;
                     LeaveStealth(mainParty);
                     StampAmbushCooldown();   // being spotted locks us out for the normal cooldown window
                     return;
@@ -571,6 +591,35 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     : 0;
                 int xp = model.RogueryXpBasePerHiddenTick + hostileBonus + scoutingBonus;
                 Hero.MainHero.AddSkillXp(DefaultSkills.Roguery, xp);
+            }
+        }
+
+        /// <summary>Rebuild <see cref="_cachedObserversInRange"/> — hostile
+        /// parties inside the model's detection scan radius that pass the
+        /// standard <c>CanDetect</c> filter (visible, at-war, not us).
+        /// Called from <see cref="OnQuarterHourlyTick"/> before the
+        /// stealth branch split so the eye widget always has fresh data
+        /// regardless of current stealth state.</summary>
+        private void RefreshCachedObservers()
+        {
+            _cachedObserversInRange.Clear();
+            var mainParty = MobileParty.MainParty;
+            if (mainParty == null || !mainParty.IsActive) return;
+
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return;
+
+            float scanRadius = model.DetectionScanRadius;
+            float scanRadiusSq = scanRadius * scanRadius;
+            var mainPos = mainParty.Position.ToVec2();
+
+            foreach (var observer in MobileParty.All)
+            {
+                if (observer == null || !observer.IsActive) continue;
+                if (!observer.IsVisible) continue;
+                if (observer.Position.ToVec2().DistanceSquared(mainPos) > scanRadiusSq) continue;
+                if (!model.CanDetect(observer, mainParty)) continue;
+                _cachedObserversInRange.Add(observer);
             }
         }
 
@@ -1866,6 +1915,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
             dataStore.SyncData("_stealthEnteredAt", ref _stealthEnteredAt);
             dataStore.SyncData("_playerPreppingStealth", ref _playerPreppingStealth);
             dataStore.SyncData("_playerStealthPrepStartedAt", ref _playerStealthPrepStartedAt);
+            // _spottedAt intentionally NOT synced — cosmetic UI timestamp
+            // with a <1-hour window. Reload after that window is lost
+            // anyway; reload inside it just leaves the icon unlit. No
+            // gameplay impact either way.
             // No bluff state to sync — IsInfoHidden is a vanilla
             // SaveableField, no shadow dict to persist.
             // _playerAmbushCooldownUntil removed — player cooldown is
