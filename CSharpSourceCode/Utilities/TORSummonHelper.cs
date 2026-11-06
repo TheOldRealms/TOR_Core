@@ -59,7 +59,9 @@ namespace TOR_Core.Utilities
 
         /// <summary>
         /// Creates generic build data for the agents spawned by an effect.
+        /// <para>
         /// <see cref="TORSummonHelper.SpawnAgent(AgentBuildData, Vec3, bool)"/> subsequently adds specific information to the individual agent before spawn, eg. precise spawn location.
+        /// </para>
         /// </summary>
         public static AgentBuildData GetAgentBuildData(Agent caster, string summonedUnitID)
         {
