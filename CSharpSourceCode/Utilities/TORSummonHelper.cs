@@ -57,6 +57,10 @@ namespace TOR_Core.Utilities
             return Math.Max(0, GetDynamicBattleAgentLimit() - GetCurrentActiveAgentCount());
         }
 
+        /// <summary>
+        /// Creates generic build data for the agents spawned by an effect.
+        /// <see cref="TORSummonHelper.SpawnAgent(AgentBuildData, Vec3, bool)"/> subsequently adds specific information to the individual agent before spawn, eg. precise spawn location.
+        /// </summary>
         public static AgentBuildData GetAgentBuildData(Agent caster, string summonedUnitID)
         {
             BasicCharacterObject troopCharacter = MBObjectManager.Instance.GetObject<BasicCharacterObject>(summonedUnitID);
@@ -131,13 +135,16 @@ namespace TOR_Core.Utilities
 
         public static Agent SpawnAgent(AgentBuildData buildData, Vec3 position, bool withAnimation = false)
         {
-            Agent troop = Mission.Current.SpawnAgent(buildData, false);
             Vec3 spawnPos = position;
             if (Mission.Current.Scene.GetNavigationMeshForPosition(in position) == null || Mission.Current.Scene.GetNavigationMeshForPosition(in position) == UIntPtr.Zero)
             {
                 spawnPos = Mission.Current.GetRandomPositionAroundPoint(position, 0.05f, 5f, true);
             }
-            troop.TeleportToPosition(spawnPos);
+            //Sly : if an initial position is not provided, Mission.SpawnAgent will derive one from the formation which can be problematic if the formation has not yet had a valid Position.
+            buildData.InitialPosition(in spawnPos);
+            
+            Agent troop = Mission.Current.SpawnAgent(buildData, false);
+            
             troop.FadeIn();
             troop.WieldInitialWeapons();
             troop.SetWatchState(Agent.WatchState.Alarmed);
