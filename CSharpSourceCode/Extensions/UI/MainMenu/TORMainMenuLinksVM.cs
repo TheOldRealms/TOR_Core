@@ -14,7 +14,7 @@ namespace TOR_Core.Extensions.UI.MainMenu
         }
 
         [DataSourceProperty]
-        public string ManualButtonText => new TextObject("{=str_tor_main_menu_manual_button}Read Manual").ToString();
+        public string ManualButtonText => new TextObject("{=str_tor_main_menu_manual_button}TOR Wiki").ToString();
 
         [DataSourceProperty]
         public string DiscordButtonText => new TextObject("{=str_tor_main_menu_discord_button}Join Discord").ToString();
