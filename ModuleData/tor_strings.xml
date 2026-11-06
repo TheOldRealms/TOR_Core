@@ -6116,4 +6116,14 @@
   <string id="tor_towncomplex_intro.mousillon" text="{=str_tor_towncomplex_intro.mousillon}The alleys of {SETTLEMENT_NAME} reek of damp and rot. Figures huddle in doorways and watch you pass without comment." />
   <string id="tor_towncomplex.sturgia" text="{=str_tor_towncomplex.sturgia}Visit the clan workshops" />
   <string id="tor_towncomplex_intro.sturgia" text="{=str_tor_towncomplex_intro.sturgia}The workshops of {SETTLEMENT_NAME} ring with hammer-blows; smoke and sparks curl up through grates in the stone ceiling." />
+  <!-- Greenskin formations -->
+  <string id="tor_formation.greenskin_1" text="{=str_tor_formation_greenskin_1}Da Boyz" />
+  <string id="tor_formation.greenskin_2" text="{=str_tor_formation_greenskin_2}Da Tuffa Boyz" />
+  <string id="tor_formation.greenskin_3" text="{=str_tor_formation_greenskin_3}Da Choppaz" />
+  <string id="tor_formation.greenskin_4" text="{=str_tor_formation_greenskin_4}Arrer Boyz" />
+  <string id="tor_formation.greenskin_5" text="{=str_tor_formation_greenskin_5}Da Ridaz" />
+  <string id="tor_formation.greenskin_6" text="{=str_tor_formation_greenskin_6}Da Shooty Ridaz" />
+  <string id="tor_formation.greenskin_7" text="{=str_tor_formation_greenskin_7}Da Stompaz" />
+  <string id="tor_formation.greenskin_8" text="{=str_tor_formation_greenskin_8}Whatever mages are called in orc language" />
+
 </strings>
