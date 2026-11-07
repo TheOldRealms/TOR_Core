@@ -99,21 +99,32 @@ namespace TOR_Core.Models
         // notice" roll called many times, not a one-shot strike outcome.
         public virtual float BaseDetectionChancePerTick => 0.05f;
         public virtual float MinDetectionChance => 0f;
-        public virtual float MaxDetectionChance => 0.80f;
+        public virtual float MaxDetectionChance => 0.45f;
         public virtual float DetectionScanRadius => 10f;
+
+        /// <summary>Time horizon (in quarter-hour ticks) that the eye widget
+        /// extrapolates the per-tick detection roll over. The display value is
+        /// <c>1 - (1 - p)^N</c> where <c>p</c> is the aggregated per-tick
+        /// chance across observers and <c>N</c> is this knob. Default 4
+        /// = one in-game hour, which keeps a useful gradient across the full
+        /// per-tick range without saturating too early. Longer horizons
+        /// (e.g. 24 for a 6-hour camp) saturate anything above ~10 % per
+        /// tick, losing resolution — surface those in the tooltip, not
+        /// the eye.</summary>
+        public virtual int DetectionDisplayHorizonTicks => 4;
 
         // Distance multiplier: closer = higher. Lerped from AdjacentDistanceMultiplier
         // at distance 0 to FarDistanceMultiplier at the scan-radius edge.
         public virtual float AdjacentDistanceMultiplier => 2.5f;
         public virtual float FarDistanceMultiplier => 0.2f;
 
-        public virtual float DetectionScoutingPerPointBonus => 0.004f;   // observer scouting bias
+        public virtual float DetectionScoutingPerPointBonus => 1f / 600f;  // 300 Scouting = +50% detection mult (cap below)
         public virtual float DetectionScoutingBonusCap => 0.5f;
 
         public virtual float ConcealingTerrainMultiplier => 0.5f;        // forest / mountain / canyon / swamp
         public virtual float OpenTerrainMultiplier => 1.5f;              // plain / desert / steppe / dune
 
-        public virtual float NightDetectionMultiplier => 0.5f;
+        public virtual float NightDetectionMultiplier => 0.7f;
 
         public virtual float StealthDurationDetectionPerHour => 0.1f;    // multiplicative +10% per hour
         public virtual float StealthDurationDetectionCap => 0.5f;        // capped at +50%
@@ -145,7 +156,7 @@ namespace TOR_Core.Models
         /// per-observer detection roll, so a hostile settlement lifts every
         /// observer's chance of spotting the stealthed party this tick.
         /// </summary>
-        public virtual float HostileSettlementDetectionMultiplier => 1.3f;
+        public virtual float HostileSettlementDetectionMultiplier => 1.6f;
 
         /// <summary>Per-tick detection multiplier for a neutral settlement
         /// in range. Smaller lift — passers-by who aren't actively hunting
@@ -210,6 +221,22 @@ namespace TOR_Core.Models
                 survival *= (1f - p);
             }
             return MBMath.ClampFloat(1f - survival, 0f, 1f);
+        }
+
+        /// <summary>Per-tick aggregated detection chance extrapolated over
+        /// <see cref="DetectionDisplayHorizonTicks"/>. Answers "chance the
+        /// player is spotted at least once within the horizon." Composition
+        /// is <c>1 - (1 - p_tick)^N</c>, i.e. independent Bernoulli trials
+        /// across ticks. Used by the eye widget so the openness reads actual
+        /// threat over a stay rather than a per-tick snapshot that
+        /// understates compounding over time.</summary>
+        public virtual float CalculateAggregatedDetectionChanceOverHorizon(
+            MobileParty target, IReadOnlyList<MobileParty> observers, CampaignTime stealthEnteredAt)
+        {
+            float pTick = CalculateAggregatedDetectionChancePerTick(target, observers, stealthEnteredAt);
+            int horizon = DetectionDisplayHorizonTicks;
+            if (horizon <= 1 || pTick <= 0f) return pTick;
+            return MBMath.ClampFloat(1f - MathF.Pow(1f - pTick, horizon), 0f, 1f);
         }
 
         /// <summary>Settlement-proximity multiplier on the per-tick detection

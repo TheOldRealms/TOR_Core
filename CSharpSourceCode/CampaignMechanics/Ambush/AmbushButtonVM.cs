@@ -214,21 +214,31 @@ namespace TOR_Core.CampaignMechanics.Ambush
             //                    High chance → closed eye (will slip in cleanly).
             //                    Low chance  → open eye (visible, hard to hide).
             //
-            //   IN stealth    → aggregated chance of being detected on the next
-            //                    quarter-hour tick (1 - ∏(1 - p_i) across every
-            //                    nearby observer). High detection chance → open eye
-            //                    (about to be seen); low chance → closed eye (safe).
+            //   IN stealth    → aggregated chance of being detected at least
+            //                    once within the next DetectionDisplayHorizonTicks
+            //                    quarter-hour ticks (default 4 = one in-game hour).
+            //                    Compounds (a) across every nearby observer and
+            //                    (b) across ticks, so modest per-tick numbers
+            //                    (e.g. 5 % with one observer → 18.5 %/hr, 10 %
+            //                    with three observers → 72 %/hr) read as real
+            //                    threat on the eye instead of a false "safe."
             float displayValue;
             if (ambush.IsPlayerInStealth)
             {
-                float detection = model.CalculateAggregatedDetectionChancePerTick(
+                float detection = model.CalculateAggregatedDetectionChanceOverHorizon(
                     mainParty, ambush.CachedObserversInRange, ambush.StealthEnteredAt);
                 displayValue = detection;   // high detection → high idx = open eye
             }
             else
             {
+                // Mirror of the detection-side Bernoulli compounding: treat
+                // entry as K=2 implicit micro-attempts (duck → settle). Failure
+                // at least once over 2 trials = 1 - entry^2. Linear (1 - entry)
+                // visually underweighted mid-range risk (a 60 % entry has 40 %
+                // failure but idx-4 reads "mostly closed"); the K=2 form lifts
+                // that to idx 6 while keeping 95 %+ entry at idx 0.
                 float entry = model.CalculateEntryChance(mainParty, ambush.CachedObserversInRange);
-                displayValue = 1f - entry;  // high entry → low idx = closed eye
+                displayValue = 1f - entry * entry;
             }
 
             int idx = (int)(displayValue * 10f);
@@ -379,14 +389,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private string ComputeDetectionBreakdown(MobileParty mainParty, TORAmbushModel model, AmbushCampaignBehavior ambush)
         {
             var observers = ambush.CachedObserversInRange;
-            float aggregate = model.CalculateAggregatedDetectionChancePerTick(
+            float perHorizon = model.CalculateAggregatedDetectionChanceOverHorizon(
                 mainParty, observers, ambush.StealthEnteredAt);
 
             var sb = new StringBuilder();
             var header = TORTextHelper.GetTextObject(
                 "tor_ambush_widget_tt_eye_detection_header",
-                "Chance of being spotted next tick: {PCT}%");
-            header.SetTextVariable("PCT", (int)(aggregate * 100f));
+                "Chance of being spotted within the next hour: {PCT}%");
+            header.SetTextVariable("PCT", (int)(perHorizon * 100f));
             sb.AppendLine(header.ToString());
 
             var obsLine = TORTextHelper.GetTextObject(
