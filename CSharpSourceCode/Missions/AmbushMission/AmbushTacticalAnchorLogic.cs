@@ -31,20 +31,34 @@ namespace TOR_Core.Missions.AmbushMission
             = new Dictionary<Formation, AmbushBehaviorDefendTacticalPoint>();
         private float _reassignAccumulator;
 
+        /// <summary>
+        /// First-time anchor for a formation (initial spawn placement).
+        /// Teleports agents to their tactical children so the opening
+        /// scene reads correctly without a visible walk from the
+        /// formation plate to the hill ledges.
+        /// </summary>
         public void RegisterAnchor(Formation formation,
                                    AmbushBehaviorDefendTacticalPoint behavior)
         {
             if (formation == null || behavior == null) return;
             _anchors[formation] = behavior;
-            behavior.AssignScriptedPositionsToAgents(teleport: true);
+            behavior.AssignScriptedPositionsToAgents(true);
         }
 
+        /// <summary>
+        /// Switch an already-anchored formation to a new tactical spot
+        /// mid-mission (tactic re-evaluated, picker reassigned, etc.).
+        /// Does NOT teleport. Agents walk to the new tactical children
+        /// via their updated scripted positions. Mid-battle snapping
+        /// looks bad to the player and can drag archers through enemy
+        /// formations.
+        /// </summary>
         public void RebindAnchor(Formation formation,
                                  AmbushBehaviorDefendTacticalPoint behavior)
         {
             if (formation == null || behavior == null) return;
             _anchors[formation] = behavior;
-            behavior.AssignScriptedPositionsToAgents(teleport: true);
+            behavior.AssignScriptedPositionsToAgents();
         }
 
         public void UnregisterAnchor(Formation formation)
