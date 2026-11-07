@@ -11006,6 +11006,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_cygor">
     <Attributes>
+      <string>Crushing</string>	
       <string>Unstoppable</string>
       <string>Swift</string>
       <string>Piercing</string>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <SkillSets>
 	<SkillSet id="tor_skills_wanderer_engineer">
 		<skill id="Athletics"
@@ -9813,7 +9813,7 @@
 	</SkillSet>
 	<SkillSet id="tor_unitskills_cygor">
 		<skill id="Athletics"
-		       value="290" />
+		       value="0" />
 		<skill id="Riding"
 		       value="15" />
 		<skill id="OneHanded"
