@@ -581,6 +581,21 @@ namespace TOR_Core.Missions.AmbushMission
                     + ". " + e.Message);
                 throw;
             }
+
+            // Register the ambush tactic on the ambusher team's TeamAI.
+            // Ambusher = Attacker in both phases. Does not short-circuit
+            // player control: if the player is the ambusher, the tactic
+            // is on the player's team but FormationAI only ticks on
+            // formations the player has flipped to captain control
+            // (F6-delegated). Direct-controlled player formations
+            // ignore the tactic's behavior entirely.
+            var attacker = Mission.AttackerTeam;
+            if (attacker != null)
+            {
+                attacker.AddTacticOption(new AmbushTacticHoldPositions(attacker));
+                TORCommon.Log(LogLevel.Info,
+                    "[AmbushMission] registered AmbushTacticHoldPositions on AttackerTeam");
+            }
         }
 
         /// <summary>

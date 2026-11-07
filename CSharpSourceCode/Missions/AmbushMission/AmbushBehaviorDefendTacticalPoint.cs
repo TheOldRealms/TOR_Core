@@ -32,11 +32,11 @@ namespace TOR_Core.Missions.AmbushMission
     /// </summary>
     public class AmbushBehaviorDefendTacticalPoint : BehaviorComponent
     {
-        private readonly WorldPosition _parentPosition;
-        private readonly List<WorldPosition> _tacticalChildren;
-        private readonly float _activationRadius;
-        private readonly float _activationRadiusSq;
-        private readonly bool _ignoreHeight;
+        private WorldPosition _parentPosition;
+        private List<WorldPosition> _tacticalChildren;
+        private float _activationRadius;
+        private float _activationRadiusSq;
+        private bool _ignoreHeight;
         private readonly Dictionary<Agent, int> _lastAssignments = new Dictionary<Agent, int>();
 
         public IReadOnlyList<WorldPosition> TacticalChildren => _tacticalChildren;
@@ -48,12 +48,31 @@ namespace TOR_Core.Missions.AmbushMission
                                                   bool ignoreHeight)
             : base(formation)
         {
+            Rebind(parentPosition, tacticalChildren, activationRadius, ignoreHeight);
+            CalculateCurrentOrder();
+        }
+
+        /// <summary>
+        /// Repoints the behavior at a new spawn-point + tactical child
+        /// set. Called by <see cref="AmbushTacticHoldPositions"/> when
+        /// its scoring picks a different advantage point for a
+        /// formation. Clears any sticky per-agent assignments so the
+        /// next reconcile fills them against the new children list.
+        /// Keeping one behavior instance per formation (mutated via
+        /// this method) avoids churn in <c>FormationAI._behaviors</c>,
+        /// which has no public Remove.
+        /// </summary>
+        public void Rebind(WorldPosition parentPosition,
+                           IEnumerable<WorldPosition> tacticalChildren,
+                           float activationRadius,
+                           bool ignoreHeight)
+        {
             _parentPosition = parentPosition;
             _tacticalChildren = tacticalChildren?.ToList() ?? new List<WorldPosition>();
             _activationRadius = activationRadius > 0f ? activationRadius : 30f;
             _activationRadiusSq = _activationRadius * _activationRadius;
             _ignoreHeight = ignoreHeight;
-            CalculateCurrentOrder();
+            _lastAssignments.Clear();
         }
 
         protected override void CalculateCurrentOrder()
