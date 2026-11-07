@@ -100,14 +100,18 @@ namespace TOR_Core.Missions.AmbushMission
             }
 
             // Priority 3 — AI ambusher team wiped. AI sits on AttackerTeam
-            // (matches the ambusher = Attacker invariant). AI reinforcement
-            // is deferred (design doc § 4) but the check reads IsSideDepleted
-            // anyway so the gate stays honest when the model lands later.
-            if (CountActiveHumans(Mission.AttackerTeam) == 0
-                && !AreReinforcementsStillPending(BattleSideEnum.Attacker))
+            // (matches the ambusher = Attacker invariant). The previous
+            // "AND reinforcement queue drained" gate was removed for the
+            // same reason Phase D's Priority 3 dropped its equivalent: our
+            // custom-spawn pipeline drains the shared supplier manually,
+            // so DefaultBattleMissionAgentSpawnLogic.IsSideDepleted stays
+            // false forever and the gate never clears. An empty active-
+            // humans count is authoritative — any pending reinforcement
+            // wave would have spawned and been counted in ActiveAgents.
+            if (CountActiveHumans(Mission.AttackerTeam) == 0)
             {
                 SetOutcome(AmbushedOutcome.AmbushRepelled, successful: true,
-                    reason: "attacker (AI) wiped + reinforcement queue drained");
+                    reason: "attacker (AI) wiped");
                 return;
             }
 
