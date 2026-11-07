@@ -11,6 +11,7 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -1313,8 +1314,15 @@ namespace TOR_Core.Models
 
         public override bool DecideCrushedThrough(Agent attackerAgent, Agent defenderAgent, float totalAttackEnergy, Agent.UsageDirection attackDirection, StrikeType strikeType, WeaponComponentData defendItem, bool isPassiveUsage)
         {
-            // Crushing ignores weapon blocks and parries
             bool isShieldBlock = defendItem != null && defendItem.IsShield;
+
+            //Mimics monstrous creatures which have the Crushing attribute without changing the players attributes. Mainly for testing.
+            if (attackerAgent == Agent.Main && AnimationTriggerManager.Instance.RegisteredRaceInts.Contains(attackerAgent.Character.Race))
+            {
+                return !isShieldBlock;
+            }
+
+            // Crushing ignores weapon blocks and parries
             if (attackerAgent != null && attackerAgent.HasCrushing())
             {
                 return !isShieldBlock;
@@ -1437,23 +1445,17 @@ namespace TOR_Core.Models
         public override void DecideWeaponCollisionReaction(in Blow registeredBlow, in AttackCollisionData collisionData, Agent attacker, Agent defender, in MissionWeapon attackerWeapon, bool isFatalHit, bool isShruggedOff, float momentumRemaining, out MeleeCollisionReaction colReaction)
         {
             base.DecideWeaponCollisionReaction(registeredBlow, collisionData, attacker, defender, attackerWeapon, isFatalHit, isShruggedOff, momentumRemaining, out colReaction);
-
+            
             if (defender == null) return;
+            if (attacker == null) return;
+            //Slam through an agent and hit the ground beneath them. Resulting world contact is used to trigger effects at the victims feet.
             if (collisionData.CollisionResult != CombatCollisionResult.StrikeAgent) return;
             if (collisionData.AttackBlockedWithShield || collisionData.CollidedWithShieldOnBack) return;
             if (momentumRemaining == 0) return;
 
-            
-            //if (collisionData.CollisionResult == CombatCollisionResult.None) return;
-
-            //if (collisionData.CollisionHitResultFlags
-
-            if (attacker.IsTroll() || attacker.IsTreeman())
+            if (AnimationTriggerManager.Instance.RegisteredRaceInts.Contains(attacker.Character.Race))
             {
-                //if (colReaction == MeleeCollisionReaction.Bounced || colReaction == MeleeCollisionReaction.Staggered || colReaction == MeleeCollisionReaction.Stuck)
-                {
-                    colReaction = MeleeCollisionReaction.SlicedThrough;
-                }
+                colReaction = MeleeCollisionReaction.SlicedThrough;
             }
         }
     }
