@@ -112,7 +112,6 @@ namespace TOR_Core
             CustomBannerManager.LoadXML();
             RORManager.LoadTemplates();
             InkStoryManager.Initialize();
-            AnimationTriggerManager.LoadAnimationTriggers();
             ItemTraitManager.LoadItemTraits();
             TORVoiceManager.Initialize();
         }
@@ -151,6 +150,7 @@ namespace TOR_Core
         protected override void InitializeGameStarter(Game game, IGameStarter starterObject)
         {
             CustomResourceManager.Initialize();
+            AnimationTriggerManager.LoadAnimationTriggers();
             if (Game.Current.GameType is Campaign && starterObject is CampaignGameStarter)
             {
                 var starter = starterObject as CampaignGameStarter;
