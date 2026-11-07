@@ -2,10 +2,12 @@ using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics.Ambush;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
@@ -117,13 +119,38 @@ namespace TOR_Core.Models
         public virtual float StealthDurationDetectionCap => 0.5f;        // capped at +50%
 
         /// <summary>Radius (map units) around the main party within which a
-        /// hostile-faction settlement counts as "proximate." Read today by
-        /// the eye widget (lights the Settlement-nearby icon); the natural
-        /// home for the value when the planned garrison-detection mechanic
-        /// adds a gameplay effect on top. Fed into
-        /// <c>TORCommon.FindNearestSettlement</c> which is backed by
-        /// vanilla's locatable-tree, so lower radius = cheaper query.</summary>
+        /// nearby settlement counts as "proximate." Shared by the two-tier
+        /// settlement check — a settlement inside this radius lights one of
+        /// two icons (hostile / neutral) and feeds into the entry- and
+        /// detection-chance math. Backed by vanilla's locatable-tree via
+        /// <c>TORCommon.FindNearestSettlement</c>, so lower radius = cheaper
+        /// query.</summary>
         public virtual float SettlementProximityRadius => 8f;
+
+        /// <summary>Entry-chance penalty when a hostile-faction settlement is
+        /// within <see cref="SettlementProximityRadius"/>. Garrisons, watch
+        /// riders, and alert townsfolk make slipping into stealth harder.
+        /// Subtracted from the base entry-chance roll.</summary>
+        public virtual float HostileSettlementEntryPenalty => 0.2f;
+
+        /// <summary>Entry-chance penalty for a neutral-faction settlement
+        /// (not at war, not ours) in range. Smaller than the hostile case —
+        /// a neutral town's townsfolk aren't hunting you, but any busy
+        /// settlement reduces the shadows available.</summary>
+        public virtual float NeutralSettlementEntryPenalty => 0.08f;
+
+        /// <summary>Per-tick detection multiplier when a hostile settlement
+        /// is within <see cref="SettlementProximityRadius"/> of the target
+        /// (the stealthed party). Applied multiplicatively on top of the
+        /// per-observer detection roll, so a hostile settlement lifts every
+        /// observer's chance of spotting the stealthed party this tick.
+        /// </summary>
+        public virtual float HostileSettlementDetectionMultiplier => 1.3f;
+
+        /// <summary>Per-tick detection multiplier for a neutral settlement
+        /// in range. Smaller lift — passers-by who aren't actively hunting
+        /// still add a bit of ambient attention.</summary>
+        public virtual float NeutralSettlementDetectionMultiplier => 1.1f;
 
         // Filter: which parties count as "observers" that can even attempt a detection
         // roll against a stealthed target. Default is hostile parties only — a friendly
@@ -160,8 +187,80 @@ namespace TOR_Core.Models
                 * ScoutingDetectionMultiplier(observer)
                 * TerrainDetectionMultiplier(target)
                 * NightDetectionMultiplierValue()
-                * StealthDurationDetectionMultiplier(stealthEnteredAt);
+                * StealthDurationDetectionMultiplier(stealthEnteredAt)
+                * SettlementDetectionMultiplier(target);
             return MBMath.ClampFloat(chance, MinDetectionChance, MaxDetectionChance);
+        }
+
+        /// <summary>Combined per-tick detection chance across all nearby
+        /// observers for the given target. Each observer rolls independently,
+        /// so the chance that at least one succeeds is <c>1 - ∏(1 - p_i)</c>.
+        /// Used by the eye widget to drive the openness continuum while the
+        /// player is in stealth — the eye shows how likely they are to be
+        /// seen in the next quarter-hour tick, not just the best single
+        /// observer's chance. See campaign-stealth-design.md §21.</summary>
+        public virtual float CalculateAggregatedDetectionChancePerTick(
+            MobileParty target, IReadOnlyList<MobileParty> observers, CampaignTime stealthEnteredAt)
+        {
+            if (target == null || observers == null || observers.Count == 0) return 0f;
+            float survival = 1f;   // probability that NO observer detects us
+            foreach (var observer in observers)
+            {
+                float p = CalculateDetectionChancePerTick(observer, target, stealthEnteredAt);
+                survival *= (1f - p);
+            }
+            return MBMath.ClampFloat(1f - survival, 0f, 1f);
+        }
+
+        /// <summary>Settlement-proximity multiplier on the per-tick detection
+        /// chance. Hostile and neutral settlements lift the base multiplier
+        /// by different amounts via the HostileSettlement- / NeutralSettlement-
+        /// DetectionMultiplier knobs. Returns 1.0 (neutral) when no settlement
+        /// is in range or the party has no faction to compare against.</summary>
+        protected virtual float SettlementDetectionMultiplier(MobileParty target)
+        {
+            if (target?.MapFaction == null) return 1f;
+            switch (GetNearbySettlementKind(target))
+            {
+                case SettlementProximityKind.Hostile: return HostileSettlementDetectionMultiplier;
+                case SettlementProximityKind.Neutral: return NeutralSettlementDetectionMultiplier;
+                default: return 1f;
+            }
+        }
+
+        /// <summary>Settlement-proximity penalty on the entry-chance roll.
+        /// Hostile settlement subtracts more, neutral less. Returns 0 if
+        /// no settlement in range.</summary>
+        protected virtual float SettlementEntryPenalty(MobileParty self)
+        {
+            if (self?.MapFaction == null) return 0f;
+            switch (GetNearbySettlementKind(self))
+            {
+                case SettlementProximityKind.Hostile: return HostileSettlementEntryPenalty;
+                case SettlementProximityKind.Neutral: return NeutralSettlementEntryPenalty;
+                default: return 0f;
+            }
+        }
+
+        /// <summary>Classify any settlement inside
+        /// <see cref="SettlementProximityRadius"/> of the party. Hostile wins
+        /// over neutral when both are present — a hostile garrison in range
+        /// shouldn't be masked by a friendly town standing between.</summary>
+        public virtual SettlementProximityKind GetNearbySettlementKind(MobileParty party)
+        {
+            if (party?.MapFaction == null) return SettlementProximityKind.None;
+            if (TORCommon.FindNearestSettlement(party, SettlementProximityRadius,
+                    s => s.MapFaction != null &&
+                         FactionManager.IsAtWarAgainstFaction(s.MapFaction, party.MapFaction)) != null)
+                return SettlementProximityKind.Hostile;
+
+            if (TORCommon.FindNearestSettlement(party, SettlementProximityRadius,
+                    s => s.MapFaction != null &&
+                         s.MapFaction != party.MapFaction &&
+                         !FactionManager.IsAtWarAgainstFaction(s.MapFaction, party.MapFaction)) != null)
+                return SettlementProximityKind.Neutral;
+
+            return SettlementProximityKind.None;
         }
 
         protected virtual float DistanceDetectionMultiplier(MobileParty observer, MobileParty target)
@@ -435,7 +534,8 @@ namespace TOR_Core.Models
                 + EntryPartyStealthScoreBonus(self)
                 + EntryTerrainBonus(self)
                 + EntryNightBonus()
-                - EntryHostilePenalty(observers);
+                - EntryHostilePenalty(observers)
+                - SettlementEntryPenalty(self);
             return MBMath.ClampFloat(chance, MinEntryChance, MaxEntryChance);
         }
 

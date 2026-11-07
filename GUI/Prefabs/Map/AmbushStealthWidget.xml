@@ -75,7 +75,7 @@
         <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed"
                    SuggestedHeight="40"
                    HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                   MarginRight="380" PositionYOffset="-45"
+                   MarginRight="335" PositionYOffset="-45"
                    StackLayout.LayoutMethod="HorizontalLeftToRight">
           <Children>
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
@@ -117,6 +117,18 @@
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
                     SuggestedWidth="32" SuggestedHeight="32"
                     MarginRight="3"
+                    Sprite="ambush_event_enemies_close"
+                    IsVisible="@IsEventEnemiesClose">
+              <Children>
+                <HintWidget DataSource="{EnemiesCloseTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </Widget>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="32" SuggestedHeight="32"
+                    MarginRight="3"
                     Sprite="ambush_event_spotted"
                     IsVisible="@IsEventSpotted">
               <Children>
@@ -133,7 +145,7 @@
         <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed"
                    SuggestedHeight="40"
                    HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                   MarginLeft="380" PositionYOffset="-45"
+                   MarginLeft="335" PositionYOffset="-45"
                    StackLayout.LayoutMethod="HorizontalLeftToRight">
           <Children>
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
@@ -235,10 +247,22 @@
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
                     SuggestedWidth="32" SuggestedHeight="32"
                     MarginRight="3"
-                    Sprite="ambush_context_settlement"
-                    IsVisible="@IsContextSettlement">
+                    Sprite="ambush_context_settlement_hostile"
+                    IsVisible="@IsContextSettlementHostile">
               <Children>
-                <HintWidget DataSource="{SettlementTooltip}" DoNotAcceptEvents="true"
+                <HintWidget DataSource="{SettlementHostileTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </Widget>
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="32" SuggestedHeight="32"
+                    MarginRight="3"
+                    Sprite="ambush_context_settlement_neutral"
+                    IsVisible="@IsContextSettlementNeutral">
+              <Children>
+                <HintWidget DataSource="{SettlementNeutralTooltip}" DoNotAcceptEvents="true"
                             WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
                             Command.HoverBegin="ExecuteBeginHint"
                             Command.HoverEnd="ExecuteEndHint"/>
