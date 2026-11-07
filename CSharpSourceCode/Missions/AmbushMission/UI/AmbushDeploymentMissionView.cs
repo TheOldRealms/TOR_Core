@@ -46,15 +46,20 @@ namespace TOR_Core.Missions.AmbushMission.UI
             // so the ambusher starts looking at the engagement area
             // instead of whatever default vanilla picks (often scene
             // corner or sp_player on a far hill).
+            //
+            // Bannerlord camera frames must be right-handed (s = u x f).
+            // The earlier spelling used s = (facing.Y, -facing.X, 0),
+            // which is the LEFT-handed version; the engine responded by
+            // rotating the camera to look straight up (+Z) instead of
+            // along the authored horizontal facing.
             if (_isAmbusherPath
                 && controller.TryGetCameraAnchor(out var pos, out var facing)
                 && MissionScreen != null)
             {
                 var frame = MatrixFrame.Identity;
                 frame.origin = pos;
-                // Facing is 2D; rotate the camera to look along it.
                 frame.rotation.f = new Vec3(facing.X, facing.Y, 0f);
-                frame.rotation.s = new Vec3(facing.Y, -facing.X, 0f);
+                frame.rotation.s = new Vec3(-facing.Y, facing.X, 0f);
                 frame.rotation.u = new Vec3(0f, 0f, 1f);
                 MissionScreen.UpdateFreeCamera(frame);
             }
