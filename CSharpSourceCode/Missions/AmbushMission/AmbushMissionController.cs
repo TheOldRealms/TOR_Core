@@ -38,6 +38,17 @@ namespace TOR_Core.Missions.AmbushMission
         // pipeline doesn't re-teleport the agents we've just placed at
         // the correct grid position via AgentBuildData.InitialPosition.
         private bool _customSpawnInProgress;
+        // One-shot flag: after vanilla's AutoDeployTeamUsingDeploymentPlan
+        // has run (which happens between AfterStart and first OnMissionTick),
+        // we reposition each attacker formation plate back to its authored
+        // ambush spot. Vanilla's auto-deploy sets every player-team formation
+        // plate to GetFormationsCenterFrameAndExtents when no deployment
+        // plan exists (we bypass vanilla's plan; our scene uses
+        // attacker_ambush_<group> tags, not vanilla's attacker_<class>).
+        // Running reposition at end of AfterStart would race the vanilla
+        // auto-deploy that runs after us; running it on first-tick lands
+        // after vanilla has finished, so the override sticks.
+        private bool _initialRepositionDone;
 
         // Cached reflection handles for bumping each side's
         // MissionBattleSideSpawnContext._numSpawnedTroops as we do our
@@ -279,8 +290,23 @@ namespace TOR_Core.Missions.AmbushMission
                     for (int i = 0; i < agents.Count; i++)
                     {
                         var origin = agents[i];
-                        var pos = GridPositionFor(spot.Value.Position, facing, perp,
-                                                  i, agents.Count, cols);
+                        bool isPlayerChar = origin.Troop == CharacterObject.PlayerCharacter;
+                        // Spawn the player hero directly onto a tactical
+                        // child (strategic archer point etc.) when their
+                        // chosen formation's spot carries them. The ranged
+                        // anchor behavior scripted-positions NPC archers
+                        // onto these points every tick, but scripted
+                        // positions are ignored by player-controlled
+                        // agents, so without this the player would end up
+                        // at the spot's parent centre while their
+                        // squadmates fan out onto the firing slots they
+                        // chose to deploy at.
+                        Vec3 pos = isPlayerChar
+                                   && spot.Value.TacticalChildren != null
+                                   && spot.Value.TacticalChildren.Count > 0
+                            ? spot.Value.TacticalChildren[0]
+                            : GridPositionFor(spot.Value.Position, facing, perp,
+                                              i, agents.Count, cols);
 
                         var buildData = Mission.GetAgentBuildDataToSpawnTroop(
                             origin,
@@ -294,7 +320,6 @@ namespace TOR_Core.Missions.AmbushMission
                             initialDirection: facing,
                             formationIndex: formationClass);
 
-                        bool isPlayerChar = origin.Troop == CharacterObject.PlayerCharacter;
                         if (origin.Troop.IsHero)
                         {
                             buildData.FixedEquipment(true);
@@ -504,6 +529,74 @@ namespace TOR_Core.Missions.AmbushMission
             TORCommon.Log(LogLevel.Info,
                 "[AmbushMission] ResetAssignments restored " + Layout.Formations.Count
                 + " formations across " + touched.Count + " spots");
+        }
+
+        /// <summary>
+        /// Walks every vanilla attacker-team Formation and binds it to the
+        /// matching unbound <see cref="AmbushFormation"/> chunk in the
+        /// layout. The lazy binding in
+        /// <see cref="UI.AmbushFormationPanelExtension.GetOrCreateAmbushFormation"/>
+        /// is driven by the OoB panel VM and fires only for classes whose
+        /// panels have rendered. Our first-tick reposition needs bindings
+        /// for every Layout chunk regardless of whether its panel has
+        /// ticked yet, hence this eager pass.
+        /// </summary>
+        private void EagerBindVanillaFormations()
+        {
+            if (Layout?.Formations == null) return;
+            var team = _ambusherSide == BattleSideEnum.Attacker
+                ? Mission.AttackerTeam
+                : Mission.DefenderTeam;
+            if (team == null) return;
+            foreach (var vanilla in team.FormationsIncludingEmpty)
+            {
+                if (vanilla == null) continue;
+                bool alreadyBound = false;
+                foreach (var f in Layout.Formations)
+                {
+                    if (f.VanillaFormation == vanilla) { alreadyBound = true; break; }
+                }
+                if (alreadyBound) continue;
+                foreach (var f in Layout.Formations)
+                {
+                    if (f.VanillaFormation == null
+                        && f.Class == vanilla.FormationIndex)
+                    {
+                        f.VanillaFormation = vanilla;
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Repositions every <see cref="AmbushSpot"/> the layout currently
+        /// touches so each spot's plate (and its agents) land at the
+        /// authored scene position. Shared by the first-tick fix that
+        /// undoes vanilla's <c>AutoDeployTeamUsingDeploymentPlan</c>
+        /// fallback override, and by <see cref="ResetAssignments"/> on
+        /// the Reset-Deployment path.
+        /// </summary>
+        private void RepositionAllTouchedSpots()
+        {
+            if (Layout?.Formations == null) return;
+            var touched = new HashSet<Vec3>();
+            foreach (var f in Layout.Formations)
+            {
+                if (!f.AssignedSpot.HasValue) continue;
+                if (f.VanillaFormation == null) continue;
+                touched.Add(f.AssignedSpot.Value.Position);
+            }
+            foreach (var pos in touched)
+            {
+                AmbushSpot? spot = null;
+                foreach (var s in SceneSpots)
+                {
+                    if (s.Position.NearlyEquals(pos, 0.01f)) { spot = s; break; }
+                }
+                if (spot.HasValue)
+                    UI.AmbushFormationPanelExtension.RepositionSpotGroup(spot.Value, this);
+            }
         }
 
         /// <summary>
@@ -1157,6 +1250,15 @@ namespace TOR_Core.Missions.AmbushMission
         public override void OnMissionTick(float dt)
         {
             base.OnMissionTick(dt);
+            if (!_initialRepositionDone
+                && IsPlayerAmbusher
+                && Mission?.Mode == TaleWorlds.Core.MissionMode.Deployment
+                && Layout?.Formations != null)
+            {
+                _initialRepositionDone = true;
+                EagerBindVanillaFormations();
+                RepositionAllTouchedSpots();
+            }
             if (!_fallbackResolved && _fallbackGraceTimer != null
                 && _fallbackGraceTimer.ElapsedTime >= FallbackGraceSeconds)
             {
