@@ -233,9 +233,10 @@ namespace TOR_Core.Missions.AmbushMission
             }
             if (_ambusherSupplier == null)
             {
-                TORCommon.Log(LogLevel.Warn,
-                    "[AmbushMission] DoCustomAmbusherSpawn skipped: no shared supplier passed in");
-                return;
+                throw new AmbushSupplierMissingException(
+                    "_ambusherSupplier is null in DoCustomAmbusherSpawn. "
+                    + "Mission opener must pass the shared PartyGroupTroopSupplier "
+                    + "instance to the controller.");
             }
 
             // Drain the same supplier instance vanilla's spawn logic holds, so
@@ -542,16 +543,43 @@ namespace TOR_Core.Missions.AmbushMission
             _victimSide = _victimParty?.MapEventSide?.MissionSide ?? BattleSideEnum.Defender;
             SetupInitialSpawn();
             CollectAttackerSpawnPositions();
-            // Ambusher custom spawn: drain the shared supplier and place our
-            // own agents before vanilla's first OnMissionTick fires its
-            // SetupTeams -> OnSetupTeamsOfSide(Attacker) -> SetSpawnTroops(..
+            // Custom spawn: drain the shared suppliers and place both sides
+            // ourselves before vanilla's first OnMissionTick fires its
+            // SetupTeams -> OnSetupTeamsOfSide -> SetSpawnTroops(..
             // enforceSpawning: true), which synchronously spawns from the
             // same supplier. By draining here, vanilla finds nothing left
-            // and never drops agents at (0, 0, 0).
-            if (IsPlayerAmbusher)
+            // and never drops agents at (0, 0, 0). The walkable-area check
+            // hangs the loading screen on that point; this is the "(0,0,0)
+            // hang" referenced in feedback_bannerlord_initial_frame_hang.
+            //
+            // Runs for both Phase D (player ambusher) and Phase F (AI
+            // ambusher). Phase F has no deployment UI either way;
+            // AutoFinishDeploymentForVictim fires FinishDeployment on
+            // OnAfterSetupTeams so the battle drops straight into combat
+            // with agents already placed at the ambush spots.
+            //
+            // No null-guards around the suppliers. The mission opener is
+            // responsible for passing shared instances. A missing supplier
+            // is a bug we want surfaced, not silently skipped (silent skip
+            // is how Phase F's (0, 0, 0) loading-screen hang went unnoticed
+            // until the AI-ambush playtest). The catch is narrow: only our
+            // own AmbushSupplierMissingException lands here, with a context
+            // log then rethrow. Any other exception propagates with its
+            // own stack trace untouched.
+            try
             {
                 DoCustomAmbusherSpawn();
                 DoCustomVictimSpawn();
+            }
+            catch (AmbushSupplierMissingException e)
+            {
+                TORCommon.Log(LogLevel.Error,
+                    "[AmbushMission] supplier contract violated: isPlayerAmbusher="
+                    + IsPlayerAmbusher
+                    + " ambusherSupplier=" + (_ambusherSupplier == null ? "null" : "set")
+                    + " victimSupplier=" + (_victimSupplier == null ? "null" : "set")
+                    + ". " + e.Message);
+                throw;
             }
         }
 
@@ -608,9 +636,10 @@ namespace TOR_Core.Missions.AmbushMission
             TORCommon.Log(LogLevel.Info, "[AmbushMission] DoCustomVictimSpawn entry");
             if (_victimSupplier == null)
             {
-                TORCommon.Log(LogLevel.Warn,
-                    "[AmbushMission] DoCustomVictimSpawn skipped: no shared victim supplier");
-                return;
+                throw new AmbushSupplierMissingException(
+                    "_victimSupplier is null in DoCustomVictimSpawn. "
+                    + "Mission opener must pass the shared PartyGroupTroopSupplier "
+                    + "instance to the controller.");
             }
             var spots = CollectDefenderSceneSpots();
             if (spots.Count == 0)
@@ -620,6 +649,11 @@ namespace TOR_Core.Missions.AmbushMission
                 return;
             }
             var origins = _victimSupplier.SupplyTroops(int.MaxValue).ToList();
+            // In Phase F (AI ambusher) the victim IS the player. Their
+            // agents go on the player side and the player character gets
+            // AgentControllerType.Player. In Phase D the victim is AI, so
+            // isPlayerSide is false and no player character sits here.
+            bool isPlayerSide = !IsPlayerAmbusher;
             _customSpawnInProgress = true;
 
             // Same grid layout as the ambusher side, grouped per
@@ -661,7 +695,7 @@ namespace TOR_Core.Missions.AmbushMission
                                                   i, agents.Count, cols);
                         var buildData = Mission.GetAgentBuildDataToSpawnTroop(
                             origin,
-                            isPlayerSide: false,
+                            isPlayerSide: isPlayerSide,
                             hasFormation: true,
                             spawnWithHorse: true,
                             isReinforcement: false,
@@ -670,9 +704,21 @@ namespace TOR_Core.Missions.AmbushMission
                             initialPosition: pos,
                             initialDirection: facing,
                             formationIndex: formationClass);
-                        if (origin.Troop.IsHero) buildData.FixedEquipment(true);
-                        Mission.SpawnAgent(buildData, false);
+                        bool isPlayerChar = origin.Troop == CharacterObject.PlayerCharacter;
+                        if (origin.Troop.IsHero)
+                        {
+                            buildData.FixedEquipment(true);
+                            if (isPlayerChar)
+                                buildData.Controller(AgentControllerType.Player);
+                        }
+                        var agent = Mission.SpawnAgent(buildData, false);
                         BumpSpawnedCount(_victimSide);
+                        if (isPlayerChar)
+                        {
+                            TORCommon.Log(LogLevel.Info,
+                                "[AmbushMission] player spawned as victim ctrl=" + agent.Controller
+                                + " initialPlayerAgent set=" + (Mission.InitialPlayerAgent != null));
+                        }
                         spawned++;
                     }
                 }

@@ -351,13 +351,25 @@ namespace TOR_Core.Missions
             var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All);
             return MissionState.OpenNew("Battle", rec, delegate (Mission mission)
             {
+                // Share the supplier instances between vanilla's spawn logic
+                // and AmbushMissionController, same as OpenAmbushMission. Our
+                // AfterStart drains them so vanilla's SetSpawnTroops sees an
+                // empty supplier and never drops agents at (0, 0, 0). Without
+                // this, Phase F hung the loading screen on the engine's
+                // walkable-area check when the scene lacks vanilla-named
+                // sp_attacker_<class> entities.
+                var ambusherSupplier = new PartyGroupTroopSupplier(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Attacker);
+                var victimSupplier = new PartyGroupTroopSupplier(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Defender);
                 IMissionTroopSupplier[] suppliers =
                 [
-                    new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Defender),
-                    new PartyGroupTroopSupplier(MapEvent.PlayerMapEvent, BattleSideEnum.Attacker),
+                    victimSupplier,
+                    ambusherSupplier,
                 ];
                 // Phase F: AI ambusher on Attacker, player (victim) on
-                // Defender. Pass the two parties through to the controller.
+                // Defender. Pass the two parties + their suppliers through
+                // to the controller.
                 var ambusherParty = MapEvent.PlayerMapEvent.AttackerSide.LeaderParty;
                 var victimParty = PartyBase.MainParty;
                 List<MissionBehavior> list =
@@ -369,7 +381,7 @@ namespace TOR_Core.Missions
                     new DefaultBattleMissionAgentSpawnLogic(suppliers, BattleSideEnum.Defender, BattleSizeType.Battle),
                     new BattlePowerCalculationLogic(),
                     new BattleSpawnLogic("battle_set"),
-                    new AmbushMission.AmbushMissionController(ambusherParty, victimParty),
+                    new AmbushMission.AmbushMissionController(ambusherParty, victimParty, ambusherSupplier, victimSupplier),
                     new AmbushMission.AmbushedEndLogic(),
                     new AmbushMission.AmbushLoudnessTracker(),
                     new MissionExperienceBehavior(),
@@ -377,7 +389,18 @@ namespace TOR_Core.Missions
                     new BattleAgentLogic(),
                     new MountAgentLogic(),
                     new MissionOptionsComponent(),
-                    new BattleEndLogic(),
+                    // Same frame-one race as Phase D. Vanilla's
+                    // BattleEndLogic.MissionEnded calls IsSideDepleted on
+                    // both sides before the custom spawn's agent counts
+                    // settle; it fires AttackerVictory, which for Phase F
+                    // (player on Defender) is instant player defeat.
+                    // AmbushBattleEndLogic : BattleEndLogic overrides
+                    // MissionEnded to return false so AmbushedEndLogic is
+                    // the authoritative outcome decider. The base class's
+                    // OnMissionTick side effects (victory reactions,
+                    // retreat detection, enemy-pullback tracking) still
+                    // fire so the post-mission handoff isn't broken.
+                    new AmbushMission.AmbushBattleEndLogic(),
                     new MissionCombatantsLogic(
                         MobileParty.MainParty.MapEvent.InvolvedParties,
                         PartyBase.MainParty,
