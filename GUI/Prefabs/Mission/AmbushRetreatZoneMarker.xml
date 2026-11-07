@@ -1,0 +1,19 @@
+<Prefab>
+  <!-- In-mission marker for the ambush retreat zone. Driven by
+       AmbushRetreatZoneMarkerVM: the view projects the zone's world
+       position each tick and sets ScreenX/ScreenY. IsVisible gates
+       Phase 2 + on-screen. Visual is a placeholder: BlankWhiteCircle
+       (vanilla built-in sprite) tinted yellow. Scale up to a proper
+       flag / banner mesh when dedicated art lands. -->
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IsHidden="@_not@IsVisible">
+      <Children>
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                SuggestedWidth="32" SuggestedHeight="32"
+                HorizontalAlignment="Left" VerticalAlignment="Top"
+                PositionXOffset="@ScreenX" PositionYOffset="@ScreenY"
+                Sprite="BlankWhiteCircle" Color="#FFD700FF" />
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>
