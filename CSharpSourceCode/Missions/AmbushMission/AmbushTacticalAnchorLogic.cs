@@ -36,7 +36,7 @@ namespace TOR_Core.Missions.AmbushMission
         {
             if (formation == null || behavior == null) return;
             _anchors[formation] = behavior;
-            AssignWithTeleport(behavior);
+            behavior.AssignScriptedPositionsToAgents(teleport: true);
         }
 
         public void RebindAnchor(Formation formation,
@@ -44,7 +44,7 @@ namespace TOR_Core.Missions.AmbushMission
         {
             if (formation == null || behavior == null) return;
             _anchors[formation] = behavior;
-            AssignWithTeleport(behavior);
+            behavior.AssignScriptedPositionsToAgents(teleport: true);
         }
 
         public void UnregisterAnchor(Formation formation)
@@ -52,23 +52,6 @@ namespace TOR_Core.Missions.AmbushMission
             if (formation == null) return;
             if (!_anchors.Remove(formation)) return;
             AmbushBehaviorDefendTacticalPoint.ClearScriptedPositions(formation);
-        }
-
-        /// <summary>
-        /// Flip Mission.IsTeleportingAgents on so Agent.SetScriptedPosition
-        /// snaps agents to their targets instantly (deployment-time
-        /// placement should be instant, not a slow walk). Vanilla's
-        /// Agent.SetScriptedPosition reads this flag and calls
-        /// TeleportToPosition inline when set.
-        /// </summary>
-        private void AssignWithTeleport(AmbushBehaviorDefendTacticalPoint behavior)
-        {
-            var mission = Mission.Current;
-            if (mission == null) { behavior.AssignScriptedPositionsToAgents(); return; }
-            bool prev = mission.IsTeleportingAgents;
-            mission.IsTeleportingAgents = true;
-            try { behavior.AssignScriptedPositionsToAgents(); }
-            finally { mission.IsTeleportingAgents = prev; }
         }
 
         public override void OnMissionTick(float dt)

@@ -123,7 +123,7 @@ namespace TOR_Core.Missions.AmbushMission
         /// Flags: <see cref="Agent.AIScriptedFrameFlags.RangerCanMoveForClearTarget"/>
         /// so assigned archers can shift laterally for a clean shot.
         /// </summary>
-        public void AssignScriptedPositionsToAgents()
+        public void AssignScriptedPositionsToAgents(bool teleport = false)
         {
             if (_tacticalChildren.Count == 0) return;
             var plate = Formation.OrderPosition;
@@ -172,13 +172,23 @@ namespace TOR_Core.Missions.AmbushMission
                 claimedChildren.Add(i);
             }
 
-            // Apply new assignments.
+            // Apply new assignments. Per-agent teleport is opt-in via
+            // the 'teleport' arg so initial anchoring can snap archers
+            // to tactical children without us flipping the global
+            // Mission.IsTeleportingAgents flag. That global flag has
+            // a nasty side effect on Formation.GetFormationFinalUnitPosition:
+            // every formation with a MovementOrder (including enemy
+            // formations running BehaviorCharge targeting us) returns
+            // the order position instead of the current position, which
+            // instantly ports agents onto their charge target. Local
+            // teleport avoids the whole mess.
             foreach (var kv in newAssignments)
             {
                 var pos = _tacticalChildren[kv.Value];
                 kv.Key.SetScriptedPosition(ref pos,
                     addHumanLikeDelay: false,
                     additionalFlags: Agent.AIScriptedFrameFlags.RangerCanMoveForClearTarget);
+                if (teleport) kv.Key.TeleportToPosition(pos.GetGroundVec3());
             }
 
             // Release agents that used to have a scripted spot but lost it

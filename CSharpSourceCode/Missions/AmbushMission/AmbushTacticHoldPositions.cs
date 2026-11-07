@@ -53,9 +53,20 @@ namespace TOR_Core.Missions.AmbushMission
         public const float SettleRadius = 15f;
 
         /// <summary>Peak of the optimal-distance scoring term in metres
-        /// from the anchor to the enemy median. Shorter than this adds
-        /// a too-close penalty; much farther zeroes the bonus.</summary>
-        public const float OptimalDistance = 80f;
+        /// from the anchor to the enemy median. Ambush fiction is
+        /// close-strike (10-40m window), not a vanilla field-battle
+        /// fire-line (60-100m). Much shorter than this adds no penalty
+        /// (point-blank ambush is the whole point). Much farther
+        /// zeroes the bonus.</summary>
+        public const float OptimalDistance = 30f;
+
+        /// <summary>Hard-floor distance under which the anchor is
+        /// genuinely useless (enemy literally inside the point).
+        /// Separate from the smooth scoring curve. Points inside this
+        /// radius get a large negative penalty regardless of other
+        /// scoring. Keep low; anything 5-10m away from an archer is
+        /// still ambush-shootable.</summary>
+        public const float MeleeFloorDistance = 5f;
 
         /// <summary>Minimum score an advantage point must exceed for the
         /// tactic to commit a formation to it. Below this the formation
@@ -83,6 +94,7 @@ namespace TOR_Core.Missions.AmbushMission
 
         private AmbushMissionController _controller;
         private AmbushTacticalAnchorLogic _anchorLogic;
+        private bool _seededFromLayout;
 
         public AmbushTacticHoldPositions(Team team) : base(team) { }
 
@@ -138,6 +150,19 @@ namespace TOR_Core.Missions.AmbushMission
             {
                 base.TickOccasionally();
                 return;
+            }
+
+            // On first tick, seed _anchors from the layout's default
+            // assignments so the formation that custom-spawn placed at
+            // spot X already has an anchor at spot X with the
+            // commitment bonus active. Without this, the tactic
+            // re-evaluates from scratch on tick 1 and may move the
+            // formation off the authored spot because the raw score
+            // of a different spot is marginally higher.
+            if (!_seededFromLayout)
+            {
+                _seededFromLayout = true;
+                SeedAnchorsFromLayout();
             }
 
             float now = Mission.Current.CurrentTime;
@@ -297,11 +322,19 @@ namespace TOR_Core.Missions.AmbushMission
 
             float score = 0f;
             float elevation = point.Position.Z - enemyMedian.GetGroundVec3().Z;
-            score += 2f * MathF.Max(0f, elevation);
+            // Elevation bonus matters a lot for ambush fiction (archers
+            // on high ground). 4 per metre lets a 13m hill contribute
+            // ~52 points, enough to override an equally-distanced
+            // flat street spot.
+            score += 4f * MathF.Max(0f, elevation);
 
             float distance = point.Position.AsVec2.Distance(enemyMedianVec2);
+            // Symmetric linear falloff from OptimalDistance. Max bonus
+            // 50 at exactly OptimalDistance (30m), decays by 2 per metre
+            // either side. Negative scores fine; they stack against
+            // elevation+preferred-class.
             score += 50f - 2f * MathF.Abs(distance - OptimalDistance);
-            if (distance < 20f) score -= 100f;
+            if (distance < MeleeFloorDistance) score -= 100f;
 
             // Flank: angle between enemy facing and the vector from
             // enemy median to the anchor. 60°+ counts as flanking.
@@ -362,6 +395,46 @@ namespace TOR_Core.Missions.AmbushMission
             return cls == FormationClass.Ranged
                 || cls == FormationClass.Skirmisher
                 || cls == FormationClass.HorseArcher;
+        }
+
+        /// <summary>
+        /// Walk the ambush layout's default assignments, match each
+        /// chunk to its live vanilla <see cref="Formation"/>, and
+        /// pre-register the pairing in <see cref="_anchors"/> with
+        /// dwell-start backdated so the commitment bonus applies
+        /// immediately. Without this seed, the tactic's first
+        /// evaluation runs score-only (no commitment) and may move
+        /// a formation off its custom-spawn spot just because a
+        /// different spot scored marginally higher.
+        /// </summary>
+        private void SeedAnchorsFromLayout()
+        {
+            if (_controller.Layout?.Formations == null) return;
+            float backdated = Mission.Current.CurrentTime - MinDwellSeconds - 1f;
+            // VanillaFormation on the chunk is only populated by the
+            // Phase D picker's Recompute; in Phase F it's always null.
+            // Resolve by matching the chunk's FormationClass to a live
+            // formation on this team instead.
+            foreach (var chunk in _controller.Layout.Formations)
+            {
+                if (!chunk.AssignedSpot.HasValue) continue;
+                if (!IsRangedClass(chunk.Class)) continue;
+                Formation live = null;
+                foreach (var f in FormationsIncludingEmpty)
+                {
+                    if (f == null || f.CountOfUnits == 0) continue;
+                    if (f.PhysicalClass == chunk.Class) { live = f; break; }
+                }
+                if (live == null) continue;
+                _anchors[live] = new AnchorEntry
+                {
+                    Spot = chunk.AssignedSpot.Value,
+                    DwellStartTime = backdated,
+                };
+                NLog.LogManager.GetCurrentClassLogger().Info(
+                    "[AmbushTactic] seed " + live.PhysicalClass
+                    + " <- layout spot " + chunk.AssignedSpot.Value.GroupTag);
+            }
         }
 
         protected override void OnCancel()
