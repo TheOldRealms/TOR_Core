@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.Missions.AmbushMission
@@ -74,11 +75,39 @@ namespace TOR_Core.Missions.AmbushMission
             _reassignAccumulator += dt;
             if (_reassignAccumulator < ReassignIntervalSeconds) return;
             _reassignAccumulator = 0f;
+
+            // Drop anchors whose formation has either emptied or shifted
+            // away from a ranged PhysicalClass (archers dying off → the
+            // formation's dominant class flips to Infantry, our tactical
+            // scripted positions start pulling the surviving melee heroes
+            // onto hill firing spots). Clean up before reassigning so the
+            // stale ticks stop.
+            List<Formation> toUnregister = null;
+            foreach (var kv in _anchors)
+            {
+                var f = kv.Key;
+                if (f == null
+                    || f.CountOfUnits == 0
+                    || !IsRangedClass(f.PhysicalClass))
+                {
+                    (toUnregister ??= new List<Formation>()).Add(f);
+                }
+            }
+            if (toUnregister != null)
+                foreach (var f in toUnregister) UnregisterAnchor(f);
+
             foreach (var kv in _anchors)
             {
                 if (kv.Key == null) continue;
                 kv.Value.AssignScriptedPositionsToAgents();
             }
+        }
+
+        private static bool IsRangedClass(FormationClass cls)
+        {
+            return cls == FormationClass.Ranged
+                || cls == FormationClass.Skirmisher
+                || cls == FormationClass.HorseArcher;
         }
     }
 }

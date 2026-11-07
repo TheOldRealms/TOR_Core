@@ -1,4 +1,6 @@
 using NLog;
+using TaleWorlds.Engine;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View.MissionViews.Singleplayer;
 using TOR_Core.Utilities;
@@ -39,6 +41,23 @@ namespace TOR_Core.Missions.AmbushMission.UI
             TORCommon.Log(LogLevel.Info,
                 "[AmbushDeploymentView] AfterStart: ambusherPath=" + _isAmbusherPath
                 + " orderTroopPlacer=" + (_orderTroopPlacer == null ? "null" : "set"));
+
+            // Point the deployment camera at the scener-authored anchor
+            // so the ambusher starts looking at the engagement area
+            // instead of whatever default vanilla picks (often scene
+            // corner or sp_player on a far hill).
+            if (_isAmbusherPath
+                && controller.TryGetCameraAnchor(out var pos, out var facing)
+                && MissionScreen != null)
+            {
+                var frame = MatrixFrame.Identity;
+                frame.origin = pos;
+                // Facing is 2D; rotate the camera to look along it.
+                frame.rotation.f = new Vec3(facing.X, facing.Y, 0f);
+                frame.rotation.s = new Vec3(facing.Y, -facing.X, 0f);
+                frame.rotation.u = new Vec3(0f, 0f, 1f);
+                MissionScreen.UpdateFreeCamera(frame);
+            }
         }
 
         public override void OnMissionScreenTick(float dt)

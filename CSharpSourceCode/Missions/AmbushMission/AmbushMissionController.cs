@@ -669,6 +669,14 @@ namespace TOR_Core.Missions.AmbushMission
             // AgentControllerType.Player. In Phase D the victim is AI, so
             // isPlayerSide is false and no player character sits here.
             bool isPlayerSide = !IsPlayerAmbusher;
+            // Scener-authored camera anchor. Only used in Phase F to
+            // override the player hero's spawn position so the vanilla
+            // camera init lands on a sensible overlook of the engagement
+            // instead of snapping across the scene.
+            Vec3 anchorPos = Vec3.Zero;
+            Vec2 anchorFacing = new Vec2(0f, 1f);
+            bool hasAnchor = !IsPlayerAmbusher
+                             && TryGetCameraAnchor(out anchorPos, out anchorFacing);
             _customSpawnInProgress = true;
 
             // Same grid layout as the ambusher side, grouped per
@@ -706,8 +714,20 @@ namespace TOR_Core.Missions.AmbushMission
                     for (int i = 0; i < agents.Count; i++)
                     {
                         var origin = agents[i];
-                        var pos = GridPositionFor(center, facing, perp,
-                                                  i, agents.Count, cols);
+                        bool isPlayerChar = origin.Troop == CharacterObject.PlayerCharacter;
+                        Vec3 spawnPos;
+                        Vec2 spawnDir;
+                        if (isPlayerChar && hasAnchor)
+                        {
+                            spawnPos = anchorPos;
+                            spawnDir = anchorFacing;
+                        }
+                        else
+                        {
+                            spawnPos = GridPositionFor(center, facing, perp,
+                                                      i, agents.Count, cols);
+                            spawnDir = facing;
+                        }
                         var buildData = Mission.GetAgentBuildDataToSpawnTroop(
                             origin,
                             isPlayerSide: isPlayerSide,
@@ -716,10 +736,9 @@ namespace TOR_Core.Missions.AmbushMission
                             isReinforcement: false,
                             formationTroopCount: 1,
                             formationTroopIndex: 0,
-                            initialPosition: pos,
-                            initialDirection: facing,
+                            initialPosition: spawnPos,
+                            initialDirection: spawnDir,
                             formationIndex: formationClass);
-                        bool isPlayerChar = origin.Troop == CharacterObject.PlayerCharacter;
                         if (origin.Troop.IsHero)
                         {
                             buildData.FixedEquipment(true);
@@ -745,6 +764,37 @@ namespace TOR_Core.Missions.AmbushMission
             TORCommon.Log(LogLevel.Info,
                 "[AmbushMission] DoCustomVictimSpawn: spawned=" + spawned
                 + "/" + origins.Count);
+        }
+
+        /// <summary>
+        /// Looks up the scener-authored <c>ambush_camera_anchor</c>
+        /// entity and returns its world position + forward direction.
+        /// Returns false when the scene has no such entity (older
+        /// ambush scenes without the convention still work; they just
+        /// miss the camera-anchor polish).
+        ///
+        /// Dual use:
+        /// Phase F spawns the player hero at this frame so the vanilla
+        /// camera init lands on the engagement instead of panning
+        /// across the scene from (0, 0, 0) to the victim column.
+        /// Phase D's <c>AmbushDeploymentMissionView</c> re-aims the
+        /// deployment camera here so the ambusher starts looking at
+        /// the kill zone instead of a scene corner.
+        /// </summary>
+        public bool TryGetCameraAnchor(out Vec3 position, out Vec2 facing)
+        {
+            position = Vec3.Zero;
+            facing = new Vec2(0f, 1f);
+            if (Mission?.Scene == null) return false;
+            foreach (var e in Mission.Scene.FindEntitiesWithTag("ambush_camera_anchor"))
+            {
+                if (e == null) continue;
+                var frame = e.GetGlobalFrame();
+                position = frame.origin;
+                facing = frame.rotation.f.AsVec2.Normalized();
+                return true;
+            }
+            return false;
         }
 
         private Dictionary<FormationClass, (Vec3 Position, float Yaw)> CollectDefenderSceneSpots()

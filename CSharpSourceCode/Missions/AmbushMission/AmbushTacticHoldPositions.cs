@@ -231,6 +231,17 @@ namespace TOR_Core.Missions.AmbushMission
 
         private void EvaluateFormation(Formation formation, float now, HashSet<int> claimed)
         {
+            // Skip evaluation while the formation hasn't resolved a
+            // closest enemy formation yet (first few ticks after
+            // spawn, before vanilla's QuerySystem populates caches).
+            // Scoring returns 0 for every spot in that window, and
+            // falling into the abandon branch would drop the seeded
+            // anchor, forcing the formation to bounce between spots
+            // once caches do populate because no dwell history
+            // survived. Hold the seeded choice until there's data to
+            // score against.
+            if (formation.CachedClosestEnemyFormation == null) return;
+
             int bestIdx = -1;
             float bestScore = float.NegativeInfinity;
             AnchorEntry currentEntry;
