@@ -1192,4 +1192,31 @@
       <tattoo_tag name="Scar15" />
     </tattoo_tags>
   </BodyProperty>
+  <!-- Slayer body range with fixed red hair/beard and blue tattoos. -->
+  <BodyProperty id="dwarf_slayer_companion">
+    <BodyPropertiesMin version="4"
+                       age="25"
+                       weight="0.2948"
+                       build="0.6065"
+                       key="0000000501880047F77664884754DCBAFF9E566095F09F1F74414A49893F81FE007D460307A7B7A514213303103010600000000000000005000000001AFC0000" />
+    <BodyPropertiesMax version="4"
+                       age="27"
+                       weight="0.4954"
+                       build="0.8441"
+                       key="00050005068801C7F77664884754DCBAFF9E566095F09F1F74414A49893F81FE007D760307A7B7A5570000000020006000000000000000050000000012FC0000" />
+    <hair_tags>
+      <hair_tag name="SlayerHair" />
+    </hair_tags>
+    <beard_tags>
+      <beard_tag name="DawiWarriorBeard" />
+    </beard_tags>
+    <tattoo_tags>
+      <tattoo_tag name="slayer_face_tattoo_001" />
+      <tattoo_tag name="slayer_face_tattoo_002" />
+      <tattoo_tag name="slayer_face_tattoo_003" />
+      <tattoo_tag name="slayer_face_tattoo_004" />
+      <tattoo_tag name="slayer_face_tattoo_005" />
+      <tattoo_tag name="slayer_face_tattoo_006" />
+    </tattoo_tags>
+  </BodyProperty>
 </BodyProperties>
