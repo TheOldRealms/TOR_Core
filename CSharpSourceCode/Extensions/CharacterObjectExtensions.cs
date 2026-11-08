@@ -179,6 +179,11 @@ namespace TOR_Core.Extensions
             return basicCharacterObject.Race == FaceGen.GetRaceOrDefault("minotaur");
         }
 
+        public static bool IsCygor(this BasicCharacterObject basicCharacterObject)
+        {
+            return basicCharacterObject != null && basicCharacterObject.Race == FaceGen.GetRaceOrDefault("cygor");
+        }
+
         public static bool IsTreeman(this BasicCharacterObject basicCharacterObject)
         {
             return basicCharacterObject.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster");

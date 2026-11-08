@@ -151,6 +151,7 @@ namespace TOR_Core
         {
             CustomResourceManager.Initialize();
             AnimationTriggerManager.LoadAnimationTriggers();
+            AnimationProgressTriggerManager.LoadTriggers();
             if (Game.Current.GameType is Campaign && starterObject is CampaignGameStarter)
             {
                 var starter = starterObject as CampaignGameStarter;
@@ -329,6 +330,9 @@ namespace TOR_Core
             mission.AddMissionBehavior(new AddAgentComponentsMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new AnimationTriggerMissionLogic());
+            mission.AddMissionBehavior(new AnimationProgressTriggerMissionLogic());
+            mission.AddMissionBehavior(new CygorStepSoundMissionLogic());
+            mission.AddMissionBehavior(new TORColossalMonsterPhysicsLogic());
             mission.AddMissionBehavior(new BattleShoutsMissionLogic());
             mission.AddMissionBehavior(new CinematicCameraMissionView());
             mission.AddMissionBehavior(new TORMonsterSiegeLogic());
