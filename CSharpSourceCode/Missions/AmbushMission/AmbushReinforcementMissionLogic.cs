@@ -21,8 +21,12 @@ namespace TOR_Core.Missions.AmbushMission
     ///
     /// This logic reads the authored <c>sp_defender_&lt;class&gt;_reinforcement</c>
     /// entities directly (short tag <c>defender_&lt;class&gt;_reinforcement</c>)
-    /// and spawns waves there via <c>Mission.SpawnAgent</c>. Bookkeeping
-    /// is routed through <see cref="AmbushMissionAgentSpawnLogic.OnReinforcementSpawned"/>
+    /// and spawns waves there via <c>Mission.SpawnTroopWithAgentBuildData</c>,
+    /// matching what vanilla's own <c>DefaultBattleMissionAgentSpawnLogic.SpawnTroops</c>
+    /// does for reinforcement agents: the extra isAlarmed / wieldInitialWeapons
+    /// flags are what actually make the new troops engage instead of
+    /// standing idle in Patrolling WatchState. Bookkeeping is routed
+    /// through <see cref="AmbushMissionAgentSpawnLogic.OnReinforcementSpawned"/>
     /// so the shared vanilla context counters stay consistent.
     ///
     /// Only the victim side (always Defender in both Phase D and Phase F
@@ -202,6 +206,7 @@ namespace TOR_Core.Missions.AmbushMission
             bool isPlayerSide = Mission.PlayerTeam != null
                                 && Mission.PlayerTeam.Side == victimSide;
 
+            var touchedFormations = new HashSet<Formation>();
             foreach (var origin in origins)
             {
                 var cls = origin.Troop.GetFormationClass();
@@ -231,12 +236,63 @@ namespace TOR_Core.Missions.AmbushMission
                     formationIndex: cls);
                 if (origin.Troop.IsHero) buildData.FixedEquipment(true);
 
-                Mission.SpawnAgent(buildData, false);
+                var agent = Mission.SpawnTroopWithAgentBuildData(buildData, true, true);
+                if (agent?.Formation != null) touchedFormations.Add(agent.Formation);
                 _spawnLogic?.OnReinforcementSpawned(victimSide);
             }
+
+            // Reinforcement formations join whatever movement order the
+            // formation was last given, which post initial-wave wipe is
+            // typically Hold or stale. Point them at the ambusher team
+            // (always Attacker by opener invariant) so the behaviour
+            // mirrors in Phase D (player ambusher) and Phase F (AI
+            // ambusher). Fall back to generic Charge if the ambusher
+            // team is unresolvable or already wiped.
+            var ambusherTarget = ResolveAmbusherTarget();
+            var chargeOrder = ambusherTarget != null
+                ? MovementOrder.MovementOrderChargeToTarget(ambusherTarget)
+                : MovementOrder.MovementOrderCharge;
+            foreach (var formation in touchedFormations)
+                formation.SetMovementOrder(chargeOrder);
+
             TORCommon.Log(LogLevel.Info,
                 "[AmbushReinforcement] wave " + (_waveIndex + 1)
-                + " spawned " + origins.Count + " agents");
+                + " spawned " + origins.Count + " agents"
+                + " target=" + (ambusherTarget != null
+                    ? "ambusher formation " + ambusherTarget.FormationIndex
+                    + " (" + ambusherTarget.CountOfUnits + " units)"
+                    : "nearest enemy"));
+        }
+
+        /// <summary>
+        /// Picks the ambusher-team formation reinforcement waves should
+        /// close on. Prefers the formation containing the main hero when
+        /// the player is the ambusher (Phase D) so waves home in on the
+        /// hero who struck; otherwise returns the largest live formation
+        /// on the ambusher team (Phase F, AI ambusher). Null if the
+        /// ambusher team has no live formations left, which lets callers
+        /// fall back to a generic charge.
+        /// </summary>
+        private Formation ResolveAmbusherTarget()
+        {
+            var team = Mission.AttackerTeam;
+            if (team == null) return null;
+            var mainFormation = Mission.MainAgent?.Formation;
+            if (mainFormation != null && mainFormation.Team == team
+                && mainFormation.CountOfUnits > 0)
+                return mainFormation;
+            Formation best = null;
+            int bestCount = 0;
+            foreach (var f in team.FormationsIncludingEmpty)
+            {
+                if (f == null || f.CountOfUnits <= 0) continue;
+                if (f.CountOfUnits > bestCount)
+                {
+                    best = f;
+                    bestCount = f.CountOfUnits;
+                }
+            }
+            return best;
         }
 
         /// <summary>
