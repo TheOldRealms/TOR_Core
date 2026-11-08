@@ -367,62 +367,11 @@ namespace TOR_Core.Missions.AmbushMission
         /// </summary>
         public override void OnMissionResultReady(MissionResult missionResult)
         {
-            TORCommon.Log(LogLevel.Info,
-                "[AmbushEndLogic] OnMissionResultReady enter"
-                + " result=" + (missionResult == null ? "null"
-                    : (missionResult.PlayerVictory ? "victory"
-                        : missionResult.PlayerDefeated ? "defeated" : "other")));
             base.OnMissionResultReady(missionResult);
-            if (missionResult == null)
-            {
-                TORCommon.Log(LogLevel.Info,
-                    "[AmbushEndLogic] OnMissionResultReady exit (null result)");
-                return;
-            }
-            var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
-            var outcome = behavior?.LastAmbushOutcome ?? AmbushOutcome.None;
-            TORCommon.Log(LogLevel.Info,
-                "[AmbushEndLogic] OnMissionResultReady outcome=" + outcome
-                + " playerEncounter=" + (PlayerEncounter.Current != null));
-            if (outcome == AmbushOutcome.TotalVictory)
-            {
-                if (PlayerEncounter.Current != null)
-                {
-                    TORCommon.Log(LogLevel.Info,
-                        "[AmbushEndLogic] calling SetPlayerVictorious");
-                    PlayerEncounter.SetPlayerVictorious();
-                    // Diagnostic (task #82): dump the state the scoreboard
-                    // VM will read when it eventually renders. If
-                    // WinningSide here is None or opposite the player
-                    // side, something downstream clears the override
-                    // before the end-screen draws.
-                    // mapEvent field is private, but the two top-level
-                    // static accessors go through it: PlayerEncounter
-                    // .Battle and PlayerEncounter.BattleState. Both
-                    // return the current state we need to verify.
-                    var battle = PlayerEncounter.Battle;
-                    TORCommon.Log(LogLevel.Info,
-                        "[AmbushEndLogic] post-SetPlayerVictorious:"
-                        + " battle="
-                          + (battle == null ? "null" : "set")
-                        + " BattleState="
-                          + PlayerEncounter.BattleState
-                        + " WinningSide="
-                          + PlayerEncounter.WinningSide
-                        + " enc.PlayerSide="
-                          + (PlayerEncounter.Current?.PlayerSide
-                                .ToString() ?? "n/a")
-                        + " Mission.PlayerTeam.Side="
-                          + (Mission.PlayerTeam?.Side.ToString() ?? "null")
-                        + " MissionResult.PlayerVictory="
-                          + (Mission.MissionResult?.PlayerVictory
-                                .ToString() ?? "null")
-                        + " PlayerIsAttacker="
-                          + PlayerEncounter.PlayerIsAttacker);
-                }
-                if (behavior != null) behavior.PendingPostAmbushCleanup = true;
-            }
-            TORCommon.Log(LogLevel.Info, "[AmbushEndLogic] OnMissionResultReady exit");
+            // SetPlayerVictorious + PendingPostAmbushCleanup moved to
+            // SetOutcome so the encounter override lands before vanilla's
+            // behavior-list iteration races in BattleObserverMissionLogic
+            // → BattleResultsReady → OnBattleOver. See SetOutcome.
         }
 
         private void SetOutcome(AmbushOutcome outcome, bool successful, string reason)
@@ -433,7 +382,35 @@ namespace TOR_Core.Missions.AmbushMission
                 : MissionResult.CreateDefeated(Mission);
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
             if (behavior != null) behavior.LastAmbushOutcome = outcome;
-            TORCommon.Log(LogLevel.Info, 
+
+            // Stamp the player-victorious override on TotalVictory the
+            // moment the outcome is decided, before any MissionEnded →
+            // MissionResultReady cascade. BattleObserverMissionLogic
+            // .OnMissionResultReady synchronously fires
+            // BattleObserver.BattleResultsReady → SPScoreboardVM.OnBattleOver
+            // whenever MissionResult.PlayerVictory is true. OnBattleOver
+            // reads PlayerEncounter.WinningSide (set here via
+            // SetPlayerVictorious → MapEvent.SetOverrideWinner) and
+            // latches IsOver=true. Previously we called it in our own
+            // OnMissionResultReady, which relied on the behavior list
+            // ordering placing AmbushEndLogic ahead of
+            // BattleObserverMissionLogic — fragile. Setting it here
+            // takes behavior-iteration order out of the equation.
+            if (outcome == AmbushOutcome.TotalVictory
+                && PlayerEncounter.Current != null)
+            {
+                PlayerEncounter.SetPlayerVictorious();
+                if (behavior != null) behavior.PendingPostAmbushCleanup = true;
+                TORCommon.Log(LogLevel.Info,
+                    "[AmbushEndLogic] SetPlayerVictorious stamped at SetOutcome"
+                    + " WinningSide=" + PlayerEncounter.WinningSide
+                    + " enc.PlayerSide="
+                      + (PlayerEncounter.Current?.PlayerSide.ToString() ?? "n/a")
+                    + " Mission.PlayerTeam.Side="
+                      + (Mission.PlayerTeam?.Side.ToString() ?? "null"));
+            }
+
+            TORCommon.Log(LogLevel.Info,
                 "[AmbushEndLogic] outcome=" + outcome + " successful=" + successful
                 + " (" + reason + ")");
         }
