@@ -396,6 +396,10 @@ namespace TOR_Core.Missions.AmbushMission
             // ordering placing AmbushEndLogic ahead of
             // BattleObserverMissionLogic — fragile. Setting it here
             // takes behavior-iteration order out of the equation.
+            // TotalVictory: stamp the override so vanilla's
+            // DoApplyMapEventResults runs — standard loot + XP flow, the
+            // player cleared the field fair and square. Dispatches
+            // OnPlayerBattleEndEvent naturally.
             if (outcome == AmbushOutcome.TotalVictory
                 && PlayerEncounter.Current != null)
             {
@@ -403,11 +407,27 @@ namespace TOR_Core.Missions.AmbushMission
                 if (behavior != null) behavior.PendingPostAmbushCleanup = true;
                 TORCommon.Log(LogLevel.Info,
                     "[AmbushEndLogic] SetPlayerVictorious stamped at SetOutcome"
+                    + " outcome=" + outcome
                     + " WinningSide=" + PlayerEncounter.WinningSide
                     + " enc.PlayerSide="
                       + (PlayerEncounter.Current?.PlayerSide.ToString() ?? "n/a")
                     + " Mission.PlayerTeam.Side="
                       + (Mission.PlayerTeam?.Side.ToString() ?? "null"));
+            }
+
+            // Extracted: hit-and-run fiction — player breaks contact
+            // before the enemy regroups. No loot screen, enemy party
+            // stays intact (vanilla only destroys roster-collapsed
+            // losers, and Finish-without-winner skips that path).
+            // Mirror the brawl / POI-visit pattern: pre-activate the
+            // post-mission menu so it's live on the campaign layer by
+            // the time the mission screen tears down, and force
+            // teardown immediately so the scoreboard tick path never
+            // reaches its 1.5s render.
+            if (outcome == AmbushOutcome.Extracted && behavior != null)
+            {
+                behavior.BeginExtractionTransition(behavior.ExtractionTroopsLeftBehind);
+                Mission.EndMission();
             }
 
             TORCommon.Log(LogLevel.Info,
