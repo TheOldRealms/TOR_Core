@@ -30,7 +30,7 @@ namespace TOR_Core.Missions.AmbushMission
         private bool _deploymentFinished;
         private MissionResult _result;
         private TORMissionAmbushModel _model;
-        private DefaultBattleMissionAgentSpawnLogic _spawnLogic;
+        private AmbushReinforcementMissionLogic _reinforcementLogic;
 
         private float _outsideBoundarySeconds;
 
@@ -45,7 +45,7 @@ namespace TOR_Core.Missions.AmbushMission
         {
             base.AfterStart();
             _model = Campaign.Current?.Models?.GetMissionAmbushModel() ?? new TORMissionAmbushModel();
-            _spawnLogic = Mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>();
+            _reinforcementLogic = Mission.GetMissionBehavior<AmbushReinforcementMissionLogic>();
 
             _ambushedRosterSnapshot = new Dictionary<CharacterObject, int>();
             var roster = MobileParty.MainParty?.MemberRoster;
@@ -92,7 +92,7 @@ namespace TOR_Core.Missions.AmbushMission
             // reinforcement queue drained too, mirroring Phase D's logic:
             // don't call it a defeat while queued waves are seconds away.
             if (CountActiveHumans(Mission.DefenderTeam) == 0
-                && !AreReinforcementsStillPending(BattleSideEnum.Defender))
+                && !AreReinforcementsStillPending())
             {
                 SetOutcome(AmbushedOutcome.AmbushedWiped, successful: false,
                     reason: "defender (player) wiped + reinforcement queue drained");
@@ -138,10 +138,20 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
-        private bool AreReinforcementsStillPending(BattleSideEnum side)
+        /// <summary>
+        /// True while the reinforcement wave timer may still deliver
+        /// another defender batch. Reads from
+        /// <see cref="AmbushReinforcementMissionLogic.IsPoolDepleted"/>
+        /// rather than vanilla phase state so we're not coupled to
+        /// internal bookkeeping. In Phase F the defender side is the
+        /// player; the attacker (AI ambusher) is one-shot and has no
+        /// wave schedule, so the single defender-side answer covers
+        /// all callers.
+        /// </summary>
+        private bool AreReinforcementsStillPending()
         {
-            if (_spawnLogic == null) return false;
-            return !_spawnLogic.IsSideDepleted(side);
+            if (_reinforcementLogic == null) return false;
+            return !_reinforcementLogic.IsPoolDepleted;
         }
 
         private static int CountActiveHumans(Team team)

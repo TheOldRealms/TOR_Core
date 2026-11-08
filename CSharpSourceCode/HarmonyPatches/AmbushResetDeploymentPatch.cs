@@ -36,8 +36,7 @@ namespace TOR_Core.HarmonyPatches
     /// override an existing method.</item>
     /// </list>
     /// Patch target is looked up via <c>AccessTools.Method</c> to survive
-    /// method renames across game updates, matching
-    /// <see cref="AmbushSkipGeneralsFormationPatch"/>.
+    /// method renames across game updates.
     /// </summary>
     [HarmonyPatch]
     public static class AmbushResetDeploymentPatch

@@ -36,7 +36,7 @@ namespace TOR_Core.Missions.AmbushMission
         private MissionResult _result;
         private TORMissionAmbushModel _model;
         private AmbushMissionController _controller;
-        private DefaultBattleMissionAgentSpawnLogic _spawnLogic;
+        private AmbushReinforcementMissionLogic _reinforcementLogic;
 
         private float _extractionProgress;
         private float _lastReportedBucket = -1f;
@@ -48,7 +48,7 @@ namespace TOR_Core.Missions.AmbushMission
             base.AfterStart();
             _model = Campaign.Current?.Models?.GetMissionAmbushModel() ?? new TORMissionAmbushModel();
             _controller = Mission.GetMissionBehavior<AmbushMissionController>();
-            _spawnLogic = Mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>();
+            _reinforcementLogic = Mission.GetMissionBehavior<AmbushReinforcementMissionLogic>();
         }
 
         public override void OnDeploymentFinished()
@@ -99,7 +99,7 @@ namespace TOR_Core.Missions.AmbushMission
             // only completes once the authored reinforcement schedule is
             // fully consumed AND the field is clear.
             if (CountActiveHumans(Mission.DefenderTeam) == 0
-                && !AreReinforcementsStillPending(BattleSideEnum.Defender))
+                && !AreReinforcementsStillPending())
             {
                 SetOutcome(AmbushOutcome.TotalVictory, successful: true,
                     reason: "defender team wiped + reinforcement pool depleted");
@@ -137,7 +137,7 @@ namespace TOR_Core.Missions.AmbushMission
             // but reinforcements are still pending, keep the bar filling —
             // extracting early is a valid choice.
             if (CountActiveHumans(Mission.DefenderTeam) == 0
-                && !AreReinforcementsStillPending(BattleSideEnum.Defender))
+                && !AreReinforcementsStillPending())
             {
                 if (_extractionProgress > 0f)
                 {
@@ -194,7 +194,7 @@ namespace TOR_Core.Missions.AmbushMission
                 // struck"; with reinforcements still pending that fiction
                 // holds even when the current wave is dead between arrivals.
                 if (CountActiveHumans(Mission.DefenderTeam) == 0
-                    && !AreReinforcementsStillPending(BattleSideEnum.Defender))
+                    && !AreReinforcementsStillPending())
                 {
                     SetOutcome(AmbushOutcome.TotalVictory, successful: true,
                         reason: "extraction complete and field also clear");
@@ -208,14 +208,19 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
-        private bool AreReinforcementsStillPending(BattleSideEnum side)
+        /// <summary>
+        /// True while the reinforcement wave timer may still deliver
+        /// another defender batch. Reads directly from the authoritative
+        /// pool-depleted flag on
+        /// <see cref="AmbushReinforcementMissionLogic"/>, so we're not
+        /// coupled to vanilla's phase bookkeeping for the gate. Attacker
+        /// side has no wave schedule (one-shot ambusher commitment);
+        /// callers only need the defender answer, so this is parameter-free.
+        /// </summary>
+        private bool AreReinforcementsStillPending()
         {
-            // DefaultBattleMissionAgentSpawnLogic.IsSideDepleted(side) returns
-            // true when the whole supply (initial + reinforcements) is spent.
-            // While it's still false, more agents can arrive — so we should
-            // NOT fire TotalVictory even if the field is momentarily empty.
-            if (_spawnLogic == null) return false;
-            return !_spawnLogic.IsSideDepleted(side);
+            if (_reinforcementLogic == null) return false;
+            return !_reinforcementLogic.IsPoolDepleted;
         }
 
         private static int CountActiveHumans(Team team)

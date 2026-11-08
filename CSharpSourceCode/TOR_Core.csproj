@@ -298,9 +298,11 @@
     <Compile Include="CampaignMechanics\Ambush\AmbushedOutcome.cs" />
     <Compile Include="Missions\AmbushMission\AmbushedEndLogic.cs" />
     <Compile Include="Missions\AmbushMission\AmbushEndLogic.cs" />
+    <Compile Include="Missions\AmbushMission\AmbushMissionAgentSpawnLogic.cs" />
     <Compile Include="Missions\AmbushMission\AmbushMissionController.cs" />
-    <Compile Include="Missions\AmbushMission\AmbushReinforcementSpawnTimer.cs" />
+    <Compile Include="Missions\AmbushMission\AmbushReinforcementMissionLogic.cs" />
     <Compile Include="Missions\AmbushMission\AmbushRetreatZone.cs" />
+    <Compile Include="Missions\AmbushMission\NoOpReinforcementSpawnTimer.cs" />
     <Compile Include="CampaignMechanics\Companions\TORAICompanionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\RaceFixCampaignBehavior.cs" />

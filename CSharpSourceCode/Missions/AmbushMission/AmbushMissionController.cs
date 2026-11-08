@@ -126,7 +126,7 @@ namespace TOR_Core.Missions.AmbushMission
 
         /// <summary>True once every member of the initial defender spawn is
         /// inactive. Readers: <see cref="AmbushEndLogic"/> gates Phase 2
-        /// behaviours on this; <see cref="AmbushReinforcementSpawnTimer"/>
+        /// behaviours on this; <see cref="AmbushReinforcementMissionLogic"/>
         /// applies the one-shot delay bonus when it flips.</summary>
         public bool IsInitialPatrolDefeated => _initialPatrolDefeated;
 
