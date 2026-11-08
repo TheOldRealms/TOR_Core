@@ -38,6 +38,9 @@ namespace TOR_Core.Utilities
 
         public event EventHandler<PracticeFightWonEventArgs> PracticeFightWon;
 
+        public event EventHandler<AmbushResolvedEventArgs> AmbushSucceeded;
+        public event EventHandler<AmbushResolvedEventArgs> AmbushRepelled;
+
         public TORCampaignEvents()
         {
             Instance = this;
@@ -193,6 +196,48 @@ namespace TOR_Core.Utilities
                 practiceFightWon(this, args);
             }
         }
+
+        /// <summary>
+        /// Fired when an ambush strike connects — Phase D TotalVictory /
+        /// Extracted, Phase F AmbushedFled / AmbushedHeroWounded /
+        /// AmbushedWiped, AI-on-AI non-TerribleFail. The
+        /// <see cref="CampaignMechanics.Ambush.AmbushCampaignBehavior"/>
+        /// subscribes and drives shared post-strike effects: disorganize
+        /// the ambushed, clear the ambusher's disorganization, future
+        /// reveal / cooldown hooks. Keeps producers ignorant of the full
+        /// effect set.
+        /// </summary>
+        public void OnAmbushSucceeded(MobileParty ambusher, MobileParty ambushed)
+        {
+            var args = new AmbushResolvedEventArgs(ambusher, ambushed);
+            var evt = AmbushSucceeded;
+            if (evt != null)
+            {
+                evt(this, args);
+            }
+        }
+
+        /// <summary>
+        /// Fired when an ambush is driven off before the strike lands —
+        /// Phase F AmbushRepelled, AI-on-AI TerribleFail. Same producers
+        /// as <see cref="OnAmbushSucceeded"/>, inverse branch. Placeholder
+        /// for the ambusher-penalty / reveal flow; no subscribers yet.
+        /// </summary>
+        public void OnAmbushRepelled(MobileParty ambusher, MobileParty ambushed)
+        {
+            var args = new AmbushResolvedEventArgs(ambusher, ambushed);
+            var evt = AmbushRepelled;
+            if (evt != null)
+            {
+                evt(this, args);
+            }
+        }
+    }
+
+    public class AmbushResolvedEventArgs(MobileParty ambusher, MobileParty ambushed) : EventArgs
+    {
+        public MobileParty Ambusher { get; private set; } = ambusher;
+        public MobileParty Ambushed { get; private set; } = ambushed;
     }
 
     public class HeroExtendedInfoCreatedEventArgs(Hero hero) : EventArgs

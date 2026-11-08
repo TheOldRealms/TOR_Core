@@ -46,7 +46,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
         // Distance (metres) the player's party is teleported along the escape
         // vector when picking "escape" from the Ambush Escape menu. Enough to
         // prevent immediate re-engagement by the target party's AI.
-        private const float AmbushEscapeTeleportDistance = 50f;
+        // Campaign-map units (approx km). Was 50f which teleported the
+        // slipper half the map away on an extraction; the intent is a
+        // short hop that just breaks engagement so the ambusher AI
+        // doesn't re-stack on player next tick.
+        private const float AmbushEscapeTeleportDistance = 3f;
 
         // First delivered scene from the scener (TOR_Environment/SceneObj/test_ambush/).
         // Has an authored AmbushRetreatZone (Radius=10) + TacticalRegion=Forest.
@@ -94,6 +98,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// window has fully decayed before being reset).</summary>
         private CampaignTime _spottedAt = CampaignTime.Zero;
 
+        /// <summary>Timestamp of the most recent "free slip-back-to-cover"
+        /// opportunity (silent total-victory cleared the player's active
+        /// cooldown records). Read by the eye-widget VM to light the hooded
+        /// event icon until the player either enters stealth or a new
+        /// cooldown is stamped. Zero when no opportunity is pending.</summary>
+        private CampaignTime _hoodedOpportunityAt = CampaignTime.Zero;
+
         /// <summary>Hostile observers inside <c>DetectionScanRadius</c> as
         /// of the last <see cref="OnQuarterHourlyTick"/>. Cached here so
         /// the per-frame VM refresh doesn't have to re-iterate
@@ -102,6 +113,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private readonly List<MobileParty> _cachedObserversInRange = new List<MobileParty>();
 
         public CampaignTime PlayerSpottedAt => _spottedAt;
+        public CampaignTime PlayerHoodedOpportunityAt => _hoodedOpportunityAt;
         public IReadOnlyList<MobileParty> CachedObserversInRange => _cachedObserversInRange;
 
         public bool IsPlayerInStealth => _playerInStealth;
@@ -417,6 +429,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
             _playerInStealth = true;
             _stealthEnteredAt = CampaignTime.Now;
+            // The hooded hint has been consumed - drop the icon.
+            _hoodedOpportunityAt = CampaignTime.Zero;
 
             party.Ai.SetDoNotMakeNewDecisions(true);
             party.SetMoveModeHold();
@@ -498,6 +512,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
             bool wasLoud = missionModel != null
                            && LastAmbushLoudness >= missionModel.LoudnessEventThreshold;
             ai.RecordAmbush(MobileParty.MainParty, null, repelled: false, wasLoud: wasLoud);
+            // Any fresh cooldown supersedes a pending hooded opportunity.
+            _hoodedOpportunityAt = CampaignTime.Zero;
         }
 
         public override void RegisterEvents()
@@ -522,6 +538,17 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
             ScreenManager.OnPushScreen -= OnScreenPushed;
             ScreenManager.OnPushScreen += OnScreenPushed;
+
+            // Shared post-strike dispatch for all three ambush producers
+            // (Phase D, Phase F, AI-on-AI). Idempotent re-subscription on
+            // a save-load reregister.
+            TORCampaignEvents.Instance.AmbushSucceeded -= OnAmbushSucceeded;
+            TORCampaignEvents.Instance.AmbushSucceeded += OnAmbushSucceeded;
+        }
+
+        private void OnAmbushSucceeded(object sender, AmbushResolvedEventArgs args)
+        {
+            ApplySuccessfulAmbushEffects(args.Ambusher, args.Ambushed);
         }
 
         private void OnQuarterHourlyTick()
@@ -1173,10 +1200,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
                         {
                             // Silent TotalVictory — clear any player
                             // records in the active cooldown window so
-                            // stealth is immediately available again.
+                            // stealth is immediately available again, and
+                            // stamp the hooded-opportunity timestamp so
+                            // the eye-widget's hooded icon lights to
+                            // nudge the player. The player still decides
+                            // whether to click the eye.
                             Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>()
                                 ?.ClearRecentRecordsInvolving(MobileParty.MainParty);
-                            TORCommon.Say("No one escaped the ambush. You can slip back into cover immediately.");
+                            _hoodedOpportunityAt = CampaignTime.Now;
                         }
                         else
                         {
@@ -1202,7 +1233,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                             var roster = _lastAmbushTarget.MemberRoster;
                             int total = roster != null ? roster.TotalManCount : -1;
                             bool active = _lastAmbushTarget.IsActive;
-                            TORCommon.Log(LogLevel.Info, 
+                            TORCommon.Log(LogLevel.Info,
                                 "[AmbushCampaignBehavior] TotalVictory post-mission:"
                                 + " target=" + GetPartyLabel(_lastAmbushTarget)
                                 + " active=" + active
@@ -1210,16 +1241,17 @@ namespace TOR_Core.CampaignMechanics.Ambush
                                 + " loudness=" + LastAmbushLoudness
                                 + (loud ? " (loud: cooldown extended)" : " (quiet: cooldown zeroed)"));
                         }
+                        // Phase D TotalVictory: ambusher=player, ambushed=_lastAmbushTarget.
+                        TORCampaignEvents.Instance.OnAmbushSucceeded(MobileParty.MainParty, _lastAmbushTarget);
                     }
                     _lastAmbushTarget = null;
                     break;
                 case AmbushOutcome.Extracted:
-                    // Re-stamp with current-mission loudness; see TotalVictory
-                    // branch for the reasoning. OnStrike pre-stamp ran before
-                    // LastAmbushLoudness was known.
-                    StampAmbushCooldown();
-                    WoundLeftBehindTroops(ExtractionTroopsLeftBehind);
-                    GameMenu.ActivateGameMenu(AmbushEscapeMenuId);
+                    // Already handled synchronously from AmbushEndLogic
+                    // .SetOutcome via BeginExtractionTransition. The menu
+                    // is on screen; vanilla's deferred OnPlayerBattleEnd
+                    // dispatch runs after the fact and has nothing to do
+                    // for this outcome.
                     break;
                 case AmbushOutcome.HeroWounded:
                     // Hero down. The "Ambush Failed" menu offers run-with-losses
@@ -1259,6 +1291,19 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     // Fallback: no ambusher ref (shouldn't normally happen)
                     // — still stamp the player's own cooldown.
                     StampAmbushCooldown();
+                }
+
+                // Phase F: AI ambushed the player. Non-repelled branch
+                // fires the shared "ambush landed" dispatch; the repelled
+                // branch fires its own event (placeholder for ambusher-
+                // penalty / reveal hooks).
+                if (!repelled)
+                {
+                    TORCampaignEvents.Instance.OnAmbushSucceeded(ambusher, MobileParty.MainParty);
+                }
+                else
+                {
+                    TORCampaignEvents.Instance.OnAmbushRepelled(ambusher, MobileParty.MainParty);
                 }
 
                 switch (LastAmbushedOutcome)
@@ -1318,6 +1363,48 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// pickup. Hero itself is unaffected; vanilla casualty flow has already
         /// run by the time this fires.
         /// </summary>
+        /// <summary>
+        /// Called synchronously from <see cref="Missions.AmbushMission.AmbushEndLogic"/>
+        /// the moment the Extracted outcome is decided, so the post-ambush
+        /// menu is already queued before the mission screen tears down.
+        /// This matches the brawl / POI-visit pattern where the next menu
+        /// is set up inside <c>MissionEnded</c>, not deferred to vanilla's
+        /// <c>OnPlayerBattleEnd</c> dispatch. Prevents the scoreboard
+        /// interstitial that otherwise wins the race.
+        /// </summary>
+        public void BeginExtractionTransition(int leftBehind)
+        {
+            StampAmbushCooldown();
+            WoundLeftBehindTroops(leftBehind);
+            // Phase D: ambusher is the player, ambushed is _lastAmbushTarget.
+            TORCampaignEvents.Instance.OnAmbushSucceeded(MobileParty.MainParty, _lastAmbushTarget);
+            GameMenu.ActivateGameMenu(AmbushEscapeMenuId);
+        }
+
+        /// <summary>
+        /// Shared campaign-side effect for any successful ambush, keyed
+        /// on the two role parties (ambusher / ambushed) rather than on
+        /// whether the player is involved — the player can be in either
+        /// role, and in both cases the ambushed side takes the
+        /// disorganized debuff while the ambusher sheds any they were
+        /// carrying. Disorganized is vanilla's ~6h -40% campaign-speed
+        /// state (<see cref="TaleWorlds.CampaignSystem.ComponentInterfaces.PartyImpairmentModel"/>);
+        /// <c>CanGetDisorganized</c> gates the apply so dead parties,
+        /// rosters below 10, and non-leader army members are skipped.
+        /// </summary>
+        private static void ApplySuccessfulAmbushEffects(MobileParty ambusher, MobileParty ambushed)
+        {
+            if (ambushed != null && ambushed.IsActive
+                && ambushed.Party != null
+                && Campaign.Current?.Models?.PartyImpairmentModel != null
+                && Campaign.Current.Models.PartyImpairmentModel.CanGetDisorganized(ambushed.Party))
+            {
+                ambushed.SetDisorganized(true);
+            }
+            if (ambusher != null && ambusher.IsActive && ambusher.IsDisorganized)
+                ambusher.SetDisorganized(false);
+        }
+
         private static void WoundLeftBehindTroops(int count)
         {
             if (count <= 0) return;
@@ -1665,10 +1752,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private void OnAmbushEscapeEngage()
         {
             // Open a vanilla field battle at current positions. Target party is
-            // whoever we just ambushed.
+            // whoever we just ambushed. Close the pre-extraction encounter
+            // first; StartPartyEncounter wants a clean slate and vanilla
+            // doesn't handle stacking a second encounter on top of a
+            // dangling one well.
             if (_lastAmbushTarget == null || !_lastAmbushTarget.IsActive) { GameMenu.ExitToLast(); _lastAmbushTarget = null; return; }
             var target = _lastAmbushTarget;
             _lastAmbushTarget = null;
+            if (PlayerEncounter.Current != null) PlayerEncounter.Finish(false);
             EncounterManager.StartPartyEncounter(PartyBase.MainParty, target.Party);
         }
 
@@ -1676,7 +1767,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             // Teleport the player's party a short distance along the vector
             // pointing away from the target so the AI doesn't immediately
-            // re-engage.
+            // re-engage, then close the lingering encounter — the
+            // campaign doesn't handle unfinished PlayerEncounters cleanly
+            // and the hit-and-run fiction is "the engagement is over."
             var main = MobileParty.MainParty;
             if (main != null && _lastAmbushTarget != null && _lastAmbushTarget.IsActive)
             {
@@ -1684,6 +1777,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 main.Position = main.Position + away * AmbushEscapeTeleportDistance;
             }
             _lastAmbushTarget = null;
+            if (PlayerEncounter.Current != null) PlayerEncounter.Finish(false);
             GameMenu.ExitToLast();
         }
 

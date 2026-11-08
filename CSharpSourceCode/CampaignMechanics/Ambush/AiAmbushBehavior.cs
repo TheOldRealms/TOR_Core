@@ -768,6 +768,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
             bool victimWonExchange = tier == AmbushOutcomeTier.TerribleFail;
             RecordAmbush(ambusher, victim, repelled: victimWonExchange);
 
+            // Fire the shared ambush-resolution dispatch; AmbushCampaignBehavior
+            // owns the post-strike effects (disorganize + whatever lands later).
+            // TerribleFail maps to the AmbushRepelled branch.
+            if (victimWonExchange)
+                TORCampaignEvents.Instance.OnAmbushRepelled(ambusher, victim);
+            else
+                TORCampaignEvents.Instance.OnAmbushSucceeded(ambusher, victim);
+
             TORCommon.Say("[AI Ambush] " + PartyLabel(ambusher) + " struck "
                           + PartyLabel(victim) + " [" + tier + "]: wounded " + victimWounds
                           + " (took " + ambusherWounds + ") — "
