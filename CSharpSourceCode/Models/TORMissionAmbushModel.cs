@@ -25,6 +25,15 @@ namespace TOR_Core.Models
         /// ambush — fewer bodies on screen at once.</summary>
         public virtual float TargetTotalTroopRatio => 0.25f;
 
+        /// <summary>Hard cap on troops that spawn upfront per side. The rest of
+        /// the roster stays in the reinforcement pool and flows in via the
+        /// existing wave timer. Keeps the initial engagement readable (both
+        /// for the ambusher scouting targets and the victim reacting to a
+        /// visible patrol) and gives Phase 2 reinforcements something to
+        /// deliver. 15 per side matches the test_ambush scene footprint;
+        /// larger scenes can rebalance via override.</summary>
+        public virtual int InitialOnFieldCap => 15;
+
         // ---- Reinforcement cadence ----
 
         /// <summary>Enemy reinforcement wave intervals (seconds between

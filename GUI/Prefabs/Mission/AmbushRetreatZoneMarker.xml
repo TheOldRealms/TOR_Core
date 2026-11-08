@@ -1,17 +1,25 @@
 <Prefab>
   <!-- In-mission marker for the ambush retreat zone. Driven by
-       AmbushRetreatZoneMarkerVM: the view projects the zone's world
-       position each tick and sets ScreenX/ScreenY. IsVisible gates
-       Phase 2 + on-screen. Visual is a placeholder: BlankWhiteCircle
-       (vanilla built-in sprite) tinted yellow. Scale up to a proper
-       flag / banner mesh when dedicated art lands. -->
+       AmbushRetreatZoneMarkerVM; the view projects the zone's world
+       position each tick through MBWindowManager.WorldToScreen and
+       writes the screen pixel coordinates as a single Vec2 on the VM.
+
+       Prefab idiom matches vanilla FormationMarker.xml:
+       - Outer Widget stretches to layer bounds so children can place
+         themselves in screen pixels off the top-left origin.
+       - Inner Widget uses CoverChildren sizing + Position="@ScreenPosition"
+         to anchor at the projected screen point. DO NOT use
+         HorizontalAlignment / VerticalAlignment + PositionXOffset here;
+         those produce the HUD-corner-stuck bug the v1 marker had.
+
+       Visual is a placeholder: BlankWhiteCircle tinted yellow. Scale up
+       to a proper banner / flag brush when dedicated art lands. -->
   <Window>
     <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IsHidden="@_not@IsVisible">
       <Children>
         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
                 SuggestedWidth="32" SuggestedHeight="32"
-                HorizontalAlignment="Left" VerticalAlignment="Top"
-                PositionXOffset="@ScreenX" PositionYOffset="@ScreenY"
+                Position="@ScreenPosition"
                 Sprite="BlankWhiteCircle" Color="#FFD700FF" />
       </Children>
     </Widget>

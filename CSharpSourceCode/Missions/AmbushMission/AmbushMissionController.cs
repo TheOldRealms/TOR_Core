@@ -33,11 +33,18 @@ namespace TOR_Core.Missions.AmbushMission
         // (= instant extraction victory as soon as the player stands still).
         private const float FallbackGraceSeconds = 2f;
 
-        private DefaultBattleMissionAgentSpawnLogic _spawnLogic;
+        private AmbushMissionAgentSpawnLogic _spawnLogic;
+        private AmbushReinforcementMissionLogic _reinforcementLogic;
         // Guard flag read by OnAgentCreated so our own custom spawn
         // pipeline doesn't re-teleport the agents we've just placed at
         // the correct grid position via AgentBuildData.InitialPosition.
         private bool _customSpawnInProgress;
+        // Mission-tick heartbeat: logs every 15s of mission real time
+        // whether reinforcements are armed and what the active-troop
+        // counts look like, so we can see from the log whether the
+        // tick loop is even running and whether the spawn logic has
+        // reinforcements queued on each side.
+        private float _tickHeartbeatSeconds;
         // One-shot flag: after vanilla's AutoDeployTeamUsingDeploymentPlan
         // has run (which happens between AfterStart and first OnMissionTick),
         // we reposition each attacker formation plate back to its authored
@@ -50,24 +57,6 @@ namespace TOR_Core.Missions.AmbushMission
         // after vanilla has finished, so the override sticks.
         private bool _initialRepositionDone;
 
-        // Cached reflection handles for bumping each side's
-        // MissionBattleSideSpawnContext._numSpawnedTroops as we do our
-        // custom spawn. Vanilla's DefaultBattleMissionAgentSpawnLogic
-        // tracks a per-side "troops the context placed" counter that
-        // reads NumberOfActiveTroops = _numSpawnedTroops - supplier
-        // .NumRemovedTroops. The supplier side of the math still works
-        // for us (PartyGroupAgentOrigin.SetKilled forwards to supplier
-        // .OnTroopKilled as our custom-spawned agents die). But the
-        // _numSpawnedTroops side stays at 0 because our spawn path
-        // bypasses the vanilla SpawnTroops loop that bumps it. Mid-
-        // battle that math goes negative; IsSideDepleted never fires
-        // true; vanilla's post-battle state machine stalls; the
-        // stealth-menu restore / loot-flow chain never completes.
-        // Bumping _numSpawnedTroops per custom-spawned agent matches
-        // vanilla line 386 of MissionBattleSideSpawnContext.SpawnTroops.
-        private System.Reflection.FieldInfo _numSpawnedTroopsField;
-        private System.Array _battleSideSpawnContextsArray;
-        private AmbushReinforcementSpawnTimer _reinforcementTimer;
         private BasicMissionTimer _fallbackGraceTimer;
         private bool _fallbackResolved;
         private TORMissionAmbushModel _model;
@@ -80,6 +69,13 @@ namespace TOR_Core.Missions.AmbushMission
         private readonly PartyBase _victimParty;
         private BattleSideEnum _ambusherSide;
         private BattleSideEnum _victimSide;
+        // Counts of agents our DoCustom*Spawn paths actually produced.
+        // Handed to AmbushMissionAgentSpawnLogic.MarkInitialSpawnComplete
+        // after the custom spawn finishes so the shared phase bookkeeping
+        // (RemainingSpawnNumber) mirrors what vanilla's SpawnTroops would
+        // have decremented after an initial batch.
+        private int _ambusherInitialSpawnCount;
+        private int _victimInitialSpawnCount;
 
         // Per-class flat position + yaw lists built from the AmbushFormationLayout
         // result: for each AmbushFormation chunk with N troops bound to a spot
@@ -180,7 +176,8 @@ namespace TOR_Core.Missions.AmbushMission
             // procedural fallback. Reset is done by the campaign behavior
             // immediately before MissionState.OpenNew so stale zones from any
             // prior scene are cleared BEFORE this scene's scripts fire.
-            _spawnLogic = Mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>();
+            _spawnLogic = Mission.GetMissionBehavior<AmbushMissionAgentSpawnLogic>();
+            _reinforcementLogic = Mission.GetMissionBehavior<AmbushReinforcementMissionLogic>();
             _model = Campaign.Current?.Models?.GetMissionAmbushModel() ?? new TORMissionAmbushModel();
             AmbushRetreatZone.ProceduralFallbackRadius = _model.ProceduralFallbackRadius;
 
@@ -250,9 +247,11 @@ namespace TOR_Core.Missions.AmbushMission
                     + "instance to the controller.");
             }
 
-            // Drain the same supplier instance vanilla's spawn logic holds, so
-            // vanilla's later SetSpawnTroops(..., enforceSpawning: true) has
-            // nothing to allocate and places no agents at (0, 0, 0).
+            // Drain the whole ambusher supplier. Ambusher commits as a
+            // one-shot force (no wave-batch fraction configured for the
+            // ambusher side), so leftover troops in the supplier would
+            // never spawn via the reinforcement path. The on-field cap
+            // is a victim-side concept and lives in DoCustomVictimSpawn.
             var origins = _ambusherSupplier.SupplyTroops(int.MaxValue).ToList();
             bool isPlayerSide = _ambusherSide == BattleSideEnum.Attacker
                                 && IsPlayerAmbusher;
@@ -328,7 +327,7 @@ namespace TOR_Core.Missions.AmbushMission
                         }
 
                         var agent = Mission.SpawnAgent(buildData, false);
-                        BumpSpawnedCount(_ambusherSide);
+                        _spawnLogic?.BumpSpawnedCount(_ambusherSide);
                         if (chunkFormation == null) chunkFormation = agent.Formation;
                         if (isPlayerChar)
                         {
@@ -346,6 +345,7 @@ namespace TOR_Core.Missions.AmbushMission
             {
                 _customSpawnInProgress = false;
             }
+            _ambusherInitialSpawnCount = spawned;
             TORCommon.Log(LogLevel.Info,
                 "[AmbushMission] DoCustomAmbusherSpawn: spawned=" + spawned
                 + "/" + origins.Count);
@@ -531,6 +531,15 @@ namespace TOR_Core.Missions.AmbushMission
                 + " formations across " + touched.Count + " spots");
         }
 
+        private static int CountActiveHumansOnTeam(Team team)
+        {
+            if (team == null) return 0;
+            int n = 0;
+            foreach (var a in team.ActiveAgents)
+                if (a != null && a.IsHuman && a.IsActive()) n++;
+            return n;
+        }
+
         /// <summary>
         /// Walks every vanilla attacker-team Formation and binds it to the
         /// matching unbound <see cref="AmbushFormation"/> chunk in the
@@ -675,6 +684,16 @@ namespace TOR_Core.Missions.AmbushMission
                 throw;
             }
 
+            // Hand phase bookkeeping back to the spawn-logic subclass in
+            // one call. See AmbushMissionAgentSpawnLogic for the full
+            // explanation of what gets zeroed / decremented / fired
+            // internally.
+            _spawnLogic?.MarkInitialSpawnComplete(
+                _victimSide == BattleSideEnum.Defender
+                    ? _victimInitialSpawnCount : _ambusherInitialSpawnCount,
+                _victimSide == BattleSideEnum.Defender
+                    ? _ambusherInitialSpawnCount : _victimInitialSpawnCount);
+
             // Register the ambush tactic on the ambusher team's TeamAI.
             // Ambusher = Attacker in both phases. Does not short-circuit
             // player control: if the player is the ambusher, the tactic
@@ -691,43 +710,6 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
-        /// <summary>
-        /// Cache the reflection handles once in AfterStart so BumpSpawnedCount
-        /// doesn't do dictionary lookups per agent. Both handles may legitimately
-        /// resolve to null (null-tolerant game versions) — BumpSpawnedCount
-        /// no-ops in that case and the mission runs as before (same stall risk
-        /// but no new failure mode).
-        /// </summary>
-        private void InitSpawnContextReflection()
-        {
-            if (_spawnLogic == null) return;
-            var contextsField = typeof(DefaultBattleMissionAgentSpawnLogic).GetField(
-                "_battleSideSpawnContexts",
-                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
-            _battleSideSpawnContextsArray = contextsField?.GetValue(_spawnLogic) as System.Array;
-            if (_battleSideSpawnContextsArray == null || _battleSideSpawnContextsArray.Length == 0) return;
-            var sampleContext = _battleSideSpawnContextsArray.GetValue(0);
-            if (sampleContext == null) return;
-            _numSpawnedTroopsField = sampleContext.GetType().GetField(
-                "_numSpawnedTroops",
-                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
-        }
-
-        /// <summary>
-        /// Match what vanilla does at MissionBattleSideSpawnContext.SpawnTroops
-        /// line 386: <c>_numSpawnedTroops++</c>. Called per agent in DoCustom
-        /// *Spawn so the context's NumberOfActiveTroops reflects reality.
-        /// </summary>
-        private void BumpSpawnedCount(BattleSideEnum side)
-        {
-            if (_battleSideSpawnContextsArray == null || _numSpawnedTroopsField == null) return;
-            int idx = (int)side;
-            if (idx < 0 || idx >= _battleSideSpawnContextsArray.Length) return;
-            var ctx = _battleSideSpawnContextsArray.GetValue(idx);
-            if (ctx == null) return;
-            int current = (int)_numSpawnedTroopsField.GetValue(ctx);
-            _numSpawnedTroopsField.SetValue(ctx, current + 1);
-        }
 
         /// <summary>
         /// Vanilla's defender spawn occasionally drops specific troops (seen
@@ -756,7 +738,12 @@ namespace TOR_Core.Missions.AmbushMission
                     "[AmbushMission] DoCustomVictimSpawn skipped: no sp_defender_* entities in scene");
                 return;
             }
-            var origins = _victimSupplier.SupplyTroops(int.MaxValue).ToList();
+            // Partial drain: whatever stays in the supplier past the
+            // initial cap is what vanilla's reinforcement wave timer
+            // pulls from on each tick when the pool is non-empty.
+            int victimRequest = _model.InitialOnFieldCap > 0
+                ? _model.InitialOnFieldCap : int.MaxValue;
+            var origins = _victimSupplier.SupplyTroops(victimRequest).ToList();
             // In Phase F (AI ambusher) the victim IS the player. Their
             // agents go on the player side and the player character gets
             // AgentControllerType.Player. In Phase D the victim is AI, so
@@ -839,7 +826,7 @@ namespace TOR_Core.Missions.AmbushMission
                                 buildData.Controller(AgentControllerType.Player);
                         }
                         var agent = Mission.SpawnAgent(buildData, false);
-                        BumpSpawnedCount(_victimSide);
+                        _spawnLogic?.BumpSpawnedCount(_victimSide);
                         if (isPlayerChar)
                         {
                             TORCommon.Log(LogLevel.Info,
@@ -854,6 +841,7 @@ namespace TOR_Core.Missions.AmbushMission
             {
                 _customSpawnInProgress = false;
             }
+            _victimInitialSpawnCount = spawned;
             TORCommon.Log(LogLevel.Info,
                 "[AmbushMission] DoCustomVictimSpawn: spawned=" + spawned
                 + "/" + origins.Count);
@@ -1093,6 +1081,26 @@ namespace TOR_Core.Missions.AmbushMission
             base.OnAgentCreated(agent);
             if (agent == null || !agent.IsHuman) return;
 
+            // Diagnostic (task #79 follow-up): log every late-spawn
+            // defender agent so we can see where vanilla's reinforcement
+            // path actually placed them. OnAgentCreated reports (0,0,0)
+            // for the agent at this moment; the formation's OrderPosition
+            // is the authoritative spawn location.
+            if (!_customSpawnInProgress
+                && agent.Team != null
+                && agent.Team.Side == _victimSide)
+            {
+                TORCommon.Log(LogLevel.Info,
+                    "[AmbushReinforcement][agent] side=" + agent.Team.Side
+                    + " char=" + (agent.Character?.StringId ?? "?")
+                    + " formation=" + (agent.Formation?.FormationIndex.ToString() ?? "null")
+                    + " formationOrderPos="
+                      + (agent.Formation != null
+                            ? agent.Formation.OrderPosition.ToString() : "null")
+                    + " formationHasBeenPositioned="
+                      + (agent.Formation?.HasBeenPositioned.ToString() ?? "null"));
+            }
+
             // Our shared-supplier custom spawn runs Mission.SpawnAgent
             // with AgentBuildData.InitialPosition pre-set to the grid
             // coordinates we want; teleporting the agent here would snap
@@ -1250,6 +1258,27 @@ namespace TOR_Core.Missions.AmbushMission
         public override void OnMissionTick(float dt)
         {
             base.OnMissionTick(dt);
+
+            // Heartbeat: dump once every 15s of mission real time so we
+            // can see from the log whether OnMissionTick is firing and
+            // whether the spawn logic has reinforcements pending on each
+            // side. Also mirrors the custom timer's elapsed time so the
+            // interval can be eyeballed from log timestamps alone.
+            _tickHeartbeatSeconds += dt;
+            if (_tickHeartbeatSeconds >= 15f)
+            {
+                _tickHeartbeatSeconds = 0f;
+                int defAct = CountActiveHumansOnTeam(Mission.DefenderTeam);
+                int atkAct = CountActiveHumansOnTeam(Mission.AttackerTeam);
+                int defRem = _spawnLogic?.NumberOfRemainingDefenderTroops ?? -1;
+                int atkRem = _spawnLogic?.NumberOfRemainingAttackerTroops ?? -1;
+                string mode = Mission?.Mode.ToString() ?? "null";
+                TORCommon.Log(LogLevel.Info,
+                    "[AmbushMission][heartbeat] mode=" + mode
+                    + " attacker active=" + atkAct + " pool=" + atkRem
+                    + " | defender active=" + defAct + " pool=" + defRem);
+            }
+
             if (!_initialRepositionDone
                 && IsPlayerAmbusher
                 && Mission?.Mode == TaleWorlds.Core.MissionMode.Deployment
@@ -1284,7 +1313,7 @@ namespace TOR_Core.Missions.AmbushMission
                 if (allDown)
                 {
                     _initialPatrolDefeated = true;
-                    _reinforcementTimer?.OnInitialPatrolDefeated();
+                    _reinforcementLogic?.OnInitialPatrolDefeated();
                     InitialPatrolDefeated?.Invoke();
 
                     // Who's still on the defender side at the moment Phase 2
@@ -1377,14 +1406,43 @@ namespace TOR_Core.Missions.AmbushMission
                 defenderReinforcementBatchPercentage: _model.ReinforcementBatchFraction,
                 attackerReinforcementBatchPercentage: _model.PlayerReinforcementBatchFraction);
 
+            // Initial-spawn cap applies to the VICTIM side only: the
+            // victim is the side that receives reinforcement waves (via
+            // ReinforcementBatchFraction), so capping their initial lets
+            // the pool materialize as later waves. The ambusher commits
+            // one-shot — no wave-batch fraction configured for them — so
+            // capping them would strand their leftover troops in a pool
+            // that nothing drains. Phase D: victim = defender (AI patrol).
+            // Phase F: victim = defender (player). Same side mapping
+            // either way, so the branch simplifies to "defender gets the
+            // cap when victim sits on Defender, else attacker gets it".
+            int cap = _model.InitialOnFieldCap;
+            int defenderInitial = defenderTotal;
+            int attackerInitial = attackerTotal;
+            if (cap > 0)
+            {
+                if (_victimSide == BattleSideEnum.Defender)
+                    defenderInitial = System.Math.Min(defenderTotal, cap);
+                else
+                    attackerInitial = System.Math.Min(attackerTotal, cap);
+            }
+
             _spawnLogic.InitWithSinglePhase(
                 defenderTotal, attackerTotal,
-                defenderTotal, attackerTotal,
+                defenderInitial, attackerInitial,
                 spawnDefenders: false, spawnAttackers: false,
                 in spawnSettings);
 
-            _reinforcementTimer = new AmbushReinforcementSpawnTimer(_model);
-            _spawnLogic.SetCustomReinforcementSpawnTimer(_reinforcementTimer);
+            // Reinforcement waves are owned by AmbushReinforcementMissionLogic
+            // (registered by the opener). We still have to hand vanilla a
+            // non-null ICustomReinforcementSpawnTimer because
+            // DefaultBattleMissionAgentSpawnLogic.SetReinforcementsSpawnEnabled
+            // calls _customReinforcementSpawnTimer.ResetTimer without a
+            // null check when ReinforcementTimingMethod is CustomTimer,
+            // NPEing right after FinishDeployment. The stub always
+            // returns false from Check, so vanilla never actually spawns
+            // anything through this path.
+            _spawnLogic.SetCustomReinforcementSpawnTimer(new NoOpReinforcementSpawnTimer());
         }
     }
 }

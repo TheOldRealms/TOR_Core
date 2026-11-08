@@ -3,18 +3,19 @@ using TaleWorlds.Library;
 namespace TOR_Core.Missions.AmbushMission.UI
 {
     /// <summary>
-    /// Data source for the Gauntlet prefab that renders the retreat-zone
-    /// marker on screen. Driven every tick by
-    /// <see cref="AmbushRetreatZoneMarkerView.OnMissionScreenTick"/>:
+    /// Data source for the retreat-zone marker prefab. Driven every tick
+    /// by <see cref="AmbushRetreatZoneMarkerView.OnMissionScreenTick"/>:
     /// the view projects the zone's world position through the combat
-    /// camera and sets <see cref="ScreenX"/> / <see cref="ScreenY"/>.
-    /// Visibility is gated on Phase 2 + on-screen.
+    /// camera and writes a single <see cref="ScreenPosition"/> Vec2,
+    /// matching the vanilla FormationMarker prefab idiom (one Vec2
+    /// positions the widget via Position=@Binding, not two offsets on
+    /// an aligned widget). IsVisible is the ALT-held + alive-zone gate
+    /// (see view for the full predicate list).
     /// </summary>
     public class AmbushRetreatZoneMarkerVM : ViewModel
     {
         private bool _isVisible;
-        private float _screenX;
-        private float _screenY;
+        private Vec2 _screenPosition;
 
         [DataSourceProperty]
         public bool IsVisible
@@ -29,26 +30,14 @@ namespace TOR_Core.Missions.AmbushMission.UI
         }
 
         [DataSourceProperty]
-        public float ScreenX
+        public Vec2 ScreenPosition
         {
-            get => _screenX;
+            get => _screenPosition;
             set
             {
-                if (_screenX == value) return;
-                _screenX = value;
-                OnPropertyChangedWithValue(value, nameof(ScreenX));
-            }
-        }
-
-        [DataSourceProperty]
-        public float ScreenY
-        {
-            get => _screenY;
-            set
-            {
-                if (_screenY == value) return;
-                _screenY = value;
-                OnPropertyChangedWithValue(value, nameof(ScreenY));
+                if (_screenPosition.x == value.x && _screenPosition.y == value.y) return;
+                _screenPosition = value;
+                OnPropertyChangedWithValue(value, nameof(ScreenPosition));
             }
         }
     }

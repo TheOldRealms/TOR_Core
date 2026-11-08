@@ -23,6 +23,7 @@ using TaleWorlds.MountAndBlade.Missions.Handlers;
 using TaleWorlds.MountAndBlade.Source.Missions;
 using TaleWorlds.MountAndBlade.Source.Missions.Handlers;
 using TaleWorlds.MountAndBlade.Source.Missions.Handlers.Logic;
+using TOR_Core.Extensions;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.MountAndBlade.View.MissionViews.Order;
@@ -274,14 +275,22 @@ namespace TOR_Core.Missions
                 // controller — it resolves sides and counts from them.
                 var ambusherParty = PartyBase.MainParty;
                 var victimParty = MapEvent.PlayerMapEvent.DefenderSide.LeaderParty;
+                // Ambush spawn logic subclass: keeps vanilla type
+                // identity for all dependents (BattleEndLogic, our end
+                // logics, TOR's campaign-wide ReinforcementMissionLogic)
+                // while encapsulating the per-ambush bookkeeping our
+                // custom spawn needs.
+                var ambushSpawnLogic = new AmbushMission.AmbushMissionAgentSpawnLogic(
+                    suppliers, BattleSideEnum.Attacker, BattleSizeType.Battle);
+                var model = Campaign.Current?.Models?.GetMissionAmbushModel()
+                            ?? new TOR_Core.Models.TORMissionAmbushModel();
                 List<MissionBehavior> list =
                 [
-                    // Player side = Attacker (user-confirmed; previous read of EncounterManager
-                    // internals was misleading).
-                    new DefaultBattleMissionAgentSpawnLogic(suppliers, BattleSideEnum.Attacker, BattleSizeType.Battle),
+                    ambushSpawnLogic,
                     new BattlePowerCalculationLogic(),
                     new BattleSpawnLogic("battle_set"),
                     new AmbushMission.AmbushMissionController(ambusherParty, victimParty, ambusherSupplier, victimSupplier),
+                    new AmbushMission.AmbushReinforcementMissionLogic(victimSupplier, ambushSpawnLogic, model),
                     new AmbushMission.AmbushEndLogic(),
                     new AmbushMission.AmbushLoudnessTracker(),
                     new AmbushMission.AmbushTacticalAnchorLogic(),
@@ -317,9 +326,15 @@ namespace TOR_Core.Missions
                     new AssignPlayerRoleInTeamMissionController(true, false, false),
                     new BannerBearerLogic(),
                 ];
-                Hero attackerHero = MapEvent.PlayerMapEvent.AttackerSide.LeaderParty.LeaderHero;
-                Hero defenderHero = MapEvent.PlayerMapEvent.DefenderSide.LeaderParty.LeaderHero;
-                list.Add(new SandboxGeneralsAndCaptainsAssignmentLogic(attackerHero?.Name, defenderHero?.Name, null, null, false));
+                // SandboxGeneralsAndCaptainsAssignmentLogic deliberately
+                // NOT added. Its OnDeploymentFinished treats the player
+                // ambusher as a team General and calls
+                // SetFormationPositioningFromDeploymentPlan on a formation
+                // our ambush scene has no plan entry for; the native call
+                // derefs invalid data and the game dies with no managed
+                // exception. Ambush missions don't use the generals /
+                // bodyguard mechanic anyway, so skipping registration
+                // avoids the crash without needing a Harmony patch.
                 list.Add(new EquipmentControllerLeaveLogic());
                 list.Add(new MissionHardBorderPlacer());
                 list.Add(new MissionBoundaryPlacer());
@@ -372,16 +387,22 @@ namespace TOR_Core.Missions
                 // to the controller.
                 var ambusherParty = MapEvent.PlayerMapEvent.AttackerSide.LeaderParty;
                 var victimParty = PartyBase.MainParty;
+                // Player is on the Defender side here. The spawn logic's
+                // "player side" arg is purely informational for vanilla's
+                // deployment-UI / hiding behaviour; it doesn't gate the
+                // spawn pipeline. Subclass identity reasoning same as
+                // the Phase D opener.
+                var ambushSpawnLogic = new AmbushMission.AmbushMissionAgentSpawnLogic(
+                    suppliers, BattleSideEnum.Defender, BattleSizeType.Battle);
+                var model = Campaign.Current?.Models?.GetMissionAmbushModel()
+                            ?? new TOR_Core.Models.TORMissionAmbushModel();
                 List<MissionBehavior> list =
                 [
-                    // Player is on the Defender side here. The spawn logic's
-                    // "player side" arg is purely informational for vanilla's
-                    // deployment-UI / hiding behaviour; it doesn't gate the
-                    // spawn pipeline.
-                    new DefaultBattleMissionAgentSpawnLogic(suppliers, BattleSideEnum.Defender, BattleSizeType.Battle),
+                    ambushSpawnLogic,
                     new BattlePowerCalculationLogic(),
                     new BattleSpawnLogic("battle_set"),
                     new AmbushMission.AmbushMissionController(ambusherParty, victimParty, ambusherSupplier, victimSupplier),
+                    new AmbushMission.AmbushReinforcementMissionLogic(victimSupplier, ambushSpawnLogic, model),
                     new AmbushMission.AmbushedEndLogic(),
                     new AmbushMission.AmbushLoudnessTracker(),
                     new AmbushMission.AmbushTacticalAnchorLogic(),
@@ -417,9 +438,11 @@ namespace TOR_Core.Missions
                     new AssignPlayerRoleInTeamMissionController(true, false, false),
                     new BannerBearerLogic(),
                 ];
-                Hero attackerHero = MapEvent.PlayerMapEvent.AttackerSide.LeaderParty.LeaderHero;
-                Hero defenderHero = MapEvent.PlayerMapEvent.DefenderSide.LeaderParty.LeaderHero;
-                list.Add(new SandboxGeneralsAndCaptainsAssignmentLogic(attackerHero?.Name, defenderHero?.Name, null, null, false));
+                // SandboxGeneralsAndCaptainsAssignmentLogic deliberately
+                // NOT added (same reason as Phase D opener): it derefs
+                // invalid data when our ambush scene has no deployment
+                // plan entry for the generals formation class, and the
+                // generals / bodyguard mechanic isn't used in ambush.
                 list.Add(new EquipmentControllerLeaveLogic());
                 list.Add(new MissionHardBorderPlacer());
                 list.Add(new MissionBoundaryPlacer());

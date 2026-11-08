@@ -88,19 +88,21 @@ namespace TOR_Core.Missions.AmbushMission
                 return;
             }
 
-            // Priority 3 — total victory. The ambush mission does a single
-            // custom spawn in AmbushMissionController.AfterStart and drains
-            // both suppliers at that point; no reinforcement wave can
-            // legitimately arrive later. Field clear = win. The vanilla
-            // IsSideDepleted check (via AreReinforcementsStillPending) is
-            // a scene-driven-reinforcement concept that reports pending=true
-            // for our mission even with the supplier empty, which was
-            // blocking this branch and routing wipes through the extraction
-            // path instead.
-            if (CountActiveHumans(Mission.DefenderTeam) == 0)
+            // Priority 3 — total victory. The custom spawn now does a
+            // partial drain (capped at InitialOnFieldCap per side) so the
+            // supplier legitimately holds reinforcement origins past the
+            // initial wave. Firing TotalVictory the frame the initial
+            // patrol drops would end the mission before a single wave
+            // arrives; the player clears 15 troops in Phase 1 and the
+            // "you win" fires before reinforcements can even appear.
+            // Gate on the spawn-logic's pool-depleted flag so the mission
+            // only completes once the authored reinforcement schedule is
+            // fully consumed AND the field is clear.
+            if (CountActiveHumans(Mission.DefenderTeam) == 0
+                && !AreReinforcementsStillPending(BattleSideEnum.Defender))
             {
                 SetOutcome(AmbushOutcome.TotalVictory, successful: true,
-                    reason: "defender team wiped");
+                    reason: "defender team wiped + reinforcement pool depleted");
                 return;
             }
 
@@ -128,13 +130,14 @@ namespace TOR_Core.Missions.AmbushMission
         /// </summary>
         private void TickExtractionBar(float dt, Agent mainAgent)
         {
-            // Safety guard: if the field is already clear, the mission is a
-            // TotalVictory the moment Priority 3 catches it on the next
-            // check. Filling the bar and toasting "Extraction N%" in that
-            // window would read as noise; reset the bar to 0 and bail so
-            // the player never sees the retreat UI for what should be a
-            // clean win.
-            if (CountActiveHumans(Mission.DefenderTeam) == 0)
+            // Safety guard: when the field is clear AND no more
+            // reinforcements are pending, Priority 3 will fire TotalVictory
+            // next tick. Suppress the extraction UI during that short
+            // window. When the field is momentarily empty between waves
+            // but reinforcements are still pending, keep the bar filling —
+            // extracting early is a valid choice.
+            if (CountActiveHumans(Mission.DefenderTeam) == 0
+                && !AreReinforcementsStillPending(BattleSideEnum.Defender))
             {
                 if (_extractionProgress > 0f)
                 {
@@ -185,12 +188,13 @@ namespace TOR_Core.Missions.AmbushMission
 
             if (_extractionProgress >= 1f)
             {
-                // Promote to TotalVictory if the field cleared during the
-                // bar fill. The escape-menu flow assumes surviving enemies
-                // are "forming up where you struck" — opening it when the
-                // defender team is empty reads as absurd to the player
-                // and sends them into a menu with no sensible options.
-                if (CountActiveHumans(Mission.DefenderTeam) == 0)
+                // Promote to TotalVictory only if the field is fully clear
+                // AND the reinforcement pool is exhausted. The escape-menu
+                // flow assumes surviving enemies are "forming up where you
+                // struck"; with reinforcements still pending that fiction
+                // holds even when the current wave is dead between arrivals.
+                if (CountActiveHumans(Mission.DefenderTeam) == 0
+                    && !AreReinforcementsStillPending(BattleSideEnum.Defender))
                 {
                     SetOutcome(AmbushOutcome.TotalVictory, successful: true,
                         reason: "extraction complete and field also clear");
