@@ -292,8 +292,34 @@ namespace TOR_Core.Missions.AmbushMission
                     TORCommon.Log(LogLevel.Info,
                         "[AmbushEndLogic] calling SetPlayerVictorious");
                     PlayerEncounter.SetPlayerVictorious();
+                    // Diagnostic (task #82): dump the state the scoreboard
+                    // VM will read when it eventually renders. If
+                    // WinningSide here is None or opposite the player
+                    // side, something downstream clears the override
+                    // before the end-screen draws.
+                    // mapEvent field is private, but the two top-level
+                    // static accessors go through it: PlayerEncounter
+                    // .Battle and PlayerEncounter.BattleState. Both
+                    // return the current state we need to verify.
+                    var battle = PlayerEncounter.Battle;
                     TORCommon.Log(LogLevel.Info,
-                        "[AmbushEndLogic] SetPlayerVictorious returned");
+                        "[AmbushEndLogic] post-SetPlayerVictorious:"
+                        + " battle="
+                          + (battle == null ? "null" : "set")
+                        + " BattleState="
+                          + PlayerEncounter.BattleState
+                        + " WinningSide="
+                          + PlayerEncounter.WinningSide
+                        + " enc.PlayerSide="
+                          + (PlayerEncounter.Current?.PlayerSide
+                                .ToString() ?? "n/a")
+                        + " Mission.PlayerTeam.Side="
+                          + (Mission.PlayerTeam?.Side.ToString() ?? "null")
+                        + " MissionResult.PlayerVictory="
+                          + (Mission.MissionResult?.PlayerVictory
+                                .ToString() ?? "null")
+                        + " PlayerIsAttacker="
+                          + PlayerEncounter.PlayerIsAttacker);
                 }
                 if (behavior != null) behavior.PendingPostAmbushCleanup = true;
             }

@@ -39,12 +39,6 @@ namespace TOR_Core.Missions.AmbushMission
         // pipeline doesn't re-teleport the agents we've just placed at
         // the correct grid position via AgentBuildData.InitialPosition.
         private bool _customSpawnInProgress;
-        // Mission-tick heartbeat: logs every 15s of mission real time
-        // whether reinforcements are armed and what the active-troop
-        // counts look like, so we can see from the log whether the
-        // tick loop is even running and whether the spawn logic has
-        // reinforcements queued on each side.
-        private float _tickHeartbeatSeconds;
         // One-shot flag: after vanilla's AutoDeployTeamUsingDeploymentPlan
         // has run (which happens between AfterStart and first OnMissionTick),
         // we reposition each attacker formation plate back to its authored
@@ -529,15 +523,6 @@ namespace TOR_Core.Missions.AmbushMission
             TORCommon.Log(LogLevel.Info,
                 "[AmbushMission] ResetAssignments restored " + Layout.Formations.Count
                 + " formations across " + touched.Count + " spots");
-        }
-
-        private static int CountActiveHumansOnTeam(Team team)
-        {
-            if (team == null) return 0;
-            int n = 0;
-            foreach (var a in team.ActiveAgents)
-                if (a != null && a.IsHuman && a.IsActive()) n++;
-            return n;
         }
 
         /// <summary>
@@ -1258,26 +1243,6 @@ namespace TOR_Core.Missions.AmbushMission
         public override void OnMissionTick(float dt)
         {
             base.OnMissionTick(dt);
-
-            // Heartbeat: dump once every 15s of mission real time so we
-            // can see from the log whether OnMissionTick is firing and
-            // whether the spawn logic has reinforcements pending on each
-            // side. Also mirrors the custom timer's elapsed time so the
-            // interval can be eyeballed from log timestamps alone.
-            _tickHeartbeatSeconds += dt;
-            if (_tickHeartbeatSeconds >= 15f)
-            {
-                _tickHeartbeatSeconds = 0f;
-                int defAct = CountActiveHumansOnTeam(Mission.DefenderTeam);
-                int atkAct = CountActiveHumansOnTeam(Mission.AttackerTeam);
-                int defRem = _spawnLogic?.NumberOfRemainingDefenderTroops ?? -1;
-                int atkRem = _spawnLogic?.NumberOfRemainingAttackerTroops ?? -1;
-                string mode = Mission?.Mode.ToString() ?? "null";
-                TORCommon.Log(LogLevel.Info,
-                    "[AmbushMission][heartbeat] mode=" + mode
-                    + " attacker active=" + atkAct + " pool=" + atkRem
-                    + " | defender active=" + defAct + " pool=" + defRem);
-            }
 
             if (!_initialRepositionDone
                 && IsPlayerAmbusher
