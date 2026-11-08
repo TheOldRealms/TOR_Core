@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <AnimationTriggers>
     <AnimationTrigger
-        character_id="tor_we_treeman"
+        race_id="large_humanoid_monster"
         triggered_effect="treeman_smash" />
     <AnimationTrigger
-        character_id="tor_we_ancient_treeman"
-        triggered_effect="treeman_smash" />
-    <AnimationTrigger
-        character_id="tor_gs_trolls"
+        race_id="troll"
         triggered_effect="troll_smash" />
+    <AnimationTrigger
+        race_id="cygor"
+        triggered_effect="treeman_smash" />
 </AnimationTriggers>

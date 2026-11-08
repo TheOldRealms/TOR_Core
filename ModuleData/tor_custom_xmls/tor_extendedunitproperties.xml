@@ -1167,6 +1167,7 @@
   <CharacterExtendedInfo id="tor_we_treeman">
     <Abilities />
     <Attributes>
+      <string>Crushing</string>
       <string>Unbreakable</string>
       <string>Unstoppable</string>
       <string>TreeSpirit</string>
@@ -1186,6 +1187,7 @@
   <CharacterExtendedInfo id="tor_we_ancient_treeman">
     <Abilities />
     <Attributes>
+      <string>Crushing</string>
       <string>Unbreakable</string>
       <string>Unstoppable</string>
       <string>TreeSpirit</string>
@@ -10419,7 +10421,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_troll_lord_0">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Crushing</string>
+		</Attributes>
     <AdditionalHealth>450</AdditionalHealth>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_lord">

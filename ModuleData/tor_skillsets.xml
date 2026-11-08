@@ -9813,7 +9813,7 @@
 	</SkillSet>
 	<SkillSet id="tor_unitskills_cygor">
 		<skill id="Athletics"
-		       value="290" />
+		       value="0" />
 		<skill id="Riding"
 		       value="15" />
 		<skill id="OneHanded"

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using TaleWorlds.Core;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.TriggeredEffect
@@ -21,10 +22,12 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         }
 
         public List<AnimationTrigger> AnimationTriggers { get; private set; }
+        public List<int> RegisteredRaceInts { get; private set; }
 
         private AnimationTriggerManager()
         {
             AnimationTriggers = new List<AnimationTrigger>();
+            RegisteredRaceInts = new List<int>();
         }
 
         public static void LoadAnimationTriggers()
@@ -36,7 +39,21 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 var list = ser.Deserialize(File.OpenRead(path)) as List<AnimationTrigger>;
                 foreach (var item in list)
                 {
-                    Instance.AnimationTriggers.Add(item);
+                    if (!FaceGen.GetRaceNames().Contains(item.RaceId))
+                    {
+                        TORCommon.Log("AnimationTriggerManager : " + item.RaceId + " does not exist in the _raceNamesArray. The xml entries does not correspond to the Monsters defined in the monsters and skins xml.", NLog.LogLevel.Error);
+                    }
+                    else
+                    {  
+                        Instance.AnimationTriggers.Add(item);
+
+                        int raceInt = FaceGen.GetRaceOrDefault(item.RaceId);
+                        if (!Instance.RegisteredRaceInts.Contains(raceInt))
+                        {
+                            Instance.RegisteredRaceInts.Add(raceInt);
+                        }
+                    }
+
                 }
             }
         }
@@ -44,23 +61,14 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         public static void ReloadAnimationTriggers()
         {
             Instance.AnimationTriggers.Clear();
+            Instance.RegisteredRaceInts.Clear();
             LoadAnimationTriggers();
         }
 
-        public static string GetEffectForCharacter (string characterId)
+        public static string GetEffectForRace(string characterId)
         {
-            var triggeredEffectId = Instance.AnimationTriggers.FirstOrDefault(x => x.CharacterId == characterId)?.TriggeredEffectId;
+            var triggeredEffectId = Instance.AnimationTriggers.FirstOrDefault(x => x.RaceId == characterId)?.TriggeredEffectId;
             return triggeredEffectId;
         }
-
-        //public static bool HasTriggersForAction(string actionName)
-        //{
-        //    return Instance.AnimationTriggers.Any(x => x.ActionName == actionName);
-        //}
-
-        //public static AnimationTrigger GetTriggerForAction(string actionName)
-        //{
-        //    return Instance.AnimationTriggers.FirstOrDefault(x => x.ActionName == actionName);
-        //}
     }
 }
