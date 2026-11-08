@@ -1347,33 +1347,23 @@ namespace TOR_Core.Missions.AmbushMission
         {
             if (_spawnLogic == null) return;
 
-            // Read counts off the two parties directly. MapEventSide.TroopCount
-            // is the battle-ready count (vanilla folds in wounded / etc.) so
-            // we use that over raw roster size.
-            int ambusherTotal = _ambusherParty?.MapEventSide?.TroopCount
-                                ?? _ambusherParty?.MemberRoster?.TotalManCount ?? 0;
-            int victimTotal = _victimParty?.MapEventSide?.TroopCount
-                              ?? _victimParty?.MemberRoster?.TotalManCount ?? 0;
-
-            // Battle-size budget split. Victim side gets the larger slice
-            // because the "patrol" is the mission's visible force.
-            float ratio = _model.TargetTotalTroopRatio;
-            float inverse = 1f - ratio;
-            int victimCap = (int)(_spawnLogic.BattleSize * ratio);
-            int ambusherCap = (int)(_spawnLogic.BattleSize * inverse);
-
-            // Tactics scaling. The player's hero contributes the bonus; it
-            // applies to whichever side the player is on (ambusher in Phase D,
-            // victim in Phase F — design doc § 4 asks for Tactics scaling on
-            // the Phase F defensive side too).
-            int tactics = Hero.MainHero?.GetSkillValue(DefaultSkills.Tactics) ?? 0;
-            int tacticsBonus = (int)(tactics * _model.TacticsPerAmbushTroopBonus);
-            bool playerIsAmbusher = _ambusherParty == PartyBase.MainParty;
-            if (playerIsAmbusher) ambusherCap += tacticsBonus;
-            else victimCap += tacticsBonus;
-
-            if (ambusherTotal > ambusherCap) ambusherTotal = ambusherCap;
-            if (victimTotal > victimCap) victimTotal = victimCap;
+            // Full roster per side read directly off MemberRoster. Do
+            // NOT use MapEventSide.TroopCount here: that value is already
+            // clamped by vanilla's campaign-level battle-size budgeting,
+            // so for a 21-troop party on a low BattleSize setting it
+            // comes back as 15 and the leftover 6 stay invisible to our
+            // reinforcement pool (they linger on the campaign-map party
+            // as "reserves"). phase.TotalSpawnNumber ends up matching
+            // the pre-clamped side count instead of the real roster,
+            // phase.RemainingSpawnNumber drains to zero after the initial
+            // batch, and IsPoolDepleted reports true when there are
+            // actually troops to send.
+            //
+            // Simultaneous-on-field cap now comes from InitialOnFieldCap
+            // applied below; vanilla's global MaxNumberOfAgentsForMission
+            // still gates how many agents can physically exist at once.
+            int ambusherTotal = _ambusherParty?.MemberRoster?.TotalManCount ?? 0;
+            int victimTotal = _victimParty?.MemberRoster?.TotalManCount ?? 0;
 
             // Map "ambusher" / "victim" totals back onto the Attacker /
             // Defender slot slots the vanilla spawn pipeline expects.
@@ -1388,6 +1378,11 @@ namespace TOR_Core.Missions.AmbushMission
                 attackerTotal = victimTotal;
                 defenderTotal = ambusherTotal;
             }
+            TORCommon.Log(LogLevel.Info,
+                "[AmbushMission][setup] ambusherRoster=" + ambusherTotal
+                + " victimRoster=" + victimTotal
+                + " -> defenderTotal=" + defenderTotal
+                + " attackerTotal=" + attackerTotal);
 
             // Victim (patrol): entire force spawns upfront. Fiction is "the
             // patrol being ambushed" — a 10% scout wave feels like 3 lost

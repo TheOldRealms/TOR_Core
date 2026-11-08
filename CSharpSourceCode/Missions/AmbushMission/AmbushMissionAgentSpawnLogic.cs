@@ -81,41 +81,36 @@ namespace TOR_Core.Missions.AmbushMission
 
         /// <summary>
         /// One-shot bookkeeping call after the controller's custom initial
-        /// spawn finishes. For each side's active phase:
-        ///  - <c>OnInitialTroopsSpawned()</c> zeros <c>InitialSpawnNumber</c>
-        ///    so vanilla's <c>IsInitialSpawnOver</c> flips true, unblocking
-        ///    the <c>CheckDeployment</c> gate at the top of the vanilla
-        ///    spawn-logic <c>OnMissionTick</c> that otherwise permanently
-        ///    blocks reinforcement checks.
-        ///  - Decrement <c>RemainingSpawnNumber</c> by the actual count
-        ///    we spawned. Vanilla's <c>SpawnTroops</c> does this itself;
-        ///    we bypass that path, so the phase otherwise keeps a
-        ///    <c>RemainingSpawnNumber</c> inflated by the initial batch
-        ///    and nothing can ever report the pool as depleted.
-        /// Then <c>OnSideDeploymentOver</c> for both sides, which fires
+        /// spawn finishes. Calls <c>MissionSpawnPhase.OnInitialTroopsSpawned()</c>
+        /// on each side's active phase, which zeros <c>InitialSpawnNumber</c>
+        /// so vanilla's <c>IsInitialSpawnOver</c> flips true. Without that
+        /// the <c>CheckDeployment</c> gate at the top of the vanilla
+        /// spawn-logic <c>OnMissionTick</c> would permanently block the
+        /// reinforcement-timer check.
+        ///
+        /// Phase <c>RemainingSpawnNumber</c> is deliberately NOT touched:
+        /// vanilla's <c>AddPhase</c> (called by <c>InitWithSinglePhase</c>)
+        /// already sets it to <c>totalSpawn - initialSpawn</c>, so by the
+        /// time this method runs the pool count is already correct.
+        /// A second subtraction here would double-count and leave the
+        /// pool stuck at zero even when real reinforcements are queued.
+        ///
+        /// Then <c>OnSideDeploymentOver</c> for both sides fires
         /// <c>Mission.OnInitialSpawnCompleted</c> and the formation
         /// query-system refresh. Not strictly required for end-condition
-        /// correctness but matches the sequence vanilla uses and keeps
-        /// listener events firing consistently.
+        /// correctness but matches the sequence vanilla uses.
+        ///
+        /// The <c>defenderSpawned</c> / <c>attackerSpawned</c> args are
+        /// no longer load-bearing for the pool math; kept for symmetry
+        /// with any future divergence between "what the phase expected"
+        /// and "what we actually spawned" (e.g. partial-supplier cases).
         /// </summary>
         public void MarkInitialSpawnComplete(int defenderSpawned, int attackerSpawned)
         {
-            var defPhase = DefenderActivePhase;
-            if (defPhase != null)
-            {
-                defPhase.OnInitialTroopsSpawned();
-                defPhase.RemainingSpawnNumber -= defenderSpawned;
-                if (defPhase.RemainingSpawnNumber < 0)
-                    defPhase.RemainingSpawnNumber = 0;
-            }
-            var atkPhase = AttackerActivePhase;
-            if (atkPhase != null)
-            {
-                atkPhase.OnInitialTroopsSpawned();
-                atkPhase.RemainingSpawnNumber -= attackerSpawned;
-                if (atkPhase.RemainingSpawnNumber < 0)
-                    atkPhase.RemainingSpawnNumber = 0;
-            }
+            _ = defenderSpawned;
+            _ = attackerSpawned;
+            DefenderActivePhase?.OnInitialTroopsSpawned();
+            AttackerActivePhase?.OnInitialTroopsSpawned();
             OnSideDeploymentOver(BattleSideEnum.Defender);
             OnSideDeploymentOver(BattleSideEnum.Attacker);
         }

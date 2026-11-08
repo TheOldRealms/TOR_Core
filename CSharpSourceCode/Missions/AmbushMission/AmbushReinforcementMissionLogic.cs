@@ -51,7 +51,6 @@ namespace TOR_Core.Missions.AmbushMission
         private float _currentWaveDelayBonus;
         private bool _patrolClearedBonusConsumed;
         private bool _deploymentFinished;
-        private bool _poolDepleted;
 
         public AmbushReinforcementMissionLogic(IMissionTroopSupplier victimSupplier,
                                                 AmbushMissionAgentSpawnLogic spawnLogic,
@@ -84,7 +83,7 @@ namespace TOR_Core.Missions.AmbushMission
         {
             base.OnMissionTick(dt);
             if (!_deploymentFinished) return;
-            if (_poolDepleted) return;
+            if (IsPoolDepleted) return;
             if (_waveTimer == null) return;
 
             float interval = _waveIndex < _initialWaveIntervals.Length
@@ -125,11 +124,17 @@ namespace TOR_Core.Missions.AmbushMission
 
         /// <summary>
         /// Read by <c>AmbushEndLogic</c> as the "no more waves coming"
-        /// half of the TotalVictory gate. Independent of vanilla's
-        /// <c>IsSideDepleted</c>, which also requires active troops
-        /// to be zero.
+        /// half of the TotalVictory gate. Delegates to the spawn-logic
+        /// subclass's pool check, which reads
+        /// <c>phase.RemainingSpawnNumber</c> directly. That value is set
+        /// correctly by <see cref="AmbushMissionAgentSpawnLogic.MarkInitialSpawnComplete"/>
+        /// at AfterStart time (phase total minus what the initial spawn
+        /// actually took), so IsPoolDepleted is accurate from frame one
+        /// even for small-roster parties where every troop fit in the
+        /// initial batch. It drops as waves fire and drain the remainder.
         /// </summary>
-        public bool IsPoolDepleted => _poolDepleted;
+        public bool IsPoolDepleted
+            => _spawnLogic == null || _spawnLogic.IsAmbushPoolDepleted(BattleSideEnum.Defender);
 
         /// <summary>
         /// Reads scene entities tagged <c>defender_&lt;class&gt;_reinforcement</c>
@@ -183,12 +188,11 @@ namespace TOR_Core.Missions.AmbushMission
         {
             if (_victimSupplier == null) return;
             int batchSize = ComputeBatchSize();
-            if (batchSize <= 0) { _poolDepleted = true; return; }
+            if (batchSize <= 0) return;
 
             var origins = _victimSupplier.SupplyTroops(batchSize).ToList();
             if (origins.Count == 0)
             {
-                _poolDepleted = true;
                 TORCommon.Log(LogLevel.Info,
                     "[AmbushReinforcement] supplier empty; pool depleted");
                 return;
