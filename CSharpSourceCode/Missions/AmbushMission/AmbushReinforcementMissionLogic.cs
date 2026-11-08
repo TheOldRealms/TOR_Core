@@ -4,6 +4,7 @@ using NLog;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
@@ -141,6 +142,15 @@ namespace TOR_Core.Missions.AmbushMission
             => _spawnLogic == null || _spawnLogic.IsAmbushPoolDepleted(BattleSideEnum.Defender);
 
         /// <summary>
+        /// Count of defender troops still waiting in the reinforcement
+        /// pool (not yet spawned). Read by the mission-objective HUD so
+        /// the Phase 2 "fight off reinforcements (N)" readout stays
+        /// accurate. 0 once the pool is drained.
+        /// </summary>
+        public int RemainingPoolCount
+            => _spawnLogic?.DefenderActivePhase?.RemainingSpawnNumber ?? 0;
+
+        /// <summary>
         /// Reads scene entities tagged <c>defender_&lt;class&gt;_reinforcement</c>
         /// and caches their world position + facing per FormationClass.
         /// The facing points from the reinforcement entity toward the
@@ -254,6 +264,14 @@ namespace TOR_Core.Missions.AmbushMission
                 : MovementOrder.MovementOrderCharge;
             foreach (var formation in touchedFormations)
                 formation.SetMovementOrder(chargeOrder);
+
+            // Waves always spawn on the victim side. "Enemy" reads correctly
+            // only when the player is the ambusher; in Phase F (player as
+            // the ambushed) the arriving troops are allied rescue.
+            var banner = isPlayerSide
+                ? new TextObject("{=tor_ambush_allied_reinforcements}Allied reinforcements arrived!")
+                : new TextObject("{=tor_ambush_enemy_reinforcements}Enemy reinforcements arrived!");
+            MBInformationManager.AddQuickInformation(banner);
 
             TORCommon.Log(LogLevel.Info,
                 "[AmbushReinforcement] wave " + (_waveIndex + 1)
