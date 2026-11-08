@@ -284,7 +284,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 if (MBRandom.RandomFloat >= chance)
                 {
                     TORCommon.Say("You couldn't slip away in time.");
-                    StampAmbushCooldown();
+                    // Entry failed — no strike landed. repelled=true so
+                    // the record doesn't light the shield up later.
+                    StampAmbushCooldown(repelled: true);
                     _lastHotkeyRealTime = nowRealTime;
                     return;
                 }
@@ -503,15 +505,19 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// ambush record. Thin wrapper over <c>AiAmbushBehavior.RecordAmbush</c>
         /// so existing call-sites don't change — the record carries a
         /// <c>WasLoud</c> flag that the model reads when computing the
-        /// effective cooldown hours.</summary>
-        public void StampAmbushCooldown()
+        /// effective cooldown hours. <paramref name="repelled"/> reflects
+        /// whether the strike was driven off (HeroWounded / Defeated /
+        /// Stalemate) or landed (TotalVictory / Extracted); it's also
+        /// what <c>AiAmbushBehavior.IsRecentSuccessfulAmbusher</c> keys
+        /// on for the post-strike disorganize shield.</summary>
+        public void StampAmbushCooldown(bool repelled)
         {
             var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
             if (ai == null) return;
             var missionModel = Campaign.Current?.Models?.GetMissionAmbushModel();
             bool wasLoud = missionModel != null
                            && LastAmbushLoudness >= missionModel.LoudnessEventThreshold;
-            ai.RecordAmbush(MobileParty.MainParty, null, repelled: false, wasLoud: wasLoud);
+            ai.RecordAmbush(MobileParty.MainParty, null, repelled: repelled, wasLoud: wasLoud);
             // Any fresh cooldown supersedes a pending hooded opportunity.
             _hoodedOpportunityAt = CampaignTime.Zero;
         }
@@ -603,7 +609,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     // Spotted event icon lights for the model's display window.
                     _spottedAt = CampaignTime.Now;
                     LeaveStealth(mainParty);
-                    StampAmbushCooldown();   // being spotted locks us out for the normal cooldown window
+                    // Spotted without striking — repelled=true so this
+                    // record doesn't shield the player from vanilla's
+                    // post-battle disorganize later.
+                    StampAmbushCooldown(repelled: true);   // being spotted locks us out for the normal cooldown window
                     return;
                 }
             }
@@ -1196,29 +1205,22 @@ namespace TOR_Core.CampaignMechanics.Ambush
                         var missionModel = Campaign.Current?.Models?.GetMissionAmbushModel();
                         bool loud = missionModel != null
                                     && LastAmbushLoudness >= missionModel.LoudnessEventThreshold;
-                        if (!loud)
+                        // Record the strike regardless of loudness. The
+                        // model derives the cooldown from WasLoud +
+                        // AmbusherRepelled: quiet (WasLoud=false) gives
+                        // 0 hours, so stealth re-arms immediately
+                        // without needing to wipe the record — the
+                        // record stays available for the disorganize
+                        // shield + hooded-eye nudge (via
+                        // IsQuietSuccessfulStrike classifier).
+                        StampAmbushCooldown(repelled: false);
+                        if (loud)
                         {
-                            // Silent TotalVictory — clear any player
-                            // records in the active cooldown window so
-                            // stealth is immediately available again, and
-                            // stamp the hooded-opportunity timestamp so
-                            // the eye-widget's hooded icon lights to
-                            // nudge the player. The player still decides
-                            // whether to click the eye.
-                            Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>()
-                                ?.ClearRecentRecordsInvolving(MobileParty.MainParty);
-                            _hoodedOpportunityAt = CampaignTime.Now;
+                            TORCommon.Say("The noise of your attack carries far. Scouts are looking for you — stealth will be slow to re-establish.");
                         }
                         else
                         {
-                            // Re-stamp with current-mission loudness. The
-                            // OnStrike pre-stamp ran before LastAmbushLoudness
-                            // was known, so it used only the base cooldown.
-                            // StampAmbushCooldown reads the current loudness
-                            // and adds LoudnessPenaltyHours → full extended
-                            // cooldown kicks in (12h by default, not 6h).
-                            StampAmbushCooldown();
-                            TORCommon.Say("The noise of your attack carries far. Scouts are looking for you — stealth will be slow to re-establish.");
+                            _hoodedOpportunityAt = CampaignTime.Now;
                         }
 
                         if (ambushModel != null && Hero.MainHero != null)
@@ -1254,17 +1256,19 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     // for this outcome.
                     break;
                 case AmbushOutcome.HeroWounded:
-                    // Hero down. The "Ambush Failed" menu offers run-with-losses
-                    // vs auto-battle fight; vanilla wounded flow for the hero
-                    // itself already fired via BattleEndLogic. Re-stamp cooldown
-                    // with current loudness so a loud failure extends it too.
-                    StampAmbushCooldown();
+                    // Hero down. repelled=true: the victim drove the
+                    // ambusher's leader down before the strike fully
+                    // landed, so the record reads as a failed ambush
+                    // for the shield / cooldown-length queries.
+                    StampAmbushCooldown(repelled: true);
                     GameMenu.ActivateGameMenu(AmbushFailedMenuId);
                     break;
                 case AmbushOutcome.Defeated:
                 case AmbushOutcome.Stalemate:
-                    // Vanilla defeat flow already handled casualties / prisoners.
-                    StampAmbushCooldown();
+                    // Ambusher team wiped or timed out without clearing
+                    // the patrol — repelled=true for the same reason as
+                    // HeroWounded.
+                    StampAmbushCooldown(repelled: true);
                     break;
             }
 
@@ -1288,9 +1292,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 }
                 else
                 {
-                    // Fallback: no ambusher ref (shouldn't normally happen)
-                    // — still stamp the player's own cooldown.
-                    StampAmbushCooldown();
+                    // Fallback: no ambusher ref (shouldn't normally
+                    // happen) — stamp the player's own cooldown.
+                    // repelled matches the outcome's repelled flag: if
+                    // the AI ambush was repelled, the player's own
+                    // record also reads repelled; if the AI's ambush
+                    // succeeded against the player, repelled=false.
+                    StampAmbushCooldown(repelled: repelled);
                 }
 
                 // Phase F: AI ambushed the player. Non-repelled branch
@@ -1374,7 +1382,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// </summary>
         public void BeginExtractionTransition(int leftBehind)
         {
-            StampAmbushCooldown();
+            StampAmbushCooldown(repelled: false);
             WoundLeftBehindTroops(leftBehind);
             // Phase D: ambusher is the player, ambushed is _lastAmbushTarget.
             TORCampaignEvents.Instance.OnAmbushSucceeded(MobileParty.MainParty, _lastAmbushTarget);
@@ -1932,9 +1940,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
             bool success = MBRandom.RandomFloat < chance;
             int chancePct = (int)(chance * 100f);
 
-            // Drop stealth before combat; cooldown fires regardless of outcome.
+            // Drop stealth before combat. No cooldown stamp here —
+            // Phase D records the AmbushRecord at resolution time with
+            // the correct AmbusherRepelled flag, so the strike-time
+            // pre-stamp (which hardcoded repelled=false) is gone. Every
+            // abandon path (crash, quit mid-mission, save+load mid-
+            // mission) either rolls back before the strike or resumes
+            // in-mission, so there's no "strike happened but no record"
+            // scenario to defend against.
             LeaveStealth(MobileParty.MainParty);
-            StampAmbushCooldown();
 
             // Teleport the player onto the target before starting the encounter
             // so the campaign-map visualization matches the fiction: the player

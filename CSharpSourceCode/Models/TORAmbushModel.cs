@@ -782,6 +782,18 @@ namespace TOR_Core.Models
         ///    ambushes (gunpowder / non-Shadow magic).</summary>
         public virtual float GetAmbushCooldownHours(AmbushRecord record)
         {
+            // Quiet successful strike — ambusher landed with no loud
+            // signature, no witnesses. Stealth should re-arm immediately
+            // so the player can slip straight into the next target. Was
+            // previously hardcoded into the TotalVictory quiet branch
+            // via a ClearRecentRecordsInvolving call; moved here so the
+            // record still exists for disorganize shield / hooded-eye
+            // queries but imposes no cooldown.
+            if (record != null && IsSilentSuccessfulStrike(record))
+            {
+                return 0f;
+            }
+
             if (record != null
                 && record.Victim == MobileParty.MainParty
                 && !record.AmbusherRepelled)
@@ -797,6 +809,20 @@ namespace TOR_Core.Models
             }
             return hours;
         }
+
+        /// <summary>True if the record represents a landed ambush
+        /// strike (any phase, any clean / extracted / Phase F success /
+        /// AI-on-AI success tier). Consumed by the disorganize shield
+        /// via <see cref="AiAmbushBehavior"/>.</summary>
+        public virtual bool IsSuccessfulStrike(AmbushRecord record)
+            => record != null && !record.AmbusherRepelled;
+
+        /// <summary>True when the strike landed silently (no loud
+        /// signature, no witnesses). Drives the hooded-eye nudge and
+        /// the zero-cooldown branch in <see cref="GetAmbushCooldownHours"/>.
+        /// </summary>
+        public virtual bool IsSilentSuccessfulStrike(AmbushRecord record)
+            => record != null && !record.AmbusherRepelled && !record.WasLoud;
 
         // ---- Phase F: AI-side propensity ----
 

@@ -15,6 +15,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
     /// <c>AmbushCampaignBehavior</c>: stealth exit (no strike), AI
     /// ambushing the player, AI vs AI skirmish, player ambushing AI.
     /// Pruned on weekly tick, dropped when older than ~3 game-days.
+    ///
+    /// Downstream code (cooldown model, disorganize shield, hooded-
+    /// opportunity prompt) reads via
+    /// <see cref="Models.TORAmbushModel"/> classifiers rather than
+    /// branching on the raw fields.
     /// </summary>
     public class AmbushRecord
     {

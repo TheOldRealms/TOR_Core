@@ -127,19 +127,25 @@ namespace TOR_Core.CampaignMechanics.Ambush
             _ambushRecords.Add(new AmbushRecord(CampaignTime.Now, ambusher, victim, repelled, wasLoud));
         }
 
-        /// <summary>Drop any record in the active cooldown window that
-        /// involves <paramref name="party"/>. Used by the silent-Total-
-        /// Victory branch to zero the player's cooldown immediately
-        /// after a clean kill.</summary>
-        public void ClearRecentRecordsInvolving(MobileParty party)
+        /// <summary>Most recent record where <paramref name="party"/>
+        /// is Ambusher or Victim. Null if no record involves them in
+        /// <paramref name="windowHours"/>; pass a large number to
+        /// search unbounded. Used by hooded-opportunity + disorganize
+        /// shield consumers who want the latest classified outcome.
+        /// </summary>
+        public AmbushRecord GetMostRecentRecordInvolving(MobileParty party, float windowHours = float.MaxValue)
         {
-            if (party == null) return;
-            var model = Campaign.Current?.Models?.GetAmbushModel();
-            if (model == null) return;
+            if (party == null) return null;
             var now = CampaignTime.Now;
-            _ambushRecords.RemoveAll(r =>
-                r.Involves(party)
-                && (now - r.At).ToHours < model.GetAmbushCooldownHours(r));
+            AmbushRecord best = null;
+            for (int i = _ambushRecords.Count - 1; i >= 0; i--)
+            {
+                var rec = _ambushRecords[i];
+                if (!rec.Involves(party)) continue;
+                if ((now - rec.At).ToHours > windowHours) continue;
+                if (best == null || rec.At > best.At) best = rec;
+            }
+            return best;
         }
 
         // ---- Record queries ----
@@ -171,6 +177,34 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// "they just hit you, scouts are still searching." Returns
         /// <c>null</c> if no such record. See
         /// <see cref="Models.TORAmbushModel.AmbushGuardingHours"/>.</summary>
+        /// <summary>
+        /// True when <paramref name="party"/> is the ambusher of a
+        /// non-repelled record created within
+        /// <paramref name="windowMinutes"/>. Read by
+        /// <see cref="Models.TORPartyImpairmentModel.CanGetDisorganized"/>
+        /// to shield recent strikers from vanilla's
+        /// DisorganizedStateCampaignBehavior.OnMapEventEnd re-apply.
+        /// Uses the existing <see cref="AmbushRecord"/> list rather
+        /// than a parallel map so there's one source of truth for
+        /// "who struck when."
+        /// </summary>
+        public bool IsRecentSuccessfulAmbusher(MobileParty party, float windowMinutes)
+        {
+            if (party == null) return false;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return false;
+            var now = CampaignTime.Now;
+            for (int i = _ambushRecords.Count - 1; i >= 0; i--)
+            {
+                var rec = _ambushRecords[i];
+                if (rec.Ambusher != party) continue;
+                if (!model.IsSuccessfulStrike(rec)) continue;
+                if ((now - rec.At).ToMinutes > windowMinutes) continue;
+                return true;
+            }
+            return false;
+        }
+
         public AmbushRecord GetMostRecentActiveVictimRecord(MobileParty victim)
         {
             if (victim == null) return null;
