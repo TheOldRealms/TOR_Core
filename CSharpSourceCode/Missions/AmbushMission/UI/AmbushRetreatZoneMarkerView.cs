@@ -51,7 +51,10 @@ namespace TOR_Core.Missions.AmbushMission.UI
         public override void OnMissionScreenInitialize()
         {
             base.OnMissionScreenInitialize();
-            _vm = new AmbushRetreatZoneMarkerVM();
+            _vm = new AmbushRetreatZoneMarkerVM
+            {
+                LabelText = "Extraction",
+            };
             _layer = new GauntletLayer("AmbushRetreatZoneMarker", ViewOrderPriority, false);
             _layer.LoadMovie("AmbushRetreatZoneMarker", _vm);
             ((ScreenBase)MissionScreen).AddLayer(_layer);
@@ -123,6 +126,26 @@ namespace TOR_Core.Missions.AmbushMission.UI
                 return;
             }
             _vm.ScreenPosition = new Vec2(screenX, screenY);
+            _vm.SetZoneWorldPosition(worldPos);
+
+            // Horizontal distance from player hero to the zone. Hero is
+            // the natural reference point since the whole feature hangs
+            // on the player's position vs the zone. Metre suffix keeps
+            // the readout short; omitted if we can't resolve the main
+            // agent (deployment, hero wounded, etc.).
+            var main = Mission.Current.MainAgent;
+            if (main != null && main.IsActive())
+            {
+                var mp = main.Position;
+                float dx = worldPos.x - mp.x;
+                float dy = worldPos.y - mp.y;
+                int metres = (int)MathF.Sqrt(dx * dx + dy * dy);
+                _vm.DistanceText = metres + "m";
+            }
+            else
+            {
+                _vm.DistanceText = string.Empty;
+            }
             _vm.IsVisible = true;
         }
     }
