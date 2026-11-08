@@ -43,9 +43,15 @@ namespace TOR_Core.Missions.AmbushMission
         private AmbushReinforcementMissionLogic _reinforcementLogic;
 
         private float _extractionProgress;
-        private float _lastReportedBucket = -1f;
         private bool _leftBehindWarningFired;
         private float _missionRealTimeSeconds;
+
+        private MissionObjectiveLogic _objectiveLogic;
+        private AmbushObjective _objective;
+        private bool _objectiveIsPhase2;
+        private int _lastRemainingShown = int.MinValue;
+        private int _lastTotalPoolShown = int.MinValue;
+        private bool _lastInZoneShown;
 
         public override void AfterStart()
         {
@@ -53,6 +59,8 @@ namespace TOR_Core.Missions.AmbushMission
             _model = Campaign.Current?.Models?.GetMissionAmbushModel() ?? new TORMissionAmbushModel();
             _controller = Mission.GetMissionBehavior<AmbushMissionController>();
             _reinforcementLogic = Mission.GetMissionBehavior<AmbushReinforcementMissionLogic>();
+            _objectiveLogic = Mission.GetMissionBehavior<MissionObjectiveLogic>();
+            StartPhase1Objective();
         }
 
         public override void OnDeploymentFinished()
@@ -114,6 +122,8 @@ namespace TOR_Core.Missions.AmbushMission
             TickExtractionBar(dt, mainAgent);
             if (_outcomeDecided) return;  // bar just filled
 
+            RefreshObjective(mainAgent);
+
             // Priority 5 — stalemate (Phase 1 only; Phase 2 has the bar as its
             // natural termination).
             if (_controller != null && !_controller.IsInitialPatrolDefeated
@@ -146,7 +156,6 @@ namespace TOR_Core.Missions.AmbushMission
                 if (_extractionProgress > 0f)
                 {
                     _extractionProgress = 0f;
-                    _lastReportedBucket = -1f;
                     _leftBehindWarningFired = false;
                 }
                 return;
@@ -160,9 +169,7 @@ namespace TOR_Core.Missions.AmbushMission
                 if (_extractionProgress > 0f)
                 {
                     _extractionProgress = 0f;
-                    _lastReportedBucket = -1f;
                     _leftBehindWarningFired = false;
-                    if (phase2) TORCommon.Say("You stepped out of the extraction zone — progress reset.");
                 }
                 return;
             }
@@ -171,23 +178,15 @@ namespace TOR_Core.Missions.AmbushMission
             _extractionProgress += dt / _model.ExtractionBarSeconds;
             if (_extractionProgress > 1f) _extractionProgress = 1f;
 
-            // Progress-print at 20 / 40 / 60 / 80 / 100% buckets so the player
-            // has some feedback without a HUD element yet.
-            float bucket = (int)(_extractionProgress * 5f) / 5f;
-            if (bucket > _lastReportedBucket && bucket > 0f)
-            {
-                _lastReportedBucket = bucket;
-                int pct = (int)(_extractionProgress * 100f);
-                TORCommon.Say("Extraction " + pct + "%");
-            }
-
-            // Left-behind warning (one-shot).
+            // Left-behind warning (one-shot). Banner mirrors the vanilla
+            // JoustFightMissionController pattern.
             if (!_leftBehindWarningFired
                 && _extractionProgress >= _model.LeftBehindWarningThreshold
                 && CountActiveHumansOutsideZone(Mission.AttackerTeam) > 0)
             {
                 _leftBehindWarningFired = true;
-                TORCommon.Say("Troops left behind will be wounded when the ambush completes.");
+                MBInformationManager.AddQuickInformation(
+                    new TextObject("{=tor_ambush_left_behind}Troops left behind will be wounded when the ambush completes."));
             }
 
             if (_extractionProgress >= 1f)
@@ -246,6 +245,102 @@ namespace TOR_Core.Missions.AmbushMission
                 if (!AmbushRetreatZone.IsAgentInsideAnyZone(a)) n++;
             }
             return n;
+        }
+
+        /// <summary>
+        /// Starts the Phase 1 "defeat the patrol" objective. Called from
+        /// AfterStart. Description is a fixed line; live enemy count is
+        /// updated per tick via RefreshObjective.
+        /// </summary>
+        private void StartPhase1Objective()
+        {
+            if (_objectiveLogic == null) return;
+            _objective = new AmbushObjective(
+                Mission, "tor_ambush_phase1",
+                new TextObject("{=tor_ambush_obj_phase1_name}Ambush the Patrol"),
+                new TextObject("{=tor_ambush_obj_phase1_desc_init}Defeat the enemy patrol."));
+            _objective.SetProgressCallback(() => default);
+            _objectiveLogic.StartObjective(_objective);
+            _objectiveIsPhase2 = false;
+            _lastRemainingShown = int.MinValue;
+            _lastInZoneShown = false;
+            _lastTotalPoolShown = int.MinValue;
+        }
+
+        private void StartPhase2Objective()
+        {
+            if (_objectiveLogic == null) return;
+            _objective = new AmbushObjective(
+                Mission, "tor_ambush_phase2",
+                new TextObject("{=tor_ambush_obj_phase2_name}Escape the Ambush"),
+                new TextObject("{=tor_ambush_obj_phase2_desc_init}Retreat to the Extraction Point or fight off the reinforcements."));
+            _objective.SetProgressCallback(GetPhase2Progress);
+            _objectiveLogic.StartObjective(_objective);
+            _objectiveIsPhase2 = true;
+            _lastInZoneShown = false;
+            _lastTotalPoolShown = int.MinValue;
+        }
+
+        /// <summary>
+        /// Transitions Phase 1 → Phase 2 when the controller flips the
+        /// patrol-defeated flag, then updates the active objective's
+        /// description text based on live state (remaining enemies in
+        /// Phase 1, extracting-vs-pressing in Phase 2). Description
+        /// rebuilds only when its inputs change so the vanilla VM's
+        /// OnUpdated event doesn't fire every tick.
+        /// </summary>
+        private void RefreshObjective(Agent mainAgent)
+        {
+            if (_objective == null || _controller == null) return;
+            bool phase2 = _controller.IsInitialPatrolDefeated;
+            if (phase2 && !_objectiveIsPhase2)
+            {
+                StartPhase2Objective();
+            }
+            if (!_objectiveIsPhase2)
+            {
+                int remaining = CountActiveHumans(Mission.DefenderTeam);
+                if (remaining == _lastRemainingShown) return;
+                _lastRemainingShown = remaining;
+                var desc = new TextObject("{=tor_ambush_obj_phase1_desc}Defeat the enemy patrol. ({N} remaining)");
+                desc.SetTextVariable("N", remaining);
+                _objective.SetDescription(desc);
+                return;
+            }
+            bool inZone = AmbushRetreatZone.IsAgentInsideAnyZone(mainAgent);
+            int pool = _reinforcementLogic?.RemainingPoolCount ?? 0;
+            int onField = CountActiveHumans(Mission.DefenderTeam);
+            int total = pool + onField;
+            if (inZone == _lastInZoneShown && total == _lastTotalPoolShown) return;
+            _lastInZoneShown = inZone;
+            _lastTotalPoolShown = total;
+            TextObject phase2Desc;
+            if (inZone)
+            {
+                phase2Desc = new TextObject("{=tor_ambush_obj_phase2_desc_extracting}Extracting...");
+            }
+            else
+            {
+                phase2Desc = new TextObject("{=tor_ambush_obj_phase2_desc_press}Retreat to the Extraction Point or fight off the reinforcements. ({N} remaining)");
+                phase2Desc.SetTextVariable("N", total);
+            }
+            _objective.SetDescription(phase2Desc);
+        }
+
+        /// <summary>
+        /// Progress bar fill for the Phase 2 objective: 0-100 while the
+        /// hero is inside the extraction zone, hidden otherwise. Uses the
+        /// cached in-zone flag that RefreshObjective maintains so the
+        /// callback stays cheap.
+        /// </summary>
+        private MissionObjectiveProgressInfo GetPhase2Progress()
+        {
+            if (!_lastInZoneShown) return default;
+            return new MissionObjectiveProgressInfo
+            {
+                RequiredProgressAmount = 100,
+                CurrentProgressAmount = (int)(_extractionProgress * 100f),
+            };
         }
 
         public override bool MissionEnded(ref MissionResult missionResult)

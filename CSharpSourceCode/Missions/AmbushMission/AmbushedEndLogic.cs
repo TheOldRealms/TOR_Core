@@ -4,7 +4,10 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.MountAndBlade.Missions.MissionLogics;
+using TaleWorlds.MountAndBlade.Missions.Objectives;
 using TOR_Core.CampaignMechanics.Ambush;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
@@ -34,6 +37,10 @@ namespace TOR_Core.Missions.AmbushMission
 
         private float _outsideBoundarySeconds;
 
+        private MissionObjectiveLogic _objectiveLogic;
+        private AmbushObjective _objective;
+        private int _lastAttackersShown = int.MinValue;
+
         // Snapshot of MainParty's non-hero roster at mission start.
         // Captured in AfterStart (roster still untouched by combat),
         // handed to AmbushCampaignBehavior at OnEndMission for the Fled
@@ -46,6 +53,8 @@ namespace TOR_Core.Missions.AmbushMission
             base.AfterStart();
             _model = Campaign.Current?.Models?.GetMissionAmbushModel() ?? new TORMissionAmbushModel();
             _reinforcementLogic = Mission.GetMissionBehavior<AmbushReinforcementMissionLogic>();
+            _objectiveLogic = Mission.GetMissionBehavior<MissionObjectiveLogic>();
+            StartObjective();
 
             _ambushedRosterSnapshot = new Dictionary<CharacterObject, int>();
             var roster = MobileParty.MainParty?.MemberRoster;
@@ -136,6 +145,38 @@ namespace TOR_Core.Missions.AmbushMission
                     return;
                 }
             }
+
+            RefreshObjective();
+        }
+
+        /// <summary>
+        /// Starts a single "survive the ambush" objective. Phase F has no
+        /// phase transition like Phase D's patrol-defeated → extract flow;
+        /// the goal is either repel the attackers or flee past the soft
+        /// border. One objective for the whole mission; RefreshObjective
+        /// only updates the live enemy count in the description.
+        /// </summary>
+        private void StartObjective()
+        {
+            if (_objectiveLogic == null) return;
+            _objective = new AmbushObjective(
+                Mission, "tor_ambushed",
+                new TextObject("{=tor_ambushed_obj_name}Survive the Ambush"),
+                new TextObject("{=tor_ambushed_obj_desc_init}Defeat the ambushers or flee past the mission boundary."));
+            _objective.SetProgressCallback(() => default);
+            _objectiveLogic.StartObjective(_objective);
+            _lastAttackersShown = int.MinValue;
+        }
+
+        private void RefreshObjective()
+        {
+            if (_objective == null) return;
+            int remaining = CountActiveHumans(Mission.AttackerTeam);
+            if (remaining == _lastAttackersShown) return;
+            _lastAttackersShown = remaining;
+            var desc = new TextObject("{=tor_ambushed_obj_desc}Defeat the ambushers or flee past the mission boundary. ({N} enemies remaining)");
+            desc.SetTextVariable("N", remaining);
+            _objective.SetDescription(desc);
         }
 
         /// <summary>
