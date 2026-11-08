@@ -9,7 +9,6 @@ using TaleWorlds.Core.ImageIdentifiers;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
-using TaleWorlds.TwoDimension;
 using TOR_Core.Extensions;
 using TOR_Core.Framework;
 using TOR_Core.Utilities;
@@ -115,10 +114,10 @@ namespace TOR_Core.CampaignMechanics.Crafting
             return false;
         }
 
-        public static void DonationMode(bool customResourceExchange)
+        public static void OpenDonation()
         {
-            var roster = Hero.MainHero.PartyBelongedTo.Party.ItemRoster.ToMBList();
-            if (customResourceExchange) roster = roster.FindAll(x => !x.EquipmentElement.Item.IsCraftedByPlayer).ToMBList();
+            var roster = Hero.MainHero.PartyBelongedTo.Party.ItemRoster.ToMBList()
+                .FindAll(x => !x.EquipmentElement.Item.IsCraftedByPlayer).ToMBList();
 
             var selectableItems = new List<InquiryElement>();
             foreach (var elem in roster)
@@ -131,26 +130,19 @@ namespace TOR_Core.CampaignMechanics.Crafting
 
             GameTexts.SetVariable("CUSTOMRESOURCE_ICON", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
 
-            // Nothing calls DonationMode(false) today; the disintegrate strings exist so the branch is
-            // localized while it survives. Deleting the branch and its strings is Codesmells work.
-            var title = customResourceExchange
-                ? TORTextHelper.GetTextObject("tor_enchant_prompt_donate_items", "title", "Donate items")
-                : TORTextHelper.GetTextObject("tor_enchant_prompt_disintegrate", "title", "Disenchant items");
-            var text = customResourceExchange
-                ? TORTextHelper.GetTextObject("tor_enchant_prompt_donate_items", "text", "Select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. ")
-                : TORTextHelper.GetTextObject("tor_enchant_prompt_disintegrate", "text", "Select the items you want to disenchant. Their ingredients will be returned to you.");
+            var title = TORTextHelper.GetText("tor_enchant_prompt_donate_items", "title", "Donate items");
+            var text = TORTextHelper.GetText("tor_enchant_prompt_donate_items", "text", "Select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. ");
 
-            var inquirydata = new MultiSelectionInquiryData(title.ToString(), text.ToString(), selectableItems, true, 1, 15,
+            var inquirydata = new MultiSelectionInquiryData(title, text, selectableItems, true, 1, 15,
                 TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"),
                 TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
-                items => Disenchant(items, customResourceExchange), null);
+                Donate, null);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
         }
 
-        private static void Disenchant(List<InquiryElement> inquiryElements, bool customResourceExchange)
+        private static void Donate(List<InquiryElement> inquiryElements)
         {
             var model = Campaign.Current.Models.GetEnchantmentIngredientModel();
-            var resources = new int[Enum.GetValues(typeof(TorTradeGoodType)).Length];
             var customResources = 0;
 
             foreach (var element in inquiryElements)
@@ -177,8 +169,6 @@ namespace TOR_Core.CampaignMechanics.Crafting
                         if (trait.IngredientItem != type) continue;
                         if (trait.IngredientAmount > 0)
                         {
-                            var factor = model.GetPercentOfIngredientForRecycleItems(type, item);
-                            resources[(int)type] += (int)Mathf.Max(1, trait.IngredientAmount * factor);
                             customResourceElem += model.GetCustomResourceValueForIngredient(type) * trait.IngredientAmount;
                             customResourceFactor += customResourceFactor;
                         }
@@ -188,33 +178,11 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 customResources += customResourceElem;
             }
 
-            if (customResourceExchange)
-            {
-                var resultValue = customResources;
-                var gainedText = TORTextHelper.GetTextObject("tor_gained_resource_notification_text", "Gained {AMOUNT}{RESOURCE_ICON}");
-                gainedText.SetTextVariable("AMOUNT", resultValue);
-                gainedText.SetTextVariable("RESOURCE_ICON", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
-                MBInformationManager.AddQuickInformation(gainedText, 2000, Hero.MainHero.CharacterObject);
-                Hero.MainHero.AddCultureSpecificCustomResource(resultValue);
-                return;
-            }
-
-            var gainedItems = new List<TextObject>();
-            foreach (TorTradeGoodType type in Enum.GetValues(typeof(TorTradeGoodType)))
-            {
-                var ingredient = TorEnchantingIngredients.GetItemObjectForIngredient(type);
-                if (ingredient == null) continue;
-                Hero.MainHero.PartyBelongedTo.ItemRoster.Add(new ItemRosterElement(ingredient, resources[(int)type]));
-                if (resources[(int)type] > 0)
-                {
-                    gainedItems.Add(TORTextHelper.GetTextObject("tor_gained_item_amount_text", "{AMOUNT} {ITEM_NAME}")
-                        .SetTextVariable("AMOUNT", resources[(int)type])
-                        .SetTextVariable("ITEM_NAME", ingredient.Name));
-                }
-            }
-            var gainedItemsText = TORTextHelper.GetTextObject("tor_gained_items_notification_text", "Gained {ITEMS}");
-            gainedItemsText.SetTextVariable("ITEMS", GameTexts.GameTextHelper.MergeTextObjectsWithComma(gainedItems, false));
-            MBInformationManager.AddQuickInformation(gainedItemsText, 2000, Hero.MainHero.CharacterObject);
+            var gainedText = TORTextHelper.GetTextObject("tor_gained_resource_notification_text", "Gained {AMOUNT}{RESOURCE_ICON}");
+            gainedText.SetTextVariable("AMOUNT", customResources);
+            gainedText.SetTextVariable("RESOURCE_ICON", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
+            MBInformationManager.AddQuickInformation(gainedText, 2000, Hero.MainHero.CharacterObject);
+            Hero.MainHero.AddCultureSpecificCustomResource(customResources);
         }
 
         /// <summary>
@@ -312,7 +280,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
 
             obj.AddPlayerLine("enchanter_donate_items_hub_p" + culture, "enchanter_gift_items_hub" + culture,
                 "enchanter_donate_items_2" + culture, TORTextHelper.GetText("tor_enchanter_donate_items_hub_p", culture, "Let me provide you these items…", true), null,
-                () => DonationMode(true), 200);
+                OpenDonation, 200);
 
             obj.AddPlayerLine("enchanter_gift_items_hub_return_p" + culture, "enchanter_gift_items_hub" + culture,
                 "enchanter_hub_reintro" + culture, TORTextHelper.GetText("tor_enchanter_gift_items_hub_return_p", culture, "I need to think about this.", true), null, null, 200);

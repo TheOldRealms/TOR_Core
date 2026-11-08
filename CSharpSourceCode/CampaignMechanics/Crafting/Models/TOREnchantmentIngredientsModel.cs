@@ -31,19 +31,6 @@ public class TOREnchantmentIngredientsModel : GameModel
         }
     }
 
-    public float GetPercentOfIngredientForRecycleItems(TorTradeGoodType ingredient, ItemObject item)
-    {
-        var factor = 0.5f;
-        if (item.IsCraftedByPlayer)
-        {
-            factor = 0.33f;
-        }
-
-        return factor;
-    }
-
-
-
     public int CalculateResultAmount(float dropscore, TorTradeGoodType ingredient, float playerEarnedLootRate = 1f)
     {
         float careerBonus = 1f;

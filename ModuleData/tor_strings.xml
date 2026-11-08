@@ -811,14 +811,10 @@
 
   <!-- Enchant -->
   <string id="tor_enchant_trait_hint_requirement" text="{=str_tor_enchant_trait_hint_requirement}{DESCRIPTION}{newline}{newline}{REQUIREMENT}" />
-  <string id="tor_enchant_prompt_disintegrate.title" text="{=str_tor_enchant_prompt_disintegrate_title}Disenchant items" />
-  <string id="tor_enchant_prompt_disintegrate.text" text="{=str_tor_enchant_prompt_disintegrate_text}Select the items you want to disenchant. Their ingredients will be returned to you." />
   <string id="tor_enchant_no_description" text="{=str_tor_enchant_no_description}No description available." />
 
   <!-- Gained -->
   <string id="tor_gained_resource_notification_text" text="{=str_tor_gained_resource_notification_text}Gained {AMOUNT}{RESOURCE_ICON}" />
-  <string id="tor_gained_items_notification_text" text="{=str_tor_gained_items_notification_text}Gained {ITEMS}" />
-  <string id="tor_gained_item_amount_text" text="{=str_tor_gained_item_amount_text}{AMOUNT} {ITEM_NAME}" />
 
   <!-- Runesmithing -->
   <string id="tor_runesmithing_title" text="{=str_tor_runesmithing_title}Runesmithing" />
