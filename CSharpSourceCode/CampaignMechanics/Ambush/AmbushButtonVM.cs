@@ -43,6 +43,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// wider range.</summary>
         private const float CloseEnemyProximityRadius = 3.5f;
 
+        /// <summary>Game-hours the hooded "slip back into cover now" icon
+        /// stays lit after a silent clean kill clears the player's
+        /// cooldown. Long enough to be noticed on the HUD; short enough
+        /// that an unused opportunity decays before the next day. The
+        /// icon also clears early when the player enters stealth or a
+        /// fresh cooldown is stamped.</summary>
+        private const float HoodedOpportunityDisplayHours = 2f;
+
         // ---- Backing fields ----
         private bool _isVisible = true;
         private bool _isStealthActive;
@@ -58,11 +66,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private bool _isEventEnemiesClose;
         private bool _isEventCooldown;
         private bool _isEventBackstab;
+        private bool _isEventHooded;
         private BasicTooltipViewModel _spottedTooltip;
         private BasicTooltipViewModel _alertTooltip;
         private BasicTooltipViewModel _enemiesCloseTooltip;
         private BasicTooltipViewModel _cooldownTooltip;
         private BasicTooltipViewModel _backstabTooltip;
+        private BasicTooltipViewModel _hoodedTooltip;
 
         // Terrain cluster (right, mutually exclusive)
         private bool _isTerrainForest;
@@ -97,6 +107,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 "A hostile party is very close — detection risk is high."));
             _cooldownTooltip = new BasicTooltipViewModel(ComputeCooldownText);
             _backstabTooltip = new BasicTooltipViewModel(ComputeBackstabText);
+            _hoodedTooltip = new BasicTooltipViewModel(() => TORTextHelper.GetText(
+                "tor_ambush_widget_tt_hooded",
+                "No one escaped. You can slip straight back into cover."));
             _terrainTooltip = new BasicTooltipViewModel(ComputeTerrainText);
             _snowyTooltip = new BasicTooltipViewModel(() => TORTextHelper.GetText(
                 "tor_ambush_widget_tt_snowy", "Snowy weather."));
@@ -143,11 +156,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
         [DataSourceProperty] public bool IsEventEnemiesClose { get => _isEventEnemiesClose; set { if (_isEventEnemiesClose == value) return; _isEventEnemiesClose = value; OnPropertyChangedWithValue(value); } }
         [DataSourceProperty] public bool IsEventCooldown { get => _isEventCooldown; set { if (_isEventCooldown == value) return; _isEventCooldown = value; OnPropertyChangedWithValue(value); } }
         [DataSourceProperty] public bool IsEventBackstab { get => _isEventBackstab; set { if (_isEventBackstab == value) return; _isEventBackstab = value; OnPropertyChangedWithValue(value); } }
+        [DataSourceProperty] public bool IsEventHooded { get => _isEventHooded; set { if (_isEventHooded == value) return; _isEventHooded = value; OnPropertyChangedWithValue(value); } }
         [DataSourceProperty] public BasicTooltipViewModel SpottedTooltip { get => _spottedTooltip; set { _spottedTooltip = value; OnPropertyChangedWithValue(value); } }
         [DataSourceProperty] public BasicTooltipViewModel AlertTooltip { get => _alertTooltip; set { _alertTooltip = value; OnPropertyChangedWithValue(value); } }
         [DataSourceProperty] public BasicTooltipViewModel EnemiesCloseTooltip { get => _enemiesCloseTooltip; set { _enemiesCloseTooltip = value; OnPropertyChangedWithValue(value); } }
         [DataSourceProperty] public BasicTooltipViewModel CooldownTooltip { get => _cooldownTooltip; set { _cooldownTooltip = value; OnPropertyChangedWithValue(value); } }
         [DataSourceProperty] public BasicTooltipViewModel BackstabTooltip { get => _backstabTooltip; set { _backstabTooltip = value; OnPropertyChangedWithValue(value); } }
+        [DataSourceProperty] public BasicTooltipViewModel HoodedTooltip { get => _hoodedTooltip; set { _hoodedTooltip = value; OnPropertyChangedWithValue(value); } }
 
         [DataSourceProperty] public bool IsTerrainForest { get => _isTerrainForest; set { if (_isTerrainForest == value) return; _isTerrainForest = value; OnPropertyChangedWithValue(value); } }
         [DataSourceProperty] public bool IsTerrainMountain { get => _isTerrainMountain; set { if (_isTerrainMountain == value) return; _isTerrainMountain = value; OnPropertyChangedWithValue(value); } }
@@ -273,6 +288,17 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // Cooldown — any active cooldown that isn't already surfaced by the
             // backstab icon. Keeps the two icons semantically distinct.
             IsEventCooldown = ambush.IsOnAmbushCooldown && !IsEventBackstab;
+
+            // Hooded — pending "free slip back to cover" opportunity from a
+            // silent clean-kill. Stays lit for a short window after the
+            // event; the behavior clears the timestamp when the player
+            // enters stealth or a fresh cooldown is stamped, so the
+            // display check is just the window freshness check here.
+            // Suppressed while stealth is already active - nothing to nudge.
+            var hoodedAt = ambush.PlayerHoodedOpportunityAt;
+            IsEventHooded = hoodedAt != CampaignTime.Zero
+                            && !ambush.IsPlayerInStealth
+                            && (CampaignTime.Now - hoodedAt).ToHours < HoodedOpportunityDisplayHours;
         }
 
         private void UpdateTerrainFlags(MobileParty mainParty)

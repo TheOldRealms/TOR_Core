@@ -138,6 +138,21 @@
                             Command.HoverEnd="ExecuteEndHint"/>
               </Children>
             </Widget>
+            <!-- Hooded opportunity: pinned closest to the clickable eye so
+                 the "click now to slip into cover" nudge sits adjacent to
+                 the thing it wants the player to click. -->
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="32" SuggestedHeight="32"
+                    MarginRight="3"
+                    Sprite="ambush_event_hooded"
+                    IsVisible="@IsEventHooded">
+              <Children>
+                <HintWidget DataSource="{HoodedTooltip}" DoNotAcceptEvents="true"
+                            WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                            Command.HoverBegin="ExecuteBeginHint"
+                            Command.HoverEnd="ExecuteEndHint"/>
+              </Children>
+            </Widget>
           </Children>
         </ListPanel>
 
