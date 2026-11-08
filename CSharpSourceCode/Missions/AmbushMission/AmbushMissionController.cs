@@ -332,6 +332,34 @@ namespace TOR_Core.Missions.AmbushMission
                         spawned++;
                     }
 
+                    // Pin the formation plate to the scene spot. Vanilla's
+                    // Mission.SpawnAgent does this via SetFormationPositioningFromDeploymentPlan
+                    // when a deployment plan is made for the team. In Phase D
+                    // the player's deployment UI fills that plan with the
+                    // player-picked spots, so melee and ranged both land on
+                    // their authored positions. In Phase F no UI runs; the
+                    // plan carries vanilla's default auto-deploy positions
+                    // (team-center ish, close to the defender area in these
+                    // scenes), and the formation's OrderPosition ends up
+                    // there instead of our spawn spot. Ranged doesn't care
+                    // because AmbushTacticalAnchorLogic pins each archer
+                    // via scripted positions, overriding the formation
+                    // plate. Melee has no such anchor and marches from
+                    // the wrong plate position toward the enemy, which
+                    // visually reads as "the ambusher melee spawned
+                    // inside the ambushed army."
+                    //
+                    // Explicit SetPositioning overrides whichever branch
+                    // Mission.SpawnAgent took and pins the plate at the
+                    // scene spot. AmbushTacticHoldPositions then issues
+                    // its ConfigureMeleeFormation charge from here.
+                    if (chunkFormation != null && Mission.Scene != null)
+                    {
+                        chunkFormation.SetPositioning(
+                            new WorldPosition(Mission.Scene, spot.Value.Position),
+                            facing);
+                    }
+
                     TryAnchorRangedFormation(chunkFormation, formationClass, spot.Value);
                 }
             }
