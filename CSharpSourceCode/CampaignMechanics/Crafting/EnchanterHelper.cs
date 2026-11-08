@@ -100,33 +100,25 @@ namespace TOR_Core.CampaignMechanics.Crafting
             }
         }
 
-        public static bool ConditionForDonation()
-        {
-            var roster = Hero.MainHero.PartyBelongedTo.Party.ItemRoster;
-            foreach (var elem in roster)
-            {
-                var item = elem.EquipmentElement.Item;
-                if (item.IsCraftedByPlayer) continue;
-                if (item.HasAnyTrait())
-                    if (item.IsArmor() || item.IsWeapon() || item.IsShield())
-                        return true;
-            }
-            return false;
-        }
+        /// <summary>
+        /// The one rule for what the enchanter accepts. Player-crafted items are excluded so
+        /// ingredients can't be turned into custom resource by crafting and donating.
+        /// </summary>
+        private static bool IsDonatable(ItemObject item) =>
+            !item.IsCraftedByPlayer && item.HasAnyTrait() && (item.IsWeapon() || item.IsArmor() || item.IsShield());
 
+        public static bool ConditionForDonation() =>
+            Hero.MainHero.PartyBelongedTo.Party.ItemRoster.Any(x => IsDonatable(x.EquipmentElement.Item));
+
+        /// <summary>
+        /// Only reachable after <see cref="ConditionForDonation"/>, so the list is never empty.
+        /// </summary>
         public static void OpenDonation()
         {
-            var roster = Hero.MainHero.PartyBelongedTo.Party.ItemRoster.ToMBList()
-                .FindAll(x => !x.EquipmentElement.Item.IsCraftedByPlayer).ToMBList();
-
-            var selectableItems = new List<InquiryElement>();
-            foreach (var elem in roster)
-            {
-                var equipmentElement = elem.EquipmentElement;
-                var item = equipmentElement.Item;
-                if (item.HasAnyTrait() && (item.IsWeapon() || item.IsArmor() || item.IsShield()))
-                    selectableItems.Add(new InquiryElement(equipmentElement, item.Name.ToString(), new ItemImageIdentifier(item)));
-            }
+            var selectableItems = Hero.MainHero.PartyBelongedTo.Party.ItemRoster
+                .Where(x => IsDonatable(x.EquipmentElement.Item))
+                .Select(x => new InquiryElement(x.EquipmentElement, x.EquipmentElement.Item.Name.ToString(), new ItemImageIdentifier(x.EquipmentElement.Item)))
+                .ToList();
 
             GameTexts.SetVariable("CUSTOMRESOURCE_ICON", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
 
