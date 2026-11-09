@@ -1,0 +1,173 @@
+<Prefab>
+  <Parameters>
+    <Parameter Name="BarAlpha" DefaultValue="1" />
+    <Parameter Name="SideDataSource" DefaultValue=""/>
+  </Parameters>
+  <Constants>
+    <Constant Name="Value.Width" Value="55" />
+  </Constants>
+  <Window>
+    <Widget DoNotAcceptEvents="true" DataSource="*SideDataSource" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="630">
+      <Children>
+
+        <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+          <Children>
+
+						<NavigationScopeTargeter ScopeID="ScoreboardSideHeaderScope" ScopeParent="..\ControlsList" ScopeMovements="Horizontal" />
+            <ListPanel DoNotAcceptEvents="true" Id="ControlsList" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="40" StackLayout.LayoutMethod="HorizontalRightToLeft">
+              <Children>
+                
+                <!--Routed-->
+                <SortButtonWidget DataSource="{SortController}" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="36" SuggestedHeight="29" VerticalAlignment="Center" MarginRight="26" Brush="ScoreboardRoutedItem" Brush.AlphaFactor="0.5" Brush.Sprite="SPGeneral\SPScoreboard\icon6" Command.Click="ExecuteSortByRouted" IsSelected="@IsRoutedSelected" SortState="@RoutedState" UpdateChildrenStates="true" SortVisualWidget="SortVisualWidget" GamepadNavigationIndex="6">
+                  <Children>
+								    <NavigationAutoScrollWidget TrackedWidget="..\." />
+                    <BrushWidget Id="SortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="Scoreboard.Sort.ArrowBrush" />
+                    <HintWidget DataSource="{..\..\RoutedHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                  </Children>
+                </SortButtonWidget>
+
+                <!--Wounded-->
+                <SortButtonWidget DataSource="{SortController}" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="26" SuggestedHeight="36" VerticalAlignment="Center" MarginRight="18" Brush="ScoreboardWoundedItem" Brush.AlphaFactor="0.5" Brush.Sprite="SPGeneral\SPScoreboard\icon5" Command.Click="ExecuteSortByWounded" IsSelected="@IsWoundedSelected" SortState="@WoundedState" UpdateChildrenStates="true" SortVisualWidget="SortVisualWidget" GamepadNavigationIndex="5">
+                  <Children>
+										<NavigationAutoScrollWidget TrackedWidget="..\." />
+                    <BrushWidget Id="SortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="Scoreboard.Sort.ArrowBrush" />
+                    <HintWidget DataSource="{..\..\WoundedHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                  </Children>
+                </SortButtonWidget>
+
+                <!--Dead-->
+                <SortButtonWidget DataSource="{SortController}" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="25" SuggestedHeight="38" VerticalAlignment="Center" MarginRight="26" Brush="ScoreboardDeadItem" Brush.AlphaFactor="0.5" Brush.Sprite="SPGeneral\SPScoreboard\icon4" Command.Click="ExecuteSortByDead" IsSelected="@IsDeadSelected" SortState="@DeadState" UpdateChildrenStates="true" SortVisualWidget="SortVisualWidget" GamepadNavigationIndex="4">
+                  <Children>
+										<NavigationAutoScrollWidget TrackedWidget="..\." />
+                    <BrushWidget Id="SortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="Scoreboard.Sort.ArrowBrush" />
+                    <HintWidget DataSource="{..\..\DeadHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                  </Children>
+                </SortButtonWidget>
+                
+                <!--Upgrade-->
+                <SortButtonWidget DataSource="{SortController}" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="25" SuggestedHeight="28" VerticalAlignment="Center" MarginRight="50" Brush="ScoreboardReadyToUpgradeItem" Brush.AlphaFactor="0.5" Brush.Sprite="SPGeneral\SPScoreboard\icon3" Command.Click="ExecuteSortByUpgrade" IsSelected="@IsUpgradeSelected" SortState="@UpgradeState" UpdateChildrenStates="true" SortVisualWidget="SortVisualWidget" GamepadNavigationIndex="3">
+                  <Children>
+										<NavigationAutoScrollWidget TrackedWidget="..\." />
+                    <BrushWidget Id="SortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="Scoreboard.Sort.ArrowBrush" />
+                    <HintWidget DataSource="{..\..\UpgradeHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                  </Children>
+                </SortButtonWidget>
+                
+                <!--Kill-->
+                <SortButtonWidget DataSource="{SortController}" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="13" SuggestedHeight="32" VerticalAlignment="Center" MarginRight="31" Brush="ScoreboardKillItem" Brush.AlphaFactor="0.5" Brush.Sprite="SPGeneral\SPScoreboard\icon2" Command.Click="ExecuteSortByKill" IsSelected="@IsKillSelected" SortState="@KillState" UpdateChildrenStates="true" SortVisualWidget="SortVisualWidget" GamepadNavigationIndex="2">
+                  <Children>
+										<NavigationAutoScrollWidget TrackedWidget="..\." />
+                    <BrushWidget Id="SortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="Scoreboard.Sort.ArrowBrush" />
+                    <HintWidget DataSource="{..\..\KillHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                  </Children>
+                </SortButtonWidget>
+                
+                <!--Remaining-->
+                <SortButtonWidget DataSource="{SortController}" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="21" SuggestedHeight="35" VerticalAlignment="Center" MarginRight="42" Brush="ScoreboardRemainingItem" Brush.AlphaFactor="0.5" Brush.Sprite="SPGeneral\SPScoreboard\icon1" Command.Click="ExecuteSortByRemaining" IsSelected="@IsRemainingSelected" SortState="@RemainingState" UpdateChildrenStates="true" SortVisualWidget="SortVisualWidget" GamepadNavigationIndex="1">
+                  <Children>
+										<NavigationAutoScrollWidget TrackedWidget="..\." />
+                    <BrushWidget Id="SortVisualWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Center" PositionXOffset="20" Brush="Scoreboard.Sort.ArrowBrush" />
+                    <HintWidget DataSource="{..\..\RemainingHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                  </Children>
+                </SortButtonWidget>
+
+                <!--Morale-->
+                <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginRight="23" GamepadNavigationIndex="0">
+                  <Children>
+                    <NavigationAutoScrollWidget TrackedWidget="..\." />
+                    <ScoreboardSideMoraleListPanel DoNotAcceptEvents="true" DoNotPassEventsToChildren="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Morale="@Morale" MaxMorale="100">
+                      <Children>
+                        <FillBarWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="45" SuggestedHeight="29" MarginLeft="5" FillWidget="FillWidget" MaxAmountAsFloat="1" UpdateChildrenStates="true">
+                          <Children>
+                            <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Scoreboard.Morale.Icon.Background"/>
+                            <Widget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" ClipContents="true">
+                              <Children>
+                                <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="45" Brush="Scoreboard.Morale.Icon.Fill" UseGlobalTimeForAnimation="true"/>
+                              </Children>
+                            </Widget>
+                          </Children>
+                        </FillBarWidget>
+                        <FillBarWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="45" SuggestedHeight="29" MarginLeft="5" FillWidget="FillWidget" MaxAmountAsFloat="1" UpdateChildrenStates="true">
+                          <Children>
+                            <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Scoreboard.Morale.Icon.Background"/>
+                            <Widget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" ClipContents="true">
+                              <Children>
+                                <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="45" Brush="Scoreboard.Morale.Icon.Fill" UseGlobalTimeForAnimation="true"/>
+                              </Children>
+                            </Widget>
+                          </Children>
+                        </FillBarWidget>
+                        <FillBarWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="45" SuggestedHeight="29" MarginLeft="5" FillWidget="FillWidget" MaxAmountAsFloat="1" UpdateChildrenStates="true">
+                          <Children>
+                            <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Scoreboard.Morale.Icon.Background"/>
+                            <Widget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" ClipContents="true">
+                              <Children>
+                                <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="45" Brush="Scoreboard.Morale.Icon.Fill" UseGlobalTimeForAnimation="true"/>
+                              </Children>
+                            </Widget>
+                          </Children>
+                        </FillBarWidget>
+                        <FillBarWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="45" SuggestedHeight="29" MarginLeft="5" FillWidget="FillWidget" MaxAmountAsFloat="1" UpdateChildrenStates="true">
+                          <Children>
+                            <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Scoreboard.Morale.Icon.Background"/>
+                            <Widget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" ClipContents="true">
+                              <Children>
+                                <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="45" Brush="Scoreboard.Morale.Icon.Fill" UseGlobalTimeForAnimation="true"/>
+                              </Children>
+                            </Widget>
+                          </Children>
+                        </FillBarWidget>
+                        <FillBarWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="45" SuggestedHeight="29" MarginLeft="5" FillWidget="FillWidget" MaxAmountAsFloat="1" UpdateChildrenStates="true">
+                          <Children>
+                            <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Scoreboard.Morale.Icon.Background"/>
+                            <Widget Id="FillWidget" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" ClipContents="true">
+                              <Children>
+                                <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="45" Brush="Scoreboard.Morale.Icon.Fill" UseGlobalTimeForAnimation="true"/>
+                              </Children>
+                            </Widget>
+                          </Children>
+                        </FillBarWidget>
+                      </Children>
+                    </ScoreboardSideMoraleListPanel>
+                    <HintWidget DataSource="{MoraleHint}" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false"/>
+                  </Children>
+                </Widget>
+
+              </Children>
+            </ListPanel>
+
+            <Widget DataSource="{Score}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="40">
+              <Children>
+                <Widget DoNotAcceptEvents="true" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="56" MarginTop="10">
+                  <Children>
+                    <Widget DataSource="{..}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="5" MarginRight="5" Sprite="SPGeneral\SPScoreboard\ally_bar" AlphaFactor="*BarAlpha" IsVisible="@IsPlayerSide" />
+                    <Widget DataSource="{..}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="5" MarginRight="5" Sprite="SPGeneral\SPScoreboard\enemy_bar" AlphaFactor="*BarAlpha" IsHidden="@IsPlayerSide" />
+                    <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="250" MarginLeft="20" Brush="ScoreboardDefaultFontBrush" Brush.FontSize="36" Text="@NameText" />
+
+                    <ScoreboardAnimatedTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Value.Width" HorizontalAlignment="Right" PositionXOffset="-302" ValueAsInt="@Remaining" ShowZero="true" Brush="ScoreboardRemainingItem" Brush.FontSize="30" IsHidden="@IsCountsMasked"/>
+                    <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Value.Width" HorizontalAlignment="Right" PositionXOffset="-302" Text="?" Brush="ScoreboardRemainingItem" Brush.FontSize="30" Brush.TextHorizontalAlignment="Center" IsVisible="@IsCountsMasked"/>
+
+                    <ScoreboardAnimatedTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Value.Width" HorizontalAlignment="Right" PositionXOffset="-242" ValueAsInt="@Kill" ShowZero="true" Brush="ScoreboardKillItem" Brush.FontSize="30" IsHidden="@IsCountsMasked"/>
+                    <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Value.Width" HorizontalAlignment="Right" PositionXOffset="-242" Text="?" Brush="ScoreboardKillItem" Brush.FontSize="30" Brush.TextHorizontalAlignment="Center" IsVisible="@IsCountsMasked"/>
+
+                    <ScoreboardAnimatedTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Value.Width" HorizontalAlignment="Right" PositionXOffset="-192" ValueAsInt="@ReadyToUpgrade" ShowZero="true" Brush="ScoreboardReadyToUpgradeItem" Brush.FontSize="30" />
+
+                    <ScoreboardAnimatedTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Value.Width" HorizontalAlignment="Right" PositionXOffset="-117" ValueAsInt="@Dead" ShowZero="true" Brush="ScoreboardDeadItem" Brush.FontSize="30" />
+
+                    <ScoreboardAnimatedTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Value.Width" HorizontalAlignment="Right" PositionXOffset="-67" ValueAsInt="@Wounded" ShowZero="true" Brush="ScoreboardWoundedItem" Brush.FontSize="30" IsHidden="@IsCountsMasked"/>
+                    <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Value.Width" HorizontalAlignment="Right" PositionXOffset="-67" Text="?" Brush="ScoreboardWoundedItem" Brush.FontSize="30" Brush.TextHorizontalAlignment="Center" IsVisible="@IsCountsMasked"/>
+
+                    <ScoreboardAnimatedTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Value.Width" HorizontalAlignment="Right" PositionXOffset="-17" ValueAsInt="@Routed" ShowZero="true" Brush="ScoreboardRoutedItem" Brush.FontSize="30" IsHidden="@IsCountsMasked"/>
+                    <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="!Value.Width" HorizontalAlignment="Right" PositionXOffset="-17" Text="?" Brush="ScoreboardRoutedItem" Brush.FontSize="30" Brush.TextHorizontalAlignment="Center" IsVisible="@IsCountsMasked"/>
+                  </Children>
+                </Widget>
+
+              </Children>
+            </Widget>
+
+          </Children>
+        </Widget>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

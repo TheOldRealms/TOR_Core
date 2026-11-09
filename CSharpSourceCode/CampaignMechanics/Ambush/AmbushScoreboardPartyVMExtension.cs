@@ -1,5 +1,7 @@
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.ViewModelCollection.Scoreboard;
 using TOR_Core.Extensions;
@@ -78,7 +80,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 return;
             }
 
-            bool isOnPlayerSide = ResolveSideIsPlayer(vm.NameText);
+            bool isOnPlayerSide = ResolveSideIsPlayer(vm);
             if (!model.ShouldMaskScoreboardRow(isOnPlayerSide))
             {
                 IsNameMasked = false;
@@ -90,11 +92,35 @@ namespace TOR_Core.CampaignMechanics.Ambush
             IsCountsMasked = vm.Remaining > 0;
         }
 
-        private static bool ResolveSideIsPlayer(string nameText)
+        private static bool ResolveSideIsPlayer(SPScoreboardStatsVM vm)
         {
-            if (string.IsNullOrEmpty(nameText)) return false;
+            if (vm == null) return false;
             var mission = Mission.Current;
             if (mission?.PlayerTeam == null) return false;
+
+            // Party-aggregate row: vanilla flips Score.IsMainParty to
+            // true on the main party's SPScoreboardPartyVM (set inside
+            // SPScoreboardPartyVM.GetUnitAddIfNotExists when the
+            // PlayerTroop is added as a member). Reliable signal for
+            // the player's own party row.
+            if (vm.IsMainParty) return true;
+
+            var nameText = vm.NameText;
+            if (string.IsNullOrEmpty(nameText)) return false;
+
+            // Side-aggregate row: vanilla builds SPScoreboardSideVM with
+            // NameText = GameTexts.FindText("str_battle_result_side",
+            // "attacker"/"defender"). Match against both localized
+            // strings and compare to PlayerTeam.Side.
+            var attackerSideName = GameTexts.FindText("str_battle_result_side", "attacker")?.ToString();
+            if (!string.IsNullOrEmpty(attackerSideName) && nameText == attackerSideName)
+                return mission.PlayerTeam.Side == BattleSideEnum.Attacker;
+            var defenderSideName = GameTexts.FindText("str_battle_result_side", "defender")?.ToString();
+            if (!string.IsNullOrEmpty(defenderSideName) && nameText == defenderSideName)
+                return mission.PlayerTeam.Side == BattleSideEnum.Defender;
+
+            // Unit row: scan mission for an active agent whose
+            // Character.Name matches the stats row's NameText.
             foreach (var team in mission.Teams)
             {
                 if (team == null) continue;
@@ -105,6 +131,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
                         return team == mission.PlayerTeam;
                 }
             }
+
+            // No match (e.g. enemy party aggregate row like "Ungor
+            // Warband" — no character has that name, IsMainParty is
+            // false because PlayerTroop isn't in Members). Treat as
+            // enemy side so the mask applies.
             return false;
         }
     }
