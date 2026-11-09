@@ -56,8 +56,20 @@ namespace TOR_Core.Missions.AmbushMission
         /// </summary>
         public static bool ShowRuntimeMarker { get; set; }
 
-        // Semi-transparent green: 0xAARRGGBB. Alpha 0x60 (~37%), full green.
-        private const uint PlayerZoneColor = 0x60_00_FF_00u;
+        // ARGB tint fed to the map_circle_decal shader via
+        // SetFactor1Linear. Fully opaque green — the material's own
+        // ring shader thins it to a soft outline so an opaque tint
+        // still reads as a glowing ring, not a solid circle.
+        private const uint PlayerZoneColor = 0xFF_00_C8_32u;
+        // Vanilla hover-ring material. Same one AmbushRangeDebugMapView
+        // uses on the campaign map.
+        private const string RingMaterial = "map_circle_decal";
+        // Natural decal-mesh radius (vanilla uses ~1 for party hover
+        // rings). Our scale factor = Radius / BaseMeshRadius.
+        private const float BaseMeshRadius = 1f;
+
+        private TaleWorlds.Engine.GameEntity _decalEntity;
+        private Decal _decal;
 
         private static readonly List<AmbushRetreatZone> _activeZones = new List<AmbushRetreatZone>();
 
@@ -146,31 +158,68 @@ namespace TOR_Core.Missions.AmbushMission
         protected override void OnTick(float dt)
         {
             base.OnTick(dt);
-            if (ShowRuntimeMarker || ShowDebugMarkerInGame) RenderZone();
+            UpdateDecal(ShowRuntimeMarker || ShowDebugMarkerInGame);
         }
 
         protected override void OnEditorTick(float dt)
         {
             base.OnEditorTick(dt);
             // Always visible in the editor so the scener sees the actual Radius while placing.
-            RenderZone();
+            UpdateDecal(true);
         }
 
-        private void RenderZone()
+        /// <summary>
+        /// Per-tick visibility + position update for the ground ring.
+        /// Mirrors the pattern <see cref="CampaignMechanics.Ambush.AmbushRangeDebugMapView"/>
+        /// uses on the campaign map for the strike-range ring: one
+        /// GameEntity + Decal created on first call, repositioned +
+        /// re-tinted per tick, toggled via
+        /// <see cref="GameEntity.SetVisibilityExcludeParents"/>.
+        /// Shader uniforms reset between passes so the color /
+        /// ring-thickness args must be re-set every frame.
+        /// </summary>
+        private void UpdateDecal(bool visible)
         {
             if (Scene == null) return;
-            // Flat terrain-hugging circle instead of a 3D debug sphere.
-            // DebugExtensions.RenderDebugCircleOnTerrain is what vanilla
-            // uses to draw area outlines on the ground (see any
-            // scripted mission with a defendable region).
-            DebugExtensions.RenderDebugCircleOnTerrain(
-                Scene, GameEntity.GetGlobalFrame(), Radius, PlayerZoneColor,
-                depthCheck: false, isDotted: false);
+            EnsureDecalCreated();
+            if (_decalEntity == null) return;
+
+            _decalEntity.SetVisibilityExcludeParents(visible);
+            if (!visible) return;
+
+            var frame = GameEntity.GetGlobalFrame();
+            var scaleVec = Vec3.One * (Radius / BaseMeshRadius);
+            frame.Scale(ref scaleVec);
+            _decalEntity.SetGlobalFrame(frame);
+
+            // Ring thickness profile matches AmbushRangeDebugMapView
+            // (0.166, 1, 0.83, 0 — thin glowing outline).
+            _decal.SetFactor1Linear(PlayerZoneColor);
+            _decal.SetVectorArgument(0.166f, 1f, 0.83f, 0f);
+        }
+
+        private void EnsureDecalCreated()
+        {
+            if (_decalEntity != null) return;
+            _decalEntity = TaleWorlds.Engine.GameEntity.CreateEmpty(Scene, true, true, true);
+            _decalEntity.Name = "TOR_AmbushRetreatZoneRing";
+            _decal = Decal.CreateDecal(null);
+            var material = Material.GetFromResource(RingMaterial);
+            if (material != null) _decal.SetMaterial(material);
+            Scene.AddDecalInstance(_decal, "editor_set", false);
+            _decalEntity.AddComponent(_decal);
+            _decalEntity.SetVisibilityExcludeParents(false);
         }
 
         protected override void OnRemoved(int removeReason)
         {
             _activeZones.Remove(this);
+            if (_decalEntity != null)
+            {
+                _decalEntity.Remove(0);
+                _decalEntity = null;
+            }
+            _decal = null;
             base.OnRemoved(removeReason);
         }
 
