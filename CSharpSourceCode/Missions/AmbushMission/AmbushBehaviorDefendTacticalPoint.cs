@@ -40,6 +40,7 @@ namespace TOR_Core.Missions.AmbushMission
         private readonly Dictionary<Agent, int> _lastAssignments = new Dictionary<Agent, int>();
 
         public IReadOnlyList<WorldPosition> TacticalChildren => _tacticalChildren;
+        public WorldPosition ParentPosition => _parentPosition;
 
         public AmbushBehaviorDefendTacticalPoint(Formation formation,
                                                   WorldPosition parentPosition,
@@ -67,6 +68,23 @@ namespace TOR_Core.Missions.AmbushMission
                            float activationRadius,
                            bool ignoreHeight)
         {
+            // Release every agent currently pinned to an old tactical
+            // child before we forget the mapping. Without this, the
+            // release pass in AssignScriptedPositionsToAgents only sees
+            // the cleared dict and never calls DisableScriptedMovement,
+            // so agents stay native-pinned to the old child positions
+            // even after the formation plate moves. The next assign pass
+            // then fills reachable new children; anyone not picked up
+            // this time would otherwise drift back into the old
+            // scripted spot. Clearing here guarantees a clean slate.
+            foreach (var kv in _lastAssignments)
+            {
+                var agent = kv.Key;
+                if (agent == null || !agent.IsActive()) continue;
+                var flags = agent.GetScriptedFlags();
+                if ((flags & Agent.AIScriptedFrameFlags.GoToPosition) == 0) continue;
+                agent.DisableScriptedMovement();
+            }
             _parentPosition = parentPosition;
             _tacticalChildren = tacticalChildren?.ToList() ?? new List<WorldPosition>();
             _activationRadius = activationRadius > 0f ? activationRadius : 30f;

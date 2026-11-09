@@ -28,6 +28,21 @@ namespace TOR_Core.Missions.AmbushMission
     {
         private const float ReassignIntervalSeconds = 2.0f;
 
+        /// <summary>Metres the formation plate (OrderPosition) may
+        /// drift from the anchor's registered parent spawn point
+        /// before we treat the plate as "moved off" and release the
+        /// anchor. Player orders (Move / Charge) set OrderPosition
+        /// directly; the behavior's own TickOccasionally sets it back
+        /// to _parentPosition, so a steady-state anchored formation
+        /// hovers at 0. Any meaningful divergence means the player
+        /// just issued an order the behavior isn't going to be given
+        /// a chance to override (e.g. during AIControlOff windows,
+        /// or because the player keeps the plate elsewhere via the
+        /// sidebar picker). Threshold roughly matches the activation
+        /// radius since an order that stays within the spot's volume
+        /// is still "at the spot."</summary>
+        private const float PlateDivergenceReleaseMetres = 30f;
+
         private readonly Dictionary<Formation, AmbushBehaviorDefendTacticalPoint> _anchors
             = new Dictionary<Formation, AmbushBehaviorDefendTacticalPoint>();
         private float _reassignAccumulator;
@@ -88,7 +103,8 @@ namespace TOR_Core.Missions.AmbushMission
                 var f = kv.Key;
                 if (f == null
                     || f.CountOfUnits == 0
-                    || !IsRangedClass(f.PhysicalClass))
+                    || !IsRangedClass(f.PhysicalClass)
+                    || HasPlateMovedOffAnchor(f, kv.Value))
                 {
                     (toUnregister ??= new List<Formation>()).Add(f);
                 }
@@ -108,6 +124,22 @@ namespace TOR_Core.Missions.AmbushMission
             return cls == FormationClass.Ranged
                 || cls == FormationClass.Skirmisher
                 || cls == FormationClass.HorseArcher;
+        }
+
+        /// <summary>True when the formation's plate (<c>OrderPosition</c>)
+        /// has diverged from the anchor's authored parent spawn point by
+        /// more than <see cref="PlateDivergenceReleaseMetres"/>. Signals
+        /// a player order the anchor behavior isn't going to be allowed
+        /// to override; releasing here lets the pinned agents rejoin
+        /// under the new plate position instead of trying to hold the
+        /// old firing slots.</summary>
+        private static bool HasPlateMovedOffAnchor(Formation formation,
+                                                   AmbushBehaviorDefendTacticalPoint behavior)
+        {
+            if (behavior == null) return false;
+            var anchor = behavior.ParentPosition.AsVec2;
+            float distSq = formation.OrderPosition.DistanceSquared(anchor);
+            return distSq > PlateDivergenceReleaseMetres * PlateDivergenceReleaseMetres;
         }
     }
 }
