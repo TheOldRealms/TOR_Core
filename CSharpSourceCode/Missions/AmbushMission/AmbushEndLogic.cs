@@ -242,7 +242,13 @@ namespace TOR_Core.Missions.AmbushMission
             foreach (var a in team.ActiveAgents)
             {
                 if (a == null || !a.IsHuman || !a.IsActive()) continue;
-                if (!AmbushRetreatZone.IsAgentInsideAnyZone(a)) n++;
+                // Troop extraction is forgiving: anyone within the
+                // zone's larger troop radius (Radius *
+                // TroopExtractionRadiusMultiplier) counts as
+                // extracted, not just the tight hero circle. Scener
+                // tunes per-zone via the script's
+                // <c>TroopExtractionRadiusMultiplier</c> field.
+                if (!AmbushRetreatZone.IsAgentInsideAnyTroopExtractionZone(a)) n++;
             }
             return n;
         }
@@ -288,6 +294,9 @@ namespace TOR_Core.Missions.AmbushMission
             _objectiveIsPhase2 = true;
             _lastInZoneShown = false;
             _lastTotalPoolShown = int.MinValue;
+            // Phase 2 is live; show the retreat-zone ground markers so
+            // the player can see the circle they need to stand in.
+            AmbushRetreatZone.ShowRuntimeMarker = true;
         }
 
         /// <summary>
