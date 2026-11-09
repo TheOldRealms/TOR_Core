@@ -6142,4 +6142,5 @@
   <string id="tor_hire_companion_payment.tor_wanderer_dawi_3" text="{=str_tor_hire_companion_payment_tor_wanderer_dawi_3}{GOLD_AMOUNT}{GOLD_ICON}. Beer and whetstones; a Slayer needs nothing else." />
   <string id="tor_hire_accept_p.tor_wanderer_dawi_3" text="{=str_tor_hire_accept_p_tor_wanderer_dawi_3}Done. Try not to drink it all at once." />
   <string id="tor_hire_decline_p.tor_wanderer_dawi_3" text="{=str_tor_hire_decline_p_tor_wanderer_dawi_3}My purse can't stretch that far yet." />
+  <string id="tor_recruitment_culture_blocked" text="{=str_tor_recruitment_culture_blocked}You cannot recruit this troop due to cultural restrictions (...)" />
 </strings>
