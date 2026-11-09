@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.Missions.AmbushMission
@@ -28,24 +29,10 @@ namespace TOR_Core.Missions.AmbushMission
     {
         private const float ReassignIntervalSeconds = 2.0f;
 
-        /// <summary>Metres the formation plate (OrderPosition) may
-        /// drift from the anchor's registered parent spawn point
-        /// before we treat the plate as "moved off" and release the
-        /// anchor. Player orders (Move / Charge) set OrderPosition
-        /// directly; the behavior's own TickOccasionally sets it back
-        /// to _parentPosition, so a steady-state anchored formation
-        /// hovers at 0. Any meaningful divergence means the player
-        /// just issued an order the behavior isn't going to be given
-        /// a chance to override (e.g. during AIControlOff windows,
-        /// or because the player keeps the plate elsewhere via the
-        /// sidebar picker). Threshold roughly matches the activation
-        /// radius since an order that stays within the spot's volume
-        /// is still "at the spot."</summary>
-        private const float PlateDivergenceReleaseMetres = 30f;
-
         private readonly Dictionary<Formation, AmbushBehaviorDefendTacticalPoint> _anchors
             = new Dictionary<Formation, AmbushBehaviorDefendTacticalPoint>();
         private float _reassignAccumulator;
+        private Team _subscribedPlayerTeam;
 
         /// <summary>
         /// First-time anchor for a formation (initial spawn placement).
@@ -84,6 +71,72 @@ namespace TOR_Core.Missions.AmbushMission
             AmbushBehaviorDefendTacticalPoint.ClearScriptedPositions(formation);
         }
 
+        /// <summary>
+        /// Subscribes to the player-team order controller once both
+        /// teams are set up. Must run post-<c>AmbushMissionController</c>
+        /// so <see cref="Mission.PlayerTeam"/> resolves. The event
+        /// payload carries the formations the order was applied to —
+        /// we release any of those that are currently anchored and the
+        /// order type actually moves the plate (Move / Charge /
+        /// variants). F6-delegation orders or formation layout orders
+        /// shouldn't release, so we filter on OrderType.
+        /// </summary>
+        public override void AfterStart()
+        {
+            base.AfterStart();
+            if (Mission.PlayerTeam?.PlayerOrderController != null)
+            {
+                _subscribedPlayerTeam = Mission.PlayerTeam;
+                _subscribedPlayerTeam.PlayerOrderController.OnOrderIssued += OnPlayerOrderIssued;
+            }
+        }
+
+        protected override void OnEndMission()
+        {
+            if (_subscribedPlayerTeam?.PlayerOrderController != null)
+            {
+                _subscribedPlayerTeam.PlayerOrderController.OnOrderIssued -= OnPlayerOrderIssued;
+                _subscribedPlayerTeam = null;
+            }
+            base.OnEndMission();
+        }
+
+        private void OnPlayerOrderIssued(OrderType orderType, MBReadOnlyList<Formation> appliedFormations,
+                                          OrderController orderController, params object[] delegateParams)
+        {
+            if (!IsPlateMovingOrder(orderType)) return;
+            if (appliedFormations == null || _anchors.Count == 0) return;
+            // Can't mutate _anchors while iterating. Collect first.
+            List<Formation> toRelease = null;
+            for (int i = 0; i < appliedFormations.Count; i++)
+            {
+                var f = appliedFormations[i];
+                if (f != null && _anchors.ContainsKey(f))
+                    (toRelease ??= new List<Formation>()).Add(f);
+            }
+            if (toRelease == null) return;
+            foreach (var f in toRelease) UnregisterAnchor(f);
+        }
+
+        private static bool IsPlateMovingOrder(OrderType orderType)
+        {
+            // OrderType values that move the formation plate. Doesn't
+            // cover formation-shape / firing-mode / stance orders —
+            // those don't justify releasing the anchor. Enum values
+            // from TaleWorlds.MountAndBlade.OrderType.
+            return orderType == OrderType.Move
+                || orderType == OrderType.MoveToLineSegment
+                || orderType == OrderType.MoveToLineSegmentWithHorizontalLayout
+                || orderType == OrderType.FollowMe
+                || orderType == OrderType.Charge
+                || orderType == OrderType.ChargeWithTarget
+                || orderType == OrderType.Retreat
+                || orderType == OrderType.AdvanceTenPaces
+                || orderType == OrderType.FallBackTenPaces
+                || orderType == OrderType.Advance
+                || orderType == OrderType.FallBack;
+        }
+
         public override void OnMissionTick(float dt)
         {
             base.OnMissionTick(dt);
@@ -103,8 +156,7 @@ namespace TOR_Core.Missions.AmbushMission
                 var f = kv.Key;
                 if (f == null
                     || f.CountOfUnits == 0
-                    || !IsRangedClass(f.PhysicalClass)
-                    || HasPlateMovedOffAnchor(f, kv.Value))
+                    || !IsRangedClass(f.PhysicalClass))
                 {
                     (toUnregister ??= new List<Formation>()).Add(f);
                 }
@@ -126,20 +178,5 @@ namespace TOR_Core.Missions.AmbushMission
                 || cls == FormationClass.HorseArcher;
         }
 
-        /// <summary>True when the formation's plate (<c>OrderPosition</c>)
-        /// has diverged from the anchor's authored parent spawn point by
-        /// more than <see cref="PlateDivergenceReleaseMetres"/>. Signals
-        /// a player order the anchor behavior isn't going to be allowed
-        /// to override; releasing here lets the pinned agents rejoin
-        /// under the new plate position instead of trying to hold the
-        /// old firing slots.</summary>
-        private static bool HasPlateMovedOffAnchor(Formation formation,
-                                                   AmbushBehaviorDefendTacticalPoint behavior)
-        {
-            if (behavior == null) return false;
-            var anchor = behavior.ParentPosition.AsVec2;
-            float distSq = formation.OrderPosition.DistanceSquared(anchor);
-            return distSq > PlateDivergenceReleaseMetres * PlateDivergenceReleaseMetres;
-        }
     }
 }
