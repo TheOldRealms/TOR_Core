@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics.Ambush;
 using TOR_Core.Extensions;
@@ -823,6 +824,50 @@ namespace TOR_Core.Models
         /// </summary>
         public virtual bool IsSilentSuccessfulStrike(AmbushRecord record)
             => record != null && !record.AmbusherRepelled && !record.WasLoud;
+
+        /// <summary>Minimum visible troop count before an enemy side's
+        /// numbers get masked ("?"). Below or equal to this the real
+        /// numbers show. Centralised here instead of hardcoded 5 in
+        /// each extension so the formation marker and scoreboard mask
+        /// stay in sync.</summary>
+        public virtual int BluffVisibleThreshold => 5;
+
+        /// <summary>True when the scoreboard should render a row's
+        /// counts as "?" instead of real numbers. Fires for Phase F
+        /// ambushed (player on Defender) while the ambush's bluff
+        /// state is active, the row is not on the player's own party,
+        /// and the enemy-team visible total exceeds
+        /// <see cref="BluffVisibleThreshold"/>. All other missions,
+        /// phases, and player-party rows return false. The Dead /
+        /// Eliminated column stays visible regardless — the mask
+        /// only hides what the player hasn't already killed.</summary>
+        public virtual bool ShouldMaskScoreboardRow(bool isRowOnPlayerSide)
+        {
+            if (isRowOnPlayerSide) return false;
+            var mission = Mission.Current;
+            if (mission?.PlayerTeam == null) return false;
+            // Scoreboard mask only applies when the player is the
+            // ambushed (Phase F). Phase D player-as-ambusher sees the
+            // enemy counts normally; the bluff is them-looking-at-us,
+            // not us-looking-at-them.
+            if (mission.PlayerTeam.Side != BattleSideEnum.Defender) return false;
+            var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
+            if (behavior == null || !behavior.IsCurrentMissionBluffed) return false;
+            // Enemy side visible total — if it's dropped to threshold
+            // or below, the mask lifts (matches the formation-marker
+            // bluff behaviour).
+            var enemySide = mission.PlayerTeam.Side.GetOppositeSide();
+            int visible = 0;
+            foreach (var t in mission.Teams)
+            {
+                if (t == null || t.Side != enemySide) continue;
+                foreach (var a in t.ActiveAgents)
+                {
+                    if (a != null && a.IsHuman && a.IsActive()) visible++;
+                }
+            }
+            return visible > BluffVisibleThreshold;
+        }
 
         // ---- Phase F: AI-side propensity ----
 

@@ -1,0 +1,111 @@
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.Library;
+using TaleWorlds.MountAndBlade;
+using TaleWorlds.MountAndBlade.ViewModelCollection.Scoreboard;
+using TOR_Core.Extensions;
+using TOR_Core.Extensions.UI;
+
+namespace TOR_Core.CampaignMechanics.Ambush
+{
+    /// <summary>
+    /// Scoreboard per-row mask for Phase F ambushed. Hooks the Stats
+    /// VM directly — the per-column widgets in
+    /// <c>SPScoreboardUnit.xml</c> live in <c>{Score}</c> (Stats)
+    /// scope, so the mask bools have to live on Stats itself; Gauntlet
+    /// attribute bindings don't walk up to parent scopes.
+    ///
+    /// Two exposed flags:
+    ///  - <see cref="IsNameMasked"/> = mask applies AND the type
+    ///    hasn't been killed yet (<c>Dead == 0</c>). Row name reads
+    ///    "?"; the Dead column already shows 0.
+    ///  - <see cref="IsCountsMasked"/> = mask applies AND the type
+    ///    still has alive troops (<c>Remaining &gt; 0</c>). Remaining
+    ///    / Kill / Wounded / Routed read "?". Once the type is fully
+    ///    wiped the mask lifts so the final tally shows.
+    ///
+    /// Side resolution: scan <see cref="Mission.Teams"/> for an
+    /// active agent whose <c>Character.Name</c> matches the stats
+    /// row's <see cref="NameText"/>. Fragile vs. multi-language / same
+    /// troop on both sides, but the ambush scope guarantees distinct
+    /// factions so collisions in practice are nil. If no match (unit
+    /// wiped), returns false — treated as enemy by default, but the
+    /// Wiped branch unmasks anyway.
+    ///
+    /// Yes/no delegates to
+    /// <see cref="Models.TORAmbushModel.ShouldMaskScoreboardRow"/>.
+    /// </summary>
+    [ViewModelExtension(typeof(SPScoreboardStatsVM), "UpdateScores")]
+    public class AmbushScoreboardPartyVMExtension : BaseViewModelExtension
+    {
+        private bool _isNameMasked;
+        private bool _isCountsMasked;
+
+        [DataSourceProperty]
+        public bool IsNameMasked
+        {
+            get => _isNameMasked;
+            set
+            {
+                if (value == _isNameMasked) return;
+                _isNameMasked = value;
+                _vm?.OnPropertyChangedWithValue(value, nameof(IsNameMasked));
+            }
+        }
+
+        [DataSourceProperty]
+        public bool IsCountsMasked
+        {
+            get => _isCountsMasked;
+            set
+            {
+                if (value == _isCountsMasked) return;
+                _isCountsMasked = value;
+                _vm?.OnPropertyChangedWithValue(value, nameof(IsCountsMasked));
+            }
+        }
+
+        public AmbushScoreboardPartyVMExtension(ViewModel vm) : base(vm) { }
+
+        public override void RefreshValues()
+        {
+            base.RefreshValues();
+            var vm = _vm as SPScoreboardStatsVM;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (vm == null || model == null)
+            {
+                IsNameMasked = false;
+                IsCountsMasked = false;
+                return;
+            }
+
+            bool isOnPlayerSide = ResolveSideIsPlayer(vm.NameText);
+            if (!model.ShouldMaskScoreboardRow(isOnPlayerSide))
+            {
+                IsNameMasked = false;
+                IsCountsMasked = false;
+                return;
+            }
+
+            IsNameMasked = vm.Dead == 0;
+            IsCountsMasked = vm.Remaining > 0;
+        }
+
+        private static bool ResolveSideIsPlayer(string nameText)
+        {
+            if (string.IsNullOrEmpty(nameText)) return false;
+            var mission = Mission.Current;
+            if (mission?.PlayerTeam == null) return false;
+            foreach (var team in mission.Teams)
+            {
+                if (team == null) continue;
+                foreach (var agent in team.ActiveAgents)
+                {
+                    var name = agent?.Character?.Name?.ToString();
+                    if (name != null && name == nameText)
+                        return team == mission.PlayerTeam;
+                }
+            }
+            return false;
+        }
+    }
+}
