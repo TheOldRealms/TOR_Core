@@ -1,0 +1,63 @@
+<Prefab>
+  <Constants>
+  </Constants>
+  <VisualDefinitions>
+
+  </VisualDefinitions>
+  <Window>
+    <ObjectiveMarkersParentWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IsMarkersEnabled="@IsEnabled" MarkersContainer="MarkersContainer" MinDistanceToFocus="80" MaxDistanceToCombineMarkers="22">
+      <Children>
+
+        <Widget Id="MarkersContainer" DataSource="{Targets}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+          <ItemTemplate>
+
+            <ObjectiveMarkerWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" Position="@ScreenPosition" MainContainer="MainContainer" NameTextWidget="MainContainer\NameAndDistanceContainer\NameTextWidget" CombinationCountWidget="MainContainer\QuestIconWidget\CombinedMarkerCountWidget" DistanceContainerWidget="MainContainer\NameAndDistanceContainer\DistanceInfo" DistanceTextWidget="MainContainer\NameAndDistanceContainer\DistanceInfo\DistanceText" DistanceIconWidget="MainContainer\NameAndDistanceContainer\DistanceInfo\DistanceIcon" QuestIconWidget="MainContainer\QuestIconWidget" IsMarkerEnabled="@IsEnabled" IsMarkerActive="@IsActive" Distance="@Distance" FarAlphaTarget="0.7" FarDistanceCutoff="250" CloseDistanceCutoff="25" >
+              <Children>
+
+                <ListPanel Id="MainContainer" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalTopToBottom" >
+                  <Children>
+
+                    <IconBrushWidget Id="QuestIconWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="42" SuggestedWidth="25" HorizontalAlignment="Center" IconID="@ObjectiveTypeId" IconBrush="Mission.Objective.Type.Icons" UseIconSize="true" >
+                      <Children>
+                        <!-- Combination Count Widget -->
+                        <TextWidget Id="CombinedMarkerCountWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Top" PositionXOffset="25" PositionYOffset="25" Brush="Mission.Objective.Marker.CombinedMarkerCount.Text" />
+                        <!-- TOR extraction hover highlight. Child of
+                             the icon widget so it overlays centered on
+                             the icon. Both IsTargetingAFormation and
+                             IsCenterOfFocus bind to IsExtractionFocused
+                             so the arrows render only when the cursor
+                             is actually on the marker — leaving either
+                             hardcoded to true makes the arrows always
+                             visible in command mode. -->
+                        <FormationFocusedMarkerWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" Brush="OrderOfBattle.Formation.Focus.Indicator" Brush.AlphaFactor="1.0" HorizontalAlignment="Center" VerticalAlignment="Center" NormalSize="48" FocusedSize="64" IsCenterOfFocus="@IsExtractionFocused" IsTargetingAFormation="@IsExtractionFocused" IsFormationTargetRelevant="@IsExtractionFocused" />
+                      </Children>
+                    </IconBrushWidget>
+
+                    <ListPanel Id="NameAndDistanceContainer" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalTopToBottom" >
+                      <Children>
+
+                        <TextWidget Id="NameTextWidget" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="200" Text="@ObjectiveName" HorizontalAlignment="Center" Brush="Mission.Objective.Marker.Name.Text" OverrideDefaultStateSwitchingEnabled="true" ClipContents="false"/>
+
+                        <ListPanel Id="DistanceInfo" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" PositionYOffset="0" HorizontalAlignment="Center" StackLayout.LayoutMethod="HorizontalLeftToRight" >
+                          <Children>
+                            <BrushWidget Id="DistanceIcon" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="14" SuggestedHeight="20" PositionYOffset="3" Brush="NameMarker.Distance.Icon" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextWidget Id="DistanceText" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="Mission.Objective.Marker.Distance.Text" MarginLeft="4" MarginTop="5" IntText="@Distance" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                          </Children>
+                        </ListPanel>
+
+                      </Children>
+                    </ListPanel>
+                    
+                  </Children>
+                </ListPanel>
+
+              </Children>
+            </ObjectiveMarkerWidget>
+
+          </ItemTemplate>
+        </Widget>
+
+      </Children>
+    </ObjectiveMarkersParentWidget>
+  </Window>
+</Prefab>

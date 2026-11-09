@@ -40,6 +40,7 @@ namespace TOR_Core.Missions.AmbushMission.UI
         public override void OnMissionScreenTick(float dt)
         {
             base.OnMissionScreenTick(dt);
+            AmbushRetreatZoneObjectiveTarget.IsFocused = false;
             if (Mission.Current == null || MissionScreen == null) return;
             if (Mission.Current.MissionEnded) return;
 
@@ -55,9 +56,6 @@ namespace TOR_Core.Missions.AmbushMission.UI
             if (!commandMode) return;
 
             if (!TryGetExtractionWorldPos(out var worldPos)) return;
-
-            var orderController = Mission.Current.PlayerTeam?.PlayerOrderController;
-            if (orderController == null || orderController.SelectedFormations.Count == 0) return;
 
             // Project the zone to screen. Behind-camera guards from
             // the earlier custom marker view apply.
@@ -79,6 +77,14 @@ namespace TOR_Core.Missions.AmbushMission.UI
             float dy = mouse.y - screenY;
             float distSq = dx * dx + dy * dy;
             if (distSq > FocusPixelRadius * FocusPixelRadius) return;
+
+            // In focus. Advertise to the marker VM extension so the
+            // prefab shows the highlight; click handling is still gated
+            // on selected formations below.
+            AmbushRetreatZoneObjectiveTarget.IsFocused = true;
+
+            var orderController = Mission.Current.PlayerTeam?.PlayerOrderController;
+            if (orderController == null || orderController.SelectedFormations.Count == 0) return;
 
             // InputKey.LeftMouseButton = 112. IsKeyReleased matches
             // vanilla's GauntletOrderUIBase.TickInput pattern — fires

@@ -22,6 +22,16 @@ namespace TOR_Core.Missions.AmbushMission
     {
         private readonly TextObject _name = new TextObject("{=tor_ambush_extraction_marker}Extraction");
 
+        /// <summary>Set by <see cref="UI.AmbushExtractionOrderHandler"/>
+        /// each tick based on cursor-vs-marker focus distance. Consumed
+        /// by the VM extension on the objective marker so the overridden
+        /// <c>MissionObjectiveMarkers.xml</c> prefab can render a hover
+        /// highlight. Static because there's only ever one extraction
+        /// target per mission and the handler is a MissionView that
+        /// can't reach the VM through the Gauntlet layer without this
+        /// backchannel.</summary>
+        public static bool IsFocused { get; set; }
+
         public override bool IsActive() => TryGetPosition(out _);
 
         public override TextObject GetName() => _name;
