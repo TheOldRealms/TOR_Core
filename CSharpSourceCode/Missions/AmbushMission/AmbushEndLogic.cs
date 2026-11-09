@@ -275,6 +275,15 @@ namespace TOR_Core.Missions.AmbushMission
                 new TextObject("{=tor_ambush_obj_phase2_name}Escape the Ambush"),
                 new TextObject("{=tor_ambush_obj_phase2_desc_init}Retreat to the Extraction Point or fight off the reinforcements."));
             _objective.SetProgressCallback(GetPhase2Progress);
+            // World-anchored extraction marker: vanilla's MissionObjectiveMarkers
+            // (embedded in MissionObjectives.xml via DataSource="{Markers}")
+            // reads the objective's targets and projects each one every
+            // frame via MBWindowManager.WorldToScreenInsideUsableArea.
+            // That gives us a proper world marker (icon + name + distance,
+            // auto-clamped to screen edges when off-camera) for free —
+            // the earlier custom AmbushRetreatZoneMarkerView attempted the
+            // same thing manually and never got the projection reliable.
+            _objective.AddTarget(new AmbushRetreatZoneObjectiveTarget());
             _objectiveLogic.StartObjective(_objective);
             _objectiveIsPhase2 = true;
             _lastInZoneShown = false;
