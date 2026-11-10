@@ -314,9 +314,13 @@ namespace TOR_Core.Missions.AmbushMission
         }
 
         /// <summary>
-        /// Batch size for a wave = max(1, totalRoster * fraction). Reads
-        /// the active-phase total (set from the mission opener) so the
-        /// per-wave count scales with party size.
+        /// Batch size for a wave = max(floor, totalRoster * fraction),
+        /// clamped above by the remaining pool. Reads the active-phase
+        /// total (set from the mission opener) so the per-wave count
+        /// scales with party size. The floor keeps small parties from
+        /// trickling in one troop at a time; the pool clamp is what
+        /// sends "the last 3 men" as a final wave even when 3 is below
+        /// the floor.
         /// </summary>
         private int ComputeBatchSize()
         {
@@ -325,7 +329,8 @@ namespace TOR_Core.Missions.AmbushMission
             if (phase == null || phase.RemainingSpawnNumber <= 0) return 0;
             int total = phase.TotalSpawnNumber;
             int batch = (int)(total * _reinforcementBatchFraction);
-            if (batch < 1) batch = 1;
+            int floor = _model.ReinforcementBatchFloor;
+            if (batch < floor) batch = floor;
             return System.Math.Min(batch, phase.RemainingSpawnNumber);
         }
 

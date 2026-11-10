@@ -1,3 +1,4 @@
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 
 namespace TOR_Core.Models
@@ -25,14 +26,34 @@ namespace TOR_Core.Models
         /// ambush — fewer bodies on screen at once.</summary>
         public virtual float TargetTotalTroopRatio => 0.25f;
 
-        /// <summary>Hard cap on troops that spawn upfront per side. The rest of
-        /// the roster stays in the reinforcement pool and flows in via the
-        /// existing wave timer. Keeps the initial engagement readable (both
-        /// for the ambusher scouting targets and the victim reacting to a
-        /// visible patrol) and gives Phase 2 reinforcements something to
-        /// deliver. 15 per side matches the test_ambush scene footprint;
-        /// larger scenes can rebalance via override.</summary>
-        public virtual int InitialOnFieldCap => 15;
+        /// <summary>Base cap on troops that spawn upfront per side,
+        /// before the Tactics bonus. See <see cref="ComputeInitialOnFieldCap"/>
+        /// for the full formula.</summary>
+        public virtual int InitialOnFieldBaseCap => 25;
+
+        /// <summary>Per-point-of-Tactics bonus to the initial on-field
+        /// cap. 0.2 → every 5 Tactics adds one troop. At 300 Tactics
+        /// the cap resolves to 85.</summary>
+        public virtual float InitialOnFieldPerTacticsBonus => 0.2f;
+
+        /// <summary>Resolves the initial on-field cap for a given
+        /// leader hero. Reads the hero's Tactics skill and adds
+        /// <see cref="InitialOnFieldPerTacticsBonus"/> per point to
+        /// <see cref="InitialOnFieldBaseCap"/>. Leaderless parties
+        /// (caravans, some patrols) get the flat base cap — no hero
+        /// to pull a Tactics value from. Used by both the ambusher-
+        /// side spawn (how many troops lie in wait) and the
+        /// ambushed-side spawn (how many troops are on the column
+        /// when the strike lands). Rest of each side's roster:
+        /// ambusher's excess is simply not deployed (one-shot
+        /// commitment, post-MVP may add waves); ambushed's excess
+        /// feeds the reinforcement pool.</summary>
+        public virtual int ComputeInitialOnFieldCap(Hero leader)
+        {
+            if (leader == null) return InitialOnFieldBaseCap;
+            int tactics = leader.GetSkillValue(DefaultSkills.Tactics);
+            return InitialOnFieldBaseCap + (int)(tactics * InitialOnFieldPerTacticsBonus);
+        }
 
         // ---- Reinforcement cadence ----
 
@@ -48,8 +69,17 @@ namespace TOR_Core.Models
 
         /// <summary>Each enemy wave is this fraction of their total roster.
         /// 0.1 → 10% per wave: 15 troops/wave against a 150-strong lord party,
-        /// 30 against a 300-strong army. Scales naturally with target size.</summary>
+        /// 30 against a 300-strong army. Scales naturally with target size.
+        /// Combined with <see cref="ReinforcementBatchFloor"/> so very small
+        /// parties still send meaningful waves instead of trickling in a
+        /// single troop at a time.</summary>
         public virtual float ReinforcementBatchFraction => 0.1f;
+
+        /// <summary>Minimum troops per reinforcement wave. If the
+        /// fractional computation would yield fewer, we bump up to
+        /// this floor. If fewer than this many troops remain in the
+        /// pool, the final wave sends whatever's left.</summary>
+        public virtual int ReinforcementBatchFloor => 5;
 
         /// <summary>Player side reinforcements per wave. Default 0 — the ambush
         /// is a one-shot commitment of the force the player strikes with.</summary>

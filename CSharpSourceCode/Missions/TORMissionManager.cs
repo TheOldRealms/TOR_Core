@@ -247,26 +247,28 @@ namespace TOR_Core.Missions
         /// handles missing authored content for Phase D ship.
         /// </summary>
         [MissionMethod]
-        public static Mission OpenAmbushMission(string scene)
+        public static Mission OpenAmbushMission(string scene, TroopRoster ambusherSelection = null)
         {
             var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All);
             return MissionState.OpenNew("Battle", rec, delegate (Mission mission)
             {
-                // Share the attacker supplier instance between vanilla's spawn
-                // logic and the AmbushMissionController. The controller drains
-                // it in AfterStart (ambusher custom spawn) so vanilla's later
-                // SetSpawnTroops(Attacker, enforceSpawning: true) sees an
-                // empty supplier and skips the (0, 0, 0) initial placement
-                // that would otherwise hang the deployment screen.
+                // Ambusher supplier: if the caller passed a specific
+                // troop selection (player-ambusher UI pick), inject it
+                // as priorTroops so the allocator drains those first;
+                // the remainder stays unspawned (one-shot ambusher).
+                var ambusherPrior = BuildFlattenedPriorTroops(ambusherSelection);
                 var ambusherSupplier = new PartyGroupTroopSupplier(
-                    MapEvent.PlayerMapEvent, BattleSideEnum.Attacker);
-                // Vanilla's defender spawn drops specific troops (e.g. Ungor
-                // Raider in the current test scene) at (0, 0, 0) on the first
-                // mission tick, which hangs the walkable-area check. Share
-                // the defender supplier too so AmbushMissionController can
-                // drain it and spawn at sp_defender_<class> positions.
-                var victimSupplier = new PartyGroupTroopSupplier(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Attacker, ambusherPrior);
+                // Victim supplier: ordering is a shuffled view of the
+                // victim-side roster so the initial-on-field cap
+                // allocates random troops ("the column was caught
+                // unprepared — this subset happened to be at the front
+                // when the ambush sprung"). Remainder flows in as
+                // reinforcement waves via AmbushReinforcementMissionLogic.
+                var victimPrior = BuildShuffledPriorTroopsForSide(
                     MapEvent.PlayerMapEvent, BattleSideEnum.Defender);
+                var victimSupplier = new PartyGroupTroopSupplier(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Defender, victimPrior);
                 IMissionTroopSupplier[] suppliers =
                 [
                     victimSupplier,
@@ -379,8 +381,14 @@ namespace TOR_Core.Missions
                 // sp_attacker_<class> entities.
                 var ambusherSupplier = new PartyGroupTroopSupplier(
                     MapEvent.PlayerMapEvent, BattleSideEnum.Attacker);
-                var victimSupplier = new PartyGroupTroopSupplier(
+                // Victim supplier with shuffled priorTroops: initial
+                // cap draws a random slice of the player's roster
+                // ("whoever happened to be at the front when the
+                // column was ambushed"). Rest reinforces via waves.
+                var victimPrior = BuildShuffledPriorTroopsForSide(
                     MapEvent.PlayerMapEvent, BattleSideEnum.Defender);
+                var victimSupplier = new PartyGroupTroopSupplier(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Defender, victimPrior);
                 IMissionTroopSupplier[] suppliers =
                 [
                     victimSupplier,
@@ -536,6 +544,72 @@ namespace TOR_Core.Missions
 
                 return list.ToArray();
             }, true, true);
+        }
+
+        /// <summary>
+        /// Builds a shuffled <see cref="FlattenedTroopRoster"/> from
+        /// every party on the given side, to pass as
+        /// <c>priorTroops</c> to the <see cref="PartyGroupTroopSupplier"/>.
+        /// The supplier allocates from priorTroops in enumeration
+        /// order, so a shuffled roster makes the initial-cap draw
+        /// random instead of leader-first. Non-hero combatants only
+        /// (heroes are placed by the controller's hero-spawn path).
+        /// </summary>
+        private static FlattenedTroopRoster BuildShuffledPriorTroopsForSide(
+            MapEvent mapEvent, BattleSideEnum side)
+        {
+            if (mapEvent == null) return null;
+            var flat = new FlattenedTroopRoster();
+            var entries = new List<(CharacterObject troop, bool wounded)>();
+            foreach (var mep in mapEvent.GetMapEventSide(side).Parties)
+            {
+                var roster = mep.Party?.MemberRoster;
+                if (roster == null) continue;
+                for (int i = 0; i < roster.Count; i++)
+                {
+                    var ch = roster.GetCharacterAtIndex(i);
+                    if (ch == null || ch.IsHero) continue;
+                    int healthy = roster.GetElementNumber(i) - roster.GetElementWoundedNumber(i);
+                    for (int k = 0; k < healthy; k++) entries.Add((ch, false));
+                    int wounded = roster.GetElementWoundedNumber(i);
+                    for (int k = 0; k < wounded; k++) entries.Add((ch, true));
+                }
+            }
+            // Fisher-Yates shuffle via MBRandom so the selection is
+            // run-deterministic within the game's random stream.
+            for (int i = entries.Count - 1; i > 0; i--)
+            {
+                int j = MBRandom.RandomInt(i + 1);
+                (entries[i], entries[j]) = (entries[j], entries[i]);
+            }
+            foreach (var (troop, wounded) in entries)
+            {
+                flat.Add(troop, wounded);
+            }
+            return flat;
+        }
+
+        /// <summary>
+        /// Converts a UI-selected <see cref="TroopRoster"/> into a
+        /// <see cref="FlattenedTroopRoster"/> for the ambusher-side
+        /// supplier. Null input returns null (vanilla allocation
+        /// order). Preserves the selection order so the player's
+        /// pick drives the initial spawn directly.
+        /// </summary>
+        private static FlattenedTroopRoster BuildFlattenedPriorTroops(TroopRoster selection)
+        {
+            if (selection == null) return null;
+            var flat = new FlattenedTroopRoster();
+            for (int i = 0; i < selection.Count; i++)
+            {
+                var ch = selection.GetCharacterAtIndex(i);
+                if (ch == null || ch.IsHero) continue;
+                int healthy = selection.GetElementNumber(i) - selection.GetElementWoundedNumber(i);
+                for (int k = 0; k < healthy; k++) flat.Add(ch, false);
+                int wounded = selection.GetElementWoundedNumber(i);
+                for (int k = 0; k < wounded; k++) flat.Add(ch, true);
+            }
+            return flat;
         }
     }
 

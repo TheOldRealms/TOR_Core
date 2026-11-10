@@ -241,12 +241,15 @@ namespace TOR_Core.Missions.AmbushMission
                     + "instance to the controller.");
             }
 
-            // Drain the whole ambusher supplier. Ambusher commits as a
-            // one-shot force (no wave-batch fraction configured for the
-            // ambusher side), so leftover troops in the supplier would
-            // never spawn via the reinforcement path. The on-field cap
-            // is a victim-side concept and lives in DoCustomVictimSpawn.
-            var origins = _ambusherSupplier.SupplyTroops(int.MaxValue).ToList();
+            // Cap the ambusher's initial spawn via the Tactics-scaled
+            // on-field cap. Ambusher is still one-shot (no wave-batch
+            // fraction), so anything past the cap sits in the supplier
+            // pool and never spawns — post-MVP may wire waves for the
+            // ambusher. For now, excess troops are "held in reserve" in
+            // the fiction and simply absent from the engagement.
+            int ambusherRequest = _model.ComputeInitialOnFieldCap(_ambusherParty?.LeaderHero);
+            if (ambusherRequest <= 0) ambusherRequest = int.MaxValue;
+            var origins = _ambusherSupplier.SupplyTroops(ambusherRequest).ToList();
             bool isPlayerSide = _ambusherSide == BattleSideEnum.Attacker
                                 && IsPlayerAmbusher;
             _customSpawnInProgress = true;
@@ -754,8 +757,9 @@ namespace TOR_Core.Missions.AmbushMission
             // Partial drain: whatever stays in the supplier past the
             // initial cap is what vanilla's reinforcement wave timer
             // pulls from on each tick when the pool is non-empty.
-            int victimRequest = _model.InitialOnFieldCap > 0
-                ? _model.InitialOnFieldCap : int.MaxValue;
+            // Cap scales with the victim leader's Tactics.
+            int victimRequest = _model.ComputeInitialOnFieldCap(_victimParty?.LeaderHero);
+            if (victimRequest <= 0) victimRequest = int.MaxValue;
             var origins = _victimSupplier.SupplyTroops(victimRequest).ToList();
             // In Phase F (AI ambusher) the victim IS the player. Their
             // agents go on the player side and the player character gets
@@ -1394,25 +1398,29 @@ namespace TOR_Core.Missions.AmbushMission
                 defenderReinforcementBatchPercentage: _model.ReinforcementBatchFraction,
                 attackerReinforcementBatchPercentage: _model.PlayerReinforcementBatchFraction);
 
-            // Initial-spawn cap applies to the VICTIM side only: the
-            // victim is the side that receives reinforcement waves (via
-            // ReinforcementBatchFraction), so capping their initial lets
-            // the pool materialize as later waves. The ambusher commits
-            // one-shot — no wave-batch fraction configured for them — so
-            // capping them would strand their leftover troops in a pool
-            // that nothing drains. Phase D: victim = defender (AI patrol).
-            // Phase F: victim = defender (player). Same side mapping
-            // either way, so the branch simplifies to "defender gets the
-            // cap when victim sits on Defender, else attacker gets it".
-            int cap = _model.InitialOnFieldCap;
+            // Initial-spawn cap applies to BOTH sides, Tactics-adjusted
+            // per side's leader. Ambusher-side excess just isn't spawned
+            // (one-shot commitment — no reinforcement fraction configured
+            // for them, so the extra troops idle in the supplier pool
+            // and never arrive). Victim-side excess flows in via the
+            // reinforcement waves owned by AmbushReinforcementMissionLogic.
+            int ambusherCap = _model.ComputeInitialOnFieldCap(_ambusherParty?.LeaderHero);
+            int victimCap = _model.ComputeInitialOnFieldCap(_victimParty?.LeaderHero);
             int defenderInitial = defenderTotal;
             int attackerInitial = attackerTotal;
-            if (cap > 0)
+            // Side → cap mapping follows who holds the role at this
+            // mission opener: Phase D & F both place victim on Defender
+            // and ambusher on Attacker, but the branch reads MapEventSide
+            // in case a future opener flips sides.
+            if (_victimSide == BattleSideEnum.Defender)
             {
-                if (_victimSide == BattleSideEnum.Defender)
-                    defenderInitial = System.Math.Min(defenderTotal, cap);
-                else
-                    attackerInitial = System.Math.Min(attackerTotal, cap);
+                defenderInitial = System.Math.Min(defenderTotal, victimCap);
+                attackerInitial = System.Math.Min(attackerTotal, ambusherCap);
+            }
+            else
+            {
+                defenderInitial = System.Math.Min(defenderTotal, ambusherCap);
+                attackerInitial = System.Math.Min(attackerTotal, victimCap);
             }
 
             _spawnLogic.InitWithSinglePhase(
