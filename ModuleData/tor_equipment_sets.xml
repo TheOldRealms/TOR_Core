@@ -50870,22 +50870,22 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_dw_rune_smith_3" culture="Culture.sturgia">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.peasant_maul_t1_2" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_pickaxe_003" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_basic_dawi_001" />
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_basic_dawi_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.peasant_maul_t1_2" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_pickaxe_003" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_basic_dawi_001" />
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_basic_dawi_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.peasant_maul_t1_2" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_pickaxe_003" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_basic_dawi_001" />
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_basic_dawi_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.peasant_maul_t1_2" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_pickaxe_003" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_basic_dawi_001" />
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_basic_dawi_001" />
     </EquipmentSet>

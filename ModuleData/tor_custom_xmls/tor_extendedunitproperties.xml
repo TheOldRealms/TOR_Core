@@ -5839,8 +5839,16 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_hochland_third_4">
-    <Abilities />
-    <Attributes />
+    <Abilities>
+      <string>UlricsGift</string>
+      <string>HeartOfTheWolf</string>
+      <string>IceStorm</string>
+      <string>SnowKingDecree</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>PriestUlric</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_hochland_third_5">
     <Abilities>
@@ -7493,8 +7501,18 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_lord_athel_loren_ninth_2">
-    <Abilities />
-    <Attributes />
+    <Abilities>
+      <string>Fireball</string>
+      <string>Regrowth</string>
+      <string>Apotheosis</string>
+      <string>SoulQuench</string>
+      <string>CurseOfArrowAttraction</string>
+      <string>ShieldOfSaphery</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_lord_athel_loren_tenth_1">
     <Abilities />
@@ -7548,8 +7566,18 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_lord_laurelorn_factionleader">
-    <Abilities />
-    <Attributes />
+    <Abilities>
+      <string>Fireball</string>
+      <string>Regrowth</string>
+      <string>Apotheosis</string>
+      <string>SoulQuench</string>
+      <string>CurseOfArrowAttraction</string>
+      <string>ShieldOfSaphery</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_lord_laurelorn_first_2">
     <Abilities />
@@ -7662,10 +7690,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_first_5">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
       <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_first_6">
@@ -7710,9 +7744,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_second_2">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_second_3">
@@ -7787,9 +7828,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_angazhar_first_6">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_angazhar_first_7">
@@ -7873,9 +7921,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_azgaraz_first_10">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_eksfilaz_factionleader">
@@ -7887,9 +7942,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_eksfilaz_first_2">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_eksfilaz_first_3">
@@ -7949,9 +8011,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_gantuk_first_2">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_gantuk_first_3">
@@ -7997,9 +8066,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_gantuk_first_10">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_hirn_factionleader">
@@ -8029,9 +8105,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_hirn_first_5">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_hirn_first_6">
@@ -8079,9 +8162,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_izor_first_3">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_izor_first_4">
@@ -8147,9 +8237,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kaferkammaz_first_4">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kaferkammaz_first_5">
@@ -8203,9 +8300,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_norn_first_3">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_norn_first_4">
@@ -8369,9 +8473,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_ziflin_first_9">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_ziflin_first_10">
@@ -8565,9 +8676,18 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_black_sunz_second_5">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>BrainBursta</string>
+      <string>DaHandUvGork</string>
+      <string>EreWeGo</string>
+      <string>FootUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_crooked_eye_factionleader">
@@ -8681,9 +8801,18 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_crooked_eye_second_6">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>BrainBursta</string>
+      <string>DaHandUvGork</string>
+      <string>EreWeGo</string>
+      <string>FootUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_crooked_eye_second_7">
@@ -9035,9 +9164,18 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_massif_choppas_second_4">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>BrainBursta</string>
+      <string>DaHandUvGork</string>
+      <string>EreWeGo</string>
+      <string>FootUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_massif_choppas_second_5">
@@ -9131,9 +9269,18 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_neck_snappers_first_10">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>BrainBursta</string>
+      <string>DaHandUvGork</string>
+      <string>EreWeGo</string>
+      <string>FootUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_neck_snappers_second_1">
@@ -10939,8 +11086,21 @@
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_11">
+    <Abilities>
+      <string>NagashGaze</string>
+      <string>SummonSkeleton</string>
+      <string>Shadowblood</string>
+      <string>Morkharn</string>
+      <string>CurseOfYears</string>
+      <string>VanHelsDanseMacabre</string>
+      <string>ScreamingSkull</string>
+      <string>WindOfDeath</string>
+      <string>GraveCall</string>
+    </Abilities>
     <Attributes>
       <string>Necromancer</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_10">
@@ -11062,24 +11222,88 @@
     </Resistances>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_fey_1">
+    <Abilities>
+      <string>Regrowth</string>
+      <string>Thunderbolt</string>
+      <string>TanglingThorn</string>
+      <string>AuraOfTheLady</string>
+      <string>ShieldOfCombat</string>
+      <string>LadysFavour</string>
+      <string>AerialShield</string>
+    </Abilities>
     <Attributes>
       <string>SpellCaster</string>
+      <string>AbilityUser</string>
+      <string>PriestLady</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_fey_leader">
+    <Abilities>
+      <string>DwellersBelow</string>
+      <string>TheGreenEye</string>
+      <string>Barkskin</string>
+      <string>SummerHeat</string>
+      <string>Regrowth</string>
+      <string>DrainLife</string>
+      <string>StormOfRenewal</string>
+      <string>ShieldOfThorns</string>
+      <string>LightningBolt</string>
+      <string>WindBlast</string>
+      <string>ChainLightning</string>
+      <string>HarmonicConvergence</string>
+      <string>Blizzard</string>
+      <string>CometOfCasandora</string>
+      <string>Thunderbolt</string>
+      <string>CurseOfMidnightWind</string>
+      <string>AmberSpear</string>
+      <string>TanglingThorn</string>
+      <string>PannsImpenetrablePelt</string>
+      <string>HailStorm</string>
+      <string>FlockOfDoom</string>
+      <string>TheBeastUnleashed</string>
+      <string>CurseOfAnraheir</string>
+      <string>AuraOfTheLady</string>
+      <string>ShieldOfCombat</string>
+      <string>LadysFavour</string>
+      <string>AerialShield</string>
+    </Abilities>
     <Attributes>
       <string>SpellCaster</string>
       <string>LegendaryLord</string>
+      <string>AbilityUser</string>
+      <string>PriestLady</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_fey_2">
+    <Abilities>
+      <string>Regrowth</string>
+      <string>Thunderbolt</string>
+      <string>TanglingThorn</string>
+      <string>AuraOfTheLady</string>
+      <string>ShieldOfCombat</string>
+      <string>LadysFavour</string>
+      <string>AerialShield</string>
+    </Abilities>
     <Attributes>
       <string>SpellCaster</string>
+      <string>AbilityUser</string>
+      <string>PriestLady</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_fey_3">
+    <Abilities>
+      <string>Regrowth</string>
+      <string>Thunderbolt</string>
+      <string>TanglingThorn</string>
+      <string>AuraOfTheLady</string>
+      <string>ShieldOfCombat</string>
+      <string>LadysFavour</string>
+      <string>AerialShield</string>
+    </Abilities>
     <Attributes>
       <string>SpellCaster</string>
+      <string>AbilityUser</string>
+      <string>PriestLady</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_duke_champion">
