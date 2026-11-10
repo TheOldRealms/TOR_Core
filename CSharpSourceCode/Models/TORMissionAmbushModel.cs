@@ -81,6 +81,36 @@ namespace TOR_Core.Models
         /// pool, the final wave sends whatever's left.</summary>
         public virtual int ReinforcementBatchFloor => 5;
 
+        /// <summary>Per-point-of-Tactics speed-up on the ambushed
+        /// side's reinforcement intervals. 0.002 → 0.2% faster per
+        /// point, so 300 Tactics would push the multiplier down to
+        /// 0.4 (60% faster waves). Clamped by
+        /// <see cref="MinReinforcementIntervalMultiplier"/>.</summary>
+        public virtual float ReinforcementIntervalTacticsPerPointReduction => 0.002f;
+
+        /// <summary>Floor on the Tactics interval multiplier — even
+        /// a max-Tactics leader can't make waves come faster than
+        /// this fraction of the base interval. Prevents degenerate
+        /// "waves every 2 seconds" scenarios at extreme skill
+        /// values.</summary>
+        public virtual float MinReinforcementIntervalMultiplier => 0.3f;
+
+        /// <summary>Resolves the interval multiplier for the
+        /// ambushed side's reinforcement waves from the side leader's
+        /// Tactics. Applied once at
+        /// <c>AmbushReinforcementMissionLogic.AfterStart</c> to each
+        /// of <see cref="InitialWaveIntervals"/> and
+        /// <see cref="SteadyWaveInterval"/>. Leaderless parties
+        /// return 1.0 (base intervals, no bonus).</summary>
+        public virtual float GetReinforcementIntervalMultiplier(Hero leader)
+        {
+            if (leader == null) return 1f;
+            int tactics = leader.GetSkillValue(DefaultSkills.Tactics);
+            float mult = 1f - tactics * ReinforcementIntervalTacticsPerPointReduction;
+            if (mult < MinReinforcementIntervalMultiplier) mult = MinReinforcementIntervalMultiplier;
+            return mult;
+        }
+
         /// <summary>Player side reinforcements per wave. Default 0 — the ambush
         /// is a one-shot commitment of the force the player strikes with.</summary>
         public virtual float PlayerReinforcementBatchFraction => 0f;

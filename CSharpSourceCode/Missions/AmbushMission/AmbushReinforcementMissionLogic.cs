@@ -69,12 +69,24 @@ namespace TOR_Core.Missions.AmbushMission
         public override void AfterStart()
         {
             base.AfterStart();
-            _initialWaveIntervals = _model.InitialWaveIntervals;
-            _steadyWaveInterval = _model.SteadyWaveInterval;
+            // Victim-side Tactics scales every wave interval down.
+            // A high-Tactics commander mobilises the column's
+            // response faster; a leaderless caravan gets the base
+            // intervals.
+            var controller = Mission.GetMissionBehavior<AmbushMissionController>();
+            float intervalMult = _model.GetReinforcementIntervalMultiplier(controller?.VictimLeaderHero);
+            var baseIntervals = _model.InitialWaveIntervals;
+            _initialWaveIntervals = new float[baseIntervals.Length];
+            for (int i = 0; i < baseIntervals.Length; i++)
+                _initialWaveIntervals[i] = baseIntervals[i] * intervalMult;
+            _steadyWaveInterval = _model.SteadyWaveInterval * intervalMult;
             _reinforcementBatchFraction = _model.ReinforcementBatchFraction;
             _patrolClearedDelayBonus = _model.InitialPatrolClearedWaveDelayBonus;
             _waveTimer = new BasicMissionTimer();
             CacheReinforcementScenePositions();
+            TORCommon.Log(NLog.LogLevel.Info,
+                "[AmbushReinforcement] victim tactics mult=" + intervalMult.ToString("F2")
+                + " steady=" + _steadyWaveInterval.ToString("F1") + "s");
         }
 
         public override void OnDeploymentFinished()

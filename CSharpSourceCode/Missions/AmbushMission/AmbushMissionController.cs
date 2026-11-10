@@ -137,6 +137,13 @@ namespace TOR_Core.Missions.AmbushMission
             => _ambusherParty != null
                && _ambusherParty.MobileParty == MobileParty.MainParty;
 
+        /// <summary>Leader hero of the ambushed side, if any. Read by
+        /// <see cref="AmbushReinforcementMissionLogic.AfterStart"/> to
+        /// drive the Tactics-based reinforcement-interval multiplier.
+        /// Null for leaderless victim parties (caravans, loose
+        /// patrols).</summary>
+        public Hero VictimLeaderHero => _victimParty?.LeaderHero;
+
         /// <summary>
         /// Optional shared reference to the attacker-side troop supplier
         /// vanilla's DefaultBattleMissionAgentSpawnLogic also holds. When set,
