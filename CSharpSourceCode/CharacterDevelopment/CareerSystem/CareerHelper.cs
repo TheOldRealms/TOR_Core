@@ -541,7 +541,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
                 catch (Exception)
                 {
-                    TORCommon.Log("Tried to spawn TriggeredScript: " + template.ScriptNameToTrigger + ", but failed.", NLog.LogLevel.Error);
+                    TORCommon.Log("Career Helper.AddMissionPermanentEffect : Tried to spawn TriggeredScript: " + template.ScriptNameToTrigger + ", but failed.", NLog.LogLevel.Error);
                 }
             }
         }

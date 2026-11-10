@@ -98,6 +98,7 @@ namespace TOR_Core.SaveGameSystem
             ConstructContainerDefinition(typeof(Dictionary<string, int>));
             ConstructContainerDefinition(typeof(Dictionary<string, bool>));
             ConstructContainerDefinition(typeof(Dictionary<string, HeroExtendedInfo>));
+            ConstructContainerDefinition(typeof(Dictionary<int, Hero>));
             ConstructContainerDefinition(typeof(Dictionary<string, MobilePartyExtendedInfo>));
             ConstructContainerDefinition(typeof(List<RaidingPartyComponent>));
             ConstructContainerDefinition(typeof(List<KingdomDecision>));

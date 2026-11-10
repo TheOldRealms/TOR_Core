@@ -345,7 +345,6 @@ namespace TOR_Core.BattleMechanics
 
                     if (choice != null)
                     {
-                        //career abilities only exist in missions where IsCastingMission is true, eg. not arena fights
                         var careerAbility = (Ability)affectorAgent.GetComponent<AbilityComponent>()?.CareerAbility;
 
                         if (careerAbility != null && careerAbility.IsActive)

@@ -28,6 +28,8 @@ namespace TOR_Core.Battle.CrosshairMissionBehavior
 
         public ICrosshair CurrentCrosshair { get => _currentCrosshair; }
 
+        //Sly : should the overrides for OnSuspendView and OnResumeView be present and used here? When is each event active?
+
         public override void OnMissionScreenTick(float dt)
         {
             if (!_areCrosshairsInitialized)

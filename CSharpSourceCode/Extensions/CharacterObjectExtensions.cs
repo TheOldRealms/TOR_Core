@@ -179,6 +179,11 @@ namespace TOR_Core.Extensions
             return basicCharacterObject.Race == FaceGen.GetRaceOrDefault("minotaur");
         }
 
+        public static bool IsCygor(this BasicCharacterObject basicCharacterObject)
+        {
+            return basicCharacterObject != null && basicCharacterObject.Race == FaceGen.GetRaceOrDefault("cygor");
+        }
+
         public static bool IsTreeman(this BasicCharacterObject basicCharacterObject)
         {
             return basicCharacterObject.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster");
@@ -229,6 +234,15 @@ namespace TOR_Core.Extensions
         {
             return characterObject.IsHero && characterObject.HasAttribute(CharacterAttributes.RUNESMITH);
         }
+
+        public static bool CanOperateArtillery(this BasicCharacterObject characterObject)
+        {
+            var attributes = characterObject.GetAttributes();
+            return attributes.Contains(CharacterAttributes.CREW_1) ||
+                   attributes.Contains(CharacterAttributes.CREW_2) ||
+                   attributes.Contains(CharacterAttributes.CREW_3);
+        }
+
 
         public static bool HasUnitRune(this BasicCharacterObject characterObject)
         {

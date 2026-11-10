@@ -384,9 +384,16 @@ namespace TOR_Core.Models
                         agentDrivenProperties.SwingSpeedMultiplier *= 1.5f;
                     }
 
+                    if (character.IsCygor() || (agent.Monster != null && agent.Monster.StringId == "cygor"))
+                    {
+                        agentDrivenProperties.SwingSpeedMultiplier *= 1.18f;
+                        agentDrivenProperties.ThrustOrRangedReadySpeedMultiplier *= 1.10f;
+                    }
+
                     if (character.IsDwarf())
                     {
                         //Sly : if the CanRide flag is never changed during a mission, can this riding flag instead be set in an InitializeAgentStats override?
+                        //No, when an agent controller is set to player, the CanRide flag is readded. There are potential other cases.
                         agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanRide);
 
                         agentDrivenProperties.MaxSpeedMultiplier *= DwarfSpeedModificatior;

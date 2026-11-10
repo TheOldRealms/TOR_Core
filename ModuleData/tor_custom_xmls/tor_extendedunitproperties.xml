@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -239,7 +239,6 @@
   <CharacterExtendedInfo id="tor_empire_novice_engineer">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Crew</string>
     </Attributes>
     <Resistances />
@@ -251,7 +250,6 @@
   <CharacterExtendedInfo id="tor_empire_trainee_artillery_crew">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Crew</string>
     </Attributes>
     <Resistances />
@@ -264,7 +262,6 @@
   <CharacterExtendedInfo id="tor_empire_apprentice_engineer">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Crew</string>
     </Attributes>
     <Resistances />
@@ -287,7 +284,6 @@
   <CharacterExtendedInfo id="tor_empire_experienced_artillery_crew">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Crew2</string>
     </Attributes>
     <Resistances />
@@ -300,7 +296,6 @@
   <CharacterExtendedInfo id="tor_empire_associate_engineer">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Piercing</string>
       <string>Crew2</string>
     </Attributes>
@@ -326,7 +321,6 @@
   <CharacterExtendedInfo id="tor_empire_veteran_artillery_crew">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Crew3</string>
     </Attributes>
     <Resistances />
@@ -339,7 +333,6 @@
   <CharacterExtendedInfo id="tor_empire_master_engineer">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Piercing</string>
       <string>Crew2</string>
     </Attributes>
@@ -1174,6 +1167,7 @@
   <CharacterExtendedInfo id="tor_we_treeman">
     <Abilities />
     <Attributes>
+      <string>Crushing</string>
       <string>Unbreakable</string>
       <string>Unstoppable</string>
       <string>TreeSpirit</string>
@@ -1193,6 +1187,7 @@
   <CharacterExtendedInfo id="tor_we_ancient_treeman">
     <Abilities />
     <Attributes>
+      <string>Crushing</string>
       <string>Unbreakable</string>
       <string>Unstoppable</string>
       <string>TreeSpirit</string>
@@ -1675,7 +1670,6 @@
   <CharacterExtendedInfo id="tor_dw_artillery_crew">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Crew2</string>
     </Attributes>
     <Resistances>
@@ -1691,7 +1685,6 @@
   <CharacterExtendedInfo id="tor_dw_artillery_gunner">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Crew3</string>
     </Attributes>
     <Resistances>
@@ -10428,7 +10421,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_troll_lord_0">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Crushing</string>
+		</Attributes>
     <AdditionalHealth>450</AdditionalHealth>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_lord">
@@ -11010,11 +11005,35 @@
     </DamageAmplifiers>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_cygor">
+    <Abilities />
     <Attributes>
+      <string>Crushing</string>
+      <string>Unbreakable</string>
       <string>Unstoppable</string>
-      <string>Swift</string>
       <string>Piercing</string>
+      <string>MonsterAttack</string>
       <string>Monstrous</string>
+      <string>HasAnimationTriggeredEffects</string>
+      <string>CannotClimbLadders</string>
+    </Attributes>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.80" />
+    </Resistances>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_cygor_lord">
+    <Abilities />
+    <Attributes>
+      <string>Crushing</string>
+      <string>Unbreakable</string>
+      <string>Unstoppable</string>
+      <string>Piercing</string>
+      <string>MonsterAttack</string>
+      <string>Monstrous</string>
+      <string>HasAnimationTriggeredEffects</string>
+      <string>CannotClimbLadders</string>
     </Attributes>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />

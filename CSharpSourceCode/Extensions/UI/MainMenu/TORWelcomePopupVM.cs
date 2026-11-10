@@ -21,10 +21,10 @@ namespace TOR_Core.Extensions.UI.MainMenu
         public string TitleText => new TextObject("{=str_tor_main_menu_welcome_title}Welcome to The Old Realms!").ToString();
 
         [DataSourceProperty]
-        public string DescriptionText => new TextObject("{=str_tor_main_menu_welcome_description}This is a total conversion mod for Mount and Blade II: Bannerlord. We have put a lot of work and new features into this mod for you to enjoy, so much that we needed a manual to let you know about it all. Don't hesitate to reach out to our discord if you have issues installing or running the mod.").ToString();
+        public string DescriptionText => new TextObject("{=str_tor_main_menu_welcome_description}This is a total conversion mod for Mount and Blade II: Bannerlord. We have put a lot of work and new features into this mod for you to enjoy. Visit the TOR Wiki to learn about the mod and its features. Don't hesitate to reach out to our discord if you have issues installing or running the mod.").ToString();
 
         [DataSourceProperty]
-        public string ManualButtonText => new TextObject("{=str_tor_main_menu_manual_button}Read Manual").ToString();
+        public string ManualButtonText => new TextObject("{=str_tor_main_menu_manual_button}TOR Wiki").ToString();
 
         [DataSourceProperty]
         public string DiscordButtonText => new TextObject("{=str_tor_main_menu_discord_button}Join Discord").ToString();
