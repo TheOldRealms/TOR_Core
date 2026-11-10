@@ -1968,13 +1968,38 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
             else
             {
-                // Strike roll fail: commit the player to the fight directly.
-                // Teleport + stealth drop for the fail path happen here; the
-                // success path defers them to the troop-selection callback so
-                // a cancelled selection leaves stealth active.
+                // Strike roll fail: stealth is burnt regardless; the
+                // target has seen the player. Whether the target
+                // commits to a counter-attack is a strength roll —
+                // the same model AmbusherPressesAttack uses for the
+                // AI-side press decision, just with the roles flipped
+                // (target is now the aggressor, player is the victim).
                 LeaveStealth(MobileParty.MainParty);
-                MobileParty.MainParty.Position = target.Position;
-                OnStrikeFailed(target, chancePct);
+                var ambushModel = Campaign.Current?.Models?.GetAmbushModel();
+                bool targetEngages = ambushModel == null
+                    || ambushModel.AmbusherPressesAttack(target, MobileParty.MainParty);
+                if (targetEngages)
+                {
+                    // Teleport the player onto the target before the
+                    // encounter so the campaign-map visualization
+                    // matches: "the target closed and caught you."
+                    MobileParty.MainParty.Position = target.Position;
+                    OnStrikeFailed(target, chancePct);
+                }
+                else
+                {
+                    // Target disengages. Player is visible and off
+                    // cooldown — vanilla's quarter-hourly AI runs from
+                    // the next tick. No teleport, no encounter.
+                    // Player's party IS disorganized from the botched
+                    // strike — the column was mid-strike when stealth
+                    // broke, formation ruined. Direct SetDisorganized
+                    // bypasses vanilla's TotalManCount >= 10 gate so
+                    // even a small ambush party eats the debuff.
+                    TORCommon.Say("Ambush failed (" + chancePct + "%) on " + GetPartyLabel(target)
+                                  + ". They chose not to press — too strong a target.");
+                    MobileParty.MainParty.SetDisorganized(true);
+                }
             }
         }
 
@@ -2068,16 +2093,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private void OnStrikeFailed(MobileParty target, int chancePct)
         {
             // Commit the player to the fight directly instead of
-            // routing through EncounterManager.StartPartyEncounter.
-            // EncounterManager opens the vanilla encounter_meeting game
-            // menu, which includes a Leave option — letting the player
-            // bail out of a botched ambush. Design calls for no bail:
-            // the attempt costs you the fight regardless of outcome.
-            // Same no-menu pattern as BeginAmbushMission (RestartPlayer-
-            // Encounter + StartBattle) minus the OpenAmbushMission call,
-            // so vanilla's field-battle flow takes over.
+            // routing through EncounterManager.StartPartyEncounter
+            // (which opens encounter_meeting with a Leave option).
+            // Sides are deliberately FLIPPED from the success path:
+            // the botched ambush gave the target the initiative, so
+            // the target is the attacker and the player the defender.
+            // Defender cannot cancel out — the attempt costs you the
+            // fight regardless of outcome.
             TORCommon.Say("Ambush failed (" + chancePct + "%) on " + GetPartyLabel(target) + " — regular battle.");
-            PlayerEncounter.RestartPlayerEncounter(target.Party, PartyBase.MainParty, false);
+            PlayerEncounter.RestartPlayerEncounter(PartyBase.MainParty, target.Party, false);
             if (PlayerEncounter.Battle == null)
             {
                 PlayerEncounter.StartBattle();
