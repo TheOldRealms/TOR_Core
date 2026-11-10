@@ -89,6 +89,7 @@ namespace TOR_Core.SaveGameSystem
             // 100 was EngineerQuestStates — retired with the quest; slot preserved.
             AddEnumDefinition(typeof(SpellCastingLevel), 101);
             AddEnumDefinition(typeof(UniqueSpawnState), 102);
+            AddEnumDefinition(typeof(AmbushResolution), 103);
         }
 
         protected override void DefineContainerDefinitions()
