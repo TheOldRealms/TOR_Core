@@ -557,6 +557,15 @@ namespace TOR_Core.Models
             IReadOnlyList<MobileParty> observers)
         {
             if (self == null) return MinEntryChance;
+
+            // Silent clean-sweep chain: within the InstantAmbush window
+            // the hooded eye icon is lit, stealth entry is guaranteed.
+            // Keeps the hotkey flow identical (prep timer still runs) —
+            // we just skip the possibility of failure.
+            var ai = Campaign.Current?.GetCampaignBehavior<CampaignMechanics.Ambush.AiAmbushBehavior>();
+            var latest = ai?.GetMostRecentRecordInvolving(self, InstantAmbushWindowHours);
+            if (IsInstantAmbushAllowed(latest)) return 1f;
+
             float chance = BaseEntryChance
                 + EntryRogueryBonus(self)
                 + EntryPartyStealthScoreBonus(self)
