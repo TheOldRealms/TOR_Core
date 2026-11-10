@@ -9,11 +9,12 @@ using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
-using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Items.WeaponHitScripts;
+using TOR_Core.Missions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Items
@@ -25,6 +26,8 @@ namespace TOR_Core.Items
         private float _deltaTime;
         public override void OnAgentBuild(Agent agent, Banner banner)
         {
+            //Sly : ItemTraitAgentComponent is left to be added to agents instead of being blocked by Mission.IsAbilityOrHitScriptMission() as I have not yet confirmed that the component is never used in other contexts.
+
             if (agent.IsHuman)
             {
                 var comp = new ItemTraitAgentComponent(agent);
@@ -39,6 +42,9 @@ namespace TOR_Core.Items
             {
                 Agent.Main.GetComponent<ItemTraitAgentComponent>().OnTickAsMainAgent(dt);
             }
+            
+            //Sly : this is placed after the ItemTraitAgentComponent tick as I have not yet confirmed that the component is never used in other contexts.
+            if (!Mission.IsAbilityOrHitScriptMission()) return;
 
             _deltaTime += dt;
             if (_deltaTime < _triggerCooldown)
@@ -144,6 +150,8 @@ namespace TOR_Core.Items
             {
                 return;
             }
+            
+            if (!Mission.IsAbilityOrHitScriptMission()) return;
 
             var poisonChance = attacker.GetPoisonousHitChance();
             if (poisonChance <= 0f || MBRandom.RandomFloat > poisonChance)
@@ -157,8 +165,9 @@ namespace TOR_Core.Items
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
-            if (affectedAgent == affectorAgent)
-                return;
+            if (affectedAgent == affectorAgent) return;
+            
+            if (!Mission.IsAbilityOrHitScriptMission()) return;
 
             if (affectorWeapon.Item != null &&
                 affectorWeapon.Item.HasAnyTrait(affectorAgent) &&
@@ -277,6 +286,8 @@ namespace TOR_Core.Items
                 affectorAgent == null || !affectorAgent.IsHuman || !affectorAgent.IsActive() ||
                 !affectedAgent.IsEnemyOf(affectorAgent) || !blow.IsValid || TORSpellBlowHelper.IsSpellBlow(blow))
                 return;
+            
+            if (!Mission.IsAbilityOrHitScriptMission()) return;
 
             var trait = ItemObject.GetItemFromWeaponKind(blow.WeaponItemKind)?.GetTraits(affectorAgent)
                 .FirstOrDefault(x => x.ItemTraitStringId == "emp_blessing_shallya_pacifism");
@@ -566,10 +577,9 @@ namespace TOR_Core.Items
 
         public override void OnMissileHit(Agent attacker, Agent victim, bool isCanceled, AttackCollisionData collisionData)
         {
-            if (attacker == victim || attacker == null)
-            {
-                return;
-            }
+            if (attacker == victim || attacker == null) return;
+
+            if (!Mission.IsAbilityOrHitScriptMission()) return;
 
             // TODO: ranged hits are also evaluated in OnAgentHit using the weapon stored on the missile
             // needs a single missile hit path that preserves the launch weapon context
@@ -628,10 +638,9 @@ namespace TOR_Core.Items
         public override void OnAgentShootMissile(Agent shooterAgent, EquipmentIndex weaponIndex, Vec3 position, Vec3 velocity, Mat3 orientation, bool hasRigidBody,
             int forcedMissileIndex)
         {
-            if (shooterAgent == null)
-            {
-                return;
-            }
+            if (shooterAgent == null) return;
+
+            if (!Mission.IsAbilityOrHitScriptMission()) return;
 
             var firedWeaponData = shooterAgent.Equipment[weaponIndex].CurrentUsageItem;
             if (firedWeaponData != null)

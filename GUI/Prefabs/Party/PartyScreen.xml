@@ -163,14 +163,13 @@
         </ListPanel>
 
         <!--Formation Selection-->
-        <!--
-        <Widget VisualDefinition="RightMenu" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="!Party.Formation.Item.Width" HorizontalAlignment="Center" VerticalAlignment="Top" MarginLeft="500" MarginTop="150" IsVisible="@IsCurrentCharacterFormationEnabled">
+        <Widget VisualDefinition="RightMenu" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="!Party.Formation.Item.Width" HorizontalAlignment="Center" VerticalAlignment="Top" MarginLeft="500" MarginTop="150" IsVisible="@TORFormationSelectionVisible">
           <Children>
             <PartyFormationDropdownWidget DataSource="{CharacterFormationSelector}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Button="DropdownButton" CurrentSelectedIndex="@SelectedIndex" ListPanel="ClipRect\DropdownListPanel" ListStateChanger="ClipRect" RichTextWidget="DropdownButton\SelectedTextWidget" SeperatorStateChanger="Seperator">
               <Children>
-                <ButtonWidget Id="DropdownButton" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Formation.MainButton.Width" SuggestedHeight="!Party.Formation.MainButton.Height" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Party.Formation.MainButton">
+                <ButtonWidget Id="DropdownButton" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Formation.MainButton.Width" SuggestedHeight="!Party.Formation.MainButton.Height" HorizontalAlignment="Center" VerticalAlignment="Top" Brush="Party.Formation.MainButton" Brush.GlobalAlphaFactor="1.5">
                   <Children>
-                    <RichTextWidget Id="SelectedTextWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" PositionYOffset="-10" PositionXOffset="-9" Brush.FontSize="50" Brush.TextVerticalAlignment="Center" Text=" " />
+                    <RichTextWidget Id="SelectedTextWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" PositionYOffset="-10" Brush.FontSize="50" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Text=" " />
                     <HintWidget DataSource="{..\FormationHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
                   </Children>
                 </ButtonWidget>
@@ -179,9 +178,9 @@
                   <Children>
                     <ListPanel Id="DropdownListPanel" DataSource="{ItemList}" VisualDefinition="FormationListPanel" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="!FormationListPanel.MarginTop" IsVisible="false" StackLayout.LayoutMethod="VerticalTopToBottom">
                       <ItemTemplate>
-                        <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Formation.Item.Width" SuggestedHeight="!Party.Formation.Item.Height" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginTop="4" MarginBottom="4" Brush="Party.Formation.Item" ButtonType="Radio" DominantSelectedState="false">
+                        <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Formation.Item.Width" SuggestedHeight="!Party.Formation.Item.Height" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginTop="4" MarginBottom="4" Brush="Party.Formation.Item" Brush.GlobalAlphaFactor="1.5" ButtonType="Radio" DominantSelectedState="false">
                           <Children>
-                            <RichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" PositionXOffset="-9" Brush.FontSize="50" Brush.TextVerticalAlignment="Center" Brush.TextHorizontalAlignment="Center" Text="@StringItem" />
+                            <RichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" Brush.FontSize="50" Brush.TextVerticalAlignment="Center" Brush.TextHorizontalAlignment="Center" Text="@StringItem" />
                             <HintWidget DataSource="{Hint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
                           </Children>
                         </ButtonWidget>
@@ -196,7 +195,6 @@
             </PartyFormationDropdownWidget>
           </Children>
         </Widget>
-        -->
         
         <BoolStateChangerWidget DoNotAcceptEvents="true" DoNotPassEventsToChildren="true" BooleanCheck="@IsAnyPopUpOpen" FalseState="Default" TargetWidget="..\TripleDialogCloseButtons" TrueState="Opened"/>
         <Standard.TripleDialogCloseButtons VisualDefinition="BottomMenu" Id="TripleDialogCloseButtons" PositionYOffset="200" Parameter.CancelButtonAction="ExecuteCancelWithoutInquiry" Parameter.CancelButtonText="@CancelLbl" Parameter.CancelButtonDisabled="@IsCancelDisabled" Parameter.ResetInputKeyDataSource="{ResetInputKey}" Parameter.CancelInputKeyDataSource="{CancelInputKey}" Parameter.DoneButtonAction="ExecuteDone" Parameter.DoneButtonDisabled="@IsDoneDisabled" Parameter.DoneButtonText="@DoneLbl" Parameter.DoneInputKeyDataSource="{DoneInputKey}" Parameter.DoneButtonHintDataSource="{DoneHint}" Parameter.ResetButtonAction="ExecuteReset" Parameter.ResetButtonHintDataSource="{ResetHint}"/>

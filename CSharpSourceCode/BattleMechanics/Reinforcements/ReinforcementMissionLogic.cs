@@ -14,6 +14,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Utilities;
 
+using TOR_Core.CampaignMechanics.Formations;
 namespace TOR_Core.BattleMechanics.Reinforcements
 {
     public class ReinforcementMissionLogic : MissionLogic
@@ -579,6 +580,9 @@ namespace TOR_Core.BattleMechanics.Reinforcements
                 var isPlayerSide = side == _battle.PlayerSide;
                 var team = TaleWorlds.MountAndBlade.Mission.GetAgentTeam(nextTroop.Origin, isPlayerSide);
                 var initialDirection = (Mission.GetFormationSpawnPosition(team, FormationClass.Infantry) - nextTroop.SpawnPosition.AsVec2).Normalized();
+                var formation = TORFormationAssignments.AppliesToPlayerTeam(side) &&
+                    TORFormationAssignments.TryGetFormation(nextTroop.Origin, team, out var assignedFormation)
+                    ? assignedFormation : FormationClass.Unset;
 
                 // fow now reinforcing a defensive siege spawns with mounts. tbd
                 var agentBuildData = Mission.GetAgentBuildDataToSpawnTroop(
@@ -591,7 +595,7 @@ namespace TOR_Core.BattleMechanics.Reinforcements
                     formationTroopIndex: 0,
                     initialPosition: nextTroop.SpawnPosition,
                     initialDirection: initialDirection,
-                    formationIndex: FormationClass.Unset);
+                    formationIndex: formation);
 
                 if (agentBuildData.AgentCharacter.IsHero)
                     agentBuildData.FixedEquipment(true);

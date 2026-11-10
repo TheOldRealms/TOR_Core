@@ -362,5 +362,19 @@ namespace TOR_Core.CampaignMechanics
     ///- passage of time
     ///- accumulation of influence, renown
     ///- recruitment of orcs, or troops in general
-    ///- 
+    ///- whatever mechanic accumulates to trigger.
+    ///
+    ///A waaagh is triggered and orcs gain bonuses :
+    ///- more recruitment capacity on troops recruited
+    ///- more village production of recruits
+    ///- increased party capacity
+    ///- increased party aggressiveness
+    ///- automatic formation of an army + recruitment
+    ///- increase army formation score
+    ///- remove certain ai behaviors from the lords (patrolling, defending)
+    ///
+    ///Waaagh ending :
+    ///Probably the defeat of an army.
+    ///- could decrease production or other things after the waaagh ends
+    ///
 }

@@ -1,6 +1,7 @@
 ﻿using SandBox.Missions.MissionLogics.Arena;
 using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
@@ -47,6 +48,23 @@ namespace TOR_Core.Extensions
         public static bool IsJoustMission(this Mission mission)
         {
             return mission.GetMissionBehavior<JoustFightMissionController>() != null;
+        }
+
+        /// <summary>
+        /// True for "non-friendly" missions.
+        /// </summary>
+        /// <remarks>
+        /// This hinges entirely on IsFriendlyMission. This is a public Mission bool which must be set to false for missions which will have combat as it is assigned true during mission construction.
+        /// <para>
+        /// Abilities are disabled for conversations, tournaments, bartering, etc where their use is unwanted.
+        /// </para>
+        /// <para>
+        /// Tournaments don't add summoned agents to the _participants lists which lead to null references.
+        /// </para>
+        /// </remarks>
+        public static bool IsAbilityOrHitScriptMission(this Mission mission)
+        {
+            return !mission.IsFriendlyMission && mission.CombatType == Mission.MissionCombatType.Combat;
         }
 
         public static int GetArtillerySlotsLeftForTeam(this Mission mission, Team team)

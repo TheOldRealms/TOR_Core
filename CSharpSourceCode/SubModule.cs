@@ -44,6 +44,7 @@ using TOR_Core.CampaignMechanics.CustomResourceBehavior;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.CampaignMechanics.FactionScenes;
+using TOR_Core.CampaignMechanics.Formations;
 using TOR_Core.CampaignMechanics.Menagery;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
@@ -112,7 +113,6 @@ namespace TOR_Core
             CustomBannerManager.LoadXML();
             RORManager.LoadTemplates();
             InkStoryManager.Initialize();
-            AnimationTriggerManager.LoadAnimationTriggers();
             ItemTraitManager.LoadItemTraits();
             TORVoiceManager.Initialize();
         }
@@ -146,10 +146,13 @@ namespace TOR_Core
         /// Sly : Game.Initialize -> GameType.OnInitialize -> Campaign.OnInitialize override and InitializeGameStarter is within that last one.
         /// Game.Initialize is when the game text manager is initialized, so any harmony patches that cause issues with static strings being initialized too soon needs to be at this point or later - this is the earliest override that occurs post text manager initialization.
         /// Consequently, anything we have that makes use of GameText.FindText should be initialized inside of or after this so that all our strings in tor_strings.xml are available.
+        /// Alternatively, it goes in the global_strings.xml which is loaded into the TextManager used for the main menu and everything that precedes a Game being loaded.
         /// </remarks>
         protected override void InitializeGameStarter(Game game, IGameStarter starterObject)
         {
             CustomResourceManager.Initialize();
+            AnimationTriggerManager.LoadAnimationTriggers();
+            AnimationProgressTriggerManager.LoadTriggers();
             if (Game.Current.GameType is Campaign && starterObject is CampaignGameStarter)
             {
                 var starter = starterObject as CampaignGameStarter;
@@ -164,6 +167,7 @@ namespace TOR_Core
                 starter.AddBehavior(new UniqueSpawnCampaignBehavior());
                 starter.AddBehavior(new OrionCampaignBehavior());
                 starter.AddBehavior(new ReinforcementBehavior());
+                starter.AddBehavior(new TORFormationCampaignBehavior());
                 starter.AddBehavior(new GreenKnightBehavior());
                 starter.AddBehavior(new CustomDialogCampaignBehavior());
                 starter.AddBehavior(new TORCompanionDialogBehavior());
@@ -244,7 +248,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORMarriageModel());
                 gameStarterObject.AddModel(new TORMobilePartyFoodConsumptionModel());
                 gameStarterObject.AddModel(new TORPartyHealingModel());
-                gameStarterObject.AddModel(new TORPartySizeModel());
+                gameStarterObject.AddModel(new TORPartySizeLimitModel());
                 gameStarterObject.AddModel(new TORPartySpeedCalculatingModel());
                 gameStarterObject.AddModel(new TORPartyTroopUpgradeModel());
                 gameStarterObject.AddModel(new TORPartyWageModel());
@@ -275,6 +279,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORAlleyModel());
                 gameStarterObject.AddModel(new TORRaidModel());
                 gameStarterObject.AddModel(new TORBattleBannerBearersModel());
+                gameStarterObject.AddModel(new TORBattleSpawnModel());
                 gameStarterObject.AddModel(new TORKingdomDecisionPermissionModel());
                 gameStarterObject.AddModel(new TORDiplomacyModel());
                 gameStarterObject.AddModel(new TORAllianceModel());
@@ -331,6 +336,9 @@ namespace TOR_Core
             mission.AddMissionBehavior(new AddAgentComponentsMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new AnimationTriggerMissionLogic());
+            mission.AddMissionBehavior(new AnimationProgressTriggerMissionLogic());
+            mission.AddMissionBehavior(new CygorStepSoundMissionLogic());
+            mission.AddMissionBehavior(new TORColossalMonsterPhysicsLogic());
             mission.AddMissionBehavior(new BattleShoutsMissionLogic());
             mission.AddMissionBehavior(new CinematicCameraMissionView());
             mission.AddMissionBehavior(new TORMonsterSiegeLogic());
@@ -341,6 +349,7 @@ namespace TOR_Core
 
                 if (mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>() != null)
                 {
+                    mission.AddMissionBehavior(new TORFormationMissionLogic());
                     mission.AddMissionBehavior(new ReinforcementMissionLogic());
                     mission.AddMissionBehavior(new GreenKnightMissionLogic());
                 }

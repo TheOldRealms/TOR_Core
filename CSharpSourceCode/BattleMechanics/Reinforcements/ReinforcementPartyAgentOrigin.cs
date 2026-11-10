@@ -95,7 +95,7 @@ namespace TOR_Core.BattleMechanics.Reinforcements
 
         public void OnScoreHit(BasicCharacterObject victim, BasicCharacterObject formationCaptain, int damage, bool isFatal, bool isTeamKill, WeaponComponentData attackerWeapon)
         {
-            _mapEventSide.OnTroopScoreHit(_descriptor, (CharacterObject)victim, damage, isFatal, isTeamKill, attackerWeapon, false);
+            _mapEventSide.OnTroopScoreHit(_descriptor, (CharacterObject)victim, damage, isFatal, isTeamKill, attackerWeapon, false, null);
         }
 
         public void SetBanner(Banner banner)

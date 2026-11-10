@@ -82,7 +82,7 @@ namespace TOR_Core.CampaignMechanics
             if (artilleryCrew == null) return;
 
             var crewInPartySum = party.MemberRoster.GetTroopRoster()
-                .Where(x => x.Character.HasAttribute(CharacterAttributes.ARTILLERY_CREW))
+                .Where(x => x.Character.CanOperateArtillery())
                 .Sum(x => x.Number);
 
             if (crewInPartySum > 10) { return; } //2 crew per gun, max 3 guns for certain ai parties

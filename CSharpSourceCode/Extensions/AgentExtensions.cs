@@ -365,6 +365,13 @@ namespace TOR_Core.Extensions
         {
             return agent.HasAttribute(CharacterAttributes.CAN_PLACE_ARTILLERY);
         }
+        public static bool CanOperateArtillery(this Agent agent)
+        {
+            var attributes = agent.GetAttributes();
+            return attributes.Contains(CharacterAttributes.CREW_1) ||
+                   attributes.Contains(CharacterAttributes.CREW_2) ||
+                   attributes.Contains(CharacterAttributes.CREW_3);
+        }
         public static bool HasPartyAnvilOfDoom(this Agent agent)
         {
             var party = agent.GetHero()?.PartyBelongedTo;

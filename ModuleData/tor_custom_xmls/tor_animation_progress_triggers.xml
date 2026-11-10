@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AnimationProgressTriggers>
+    <!-- Cygor Foot Stomp (Sweep left / right) -> bone 7 (r_foot) -->
+    <AnimationProgressTrigger
+        race_id="cygor"
+        triggered_effect="treeman_smash"
+        action_ids="act_cygor_sweep_left,act_cygor_sweep_right,act_release_slashleft_1h,act_quick_release_slashleft_1h,act_release_slashright_1h,act_quick_release_slashright_1h"
+        trigger_progress="0.45"
+        bone_index="7" />
+
+    <!-- Cygor Boulder Smash (Attack up / down / overswing) -> bone 27 (r_finger0) -->
+    <AnimationProgressTrigger
+        race_id="cygor"
+        triggered_effect="treeman_smash"
+        action_ids="act_cygor_smash,act_cygor_smash_down,act_release_overswing_1h,act_quick_release_overswing_1h,act_release_thrust_1h,act_quick_release_thrust_1h"
+        trigger_progress="0.38"
+        bone_index="27"
+        min_progress_on_interrupt="0.15" />
+</AnimationProgressTriggers>

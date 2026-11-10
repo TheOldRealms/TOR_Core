@@ -1974,7 +1974,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
 
         private void ReportMovingToPlayerland(int plan, Settlement target)
         {
-            if ((plan != UniqueSpawnCampaignBehavior.WarPlanOwnVillagePatrol && plan != UniqueSpawnCampaignBehavior.WarPlanEnemyDeepPatrol) ||
+            if (plan != UniqueSpawnCampaignBehavior.WarPlanEnemyDeepPatrol ||
                 target == null ||
                 target.MapFaction == null)
             {

@@ -306,4 +306,17 @@
       <EquipmentSet id="tor_necromancer_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_cygor_lord" default_group="ranged" name="{=str_tor_cygor_lord}Cygor" occupation="Lord" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_unitskills_cygor" race="cygor" is_hero="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_beast_cygor_template" />
+      <EquipmentSet id="tor_beast_cygor_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
 </NPCCharacters>

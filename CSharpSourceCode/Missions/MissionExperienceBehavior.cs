@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Missions
 {
@@ -13,25 +14,37 @@ namespace TOR_Core.Missions
     {
         public override void OnScoreHit(Agent affectedAgent, Agent affectorAgent, WeaponComponentData attackerWeapon, bool isBlocked, bool isSiegeEngineHit, in Blow blow, in AttackCollisionData collisionData, float damagedHp, float hitDistance, float shotDifficulty)
 	    {
-		    if (affectorAgent == null)
-		    {
-			    return;
-		    }
+		    if (affectorAgent == null) return;
+		    
 		    if (affectorAgent.IsMount && affectorAgent.RiderAgent != null)
 		    {
 			    affectorAgent = affectorAgent.RiderAgent;
 		    }
-		    if (affectorAgent.Character == null || affectedAgent.Character == null)
-		    {
-			    return;
-		    }
+
+		    if (affectorAgent.Character == null || affectedAgent.Character == null) return;
+		    
+
 		    float inflictedDamage = (float)blow.InflictedDamage;
 		    if (inflictedDamage > affectedAgent.HealthLimit)
 		    {
 			    inflictedDamage = affectedAgent.HealthLimit;
 		    }
 		    float fractionOfAgentHealthRemoved = inflictedDamage / affectedAgent.HealthLimit;
-		    this.EnemyHitReward(affectedAgent, affectorAgent, blow.MovementSpeedDamageModifier, shotDifficulty, attackerWeapon, blow.AttackType, 0.5f * fractionOfAgentHealthRemoved, inflictedDamage, collisionData.IsSneakAttack);
+
+            
+            // Set flag for spell hits so TORCombatXpModel can skip weapon XP while still tracking kills
+            bool isSpellHit = collisionData.AffectorWeaponSlotOrMissileIndex == TORSpellBlowHelper.SpellBlowSentinel;
+            if (isSpellHit) TORSpellBlowHelper.IsProcessingSpellHit = true;
+
+            try
+            {
+                EnemyHitReward(affectedAgent, affectorAgent, blow.MovementSpeedDamageModifier, shotDifficulty, attackerWeapon, blow.AttackType, 0.5f * fractionOfAgentHealthRemoved, inflictedDamage, collisionData.IsSneakAttack);
+            }
+            finally
+            {
+                if (isSpellHit)
+                    TORSpellBlowHelper.IsProcessingSpellHit = false;
+            }
 	    }
 
         public void EnemyHitReward(Agent affectedAgent, Agent affectorAgent, float lastSpeedBonus, float lastShotDifficulty, WeaponComponentData lastAttackerWeapon, AgentAttackType attackType, float hitpointRatio, float damageAmount, bool isSneakAttack)

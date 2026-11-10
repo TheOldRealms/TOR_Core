@@ -432,8 +432,6 @@ namespace TOR_Core.HarmonyPatches
             {
                 case CharacterAttributes.MONSTROUS:
                     return "attribute_icon_monstrous";
-                case CharacterAttributes.ARTILLERY_CREW:
-                    return "attribute_icon_artillery_crew";
                 case "cult_of_loec":
                     return "attribute_icon_cult_of_loec";
                 case "cult_of_manaan":
@@ -486,12 +484,14 @@ namespace TOR_Core.HarmonyPatches
                     return "attribute_icon_unbreakable";
                 case CharacterAttributes.UNSTOPPABLE:
                     return "attribute_icon_unstoppable";
+                case CharacterAttributes.CREW_1:
+                    return "attribute_icon_artillery_crew";
+                case CharacterAttributes.BRETONNIAN_KNIGHT:
+                    return "attribute_icon_bretonnian_knight";
                 case CharacterAttributes.EXPENDABLE:
                 case CharacterAttributes.CRUSHING:
                 case CharacterAttributes.SLICE:
                 case CharacterAttributes.TREE_SPIRIT:
-                case CharacterAttributes.CREW_1:
-                case CharacterAttributes.BRETONNIAN_KNIGHT:
                     return null;
                 default:
                     return null;

@@ -90,6 +90,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 }
             }
         }
+
         public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate originAbilityTemplate = null, MBList<Agent> targets = null, int castId = -1)
         {
             if (_template == null || !triggererAgent.IsActive()) return;
@@ -353,7 +354,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     var scriptType = Type.GetType(scriptNameToTrigger, throwOnError: false);
                     if (scriptType == null)
                     {
-                        TORCommon.Log("Tried to spawn TriggeredScript: " + scriptNameToTrigger + ", but type couldnt be resolved.", NLog.LogLevel.Error);
+                        TORCommon.Log("TriggerScript : Tried to spawn TriggeredScript: " + scriptNameToTrigger + ", but type couldnt be resolved.", NLog.LogLevel.Error);
                         return;
                     }
 
@@ -382,7 +383,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 }
                 catch (Exception)
                 {
-                    TORCommon.Log("Tried to spawn TriggeredScript: " + scriptNameToTrigger + ", but failed.", NLog.LogLevel.Error);
+                    TORCommon.Log("TriggerScript : Tried to spawn TriggeredScript: " + scriptNameToTrigger + ", but failed.", NLog.LogLevel.Error);
                 }
             }
         }

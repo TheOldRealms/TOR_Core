@@ -8,7 +8,7 @@ namespace TOR_Core.BattleMechanics.Artillery
     {
         public override bool IsDisabledForAgent(Agent agent)
         {
-            return !agent.HasAttribute(CharacterAttributes.ARTILLERY_CREW) || base.IsDisabledForAgent(agent);
+            return !agent.CanOperateArtillery() || base.IsDisabledForAgent(agent);
         }
     }
 
@@ -24,7 +24,7 @@ namespace TOR_Core.BattleMechanics.Artillery
     {
         public override bool IsDisabledForAgent(Agent agent)
         {
-            return !agent.HasAttribute(CharacterAttributes.ARTILLERY_CREW) || base.IsDisabledForAgent(agent);
+            return !agent.CanOperateArtillery() || base.IsDisabledForAgent(agent);
         }
     }
 }

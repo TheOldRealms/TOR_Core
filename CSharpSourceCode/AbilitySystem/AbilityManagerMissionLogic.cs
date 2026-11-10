@@ -762,16 +762,15 @@ namespace TOR_Core.AbilitySystem
 
         public override void OnAgentCreated(Agent agent)
         {
-            if (IsCastingMission())
+            if (!Mission.IsAbilityOrHitScriptMission()) return;
+            
+            if (agent.IsAbilityUser())
             {
-                if (agent.IsAbilityUser())
+                var abilityComponent = new AbilityComponent(agent);
+                agent.AddComponent(abilityComponent);
+                if (agent.IsAIControlled && abilityComponent.KnownAbilitySystem.Count > 0)
                 {
-                    var abilityComponent = new AbilityComponent(agent);
-                    agent.AddComponent(abilityComponent);
-                    if (agent.IsAIControlled && abilityComponent.KnownAbilitySystem.Count > 0)
-                    {
-                        agent.AddComponent(new WizardAIComponent(agent));
-                    }
+                    agent.AddComponent(new WizardAIComponent(agent));
                 }
             }
         }
@@ -820,27 +819,14 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        public bool IsCastingMission()
-        {
-            // Custom combat missions that don't set CombatType properly
-            if (Mission.GetMissionBehavior<TrollCaveMissionController>() != null)
-                return true;
-
-            return !Mission.IsFriendlyMission &&
-                   Mission.CombatType != Mission.MissionCombatType.ArenaCombat &&
-                   Mission.CombatType != Mission.MissionCombatType.NoCombat;
-        }
-
         private bool IsAbilityModeAvailableForMainAgent()
         {
             return Agent.Main != null &&
                    Agent.Main.IsActive() &&
                    !ScreenManager.GetMouseVisibility() &&
-                   IsCastingMission() &&
+                   Mission.IsAbilityOrHitScriptMission() &&
                    !Mission.IsInPhotoMode &&
                    !Mission.IsOrderMenuOpen &&
-                   (Mission.Mode == MissionMode.Battle ||
-                    Mission.Mode == MissionMode.Stealth) &&
                    _abilityComponent != null &&
                    _abilityComponent.CurrentAbility != null;
         }
@@ -1041,11 +1027,10 @@ namespace TOR_Core.AbilitySystem
 
         private void AddPerkEffectsToStartingWindsOfMagic()
         {
-            if (!IsCastingMission())
-                return;
+            if (!Mission.IsAbilityOrHitScriptMission()) return;
 
-            if (Game.Current?.GameType is not Campaign)
-                return;
+            if (Game.Current?.GameType is not Campaign) return;
+
             var mainParty = Campaign.Current.MainParty;
 
             var currentPlayerMapEvent = MapEvent.PlayerMapEvent;

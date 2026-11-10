@@ -18,14 +18,14 @@ using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
-    public class TORPartySizeModel : DefaultPartySizeLimitModel
+    public class TORPartySizeLimitModel : DefaultPartySizeLimitModel
     {
-        public override ExplainedNumber GetPartyMemberSizeLimit(PartyBase party, bool includeDescriptions = false)
+        public override ExplainedNumber GetPartyMemberSizeLimit(PartyBase party, bool isCurrentlyAtSea = false, bool includeDescriptions = false)
         {
             //Sly : PartyBase.Culture is actually PartyBase.MapFaction.Culture with no null protection on MapFaction in native. However, MapFaction can be both a clan or kingdom, and therefore makes the culture variable depending on which specific kingdom a clan belongs to at a given moment.
             //Using MobileParty.ActualClan.Culture can circumvent this, but it must be noted that village militias that spawn during a defense are PartyBases with no associated MobileParty, but because the village's culture will be derived from the settlement owner's culture which will be based on the kingdom's culture, this will be close enough in the interim as the types of troops that spawn in the militia are also based on the settlement's culture.
 
-            var num = base.GetPartyMemberSizeLimit(party, includeDescriptions);
+            var num = base.GetPartyMemberSizeLimit(party, isCurrentlyAtSea, includeDescriptions);
 
             if (party.IsMobile && party.MobileParty.GetUniqueSpawnComponent() is { TargetPartySize: > 0 } uniqueSpawnComponent)
             {
