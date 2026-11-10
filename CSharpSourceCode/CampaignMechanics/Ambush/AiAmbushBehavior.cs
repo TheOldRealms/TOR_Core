@@ -697,6 +697,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
             if (TaleWorlds.MountAndBlade.Mission.Current != null) return false;
             if (main.MapFaction == null) return false;
 
+            // Don't ambush a stationary player. Fiction: an ambush is
+            // sprung on a column on the move; a camped party has their
+            // perimeter set. Mechanic: IsMoving on MainParty returns
+            // !Campaign.IsMainPartyWaiting, which is the clean "time is
+            // flowing while the player is idle on the map" check.
+            if (!main.IsMoving) return false;
+
             // Don't ambush a player already in stealth stance — would push
             // the AmbushedIntroMenu on top of the active stealth wait-menu,
             // which races the vanilla game-menu stack and can crash the
