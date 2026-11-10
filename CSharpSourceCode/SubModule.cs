@@ -245,7 +245,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORMarriageModel());
                 gameStarterObject.AddModel(new TORMobilePartyFoodConsumptionModel());
                 gameStarterObject.AddModel(new TORPartyHealingModel());
-                gameStarterObject.AddModel(new TORPartySizeModel());
+                gameStarterObject.AddModel(new TORPartySizeLimitModel());
                 gameStarterObject.AddModel(new TORPartySpeedCalculatingModel());
                 gameStarterObject.AddModel(new TORPartyTroopUpgradeModel());
                 gameStarterObject.AddModel(new TORPartyWageModel());

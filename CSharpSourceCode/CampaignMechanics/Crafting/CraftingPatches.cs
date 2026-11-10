@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection.Emit;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.WeaponDesign;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -71,10 +72,10 @@ namespace TOR_Core.CampaignMechanics.Crafting
             {
                 //remove the CraftingTemplate.All and GetRandom calls
                 codes.RemoveRange(replaceIndex, 2);
-                //load arg1 (Hero orderOwner) and call ValidTemplate(Hero) for culture-based filtering
+                //load arg1 (Town town) and call ValidTemplate(Town) for culture-based filtering
                 codes.Insert(replaceIndex, new CodeInstruction(OpCodes.Ldarg_1));
                 codes.Insert(replaceIndex + 1, new CodeInstruction(OpCodes.Call,
-                    AccessTools.Method(typeof(CraftingPatches), nameof(CraftingPatches.ValidTemplate), new[] { typeof(Hero) })));
+                    AccessTools.Method(typeof(CraftingPatches), nameof(CraftingPatches.ValidTemplate), new[] { typeof(Town) })));
             }
             return codes.AsEnumerable();
         }
@@ -98,7 +99,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
         /// </summary>
         /// <param name="orderOwner">The hero placing the crafting order</param>
         /// <returns>A culture-appropriate crafting template</returns>
-        public static CraftingTemplate ValidTemplate(Hero orderOwner)
+        public static CraftingTemplate ValidTemplate(Town orderTown)
         {
             // Ensure validation has occurred
             if (!TORSmithingModel.templatesValidated)
@@ -107,7 +108,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
             }
 
             // Get culture from settlement (fallback to Empire)
-            string cultureId = orderOwner?.CurrentSettlement?.Town?.Culture?.StringId
+            string cultureId = orderTown.Culture?.StringId
                                ?? TORConstants.Cultures.EMPIRE;
 
             // Filter valid templates by culture
