@@ -294,6 +294,7 @@
     <Compile Include="CampaignMechanics\Ambush\AmbushPropensityRegistry.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushRangeDebugMapView.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushTroopStealthScore.cs" />
+    <Compile Include="CampaignMechanics\Ambush\AmbushTroopSpottingScore.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushMapView.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushPrepOverlayMapView.cs" />
     <Compile Include="CampaignMechanics\Ambush\AmbushPrepOverlayVM.cs" />

@@ -122,6 +122,15 @@ namespace TOR_Core.Models
         public virtual float DetectionScoutingPerPointBonus => 1f / 600f;  // 300 Scouting = +50% detection mult (cap below)
         public virtual float DetectionScoutingBonusCap => 0.5f;
 
+        // §18 per-troop spotting score integration weights. Primary
+        // signal is the ambush-detection roll; fog-of-war spotting
+        // range gets a smaller weight since it's adjacent to the
+        // ambush mechanic and we don't want to accidentally rebalance
+        // broader map visibility.
+        public virtual float SpottingScoreDetectionWeight => 0.2f;
+        public virtual float SpottingScoreSightingWeight => 0.1f;
+        public virtual float SpottingScoreSizeDampingReference => 100f;
+
         public virtual float ConcealingTerrainMultiplier => 0.5f;        // forest / mountain / canyon / swamp
         public virtual float OpenTerrainMultiplier => 1.5f;              // plain / desert / steppe / dune
 
@@ -302,7 +311,10 @@ namespace TOR_Core.Models
         protected virtual float ScoutingDetectionMultiplier(MobileParty observer)
         {
             int s = observer.LeaderHero?.GetSkillValue(DefaultSkills.Scouting) ?? 0;
-            return 1f + MBMath.ClampFloat(s * DetectionScoutingPerPointBonus, 0f, DetectionScoutingBonusCap);
+            float leaderBonus = MBMath.ClampFloat(s * DetectionScoutingPerPointBonus, 0f, DetectionScoutingBonusCap);
+            float rosterBonus = AmbushTroopSpottingScore.GetBasePartyScore(observer, SpottingScoreSizeDampingReference)
+                                * SpottingScoreDetectionWeight;
+            return 1f + leaderBonus + rosterBonus;
         }
 
         protected virtual float TerrainDetectionMultiplier(MobileParty target)

@@ -42,6 +42,22 @@ namespace TOR_Core.Models
                 }
             }
 
+            // §18 per-troop spotting score — a roster stacked with scouts
+            // and rangers sees farther; a column of heavy knights sees
+            // less. Smaller weight than the ambush-detection hook so the
+            // broader fog-of-war game doesn't get rebalanced accidentally.
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model != null)
+            {
+                float rosterSpottingBonus = AmbushTroopSpottingScore.GetBasePartyScore(
+                    party, model.SpottingScoreSizeDampingReference)
+                    * model.SpottingScoreSightingWeight;
+                if (rosterSpottingBonus > 0.01f || rosterSpottingBonus < -0.01f)
+                {
+                    result.AddFactor(rosterSpottingBonus, new TextObject("{=tor_spotting_troop_composition}Troop composition"));
+                }
+            }
+
             // DwarfBrewers handling
             if (party.IsMainParty && party.LeaderHero == Hero.MainHero)
             {

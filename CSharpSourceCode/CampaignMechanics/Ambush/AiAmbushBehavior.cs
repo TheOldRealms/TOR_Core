@@ -294,13 +294,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// </summary>
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
-            // Precompute per-troop base stealth scores for the whole
-            // CharacterObject roster. All factors in the base layer
-            // (race / mount / knightly / weight / MasterAmbusher) are
-            // static per troop StringId, so one sweep at session launch
-            // avoids per-tick compute during decision ticks.
+            // Precompute per-troop base stealth + spotting scores for
+            // the whole CharacterObject roster. All factors in the base
+            // layer (race / mount / knightly / weight / MasterAmbusher /
+            // MasterScout / formation class) are static per troop
+            // StringId, so one sweep at session launch avoids per-tick
+            // compute during decision ticks.
             AmbushTroopStealthScore.PrecomputeAll();
-            TORCommon.Log(LogLevel.Info, "[AI Ambush] stealth-score base precomputed");
+            AmbushTroopSpottingScore.PrecomputeAll();
+            TORCommon.Log(LogLevel.Info, "[AI Ambush] stealth + spotting score bases precomputed");
 
             // Session-launch sanity scrub for any mid-prep parties — same
             // reasoning as the stealthed clear below. Prep is transient
