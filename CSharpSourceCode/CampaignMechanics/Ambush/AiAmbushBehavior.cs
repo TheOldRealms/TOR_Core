@@ -207,6 +207,30 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return false;
         }
 
+        /// <summary>Mirror of <see cref="IsRecentSuccessfulAmbusher"/>
+        /// on the victim side. Read by
+        /// <see cref="Models.TORPartyImpairmentModel.CanGetDisorganized"/>
+        /// to bypass vanilla's <c>TotalManCount &gt;= 10</c> gate — a
+        /// patrol wounded down to 6 men by a clean ambush should still
+        /// take the disorganize debuff; that's the narrative effect
+        /// we're preserving.</summary>
+        public bool IsRecentAmbushVictim(MobileParty party, float windowMinutes)
+        {
+            if (party == null) return false;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return false;
+            var now = CampaignTime.Now;
+            for (int i = _ambushRecords.Count - 1; i >= 0; i--)
+            {
+                var rec = _ambushRecords[i];
+                if (rec.Victim != party) continue;
+                if (!model.IsSuccessfulStrike(rec)) continue;
+                if ((now - rec.At).ToMinutes > windowMinutes) continue;
+                return true;
+            }
+            return false;
+        }
+
         public AmbushRecord GetMostRecentActiveVictimRecord(MobileParty victim)
         {
             if (victim == null) return null;
@@ -294,13 +318,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// </summary>
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
-            // Precompute per-troop base stealth scores for the whole
-            // CharacterObject roster. All factors in the base layer
-            // (race / mount / knightly / weight / MasterAmbusher) are
-            // static per troop StringId, so one sweep at session launch
-            // avoids per-tick compute during decision ticks.
+            // Precompute per-troop base stealth + spotting scores for
+            // the whole CharacterObject roster. All factors in the base
+            // layer (race / mount / knightly / weight / MasterAmbusher /
+            // MasterScout / formation class) are static per troop
+            // StringId, so one sweep at session launch avoids per-tick
+            // compute during decision ticks.
             AmbushTroopStealthScore.PrecomputeAll();
-            TORCommon.Log(LogLevel.Info, "[AI Ambush] stealth-score base precomputed");
+            AmbushTroopSpottingScore.PrecomputeAll();
+            TORCommon.Log(LogLevel.Info, "[AI Ambush] stealth + spotting score bases precomputed");
 
             // Session-launch sanity scrub for any mid-prep parties — same
             // reasoning as the stealthed clear below. Prep is transient
@@ -654,9 +680,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
                 // Priority 1: player in strike range. Fiction: the player
                 // always counts as a notable target, so a stealthed party
-                // springs on them when they walk past.
+                // springs on them when they walk past. Honors vanilla's
+                // per-party post-encounter cooldown — the captor party
+                // gets 12 h of DoNotAttackMainPartyUntil set by the
+                // escape-captivity menu, which blocks regular engagement
+                // and should block ambush engagement too.
                 if (playerAvailable
                     && FactionManager.IsAtWarAgainstFaction(ambusher.MapFaction, main.MapFaction)
+                    && ambusher.Ai.DoNotAttackMainPartyUntil.IsPast
                     && ambusher.Position.ToVec2().DistanceSquared(mainPos) <= strikeRadiusSq)
                 {
                     TriggerAmbushAgainstPlayer(ambusher);
@@ -691,6 +722,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
             if (MapEvent.PlayerMapEvent != null) return false;
             if (TaleWorlds.MountAndBlade.Mission.Current != null) return false;
             if (main.MapFaction == null) return false;
+
+            // Don't ambush a stationary player. Fiction: an ambush is
+            // sprung on a column on the move; a camped party has their
+            // perimeter set. Mechanic: IsMoving on MainParty returns
+            // !Campaign.IsMainPartyWaiting, which is the clean "time is
+            // flowing while the player is idle on the map" check.
+            if (!main.IsMoving) return false;
 
             // Don't ambush a player already in stealth stance — would push
             // the AmbushedIntroMenu on top of the active stealth wait-menu,

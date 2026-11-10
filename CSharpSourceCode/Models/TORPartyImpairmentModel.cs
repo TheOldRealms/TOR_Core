@@ -6,16 +6,23 @@ using TOR_Core.CampaignMechanics.Ambush;
 namespace TOR_Core.Models
 {
     /// <summary>
-    /// Shields parties that just landed a successful ambush from the
-    /// post-battle disorganize vanilla's
-    /// <c>DisorganizedStateCampaignBehavior.OnMapEventEnd</c> would
-    /// otherwise apply. Everything else defers to the vanilla default.
+    /// Two ambush-shaped overrides on top of vanilla's default:
     ///
-    /// Vanilla's behavior iterates the MapEvent's involved parties and
-    /// calls <c>SetDisorganized(true)</c> gated on this model's
-    /// <c>CanGetDisorganized</c>. Returning false here is the single
-    /// clean lever — subclass + <c>AddModel</c> rather than Harmony-
-    /// patching, matching the rule in
+    /// 1. <b>Shield the ambusher.</b> Parties that just landed a
+    ///    successful ambush should NOT get the post-battle disorganize
+    ///    vanilla's <c>DisorganizedStateCampaignBehavior.OnMapEventEnd</c>
+    ///    would otherwise apply. Returns false for recent strikers.
+    ///
+    /// 2. <b>Allow sub-10 victims to be disorganized.</b> Vanilla's
+    ///    default gates disorganize on <c>TotalManCount &gt;= 10</c>.
+    ///    A patrol wounded down to 6 by a clean ambush should still
+    ///    read as disorganized; the ambush narrative is the point,
+    ///    the member-count threshold exists for generic battles where
+    ///    small bands don't warrant the state. Returns true for
+    ///    recent victims regardless of count (modulo
+    ///    <c>IsActive</c> / <c>IsMobile</c>).
+    ///
+    /// Subclass + <c>AddModel</c> rather than Harmony-patching, per
     /// <see href="feedback_bannerlord_model_override_vs_harmony"/>.
     /// </summary>
     public class TORPartyImpairmentModel : DefaultPartyImpairmentModel
@@ -29,11 +36,25 @@ namespace TOR_Core.Models
 
         public override bool CanGetDisorganized(PartyBase partyBase)
         {
-            if (partyBase?.MobileParty != null)
+            var mp = partyBase?.MobileParty;
+            if (mp != null)
             {
                 var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
-                if (ai != null && ai.IsRecentSuccessfulAmbusher(partyBase.MobileParty, RecentAmbusherWindowMinutes))
-                    return false;
+                if (ai != null)
+                {
+                    if (ai.IsRecentSuccessfulAmbusher(mp, RecentAmbusherWindowMinutes))
+                        return false;
+
+                    // Victim bypass: ignore vanilla's >=10 TotalManCount
+                    // gate so a wounded-down patrol still takes the
+                    // debuff. Keep the IsActive/IsMobile pre-reqs so
+                    // destroyed parties can't be flagged.
+                    if (ai.IsRecentAmbushVictim(mp, RecentAmbusherWindowMinutes)
+                        && partyBase.IsActive && partyBase.IsMobile)
+                    {
+                        return true;
+                    }
+                }
             }
             return base.CanGetDisorganized(partyBase);
         }

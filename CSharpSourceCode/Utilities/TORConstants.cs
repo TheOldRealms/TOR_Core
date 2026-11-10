@@ -369,6 +369,14 @@ namespace TOR_Core.Utilities
             /// crush it. Set in tor_extendedunitproperties.xml under a
             /// troop's &lt;CharacterAttributes&gt; list.</summary>
             public const string MASTER_AMBUSHER = "MasterAmbusher";
+
+            /// <summary>§18 companion to <see cref="MASTER_AMBUSHER"/> —
+            /// unit excels at detection regardless of knightly / weight
+            /// penalties. Scouts, rangers. Flips the spotting score to a
+            /// positive floor instead of letting role / armor pull it
+            /// below. Set in tor_extendedunitproperties.xml under a
+            /// troop's &lt;CharacterAttributes&gt; list.</summary>
+            public const string MASTER_SCOUT = "MasterScout";
             public const string TREE_SPIRIT = "TreeSpirit";//this detection should instead move to the race and LHM gets cleaned up to be specific to a single type, but dryads would be unaccounted for which is why it remains for the moment. I don't think keeping all of the giant races on a single race entry is saving us enough memory to be worth other headaches.
             public const string UNDEAD = "Undead";//is race detection faster than attribute lookup? It should be, particularly if we change to caching the race mapping and just performing integer comparisons. This is used for so many other things that there are hidden risks with a straight swap.
 

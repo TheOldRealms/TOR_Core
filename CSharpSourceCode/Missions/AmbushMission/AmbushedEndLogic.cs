@@ -39,7 +39,9 @@ namespace TOR_Core.Missions.AmbushMission
 
         private MissionObjectiveLogic _objectiveLogic;
         private AmbushObjective _objective;
-        private int _lastAttackersShown = int.MinValue;
+        // No live enemy count on the objective — Phase F deliberately
+        // hides enemy numbers (scoreboard mask + mission description)
+        // so the player can't infer the ambusher's remaining strength.
 
         // Snapshot of MainParty's non-hero roster at mission start.
         // Captured in AfterStart (roster still untouched by combat),
@@ -147,15 +149,15 @@ namespace TOR_Core.Missions.AmbushMission
                 }
             }
 
-            RefreshObjective();
         }
 
         /// <summary>
         /// Starts a single "survive the ambush" objective. Phase F has no
         /// phase transition like Phase D's patrol-defeated → extract flow;
         /// the goal is either repel the attackers or flee past the soft
-        /// border. One objective for the whole mission; RefreshObjective
-        /// only updates the live enemy count in the description.
+        /// border. One static objective for the whole mission — no live
+        /// enemy count (would undo the bluff shield that masks enemy
+        /// numbers in the scoreboard).
         /// </summary>
         private void StartObjective()
         {
@@ -166,18 +168,6 @@ namespace TOR_Core.Missions.AmbushMission
                 new TextObject("{=tor_ambushed_obj_desc_init}Defeat the ambushers or flee past the mission boundary."));
             _objective.SetProgressCallback(() => default);
             _objectiveLogic.StartObjective(_objective);
-            _lastAttackersShown = int.MinValue;
-        }
-
-        private void RefreshObjective()
-        {
-            if (_objective == null) return;
-            int remaining = CountActiveHumans(Mission.AttackerTeam);
-            if (remaining == _lastAttackersShown) return;
-            _lastAttackersShown = remaining;
-            var desc = new TextObject("{=tor_ambushed_obj_desc}Defeat the ambushers or flee past the mission boundary. ({N} enemies remaining)");
-            desc.SetTextVariable("N", remaining);
-            _objective.SetDescription(desc);
         }
 
         /// <summary>
