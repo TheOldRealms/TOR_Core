@@ -550,20 +550,156 @@ namespace TOR_Core.Models
         /// Determines if the victim should shrug off the blow (no stagger/reaction).
         /// Moved from DamagePatch to use the proper model override.
         /// </summary>
+        private static bool IsColossalMonster(Agent agent)
+        {
+            if (agent == null) return false;
+            string monsterId = agent.Monster?.StringId;
+            if (monsterId == "cygor"
+                || monsterId == "cygor_settlement"
+                || monsterId == "large_humanoid_monster"
+                || monsterId == "large_humanoid_monster_settlement")
+            {
+                return true;
+            }
+
+            if (agent.Character != null)
+            {
+                var raceNames = TaleWorlds.Core.FaceGen.GetRaceNames();
+                if (raceNames != null && agent.Character.Race >= 0 && agent.Character.Race < raceNames.Length)
+                {
+                    string raceId = raceNames[agent.Character.Race];
+                    if (raceId == "cygor" || raceId == "large_humanoid_monster")
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsMonstrousInfantryRival(Agent agent)
+        {
+            if (agent == null) return false;
+            string monsterId = agent.Monster?.StringId;
+            if (monsterId == "minotaur"
+                || monsterId == "minotaur_settlement"
+                || monsterId == "medium_humanoid_monster"
+                || monsterId == "medium_humanoid_monster_settlement"
+                || monsterId == "troll"
+                || monsterId == "troll_settlement"
+                || monsterId == "ushabti"
+                || monsterId == "ushabti_settlement"
+                || monsterId == "orion"
+                || monsterId == "orion_settlement")
+            {
+                return true;
+            }
+
+            if (agent.Character != null)
+            {
+                var raceNames = TaleWorlds.Core.FaceGen.GetRaceNames();
+                if (raceNames != null && agent.Character.Race >= 0 && agent.Character.Race < raceNames.Length)
+                {
+                    string raceId = raceNames[agent.Character.Race];
+                    if (raceId == "minotaur" || raceId == "troll" || raceId == "ushabti")
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsCannonballOrArtilleryBlow(in AttackCollisionData collisionData, in Blow blow)
+        {
+            WeaponClass weaponClass = blow.WeaponRecord.WeaponClass;
+
+            // 1. Cannonballs (tor_neutral_weapon_ammo_cannonball) and Trebuchet/Siege Boulders use WeaponClass.Boulder
+            if (weaponClass == WeaponClass.Boulder)
+            {
+                return true;
+            }
+
+            // 2. Cygor Thrown Boulder (cygor_boulder) uses WeaponClass.Stone with thrust_damage=400.
+            // Filter out hand grenades/blasting charges (WeaponClass.Stone, 30-70 dmg) via >= 120 damage check.
+            if (weaponClass == WeaponClass.Stone && blow.InflictedDamage >= 120)
+            {
+                return true;
+            }
+
+            // 3. Direct hits from artillery/mortar AoE scripts or siege engines dealing >= 200 single-blow damage
+            if (blow.InflictedDamage >= 200 && (collisionData.IsMissile || blow.StrikeType == StrikeType.Thrust))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private static bool CanBlowStaggerColossalMonster(Agent attackerAgent, Agent victimAgent, in AttackCollisionData collisionData, in Blow blow)
+        {
+            if (IsCannonballOrArtilleryBlow(in collisionData, in blow))
+            {
+                return true;
+            }
+
+            if (attackerAgent != null && attackerAgent != victimAgent)
+            {
+                if (IsColossalMonster(attackerAgent))
+                {
+                    return true;
+                }
+
+                if (IsMonstrousInfantryRival(attackerAgent) && blow.InflictedDamage >= 60)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public override bool DecideAgentShrugOffBlow(Agent victimAgent, in AttackCollisionData collisionData, in Blow blow)
         {
+            if (IsColossalMonster(victimAgent))
+            {
+                Agent attackerAgent = (blow.OwnerId >= 0 && Mission.Current != null)
+                    ? Mission.Current.FindAgentWithIndex(blow.OwnerId)
+                    : null;
+
+                if (CanBlowStaggerColossalMonster(attackerAgent, victimAgent, in collisionData, in blow))
+                {
+                    return false; // Allow stagger from Cannonballs, Cygor Boulders, and Rival Monsters
+                }
+
+                return true; // Shrug off all infantry/cavalry melee and small arms
+            }
+
+            if (IsMonstrousInfantryRival(victimAgent) || victimAgent.IsUnstoppable())
+            {
+                Agent attackerAgent = (blow.OwnerId >= 0 && Mission.Current != null)
+                    ? Mission.Current.FindAgentWithIndex(blow.OwnerId)
+                    : null;
+
+                if (IsCannonballOrArtilleryBlow(in collisionData, in blow) || IsColossalMonster(attackerAgent))
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
             // First check base game logic
             var baseShrugOff = base.DecideAgentShrugOffBlow(victimAgent, collisionData, blow);
             if (baseShrugOff)
                 return true;
 
-            if (victimAgent.IsUnstoppable())
-                return true;
-
             // Agent's own damage threshold check
             if (victimAgent.IsDamageShruggedOff(blow.InflictedDamage))
                 return true;
-            
+
             if (collisionData.IsMissile && victimAgent.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
             {
                 if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive3"))
@@ -573,6 +709,40 @@ namespace TOR_Core.Models
             }
 
             return false;
+        }
+
+        public override bool DecideAgentKnockedBackByBlow(
+            Agent attackerAgent,
+            Agent victimAgent,
+            in AttackCollisionData collisionData,
+            WeaponComponentData attackerWeapon,
+            in Blow blow)
+        {
+            if (IsColossalMonster(victimAgent) || IsMonstrousInfantryRival(victimAgent) || victimAgent.IsUnstoppable())
+            {
+                if (IsCannonballOrArtilleryBlow(in collisionData, in blow) || IsColossalMonster(attackerAgent))
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            return base.DecideAgentKnockedBackByBlow(attackerAgent, victimAgent, in collisionData, attackerWeapon, in blow);
+        }
+
+        public override bool DecideAgentKnockedDownByBlow(
+            Agent attackerAgent,
+            Agent victimAgent,
+            in AttackCollisionData collisionData,
+            WeaponComponentData attackerWeapon,
+            in Blow blow)
+        {
+            if (IsColossalMonster(victimAgent) || IsMonstrousInfantryRival(victimAgent) || victimAgent.IsUnstoppable())
+            {
+                return false; // Prevent human ragdoll/get-up animation on custom monster skeletons
+            }
+
+            return base.DecideAgentKnockedDownByBlow(attackerAgent, victimAgent, in collisionData, attackerWeapon, in blow);
         }
 
         public AgentPropertyContainer CreateAgentPropertyContainer(Agent agent, PropertyMask propertyMask, AttackTypeMask attackTypeMask)
@@ -1432,16 +1602,6 @@ namespace TOR_Core.Models
             return passedExtra;
         }
         
-        public override bool DecideAgentKnockedDownByBlow(Agent attackerAgent, Agent victimAgent, in AttackCollisionData collisionData, WeaponComponentData attackerWeapon, in Blow blow)
-        {
-            if (collisionData.IsHorseCharge && collisionData.ChargeVelocity > attackerAgent.Monster.RelativeSpeedLimitForCharge)
-            {
-                return true;
-            }
-
-            return base.DecideAgentKnockedDownByBlow(attackerAgent, victimAgent, in collisionData, attackerWeapon, in blow);
-        }
-
         public override void DecideWeaponCollisionReaction(in Blow registeredBlow, in AttackCollisionData collisionData, Agent attacker, Agent defender, in MissionWeapon attackerWeapon, bool isFatalHit, bool isShruggedOff, float momentumRemaining, out MeleeCollisionReaction colReaction)
         {
             base.DecideWeaponCollisionReaction(registeredBlow, collisionData, attacker, defender, attackerWeapon, isFatalHit, isShruggedOff, momentumRemaining, out colReaction);

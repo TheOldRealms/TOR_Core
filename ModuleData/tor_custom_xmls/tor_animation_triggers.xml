@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <AnimationTriggers>
     <AnimationTrigger
         race_id="large_humanoid_monster"
@@ -6,7 +6,4 @@
     <AnimationTrigger
         race_id="troll"
         triggered_effect="troll_smash" />
-    <AnimationTrigger
-        race_id="cygor"
-        triggered_effect="treeman_smash" />
 </AnimationTriggers>
