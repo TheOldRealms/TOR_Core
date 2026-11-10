@@ -201,7 +201,13 @@ namespace TOR_Core.Missions.AmbushMission
         private void EnsureDecalCreated()
         {
             if (_decalEntity != null) return;
-            _decalEntity = TaleWorlds.Engine.GameEntity.CreateEmpty(Scene, true, true, true);
+            // isModifiableFromEditor:false so the editor doesn't treat
+            // the runtime-created ring as a scene edit and bake it into
+            // the scene file on save — otherwise successive editor
+            // sessions accumulate copies across loads. Physics off: a
+            // pure visual, no collision.
+            _decalEntity = TaleWorlds.Engine.GameEntity.CreateEmpty(Scene,
+                isModifiableFromEditor: false, createPhysics: false, callScriptCallbacks: true);
             _decalEntity.Name = "TOR_AmbushRetreatZoneRing";
             _decal = Decal.CreateDecal(null);
             var material = Material.GetFromResource(RingMaterial);

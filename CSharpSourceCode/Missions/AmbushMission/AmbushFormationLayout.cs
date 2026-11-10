@@ -160,99 +160,34 @@ namespace TOR_Core.Missions.AmbushMission
         {
             var list = new List<AmbushFormation>();
             int n = troops.Count;
-            int maxByFloor = n / System.Math.Max(1, model.MinAiFormationSize);
-            int targetCount = MBMath.ClampInt(spotCount, 1, System.Math.Max(1, maxByFloor));
-            if (targetCount <= 1)
+            int min = model.GetMinFormationSize(cls);
+            int max = model.GetMaxFormationSize(cls);
+
+            // How many chunks we could produce without any chunk falling
+            // below the class floor. The actual chunk count is capped by
+            // the number of matching spots the scene offers.
+            int maxChunks = n / System.Math.Max(1, min);
+            int chunks = MBMath.ClampInt(spotCount, 1, System.Math.Max(1, maxChunks));
+
+            // Single spot available, too small to split without
+            // violating the floor, or at/below the floor: one formation.
+            if (chunks < 2 || n <= min)
             {
                 list.Add(new AmbushFormation { Class = cls, Troops = troops });
                 return list;
             }
-            var pattern = RollDistributionPattern(model);
-            var weights = BuildWeights(pattern, targetCount);
-            SplitByWeights(troops, weights, cls, list);
-            if (ContainsUndersized(list, model.MinAiFormationSize))
+
+            // Probability of splitting ramps linearly from 0 at min to 1
+            // at max. At or above max the split is unconditional.
+            float splitChance = (float)(n - min) / System.Math.Max(1, max - min);
+            if (n < max && MBRandom.RandomFloat >= splitChance)
             {
-                list.Clear();
-                SplitEven(troops, targetCount, cls, list);
-                if (ContainsUndersized(list, model.MinAiFormationSize))
-                {
-                    list.Clear();
-                    list.Add(new AmbushFormation { Class = cls, Troops = troops });
-                }
+                list.Add(new AmbushFormation { Class = cls, Troops = troops });
+                return list;
             }
+
+            SplitEven(troops, chunks, cls, list);
             return list;
-        }
-
-        private static bool ContainsUndersized(List<AmbushFormation> list, int min)
-        {
-            foreach (var f in list) if (f.Count < min) return true;
-            return false;
-        }
-
-        private enum DistPattern { Concentrated, Even, Asymmetric }
-
-        private static DistPattern RollDistributionPattern(TORMissionAmbushModel m)
-        {
-            float wC = m.AiDistributionConcentratedWeight;
-            float wE = m.AiDistributionEvenWeight;
-            float wA = m.AiDistributionAsymmetricWeight;
-            float total = wC + wE + wA;
-            if (total <= 0f) return DistPattern.Even;
-            float roll = MBRandom.RandomFloat * total;
-            if (roll < wC) return DistPattern.Concentrated;
-            if (roll < wC + wE) return DistPattern.Even;
-            return DistPattern.Asymmetric;
-        }
-
-        private static float[] BuildWeights(DistPattern p, int count)
-        {
-            var weights = new float[count];
-            switch (p)
-            {
-                case DistPattern.Concentrated:
-                    weights[MBRandom.RandomInt(count)] = 1f;
-                    return weights;
-                case DistPattern.Even:
-                    for (int i = 0; i < count; i++) weights[i] = 1f / count;
-                    return weights;
-                case DistPattern.Asymmetric:
-                    float sum = 0f;
-                    for (int i = 0; i < count; i++)
-                    {
-                        weights[i] = 0.15f + MBRandom.RandomFloat;
-                        sum += weights[i];
-                    }
-                    for (int i = 0; i < count; i++) weights[i] /= sum;
-                    Shuffle(weights);
-                    return weights;
-            }
-            return weights;
-        }
-
-        private static void Shuffle(float[] a)
-        {
-            for (int i = a.Length - 1; i > 0; i--)
-            {
-                int j = MBRandom.RandomInt(i + 1);
-                var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
-            }
-        }
-
-        private static void SplitByWeights(List<CharacterObject> troops,
-            float[] weights, FormationClass cls, List<AmbushFormation> output)
-        {
-            int n = troops.Count;
-            int placed = 0;
-            for (int i = 0; i < weights.Length; i++)
-            {
-                int take = i == weights.Length - 1
-                    ? n - placed
-                    : (int)System.Math.Round(n * weights[i]);
-                if (take <= 0 && i < weights.Length - 1) continue;
-                var slice = troops.GetRange(placed, take);
-                output.Add(new AmbushFormation { Class = cls, Troops = slice });
-                placed += take;
-            }
         }
 
         private static void SplitEven(List<CharacterObject> troops, int chunks,

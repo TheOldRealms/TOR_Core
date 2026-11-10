@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NLog;
+using Helpers;
 using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -10,6 +11,7 @@ using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.Core;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -52,10 +54,28 @@ namespace TOR_Core.CampaignMechanics.Ambush
         // doesn't re-stack on player next tick.
         private const float AmbushEscapeTeleportDistance = 3f;
 
-        // First delivered scene from the scener (TOR_Environment/SceneObj/test_ambush/).
-        // Has an authored AmbushRetreatZone (Radius=10) + TacticalRegion=Forest.
-        // Will become a lookup table (terrain → scene[]) once more scenes land.
+        // Fallback scene (TOR_Environment/SceneObj/test_ambush/). Has an
+        // authored AmbushRetreatZone (Radius=10) + TacticalRegion=Forest.
+        // Used when AmbushScenes is empty or when dev paths want a known
+        // fixed scene. Terrain-biased selection stays an open question in
+        // phase-d-requirements.md.
         public const string DefaultAmbushScene = "test_ambush";
+
+        // Delivered forest ambush scenes from the scener (next_update branch
+        // of TOR_Environment). PickAmbushScene() returns a random entry for
+        // Phase D / Phase F mission opens.
+        public static readonly string[] AmbushScenes =
+        {
+            "TOR_ambush_forest_001",
+            "TOR_ambush_forest_002",
+            "TOR_ambush_forest_003",
+        };
+
+        public static string PickAmbushScene()
+        {
+            if (AmbushScenes == null || AmbushScenes.Length == 0) return DefaultAmbushScene;
+            return AmbushScenes[MBRandom.RandomInt(AmbushScenes.Length)];
+        }
 
         private bool _playerInStealth;
         private CampaignTime _stealthEnteredAt = CampaignTime.Zero;
@@ -1451,14 +1471,25 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             RegisterMenus(starter);
 
-            // Defensive: a save mid-stealth loads with the flag set but no menu / no movement lock.
-            // Clear the flag so the player resumes with a normal map state.
-            if (_playerInStealth)
+            // Mid-stealth / mid-prep save resumes the stance. Mirrors
+            // vanilla's siege-preparation pattern: progress state is
+            // persisted (we SyncData the flags + timestamp; the
+            // elapsed delta uses CampaignTime which vanilla preserves),
+            // and on load we re-apply the derived state (party
+            // controls, menu, time stop). TickPlayerStealthPrep picks
+            // up prep from the restored timestamp naturally.
+            if (_playerInStealth || _playerPreppingStealth)
             {
-                _playerInStealth = false;
-                _currentTargets.Clear();
-                MobileParty.MainParty?.Ai?.SetDoNotMakeNewDecisions(false);
-                MobileParty.MainParty?.IgnoreByOtherPartiesTill(CampaignTime.Zero);
+                var main = MobileParty.MainParty;
+                if (main != null)
+                {
+                    main.Ai.SetDoNotMakeNewDecisions(true);
+                    main.SetMoveModeHold();
+                    main.IgnoreByOtherPartiesTill(CampaignTime.YearsFromNow(100f));
+                }
+                _cachedTimeControlMode = Campaign.Current.TimeControlMode;
+                GameMenu.ActivateGameMenu(StealthMenuId);
+                Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
             }
 
             // §6 bluff — IsInfoHidden is a vanilla SaveableField, so UI
@@ -1569,7 +1600,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             GameMenu.ExitToLast();
             AmbushRetreatZone.ResetRegistry();
-            TorMissionManager.OpenAmbushedMission(DefaultAmbushScene);
+            TorMissionManager.OpenAmbushedMission(PickAmbushScene());
         }
 
         private void RegisterAmbushEscapeMenu(CampaignGameStarter starter)
@@ -1958,65 +1989,114 @@ namespace TOR_Core.CampaignMechanics.Ambush
             bool success = MBRandom.RandomFloat < chance;
             int chancePct = (int)(chance * 100f);
 
-            // Drop stealth before combat. No cooldown stamp here —
-            // Phase D records the AmbushRecord at resolution time with
-            // the correct AmbusherRepelled flag, so the strike-time
-            // pre-stamp (which hardcoded repelled=false) is gone. Every
-            // abandon path (crash, quit mid-mission, save+load mid-
-            // mission) either rolls back before the strike or resumes
-            // in-mission, so there's no "strike happened but no record"
-            // scenario to defend against.
-            LeaveStealth(MobileParty.MainParty);
-
-            // Teleport the player onto the target before starting the encounter
-            // so the campaign-map visualization matches the fiction: the player
-            // walked up to the target and struck. Without this the engagement
-            // happens at wherever the player was when they entered stealth and
-            // the target "snaps" to the player's location — immersion-breaking,
-            // and (worse) picks the wrong terrain for vanilla's fail-path field
-            // battle.
-            MobileParty.MainParty.Position = target.Position;
-
             if (success)
             {
                 TORCommon.Say("Ambush succeeded (" + chancePct + "%) on " + GetPartyLabel(target) + ".");
                 _lastAmbushTarget = target;
-                // Bypass EncounterManager.StartPartyEncounter — it fires encounter_meeting
-                // menu + enemy-leader conversation, both of which deadlock our mission open.
-                // RestartPlayerEncounter(defender, attacker) skips straight to encounter
-                // state (same pattern TrollCaveMenuLogic uses).
-                PlayerEncounter.RestartPlayerEncounter(target.Party, PartyBase.MainParty, false);
-                if (PlayerEncounter.Battle == null)
-                {
-                    PlayerEncounter.StartBattle();
-                    PlayerEncounter.Update();
-                }
-                // Clear any stale AmbushRetreatZone registrations from a prior
-                // scene BEFORE OpenNew — the current scene's AmbushRetreatZone
-                // OnInit will fire during scene load that follows, so clearing
-                // after would wipe the just-registered zone.
-                AmbushRetreatZone.ResetRegistry();
-                TorMissionManager.OpenAmbushMission(DefaultAmbushScene);
+                OpenAmbushTroopSelection();
             }
             else
             {
-                // Strike roll fail: commit the player to the fight directly
-                // instead of routing through EncounterManager.StartPartyEncounter.
-                // EncounterManager opens the vanilla encounter_meeting game menu,
-                // which includes a Leave option — letting the player bail out of
-                // a botched ambush. Design calls for no bail: the attempt costs
-                // you the fight regardless of outcome. Same no-menu pattern as
-                // the success branch (RestartPlayerEncounter + StartBattle)
-                // minus the TorMissionManager.OpenAmbushMission call, so
-                // vanilla's field-battle flow takes over.
-                TORCommon.Say("Ambush failed (" + chancePct + "%) on " + GetPartyLabel(target) + " — regular battle.");
-                PlayerEncounter.RestartPlayerEncounter(target.Party, PartyBase.MainParty, false);
-                if (PlayerEncounter.Battle == null)
-                {
-                    PlayerEncounter.StartBattle();
-                    PlayerEncounter.Update();
-                }
+                // Strike roll fail: stealth is burnt regardless; the
+                // target has seen the player. No forced encounter — the
+                // target's own quarter-hourly AI tick decides whether to
+                // engage from here, same path a bandit uses to catch a
+                // caravan. Player eats the Disorganized debuff either
+                // way; direct SetDisorganized bypasses vanilla's
+                // TotalManCount >= 10 gate so even a small strike team
+                // takes the hit.
+                LeaveStealth(MobileParty.MainParty);
+                TORCommon.Say("Ambush failed (" + chancePct + "%) on " + GetPartyLabel(target)
+                              + ". You've been spotted — your formation is broken.");
+                MobileParty.MainParty.SetDisorganized(true);
             }
+        }
+
+        /// <summary>Opens the vanilla troop-selection overlay for the
+        /// player to pick which of their troops come in on the initial
+        /// spawn. Cap scales with Tactics via the mission model. Hero
+        /// row is excluded — heroes spawn through the controller's
+        /// hero-spawn path, not the supplier.</summary>
+        private void OpenAmbushTroopSelection()
+        {
+            var ctx = Campaign.Current?.CurrentMenuContext;
+            var model = Campaign.Current?.Models?.GetMissionAmbushModel();
+            int cap = model?.ComputeAmbusherInMissionCap(Hero.MainHero) ?? 25;
+            if (ctx == null)
+            {
+                // Fallback: no menu context (shouldn't happen from strike
+                // flow — the stealth menu is open). Proceed with no
+                // selection so the supplier falls back to vanilla
+                // allocation ordering.
+                BeginAmbushMission(null);
+                return;
+            }
+            var preSelected = TroopRoster.CreateDummyTroopRoster();
+            preSelected.Add(MobilePartyHelper.GetStrongestAndPriorTroops(
+                MobileParty.MainParty, cap, false));
+            ctx.OpenTroopSelection(
+                MobileParty.MainParty.MemberRoster,
+                preSelected,
+                CanSelectTroopForAmbush,
+                OnAmbushTroopSelectionDone,
+                cap,
+                0);
+        }
+
+        private static bool CanSelectTroopForAmbush(CharacterObject c)
+        {
+            if (c == null) return false;
+            if (c.IsPlayerCharacter) return false;
+            if (c.IsHero) return false;
+            return true;
+        }
+
+        private void OnAmbushTroopSelectionDone(TroopRoster selected)
+        {
+            if (selected == null)
+            {
+                // Player cancelled. Stealth stance stays active, no
+                // cooldown stamp. Clear the stashed target so a
+                // subsequent Vanish / strike sequence picks fresh.
+                _lastAmbushTarget = null;
+                return;
+            }
+            BeginAmbushMission(selected);
+        }
+
+        private void BeginAmbushMission(TroopRoster selected)
+        {
+            var target = _lastAmbushTarget;
+            if (target == null || !target.IsActive) return;
+
+            // Drop stealth before combat. No cooldown stamp here —
+            // Phase D records the AmbushRecord at resolution time
+            // with the correct resolution flags.
+            LeaveStealth(MobileParty.MainParty);
+
+            // Teleport the player onto the target before starting the
+            // encounter so the campaign-map visualization matches the
+            // fiction: the player walked up to the target and struck.
+            MobileParty.MainParty.Position = target.Position;
+
+            // Bypass EncounterManager.StartPartyEncounter — it fires
+            // encounter_meeting menu + enemy-leader conversation, both
+            // of which deadlock our mission open.
+            // RestartPlayerEncounter(defender, attacker) skips straight
+            // to encounter state (same pattern TrollCaveMenuLogic uses).
+            PlayerEncounter.RestartPlayerEncounter(target.Party, PartyBase.MainParty, false);
+            if (PlayerEncounter.Battle == null)
+            {
+                PlayerEncounter.StartBattle();
+                PlayerEncounter.Update();
+            }
+            // Clear any stale AmbushRetreatZone registrations from a
+            // prior scene BEFORE OpenNew — the current scene's
+            // AmbushRetreatZone OnInit will fire during scene load that
+            // follows, so clearing after would wipe the just-registered
+            // zone.
+            AmbushRetreatZone.ResetRegistry();
+            TorMissionManager.OpenAmbushMission(PickAmbushScene(), selected);
         }
 
         private static string GetPartyLabel(MobileParty p)

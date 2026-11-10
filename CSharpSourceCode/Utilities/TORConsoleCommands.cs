@@ -1525,7 +1525,7 @@ namespace TOR_Core.Utilities
                 PlayerEncounter.Update();
             }
             AmbushRetreatZone.ResetRegistry();
-            TorMissionManager.OpenAmbushMission(AmbushCampaignBehavior.DefaultAmbushScene);
+            TorMissionManager.OpenAmbushMission(AmbushCampaignBehavior.PickAmbushScene());
 
             return "ambushing " + (closest.LeaderHero?.Name?.ToString() ?? closest.Name?.ToString() ?? "?") + " (forced 100%)";
         }

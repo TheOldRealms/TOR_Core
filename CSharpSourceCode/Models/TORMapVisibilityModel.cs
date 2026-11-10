@@ -28,17 +28,17 @@ namespace TOR_Core.Models
                 CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref result, PassiveEffectType.PartySpottingRange, true);
             }
 
-            // Ambush stance: a crouched, watchful party notices approaching
-            // hostiles sooner. +25 % to the player's spotting range while in
-            // stealth. Player-only — AI stealth is handled separately via
-            // IgnoreByOtherPartiesTill, and we don't want a world-wide
-            // sighting bonus firing every tick for every AI stealther.
-            if (party.IsMainParty)
+            // Keen Senses gates the stealth-stance spotting bonus: crouching
+            // helps you spot approaching hostiles only if you've trained for
+            // it. Main-party only because AmbushCampaignBehavior.IsPlayerInStealth
+            // tracks the player; AI stealth uses IgnoreByOtherPartiesTill
+            // and never passes through this branch.
+            if (party.IsMainParty && party.HasPerk(TORPerks.Roguery.KeenSenses))
             {
                 var ambush = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
                 if (ambush != null && ambush.IsPlayerInStealth)
                 {
-                    result.AddFactor(0.25f, new TextObject("{=!}Ambush stance"));
+                    PerkHelper.AddPerkBonusForParty(TORPerks.Roguery.KeenSenses, party, isPrimaryBonus: true, ref result);
                 }
             }
 
@@ -85,6 +85,16 @@ namespace TOR_Core.Models
         /// 1.5.4 dropped the isDistanceDependent out-parameter from this overload (it survives only on
         /// GetSettlementInspectedState), so the 1.5.3 three-out signature no longer overrides anything.
         /// </remarks>
+        public override float GetPartySpottingRatioForMainPartySeeingRange(MobileParty party)
+        {
+            float baseRatio = base.GetPartySpottingRatioForMainPartySeeingRange(party);
+            if (party.HasPerk(TORPerks.Roguery.LowProfile))
+            {
+                return baseRatio * (1f - TORPerks.Roguery.LowProfile.PrimaryBonus);
+            }
+            return baseRatio;
+        }
+
         public override void GetMobilePartyVisibilityAndInspectedState(MobileParty mobileParty, Vec2[] points, float seeingRange, out bool isVisible, out bool isInspected)
         {
             if (mobileParty == MobileParty.MainParty && Hero.MainHero.IsEnlisted())

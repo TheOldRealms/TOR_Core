@@ -215,6 +215,7 @@ namespace TOR_Core
                 starter.AddBehavior(new DuelBehavior());
                 starter.AddBehavior(new AmbushCampaignBehavior());
                 starter.AddBehavior(new AiAmbushBehavior());
+                starter.AddBehavior(new RogueryPerkSweepBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
