@@ -692,7 +692,7 @@
     <Compile Include="Models\TORPartyHealingModel.cs" />
     <Compile Include="Models\TORPartyMoraleModel.cs" />
     <Compile Include="Models\TORPartyDesertionModel.cs" />
-    <Compile Include="Models\TORPartySizeModel.cs" />
+    <Compile Include="Models\TORPartySizeLimitModel.cs" />
     <Compile Include="Models\TORPartySpeedCalculatingModel.cs" />
     <Compile Include="Models\TORPartyTrainingModel.cs" />
     <Compile Include="Models\TORPartyTroopUpgradeModel.cs" />
