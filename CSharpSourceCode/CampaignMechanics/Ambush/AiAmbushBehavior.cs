@@ -654,9 +654,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
                 // Priority 1: player in strike range. Fiction: the player
                 // always counts as a notable target, so a stealthed party
-                // springs on them when they walk past.
+                // springs on them when they walk past. Honors vanilla's
+                // per-party post-encounter cooldown — the captor party
+                // gets 12 h of DoNotAttackMainPartyUntil set by the
+                // escape-captivity menu, which blocks regular engagement
+                // and should block ambush engagement too.
                 if (playerAvailable
                     && FactionManager.IsAtWarAgainstFaction(ambusher.MapFaction, main.MapFaction)
+                    && ambusher.Ai.DoNotAttackMainPartyUntil.IsPast
                     && ambusher.Position.ToVec2().DistanceSquared(mainPos) <= strikeRadiusSq)
                 {
                     TriggerAmbushAgainstPlayer(ambusher);
