@@ -20,10 +20,10 @@ namespace TOR_Core.Missions.AmbushMission
     /// AttackerTeam is the AI ambusher force, DefenderTeam is the player.
     ///
     /// Priority order (first match wins):
-    ///  1. Hero (MainAgent) inactive                                 → AmbushedHeroWounded
-    ///  2. DefenderTeam (player) 0 active + reinforcements drained   → AmbushedWiped
-    ///  3. AttackerTeam (AI) 0 active + reinforcements drained       → AmbushRepelled
-    ///  4. Player across soft border for countdown seconds           → AmbushedFled
+    ///  1. Hero (MainAgent) inactive                                 → VictimDefeated + VictimLeaderDown
+    ///  2. DefenderTeam (player) 0 active + reinforcements drained   → VictimDefeated
+    ///  3. AttackerTeam (AI) 0 active + reinforcements drained       → AmbusherDefeated
+    ///  4. Player across soft border for countdown seconds           → VictimFled
     ///
     /// Full design in TORTasks/ambush-feature/ai-ambushes-player-design.md § 3.
     /// </summary>
@@ -92,7 +92,8 @@ namespace TOR_Core.Missions.AmbushMission
             // Priority 1 — hero down.
             if (mainAgent != null && !mainAgent.IsActive())
             {
-                SetOutcome(AmbushedOutcome.AmbushedHeroWounded, successful: false,
+                SetOutcome(AmbushResolution.VictimDefeated, successful: false,
+                    victimLeaderDown: true,
                     reason: "hero inactive");
                 return;
             }
@@ -103,7 +104,7 @@ namespace TOR_Core.Missions.AmbushMission
             if (CountActiveHumans(Mission.DefenderTeam) == 0
                 && !AreReinforcementsStillPending())
             {
-                SetOutcome(AmbushedOutcome.AmbushedWiped, successful: false,
+                SetOutcome(AmbushResolution.VictimDefeated, successful: false,
                     reason: "defender (player) wiped + reinforcement queue drained");
                 return;
             }
@@ -119,7 +120,7 @@ namespace TOR_Core.Missions.AmbushMission
             // wave would have spawned and been counted in ActiveAgents.
             if (CountActiveHumans(Mission.AttackerTeam) == 0)
             {
-                SetOutcome(AmbushedOutcome.AmbushRepelled, successful: true,
+                SetOutcome(AmbushResolution.AmbusherDefeated, successful: true,
                     reason: "attacker (AI) wiped");
                 return;
             }
@@ -139,7 +140,7 @@ namespace TOR_Core.Missions.AmbushMission
 
                 if (_outsideBoundarySeconds >= _model.AmbushedFledCountdownSeconds)
                 {
-                    SetOutcome(AmbushedOutcome.AmbushedFled, successful: true,
+                    SetOutcome(AmbushResolution.VictimFled, successful: true,
                         reason: "soft border countdown elapsed ("
                                 + _model.AmbushedFledCountdownSeconds + "s)");
                     return;
@@ -212,13 +213,14 @@ namespace TOR_Core.Missions.AmbushMission
         }
 
         /// <summary>
-        /// AmbushRepelled is the only outcome that nudges the vanilla
-        /// post-battle state machine — same pattern as Phase D's TotalVictory,
+        /// AmbusherDefeated (Phase F player repelled the AI) is the
+        /// only resolution that nudges the vanilla post-battle state
+        /// machine — same pattern as Phase D's AmbusherTotalVictory,
         /// since the player's party wins and should see loot / cleanup.
-        /// AmbushedWiped goes through vanilla defeat; AmbushedHeroWounded and
-        /// AmbushedFled leave PlayerEncounter alive so the campaign-side
-        /// aftermath (reveal window, follow-up battle, wounded troops) can
-        /// run.
+        /// Non-hero-down VictimDefeated goes through vanilla defeat;
+        /// hero-down VictimDefeated and VictimFled leave PlayerEncounter
+        /// alive so the campaign-side aftermath (reveal window, follow-
+        /// up battle, wounded troops) can run.
         /// </summary>
         public override void OnMissionResultReady(MissionResult missionResult)
         {
@@ -228,40 +230,50 @@ namespace TOR_Core.Missions.AmbushMission
             if (missionResult == null) return;
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
             if (behavior == null) return;
-            var outcome = behavior.LastAmbushedOutcome;
-            TORCommon.Log(LogLevel.Info, "[AmbushedEndLogic] OnMissionResultReady outcome=" + outcome);
+            var resolution = behavior.LastResolution;
+            TORCommon.Log(LogLevel.Info, "[AmbushedEndLogic] OnMissionResultReady resolution=" + resolution);
 
-            if (outcome == AmbushedOutcome.AmbushRepelled)
+            // Victim won: AI ambusher wiped. Nudges vanilla's victory
+            // flow → MapEvent closes → OnPlayerBattleEnd fires → the
+            // behavior's HandlePlayerVictimResolution dispatches the
+            // AmbushResolved event.
+            if (resolution == AmbushResolution.AmbusherDefeated)
             {
-                // Nudges vanilla's victory flow → MapEvent closes
-                // → OnPlayerBattleEnd fires → repelled record stamped.
                 if (PlayerEncounter.Current != null)
                     PlayerEncounter.SetPlayerVictorious();
                 behavior.PendingPostAmbushCleanup = true;
                 return;
             }
-            // AmbushedFled / AmbushedHeroWounded cleanup moved to OnEndMission
-            // override — OnMissionResultReady doesn't fire reliably when the
-            // mission ends via a path that bypasses MissionResultReady
-            // (Mission.EndMission() direct call from retreat/surrender/leave-
-            // mission-timer paths — see decompiled Mission.cs lines 2873,
-            // 2889, 3876). OnEndMission is called from EndMissionInternal
-            // which runs for every teardown path (verified Mission.cs:4658).
-            // AmbushedWiped: MissionResult.CreateDefeated — vanilla's
+            // VictimFled / hero-down VictimDefeated cleanup moved to
+            // OnEndMission override — OnMissionResultReady doesn't fire
+            // reliably when the mission ends via a path that bypasses
+            // MissionResultReady (Mission.EndMission() direct call from
+            // retreat/surrender/leave-mission-timer paths — see
+            // decompiled Mission.cs lines 2873, 2889, 3876). OnEndMission
+            // is called from EndMissionInternal which runs for every
+            // teardown path (verified Mission.cs:4658). Non-hero-down
+            // VictimDefeated: MissionResult.CreateDefeated — vanilla's
             // defeat flow closes PlayerEncounter and fires
             // OnPlayerBattleEnd naturally.
         }
 
-        private void SetOutcome(AmbushedOutcome outcome, bool successful, string reason)
+        private void SetOutcome(AmbushResolution resolution, bool successful, string reason,
+                                 bool victimLeaderDown = false)
         {
             _outcomeDecided = true;
             _result = successful
                 ? MissionResult.CreateSuccessful(Mission)
                 : MissionResult.CreateDefeated(Mission);
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
-            if (behavior != null) behavior.LastAmbushedOutcome = outcome;
+            if (behavior != null)
+            {
+                behavior.LastResolution = resolution;
+                behavior.PlayerWasAmbusher = false;
+                behavior.LastAmbusherLeaderDown = false;
+                behavior.LastVictimLeaderDown = victimLeaderDown;
+            }
             TORCommon.Log(LogLevel.Info,
-                "[AmbushedEndLogic] outcome=" + outcome + " successful=" + successful
+                "[AmbushedEndLogic] resolution=" + resolution + " successful=" + successful
                 + " (" + reason + ")");
         }
 
@@ -288,9 +300,11 @@ namespace TOR_Core.Missions.AmbushMission
 
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
             if (behavior == null) return;
-            var outcome = behavior.LastAmbushedOutcome;
-            if (outcome != AmbushedOutcome.AmbushedFled
-                && outcome != AmbushedOutcome.AmbushedHeroWounded) return;
+            var resolution = behavior.LastResolution;
+            bool heroDownVictimDefeated = resolution == AmbushResolution.VictimDefeated
+                                           && behavior.LastVictimLeaderDown;
+            if (resolution != AmbushResolution.VictimFled
+                && !heroDownVictimDefeated) return;
 
             // Capture ambusher ref BEFORE Finish — vanilla's
             // MapEvent.FinalizeEventAux (MapEvent.cs:1727) can call
@@ -302,8 +316,8 @@ namespace TOR_Core.Missions.AmbushMission
             var aiBehavior = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
             var ambusher = aiBehavior?.CurrentAmbusherOnPlayer;
 
-            TORCommon.Log(LogLevel.Info, "[AmbushedEndLogic] OnEndMission stash+finish: outcome="
-                + outcome
+            TORCommon.Log(LogLevel.Info, "[AmbushedEndLogic] OnEndMission stash+finish: resolution="
+                + resolution
                 + " committed-types=" + (_ambushedRosterSnapshot?.Count ?? -1)
                 + " ambusher=" + (ambusher?.LeaderHero?.Name?.ToString()
                                    ?? ambusher?.Name?.ToString() ?? "?")
@@ -312,23 +326,23 @@ namespace TOR_Core.Missions.AmbushMission
 
             behavior.StashAmbushedRosterSnapshot(_ambushedRosterSnapshot);
 
-            // Phase F cooldown — MainParty is VICTIM, not ambusher. Writes
-            // the record BEFORE Finish so the pair incident is captured
-            // even if the ambusher party gets destroyed during
-            // FinalizeEventAux. OnPlayerBattleEndEvent doesn't fire for
-            // this exit path (vanilla's Finish on a no-winner MapEvent
-            // skips the battle-end dispatch), so the OnPlayerBattleEnd
-            // cooldown block is dead for Fled — must stamp here or the
-            // quarter-hourly AI tick re-ambushes seconds later.
+            // Phase F ambush-resolved dispatch — MainParty is VICTIM.
+            // Fires BEFORE Finish so the pair incident is captured even
+            // if the ambusher party gets destroyed during
+            // FinalizeEventAux. OnPlayerBattleEnd doesn't fire for this
+            // exit path (vanilla's Finish on a no-winner MapEvent skips
+            // the battle-end dispatch), so HandlePlayerVictimResolution
+            // never runs — must dispatch here or the quarter-hourly AI
+            // tick re-ambushes seconds later.
             // See [[feedback_ambush_role_asymmetry]].
-            if (aiBehavior != null)
-            {
-                aiBehavior.RecordAmbush(
-                    ambusher: (ambusher != null && ambusher.IsActive) ? ambusher : null,
-                    victim: MobileParty.MainParty,
-                    repelled: false,
-                    wasLoud: false);
-            }
+            TORCampaignEvents.Instance.OnAmbushResolved(
+                new AmbushRecord(CampaignTime.Now,
+                                  (ambusher != null && ambusher.IsActive) ? ambusher : null,
+                                  MobileParty.MainParty,
+                                  resolution,
+                                  wasLoud: false,
+                                  ambusherLeaderDown: false,
+                                  victimLeaderDown: behavior.LastVictimLeaderDown));
 
             if (PlayerEncounter.Current != null)
                 PlayerEncounter.Finish(forcePlayerOutFromSettlement: false);

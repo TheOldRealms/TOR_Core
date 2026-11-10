@@ -137,7 +137,8 @@ namespace TOR_Core.Missions.AmbushMission
         /// <summary>
         /// Our own pool-depleted check, read by <c>AmbushEndLogic</c> and
         /// <c>AmbushedEndLogic</c> for the "no more reinforcement waves
-        /// can arrive" half of the TotalVictory / AmbushRepelled gate.
+        /// can arrive" half of the AmbusherTotalVictory /
+        /// AmbusherDefeated (Phase F) gate.
         /// Decoupled from vanilla's <c>IsSideDepleted</c> which also
         /// requires <c>NumberOfActiveTroops == 0</c>: callers compose the
         /// two conditions themselves (field clear AND pool empty).

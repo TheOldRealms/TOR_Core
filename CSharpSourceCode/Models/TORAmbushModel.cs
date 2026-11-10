@@ -812,18 +812,51 @@ namespace TOR_Core.Models
         }
 
         /// <summary>True if the record represents a landed ambush
-        /// strike (any phase, any clean / extracted / Phase F success /
-        /// AI-on-AI success tier). Consumed by the disorganize shield
-        /// via <see cref="AiAmbushBehavior"/>.</summary>
+        /// strike — ambusher held the field or got at least partial
+        /// kills. Consumed by the disorganize shield via
+        /// <see cref="AiAmbushBehavior"/>. Solo stealth-exit stamps
+        /// (Resolution=None) and repelled / stalemate resolutions
+        /// return false.</summary>
         public virtual bool IsSuccessfulStrike(AmbushRecord record)
-            => record != null && !record.AmbusherRepelled;
+        {
+            if (record == null) return false;
+            switch (record.Resolution)
+            {
+                case AmbushResolution.AmbusherTotalVictory:
+                case AmbushResolution.AmbusherPartialVictory:
+                case AmbushResolution.VictimDefeated:
+                case AmbushResolution.VictimFled:
+                    return true;
+                default:
+                    return false;
+            }
+        }
 
         /// <summary>True when the strike landed silently (no loud
-        /// signature, no witnesses). Drives the hooded-eye nudge and
-        /// the zero-cooldown branch in <see cref="GetAmbushCooldownHours"/>.
-        /// </summary>
+        /// signature, no witnesses). Drives the zero-cooldown branch
+        /// in <see cref="GetAmbushCooldownHours"/> and the hooded eye
+        /// nudge via <see cref="IsInstantAmbushAllowed"/>.</summary>
         public virtual bool IsSilentSuccessfulStrike(AmbushRecord record)
-            => record != null && !record.AmbusherRepelled && !record.WasLoud;
+            => IsSuccessfulStrike(record) && !record.WasLoud;
+
+        /// <summary>Game-hours the hooded "slip back to cover now"
+        /// nudge stays lit after a silent clean sweep. Short enough
+        /// that an unused opportunity decays before the next day;
+        /// long enough to be noticed on the HUD.</summary>
+        public virtual float InstantAmbushWindowHours => 2f;
+
+        /// <summary>True when the latest record makes the player
+        /// eligible for an instant re-ambush (no cooldown wait, eye
+        /// widget lights the hooded icon). Only a silent
+        /// <see cref="AmbushResolution.AmbusherTotalVictory"/> that
+        /// didn't knock the ambusher's leader down qualifies, within
+        /// <see cref="InstantAmbushWindowHours"/>.</summary>
+        public virtual bool IsInstantAmbushAllowed(AmbushRecord record)
+            => record != null
+               && record.Resolution == AmbushResolution.AmbusherTotalVictory
+               && !record.WasLoud
+               && !record.AmbusherLeaderDown
+               && (CampaignTime.Now - record.At).ToHours < InstantAmbushWindowHours;
 
         /// <summary>Minimum visible troop count before an enemy side's
         /// numbers get masked ("?"). Below or equal to this the real

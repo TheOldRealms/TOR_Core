@@ -43,14 +43,6 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// wider range.</summary>
         private const float CloseEnemyProximityRadius = 3.5f;
 
-        /// <summary>Game-hours the hooded "slip back into cover now" icon
-        /// stays lit after a silent clean kill clears the player's
-        /// cooldown. Long enough to be noticed on the HUD; short enough
-        /// that an unused opportunity decays before the next day. The
-        /// icon also clears early when the player enters stealth or a
-        /// fresh cooldown is stamped.</summary>
-        private const float HoodedOpportunityDisplayHours = 2f;
-
         // ---- Backing fields ----
         private bool _isVisible = true;
         private bool _isStealthActive;
@@ -289,16 +281,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // backstab icon. Keeps the two icons semantically distinct.
             IsEventCooldown = ambush.IsOnAmbushCooldown && !IsEventBackstab;
 
-            // Hooded — pending "free slip back to cover" opportunity from a
-            // silent clean-kill. Stays lit for a short window after the
-            // event; the behavior clears the timestamp when the player
-            // enters stealth or a fresh cooldown is stamped, so the
-            // display check is just the window freshness check here.
-            // Suppressed while stealth is already active - nothing to nudge.
-            var hoodedAt = ambush.PlayerHoodedOpportunityAt;
-            IsEventHooded = hoodedAt != CampaignTime.Zero
-                            && !ambush.IsPlayerInStealth
-                            && (CampaignTime.Now - hoodedAt).ToHours < HoodedOpportunityDisplayHours;
+            // Hooded — pending "free slip back to cover" opportunity
+            // from a silent clean-kill. Derived from the latest
+            // AmbushRecord involving the player via the model query;
+            // no sentinel timestamp. Suppressed while stealth is
+            // already active - nothing to nudge.
+            var latest = ai?.GetMostRecentRecordInvolving(MobileParty.MainParty,
+                model.InstantAmbushWindowHours);
+            IsEventHooded = !ambush.IsPlayerInStealth
+                            && model.IsInstantAmbushAllowed(latest);
         }
 
         private void UpdateTerrainFlags(MobileParty mainParty)

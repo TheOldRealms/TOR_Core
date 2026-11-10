@@ -86,7 +86,8 @@ namespace TOR_Core.Missions.AmbushMission
             var mainAgent = Mission.MainAgent;
             if (mainAgent != null && !mainAgent.IsActive())
             {
-                SetOutcome(AmbushOutcome.HeroWounded, successful: false,
+                SetOutcome(AmbushResolution.AmbusherDefeated,
+                    successful: false, ambusherLeaderDown: true,
                     reason: "hero inactive");
                 return;
             }
@@ -95,7 +96,7 @@ namespace TOR_Core.Missions.AmbushMission
             // active humans; unusual but possible via routing / morale).
             if (CountActiveHumans(Mission.AttackerTeam) == 0)
             {
-                SetOutcome(AmbushOutcome.Defeated, successful: false,
+                SetOutcome(AmbushResolution.AmbusherDefeated, successful: false,
                     reason: "attacker team has 0 active humans");
                 return;
             }
@@ -113,7 +114,7 @@ namespace TOR_Core.Missions.AmbushMission
             if (CountActiveHumans(Mission.DefenderTeam) == 0
                 && !AreReinforcementsStillPending())
             {
-                SetOutcome(AmbushOutcome.TotalVictory, successful: true,
+                SetOutcome(AmbushResolution.AmbusherTotalVictory, successful: true,
                     reason: "defender team wiped + reinforcement pool depleted");
                 return;
             }
@@ -129,7 +130,7 @@ namespace TOR_Core.Missions.AmbushMission
             if (_controller != null && !_controller.IsInitialPatrolDefeated
                 && _missionRealTimeSeconds >= _model.StalemateMinutes * 60f)
             {
-                SetOutcome(AmbushOutcome.Stalemate, successful: false,
+                SetOutcome(AmbushResolution.Stalemate, successful: false,
                     reason: "Phase 1 soft-timer elapsed (" + _model.StalemateMinutes + " min)");
                 return;
             }
@@ -191,22 +192,23 @@ namespace TOR_Core.Missions.AmbushMission
 
             if (_extractionProgress >= 1f)
             {
-                // Promote to TotalVictory only if the field is fully clear
-                // AND the reinforcement pool is exhausted. The escape-menu
-                // flow assumes surviving enemies are "forming up where you
-                // struck"; with reinforcements still pending that fiction
-                // holds even when the current wave is dead between arrivals.
+                // Promote to AmbusherTotalVictory only if the field is
+                // fully clear AND the reinforcement pool is exhausted.
+                // The escape-menu flow assumes surviving enemies are
+                // "forming up where you struck"; with reinforcements
+                // still pending that fiction holds even when the
+                // current wave is dead between arrivals.
                 if (CountActiveHumans(Mission.DefenderTeam) == 0
                     && !AreReinforcementsStillPending())
                 {
-                    SetOutcome(AmbushOutcome.TotalVictory, successful: true,
+                    SetOutcome(AmbushResolution.AmbusherTotalVictory, successful: true,
                         reason: "extraction complete and field also clear");
                     return;
                 }
                 int leftBehind = CountActiveHumansOutsideZone(Mission.AttackerTeam);
                 var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
                 if (behavior != null) behavior.ExtractionTroopsLeftBehind = leftBehind;
-                SetOutcome(AmbushOutcome.Extracted, successful: true,
+                SetOutcome(AmbushResolution.AmbusherPartialVictory, successful: true,
                     reason: "extraction bar at 100%, left behind=" + leftBehind);
             }
         }
@@ -392,40 +394,43 @@ namespace TOR_Core.Missions.AmbushMission
             // → BattleResultsReady → OnBattleOver. See SetOutcome.
         }
 
-        private void SetOutcome(AmbushOutcome outcome, bool successful, string reason)
+        private void SetOutcome(AmbushResolution resolution, bool successful, string reason,
+                                 bool ambusherLeaderDown = false)
         {
             _outcomeDecided = true;
             _result = successful
                 ? MissionResult.CreateSuccessful(Mission)
                 : MissionResult.CreateDefeated(Mission);
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
-            if (behavior != null) behavior.LastAmbushOutcome = outcome;
+            if (behavior != null)
+            {
+                behavior.LastResolution = resolution;
+                behavior.PlayerWasAmbusher = true;
+                behavior.LastAmbusherLeaderDown = ambusherLeaderDown;
+                behavior.LastVictimLeaderDown = false;
+            }
 
-            // Stamp the player-victorious override on TotalVictory the
-            // moment the outcome is decided, before any MissionEnded →
-            // MissionResultReady cascade. BattleObserverMissionLogic
+            // Stamp the player-victorious override on AmbusherTotalVictory
+            // the moment the outcome is decided, before any MissionEnded
+            // → MissionResultReady cascade. BattleObserverMissionLogic
             // .OnMissionResultReady synchronously fires
             // BattleObserver.BattleResultsReady → SPScoreboardVM.OnBattleOver
             // whenever MissionResult.PlayerVictory is true. OnBattleOver
             // reads PlayerEncounter.WinningSide (set here via
             // SetPlayerVictorious → MapEvent.SetOverrideWinner) and
-            // latches IsOver=true. Previously we called it in our own
-            // OnMissionResultReady, which relied on the behavior list
-            // ordering placing AmbushEndLogic ahead of
-            // BattleObserverMissionLogic — fragile. Setting it here
-            // takes behavior-iteration order out of the equation.
-            // TotalVictory: stamp the override so vanilla's
+            // latches IsOver=true. Setting it here takes behavior-
+            // iteration order out of the equation. TotalVictory: vanilla's
             // DoApplyMapEventResults runs — standard loot + XP flow, the
             // player cleared the field fair and square. Dispatches
             // OnPlayerBattleEndEvent naturally.
-            if (outcome == AmbushOutcome.TotalVictory
+            if (resolution == AmbushResolution.AmbusherTotalVictory
                 && PlayerEncounter.Current != null)
             {
                 PlayerEncounter.SetPlayerVictorious();
                 if (behavior != null) behavior.PendingPostAmbushCleanup = true;
                 TORCommon.Log(LogLevel.Info,
                     "[AmbushEndLogic] SetPlayerVictorious stamped at SetOutcome"
-                    + " outcome=" + outcome
+                    + " resolution=" + resolution
                     + " WinningSide=" + PlayerEncounter.WinningSide
                     + " enc.PlayerSide="
                       + (PlayerEncounter.Current?.PlayerSide.ToString() ?? "n/a")
@@ -433,23 +438,23 @@ namespace TOR_Core.Missions.AmbushMission
                       + (Mission.PlayerTeam?.Side.ToString() ?? "null"));
             }
 
-            // Extracted: hit-and-run fiction — player breaks contact
-            // before the enemy regroups. No loot screen, enemy party
-            // stays intact (vanilla only destroys roster-collapsed
-            // losers, and Finish-without-winner skips that path).
-            // Mirror the brawl / POI-visit pattern: pre-activate the
-            // post-mission menu so it's live on the campaign layer by
-            // the time the mission screen tears down, and force
-            // teardown immediately so the scoreboard tick path never
-            // reaches its 1.5s render.
-            if (outcome == AmbushOutcome.Extracted && behavior != null)
+            // AmbusherPartialVictory (Extracted): hit-and-run fiction —
+            // player breaks contact before the enemy regroups. No loot
+            // screen, enemy party stays intact (vanilla only destroys
+            // roster-collapsed losers, and Finish-without-winner skips
+            // that path). Mirror the brawl / POI-visit pattern: pre-
+            // activate the post-mission menu so it's live on the
+            // campaign layer by the time the mission screen tears
+            // down, and force teardown immediately so the scoreboard
+            // tick path never reaches its 1.5s render.
+            if (resolution == AmbushResolution.AmbusherPartialVictory && behavior != null)
             {
                 behavior.BeginExtractionTransition(behavior.ExtractionTroopsLeftBehind);
                 Mission.EndMission();
             }
 
             TORCommon.Log(LogLevel.Info,
-                "[AmbushEndLogic] outcome=" + outcome + " successful=" + successful
+                "[AmbushEndLogic] resolution=" + resolution + " successful=" + successful
                 + " (" + reason + ")");
         }
     }

@@ -23,10 +23,10 @@ namespace TOR_Core.HarmonyPatches
     /// exits on IsOver=true the second time.
     ///
     /// Fix: prefix-skip OnBattleOver whenever the mission is an ambush
-    /// and the outcome isn't terminal. Terminal matches
-    /// AmbushScoreboardVMExtension's definition (TotalVictory,
-    /// Defeated, AmbushRepelled, AmbushedWiped). Non-ambush missions
-    /// pass through unchanged.
+    /// and the resolution isn't terminal. Terminal matches
+    /// AmbushScoreboardVMExtension's definition (AmbusherTotalVictory,
+    /// non-hero-down AmbusherDefeated, non-hero-down VictimDefeated).
+    /// Non-ambush missions pass through unchanged.
     ///
     /// Scoped to the one method, one condition. No reflection, no
     /// private-field writes. Keeps this single UI-adjacent patch below
@@ -46,11 +46,13 @@ namespace TOR_Core.HarmonyPatches
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
             if (behavior == null) return false; // no behavior → treat as mid-mission, skip.
 
+            var resolution = behavior.LastResolution;
             bool terminal =
-                behavior.LastAmbushOutcome == AmbushOutcome.TotalVictory
-                || behavior.LastAmbushOutcome == AmbushOutcome.Defeated
-                || behavior.LastAmbushedOutcome == AmbushedOutcome.AmbushRepelled
-                || behavior.LastAmbushedOutcome == AmbushedOutcome.AmbushedWiped;
+                resolution == AmbushResolution.AmbusherTotalVictory
+                || (resolution == AmbushResolution.AmbusherDefeated
+                    && !behavior.LastAmbusherLeaderDown)
+                || (resolution == AmbushResolution.VictimDefeated
+                    && !behavior.LastVictimLeaderDown);
             return terminal;
         }
     }

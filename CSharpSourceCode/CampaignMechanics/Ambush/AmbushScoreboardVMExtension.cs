@@ -16,18 +16,20 @@ namespace TOR_Core.CampaignMechanics.Ambush
     /// and to only surface the vanilla result + Done when the ambush
     /// has actually terminated.
     ///
-    /// Terminal outcomes (Done + Victory/Defeat visible):
-    ///  - Phase D TotalVictory — ambusher cleared the field
-    ///  - Phase D Defeated     — ambusher party wiped (rare)
-    ///  - Phase F AmbushRepelled — ambushed repelled the attack
-    ///  - Phase F AmbushedWiped  — ambushed party wiped
+    /// Terminal resolutions (Done + Victory/Defeat visible):
+    ///  - AmbusherTotalVictory — ambusher cleared the field
+    ///  - AmbusherDefeated (non-hero-down) — ambusher party wiped,
+    ///    or Phase F player repelled the AI ambush
+    ///  - VictimDefeated (non-hero-down) — victim party wiped
     ///
-    /// Non-terminal outcomes exit via dedicated menus, not the
+    /// Non-terminal resolutions exit via dedicated menus, not the
     /// scoreboard:
-    ///  - Extracted → scoreboard is skipped entirely via Mission.EndMission
-    ///  - HeroWounded / Stalemate / AmbushedFled → ambush menu on
-    ///    campaign side; mid-mission scoreboard flash was the
-    ///    original #82 bug.
+    ///  - AmbusherPartialVictory → scoreboard skipped via
+    ///    Mission.EndMission (extraction path)
+    ///  - AmbusherDefeated with AmbusherLeaderDown, Stalemate,
+    ///    VictimFled, VictimDefeated with VictimLeaderDown → ambush
+    ///    menu on campaign side; mid-mission scoreboard flash was
+    ///    the original #82 bug.
     ///
     /// Vanilla ambush-less missions are unaffected: IsAmbushMode is
     /// false, both gates degenerate to vanilla behaviour.
@@ -40,12 +42,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// <summary>True when the scoreboard's result title + Done
         /// button should render. For non-ambush missions this is
         /// always true (vanilla pass-through). For ambush missions
-        /// this is true only when the outcome is terminal
-        /// (TotalVictory, Defeated, AmbushRepelled, AmbushedWiped) —
-        /// the overridden <c>SPScoreboard.xml</c> prefab binds the
-        /// title group and the Quit button's <c>IsVisible</c> to
-        /// this so the mid-mission scoreboard flash and the
-        /// mid-fight Done button both disappear.</summary>
+        /// this is true only when the resolution is terminal
+        /// (AmbusherTotalVictory, non-hero-down AmbusherDefeated,
+        /// non-hero-down VictimDefeated) — the overridden
+        /// <c>SPScoreboard.xml</c> prefab binds the title group and
+        /// the Quit button's <c>IsVisible</c> to this so the
+        /// mid-mission scoreboard flash and the mid-fight Done
+        /// button both disappear.</summary>
         [DataSourceProperty]
         public bool IsAmbushResultVisible
         {
@@ -78,10 +81,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
             if (behavior == null) return false;
 
-            return behavior.LastAmbushOutcome == AmbushOutcome.TotalVictory
-                || behavior.LastAmbushOutcome == AmbushOutcome.Defeated
-                || behavior.LastAmbushedOutcome == AmbushedOutcome.AmbushRepelled
-                || behavior.LastAmbushedOutcome == AmbushedOutcome.AmbushedWiped;
+            var resolution = behavior.LastResolution;
+            if (resolution == AmbushResolution.AmbusherTotalVictory) return true;
+            if (resolution == AmbushResolution.AmbusherDefeated
+                && !behavior.LastAmbusherLeaderDown) return true;
+            if (resolution == AmbushResolution.VictimDefeated
+                && !behavior.LastVictimLeaderDown) return true;
+            return false;
         }
     }
 }

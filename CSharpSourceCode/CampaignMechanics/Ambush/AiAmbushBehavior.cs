@@ -114,17 +114,19 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         // ---- Record authoring ----
 
-        /// <summary>Record a new ambush incident. Called from every
-        /// write-site: stealth exit (victim null), AI ambushing player,
-        /// AI vs AI skirmish, player ambushing AI. The record is dumb
-        /// data — cooldown length is derived at query time by the
-        /// model's <see cref="Models.TORAmbushModel.GetAmbushCooldownHours"/>
-        /// method, which can read fields like <see cref="AmbushRecord.WasLoud"/>
-        /// to tune the window.</summary>
-        public void RecordAmbush(MobileParty ambusher, MobileParty victim, bool repelled, bool wasLoud = false)
+        /// <summary>Append a resolved ambush record to the shared
+        /// history. Normal write path is the <c>AmbushResolved</c> event
+        /// — the <see cref="AmbushCampaignBehavior"/> subscriber calls
+        /// this with the record carried on the event. Direct callers
+        /// are the solo stealth-exit cooldown stamp (not a resolution).
+        /// Records are dumb data — cooldown length, shield window, and
+        /// instant-ambush eligibility are derived at query time by
+        /// <see cref="Models.TORAmbushModel"/>.</summary>
+        public void RecordAmbush(AmbushRecord record)
         {
-            if (ambusher == null && victim == null) return;
-            _ambushRecords.Add(new AmbushRecord(CampaignTime.Now, ambusher, victim, repelled, wasLoud));
+            if (record == null) return;
+            if (record.Ambusher == null && record.Victim == null) return;
+            _ambushRecords.Add(record);
         }
 
         /// <summary>Most recent record where <paramref name="party"/>
@@ -795,20 +797,20 @@ namespace TOR_Core.CampaignMechanics.Ambush
             bool press = model.ShouldPressAttackAfterSkirmish(ambusher, victim);
             LeaveAiStealth(ambusher);
 
-            // Record the pair incident so both ambusher and victim
-            // register as "recently involved" for cooldown purposes.
-            // AmbusherRepelled when the outcome tier flipped the damage
-            // onto the ambusher — the victim won the exchange.
+            // Resolve + dispatch. AmbushCampaignBehavior's single
+            // AmbushResolved subscriber owns the append to the history
+            // list AND the shared post-strike effects (disorganize,
+            // reveal, cooldown queries). TerribleFail flips the
+            // Resolution to AmbusherDefeated. AI-on-AI has no
+            // extraction mechanic, so successful outcomes map to
+            // AmbusherTotalVictory regardless of residual victim
+            // troops.
             bool victimWonExchange = tier == AmbushOutcomeTier.TerribleFail;
-            RecordAmbush(ambusher, victim, repelled: victimWonExchange);
-
-            // Fire the shared ambush-resolution dispatch; AmbushCampaignBehavior
-            // owns the post-strike effects (disorganize + whatever lands later).
-            // TerribleFail maps to the AmbushRepelled branch.
-            if (victimWonExchange)
-                TORCampaignEvents.Instance.OnAmbushRepelled(ambusher, victim);
-            else
-                TORCampaignEvents.Instance.OnAmbushSucceeded(ambusher, victim);
+            var resolution = victimWonExchange
+                ? AmbushResolution.AmbusherDefeated
+                : AmbushResolution.AmbusherTotalVictory;
+            TORCampaignEvents.Instance.OnAmbushResolved(
+                new AmbushRecord(CampaignTime.Now, ambusher, victim, resolution));
 
             TORCommon.Say("[AI Ambush] " + PartyLabel(ambusher) + " struck "
                           + PartyLabel(victim) + " [" + tier + "]: wounded " + victimWounds
@@ -985,13 +987,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             if (party == null) return;
             _stealthedParties.Remove(party);
-            // Add a stealth-exit record (victim null, not repelled) —
-            // covers burned strikes, vanilla-engagement drag-in, and the
-            // max-hold-expired "gave up" case. All three share the
+            // Add a stealth-exit record (victim null, Resolution.None)
+            // — covers burned strikes, vanilla-engagement drag-in, and
+            // the max-hold-expired "gave up" case. All three share the
             // "position revealed / recently stealthed" semantics that
-            // justify an ambush cooldown. Pair-ambush records (player
-            // or AI victim) get added separately at the trigger sites.
-            RecordAmbush(party, null, repelled: false);
+            // justify an ambush cooldown. Not a resolved exchange so
+            // no AmbushResolved event; written directly.
+            RecordAmbush(new AmbushRecord(CampaignTime.Now, party, null,
+                                          AmbushResolution.None));
             // §6 bluff clear — leaving stealth exposes the party,
             // numbers back to normal. Safe against vanilla-set hiding
             // (hideouts etc.) because BeginBluffOn only tracks parties
