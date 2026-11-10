@@ -207,6 +207,30 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return false;
         }
 
+        /// <summary>Mirror of <see cref="IsRecentSuccessfulAmbusher"/>
+        /// on the victim side. Read by
+        /// <see cref="Models.TORPartyImpairmentModel.CanGetDisorganized"/>
+        /// to bypass vanilla's <c>TotalManCount &gt;= 10</c> gate — a
+        /// patrol wounded down to 6 men by a clean ambush should still
+        /// take the disorganize debuff; that's the narrative effect
+        /// we're preserving.</summary>
+        public bool IsRecentAmbushVictim(MobileParty party, float windowMinutes)
+        {
+            if (party == null) return false;
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null) return false;
+            var now = CampaignTime.Now;
+            for (int i = _ambushRecords.Count - 1; i >= 0; i--)
+            {
+                var rec = _ambushRecords[i];
+                if (rec.Victim != party) continue;
+                if (!model.IsSuccessfulStrike(rec)) continue;
+                if ((now - rec.At).ToMinutes > windowMinutes) continue;
+                return true;
+            }
+            return false;
+        }
+
         public AmbushRecord GetMostRecentActiveVictimRecord(MobileParty victim)
         {
             if (victim == null) return null;
