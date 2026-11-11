@@ -25,7 +25,7 @@ namespace TOR_Core.Models
                 result.Add((float)troop.Character.Tier * 10f);//base adds 10+2*Tier, or 15+3*Tier if clan leader
             }
 
-            if (mobileParty.HasPerk(TORPerks.GunPowder.FiringDrills, true) && troop.Character.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
+            if (mobileParty.HasPerk(TORPerks.GunPowder.FiringDrills, checkSecondaryRole: true) && troop.Character.Equipment.HasWeaponOfClass(WeaponClass.Cartridge))
             {
                 result.Add(TORPerks.GunPowder.FiringDrills.SecondaryBonus);
             }

@@ -179,6 +179,11 @@ namespace TOR_Core.Extensions
             return basicCharacterObject.Race == FaceGen.GetRaceOrDefault("minotaur");
         }
 
+        public static bool IsCygor(this BasicCharacterObject basicCharacterObject)
+        {
+            return basicCharacterObject != null && basicCharacterObject.Race == FaceGen.GetRaceOrDefault("cygor");
+        }
+
         public static bool IsTreeman(this BasicCharacterObject basicCharacterObject)
         {
             return basicCharacterObject.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster");
@@ -222,13 +227,22 @@ namespace TOR_Core.Extensions
 
         public static bool IsKnightUnit(this CharacterObject characterObject)
         {
-            return !characterObject.IsHero && characterObject.IsMounted && (IsEliteTroop(characterObject) || characterObject.HasAttribute(CharacterAttributes.KNIGHTLY));
+            return !characterObject.IsHero && characterObject.IsMounted && (IsEliteTroop(characterObject) || characterObject.HasAttribute(CharacterAttributes.EMPIRE_KNIGHT) || characterObject.HasAttribute(CharacterAttributes.BRETONNIAN_KNIGHT));
         }
 
         public static bool IsRunesmith(this CharacterObject characterObject)
         {
             return characterObject.IsHero && characterObject.HasAttribute(CharacterAttributes.RUNESMITH);
         }
+
+        public static bool CanOperateArtillery(this BasicCharacterObject characterObject)
+        {
+            var attributes = characterObject.GetAttributes();
+            return attributes.Contains(CharacterAttributes.CREW_1) ||
+                   attributes.Contains(CharacterAttributes.CREW_2) ||
+                   attributes.Contains(CharacterAttributes.CREW_3);
+        }
+
 
         public static bool HasUnitRune(this BasicCharacterObject characterObject)
         {
@@ -301,12 +315,14 @@ namespace TOR_Core.Extensions
 
         public static bool IsBeastman(this CharacterObject characterObject)
         {
-            return characterObject.Culture.StringId == TORConstants.Cultures.BEASTMEN;//all beastmen currently belong to the bandit culture
+            return characterObject.Culture.StringId == TORConstants.Cultures.BEASTMEN
+                || characterObject.Culture.StringId == TORConstants.Cultures.BEASTMEN_BANDIT;
         }
 
         public static bool IsBeastman(this BasicCharacterObject characterObject)
         {
-            return characterObject.Culture.StringId == TORConstants.Cultures.BEASTMEN;//all beastmen currently belong to the bandit culture
+            return characterObject.Culture.StringId == TORConstants.Cultures.BEASTMEN
+                || characterObject.Culture.StringId == TORConstants.Cultures.BEASTMEN_BANDIT;
         }
 
         public static bool IsUndead(this BasicCharacterObject characterObject)
@@ -329,9 +345,35 @@ namespace TOR_Core.Extensions
             return basicCharacterObject.Race == FaceGen.GetRaceOrDefault("spirit_host") || basicCharacterObject.Race == FaceGen.GetRaceOrDefault("wraith");
         }
 
+        // ironbreaker troop tree, formerly had the attribute Ironbreaker
         public static bool IsIronbreakerUnit(this BasicCharacterObject characterObject)
         {
-            return characterObject.IsSoldier && characterObject.Culture.StringId == TORConstants.Cultures.DAWI && characterObject.HasAttribute(CharacterAttributes.IRONBREAKER);
+            return characterObject.StringId.StartsWith("tor_dw_iron");
+        }
+
+        // dawi firearms troops, formerly had the attribute DwarfGun
+        public static bool IsDwarfGunUnit(this BasicCharacterObject characterObject)
+        {
+            return characterObject.StringId is
+                "tor_dw_thunderer"
+                or "tor_dw_sharpshooter"
+                or "tor_dw_grudge_raker"
+                or "tor_dw_irondrake"
+                or "tor_dw_irondrake_trollhammer";
+        }
+
+        // troops that can be donated to miners guild, formerly had the attribute DwarfMiner
+        public static bool IsDwarfMinerUnit(this BasicCharacterObject characterObject)
+        {
+            return characterObject.StringId is
+                "tor_dw_miner"
+                or "tor_dw_prospector";
+        }
+
+        // harbinger family, formerly had the attribute NecromancerChampion
+        public static bool IsNecromancerChampion(this BasicCharacterObject characterObject)
+        {
+            return characterObject.StringId.Contains("harbinger");
         }
 
         public static bool IsVampire(this BasicCharacterObject characterObject)
@@ -502,7 +544,7 @@ namespace TOR_Core.Extensions
         {
             var effectiveWeight = new ExplainedNumber(character.FirstBattleEquipment.GetTotalWeightOfArmor(forHuman));
             
-            PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Athletics.FormFittingArmor, character, true, ref effectiveWeight);
+            PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Athletics.FormFittingArmor, character, true, ref effectiveWeight, BattleEnvironment.Any);
 
             if (CharacterObject.PlayerCharacter != null && character == CharacterObject.PlayerCharacter)
             {

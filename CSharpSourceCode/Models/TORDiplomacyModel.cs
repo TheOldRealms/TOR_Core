@@ -18,7 +18,7 @@ namespace TOR_Core.Models
     public class TORDiplomacyModel : DefaultDiplomacyModel
     {
         // War declaration weights (scaled by 100 for DenarsToInfluence compatibility)
-        private const float WarCultureCompatibilityWeight = 3000f;  // Reduced to allow same-culture civil wars
+        //Sly : some of the weights currently come from TORConfig and its accompanying xml file.
 
         // Territorial Integrity weights (hierarchical claims)
         private const float DirectClaimWeight = 5000f;      // My own settlement
@@ -67,15 +67,18 @@ namespace TOR_Core.Models
         public override int GetInfluenceCostOfProposingPeace(Clan proposingClan) => 150;
         public override int GetInfluenceCostOfProposingWar(Clan proposingClan) => 150;
 
-        public override float GetRelationIncreaseFactor(Hero hero1, Hero hero2, float relationChange)
+        public override int GetEffectiveRelationChange(Hero originatingHero, Hero heroGainedRelationWith, int relationChange)
         {
-            var baseValue = base.GetRelationIncreaseFactor(hero1, hero2, relationChange);
+            var baseValue = base.GetEffectiveRelationChange(originatingHero, heroGainedRelationWith, relationChange);
             var values = new ExplainedNumber(baseValue);
 
-            var playerHero = hero1.IsHumanPlayerCharacter || hero2.IsHumanPlayerCharacter ? (hero1.IsHumanPlayerCharacter ? hero1 : hero2) : null;
-            if (playerHero == null) return baseValue;
+            if (!originatingHero.IsHumanPlayerCharacter && !heroGainedRelationWith.IsHumanPlayerCharacter) return baseValue;
 
-            var conversationHero = !hero1.IsHumanPlayerCharacter || !hero2.IsHumanPlayerCharacter ? (!hero1.IsHumanPlayerCharacter ? hero1 : hero2) : null;
+
+            var playerHero = originatingHero.IsHumanPlayerCharacter ? originatingHero : heroGainedRelationWith;
+            var otherHero = playerHero == originatingHero ? heroGainedRelationWith : originatingHero;
+
+
             if (playerHero.HasAnyCareer())
             {
                 var choices = playerHero.GetAllCareerChoices();
@@ -97,7 +100,7 @@ namespace TOR_Core.Models
                 {
                     if (baseValue > 0)
                     {
-                        if (conversationHero != null && conversationHero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+                        if (otherHero != null && otherHero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
                         {
                             var choice = TORCareerChoices.GetChoice("JustCausePassive4");
                             if (choice != null)
@@ -109,7 +112,8 @@ namespace TOR_Core.Models
                     }
                 }
             }
-            return values.ResultNumber;
+
+            return values.RoundedResultNumber;
         }
 
         public override float GetScoreOfDeclaringWar(IFaction factionDeclaresWar, IFaction factionReceivingDeclaration, Clan evaluatingClan, out TextObject reason, bool includeReason = false)
@@ -472,15 +476,15 @@ namespace TOR_Core.Models
             if (!DiplomacyHelpers.IsWithinWarDistance(declaringKingdom, targetKingdom))
                 return -200000f; // Too far - don't even consider this war
 
-            var leader = evaluatingClan?.Leader;
+            var clanLeader = evaluatingClan?.Leader;
 
             // Get trait modifiers for the evaluating clan's leader
-            float honorModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Honor);
-            float generosityInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(leader, DefaultTraits.Generosity);
-            float calculatingModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Calculating);
-            float calculatingInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(leader, DefaultTraits.Calculating);
-            float mercyModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Mercy);
-            float valorModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Valor);
+            float honorModifier = DiplomacyHelpers.GetTraitModifier(clanLeader, DefaultTraits.Honor);
+            float generosityInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(clanLeader, DefaultTraits.Generosity);
+            float calculatingModifier = DiplomacyHelpers.GetTraitModifier(clanLeader, DefaultTraits.Calculating);
+            float calculatingInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(clanLeader, DefaultTraits.Calculating);
+            float mercyModifier = DiplomacyHelpers.GetTraitModifier(clanLeader, DefaultTraits.Mercy);
+            float valorModifier = DiplomacyHelpers.GetTraitModifier(clanLeader, DefaultTraits.Valor);
 
             // Traitorous behavior penalties (scaled by 100, modified by Honor)
             // Dishonorable lords (-2 Honor) barely care about breaking agreements
@@ -498,12 +502,12 @@ namespace TOR_Core.Models
             // Culture: Honorable lords respect cultural bonds, Pragmatists ignore cultural sentiment
             float cultureScore = CalculateCultureScore(declaringKingdom, targetKingdom) * honorModifier * calculatingInverseModifier;
             // Territorial: Greedy lords (low Generosity) protect direct claims, Merciful lords liberate kin
-            float territorialScore = CalculateTerritorialIntegrityScore(declaringKingdom, targetKingdom, leader);
+            float territorialScore = CalculateTerritorialIntegrityScore(declaringKingdom, targetKingdom, clanLeader);
             // Rivalry: Brave lords (+2 Valor) are more motivated by glory/grudges
             float rivalryScore = CalculateLorewiseRivalryScore(declaringKingdom, targetKingdom) * valorModifier;
             // Tactical: Cruel lords strike harder when strong, Brave/Merciful lords ignore unfavorable odds, Calculating amplifies
             float baseTacticalScore = CalculateTacticalScore(declaringKingdom, targetKingdom);
-            float mercyInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(leader, DefaultTraits.Mercy);
+            float mercyInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(clanLeader, DefaultTraits.Mercy);
             float adjustedTactical = baseTacticalScore >= 0
                 ? baseTacticalScore * valorModifier * mercyInverseModifier  // Positive: brave + cruel hit harder
                 : baseTacticalScore / Math.Max(valorModifier * mercyModifier, 0.1f);  // Negative: brave + merciful ignore bad odds
@@ -761,7 +765,7 @@ namespace TOR_Core.Models
 
             float averageRelation = totalRelation / lordCount;
 
-            // Map: +80 -> -3000, +-25 -> +1000, -80 -> +3000 (scaled by 100)
+            // Map: +80 -> -3000, +25 -> -1500, -25 -> +1000, -80 -> +3000 (scaled by 100)
             // Higher relation = less likely to declare war
             if (averageRelation >= 80)
                 return -3000f;
@@ -777,7 +781,7 @@ namespace TOR_Core.Models
         /// <summary>
         /// Calculates score based on distance between kingdoms.
         /// Close targets get bonus, distant targets get penalty.
-        /// Neutral point at ~500 distance. (scaled by 100)
+        /// Neutral point at ~500 distance.
         /// </summary>
         private float CalculateDistanceScore(Kingdom declaringKingdom, Kingdom targetKingdom)
         {
@@ -788,12 +792,12 @@ namespace TOR_Core.Models
 
             // Neutral distance where score is 0
             const float neutralDistance = 500f;
-            // Scale factor for how much distance affects score (scaled by 100)
-            const float distanceScaleFactor = 5f;
+
+            //Sly : distance is bounded by [0, 300[. Therefore (neutralDistance - distance) is bounded by ]200, 500]. These examples are misleading.
 
             // Below neutral: positive, above neutral: negative
             // At 0 distance: +2500, at 500: 0, at 1000: -2500, at 1500: -5000
-            float distanceScore = (neutralDistance - distance) * distanceScaleFactor;
+            float distanceScore = (neutralDistance - distance) * TORConfig.DeclareWarScoreDistanceMultiplier;
 
             // Clamp to reasonable range
             return Math.Max(-5000f, Math.Min(2500f, distanceScore));
@@ -817,8 +821,8 @@ namespace TOR_Core.Models
         private float CalculateCultureScore(Kingdom declaringKingdom, Kingdom targetKingdom)
         {
             float cultureCompat = DiplomacyHelpers.GetCultureCompatibility(declaringKingdom, targetKingdom);
-            // Negative compatibility = more likely to declare war
-            return -cultureCompat * WarCultureCompatibilityWeight;
+            // Negative compatibility = more likely to declare war (scaled by 100)
+            return -cultureCompat * TORConfig.WarCultureCompatibilityWeight * 100f;
         }
 
         /// <summary>
@@ -892,6 +896,11 @@ namespace TOR_Core.Models
             return score;
         }
 
+        /// <remarks>
+        /// MercenaryJoinKingdomBarterable combines this value with GetScoreOfKingdomToHireMercenary to determine if a mercenary clan is worth hiring.
+        /// if (joinKingdomAsClanBarterable.GetValueForFaction(clan) + joinKingdomAsClanBarterable.GetValueForFaction(kingdom) > 0)
+        /// If clans are joining unexpected kingdoms, check the barterable calculation as well.
+        /// </remarks>
         public override float GetScoreOfMercenaryToJoinKingdom(Clan mercenaryClan, Kingdom kingdom)
         {
             var score = base.GetScoreOfMercenaryToJoinKingdom(mercenaryClan, kingdom);
@@ -943,6 +952,8 @@ namespace TOR_Core.Models
             {
                 score = -10000;
             }
+
+            if (mercenaryClan.Culture.StringId == TORConstants.Cultures.GREENSKIN && kingdom.Culture.StringId != TORConstants.Cultures.GREENSKIN && mercenaryClan.StringId == "troll_clan_1") return -10000;
 
             return score;
         }

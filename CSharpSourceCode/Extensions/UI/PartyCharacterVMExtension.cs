@@ -3,9 +3,11 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
+using TaleWorlds.Engine.Screens;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Utilities;
@@ -23,11 +25,13 @@ namespace TOR_Core.Extensions.UI
         private BasicTooltipViewModel _extendedInfoHint;
         private string _spriteTORButton;
         private TextObject disableReason;
+        //Sly : not quite sure how to find the input context for the VM to compare with the hotkeys yet.
+        //private HotKey _fiveStackModifier = HotKeyManager.GetCategory("GenericCampaignPanelsGameKeyCategory").GetHotKey("FiveStackModifier");
+        //private HotKey _entireStackModifier = HotKeyManager.GetCategory("GenericCampaignPanelsGameKeyCategory").GetHotKey("EntireStackModifier");
 
 
         public PartyCharacterVMExtension(ViewModel vm) : base(vm)
         {
-
             _buttonHint = new BasicTooltipViewModel(GetButtonHintText);
 
             if (Hero.MainHero.HasAnyCareer())
@@ -96,8 +100,9 @@ namespace TOR_Core.Extensions.UI
             var troop = ((PartyCharacterVM)_vm).Troop.Character;
             var isPrisoner = ((PartyCharacterVM)_vm).IsPrisonerOfPlayer;
             var shiftPress = false;
-
-            if (Input.IsKeyDown(InputKey.LeftShift))
+            
+            //Sly : there has to be a better way to detect this because this hotkey can be edited in the xml to something other than shift. Same deal for control. In missions and scenes the inputContext exists which can be queried for GameKeys and Hotkeys, but I don't see something in the vm.
+            if (Input.IsKeyDown(InputKey.LeftShift) || Input.IsKeyDown(InputKey.RightShift))
             {
                 shiftPress = true;
             }

@@ -25,6 +25,7 @@ namespace TOR_Core.Utilities
         public static float DeclareWarScoreDistanceMultiplier => _config.DeclareWarScoreDistanceMultiplier;
         public static float DeclareWarScoreFactionStrengthMultiplier => _config.DeclareWarScoreFactionStrengthMultiplier;
         public static float DeclareWarScoreReligiousEffectMultiplier => _config.DeclareWarScoreReligiousEffectMultiplier;
+        public static float WarCultureCompatibilityWeight => _config.WarCultureCompatibilityWeight;
         public static float NumMinKingdomWars => _config.NumMinKingdomWars;
         public static float NumMaxKingdomWars => _config.NumMaxKingdomWars;
         public static float MinPeaceDays => _config.MinPeaceDays;
@@ -94,6 +95,8 @@ namespace TOR_Core.Utilities
             public float DeclareWarScoreFactionStrengthMultiplier;
             [XmlAttribute]
             public float DeclareWarScoreReligiousEffectMultiplier;
+            [XmlAttribute]
+            public float WarCultureCompatibilityWeight;
             [XmlAttribute]
             public float NumMinKingdomWars;
             [XmlAttribute]

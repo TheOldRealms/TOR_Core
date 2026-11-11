@@ -66,10 +66,15 @@ namespace TOR_Core.CampaignMechanics.Crafting
 
         private void AddTownMenu(CampaignGameStarter starter)
         {
-            starter.AddGameMenuOption("town", "town_artisan", TORTextHelper.GetTextForNative("tor_artisan_district_menu_option_text", "Go to the artisan district"),
+            // Label + intro are per-settlement / per-culture overridable via
+            // str_tor_towncomplex[.settlementId|.cultureId] and str_tor_towncomplex_intro[.settlementId|.cultureId].
+            // See TORTextHelper.GetSettlementComplexText for the lookup order.
+            starter.AddGameMenuOption("town", "town_artisan", "{TOWN_COMPLEX_LABEL}",
                 args =>
                 {
                     args.optionLeaveType = GameMenuOption.LeaveType.Submenu;
+                    MBTextManager.SetTextVariable("TOWN_COMPLEX_LABEL",
+                        TORTextHelper.GetSettlementComplexText("tor_towncomplex", Settlement.CurrentSettlement, "Go to the artisan district"));
                     return MenuHelper.SetOptionProperties(args, true, false, TextObject.GetEmpty());
                 },
                 args =>
@@ -82,9 +87,11 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 delegate (MenuCallbackArgs args)
                 {
                     args.MenuTitle = TORTextHelper.GetTextObject("tor_artisan_district_title_text", "Artisan District");
-                    var intro = TORTextHelper.GetTextObject("tor_settlement_artisan_introduction", "You have arrived at {SETTLEMENT_NAME}'s Artisan District. It is a lively place where artisans and craftsmen of varying professions are busy in their workshops.");
-                    MBTextManager.SetTextVariable("SETTLEMENT_NAME", Settlement.CurrentSettlement.Name);
-                    MBTextManager.SetTextVariable("ARTISAN_INTRODUCTION", intro);
+                    var s = Settlement.CurrentSettlement;
+                    MBTextManager.SetTextVariable("SETTLEMENT_NAME", s?.Name ?? TextObject.GetEmpty());
+                    MBTextManager.SetTextVariable("ARTISAN_INTRODUCTION",
+                        TORTextHelper.GetSettlementComplexTextObject("tor_towncomplex_intro", s,
+                            "You have arrived at {SETTLEMENT_NAME}'s Artisan District. It is a lively place where artisans and craftsmen of varying professions are busy in their workshops."));
                 },
                 GameMenu.MenuOverlayType.SettlementWithBoth, GameMenu.MenuFlags.None, null);
 

@@ -171,6 +171,18 @@
                        build="0.8812"
                        key="003F800000000000269C8BCCD8BEBADDA9AB82733338CA137A8A999A2799B98900CD46030CA4588900000000000000000000000000000000FFFFFFFF8194003F" />
   </BodyProperty>
+  <BodyProperty id="ghoul">
+    <BodyPropertiesMin version="4"
+                       age="25"
+                       weight="0.5578"
+                       build="0.2794"
+                       key="002DA80D8744000085A668C7E728742A3E5A79E69ACE8C867A3833764A3BBB8901D486130D77C62800000000000000000000000000000000000000002FAC0000" />
+    <BodyPropertiesMax version="4"
+                       age="25"
+                       weight="0.6444"
+                       build="0.361"
+                       key="00004C0558B4000067696646C468B8A3734A9E97878BD472463865A8B988749801C5A6130C4B9AA60000000000000000000000000000000000000000578C0000" />
+  </BodyProperty>
   <BodyProperty id="harbinger">
     <BodyPropertiesMin version="4"
                        age="25"
@@ -219,6 +231,18 @@
                        build="0.774"
                        key="003F780FD1FC020088BD7E847EE829A73E6CC6A52D8787A58CDD5AC22D929A3E009C560309A8745B00000000000000000000000000000000000000002D342000" />
   </BodyProperty>
+  <BodyProperty id="pestigor">
+    <BodyPropertiesMin version="4"
+                       age="22"
+                       weight="0.3102"
+                       build="0.4923"
+                       key="003A5C0FC00000016C86666777666666777777777766666666555566666A66660177761307556565000000000000000000000000000000000000000000E40000" />
+    <BodyPropertiesMax version="4"
+                       age="22"
+                       weight="0.3627"
+                       build="0.774"
+                       key="003A5C0FC00000016C86666777666666777777777766666666555566666A66660177761307556565000000000000000000000000000000000000000000E40000" />
+  </BodyProperty>
   <BodyProperty id="minotaur">
     <BodyPropertiesMin version="4"
                        age="22"
@@ -242,6 +266,10 @@
                        weight="0.6775"
                        build="0.6929"
                        key="001BB40FDE583A54A97A637BBBBA988BBABBB5B88588BB77DBACB9BBCCDDBBC800DAA6030DBCDDEB000000000000000000000000000000000000000021AC90C0" />
+    <tattoo_tags>
+      <tattoo_tag name="tattoo_male_c_mat" />
+      <tattoo_tag name="tattoo_male_m_mat" />
+    </tattoo_tags>
   </BodyProperty>
   <BodyProperty id="bretonnianknight">
     <BodyPropertiesMin version="4"
@@ -568,6 +596,25 @@
                        weight="0.5478"
                        build="1"
                        key="001E100000CC00005C12429B61532471D9656C584FA9A47724B588AAD7B53C5DDACBA6130F578778F8CCBADBCCBCBABC000000000000001F000000002FFC2000" />
+  </BodyProperty>
+  <BodyProperty id="orc_savage">
+    <BodyPropertiesMin age="22"
+                       weight="0.3657"
+                       build="0.2978"
+                       key="003F100000CC00005C12429361532471D9656C584FA9A47724B588AAD7B53C5D006456040657877845CCBADB4CBCBABC0000000000000016000000002ECC0000" />
+    <BodyPropertiesMax age="22"
+                       weight="0.4742"
+                       build="0.3855"
+                       key="0036980345CC000158C5B792A667D4DC71ADA61A5966575B487AD565666843A4003676040364A9ED45CCBADB4CBCBABC000000000000001600000000565C0000" />
+	<tattoo_tags>
+      <tattoo_tag name="Cleanface" />
+      <tattoo_tag name="tattoo_male_a_mat" />
+	  <tattoo_tag name="tattoo_male_b_mat" />
+	  <tattoo_tag name="orc_warpaint_001" />
+      <tattoo_tag name="orc_warpaint_002" />
+      <tattoo_tag name="orc_warpaint_003" />
+							  
+    </tattoo_tags>
   </BodyProperty>
   <BodyProperty id="goblin">
     <BodyPropertiesMin version="4"
@@ -1063,6 +1110,113 @@
       <tattoo_tag name="Scar11" />
       <tattoo_tag name="Scar16" />
       <tattoo_tag name="Scar17" />
+    </tattoo_tags>
+  </BodyProperty>
+  <BodyProperty id="fighter_beastmen_peasant">
+    <BodyPropertiesMin version="4"
+                       age="21.29"
+                       weight="0.162"
+                       build="0.3657"
+                       key="00000007800000000100000000113151100171100000100021111101800101000010000301111101000000000000000000000000000000000000000056300000" />
+    <BodyPropertiesMax version="4"
+                       age="40"
+                       weight="0.162"
+                       build="0.3657"
+                       key="0010C00E40003A5CEFFEFCBD9852BED9E9EE8EE8EEB6FEEDEDFFEEEE8DED8F6E0080000308EFEEEF000000000000000000000000000000000000000067009005" />
+    <hair_tags>
+      <hair_tag name="LongAndBushy" />
+      <hair_tag name="Bald" />
+      <hair_tag name="Short" />
+      <hair_tag name="Bald" />
+      <hair_tag name="Bald" />
+      <hair_tag name="Tousled" />
+      <hair_tag name="Tousled" />
+      <hair_tag name="Short" />
+      <hair_tag name="Short" />
+      <hair_tag name="PageBoy" />
+      <hair_tag name="PageBoy" />
+      <hair_tag name="PageBoy" />
+      <hair_tag name="Bowl" />
+      <hair_tag name="Bowl" />
+      <hair_tag name="ShortAndThin" />
+      <hair_tag name="SlickedShort" />
+      <hair_tag name="ShortWavy" />
+      <hair_tag name="Viking Hair" />
+      <hair_tag name="Monk Hair" />
+      <hair_tag name="Monk Hair" />
+    </hair_tags>
+    <beard_tags>
+      <beard_tag name="Cleanshaven" />
+      <beard_tag name="MustacheAndPatch" />
+      <beard_tag name="MediumMustache" />
+      <beard_tag name="WaxedMustache" />
+      <beard_tag name="WaxedMustache" />
+      <beard_tag name="Cleanshaven" />
+      <beard_tag name="LightGoatee" />
+      <beard_tag name="LightGoatee" />
+      <beard_tag name="BushyGoatee" />
+      <beard_tag name="BushyGoatee" />
+      <beard_tag name="Cleanshaven" />
+      <beard_tag name="Cleanshaven" />
+      <beard_tag name="BeardWithShavedCheeks" />
+      <beard_tag name="BeardWithShavedCheeks" />
+      <beard_tag name="TrimmedDutch" />
+      <beard_tag name="TrimmedDutch" />
+      <beard_tag name="TrimmedDutch" />
+      <beard_tag name="Sideburns" />
+      <beard_tag name="Sideburns" />
+      <beard_tag name="Sideburns" />
+      <beard_tag name="MediumDutch" />
+      <beard_tag name="MediumDutch" />
+      <beard_tag name="Stubble" />
+      <beard_tag name="CircleBeard" />
+      <beard_tag name="LampshedeMustache" />
+      <beard_tag name="VanDykeBeard" />
+    </beard_tags>
+    <tattoo_tags>
+      <tattoo_tag name="Cleanface" />
+      <tattoo_tag name="Cleanface" />
+      <tattoo_tag name="Cleanface" />
+      <tattoo_tag name="Scar1" />
+      <tattoo_tag name="Cleanface" />
+      <tattoo_tag name="Scar4" />
+      <tattoo_tag name="Scar16" />
+      <tattoo_tag name="Scar15" />
+      <tattoo_tag name="Scar15" />
+      <tattoo_tag name="Cleanface" />
+      <tattoo_tag name="Cleanface" />
+      <tattoo_tag name="Scar15" />
+      <tattoo_tag name="Cleanface" />
+      <tattoo_tag name="Cleanface" />
+      <tattoo_tag name="Cleanface" />
+      <tattoo_tag name="Scar15" />
+    </tattoo_tags>
+  </BodyProperty>
+  <!-- Slayer body range with fixed red hair/beard and blue tattoos. -->
+  <BodyProperty id="dwarf_slayer_companion">
+    <BodyPropertiesMin version="4"
+                       age="25"
+                       weight="0.2948"
+                       build="0.6065"
+                       key="0000000501880047F77664884754DCBAFF9E566095F09F1F74414A49893F81FE007D460307A7B7A514213303103010600000000000000005000000001AFC0000" />
+    <BodyPropertiesMax version="4"
+                       age="27"
+                       weight="0.4954"
+                       build="0.8441"
+                       key="00050005068801C7F77664884754DCBAFF9E566095F09F1F74414A49893F81FE007D760307A7B7A5570000000020006000000000000000050000000012FC0000" />
+    <hair_tags>
+      <hair_tag name="SlayerHair" />
+    </hair_tags>
+    <beard_tags>
+      <beard_tag name="DawiWarriorBeard" />
+    </beard_tags>
+    <tattoo_tags>
+      <tattoo_tag name="slayer_face_tattoo_001" />
+      <tattoo_tag name="slayer_face_tattoo_002" />
+      <tattoo_tag name="slayer_face_tattoo_003" />
+      <tattoo_tag name="slayer_face_tattoo_004" />
+      <tattoo_tag name="slayer_face_tattoo_005" />
+      <tattoo_tag name="slayer_face_tattoo_006" />
     </tattoo_tags>
   </BodyProperty>
 </BodyProperties>

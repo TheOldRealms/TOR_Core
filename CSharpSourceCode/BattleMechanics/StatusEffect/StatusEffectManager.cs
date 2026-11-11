@@ -25,6 +25,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
         }
 
+        public static StatusEffectTemplate GetStatusEffectTemplate(string effectId)
+        {
+            return _idToStatusEffect[effectId];
+        }
+
         public static List<StatusEffectTemplate> GetStatusEffectTemplatesWithIds(List<string> effectIds)
         {
             List<StatusEffectTemplate> result = new List<StatusEffectTemplate>();

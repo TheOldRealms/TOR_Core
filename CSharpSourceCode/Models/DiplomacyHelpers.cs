@@ -29,6 +29,8 @@ namespace TOR_Core.Models
             if (kingdom1?.FactionMidSettlement == null || kingdom2?.FactionMidSettlement == null)
                 return float.MaxValue;
 
+            //Sly : This is a straight line distance that doesn't account for the navmesh and the actual ai path.
+            //This would return a valid distance for 2 kingdoms on opposite sides of an untraversable mountain chain.
             return kingdom1.FactionMidSettlement.Position.Distance(kingdom2.FactionMidSettlement.Position);
         }
 

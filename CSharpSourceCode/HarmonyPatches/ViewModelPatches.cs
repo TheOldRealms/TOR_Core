@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.ViewModelCollection.GameMenu.Recruitment;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.Refinement;
 using TaleWorlds.Core;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
@@ -192,6 +194,28 @@ namespace TOR_Core.HarmonyPatches
             extension.ExecuteCommand(commandName, parameters);
             return false;
 
+        }
+    }
+
+    // shows the player why they cannot recruit a volunteer troop due to culture mismatch
+    [HarmonyPatch(typeof(RecruitVolunteerTroopVM), nameof(RecruitVolunteerTroopVM.ExecuteBeginHint))]
+    public static class RecruitVolunteerCultureHintPatch
+    {
+        [HarmonyPrefix]
+        public static bool Prefix(RecruitVolunteerTroopVM __instance)
+        {
+            if (__instance.Character == null ||
+                Campaign.Current.Models.GetHiringCompatibilityModel().CanPlayerHireTroopFromSeller(Hero.MainHero, __instance.Owner.OwnerHero))
+            {
+                return true;
+            }
+
+            InformationManager.ShowTooltip(typeof(List<TooltipProperty>), new List<TooltipProperty>
+        {
+            new("", GameTexts.FindText("tor_recruitment_culture_blocked").ToString(), 0)
+        });
+
+            return false;
         }
     }
 

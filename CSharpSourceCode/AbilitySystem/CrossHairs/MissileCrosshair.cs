@@ -1,5 +1,6 @@
 ﻿using TaleWorlds.Core;
 using TaleWorlds.Engine.GauntletUI;
+using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.AbilitySystem.Crosshairs
 {
@@ -22,7 +23,7 @@ namespace TOR_Core.AbilitySystem.Crosshairs
             else
             {
                 //check if zoom is pressed
-                if (_missionScreen.InputManager.IsGameKeyDown(24))
+                if (_missionScreen.InputManager.IsGameKeyDown((int)GameKeyDefinition.Zoom))
                     {
                         _movie.Movie.RootWidget.MarginBottom = 230;
                     }

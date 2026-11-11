@@ -41,12 +41,12 @@ namespace TOR_Core.BattleMechanics
                 TickEvents();
             }
 
-            if (Mission.InputManager.IsGameKeyDown(24))
+            if (Mission.InputManager.IsGameKeyDown((int)GameKeyDefinition.Zoom))
             {
                 ZoomKeyDownEvents();
             }
 
-            if (_zoomKeyEventStarted && Mission.InputManager.IsGameKeyReleased(24))
+            if (_zoomKeyEventStarted && Mission.InputManager.IsGameKeyReleased((int)GameKeyDefinition.Zoom))
             {
                 ZoomKeyUpEvents();
             }
@@ -358,7 +358,6 @@ namespace TOR_Core.BattleMechanics
 
                     if (choice != null)
                     {
-                        //career abilities only exist in missions where IsCastingMission is true, eg. not arena fights
                         var careerAbility = (Ability)affectorAgent.GetComponent<AbilityComponent>()?.CareerAbility;
 
                         if (careerAbility != null && careerAbility.IsActive)
@@ -406,7 +405,7 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
 
-                if (affectorAgent.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION))
+                if (affectorAgent.Character.IsNecromancerChampion())
                 {
                     if (choices.Contains("GrimoireNecrisKeystone"))
                     {

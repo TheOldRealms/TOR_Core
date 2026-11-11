@@ -18,7 +18,8 @@ namespace TOR_Core.AbilitySystem.Scripts
         private bool _isDisabled;
         private bool _isHideOutMission;
         private bool _summoned;
-        private GameKey _specialMoveKey;
+        private int _careerAbilityId;
+        private IInputContext InputContext => Mission.Current.InputManager;
         private string _summonedChampionId;
         private Vec3 _targetPosition;
 
@@ -47,7 +48,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
             Mission.Current.OnBeforeAgentRemoved += AgentRemoved;
 
-            _specialMoveKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey(TORGameKeyContext.CareerAbilityCast);
+            _careerAbilityId = (int)TorKeyMap.CareerAbilityCast;
 
             _targetPosition = GameEntity.GlobalPosition;
         }
@@ -81,8 +82,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                 Stop();
             }
 
-            if ((Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) ||
-                  Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
+            if ((InputContext.IsGameKeyPressed(_careerAbilityId))
                 && Hero.MainHero.HasCareerChoice("DeArcanisKadonKeystone"))
                 SwitchBetweenAgents();
 

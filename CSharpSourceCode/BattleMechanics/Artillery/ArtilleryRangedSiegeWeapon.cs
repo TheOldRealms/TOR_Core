@@ -184,7 +184,7 @@ namespace TOR_Core.BattleMechanics.Artillery
             {
                 if (UserFormations.Count == 0)
                 {
-                    var form = Team.GetFormations().ToList().FirstOrDefault(formation => formation.Arrangement.GetAllUnits().FindAll(unit => ((Agent)unit).HasAttribute(CharacterAttributes.ARTILLERY_CREW)).Count() > 2);
+                    var form = Team.GetFormations().ToList().FirstOrDefault(formation => formation.Arrangement.GetAllUnits().FindAll(unit => ((Agent)unit).CanOperateArtillery()).Count() > 2);
                     if (form != null) form.StartUsingMachine(this, true);
                 }
             }
@@ -445,7 +445,7 @@ namespace TOR_Core.BattleMechanics.Artillery
             return textObject;
         }
 
-        public override TextObject GetDescriptionText(WeakGameEntity gameEntity)
+        public override TextObject GetDescriptionText(WeakGameEntity gameEntity, Agent _)
         {
             return new TextObject(DisplayName);
         }

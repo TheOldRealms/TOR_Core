@@ -81,7 +81,7 @@ public class ChaosPortalComponent : BaseRaiderSpawnerComponent
         {
             targetPartySize *= 2;//20% chance for doubled party size
         }
-
+        //Sly : the game handles incrementing the number on the id if the base id already exists. We only need to pass "name_" and the CampaignObjectManager will handle the number.
         var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_chaos_raiders", "Chaos Raiders"), template, targetPartySize);
         if (find != null)
         {

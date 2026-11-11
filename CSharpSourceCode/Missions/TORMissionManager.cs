@@ -32,9 +32,56 @@ using static TaleWorlds.MountAndBlade.Mission;
 
 namespace TOR_Core.Missions
 {
+    /// <remarks>
+    /// <see cref="TOR_Core.Extensions.MissionExtensions.IsAbilityOrHitScriptMission(Mission)"/> is used to disable abilities and item trait combat activations. Missions must have IsFriendlyMission set to false if these should be enabled.
+    /// </remarks>
     [MissionManager]
     public static class TorMissionManager
     {
+        /// <summary>
+        /// Launch a POI "visit scene" via MissionState.OpenNew, bypassing LocationEncounter.
+        /// Used by <see cref="TOR_Core.CampaignMechanics.SettlementPOIs.SettlementPOI"/>s on
+        /// TOR custom settlements (shrines, Oak of Ages, raiding sites, …) where vanilla's
+        /// LocationEncounter is not populated because the engine's encounter machinery only
+        /// recognises Town/Castle/Village/Hideout components. Scene loads cleanly; any NPC
+        /// placement is the caller's responsibility (follow-up: pluggable trainer-spawn
+        /// behavior per POI).
+        /// </summary>
+        [MissionMethod]
+        public static Mission OpenPoiVisitMission(string scene, string returnMenuId, Hero trainerHero = null)
+        {
+            // "level_3 civilian" matches the atmosphere config BrawlFightMission uses —
+            // tells SandBoxMissions to configure the scene for civilian traffic.
+            // PoiVisitMissionController owns player-spawn + leave routing.
+            // PoiCivilianAgentSpawner (optional) adds NPCs like trainers — composed in
+            // only when a trainer is supplied; future POIs can add more spawners here.
+            return MissionState.OpenNew(
+                "TorPoiVisit",
+                SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "level_3 civilian", false, DecalAtlasGroup.All),
+                (Mission mission) =>
+                {
+                    var behaviors = new List<MissionBehavior>
+                    {
+                        new MissionOptionsComponent(),
+                        new CampaignMissionComponent(),
+                        new MissionBasicTeamLogic(),
+                        new BasicLeaveMissionLogic(false),
+                        new LeaveMissionLogic(),
+                        new MissionAgentLookHandler(),
+                        new AgentHumanAILogic(),
+                        new MissionConversationLogic(),
+                        new TORMissionAgentHandler(),
+                        new MissionFacialAnimationHandler(),
+                        new PoiVisitMissionController(returnMenuId),
+                    };
+                    if (trainerHero != null)
+                    {
+                        behaviors.Add(new PoiCivilianAgentSpawner(trainerHero));
+                    }
+                    return behaviors.ToArray();
+                });
+        }
+
         [MissionMethod]
         public static Mission OpenArcheryContestMission(string scene, ArcheryContestTournamentGame tournamentGame, Settlement settlement, CultureObject culture, bool isPlayerParticipating)
         {
@@ -139,7 +186,6 @@ namespace TOR_Core.Missions
             ], true, true);
         }
 
-
         [MissionMethod]
         public static Mission OpenGraveyardMission()
         {
@@ -188,6 +234,7 @@ namespace TOR_Core.Missions
                 return list.ToArray();
             }, true, true);
         }
+
         [MissionMethod]
         public static Mission OpenBrawlFightMission(Location location, TroopRoster playerSideTroops,
             TroopRoster enemyPartyRoster, int enemyPartySize, Action<BrawlMissionResult> onMissionEnd = null)
@@ -290,6 +337,36 @@ namespace TOR_Core.Missions
     }
 
 
+
+    /// <summary>
+    /// Views for POI "visit scene" missions (shrines, Oak of Ages, etc.).
+    /// The key addition vs. a bare mission is <c>ViewCreator.CreateMissionLeaveView()</c>
+    /// which drives the "hold Tab to leave" prompt — without it the player is stuck
+    /// until something ends the mission externally.
+    /// </summary>
+    [ViewCreatorModule]
+    public class PoiVisitViewCreatorModule
+    {
+        [ViewMethod("TorPoiVisit")]
+        public static MissionView[] OpenPoiVisitMission(Mission mission)
+        {
+            // Minimal view set — just what a walkable civilian scene needs:
+            // camera, escape menu, agent status, conversation UI, and the hold-Tab leave prompt.
+            // Boundary / boundary-crossing views are intentionally omitted because they NRE when
+            // the mission has no MissionBoundaryPlacer / MissionHardBorderPlacer behaviors.
+            // Nothing stops the player leaving — hold-Tab triggers the leave logic directly.
+            return new MissionView[]
+            {
+                new MissionCampaignView(),
+                new MissionConversationCameraView(),
+                SandBoxViewCreator.CreateMissionConversationView(mission),
+                ViewCreator.CreateMissionSingleplayerEscapeMenu(CampaignOptions.IsIronmanMode),
+                ViewCreator.CreateOptionsUIHandler(),
+                ViewCreator.CreateMissionAgentStatusUIHandler(mission),
+                ViewCreator.CreateMissionLeaveView(),
+            };
+        }
+    }
 
     [ViewCreatorModule]
     public class QuestFightViewCreatorModule

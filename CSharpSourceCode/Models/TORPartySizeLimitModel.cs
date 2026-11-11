@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
@@ -17,14 +18,14 @@ using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
-    public class TORPartySizeModel : DefaultPartySizeLimitModel
+    public class TORPartySizeLimitModel : DefaultPartySizeLimitModel
     {
-        public override ExplainedNumber GetPartyMemberSizeLimit(PartyBase party, bool includeDescriptions = false)
+        public override ExplainedNumber GetPartyMemberSizeLimit(PartyBase party, bool isCurrentlyAtSea = false, bool includeDescriptions = false)
         {
             //Sly : PartyBase.Culture is actually PartyBase.MapFaction.Culture with no null protection on MapFaction in native. However, MapFaction can be both a clan or kingdom, and therefore makes the culture variable depending on which specific kingdom a clan belongs to at a given moment.
             //Using MobileParty.ActualClan.Culture can circumvent this, but it must be noted that village militias that spawn during a defense are PartyBases with no associated MobileParty, but because the village's culture will be derived from the settlement owner's culture which will be based on the kingdom's culture, this will be close enough in the interim as the types of troops that spawn in the militia are also based on the settlement's culture.
 
-            var num = base.GetPartyMemberSizeLimit(party, includeDescriptions);
+            var num = base.GetPartyMemberSizeLimit(party, isCurrentlyAtSea, includeDescriptions);
 
             if (party.IsMobile && party.MobileParty.GetUniqueSpawnComponent() is { TargetPartySize: > 0 } uniqueSpawnComponent)
             {
@@ -64,7 +65,7 @@ namespace TOR_Core.Models
                 party.IsMobile &&
                 party.LeaderHero != Hero.MainHero)
             {
-                num.AddFactor(0.35f, TORTextHelper.GetTextObject("tor_party_size_desc", "Greenskins", "Greenskins"));
+                num.AddFactor(0.10f, TORTextHelper.GetTextObject("tor_party_size_desc", "Greenskins", "Greenskins"));
             }
 
             //Sly : prevents the parties from taking Overmanned speed penalties, they'll now move as fast as parties of foot bandits.
@@ -84,12 +85,12 @@ namespace TOR_Core.Models
 
             if (partyCulture?.StringId == TORConstants.Cultures.DAWI)
             {
-                num.AddFactor(-0.25f, TORTextHelper.GetTextObject("tor_party_size_desc", "DwarfPenalty", "Dwarf cultural penalty"));
+                num.Add(-(num.BaseNumber * 0.25f), TORTextHelper.GetTextObject("tor_party_size_desc", "DwarfPenalty", "Dwarf cultural penalty"));
             }
 
             if (partyCulture?.StringId == TORConstants.Cultures.ASRAI)
             {
-                num.AddFactor(-0.25f, TORTextHelper.GetTextObject("tor_party_size_desc", "WoodelfPenalty", "Woodelf cultural penalty"));
+                num.Add(-(num.BaseNumber * 0.25f), TORTextHelper.GetTextObject("tor_party_size_desc", "WoodelfPenalty", "Woodelf cultural penalty"));
 
                 if (party.LeaderHero == Hero.MainHero)
                 {
@@ -155,6 +156,16 @@ namespace TOR_Core.Models
         {
             if (!party.IsRaidingParty())
             {
+                var leader = party.LeaderHero;
+                var templateId = SelectBeastmenInitialTemplate(
+                    partyTemplate.StringId, party.IsLordParty,
+                    leader != null && leader == leader.Clan?.Kingdom?.Leader);
+                if (templateId != partyTemplate.StringId)
+                {
+                    partyTemplate = MBObjectManager.Instance.GetObject<PartyTemplateObject>(templateId)
+                        ?? throw new System.InvalidOperationException($"Missing Beastmen party template: {templateId}");
+                }
+
                 return base.FindAppropriateInitialRosterForMobileParty(party, partyTemplate);
             }
 
@@ -184,6 +195,14 @@ namespace TOR_Core.Models
             }
 
             return troopRoster;
+        }
+
+        // The clan template is shared by its lords; only the kingdom leader uses the larger Cygor stack.
+        internal static string SelectBeastmenInitialTemplate(string templateId, bool isLordParty, bool isKingdomLeader)
+        {
+            return templateId == "tor_beastmen_lordparty_template" && isLordParty && isKingdomLeader
+                ? "tor_beastmen_factionleader_party_template"
+                : templateId;
         }
 
         private void AddCareerPassivesForPartySize(Hero playerHero, PartyBase party, ref ExplainedNumber number)

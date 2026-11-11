@@ -71,7 +71,7 @@ namespace TOR_Core.BattleMechanics.AI
                 },
 
                 // Beastmen - feral aggression, like Chaos
-                TORConstants.Cultures.BEASTMEN => new BattlePersonality
+                TORConstants.Cultures.BEASTMEN or TORConstants.Cultures.BEASTMEN_BANDIT => new BattlePersonality
                 {
                     ChargeWeightMultiplier = 3.0f,       // +200% charge - feral aggression
                     DefendWeightMultiplier = 0.3f,       // -70% defend - beasts don't hold lines

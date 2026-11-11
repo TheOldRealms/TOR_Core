@@ -5,8 +5,10 @@ using System.Linq;
 using System.Reflection.Emit;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.ViewModelCollection.WeaponCrafting.WeaponDesign;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics.Crafting.Models;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -17,8 +19,8 @@ namespace TOR_Core.CampaignMechanics.Crafting
     public static class CraftingPatches
     {
         [HarmonyPrefix]
-        [HarmonyPatch(typeof(WeaponClassSelectionPopupVM), MethodType.Constructor, typeof(ICraftingCampaignBehavior), typeof(List<CraftingTemplate>), typeof(Action<int>), typeof(Func<CraftingTemplate, int>))]
-        public static void FilterCategories(ICraftingCampaignBehavior craftingBehavior, List<CraftingTemplate> templatesList, Action<int> onSelect, Func<CraftingTemplate, int> getUnlockedPiecesCount)
+        [HarmonyPatch(typeof(WeaponClassSelectionPopupVM), MethodType.Constructor, typeof(List<CraftingTemplate>), typeof(Action<int>), typeof(Func<CraftingTemplate, int>), typeof(Func<CraftingTemplate, int>))]
+        public static void FilterCategories(List<CraftingTemplate> templatesList, Action<int> onSelect, Func<CraftingTemplate, int> getUnlockedPiecesCount, Func<CraftingTemplate, int> getUninspectedPiecesCount)
         {
             var backup = templatesList.ToList();
             templatesList.Clear();
@@ -70,10 +72,10 @@ namespace TOR_Core.CampaignMechanics.Crafting
             {
                 //remove the CraftingTemplate.All and GetRandom calls
                 codes.RemoveRange(replaceIndex, 2);
-                //load arg1 (Hero orderOwner) and call ValidTemplate(Hero) for culture-based filtering
+                //load arg1 (Town town) and call ValidTemplate(Town) for culture-based filtering
                 codes.Insert(replaceIndex, new CodeInstruction(OpCodes.Ldarg_1));
                 codes.Insert(replaceIndex + 1, new CodeInstruction(OpCodes.Call,
-                    AccessTools.Method(typeof(CraftingPatches), nameof(CraftingPatches.ValidTemplate), new[] { typeof(Hero) })));
+                    AccessTools.Method(typeof(CraftingPatches), nameof(CraftingPatches.ValidTemplate), new[] { typeof(Town) })));
             }
             return codes.AsEnumerable();
         }
@@ -97,7 +99,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
         /// </summary>
         /// <param name="orderOwner">The hero placing the crafting order</param>
         /// <returns>A culture-appropriate crafting template</returns>
-        public static CraftingTemplate ValidTemplate(Hero orderOwner)
+        public static CraftingTemplate ValidTemplate(Town orderTown)
         {
             // Ensure validation has occurred
             if (!TORSmithingModel.templatesValidated)
@@ -106,7 +108,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
             }
 
             // Get culture from settlement (fallback to Empire)
-            string cultureId = orderOwner?.CurrentSettlement?.Town?.Culture?.StringId
+            string cultureId = orderTown.Culture?.StringId
                                ?? TORConstants.Cultures.EMPIRE;
 
             // Filter valid templates by culture

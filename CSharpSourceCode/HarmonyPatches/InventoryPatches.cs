@@ -32,6 +32,15 @@ namespace TOR_Core.HarmonyPatches
 
         private static readonly FieldInfo InventoryLogicField =
             AccessTools.Field(typeof(SPInventoryVM), "_inventoryLogic");
+        // Mono's JIT eager-resolves type refs at method compile time, so any method
+        // referencing System.Windows.Clipboard (PresentationCore.dll) crashes on Linux
+        // the first time it's JIT'd — PresentationCore isn't shipped with Wine Mono.
+        // Keep this method free of WPF type references; isolate them in TryClipboardPaste
+        // which is only called on Windows and only JIT'd when first called.
+        private static readonly bool _isWindows =
+            Environment.OSVersion.Platform != PlatformID.Unix
+         && Environment.OSVersion.Platform != PlatformID.MacOSX;
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(GauntletInventoryScreen), "OnFrameTick")]
         public static void Postfix(SPInventoryVM ____dataSource)
@@ -40,22 +49,28 @@ namespace TOR_Core.HarmonyPatches
             {
                 TORCommon.CopyEquipmentToClipBoard(____dataSource);
             }
-            else if (InputKey.Comma.IsPressed() && Clipboard.ContainsText() && Game.Current.CheatMode)
+            else if (_isWindows && InputKey.Comma.IsPressed() && Game.Current.CheatMode)
             {
-                string text = string.Empty;
-                Thread thread = new Thread(() => text = Clipboard.GetText());
-                thread.SetApartmentState(ApartmentState.STA);
-                thread.Start();
-                thread.Join(); //Wait for the thread to end
-                var list = text.Split(',');
-                var logic = InventoryLogicField.GetValue(____dataSource) as InventoryLogic;
-                List<Tuple<string, int>> itemList = new List<Tuple<string, int>>();
-                for (int i = 0; i < list.Length; i++)
-                {
-                    itemList.Add(new Tuple<string, int>(list[i], i));
-                }
-                EquipItemsFromClipboard(itemList, logic, ____dataSource);
+                TryClipboardPaste(____dataSource);
             }
+        }
+
+        private static void TryClipboardPaste(SPInventoryVM ____dataSource)
+        {
+            if (!Clipboard.ContainsText()) return;
+            string text = string.Empty;
+            Thread thread = new Thread(() => text = Clipboard.GetText());
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+            thread.Join();
+            var list = text.Split(',');
+            var logic = InventoryLogicField.GetValue(____dataSource) as InventoryLogic;
+            List<Tuple<string, int>> itemList = new List<Tuple<string, int>>();
+            for (int i = 0; i < list.Length; i++)
+            {
+                itemList.Add(new Tuple<string, int>(list[i], i));
+            }
+            EquipItemsFromClipboard(itemList, logic, ____dataSource);
         }
 
         [HarmonyPostfix]

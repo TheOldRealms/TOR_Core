@@ -11,6 +11,7 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -433,8 +434,7 @@ namespace TOR_Core.Models
             // Apply career passives for damage values
             TORDamageHelper.ApplyCareerPassives(attackerAgent, victimAgent, attackTypeMask, additionalDamagePercentages, resistancePercentages);
 
-            if (collisionData.IsMissile &&
-                TORDamageHelper.IsNonMagicalSiegeOrExplosiveAmmunition(attackInformation.AttackerWeapon.Item))
+            if (collisionData.IsMissile && attackInformation.AttackerWeapon.Item.IsExplosiveAmmunition())
             {
                 TORDamageHelper.ApplyNestCleansingExplosionResistance(victimAgent, resistancePercentages);
             }
@@ -550,20 +550,156 @@ namespace TOR_Core.Models
         /// Determines if the victim should shrug off the blow (no stagger/reaction).
         /// Moved from DamagePatch to use the proper model override.
         /// </summary>
+        private static bool IsColossalMonster(Agent agent)
+        {
+            if (agent == null) return false;
+            string monsterId = agent.Monster?.StringId;
+            if (monsterId == "cygor"
+                || monsterId == "cygor_settlement"
+                || monsterId == "large_humanoid_monster"
+                || monsterId == "large_humanoid_monster_settlement")
+            {
+                return true;
+            }
+
+            if (agent.Character != null)
+            {
+                var raceNames = TaleWorlds.Core.FaceGen.GetRaceNames();
+                if (raceNames != null && agent.Character.Race >= 0 && agent.Character.Race < raceNames.Length)
+                {
+                    string raceId = raceNames[agent.Character.Race];
+                    if (raceId == "cygor" || raceId == "large_humanoid_monster")
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsMonstrousInfantryRival(Agent agent)
+        {
+            if (agent == null) return false;
+            string monsterId = agent.Monster?.StringId;
+            if (monsterId == "minotaur"
+                || monsterId == "minotaur_settlement"
+                || monsterId == "medium_humanoid_monster"
+                || monsterId == "medium_humanoid_monster_settlement"
+                || monsterId == "troll"
+                || monsterId == "troll_settlement"
+                || monsterId == "ushabti"
+                || monsterId == "ushabti_settlement"
+                || monsterId == "orion"
+                || monsterId == "orion_settlement")
+            {
+                return true;
+            }
+
+            if (agent.Character != null)
+            {
+                var raceNames = TaleWorlds.Core.FaceGen.GetRaceNames();
+                if (raceNames != null && agent.Character.Race >= 0 && agent.Character.Race < raceNames.Length)
+                {
+                    string raceId = raceNames[agent.Character.Race];
+                    if (raceId == "minotaur" || raceId == "troll" || raceId == "ushabti")
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsCannonballOrArtilleryBlow(in AttackCollisionData collisionData, in Blow blow)
+        {
+            WeaponClass weaponClass = blow.WeaponRecord.WeaponClass;
+
+            // 1. Cannonballs (tor_neutral_weapon_ammo_cannonball) and Trebuchet/Siege Boulders use WeaponClass.Boulder
+            if (weaponClass == WeaponClass.Boulder)
+            {
+                return true;
+            }
+
+            // 2. Cygor Thrown Boulder (cygor_boulder) uses WeaponClass.Stone with thrust_damage=400.
+            // Filter out hand grenades/blasting charges (WeaponClass.Stone, 30-70 dmg) via >= 120 damage check.
+            if (weaponClass == WeaponClass.Stone && blow.InflictedDamage >= 120)
+            {
+                return true;
+            }
+
+            // 3. Direct hits from artillery/mortar AoE scripts or siege engines dealing >= 200 single-blow damage
+            if (blow.InflictedDamage >= 200 && (collisionData.IsMissile || blow.StrikeType == StrikeType.Thrust))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private static bool CanBlowStaggerColossalMonster(Agent attackerAgent, Agent victimAgent, in AttackCollisionData collisionData, in Blow blow)
+        {
+            if (IsCannonballOrArtilleryBlow(in collisionData, in blow))
+            {
+                return true;
+            }
+
+            if (attackerAgent != null && attackerAgent != victimAgent)
+            {
+                if (IsColossalMonster(attackerAgent))
+                {
+                    return true;
+                }
+
+                if (IsMonstrousInfantryRival(attackerAgent) && blow.InflictedDamage >= 60)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public override bool DecideAgentShrugOffBlow(Agent victimAgent, in AttackCollisionData collisionData, in Blow blow)
         {
+            if (IsColossalMonster(victimAgent))
+            {
+                Agent attackerAgent = (blow.OwnerId >= 0 && Mission.Current != null)
+                    ? Mission.Current.FindAgentWithIndex(blow.OwnerId)
+                    : null;
+
+                if (CanBlowStaggerColossalMonster(attackerAgent, victimAgent, in collisionData, in blow))
+                {
+                    return false; // Allow stagger from Cannonballs, Cygor Boulders, and Rival Monsters
+                }
+
+                return true; // Shrug off all infantry/cavalry melee and small arms
+            }
+
+            if (IsMonstrousInfantryRival(victimAgent) || victimAgent.IsUnstoppable())
+            {
+                Agent attackerAgent = (blow.OwnerId >= 0 && Mission.Current != null)
+                    ? Mission.Current.FindAgentWithIndex(blow.OwnerId)
+                    : null;
+
+                if (IsCannonballOrArtilleryBlow(in collisionData, in blow) || IsColossalMonster(attackerAgent))
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
             // First check base game logic
             var baseShrugOff = base.DecideAgentShrugOffBlow(victimAgent, collisionData, blow);
             if (baseShrugOff)
                 return true;
 
-            if (victimAgent.IsUnstoppable())
-                return true;
-
             // Agent's own damage threshold check
             if (victimAgent.IsDamageShruggedOff(blow.InflictedDamage))
                 return true;
-            
+
             if (collisionData.IsMissile && victimAgent.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
             {
                 if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive3"))
@@ -573,6 +709,40 @@ namespace TOR_Core.Models
             }
 
             return false;
+        }
+
+        public override bool DecideAgentKnockedBackByBlow(
+            Agent attackerAgent,
+            Agent victimAgent,
+            in AttackCollisionData collisionData,
+            WeaponComponentData attackerWeapon,
+            in Blow blow)
+        {
+            if (IsColossalMonster(victimAgent) || IsMonstrousInfantryRival(victimAgent) || victimAgent.IsUnstoppable())
+            {
+                if (IsCannonballOrArtilleryBlow(in collisionData, in blow) || IsColossalMonster(attackerAgent))
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            return base.DecideAgentKnockedBackByBlow(attackerAgent, victimAgent, in collisionData, attackerWeapon, in blow);
+        }
+
+        public override bool DecideAgentKnockedDownByBlow(
+            Agent attackerAgent,
+            Agent victimAgent,
+            in AttackCollisionData collisionData,
+            WeaponComponentData attackerWeapon,
+            in Blow blow)
+        {
+            if (IsColossalMonster(victimAgent) || IsMonstrousInfantryRival(victimAgent) || victimAgent.IsUnstoppable())
+            {
+                return false; // Prevent human ragdoll/get-up animation on custom monster skeletons
+            }
+
+            return base.DecideAgentKnockedDownByBlow(attackerAgent, victimAgent, in collisionData, attackerWeapon, in blow);
         }
 
         public AgentPropertyContainer CreateAgentPropertyContainer(Agent agent, PropertyMask propertyMask, AttackTypeMask attackTypeMask)
@@ -912,7 +1082,7 @@ namespace TOR_Core.Models
                         damageBonuses[(int)DamageType.Physical] += (TORPerks.Faith.Superstitious.SecondaryBonus);
                     }
 
-                    if (wieldedItem != null && wieldedItem.HasWeaponComponent && wieldedItem.IsSpecialAmmunitionItem() && attackMask.HasAnyFlag(AttackTypeMask.Ranged))
+                    if (wieldedItem != null && wieldedItem.HasWeaponComponent && wieldedItem.IsBlunderbussCompatible() && attackMask.HasAnyFlag(AttackTypeMask.Ranged))
                     {
                         if (agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.GunPowder.PackItIn))
                         {
@@ -1039,20 +1209,20 @@ namespace TOR_Core.Models
                 }
             }
 
-            if (agent.Character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION))
+            if (agent.Character.IsNecromancerChampion())
             {
                 if ((attackMask == AttackTypeMask.Melee && mask == PropertyMask.Attack))
                 {
                     if (agent.Controller == AgentControllerType.Player)
                     {
 
-                        if (mask == PropertyMask.Attack && agent.Character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION) && choices.Contains("LiberMortisKeystone"))
+                        if (mask == PropertyMask.Attack && agent.Character.IsNecromancerChampion() && choices.Contains("LiberMortisKeystone"))
                         {
                             var choice = TORCareerChoices.GetChoice("LiberMortisKeystone");
                             damageBonuses[(int)DamageType.Physical] += choice.GetPassiveValue();
                         }
 
-                        if (mask == PropertyMask.Attack && agent.Character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION) && choices.Contains("BooksOfNagashKeystone"))
+                        if (mask == PropertyMask.Attack && agent.Character.IsNecromancerChampion() && choices.Contains("BooksOfNagashKeystone"))
                         {
                             var choice = TORCareerChoices.GetChoice("BooksOfNagashKeystone");
                             damageBonuses[(int)DamageType.Magical] += choice.GetPassiveValue();
@@ -1203,39 +1373,57 @@ namespace TOR_Core.Models
             return result.ResultNumber;
         }
 
-        public bool ShouldCutThrough(AttackCollisionData collisionData, Agent attacker, Agent victim)
+        public bool ShouldCutThrough(AttackCollisionData collisionData, Agent attacker, Agent victim, in MissionWeapon attackerWeapon)
         {
+            if (victim == null || collisionData.CollisionResult != CombatCollisionResult.StrikeAgent ||
+                collisionData.AttackBlockedWithShield || collisionData.CollidedWithShieldOnBack || attackerWeapon.IsEmpty)
+                return false;
 
-            if (attacker.IsHero && attacker.WieldedWeapon.Item.HasAnyTrait())
+            if (attacker.IsHero && attackerWeapon.Item.HasAnyTrait())
             {
-                var traits = attacker.WieldedWeapon.Item.GetTraits();
-
+                var traits = attackerWeapon.Item.GetTraits();
                 if (traits.AnyQ(trait => trait.StatsTuple?.StatType == ItemTraitStatType.Cleave))
-                {
                     return true;
-                }
             }
-            if (attacker.HasSlice())
-                return true;
 
-            return false;
+            return attacker.HasSlice();
         }
+
 
         public override float CalculateRemainingMomentum(float originalMomentum, in Blow b, in AttackCollisionData collisionData, Agent attacker, Agent victim, in MissionWeapon attackerWeapon, bool isCrushThrough)
         {
-            float newMomentum = 0f;
+            if (isCrushThrough)
+                return originalMomentum * 0.3f;
 
-            if (isCrushThrough || ShouldCutThrough(collisionData, attacker, victim))//Sly : native uses 0.3 multiplier for CrushThrough, I've put it here directly to skip a method call and to have an equality between CrushThrough and CutThrough for remaining momentum. It would probably be more realistic if CutThrough had higher momentum as the weapon has less resistance from the body and armour and it has a far smaller contact area to mitigate received force. Future balance thought.
+
+            if (ShouldCutThrough(collisionData, attacker, victim, in attackerWeapon))
             {
-                newMomentum = originalMomentum * 0.3f;
+                var weaponWeight = attackerWeapon.Item.Weight;
+                var weaponClass = attackerWeapon.CurrentUsageItem.WeaponClass;
+                var effectiveWeaponWeight = weaponWeight;
+
+                if (weaponClass == WeaponClass.OneHandedAxe ||
+                    weaponClass == WeaponClass.TwoHandedAxe ||
+                    weaponClass == WeaponClass.Mace ||
+                    weaponClass == WeaponClass.TwoHandedMace)
+                {
+                    effectiveWeaponWeight *= 2f;
+                }
+
+                var armor = victim.GetBaseArmorEffectivenessForBodyPart(collisionData.VictimHitBodyPart);
+
+                var weightPower = Math.Pow(weaponWeight, 6);
+                var lightWeaponFactor = weightPower / (weightPower + Math.Pow(1.35, 6));
+                var momentumWeightFactor = effectiveWeaponWeight / (effectiveWeaponWeight + 2f);
+                var armorFactor = Math.Exp(-Math.Pow(armor / 58f, 7));
+
+                return originalMomentum * (float)(lightWeaponFactor * momentumWeightFactor * armorFactor);
             }
-            else
-            {
-                newMomentum = base.CalculateRemainingMomentum(originalMomentum, in b, in collisionData, attacker, victim, in attackerWeapon, isCrushThrough);
-            }
-                
-            return newMomentum;
+
+
+            return base.CalculateRemainingMomentum(originalMomentum, in b, in collisionData, attacker, victim, in attackerWeapon, isCrushThrough);
         }
+
 
         // for crush through blocks returns the overhead swing base chance coming purely from skill diff and ramps up with a exponential curve
         private static float CalculateExtraCtbOverheadChanceFromSkillDiff(int attackerSkillValue, int defenderSkillValue)
@@ -1296,34 +1484,18 @@ namespace TOR_Core.Models
 
         public override bool DecideCrushedThrough(Agent attackerAgent, Agent defenderAgent, float totalAttackEnergy, Agent.UsageDirection attackDirection, StrikeType strikeType, WeaponComponentData defendItem, bool isPassiveUsage)
         {
-            // Monster attacks (trolls, minotaurs, etc.) can only be blocked with shields
             bool isShieldBlock = defendItem != null && defendItem.IsShield;
-            if (attackerAgent != null && attackerAgent.HasMonsterAttack())
+
+            //Mimics monstrous creatures which have the Crushing attribute without changing the players attributes. Mainly for testing.
+            if (attackerAgent == Agent.Main && AnimationTriggerManager.Instance.RegisteredRaceInts.Contains(attackerAgent.Character.Race))
             {
-                if (defendItem == null || !defendItem.IsShield)
-                {
-                    return true;
-                }
+                return !isShieldBlock;
+            }
 
-                EquipmentIndex equipmentIndex = attackerAgent.GetOffhandWieldedItemIndex();
-                if (equipmentIndex == EquipmentIndex.None)
-                {
-                    equipmentIndex = attackerAgent.GetPrimaryWieldedItemIndex();
-                }
-
-                if (((equipmentIndex != EquipmentIndex.None) ? attackerAgent.Equipment[equipmentIndex].CurrentUsageItem : null) == null || isPassiveUsage || strikeType != 0 || (attackDirection != 0 && !attackerAgent.HasCrushThrough()))
-                {
-                    return false;
-                }
-
-                float num = 58f;
-                if (defendItem != null && defendItem.IsShield)
-                {
-                    num *= 1.2f;
-                }
-
-                bool passed = totalAttackEnergy > num;
-                return passed;
+            // Crushing ignores weapon blocks and parries
+            if (attackerAgent != null && attackerAgent.HasCrushing())
+            {
+                return !isShieldBlock;
             }
 
             EquipmentIndex equipmentIndexNonMonster = attackerAgent.GetPrimaryWieldedItemIndex();
@@ -1347,7 +1519,7 @@ namespace TOR_Core.Models
             if (attackerUsageItem != null
                 && !isPassiveUsage
                 && strikeType == 0
-                && ((attackDirection == 0 || attackerAgent.HasCrushThrough()) || bruteAiMeleeCtbAttack)
+                && (attackDirection == 0 || bruteAiMeleeCtbAttack)
                 && totalAttackEnergy > 58f)
             {
             #if TOR_CTB_LOG
@@ -1430,34 +1602,20 @@ namespace TOR_Core.Models
             return passedExtra;
         }
         
-        public override bool DecideAgentKnockedDownByBlow(Agent attackerAgent, Agent victimAgent, in AttackCollisionData collisionData, WeaponComponentData attackerWeapon, in Blow blow)
-        {
-            if (collisionData.IsHorseCharge && collisionData.ChargeVelocity > attackerAgent.Monster.RelativeSpeedLimitForCharge)
-            {
-                return true;
-            }
-
-            return base.DecideAgentKnockedDownByBlow(attackerAgent, victimAgent, in collisionData, attackerWeapon, in blow);
-        }
-
         public override void DecideWeaponCollisionReaction(in Blow registeredBlow, in AttackCollisionData collisionData, Agent attacker, Agent defender, in MissionWeapon attackerWeapon, bool isFatalHit, bool isShruggedOff, float momentumRemaining, out MeleeCollisionReaction colReaction)
         {
             base.DecideWeaponCollisionReaction(registeredBlow, collisionData, attacker, defender, attackerWeapon, isFatalHit, isShruggedOff, momentumRemaining, out colReaction);
-
+            
             if (defender == null) return;
+            if (attacker == null) return;
+            //Slam through an agent and hit the ground beneath them. Resulting world contact is used to trigger effects at the victims feet.
+            if (collisionData.CollisionResult != CombatCollisionResult.StrikeAgent) return;
+            if (collisionData.AttackBlockedWithShield || collisionData.CollidedWithShieldOnBack) return;
             if (momentumRemaining == 0) return;
 
-            
-            //if (collisionData.CollisionResult == CombatCollisionResult.None) return;
-
-            //if (collisionData.CollisionHitResultFlags
-
-            if (attacker.IsTroll() || attacker.IsTreeman())
+            if (AnimationTriggerManager.Instance.RegisteredRaceInts.Contains(attacker.Character.Race))
             {
-                //if (colReaction == MeleeCollisionReaction.Bounced || colReaction == MeleeCollisionReaction.Staggered || colReaction == MeleeCollisionReaction.Stuck)
-                {
-                    colReaction = MeleeCollisionReaction.SlicedThrough;
-                }
+                colReaction = MeleeCollisionReaction.SlicedThrough;
             }
         }
     }

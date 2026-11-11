@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Election;
+using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.CustomArenaModes;
+using TOR_Core.BattleMechanics.Reinforcements;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.MapNotifications;
@@ -58,6 +60,9 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(ScriptUseData), 23);
             AddClassDefinition(typeof(UniqueSpawnPartyComponent), 24);
             AddClassDefinition(typeof(TORMapNotification), 25);
+            AddClassDefinition(typeof(GreenKnightBehavior.GreenKnightBattleState), 26);
+            AddClassDefinition(typeof(ReinforcementBehavior.ReinforcementBattleState), 27);
+            AddClassDefinition(typeof(ReinforcementBehavior.ReinforcementCandidateState), 28);
 
 
             //Quests and issues begin at 200 - they generally can't be expanded to cover new use cases
@@ -65,7 +70,7 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(HuntCultistsQuestCampaignBehavior.HuntCultistsQuest), 201);
             AddClassDefinition(typeof(PlaguedVillageQuestCampaignBehavior.PlaguedVillageIssue), 202);
             AddClassDefinition(typeof(PlaguedVillageQuestCampaignBehavior.PlaguedVillageQuest), 203);
-            AddClassDefinition(typeof(EngineerQuest), 204);
+            // 204 was EngineerQuest — retired with the quest; keep the slot gap so other ids stay stable.
             AddClassDefinition(typeof(SpecializeLoreQuest), 205);
             AddClassDefinition(typeof(RunesmithQuest), 206);
             AddClassDefinition(typeof(RunelordQuest), 207);
@@ -78,7 +83,7 @@ namespace TOR_Core.SaveGameSystem
         protected override void DefineEnumTypes() //watch out for the save ids used for class definitions, conflicts will cause crashes on load
         {
             //Enums between 100-199
-            AddEnumDefinition(typeof(EngineerQuestStates), 100);
+            // 100 was EngineerQuestStates — retired with the quest; slot preserved.
             AddEnumDefinition(typeof(SpellCastingLevel), 101);
             AddEnumDefinition(typeof(UniqueSpawnState), 102);
         }
@@ -90,6 +95,7 @@ namespace TOR_Core.SaveGameSystem
             ConstructContainerDefinition(typeof(Dictionary<string, int>));
             ConstructContainerDefinition(typeof(Dictionary<string, bool>));
             ConstructContainerDefinition(typeof(Dictionary<string, HeroExtendedInfo>));
+            ConstructContainerDefinition(typeof(Dictionary<int, Hero>));
             ConstructContainerDefinition(typeof(Dictionary<string, MobilePartyExtendedInfo>));
             ConstructContainerDefinition(typeof(List<RaidingPartyComponent>));
             ConstructContainerDefinition(typeof(List<KingdomDecision>));
@@ -102,6 +108,9 @@ namespace TOR_Core.SaveGameSystem
             ConstructContainerDefinition(typeof(List<BaseInventoryUseScript>));
             ConstructContainerDefinition(typeof(Dictionary<string, List<BaseInventoryUseScript>>));
             ConstructContainerDefinition(typeof(Dictionary<string, HeroTrainingData>));
+            ConstructContainerDefinition(typeof(Dictionary<MapEvent, GreenKnightBehavior.GreenKnightBattleState>));
+            ConstructContainerDefinition(typeof(Dictionary<MapEvent, ReinforcementBehavior.ReinforcementBattleState>));
+            ConstructContainerDefinition(typeof(List<ReinforcementBehavior.ReinforcementCandidateState>));
             ConstructContainerDefinition(typeof(List<ScriptUseData>));
             ConstructContainerDefinition(typeof(List<string>));
         }

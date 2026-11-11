@@ -53,7 +53,7 @@ namespace TOR_Core.CampaignMechanics.Religion
                 TORConstants.Cultures.MOUSILLON => Pantheon.Undead,
                 TORConstants.Cultures.GREENSKIN => Pantheon.Greenskin,
                 TORConstants.Cultures.CHAOS => Pantheon.Chaos,
-                TORConstants.Cultures.BEASTMEN => Pantheon.Chaos,
+                TORConstants.Cultures.BEASTMEN or TORConstants.Cultures.BEASTMEN_BANDIT => Pantheon.Chaos,
                 _ => Pantheon.Human
             };
         }

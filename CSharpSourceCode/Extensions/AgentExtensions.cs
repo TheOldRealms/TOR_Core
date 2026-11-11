@@ -133,7 +133,7 @@ namespace TOR_Core.Extensions
 
             if (Hero.MainHero.HasCareer(TORCareers.Necromancer))
             {
-                if (Hero.MainHero.HasCareerChoice("BookofWsoranKeystone") && agent.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION))
+                if (Hero.MainHero.HasCareerChoice("BookofWsoranKeystone") && agent.Character.IsNecromancerChampion())
                     return true;
             }
 
@@ -157,7 +157,11 @@ namespace TOR_Core.Extensions
 
         public static float GetPiercingArmorReduction(this Agent agent)
         {
-            var attributes = agent.GetAttributes();
+            return GetPiercingArmorReduction(agent.GetAttributes());
+        }
+
+        public static float GetPiercingArmorReduction(List<string> attributes)
+        {
             if (attributes.Contains(CharacterAttributes.PIERCING_2))
             {
                 return 0.40f;
@@ -179,7 +183,11 @@ namespace TOR_Core.Extensions
 
         public static float GetBulwarkRangedDamageReduction(this Agent agent)
         {
-            var attributes = agent.GetAttributes();
+            return GetBulwarkRangedDamageReduction(agent.GetAttributes());
+        }
+
+        public static float GetBulwarkRangedDamageReduction(List<string> attributes)
+        {
             if (attributes.Contains(CharacterAttributes.BULWARK_3))
             {
                 return 0.60f;
@@ -195,7 +203,11 @@ namespace TOR_Core.Extensions
 
         public static float GetSwiftMovementSpeedBonus(this Agent agent)
         {
-            var attributes = agent.GetAttributes();
+            return GetSwiftMovementSpeedBonus(agent.GetAttributes());
+        }
+
+        public static float GetSwiftMovementSpeedBonus(List<string> attributes)
+        {
             if (attributes.Contains(CharacterAttributes.SWIFT_3))
             {
                 return 0.40f;
@@ -211,7 +223,11 @@ namespace TOR_Core.Extensions
 
         public static float GetPoisonousHitChance(this Agent agent)
         {
-            var attributes = agent.GetAttributes();
+            return GetPoisonousHitChance(agent.GetAttributes());
+        }
+
+        public static float GetPoisonousHitChance(List<string> attributes)
+        {
             if (attributes.Contains(CharacterAttributes.POISONOUS_2))
             {
                 return 0.35f;
@@ -245,15 +261,11 @@ namespace TOR_Core.Extensions
             return agent.HasAttribute(CharacterAttributes.SLICE);
         }
 
-        public static bool HasMonsterAttack(this Agent agent)
+        public static bool HasCrushing(this Agent agent)
         {
-            return agent.HasAttribute(CharacterAttributes.MONSTER_ATTACK);
+            return agent.HasAttribute(CharacterAttributes.CRUSHING);
         }
 
-        public static bool HasCrushThrough(this Agent agent)
-        {
-            return agent.HasAttribute(CharacterAttributes.CRUSH_THROUGH);
-        }
         public static bool HasBrute(this Agent agent)
         {
             return agent.HasAttribute(CharacterAttributes.BRUTE);
@@ -277,7 +289,11 @@ namespace TOR_Core.Extensions
 
         public static float GetUndeadSlayerDamageBonus(this Agent agent)
         {
-            var attributes = agent.GetAttributes();
+            return GetUndeadSlayerDamageBonus(agent.GetAttributes());
+        }
+
+        public static float GetUndeadSlayerDamageBonus(List<string> attributes)
+        {
             if (attributes.Contains(CharacterAttributes.UNDEAD_SLAYER_2))
             {
                 return 0.60f;
@@ -298,7 +314,11 @@ namespace TOR_Core.Extensions
 
         public static float GetEtherealIgnoreChance(this Agent agent)
         {
-            var attributes = agent.GetAttributes();
+            return GetEtherealIgnoreChance(agent.GetAttributes());
+        }
+
+        public static float GetEtherealIgnoreChance(List<string> attributes)
+        {
             if (attributes.Contains(CharacterAttributes.ETHEREAL_2))
             {
                 return 0.40f;
@@ -314,7 +334,11 @@ namespace TOR_Core.Extensions
 
         public static float GetMonsterSlayerDamageBonus(this Agent agent)
         {
-            var attributes = agent.GetAttributes();
+            return GetMonsterSlayerDamageBonus(agent.GetAttributes());
+        }
+
+        public static float GetMonsterSlayerDamageBonus(List<string> attributes)
+        {
             if (attributes.Contains(CharacterAttributes.MONSTER_SLAYER_2))
             {
                 return 1.50f;
@@ -351,6 +375,13 @@ namespace TOR_Core.Extensions
         public static bool CanPlaceArtillery(this Agent agent)
         {
             return agent.HasAttribute(CharacterAttributes.CAN_PLACE_ARTILLERY);
+        }
+        public static bool CanOperateArtillery(this Agent agent)
+        {
+            var attributes = agent.GetAttributes();
+            return attributes.Contains(CharacterAttributes.CREW_1) ||
+                   attributes.Contains(CharacterAttributes.CREW_2) ||
+                   attributes.Contains(CharacterAttributes.CREW_3);
         }
         public static bool HasPartyAnvilOfDoom(this Agent agent)
         {

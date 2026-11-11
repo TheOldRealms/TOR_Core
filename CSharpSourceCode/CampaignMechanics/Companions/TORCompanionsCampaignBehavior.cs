@@ -101,6 +101,7 @@ namespace TOR_Core.CampaignMechanics.Companions
                     if (wanderer == null)
                     {
                         SpawnWanderer(townList[i].Settlement, out wanderer);//weekly refill of wanderers if the town doesn't have one
+                        if (wanderer == null) continue;//some cultures have no wanderer template; there is no hero to rotate
                     }
 
                     //wanderers are shuffled forward 1 town, and the last town generates a new wanderer to replace the old one.
@@ -416,6 +417,9 @@ namespace TOR_Core.CampaignMechanics.Companions
             AddCompanionModifiers(hero.StealthEquipment);
         }
 
+        /// <remarks>
+        /// Sly : as of 1.5, stealth equipment can be defined directly in the equipment sets for heroes. See https://forums.taleworlds.com/index.php?threads/e1-6-0-v1-5-0-modding-changes.443896/.
+        /// </remarks>
         private void SwapStealthEquipment(Hero hero, Equipment stealthEquipment)
         {
             //Helpers.EquipmentHelper maybe?

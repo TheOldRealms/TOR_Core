@@ -5,6 +5,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.Reinforcements;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.Utilities;
 
@@ -133,27 +134,51 @@ namespace TOR_Core.BattleMechanics
         }
         public override void OnAgentBuild(Agent agent, Banner banner)
         {
-            if (agent.Origin is SummonedAgentOrigin) return;
+            if (agent.Origin is SummonedAgentOrigin || agent.Origin is GreenKnightAgentOrigin) return;
             base.OnAgentBuild(agent, banner);
         }
 
         public override void OnAgentTeamChanged(Team prevTeam, Team newTeam, Agent agent)
         {
             if (agent.Origin is SummonedAgentOrigin) return;
+            if (agent.Origin is GreenKnightAgentOrigin)
+            {
+                if (prevTeam == null || prevTeam == Team.Invalid || newTeam == null || prevTeam == newTeam)
+                    return;
+
+                Mission.GetMissionBehavior<BattleObserverMissionLogic>()?.BattleObserver?.TroopSideChanged(
+                    prevTeam.Side,
+                    newTeam.Side,
+                    agent.Origin.BattleCombatant,
+                    agent.Character);
+                return;
+            }
+
             base.OnAgentTeamChanged(prevTeam, newTeam, agent);
         }
 
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow killingBlow)
         {
             if (affectedAgent.Origin is SummonedAgentOrigin) return;
+            if (affectedAgent.Origin is GreenKnightAgentOrigin origin)
+            {
+                if (agentState == AgentState.Unconscious)
+                    origin.SetWounded();
+                else if (agentState == AgentState.Killed)
+                    origin.SetKilled();
+                else
+                    origin.SetRouted(AgentComponentExtensions.GetMorale(affectedAgent) >= 0.01f);
+                return;
+            }
+
             base.OnAgentRemoved(affectedAgent, affectorAgent, agentState, killingBlow);
         }
 
         public override void OnScoreHit(Agent affectedAgent, Agent affectorAgent, WeaponComponentData attackerWeapon, bool isBlocked, bool isSiegeEngineHit, in Blow blow, in AttackCollisionData collisionData, float damagedHp, float hitDistance, float shotDifficulty)
         {
             //Sly : base leads to EnemyHitReward which casts Origin.BattleCombattant to PartyBase which is unsupported for summoned troops
-            if (affectorAgent.Origin is SummonedAgentOrigin) return;
-            if (affectorAgent.IsMount && affectorAgent.RiderAgent?.Origin is SummonedAgentOrigin) return; //necromancer champion riding a mount which deals damage
+            if (affectorAgent.Origin is SummonedAgentOrigin || affectorAgent.Origin is GreenKnightAgentOrigin) return;
+            if (affectorAgent.IsMount && (affectorAgent.RiderAgent?.Origin is SummonedAgentOrigin || affectorAgent.RiderAgent?.Origin is GreenKnightAgentOrigin)) return; //necromancer champion riding a mount which deals damage
 
             // Set flag for spell hits so TORCombatXpModel can skip weapon XP while still tracking kills
             bool isSpellHit = collisionData.AffectorWeaponSlotOrMissileIndex == TORSpellBlowHelper.SpellBlowSentinel;

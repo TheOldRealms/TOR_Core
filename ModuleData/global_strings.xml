@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<strings>
+	<!-- Global strings is reserved for ones that must be available from the main menu before a campaign begins loading. -->
+	<!-- If a harmony patch is being applied and causing a NRE due to the GameTextManager not yet initialized, prefer applying the patch later after initialization rather than putting the string here as a bandaid, eg. when patching the encounter menu to reorder options after adding new ones. -->
+
+	<!-- Keybinds -->
+	<string id="str_key_category_name.tor_key_category_name"
+	        text="{=str_tor_str_key_category_name.tor_key_category_name}The Old Realms"/>
+					
+	<string id="str_key_name.TORGameKeyContext_AbilitySelectionMenu"
+	        text="{=str_tor_str_key_name.TORGameKeyContext_AbilitySelectionMenu}Ability Selection Menu"/>
+	<string id="str_key_description.TORGameKeyContext_AbilitySelectionMenu"
+	        text="{=str_tor_str_key_description.TORGameKeyContext_AbilitySelectionMenu}1) During battle pressing Q puts you into aiming mode, a reticule will appear and you will be able to target your spells. Aiming mode is accompanied by a visual animation on your character.{newline}2) Using the mouse wheel will switch between your spells (if you have learned multiple){newline}3) New UI elements will appear on the bottom left of your screen, with an image representing your selected spell and its cooldown time. {newline}4) Spells are reliant on the user's Winds of Magic (mana). It is regained over time on the campaign map."/>
+	<string id="str_key_name.TORGameKeyContext_QuickCast"
+	        text="{=str_tor_str_key_name.TORGameKeyContext_QuickCast}Quick Cast"/>
+	<string id="str_key_description.TORGameKeyContext_QuickCast"
+	        text="{=str_tor_str_key_description.TORGameKeyContext_QuickCast}Cast spells or prayers without needing to switch to spell cast mode. Warning: There is no target indication and the Spells follow predefined casting order. For targeted casting, always use the Spellcaster mode."/>
+	<string id="str_key_name.TORGameKeyContext_CareerAbilityCast"
+	        text="{=str_tor_str_key_name.TORGameKeyContext_CareerAbilityCast}Career Ability"/>
+	<string id="str_key_description.TORGameKeyContext_CareerAbilityCast"
+	        text="{=str_tor_str_key_description.TORGameKeyContext_CareerAbilityCast}Starting Career ability, like the mistform for the Vampire Counts, or Knightly strike of the Grailknight"/>
+					
+</strings>

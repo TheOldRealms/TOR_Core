@@ -12,6 +12,7 @@ using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
+using TOR_Core.BattleMechanics.Reinforcements;
 using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.BattleMechanics.StatusEffect;
@@ -73,12 +74,12 @@ namespace TOR_Core.Models
                     SkillHelper.AddSkillBonusForCharacter(TORSkillEffects.GunAccuracy, character, ref accuracy);
                     if (agent.HasMount)
                     {
-                        PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.MountedHeritage, character, true, ref accuracy);
+                        PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.MountedHeritage, character, true, ref accuracy, BattleEnvironment.Any);
                     }
 
                     if (weapon.WeaponClass == WeaponClass.Musket)
                     {
-                        PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.DeadEye, captain, ref accuracy);
+                        PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.DeadEye, captain, ref accuracy, agent.CurrentBattleEnvironment);
                     }
                 }
             }
@@ -106,7 +107,7 @@ namespace TOR_Core.Models
 
         public override void InitializeMissionEquipment(Agent agent)
         {
-            if (agent.Origin is SummonedAgentOrigin) return;
+            if (agent.Origin is SummonedAgentOrigin || agent.Origin is GreenKnightAgentOrigin) return;
             base.InitializeMissionEquipment(agent);
             if (agent.IsHuman)
             {
@@ -135,7 +136,7 @@ namespace TOR_Core.Models
                             {
                                 ExplainedNumber ammoCount = new ExplainedNumber(missionWeapon.Amount);
 
-                                if (agent.IsMainAgent && !missionWeapon.Item.IsSpecialAmmunitionItem())
+                                if (agent.IsMainAgent && !missionWeapon.Item.IsBlunderbussCompatible())
                                 {
                                     CareerHelper.ApplyBasicCareerPassives(character.HeroObject, ref ammoCount, PassiveEffectType.Ammo, false);
                                 }
@@ -144,7 +145,7 @@ namespace TOR_Core.Models
                                 {
                                     var choices = character.HeroObject.GetAllCareerChoices();
 
-                                    if (missionWeapon.Item.IsSpecialAmmunitionItem() && choices.Contains("MercenaryLordPassive1"))
+                                    if (missionWeapon.Item.IsBlunderbussCompatible() && choices.Contains("MercenaryLordPassive1"))
                                     {
                                         var choice = TORCareerChoices.GetChoice("MercenaryLordPassive1");
                                         if (choice != null)
@@ -223,7 +224,7 @@ namespace TOR_Core.Models
 
         public override int GetEffectiveSkill(Agent agent, SkillObject skill)
         {
-            if (agent.Origin is SummonedAgentOrigin) return agent.Character.GetSkillValue(skill);
+            if (agent.Origin is SummonedAgentOrigin || agent.Origin is GreenKnightAgentOrigin) return agent.Character.GetSkillValue(skill);
             var result = base.GetEffectiveSkill(agent, skill);
             ExplainedNumber effectiveSkill = new ExplainedNumber(result, false, null);
 
@@ -274,14 +275,16 @@ namespace TOR_Core.Models
 
         public override string GetMissionDebugInfoForAgent(Agent agent)
         {
-            if (agent.Origin is SummonedAgentOrigin) return "Impossible to debug summoned units. Base implementation has invalid IAgentOriginBase to PartyBase type cast.";
+            if (agent.Origin is SummonedAgentOrigin || agent.Origin is GreenKnightAgentOrigin) return "unit without a party. base debug path expects a PartyBase origin.";
             else return base.GetMissionDebugInfoForAgent(agent);
         }
 
         public override float GetEffectiveMaxHealth(Agent agent)
         {
             if (agent == null) return 0;
-            if (agent.Origin is SummonedAgentOrigin)
+            if (agent.Origin is SummonedAgentOrigin || agent.Origin is GreenKnightAgentOrigin)
+                return agent.BaseHealthLimit;
+            if (agent.RiderAgent?.Origin is GreenKnightAgentOrigin)
                 return agent.BaseHealthLimit;
 
             var explainedNumber = new ExplainedNumber(base.GetEffectiveMaxHealth(agent));
@@ -381,21 +384,17 @@ namespace TOR_Core.Models
                         agentDrivenProperties.SwingSpeedMultiplier *= 1.5f;
                     }
 
+                    if (character.IsCygor() || (agent.Monster != null && agent.Monster.StringId == "cygor"))
+                    {
+                        agentDrivenProperties.SwingSpeedMultiplier *= 1.18f;
+                        agentDrivenProperties.ThrustOrRangedReadySpeedMultiplier *= 1.10f;
+                    }
+
                     if (character.IsDwarf())
                     {
+                        //Sly : if the CanRide flag is never changed during a mission, can this riding flag instead be set in an InitializeAgentStats override?
+                        //No, when an agent controller is set to player, the CanRide flag is readded. There are potential other cases.
                         agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanRide);
-
-                        if (character.IsIronbreakerUnit())
-                        {
-                            if (!character.StringId.Contains("trollhammer"))
-                            {
-                                agentDrivenProperties.WeaponInaccuracy += 0.095f;
-                            }
-                            else
-                            {
-                                agentDrivenProperties.WeaponInaccuracy += 0.02f;
-                            }
-                        }
 
                         agentDrivenProperties.MaxSpeedMultiplier *= DwarfSpeedModificatior;
                     }
@@ -600,7 +599,7 @@ namespace TOR_Core.Models
                 agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent, swingSpeedMultiplier);
             }
             else
-            {
+            {//Sly: does this account for effects that grant bonuses which are not derived from status effects? Would this cause banner effects to disappear? Enchantments? Other?
                 agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent, 1f); //I have the feeling this call is not necessary given the many updates that are done per frame.
             }
 
@@ -657,7 +656,7 @@ namespace TOR_Core.Models
 
                 if (applyRunAndGun)
                 {
-                    PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.RunAndGun, character, true, ref movementAccuracyPenalty);
+                    PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.RunAndGun, character, true, ref movementAccuracyPenalty, agent.CurrentBattleEnvironment);
                 }
 
                 if (applyMainAgentCareerPassives)
@@ -753,7 +752,7 @@ namespace TOR_Core.Models
 
             if (agent.Character is CharacterObject character)
             {
-                PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Athletics.FormFittingArmor, character, true, ref armorEncumbrance);
+                PerkHelper.AddPerkBonusForCharacter(DefaultPerks.Athletics.FormFittingArmor, character, true, ref armorEncumbrance, agent.CurrentBattleEnvironment);
 
                 if (character.IsHero && character.HeroObject == Hero.MainHero)
                 {

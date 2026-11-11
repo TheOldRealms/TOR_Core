@@ -1,6 +1,7 @@
 ﻿using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade.View.MissionViews;
 
@@ -52,10 +53,10 @@ namespace TOR_Core.BattleMechanics
                  * 2 - Left
                  * 3 - Right
                  */
-                if (Input.IsGameKeyDown(0)) forwardMovement -= 1f;
-                if (Input.IsGameKeyDown(1)) forwardMovement += 1f;
-                if (Input.IsGameKeyDown(2)) sideMovement -= 1f;
-                if (Input.IsGameKeyDown(3)) sideMovement += 1f;
+                if (Input.IsGameKeyDown((int)GameKeyDefinition.Up)) forwardMovement -= 1f;
+                if (Input.IsGameKeyDown((int)GameKeyDefinition.Down)) forwardMovement += 1f;
+                if (Input.IsGameKeyDown((int)GameKeyDefinition.Left)) sideMovement -= 1f;
+                if (Input.IsGameKeyDown((int)GameKeyDefinition.Right)) sideMovement += 1f;
 
                 cameraFrame.Elevate(forwardMovement * dt * _cameraSpeed);
                 cameraFrame.Strafe(sideMovement * dt * _cameraSpeed);

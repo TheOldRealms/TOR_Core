@@ -12,6 +12,7 @@ using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.Reinforcements;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
@@ -42,7 +43,35 @@ namespace TOR_Core.HarmonyPatches
                 __result = origin.OwnerParty;
                 return false;
             }
-            else return true;
+
+            if (___Agent.Origin is GreenKnightAgentOrigin)
+            {
+                __result = null;
+                return false;
+            }
+
+            return true;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(MissionCombatMechanicsHelper), "GetDefendCollisionResults")]
+        public static void CrushingCannotBeChamberBlocked(Agent attackerAgent, ref CombatCollisionResult collisionResult)
+        {
+            if (collisionResult == CombatCollisionResult.ChamberBlocked && attackerAgent.HasCrushing())
+            {
+                collisionResult = CombatCollisionResult.Parried;
+            }
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Mission), nameof(Mission.SpawnAgent))]
+        public static void GreenKnightClothingColors(AgentBuildData agentBuildData)
+        {
+            if (agentBuildData.AgentOrigin is GreenKnightAgentOrigin origin)
+            {
+                agentBuildData.ClothingColor1(origin.FactionColor);
+                agentBuildData.ClothingColor2(origin.FactionColor2);
+            }
         }
 
         [HarmonyPrefix]
@@ -224,8 +253,8 @@ namespace TOR_Core.HarmonyPatches
             
             if (Hero.MainHero != null && Hero.MainHero.HasCareer(TORCareers.Necromancer))
             {
-                // Check if any agent has the NecromancerChampion attribute
-                if (__instance.Agents.AnyQ(x => x.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION)))
+                // Check for a summoned necromancer champion
+                if (__instance.Agents.AnyQ(x => x.Character.IsNecromancerChampion()))
                 {
                     // Prevent the retreat by returning false (skips the original method)
                     InformationManager.DisplayMessage(new InformationMessage("Cannot retreat while your Champion is still active.", Colors.Red));

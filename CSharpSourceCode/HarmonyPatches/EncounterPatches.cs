@@ -1,8 +1,10 @@
 ﻿using HarmonyLib;
+﻿using Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
@@ -14,6 +16,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.BattleMechanics.Reinforcements;
 using TOR_Core.CampaignMechanics.PostBattleLoot;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CampaignMechanics.UniqueSpawns;
@@ -302,6 +305,94 @@ namespace TOR_Core.HarmonyPatches
             }
         }
 
+        // green knight troops are virtual and are not included in MapEvent rosters. prevent loss detection from finalizing the battle while virtual reinforcements are still present
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(MapEvent), "CheckIfOneSideHasLost")]
+        public static bool CheckIfOneSideHasLostPrefix(MapEvent __instance, ref bool __result)
+        {
+            var greenKnightBehavior = Campaign.Current.GetCampaignBehavior<GreenKnightBehavior>();
+            if (!greenKnightBehavior.TryGetActiveVirtualSide(__instance, out var virtualSide))
+                return true;
+
+            var defendersAlive = __instance.DefenderSide.RecalculateMemberCountOfSide() > 0 || virtualSide == BattleSideEnum.Defender;
+            var attackersAlive = __instance.AttackerSide.RecalculateMemberCountOfSide() > 0 || virtualSide == BattleSideEnum.Attacker;
+
+            if (defendersAlive && attackersAlive)
+            {
+                if (__instance.BattleState == BattleState.AttackerVictory || __instance.BattleState == BattleState.DefenderVictory)
+                    __instance.SetOverrideWinner(BattleSideEnum.None);
+
+                __result = false;
+                return false;
+            }
+
+            if (defendersAlive != attackersAlive)
+            {
+                __instance.SetOverrideWinner(defendersAlive ? BattleSideEnum.Defender : BattleSideEnum.Attacker);
+                __result = true;
+                return false;
+            }
+
+            return true;
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(MapEvent), nameof(MapEvent.HasTroopsOnBothSides))]
+        public static void HasTroopsOnBothSidesPostfix(MapEvent __instance, ref bool __result)
+        {
+            if (__result)
+                return;
+
+            var greenKnightBehavior = Campaign.Current.GetCampaignBehavior<GreenKnightBehavior>();
+            if (!greenKnightBehavior.TryGetActiveVirtualSide(__instance, out var virtualSide))
+                return;
+
+            __result = __instance.GetMapEventSide(virtualSide.GetOppositeSide()).RecalculateMemberCountOfSide() > 0;
+        }
+
+        // native hides the option to open the mission once the opponent roster is empty but the virtual force can still be present (with active troops) in this MapEvent
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(MenuHelper), nameof(MenuHelper.EncounterAttackCondition))]
+        public static void EncounterAttackConditionPostfix(ref bool __result)
+        {
+            if (__result)
+                return;
+
+            var mapEvent = MapEvent.PlayerMapEvent;
+            var greenKnightBehavior = Campaign.Current.GetCampaignBehavior<GreenKnightBehavior>();
+            if (mapEvent != null && greenKnightBehavior.TryGetActiveVirtualSide(mapEvent, out var virtualSide) && virtualSide == PartyBase.MainParty.OpponentSide)
+                __result = true;
+        }
+
+        // virtual rosters are not present in autoresolve. cannot send troops for AR if green knight has arrived in one of the sides to prevent retreat exploits
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(MenuHelper), nameof(MenuHelper.EncounterOrderAttackCondition))]
+        public static void EncounterOrderAttackConditionPostfix(ref bool __result)
+        {
+            if (!__result)
+                return;
+
+            var mapEvent = MapEvent.PlayerMapEvent;
+            var greenKnightBehavior = Campaign.Current.GetCampaignBehavior<GreenKnightBehavior>();
+            if (mapEvent != null && greenKnightBehavior.TryGetActiveVirtualSide(mapEvent, out _))
+                __result = false;
+        }
+
+        // capture is blocked when green knight is present (which is what native defaults to. it is oddly common in native for a supposedly unreachable path,
+        // i have a feeling there might be a few instances with the current code which will soft lock players in some cases because of this approach when gk reinforces one side but to be seen.) 
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(MenuHelper), nameof(MenuHelper.EncounterCaptureEnemyCondition))]
+        public static void EncounterCaptureEnemyConditionPostfix(ref bool __result)
+        {
+            if (!__result)
+                return;
+
+            var mapEvent = MapEvent.PlayerMapEvent;
+            var greenKnightBehavior = Campaign.Current.GetCampaignBehavior<GreenKnightBehavior>();
+            if (mapEvent != null && greenKnightBehavior.TryGetActiveVirtualSide(mapEvent, out var virtualSide) && virtualSide == PartyBase.MainParty.OpponentSide)
+                __result = false;
+        }
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(MapEvent), "CaptureDefeatedPartyMembers")]
         public static void CaptureDefeatedPartyMembersPrefix(MapEvent __instance, MBReadOnlyList<MapEventParty> defeatedParties)
@@ -330,7 +421,34 @@ namespace TOR_Core.HarmonyPatches
                 nameof(MakeDefeatedHeroFugitive),
                 new[] { typeof(Hero), typeof(bool) });
 
+            var mainPartyGetter = AccessTools.PropertyGetter(typeof(PartyBase), nameof(PartyBase.MainParty));
+            var mainPartyCalls = codes.Select((instruction, index) => new { instruction, index })
+                .Where(x => x.instruction.Calls(mainPartyGetter))
+                .ToList();
+            if (mainPartyCalls.Count != 2)
+            {
+                throw new ArgumentException("no main party found.");
+            }
+
+            var captureBranchIndex = mainPartyCalls[1].index;
+            codes.Insert(captureBranchIndex, new CodeInstruction(OpCodes.Ldarg_0));
+            codes[captureBranchIndex + 1].operand = AccessTools.Method(
+                typeof(EncounterPatches),
+                nameof(GetMainPartyForCapture),
+                new[] { typeof(MapEvent) });
+
             return codes;
+        }
+
+        private static PartyBase GetMainPartyForCapture(MapEvent mapEvent)
+        {
+            var greenKnightBehavior = Campaign.Current.GetCampaignBehavior<GreenKnightBehavior>();
+            if (!greenKnightBehavior.TryGetActiveVirtualSide(mapEvent, out var virtualSide) || mapEvent.WinningSide != virtualSide)
+                return PartyBase.MainParty;
+
+            return mapEvent.GetMapEventSide(virtualSide).Parties.Any(x => x.Party.MemberRoster.TotalManCount > 0)
+                ? PartyBase.MainParty
+                : null;
         }
 
         private static void MakeDefeatedHeroFugitive(Hero hero, bool showNotification)

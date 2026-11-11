@@ -135,7 +135,13 @@
 							</Children>
 						</Widget>
 
+            <!-- RoR: top-left of shield (existing position) -->
             <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="!Large.Height"  VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="18" MarginBottom="86" Text="RoR" IsVisible="@IsRoRSettlement" Brush="TorRoRSettlementBrush"/>
+
+            <!-- POI icons: horizontal row above the nameplate, right of RoR -->
+            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="48" SuggestedHeight="48" Brush.FontSize="48" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="70"  MarginBottom="90" Text="@Poi1Text" IsVisible="@Poi1Visible" Brush="TorRoRSettlementBrush"/>
+            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="48" SuggestedHeight="48" Brush.FontSize="48" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="120" MarginBottom="90" Text="@Poi2Text" IsVisible="@Poi2Visible" Brush="TorRoRSettlementBrush"/>
+            <RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="48" SuggestedHeight="48" Brush.FontSize="48" VerticalAlignment="Center" HorizontalAlignment="Left" MarginLeft="170" MarginBottom="90" Text="@Poi3Text" IsVisible="@Poi3Visible" Brush="TorRoRSettlementBrush"/>
 						
           </Children>
         </SettlementNameplateItemWidget>

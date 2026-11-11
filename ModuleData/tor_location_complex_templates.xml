@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Merges TOR-specific Location rows into vanilla LocationComplexTemplates.
+	The engine's XML merger matches by UniqueAttributes from the XSD:
+	<LocationComplexTemplate id="..."> and <Location id="..."> are matched by id.
+	Matching template -> merge in place; new Location id -> appended to the template.
+
+	Access rules for each tor_ location are owned by Models/TORSettlementAccessModel.cs.
+	Per-settlement scene_name_* overrides live in tor_settlements.xml.
+-->
+<LocationComplexTemplates>
+
+	<LocationComplexTemplate id="town_complex">
+		<Location
+			id="tor_wizardhall"
+			name="{=tor_poi_wizardhall.Name}Wizard Hall"
+			indoor="true"
+			max_prosperity="20"
+			ai_can_enter="CanIfHero"
+			ai_can_exit="CanAlways"
+			player_can_enter="CanIfSettlementAccessModelLetsPlayer"
+			player_can_see="CanAlways" />
+		<Location
+			id="tor_witchhunter_lodge"
+			name="{=tor_poi_witchhunter_lodge.Name}Witch Hunter Lodge"
+			indoor="true"
+			max_prosperity="20"
+			ai_can_enter="CanIfHero"
+			ai_can_exit="CanAlways"
+			player_can_enter="CanIfSettlementAccessModelLetsPlayer"
+			player_can_see="CanAlways" />
+		<Location
+			id="tor_empire_engineer_hall"
+			name="{=tor_poi_empire_engineer_hall.Name}Empire Engineer Hall"
+			indoor="true"
+			max_prosperity="20"
+			ai_can_enter="CanIfHero"
+			ai_can_exit="CanAlways"
+			player_can_enter="CanIfSettlementAccessModelLetsPlayer"
+			player_can_see="CanAlways" />
+		<Location
+			id="tor_vampire_crypt"
+			name="{=tor_poi_vampire_crypt.Name}Vampire Crypt"
+			indoor="true"
+			max_prosperity="20"
+			ai_can_enter="CanIfHero"
+			ai_can_exit="CanAlways"
+			player_can_enter="CanIfSettlementAccessModelLetsPlayer"
+			player_can_see="CanAlways" />
+		<Location
+			id="tor_spellsingers_grove"
+			name="{=tor_poi_spellsingers_grove.Name}Spellsingers' Grove"
+			indoor="true"
+			max_prosperity="20"
+			ai_can_enter="CanIfHero"
+			ai_can_exit="CanAlways"
+			player_can_enter="CanIfSettlementAccessModelLetsPlayer"
+			player_can_see="CanAlways" />
+		<Location
+			id="tor_shaman_hut"
+			name="{=tor_poi_shaman_hut.Name}Shaman Hut"
+			indoor="true"
+			max_prosperity="20"
+			ai_can_enter="CanIfHero"
+			ai_can_exit="CanAlways"
+			player_can_enter="CanIfSettlementAccessModelLetsPlayer"
+			player_can_see="CanAlways" />
+		<Location
+			id="tor_runehall"
+			name="{=tor_poi_runehall.Name}Runehall"
+			indoor="true"
+			max_prosperity="20"
+			ai_can_enter="CanIfHero"
+			ai_can_exit="CanAlways"
+			player_can_enter="CanIfSettlementAccessModelLetsPlayer"
+			player_can_see="CanAlways" />
+		<Location
+			id="tor_dwarf_engineer_hall"
+			name="{=tor_poi_dwarf_engineer_hall.Name}Engineers' Hall"
+			indoor="true"
+			max_prosperity="20"
+			ai_can_enter="CanIfHero"
+			ai_can_exit="CanAlways"
+			player_can_enter="CanIfSettlementAccessModelLetsPlayer"
+			player_can_see="CanAlways" />
+	</LocationComplexTemplate>
+
+	<!-- Castle-level POI locations. Add Locations here when a POI subclass opts
+	     into castle attachment via MenuAttachments. Scene overrides live in
+	     tor_settlements.xml per castle (settlements_add_location MCP tool). -->
+	<LocationComplexTemplate id="castle_complex">
+		<Location
+			id="tor_vampire_crypt"
+			name="{=tor_poi_vampire_crypt.Name}Vampire Crypt"
+			indoor="true"
+			max_prosperity="20"
+			ai_can_enter="CanIfHero"
+			ai_can_exit="CanAlways"
+			player_can_enter="CanIfSettlementAccessModelLetsPlayer"
+			player_can_see="CanAlways" />
+	</LocationComplexTemplate>
+
+	<LocationComplexTemplate id="shrine_lady_complex">
+		<Location
+			id="tor_bretonnia_forest_trainer_shrine"
+			name="{=tor_poi_bretonnia_forest_trainer_shrine.Name}Forest Shrine of the Lady"
+			indoor="false"
+			max_prosperity="20"
+			ai_can_enter="CanIfHero"
+			ai_can_exit="CanAlways"
+			player_can_enter="CanIfSettlementAccessModelLetsPlayer"
+			player_can_see="CanAlways" />
+	</LocationComplexTemplate>
+
+</LocationComplexTemplates>

@@ -113,7 +113,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
     protected override void InitializeKeyStones()
     {
-        _runelorddRoot.Initialize(CareerID, "The runes are cast! By the Wisdom of Thungni, reduce the cooldown of the next 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. Also applies 15% extra damage dealt as 'Magic' to your weapon for 15s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)", null, true,
+        _runelorddRoot.Initialize(CareerID, "The runes are cast! By the Wisdom of Thungni, reduce the remaining cooldown of one 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. Also applies 15% extra damage dealt as 'Magic' to your weapon for 15s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()

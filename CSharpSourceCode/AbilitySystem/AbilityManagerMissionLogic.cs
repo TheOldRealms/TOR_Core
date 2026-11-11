@@ -33,7 +33,6 @@ namespace TOR_Core.AbilitySystem
 {
     public class AbilityManagerMissionLogic : MissionLogic
     {
-        private DefaultBattleMissionAgentSpawnLogic _missionAgentSpawnLogic;
         private bool _shouldSheathWeapon;
         private bool _shouldWieldWeapon;
         private bool _shouldPlayIdleCastStanceAnim;
@@ -45,6 +44,8 @@ namespace TOR_Core.AbilitySystem
         private EquipmentIndex _offHand = EquipmentIndex.None;
         private AbilityComponent _abilityComponent;
         private GameKeyContext _keyContext = HotKeyManager.GetCategory("CombatHotKeyCategory");
+        private Dictionary<int, InputKey> _storedKeyboardKeys = [];
+        private Dictionary<int, InputKey> _storedControllerKeys = [];
         private static ActionIndexCache? _idleAnimation;
         private ParticleSystem[] _psys = null;
         private GameEntity[] _castStanceParticleEntities = null;
@@ -54,9 +55,14 @@ namespace TOR_Core.AbilitySystem
         private SummonedCombatant _attackerSummoningCombatant;
 
         private Dictionary<Team, int> _artillerySlots = [];
-        private GameKey _quickCastMenuKey;
-        private GameKey _quickCast;
-        private GameKey _specialMoveKey;
+        private IInputContext MissionInputContext => Mission.InputManager;
+        private bool _inputCategoryAdded;
+        private int _abilitySelectionMenuId = (int)TorKeyMap.AbilitySelectionMenu;
+        private int _quickCastId = (int)TorKeyMap.QuickCast;
+        private int _careerAbilityId = (int)TorKeyMap.CareerAbilityCast;
+        private int _confirmCastId = (int)GameKeyDefinition.Attack;
+        private int _cancelCastId = (int)GameKeyDefinition.Defend;
+        private string _showScoreboardId = "HoldShow";
         private AbilityHUDMissionView _abilityView;
         private int _timeRequestID = 1338;
         private float _lastActivationDeltaTime;
@@ -99,6 +105,7 @@ namespace TOR_Core.AbilitySystem
                 return _idleAnimation.Value;
             }
         }
+
         public AbilityModeState CurrentState => _currentState;
 
         public bool ShouldSuppressCombatActions => CurrentState == AbilityModeState.Targeting || CurrentState == AbilityModeState.Casting || _disableCombatActionsAfterCast;
@@ -107,6 +114,18 @@ namespace TOR_Core.AbilitySystem
         {
             base.OnBehaviorInitialize();
             Mission.OnItemPickUp += OnItemPickup;
+        }
+
+        public override void OnMissionTick(float dt)
+        {
+            base.OnMissionTick(dt);
+
+            //Sly : couldn't find a better event to put this in that would have it be checked just once.
+            if (!_inputCategoryAdded && MissionInputContext !=  null)
+            {
+                (MissionInputContext as InputContext).RegisterHotKeyCategory(HotKeyManager.GetCategory(nameof(TORGameKeyContext)));
+                _inputCategoryAdded = true;
+            }
         }
 
         public void InitHideOutBossFight()
@@ -121,17 +140,8 @@ namespace TOR_Core.AbilitySystem
             OnInitHideOutBossFight = null;
             _abilityView = Mission.Current.GetMissionBehavior<AbilityHUDMissionView>();
             Game.Current.EventManager.RegisterEvent(new Action<MissionPlayerToggledOrderViewEvent>(OnPlayerToggleOrder));
-            _quickCastMenuKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey((int)TorKeyMap.QuickCastSelectionMenu);
-            _quickCast = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey((int)TorKeyMap.QuickCast);
-            _specialMoveKey = HotKeyManager.GetCategory(nameof(TORGameKeyContext)).GetGameKey((int)TorKeyMap.CareerAbilityCast);
-
-            TORSummonHelper.ResetInitialSpawnedTroopCount();
-
-            _missionAgentSpawnLogic = Mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>();
-            if (_missionAgentSpawnLogic != null)
-            {
-                _missionAgentSpawnLogic.OnInitialTroopsSpawned += OnInitialTroopsSpawned;
-            }
+            
+            _keyContext.GetGameKey((int)GameKeyDefinition.ViewCharacter).ControllerKey.ChangeKey(InputKey.Invalid); // Unbind ViewCharacter Controller key
         }
 
         public override void OnPreMissionTick(float dt)
@@ -158,6 +168,7 @@ namespace TOR_Core.AbilitySystem
                     if (!_hasAppliedStartingPerkEffects)
                     {
                         AddPerkEffectsToStartingWindsOfMagic();//Sly : this tick occurs when deployment begins which ends up allowing things like prayer cooldowns to count down while formations are being rearranged.
+                        //OnDeploymentFinished may be useful for applying one-time effects.
                         _hasAppliedStartingPerkEffects = true;
                     }
 
@@ -179,23 +190,7 @@ namespace TOR_Core.AbilitySystem
                 }
             }
         }
-        public override void OnClearScene()
-        {
-            if (_missionAgentSpawnLogic != null)
-            {
-                _missionAgentSpawnLogic.OnInitialTroopsSpawned -= OnInitialTroopsSpawned;
-                _missionAgentSpawnLogic = null;
-            }
 
-            TORSummonHelper.ResetInitialSpawnedTroopCount();
-
-            base.OnClearScene();
-        }
-
-        private void OnInitialTroopsSpawned(BattleSideEnum battleSide, int numberOfTroopsSpawned)
-        {
-            TORSummonHelper.RegisterInitialTroopsSpawned(numberOfTroopsSpawned);
-        }
         private void CacheWieldedItemsForRestore()
         {
             if (_shouldWieldWeapon)
@@ -253,7 +248,7 @@ namespace TOR_Core.AbilitySystem
 
         private void EnableQuickSelectionMenuMode()
         {
-            _currentState = AbilityModeState.QuickMenuSelection;
+            _currentState = AbilityModeState.AbilitySelectionMenu;
             _abilityView.MissionScreen?.RegisterRadialMenuObject(_abilityView);
             CacheWieldedItemsForRestore();
             ChangeKeyBindings();
@@ -404,12 +399,12 @@ namespace TOR_Core.AbilitySystem
 
         private void HandleInput(float dt)
         {
-            if (Input.IsKeyDown(InputKey.Tab))
+            if (MissionInputContext.IsHotKeyPressed(_showScoreboardId))
                 return;
-
-            if (_currentState == AbilityModeState.QuickMenuSelection || _currentState == AbilityModeState.Targeting)
+            
+            if (_currentState == AbilityModeState.AbilitySelectionMenu || _currentState == AbilityModeState.Targeting)
             {
-                if (Input.IsKeyPressed(InputKey.RightMouseButton))
+                if (MissionInputContext.IsGameKeyPressed(_cancelCastId))
                 {
                     DisableAbilityMode(false, null);
                     return;
@@ -420,15 +415,15 @@ namespace TOR_Core.AbilitySystem
             {
                 case AbilityModeState.Off:
                     {
-                        if (Input.IsKeyPressed(InputKey.RightMouseButton) || Input.IsKeyPressed(InputKey.LeftMouseButton))
+                        if (MissionInputContext.IsGameKeyPressed(_confirmCastId) || MissionInputContext.IsGameKeyPressed(_cancelCastId))
                         {
                             if (_abilityComponent.CareerAbility != null && _abilityComponent.CareerAbility.IsActive) _abilityComponent.OnInterrupt();
                         }
-                        else if (Input.IsKeyPressed(_quickCastMenuKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCastMenuKey.ControllerKey.InputKey))
+                        else if (MissionInputContext.IsGameKeyPressed(_abilitySelectionMenuId))
                         {
                             EnableQuickSelectionMenuMode();
                         }
-                        else if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
+                        else if (MissionInputContext.IsGameKeyPressed(_careerAbilityId))
                         {
                             TextObject disabledReason = new("Error Casting Career Ability");
                             if (_abilityComponent.CareerAbility != null && !_abilityComponent.CareerAbility.IsDisabled(Agent.Main, out disabledReason) && IsSniperScopeDisabled())
@@ -458,7 +453,7 @@ namespace TOR_Core.AbilitySystem
                                 _abilityView.DisplayErrorMessage(disabledReason.ToString());
                             }
                         }
-                        else if (Input.IsKeyPressed(_quickCast.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCast.ControllerKey.InputKey))
+                        else if (MissionInputContext.IsGameKeyPressed(_quickCastId))
                         {
                             if (_abilityComponent.CurrentAbility != null && !_abilityComponent.CurrentAbility.IsDisabled(Agent.Main, out _) && IsSniperScopeDisabled())
                             {
@@ -472,9 +467,9 @@ namespace TOR_Core.AbilitySystem
                         }
                     }
                     break;
-                case AbilityModeState.QuickMenuSelection:
+                case AbilityModeState.AbilitySelectionMenu:
                     {
-                        if (!Input.IsKeyDown(_quickCastMenuKey.KeyboardKey.InputKey) && !Input.IsKeyDown(_quickCastMenuKey.ControllerKey.InputKey))
+                        if (!MissionInputContext.IsGameKeyDown(_abilitySelectionMenuId))
                         {
                             if (_abilityComponent.CurrentAbility.IsDisabled(Agent.Main, out TextObject failureReason))
                             {
@@ -505,7 +500,7 @@ namespace TOR_Core.AbilitySystem
                     break;
                 case AbilityModeState.Targeting:
                     {
-                        if (Input.IsKeyPressed(InputKey.LeftMouseButton))
+                        if (MissionInputContext.IsGameKeyPressed(_confirmCastId))
                         {
                             bool flag = _abilityComponent.CurrentAbility.Crosshair == null ||
                                         !_abilityComponent.CurrentAbility.Crosshair.IsVisible ||
@@ -525,7 +520,7 @@ namespace TOR_Core.AbilitySystem
                                 }
                             }
                         }
-                        else if (Input.IsKeyPressed(_quickCastMenuKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_quickCastMenuKey.ControllerKey.InputKey))
+                        else if (MissionInputContext.IsGameKeyPressed(_abilitySelectionMenuId))
                         {
                             EnableQuickSelectionMenuMode();
                         }
@@ -622,28 +617,43 @@ namespace TOR_Core.AbilitySystem
             return 0;
         }
 
-        public override void OnTeamDeployed(Team team)
+        //Sly : OnBattleSideSpawned or AfterAddTeam may be relevant replacements if issues are found.
+        public override void OnDeploymentFinished()
         {
-            InitTeam(team);
+            InitArtilleryCounts();
+            InitSummoningCombatants();
         }
 
-        private void InitTeam(Team team)
+        private void InitArtilleryCounts()
         {
-            if (team is null || team.TeamAgents.IsEmpty())
-                return;
-
-            if (team.Side == BattleSideEnum.Attacker && _attackerSummoningCombatant == null)
+            foreach (var team in Mission.Teams)
             {
-                var culture = team.Leader == null ? team.TeamAgents.FirstOrDefault().Character.Culture : team.Leader.Character.Culture;
-                _attackerSummoningCombatant = new SummonedCombatant(team, culture);
+                RefreshMaxArtilleryCountForTeam(team);
             }
-            else if (team.Side == BattleSideEnum.Defender && _defenderSummoningCombatant == null)
-            {
-                var culture = team.Leader == null ? team.TeamAgents.FirstOrDefault().Character.Culture : team.Leader.Character.Culture;
-                _defenderSummoningCombatant = new SummonedCombatant(team, culture);
-            }
+        }
 
-            RefreshMaxArtilleryCountForTeam(team);
+        private void InitSummoningCombatants()
+        {
+            foreach (var team in Mission.Teams)
+            {
+                if (team.TeamAgents.IsEmpty()) continue;
+
+                var leader = team.Leader ?? team.TeamAgents.FirstOrDefault();
+
+                if (team.Side == BattleSideEnum.Attacker && _attackerSummoningCombatant == null)
+                {
+                    var culture = leader.Character.Culture;
+                    // BasicBattleAgentOrigin has no BattleCombatant. agent resolves the mission environment and fallback
+                    var battleEnvironment = leader.CurrentBattleEnvironment;
+                    _attackerSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
+                }
+                else if (team.Side == BattleSideEnum.Defender && _defenderSummoningCombatant == null)
+                {
+                    var culture = leader.Character.Culture;
+                    var battleEnvironment = leader.CurrentBattleEnvironment;
+                    _defenderSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
+                }
+            }
         }
 
         private void RefreshMaxArtilleryCountForTeam(Team team)
@@ -701,13 +711,6 @@ namespace TOR_Core.AbilitySystem
             base.OnEndMission();
             ClampExceedingWinds();
 
-            if (_missionAgentSpawnLogic != null)
-            {
-                _missionAgentSpawnLogic.OnInitialTroopsSpawned -= OnInitialTroopsSpawned;
-                _missionAgentSpawnLogic = null;
-            }
-
-            TORSummonHelper.ResetInitialSpawnedTroopCount();
             BindWeaponKeys();
             Mission.OnItemPickUp -= OnItemPickup;
 
@@ -731,16 +734,15 @@ namespace TOR_Core.AbilitySystem
 
         public override void OnAgentCreated(Agent agent)
         {
-            if (IsCastingMission())
+            if (!Mission.IsAbilityOrHitScriptMission()) return;
+            
+            if (agent.IsAbilityUser())
             {
-                if (agent.IsAbilityUser())
+                var abilityComponent = new AbilityComponent(agent);
+                agent.AddComponent(abilityComponent);
+                if (agent.IsAIControlled && abilityComponent.KnownAbilitySystem.Count > 0)
                 {
-                    var abilityComponent = new AbilityComponent(agent);
-                    agent.AddComponent(abilityComponent);
-                    if (agent.IsAIControlled && abilityComponent.KnownAbilitySystem.Count > 0)
-                    {
-                        agent.AddComponent(new WizardAIComponent(agent));
-                    }
+                    agent.AddComponent(new WizardAIComponent(agent));
                 }
             }
         }
@@ -789,27 +791,14 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        public bool IsCastingMission()
-        {
-            // Custom combat missions that don't set CombatType properly
-            if (Mission.GetMissionBehavior<TrollCaveMissionController>() != null)
-                return true;
-
-            return !Mission.IsFriendlyMission &&
-                   Mission.CombatType != Mission.MissionCombatType.ArenaCombat &&
-                   Mission.CombatType != Mission.MissionCombatType.NoCombat;
-        }
-
         private bool IsAbilityModeAvailableForMainAgent()
         {
             return Agent.Main != null &&
                    Agent.Main.IsActive() &&
                    !ScreenManager.GetMouseVisibility() &&
-                   IsCastingMission() &&
+                   Mission.IsAbilityOrHitScriptMission() &&
                    !Mission.IsInPhotoMode &&
                    !Mission.IsOrderMenuOpen &&
-                   (Mission.Mode == MissionMode.Battle ||
-                    Mission.Mode == MissionMode.Stealth) &&
                    _abilityComponent != null &&
                    _abilityComponent.CurrentAbility != null;
         }
@@ -866,6 +855,9 @@ namespace TOR_Core.AbilitySystem
             _castStanceParticleAgent = null;
         }
 
+        /// <remarks>
+        /// Sly : There's probably a more elegant way to do this by imposing a filter to the ability mission screen which determines how inputs are interpreted while it's active.
+        /// </remarks>
         private void ChangeKeyBindings()
         {
             if (_abilityComponent != null && _currentState != AbilityModeState.Off)
@@ -880,22 +872,59 @@ namespace TOR_Core.AbilitySystem
 
         private void BindWeaponKeys()
         {
-            _keyContext.GetGameKey(11).KeyboardKey.ChangeKey(InputKey.MouseScrollUp);
-            _keyContext.GetGameKey(12).KeyboardKey.ChangeKey(InputKey.MouseScrollDown);
-            _keyContext.GetGameKey(18).KeyboardKey.ChangeKey(InputKey.Numpad1);
-            _keyContext.GetGameKey(19).KeyboardKey.ChangeKey(InputKey.Numpad2);
-            _keyContext.GetGameKey(20).KeyboardKey.ChangeKey(InputKey.Numpad3);
-            _keyContext.GetGameKey(21).KeyboardKey.ChangeKey(InputKey.Numpad4);
+            RebindBothKeys((int)GameKeyDefinition.EquipPrimaryWeapon);
+            RebindBothKeys((int)GameKeyDefinition.EquipSecondaryWeapon);
+            RebindBothKeys((int)GameKeyDefinition.EquipWeapon1);
+            RebindBothKeys((int)GameKeyDefinition.EquipWeapon2);
+            RebindBothKeys((int)GameKeyDefinition.EquipWeapon3);
+            RebindBothKeys((int)GameKeyDefinition.EquipWeapon4);
+            _storedKeyboardKeys.Clear();
+            _storedControllerKeys.Clear();
+        }
+
+        private void RebindBothKeys(int gameKey)
+        {
+            if (_keyContext.GetGameKey(gameKey).KeyboardKey?.InputKey == InputKey.Invalid)
+            {
+                if (_storedKeyboardKeys.TryGetValue(gameKey, out InputKey keyboardInputKey))
+                _keyContext.GetGameKey(gameKey).KeyboardKey.ChangeKey(keyboardInputKey);
+            }
+
+            if (_keyContext.GetGameKey(gameKey).ControllerKey?.InputKey == InputKey.Invalid)
+            {
+                if (_storedControllerKeys.TryGetValue(gameKey, out InputKey controllerInputKey))
+                _keyContext.GetGameKey(gameKey).ControllerKey.ChangeKey(controllerInputKey);
+            }
         }
 
         private void UnbindWeaponKeys()
         {
-            _keyContext.GetGameKey(11).KeyboardKey.ChangeKey(InputKey.Invalid);
-            _keyContext.GetGameKey(12).KeyboardKey.ChangeKey(InputKey.Invalid);
-            _keyContext.GetGameKey(18).KeyboardKey.ChangeKey(InputKey.Invalid);
-            _keyContext.GetGameKey(19).KeyboardKey.ChangeKey(InputKey.Invalid);
-            _keyContext.GetGameKey(20).KeyboardKey.ChangeKey(InputKey.Invalid);
-            _keyContext.GetGameKey(21).KeyboardKey.ChangeKey(InputKey.Invalid);
+            StoreAndUnbindBothKeys((int)GameKeyDefinition.EquipPrimaryWeapon);
+            StoreAndUnbindBothKeys((int)GameKeyDefinition.EquipSecondaryWeapon);
+            StoreAndUnbindBothKeys((int)GameKeyDefinition.EquipWeapon1);
+            StoreAndUnbindBothKeys((int)GameKeyDefinition.EquipWeapon2);
+            StoreAndUnbindBothKeys((int)GameKeyDefinition.EquipWeapon3);
+            StoreAndUnbindBothKeys((int)GameKeyDefinition.EquipWeapon4);
+        }
+
+        private void StoreAndUnbindBothKeys(int gameKey)
+        {
+            var key = _keyContext.GetGameKey(gameKey);
+            // An action can have no binding object for one input device.
+            if (key.KeyboardKey != null)
+            {
+                // Selection and targeting can both unbind before a single restore.
+                if (!_storedKeyboardKeys.ContainsKey(gameKey))
+                    _storedKeyboardKeys.Add(gameKey, key.KeyboardKey.InputKey);
+                key.KeyboardKey.ChangeKey(InputKey.Invalid);
+            }
+
+            if (key.ControllerKey != null)
+            {
+                if (!_storedControllerKeys.ContainsKey(gameKey))
+                    _storedControllerKeys.Add(gameKey, key.ControllerKey.InputKey);
+                key.ControllerKey.ChangeKey(InputKey.Invalid);
+            }
         }
 
         private void OnItemPickup(Agent agent, SpawnedItemEntity item)
@@ -912,8 +941,7 @@ namespace TOR_Core.AbilitySystem
             if (_attackerSummoningCombatant == null
                 || _defenderSummoningCombatant == null)
             {
-                InitTeam(Mission.Current.Teams.Attacker);
-                InitTeam(Mission.Current.Teams.Defender);
+                InitSummoningCombatants();
             }
 
             var combatantToReturn =
@@ -971,11 +999,10 @@ namespace TOR_Core.AbilitySystem
 
         private void AddPerkEffectsToStartingWindsOfMagic()
         {
-            if (!IsCastingMission())
-                return;
+            if (!Mission.IsAbilityOrHitScriptMission()) return;
 
-            if (Game.Current?.GameType is not Campaign)
-                return;
+            if (Game.Current?.GameType is not Campaign) return;
+
             var mainParty = Campaign.Current.MainParty;
 
             var currentPlayerMapEvent = MapEvent.PlayerMapEvent;
@@ -1044,7 +1071,7 @@ namespace TOR_Core.AbilitySystem
         {
             if (@event.IsOrderEnabled)
             {
-                if (_currentState == AbilityModeState.Targeting || _currentState == AbilityModeState.QuickMenuSelection)
+                if (_currentState == AbilityModeState.Targeting || _currentState == AbilityModeState.AbilitySelectionMenu)
                 {
                     DisableAbilityMode(false, null);
                 }
@@ -2312,7 +2339,7 @@ namespace TOR_Core.AbilitySystem
     public enum AbilityModeState
     {
         Off,
-        QuickMenuSelection,
+        AbilitySelectionMenu,
         Targeting,
         Casting
     }

@@ -548,7 +548,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // NEW 1.3.1: Just update character data, visual updates handled by GetPlayerMenuCharacterArgs
             CharacterObject.PlayerCharacter.Race = race;
         }
-
+        
+        /// <remarks>
+        /// Sly : as of 1.5, stealth equipment can be defined directly in the equipment sets for heroes. See https://forums.taleworlds.com/index.php?threads/e1-6-0-v1-5-0-modding-changes.443896/.
+        /// This likely means the career selection options can have a stealth equipment set added to them and it gets set here with the battle and civilian sets to have the player spawn with it.
+        /// </remarks>
         private void UpdateEquipment(CharacterCreationManager manager, CharacterCreationOption selectedOption, bool isFemale)
         {
             MBEquipmentRoster roster = null;
@@ -580,7 +584,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 CharacterObject.PlayerCharacter.UpdatePlayerCharacterBodyProperties(bodyProperties, CharacterObject.PlayerCharacter.Race, isFemale);
                 character.IsFemale = isFemale;
 
-                CharacterObject.PlayerCharacter.Equipment.FillFrom(roster.DefaultEquipment);
+                CharacterObject.PlayerCharacter.Equipment.FillFrom(equipment);
                 CharacterObject.PlayerCharacter.FirstCivilianEquipment.FillFrom(equipment);
             }
         }
@@ -1397,6 +1401,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 "<BodyProperties version='4' age='25' weight='0.4182' build='0.1898' key='0005000F00000280F77664884754DCBAFF9E566095F09F1F74414A49893F81FE0F77760307A7B7A536000000000000000000000000000007000000003CFC0000'/>";
             string default_orc =
                 "<BodyProperties version='4' age='25' weight='0.3657' build='0.2978'  key='0005100000CC00005C12429361532471D9656C584FA9A47724B588AAD7B53C5DDACBA6130657877845CCBADBCCBCBABC0000000000000016000000002ECC0000'/>";
+            string default_ungor =
+                "<BodyProperties version='4' age='25' weight='0.5' build='0.5' key='00005C0F800000C26C86666777666666777777777766666666555566666A666600456603045565650000000000000000000000000000000000000000000D3000'/>";
             string keyValue;
 
             var culture = CharacterObject.PlayerCharacter.Culture;
@@ -1432,6 +1438,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     keyValue = default_orc;
                     CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("orc");
                     break;
+                case TORConstants.Cultures.BEASTMEN:
+                    keyValue = default_ungor;
+                    CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("gor2");
+                    break;
                 default:
                     keyValue = default_empire;
                     CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
@@ -1444,10 +1454,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     CharacterObject.PlayerCharacter.IsFemale);
             }
 
+            //FirstBattleEquipment for heroes returns the same property as Equipment
             CharacterObject.PlayerCharacter.Equipment.FillFrom(culture.DefaultBattleEquipmentRoster.DefaultEquipment);
             CharacterObject.PlayerCharacter.FirstCivilianEquipment.FillFrom(culture.DefaultCivilianEquipmentRoster.DefaultEquipment);
-            var emptyEquipment = new Equipment();
-            CharacterObject.PlayerCharacter.FirstStealthEquipment.FillFrom(emptyEquipment, false);
+
+            //Sly : this can likely be removed with 1.5+ onward if stealth sets are defined for careers/races and this set would be overwritten during other stages.
+            var emptyEquipment = new Equipment(Equipment.EquipmentType.Stealth);
+            CharacterObject.PlayerCharacter.FirstStealthEquipment.FillFrom(emptyEquipment);
         }
         
     }

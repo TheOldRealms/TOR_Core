@@ -3,9 +3,15 @@
 
   <!-- Character Creation -->
   <string id="tor_cc_review_description" text="{=str_tor_cc_review_description}The Old World awaits you, with all of its glory and horrors. This is your character. Continue if you are ready, or go back and make changes." />
+
+  <!-- Character Creation - Stage 1 -->
   <string id="tor_cc_growth_summary" text="{=str_tor_cc_growth_summary}Growth" />
   <string id="tor_cc_profession_fallback_text" text="{=str_tor_cc_profession_fallback_text}Your starting profession..." />
+
+  <!-- Character Creation - Stage 2 -->
   <string id="tor_cc_growth_fallback_text" text="{=str_tor_cc_growth_fallback_text}Teenage years..." />
+
+  <!-- Character Creation - Stage 3 -->
   <string id="tor_cc_profession_summary" text="{=str_tor_cc_profession_summary}Profession" />
 
   <!-- Character Creation - specialization -->
@@ -35,7 +41,27 @@
   <string id="tor_cc_growth.aserai" text="{=str_tor_cc_growth_aserai}After joining a tribe your biggest achievement was…" />
   <string id="tor_cc_profession.aserai" text="{=str_tor_cc_profession_aserai}Before leaving the tribe, you were one of the…" />
 
-  <!-- Cheats -->
+  <!-- Character Creation - Beastmen -->
+  <string id="tor_cc_beastmen_ungor_label" text="{=str_tor_cc_beastmen_ungor_label}Ungor Whelp" />
+  <string id="tor_cc_beastmen_ungor_text" text="{=str_tor_cc_beastmen_ungor_text}You were spawned into the herd as an Ungor — small horns, weaker limbs, meant to run and fetch rather than fight and die. What you lack in muscle you learned to make up for with a keen eye and a fleet hoof." />
+  <string id="tor_cc_beastmen_gor_label" text="{=str_tor_cc_beastmen_gor_label}Gor Spawn" />
+  <string id="tor_cc_beastmen_gor_text" text="{=str_tor_cc_beastmen_gor_text}You were spawned strong — full horns, thick hide, the mark of a Gor. You ate the weakest of your brood as calves and grew large on their bones. The herd's warriors watched you and nodded." />
+  <string id="tor_cc_beastmen_touched_label" text="{=str_tor_cc_beastmen_touched_label}Bray-Touched" />
+  <string id="tor_cc_beastmen_touched_text" text="{=str_tor_cc_beastmen_touched_text}You were born under a bad moon, marked with the twin-tailed comet on your hide. The Bray-Shamans of the herd watched you closely — the dark gods had touched you, though for good or ill none could yet say." />
+  <string id="tor_cc_beastmen_stalker_label" text="{=str_tor_cc_beastmen_stalker_label}Forest Stalker" />
+  <string id="tor_cc_beastmen_stalker_text" text="{=str_tor_cc_beastmen_stalker_text}You hunted alone in the deep Drakwald — human trappers, lost travellers, sleeping foresters. You learned to move without sound and to strike from cover. The herd left you to your work because you never returned empty-hoofed." />
+  <string id="tor_cc_beastmen_raider_label" text="{=str_tor_cc_beastmen_raider_label}Warherd Raider" />
+  <string id="tor_cc_beastmen_raider_text" text="{=str_tor_cc_beastmen_raider_text}You ran with the warherds — down through the Drakwald and out onto Middenland's farms and hamlets. You burned houses, dragged screaming humans back to the herdstone, and returned drenched in blood and glory." />
+  <string id="tor_cc_beastmen_herdstone_label" text="{=str_tor_cc_beastmen_herdstone_label}Herdstone Watcher" />
+  <string id="tor_cc_beastmen_herdstone_text" text="{=str_tor_cc_beastmen_herdstone_text}You served at the great herdstone under a Bray-Shaman's hoof — tending the sacred fires, dragging bound sacrifices to the altar, whispering to the shadows that gathered between the standing stones. You saw things not meant for mortal eyes." />
+  <string id="tor_cc_beastmen_fetcher_label" text="{=str_tor_cc_beastmen_fetcher_label}Ungor Fetcher" />
+  <string id="tor_cc_beastmen_fetcher_text" text="{=str_tor_cc_beastmen_fetcher_text}You have taken your place among the Ungor Fetchers — the herd's skirmishers and scouts. Small horns, sharp eyes, and the fastest hooves in the warherd. You harry the enemy from cover while the Gors close in for the kill." />
+  <string id="tor_cc_beastmen_warrior_label" text="{=str_tor_cc_beastmen_warrior_label}Gor of the Great Herd" />
+  <string id="tor_cc_beastmen_warrior_text" text="{=str_tor_cc_beastmen_warrior_text}You are a Gor now — the herd's frontline, its cleaving axe. You are what humans see when the forest breaks open at nightfall and comes charging out of the treeline: horned, bloody, and unstoppable." />
+  <string id="tor_cc_beastmen_wargor_label" text="{=str_tor_cc_beastmen_wargor_label}Wargor Champion" />
+  <string id="tor_cc_beastmen_wargor_text" text="{=str_tor_cc_beastmen_wargor_text}You have risen above the common Gor — you are a Wargor, a chosen champion of the herd. Junior lieutenants of the Beastlord, Wargors bellow orders across the battle and split human skulls with heavy axes. One day, perhaps, the horns of a full Beastlord will crown you." />
+
+  <!-- Cheat -->
   <string id="tor_cheat_party_inspect" text="{=str_tor_cheat_party_inspect}[CHEAT] Let me inspect your party" />
 
   <!-- UI -->
@@ -53,7 +79,8 @@
   <string id="tor_race_name.wraith" text="{=str_tor_race_name_wraith}Wraith" />
   <string id="tor_race_name.spirit_host" text="{=str_tor_race_name_spirit_host}Spirit Host" />
   <string id="tor_race_name.troll" text="{=str_tor_race_name_troll}Troll" />
-	
+
+  <!-- Oathgold -->
   <string id="tor_party_size_desc.FriendOfUndead" text="{=str_tor_party_size_desc_friendofundead}Friend of undead" />
   <string id="tor_party_size_desc.CaravanOfDeath" text="{=str_tor_party_size_desc_caravanofdeath}Caravan of death" />
   <string id="tor_party_size_desc.SettlementVampireCounts" text="{=str_tor_party_size_desc_settlementvampirecounts}Settlement of Vampire Counts" />
@@ -61,6 +88,35 @@
   <string id="tor_party_size_desc.Greenskins" text="{=str_tor_party_size_desc_greenskins}Greenskins" />
   <string id="tor_party_size_desc.DwarfPenalty" text="{=str_tor_party_size_desc_dwarfpenalty}Dwarf cultural penalty" />
   <string id="tor_party_size_desc.WoodelfPenalty" text="{=str_tor_party_size_desc_woodelfpenalty}Woodelf cultural penalty" />
+  <string id="tor_dw_guildmaster_hub_oath_gold.runesmith" text="{=str_tor_dw_guildmaster_hub_oath_gold_runesmith}Can I support the Rhunki?" />
+  <string id="tor_dw_guildmaster_oath_gold.runesmith" text="{=str_tor_dw_guildmaster_oath_gold_runesmith}Donations to the Burudin are always welcome." />
+  <string id="tor_dw_guildmaster_oath_gold_accept_p.runesmith" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_runesmith}I wish to donate Oathgold." />
+  <string id="tor_dw_guildmaster_oath_gold_decline_p.runesmith" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_runesmith}Forgive me, I changed my mind." />
+  <string id="tor_dw_guildmaster_oath_gold_end.runesmith" text="{=str_tor_dw_guildmaster_oath_gold_end_runesmith}Thank you for your contribution." />
+  <string id="tor_dw_guildmaster_hub_oath_gold.engineer" text="{=str_tor_dw_guildmaster_hub_oath_gold_engineer}Can I support the Engineers Guild in some way?" />
+  <string id="tor_dw_guildmaster_oath_gold.engineer" text="{=str_tor_dw_guildmaster_oath_gold_engineer}Donations to the Guild are always welcome." />
+  <string id="tor_dw_guildmaster_oath_gold_accept_p.engineer" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_engineer}I wish to donate Oathgold." />
+  <string id="tor_dw_guildmaster_oath_gold_decline_p.engineer" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_engineer}I changed my mind, Master Engineer." />
+  <string id="tor_dw_guildmaster_oath_gold_end.engineer" text="{=str_tor_dw_guildmaster_oath_gold_end_engineer}Thank you for your contribution." />
+  <string id="tor_dw_guildmaster_hub_oath_gold.miner" text="{=str_tor_dw_guildmaster_hub_oath_gold_miner}Can I support the Miners Guild in some way?" />
+  <string id="tor_dw_guildmaster_oath_gold.miner" text="{=str_tor_dw_guildmaster_oath_gold_miner}Donations to the Guild are always welcome." />
+  <string id="tor_dw_guildmaster_oath_gold_accept_p.miner" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_miner}I wish to donate Oathgold." />
+  <string id="tor_dw_guildmaster_oath_gold_decline_p.miner" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_miner}Forgive me, I changed my mind." />
+  <string id="tor_dw_guildmaster_oath_gold_end.miner" text="{=str_tor_dw_guildmaster_oath_gold_end_miner}This is appreciated." />
+  <string id="tor_dw_guildmaster_hub_oath_gold.brewer" text="{=str_tor_dw_guildmaster_hub_oath_gold_brewer}Can I support the Brewers Guild in some way?" />
+  <string id="tor_dw_guildmaster_oath_gold.brewer" text="{=str_tor_dw_guildmaster_oath_gold_brewer}Donations to the guild are always appreciated." />
+  <string id="tor_dw_guildmaster_oath_gold_accept_p.brewer" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_brewer}I wish to donate Oathgold." />
+  <string id="tor_dw_guildmaster_oath_gold_decline_p.brewer" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_brewer}I changed my mind, Master Brewer." />
+  <string id="tor_dw_guildmaster_oath_gold_end.brewer" text="{=str_tor_dw_guildmaster_oath_gold_end_brewer}Thank ye for yer contribution." />
+  <string id="tor_dw_guildmaster_hub_oath_gold.warrior" text="{=str_tor_dw_guildmaster_hub_oath_gold_warrior}Can I support the Warriors Guild?" />
+  <string id="tor_dw_guildmaster_oath_gold.warrior" text="{=str_tor_dw_guildmaster_oath_gold_warrior}Donations to the guild are always welcome." />
+  <string id="tor_dw_guildmaster_oath_gold_accept_p.warrior" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_warrior}I wish to donate Oathgold." />
+  <string id="tor_dw_guildmaster_oath_gold_decline_p.warrior" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_warrior}Forgive me, Master Longbeard. I changed my mind." />
+  <string id="tor_dw_guildmaster_oath_gold_end.warrior" text="{=str_tor_dw_guildmaster_oath_gold_end_warrior}The Guild appreciates any contribution." />
+  <string id="tor_dw_guildmaster_gemcutter_hub_spend_troops_p" text="{=str_tor_dw_guildmaster_gemcutter_hub_spend_troops_p}Can I provide you with troops to guard mining shafts?" />
+  <string id="tor_dw_guildmaster_expedition_hub_found_artefacts_p" text="{=str_tor_dw_guildmaster_expedition_hub_found_artefacts_p}You find something of interest for me?" />
+  <string id="tor_dw_guildmaster_expedition_hub_launch_expedition_p" text="{=str_tor_dw_guildmaster_expedition_hub_launch_expedition_p}Can I launch an expedition?" />
+  <string id="tor_dw_guildmaster_gemcutter_hub_quit_p" text="{=str_tor_dw_guildmaster_gemcutter_hub_quit_p}That will be all, Master Boki." />
 
   <!-- Skills - Skill labels -->
   <string id="tor_skill_faith" text="{=str_tor_skill_faith}Faith" />
@@ -265,20 +321,22 @@
   <string id="tor_ability_effect_type.Bombardment" text="{=str_tor_ability_effect_type_bombardment}Bombardment" />
   <string id="tor_ability_effect_type.Blast" text="{=str_tor_ability_effect_type_blast}Blast" />
   <string id="tor_ability_effect_type.ArtilleryPlacement" text="{=str_tor_ability_effect_type_artillery_placement}Artillery Placement" />
-  <string id="tor_ability_effect_type.ItemPlacement" text="{=str_tor_ability_effect_type_item_placement}Item Placement" />
   <string id="tor_ability_effect_type.TimeWarpEffect" text="{=str_tor_ability_effect_type_time_warp}Time Warp" />
   <string id="tor_ability_effect_type.CareerAbilityEffect" text="{=str_tor_ability_effect_type_career_ability}Career Ability" />
   <string id="tor_ability_effect_type.TacticalReposition" text="{=str_tor_ability_effect_type_tactical_reposition}Tactical Reposition" />
 
-  <!-- SpellBook UI -->
+  <!-- Ability Types -->
+  <string id="tor_ability_effect_type.ItemPlacement" text="{=str_tor_ability_effect_type_item_placement}Item Placement" />
+
+  <!-- Spellbook -->
   <string id="tor_spellbook_title" text="{=str_tor_spellbook_title}SpellBook" />
-  <string id="tor_spellcasting_stat" text="{=str_tor_spellcasting_stat}Spellcasting Stats" />
-  <string id="tor_spell_stat_unfamiliar" text="{=str_tor_spell_stat_unfamiliar}Unfamiliar Lore" />
   <string id="tor_spellbook_button" text="{=str_tor_spellbook_button}Done" />
-  <string id="tor_spell_learn_label" text="{=str_tor_spell_learn_label}Choose Lore" />
-  <string id="tor_spell_learn_descr" text="{=str_tor_spell_learn_descr}Choose a lore to specialize in." />
-  <string id="tor_choose_companion_spellcaster_label" text="{=str_tor_choose_companion_spellcaster_label}Choose Companion" />
-  <string id="tor_choose_companion_spellcaster_descr" text="{=str_tor_choose_companion_spellcaster_descr}Which companion should become a Spellcaster?" />
+
+  <!-- Spellcasting -->
+  <string id="tor_spellcasting_stat" text="{=str_tor_spellcasting_stat}Spellcasting Stats" />
+
+  <!-- Spells - Stats -->
+  <string id="tor_spell_stat_unfamiliar" text="{=str_tor_spell_stat_unfamiliar}Unfamiliar Lore" />
   <string id="tor_spell_stat_name_fire" text="{=str_tor_spell_stat_name_fire}Lore of Fire" />
   <string id="tor_spell_stat_name_light" text="{=str_tor_spell_stat_name_light}Lore of Light" />
   <string id="tor_spell_stat_name_minor" text="{=str_tor_spell_stat_name_minor}Minor Magic" />
@@ -291,6 +349,16 @@
   <string id="tor_spell_stat_name_high" text="{=str_tor_spell_stat_name_high}High Magic" />
   <string id="tor_spell_stat_name_dark" text="{=str_tor_spell_stat_name_dark}Dark Magic" />
   <string id="tor_spell_stat_name_big_waaagh" text="{=str_tor_spell_stat_name_big_waaagh}Da Big WAAAGH!" />
+
+  <!-- Spells -->
+  <string id="tor_spell_learn_label" text="{=str_tor_spell_learn_label}Choose Lore" />
+  <string id="tor_spell_learn_descr" text="{=str_tor_spell_learn_descr}Choose a lore to specialize in." />
+
+  <!-- Choose -->
+  <string id="tor_choose_companion_spellcaster_label" text="{=str_tor_choose_companion_spellcaster_label}Choose Companion" />
+  <string id="tor_choose_companion_spellcaster_descr" text="{=str_tor_choose_companion_spellcaster_descr}Which companion should become a Spellcaster?" />
+
+  <!-- SpellBook UI -->
   <string id="tor_spellbook_hero_name" text="{=str_tor_spellbook_hero_name}Hero name: " />
   <string id="tor_spellbook_casting_level" text="{=str_tor_spellbook_casting_level}Spell casting level: " />
   <string id="tor_spellbook_max_wom" text="{=str_tor_spellbook_max_wom}Maximum Winds of Magic: " />
@@ -322,16 +390,24 @@
   <string id="tor_ui_winds_of_magic_recharge_rate" text="{=str_tor_ui_winds_of_magic_recharge_rate}Recharge Rate:" />
   <string id="tor_menu_enter_game" text="{=str_tor_menu_enter_game}Enter the Old World" />
   <string id="tor_menu_shader_cache" text="{=str_tor_menu_shader_cache}Build Shader Cache" />
-  <string id="tor_menu_disabled_during_installation" text="{=str_tor_disabled_during_installation}Disabled during installation." />
   <string id="tor_item_hint_use" text="{=str_tor_item_hint_use}Use Item" />
   <string id="tor_religion_follower_none" text="{=str_tor_religion_follower_none}Not a follower of any religion" />
   <string id="tor_bloodkiss_player_notification" text="{=str_tor_bloodkiss_player_notification}Player recieves the Blood Kiss." />
+
+  <!-- Menu -->
+  <string id="tor_menu_disabled_during_installation" text="{=str_tor_disabled_during_installation}Disabled during installation." />
+  <string id="tor_menu_shader_cache_popup_message" text="{=str_tor_menu_shader_cache_popup_message}This will load a scene with all the unique troops and NPCs present in our mod. The purpose of this is to compile the local shader cache on your PC.{newline}When you see the deployment phase, the process is complete!{newline}{newline}THIS WILL TAKE A LONG TIME!!!{newline}Our users report anything between 20 and 70 minutes.{newline}{newline}This ensures that you won't need to compile the shaders individually during normal gameplay as it can cause issues with stability.{newline}This is meant to reduce the number of UI portrait generation crashes and also eliminate the long battle loading times during normal gameplay." />
+  <string id="tor_menu_shader_cache_popup_title" text="{=str_tor_menu_shader_cache_popup_title}Important warning" />
+  <string id="tor_menu_shader_cache_popup_confirm" text="{=str_tor_menu_shader_cache_popup_confirm}Do it" />
+  <string id="tor_menu_shader_cache_popup_reject" text="{=str_tor_menu_shader_cache_popup_reject}Not now" />
+
+  <!-- WindsOfMagic -->
   <string id="tor_windsOfMagic_base" text="{=str_tor_windsOfMagic_base}Base" />
 
-  <!-- Main Menu Popups -->
+  <!-- Main -->
   <string id="tor_main_menu_welcome_title" text="{=str_tor_main_menu_welcome_title}Welcome to The Old Realms!" />
-  <string id="tor_main_menu_welcome_description" text="{=str_tor_main_menu_welcome_description}This is a total conversion mod for Mount and Blade II: Bannerlord. We have put a lot of work and new features into this mod for you to enjoy, so much that we needed a manual to let you know about it all. Don't hesitate to reach out to our discord if you have issues installing or running the mod." />
-  <string id="tor_main_menu_manual_button" text="{=str_tor_main_menu_manual_button}Read Manual" />
+  <string id="tor_main_menu_welcome_description" text="{=str_tor_main_menu_welcome_description}This is a total conversion mod for Mount and Blade II: Bannerlord. We have put a lot of work and new features into this mod for you to enjoy. Visit the TOR Wiki to learn about the mod and its features. Don't hesitate to reach out to our discord if you have issues installing or running the mod." />
+  <string id="tor_main_menu_manual_button" text="{=str_tor_main_menu_manual_button}TOR Wiki" />
   <string id="tor_main_menu_discord_button" text="{=str_tor_main_menu_discord_button}Join Discord" />
   <string id="tor_main_menu_welcome_continue_button" text="{=str_tor_main_menu_welcome_continue_button}Continue" />
   <string id="tor_main_menu_welcome_disable_button" text="{=str_tor_main_menu_welcome_disable_button}Don't Show Again" />
@@ -346,10 +422,6 @@
   <string id="tor_main_menu_recommended_settings_description" text="{=str_tor_main_menu_recommended_settings_description}Applying these settings may cause Bannerlord to rebuild shaders. Performance can be lower or uneven until shaders finish rebuilding, or until you rebuild shaders manually. Apply recommended settings now?" />
   <string id="tor_main_menu_recommended_settings_apply_button" text="{=str_tor_main_menu_recommended_settings_apply_button}Apply" />
   <string id="tor_main_menu_recommended_settings_cancel_button" text="{=str_tor_main_menu_recommended_settings_cancel_button}Cancel" />
-  <string id="tor_menu_shader_cache_popup_message" text="{=str_tor_menu_shader_cache_popup_message}This will load a scene with all the unique troops and NPCs present in our mod. The purpose of this is to compile the local shader cache on your PC.{newline}When you see the deployment phase, the process is complete!{newline}{newline}THIS WILL TAKE A LONG TIME!!!{newline}Our users report anything between 20 and 70 minutes.{newline}{newline}This ensures that you won't need to compile the shaders individually during normal gameplay as it can cause issues with stability.{newline}This is meant to reduce the number of UI portrait generation crashes and also eliminate the long battle loading times during normal gameplay." />
-  <string id="tor_menu_shader_cache_popup_title" text="{=str_tor_menu_shader_cache_popup_title}Important warning" />
-  <string id="tor_menu_shader_cache_popup_confirm" text="{=str_tor_menu_shader_cache_popup_confirm}Do it" />
-  <string id="tor_menu_shader_cache_popup_reject" text="{=str_tor_menu_shader_cache_popup_reject}Not now" />
 
   <!-- Ink Stories -->
   <string id="tor_ink_end" text="{=str_tor_ink_end}End" />
@@ -362,6 +434,8 @@
 
   <!-- Event Notifications -->
   <string id="tor_chaos_rebellion_text" text="{=str_tor_chaos_rebellion_text}Chaos corruption reaches a critical level in {SETTLEMENT_NAME} and rebellion breaks out." />
+
+  <!-- Unique -->
   <string id="tor_unique_orion_spawned_message" text="{=str_tor_unique_orion_spawned_message}orion spawns" />
   <string id="tor_unique_orion_returned_message" text="{=str_tor_unique_orion_returned_message}orion returns" />
   <string id="tor_unique_orion_retreat_started_message" text="{=str_tor_unique_orion_retreat_started_message}Winter cold orion back" />
@@ -369,7 +443,7 @@
   <string id="tor_unique_orion_behavior_hunting" text="{=str_tor_unique_orion_behavior_hunting}Hunting for {TARGET_HERO}." />
   <string id="tor_unique_orion_behavior_protecting" text="{=str_tor_unique_orion_behavior_protecting}Protecting {TARGET_SETTLEMENT}." />
   <string id="tor_unique_orion_behavior_keeping_watch" text="{=str_tor_unique_orion_behavior_keeping_watch}Keeping watch of {TARGET_SETTLEMENT}." />
-  <string id="tor_unique_orion_behavior_ravaging" text="{=str_tor_unique_orion_behavior_ravaging}Ravaging {TARGET_SETTLEMENT}." /> <!--patrolling near enemy settlements -->
+  <string id="tor_unique_orion_behavior_ravaging" text="{=str_tor_unique_orion_behavior_ravaging}Ravaging {TARGET_SETTLEMENT}." />
   <string id="tor_unique_orion_behavior_raiding" text="{=str_tor_unique_orion_behavior_raiding}Raiding {TARGET_SETTLEMENT}." />
   <string id="tor_unique_orion_hunt_player" text="{=str_tor_unique_orion_hunt_player}Your scouts report the God-King of the forest is following your trail, seeking vengeance for his slain kin." />
   <string id="tor_unique_orion_to_player_land" text="{=str_tor_unique_orion_to_player_land}Your scouts report The God-King of the Forest is coming towards your lands" />
@@ -428,6 +502,8 @@
   <string id="tor_generic_isRaided" text="{=str_tor_generic_isRaided}{SETTLEMENT} is raided" />
   <string id="tor_generic_isLooted" text="{=str_tor_generic_isLooted}{SETTLEMENT} is destroyed" />
   <string id="tor_generic_isCaptured" text="{=str_tor_generic_isCaptured}{SETTLEMENT} is captured" />
+
+  <!-- Generic -->
   <string id="tor_generic_companionLimitReached" text="{=str_tor_generic_companionLimitReached}Clan companion limit reached" />
   <string id="tor_generic_equipmentWeight" text="{=str_tor_generic_equipmentWeight}Equipment weight" />
 
@@ -448,7 +524,6 @@
   <string id="tor_unit_rune_active_display" text="{=str_tor_unit_rune_active_display}{RUNE_NAME}{newline}{RUNE_DESC}" />
   <string id="tor_unit_rune_warning_text" text="{=str_tor_unit_rune_warning_text}WARNING : Current {CURRENT_RUNE} will be removed without compensation unless selected again." />
   <string id="tor_unit_rune_unknown_runes_text" text="{=str_tor_unit_rune_unknown_runes_text}You do not know the required runes:{UNKNOWN_RUNES_LIST}" />
-  <string id="tor_unit_rune_requirement_unmet" text="{=str_tor_unit_rune_requirement_unmet}{RUNE_DESCRIPTION}{newline}{newline}{RUNE_REQUIREMENT}" />
   <string id="tor_unit_rune_title" text="{=str_tor_unit_rune_title}Unit Runes" />
   <string id="tor_unit_rune_description" text="{=str_tor_unit_rune_description}Choose a rune to add to the equipment of your units. {RUNE_WARNING_TEXT}" />
   <string id="tor_unit_rune_not_for_heroes_text" text="{=str_tor_unit_rune_not_for_heroes_text}Doesn't work for heroes" />
@@ -473,6 +548,9 @@
   <string id="tor_unit_rune_grungni_desc" text="{=str_tor_unit_rune_grungni_desc}Reduce incoming ranged damage by 75%." />
   <string id="tor_unit_rune_grimnir_name" text="{=str_tor_unit_rune_grimnir_name}Master Rune of Grimnir" />
   <string id="tor_unit_rune_grimnir_desc" text="{=str_tor_unit_rune_grimnir_desc}20% extra attack speed, 35% extra physical and fire damage." />
+
+  <!-- Unit -->
+  <string id="tor_unit_rune_requirement_unmet" text="{=str_tor_unit_rune_requirement_unmet}{RUNE_DESCRIPTION}{newline}{newline}{RUNE_REQUIREMENT}" />
 
   <!-- Greenskin Mechanics -->
   <string id="tor_greenskin_appetite" text="{=str_tor_greenskin_appetite}Greenskin appetite" />
@@ -499,18 +577,13 @@
   <string id="tor_greenskin_teef_tribute_text" text="{=str_tor_greenskin_teef_tribute_text}Teef Tribute" />
   <string id="tor_hideout_greenskin_no_sneak" text="{=str_tor_hideout_greenskin_no_sneak}You are too clumsy to sneak in undetected." />
   <string id="tor_hideout_greenskin_no_wait" text="{=str_tor_hideout_greenskin_no_wait}You are too clumsy to sneak in undetected. Why even wait?" />
+
+  <!-- Greenskins -->
   <string id="tor_greenskin_shaman_player" text="{=str_tor_greenskin_shaman_player}Greenskin shaman" />
   <string id="tor_greenskin_shaman_companion" text="{=str_tor_greenskin_shaman_companion}Greenskin shaman companionn" />
 
-  <!-- Character Stats Bonuses -->
+  <!-- Stats -->
   <string id="tor_stats_additional_health_text" text="{=str_tor_stats_additional_health_text}Additional Health" />
-  <string id="tor_vampire_bonus" text="{=str_tor_vampire_bonus}Vampire bonus" />
-  <string id="tor_vampire_nighttime_bonus" text="{=str_tor_vampire_nighttime_bonus}Vampire nighttime bonus" />
-  <string id="tor_stats_tier1_text" text="{=str_tor_stats_tier1_text}Tier1" />
-  <string id="tor_stats_tier2_text" text="{=str_tor_stats_tier2_text}Tier2" />
-  <string id="tor_stats_tier3_text" text="{=str_tor_stats_tier3_text}Tier3" />
-  <string id="tor_stats_tier4_text" text="{=str_tor_stats_tier4_text}Tier4" />
-  <string id="tor_stats_vampire_body_text" text="{=str_tor_stats_vampire_body_text}Vampire body" />
   <string id="tor_stats_dwarf_bonus_text" text="{=str_tor_stats_dwarf_bonus_text}Dwarf bonus" />
   <string id="tor_stats_goblin_bonus_text" text="{=str_tor_stats_goblin_bonus_text}Goblin frailty" />
   <string id="tor_stats_orc_bonus_text" text="{=str_tor_stats_orc_bonus_text}Orc bonus" />
@@ -523,6 +596,15 @@
   <string id="tor_stats_gift_of_nurgle_text" text="{=str_tor_stats_gift_of_nurgle_text}Gift of Nurgle" />
   <string id="tor_stats_oak_of_ages_text" text="{=str_tor_stats_oak_of_ages_text}Oak of Ages" />
   <string id="tor_stats_perks_text" text="{=str_tor_stats_perks_text}Perks" />
+
+  <!-- Character Stats Bonuses -->
+  <string id="tor_vampire_bonus" text="{=str_tor_vampire_bonus}Vampire bonus" />
+  <string id="tor_vampire_nighttime_bonus" text="{=str_tor_vampire_nighttime_bonus}Vampire nighttime bonus" />
+  <string id="tor_stats_tier1_text" text="{=str_tor_stats_tier1_text}Tier1" />
+  <string id="tor_stats_tier2_text" text="{=str_tor_stats_tier2_text}Tier2" />
+  <string id="tor_stats_tier3_text" text="{=str_tor_stats_tier3_text}Tier3" />
+  <string id="tor_stats_tier4_text" text="{=str_tor_stats_tier4_text}Tier4" />
+  <string id="tor_stats_vampire_body_text" text="{=str_tor_stats_vampire_body_text}Vampire body" />
 
   <!-- Healing & Other Bonuses -->
   <string id="tor_healing_shallya_seal_text" text="{=str_tor_healing_shallya_seal_text}Shallya Seal" />
@@ -694,15 +776,14 @@
   <string id="tor_enchantmentshop_restriction.Thrown" text="{=str_tor_enchantmentshop_restriction_Thrown}Applies to thrown weapons" />
   <string id="tor_enchantmentshop_restriction.Invalid" text="{=str_tor_enchantmentshop_restriction_Invalid}" />
 
-  <!-- Enchantment Shop - blueprint hints -->
+  <!-- Enchantmentshop -->
   <string id="tor_enchantmentshop_blueprint_hint" text="{=str_tor_enchantmentshop_blueprint_hint}{TRAIT_EFFECT}{newline}{COMPLETE_COST}{newline}{VALIDTYPE_RESTRICTION}" />
   <string id="tor_enchantmentshop_blueprint_hint_notice" text="{=str_tor_enchantmentshop_blueprint_hint_notice}{TRAIT_EFFECT}{newline}{newline}{REQUIREMENT_TEXT}{newline}{newline}{COMPLETE_COST}" />
   <string id="tor_enchantmentshop_blueprint_cost" text="{=str_tor_enchantmentshop_blueprint_cost}{GOLD_VALUE}{GOLD_ICON}, {CR_VALUE}{CUSTOMRESOURCE}" />
-
-  <!-- Enchantment Shop - insufficient funds hints -->
   <string id="tor_enchantmentshop_insufficient_both" text="{=str_tor_enchantmentshop_insufficient_both}Not enough {CUSTOMRESOURCE} and {GOLD_ICON}." />
   <string id="tor_enchantmentshop_insufficient_customresource" text="{=str_tor_enchantmentshop_insufficient_customresource}Not enough {CUSTOMRESOURCE}." />
   <string id="tor_enchantmentshop_insufficient_gold" text="{=str_tor_enchantmentshop_insufficient_gold}Not enough {GOLD_ICON}." />
+  <string id="tor_enchantmentshop_future_requirement" text="{=str_tor_enchantmentshop_future_requirement}You can learn this now, but cannot enchant with it yet. {REQUIREMENT}" />
 
   <!-- Enchanting UI Messages -->
   <string id="tor_enchanting_title_text" text="{=str_tor_enchanting_title_text}Enchanting" />
@@ -712,27 +793,36 @@
   <string id="tor_enchanting_enter_name_text" text="{=str_tor_enchanting_enter_name_text}Enter name for your enchanted item" />
   <string id="tor_enchanting_failed_text" text="{=str_tor_enchanting_failed_text}Enchanting failed." />
   <string id="tor_enchanting_success_text" text="{=str_tor_enchanting_success_text}Enchanting successful. Item was added to inventory." />
+  <string id="tor_enchant_prompt_donate_items.title" text="{=str_tor_enchant_prompt_donate_items_title}Donate items" />
+  <string id="tor_enchant_prompt_donate_items.text" text="{=str_tor_enchant_prompt_donate_items_text}Select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. " />
+
+  <!-- Enchantment -->
   <string id="tor_enchantment_learned_text" text="{=str_tor_enchantment_learned_text}{ENCHANTMENT_NAME} has been learnt." />
   <string id="tor_enchantment_already_learned_text" text="{=str_tor_enchantment_already_learned_text}You have already learned this enchantment." />
   <string id="tor_enchantment_manuscript_useless_text" text="{=str_tor_enchantment_manuscript_useless_text}The manuscript is of no use for you." />
+
+  <!-- Enchanting -->
   <string id="tor_enchanting_items_header" text="{=str_tor_enchanting_items_header}Items" />
   <string id="tor_enchanting_traits_header" text="{=str_tor_enchanting_traits_header}Enchantments" />
   <string id="tor_enchanting_enchant_button" text="{=str_tor_enchanting_enchant_button}Enchant" />
-  <string id="tor_enchant_trait_hint_requirement" text="{=str_tor_enchant_trait_hint_requirement}{DESCRIPTION}{newline}{newline}{REQUIREMENT}" />
-  <string id="tor_gained_resource_notification_text" text="{=str_tor_gained_resource_notification_text}Gained {AMOUNT}{RESOURCE_ICON}" />
-  <string id="tor_gained_items_notification_text" text="{=str_tor_gained_items_notification_text}Gained {ITEMS}" />
-  <string id="tor_gained_item_amount_text" text="{=str_tor_gained_item_amount_text}{AMOUNT} {ITEM_NAME}" />
-  <string id="tor_enchant_prompt_donate_items.title" text="{=str_tor_enchant_prompt_donate_items_title}Donate items" />
-  <string id="tor_enchant_prompt_donate_items.text" text="{=str_tor_enchant_prompt_donate_items_text}Select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. " />
-  <string id="tor_enchant_prompt_disintegrate.title" text="{=str_tor_enchant_prompt_disintegrate_title}Disenchant items" />
-  <string id="tor_enchant_prompt_disintegrate.text" text="{=str_tor_enchant_prompt_disintegrate_text}Select the items you want to disenchant. Their ingredients will be returned to you." />
-  <string id="tor_enchant_no_description" text="{=str_tor_enchant_no_description}No description available." />
   <string id="tor_enchanting_title" text="{=str_tor_enchanting_title}Enchanting" />
-  <string id="tor_runesmithing_title" text="{=str_tor_runesmithing_title}Runesmithing" />
   <string id="tor_enchanting_requires_skill" text="{=str_tor_enchanting_requires_skill}Requires {SKILL} {VALUE}." />
   <string id="tor_enchanting_requires_lore" text="{=str_tor_enchanting_requires_lore}Requires a character who knows the Lore of {LORE}." />
   <string id="tor_enchanting_requires_attribute" text="{=str_tor_enchanting_requires_attribute}Requires a character with {ATTRIBUTE}." />
-  <string id="tor_enchantmentshop_future_requirement" text="{=str_tor_enchantmentshop_future_requirement}You can learn this now, but cannot enchant with it yet. {REQUIREMENT}" />
+
+  <!-- Enchant -->
+  <string id="tor_enchant_trait_hint_requirement" text="{=str_tor_enchant_trait_hint_requirement}{DESCRIPTION}{newline}{newline}{REQUIREMENT}" />
+  <string id="tor_enchant_prompt_disintegrate.title" text="{=str_tor_enchant_prompt_disintegrate_title}Disenchant items" />
+  <string id="tor_enchant_prompt_disintegrate.text" text="{=str_tor_enchant_prompt_disintegrate_text}Select the items you want to disenchant. Their ingredients will be returned to you." />
+  <string id="tor_enchant_no_description" text="{=str_tor_enchant_no_description}No description available." />
+
+  <!-- Gained -->
+  <string id="tor_gained_resource_notification_text" text="{=str_tor_gained_resource_notification_text}Gained {AMOUNT}{RESOURCE_ICON}" />
+  <string id="tor_gained_items_notification_text" text="{=str_tor_gained_items_notification_text}Gained {ITEMS}" />
+  <string id="tor_gained_item_amount_text" text="{=str_tor_gained_item_amount_text}{AMOUNT} {ITEM_NAME}" />
+
+  <!-- Runesmithing -->
+  <string id="tor_runesmithing_title" text="{=str_tor_runesmithing_title}Runesmithing" />
 
   <!-- EMPIRE (empire) - Imperial Alchemist dialogs -->
   <string id="tor_enchanter_start_p.empire" text="{=str_tor_enchanter_start_p_empire}I wish to learn about enchantment." />
@@ -989,37 +1079,6 @@
   <string id="tor_dw_guildmaster_unlock_info.warrior" text="{=str_tor_dw_guildmaster_unlock_info_warrior}We are the largest of the guilds; any Dawi worth their weight in gold, be they miner or scout, underwent warrior training of some kind. If a warrior does exceptionally well, they might rise to become an Angthragor or even a Hammerer." />
   <string id="tor_dw_guildmaster_unlock_info_2.warrior" text="{=str_tor_dw_guildmaster_unlock_info_2_warrior}Apart from that, we can help reduce upgrade costs of Warriors, Longbeards, and Slayers. Our connections also help you gain more Oathgold from battles and tournaments. Lastly, we are in charge of providing extra Dawi to help patrol the Karaz Ankor." />
 
-  <!-- Oathgold -->
-  <string id="tor_dw_guildmaster_hub_oath_gold.runesmith" text="{=str_tor_dw_guildmaster_hub_oath_gold_runesmith}Can I support the Rhunki?" />
-  <string id="tor_dw_guildmaster_oath_gold.runesmith" text="{=str_tor_dw_guildmaster_oath_gold_runesmith}Donations to the Burudin are always welcome." />
-  <string id="tor_dw_guildmaster_oath_gold_accept_p.runesmith" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_runesmith}I wish to donate Oathgold." />
-  <string id="tor_dw_guildmaster_oath_gold_decline_p.runesmith" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_runesmith}Forgive me, I changed my mind." />
-  <string id="tor_dw_guildmaster_oath_gold_end.runesmith" text="{=str_tor_dw_guildmaster_oath_gold_end_runesmith}Thank you for your contribution." />
-  <string id="tor_dw_guildmaster_hub_oath_gold.engineer" text="{=str_tor_dw_guildmaster_hub_oath_gold_engineer}Can I support the Engineers Guild in some way?" />
-  <string id="tor_dw_guildmaster_oath_gold.engineer" text="{=str_tor_dw_guildmaster_oath_gold_engineer}Donations to the Guild are always welcome." />
-  <string id="tor_dw_guildmaster_oath_gold_accept_p.engineer" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_engineer}I wish to donate Oathgold." />
-  <string id="tor_dw_guildmaster_oath_gold_decline_p.engineer" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_engineer}I changed my mind, Master Engineer." />
-  <string id="tor_dw_guildmaster_oath_gold_end.engineer" text="{=str_tor_dw_guildmaster_oath_gold_end_engineer}Thank you for your contribution." />
-  <string id="tor_dw_guildmaster_hub_oath_gold.miner" text="{=str_tor_dw_guildmaster_hub_oath_gold_miner}Can I support the Miners Guild in some way?" />
-  <string id="tor_dw_guildmaster_oath_gold.miner" text="{=str_tor_dw_guildmaster_oath_gold_miner}Donations to the Guild are always welcome." />
-  <string id="tor_dw_guildmaster_oath_gold_accept_p.miner" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_miner}I wish to donate Oathgold." />
-  <string id="tor_dw_guildmaster_oath_gold_decline_p.miner" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_miner}Forgive me, I changed my mind." />
-  <string id="tor_dw_guildmaster_oath_gold_end.miner" text="{=str_tor_dw_guildmaster_oath_gold_end_miner}This is appreciated." />
-  <string id="tor_dw_guildmaster_hub_oath_gold.brewer" text="{=str_tor_dw_guildmaster_hub_oath_gold_brewer}Can I support the Brewers Guild in some way?" />
-  <string id="tor_dw_guildmaster_oath_gold.brewer" text="{=str_tor_dw_guildmaster_oath_gold_brewer}Donations to the guild are always appreciated." />
-  <string id="tor_dw_guildmaster_oath_gold_accept_p.brewer" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_brewer}I wish to donate Oathgold." />
-  <string id="tor_dw_guildmaster_oath_gold_decline_p.brewer" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_brewer}I changed my mind, Master Brewer." />
-  <string id="tor_dw_guildmaster_oath_gold_end.brewer" text="{=str_tor_dw_guildmaster_oath_gold_end_brewer}Thank ye for yer contribution." />
-  <string id="tor_dw_guildmaster_hub_oath_gold.warrior" text="{=str_tor_dw_guildmaster_hub_oath_gold_warrior}Can I support the Warriors Guild?" />
-  <string id="tor_dw_guildmaster_oath_gold.warrior" text="{=str_tor_dw_guildmaster_oath_gold_warrior}Donations to the guild are always welcome." />
-  <string id="tor_dw_guildmaster_oath_gold_accept_p.warrior" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_warrior}I wish to donate Oathgold." />
-  <string id="tor_dw_guildmaster_oath_gold_decline_p.warrior" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_warrior}Forgive me, Master Longbeard. I changed my mind." />
-  <string id="tor_dw_guildmaster_oath_gold_end.warrior" text="{=str_tor_dw_guildmaster_oath_gold_end_warrior}The Guild appreciates any contribution." />
-  <string id="tor_dw_guildmaster_gemcutter_hub_spend_troops_p" text="{=str_tor_dw_guildmaster_gemcutter_hub_spend_troops_p}Can I provide you with troops to guard mining shafts?" />
-  <string id="tor_dw_guildmaster_expedition_hub_found_artefacts_p" text="{=str_tor_dw_guildmaster_expedition_hub_found_artefacts_p}You find something of interest for me?" />
-  <string id="tor_dw_guildmaster_expedition_hub_launch_expedition_p" text="{=str_tor_dw_guildmaster_expedition_hub_launch_expedition_p}Can I launch an expedition?" />
-  <string id="tor_dw_guildmaster_gemcutter_hub_quit_p" text="{=str_tor_dw_guildmaster_gemcutter_hub_quit_p}That will be all, Master Boki." />
-
   <!-- Expeditions -->
   <string id="tor_dw_guildmaster_gemcutter_found_artefacts" text="{=str_tor_dw_guildmaster_expedition_found_artefacts}Some of the explorer teams return with treasuers or artifacts. Naturally, a portion would be shared with you." />
   <string id="tor_dw_guildmaster_expedition_found_artefacts_no_expeditions" text="{=str_tor_dw_guildmaster_expedition_found_artefacts_no_expeditions}The expeditions have not returned yet." />
@@ -1063,14 +1122,6 @@
   <string id="tor_dw_guildmaster_engineer_hub_buy_weapons_shop_p" text="{=str_tor_dw_guildmaster_engineer_hub_buy_weapons_shop_p}Can the Guild share some of its inventions?" />
   <string id="tor_dw_guildmaster_engineer_buy_weapons_shop" text="{=str_tor_dw_guildmaster_engineer_buy_weapons_shop}Very well. Here is what we were recently working on." />
   <string id="tor_dw_oathgold.time_since_visit" text="{=str_tor_dw_oathgold_time_since_visit}Time since last benefits provided" />
-  <string id="tor_dw_oathgold.time_days_value" text="{=str_tor_dw_oathgold_time_days_value}{EFFECT_VALUE} days" />
-  <string id="tor_dw_oathgold.time_value" text="{=str_tor_dw_oathgold_time_value}&gt;{EFFECT_VALUE} weeks ago" />
-  <string id="tor_dw_guild_relationship.unknown" text="{=str_tor_dw_guild_relationship_unknown}Unknown" />
-  <string id="tor_dw_guild_relationship.trustworthy" text="{=str_tor_dw_guild_relationship_trustworthy}Trustworthy" />
-  <string id="tor_dw_guild_relationship.reliable" text="{=str_tor_dw_guild_relationship_reliable}Reliable" />
-  <string id="tor_dw_guild_relationship.respected" text="{=str_tor_dw_guild_relationship_respected}Respected" />
-  <string id="tor_dw_oath_gold_spending_title_text" text="{=str_tor_dw_guild_donate_oathgold_label}Spend Oath Gold {GUILD_ICON}" />
-  <string id="tor_dw_oath_gold_spending_description_text" text="{=str_tor_dw_guild_donate_oathgold_description}Select how much Oath Gold you want to donate" />
   <string id="tor_dw_engineer_benefit.title" text="{=str_tor_dw_engineer_benefit_title}Engineers" />
   <string id="tor_dw_engineer_benefit.description" text="{=str_tor_dw_engineer_benefit_description}Access to ranged weapons and artillery, reduce gunmen and Irondrake upgrade costs." />
   <string id="tor_dw_engineer_benefit.arsenal" text="{=str_tor_dw_engineer_benefit_arsenal}Entire arsenal" />
@@ -1098,6 +1149,16 @@
   <string id="tor_dw_oathgold_warriorguild_benefit.upgradecost" text="{=str_tor_dw_oathgold_warriorguild_benefit_upgradecost}Upgrade cost reduction for Slayers, Warriors and Longbeard" />
   <string id="tor_dw_oathgold_warriorguild_benefit.oathgoldgain" text="{=str_tor_dw_oathgold_warriorguild_benefit_oathgoldgain}Battle and tournament Oathgold gain" />
   <string id="tor_dw_oathgold_warriorguild_benefit.militiabonus" text="{=str_tor_dw_oathgold_warriorguild_benefit_militiabonus}Additional Militia" />
+
+  <!-- Dw -->
+  <string id="tor_dw_oathgold.time_days_value" text="{=str_tor_dw_oathgold_time_days_value}{EFFECT_VALUE} days" />
+  <string id="tor_dw_oathgold.time_value" text="{=str_tor_dw_oathgold_time_value}&gt;{EFFECT_VALUE} weeks ago" />
+  <string id="tor_dw_guild_relationship.unknown" text="{=str_tor_dw_guild_relationship_unknown}Unknown" />
+  <string id="tor_dw_guild_relationship.trustworthy" text="{=str_tor_dw_guild_relationship_trustworthy}Trustworthy" />
+  <string id="tor_dw_guild_relationship.reliable" text="{=str_tor_dw_guild_relationship_reliable}Reliable" />
+  <string id="tor_dw_guild_relationship.respected" text="{=str_tor_dw_guild_relationship_respected}Respected" />
+  <string id="tor_dw_oath_gold_spending_title_text" text="{=str_tor_dw_guild_donate_oathgold_label}Spend Oath Gold {GUILD_ICON}" />
+  <string id="tor_dw_oath_gold_spending_description_text" text="{=str_tor_dw_guild_donate_oathgold_description}Select how much Oath Gold you want to donate" />
 
   <!-- Rogue Engineer Quest -->
   <string id="tor_engineer_quest_rogue_engineer_first_time" text="{=str_tor_engineer_quest_rogue_engineer_first_time}You have the look of someone who has never seen a speck of black powder nor grease. Are you in the right place?" />
@@ -1227,7 +1288,6 @@
   <string id="str_culture_rich_name.chaos_culture" text="{=str_tor_culture_rich_name_chaos_culture}Chaos" />
   <string id="str_culture_rich_name.sturgia" text="{=str_tor_culture_rich_name_sturgia}Dawi" />
   <string id="str_culture_rich_name.aserai" text="{=str_tor_culture_rich_name_aserai}Greenskins" />
-	
   <string id="str_culture_description.khuzait" text="{=str_tor_culture_description_khuzait}The Vampire Counts are fiends without equal. They seek to topple the civilisations of the living and supplant them with an Undead empire. Each Vampire is a unique and majestic figure with his own personality, drive and ambition. In contrast, their minions are mindlessly obedient - rank after rank of ragged and dirt-encrusted cadavers forced back to life by their masters' necromantic power." />
   <string id="str_culture_description.empire" text="{=str_tor_culture_description_empire}The Empire of Man, the sprawling nation of humans dominating the Old World, faces a daily struggle for survival. Guided by their Emperor, Karl Franz, its armies stand as a testament to unwavering discipline and unmatched martial skills. In a world teeming with brutal savages and bloodthirsty monsters, the Empire endures thanks to the renowned discipline of its armies, honed through rigorous training and fortified by their unyielding faith in Sigmar. A beacon of human resilience, the Empire's soldiers exemplify the indomitable spirit of man that prevails amidst its endless list of foes." />
   <string id="str_culture_description.vlandia" text="{=str_tor_culture_description_vlandia}The Kingdom of Bretonnia is a land renowned for powerful Knights and their strong sense of Chivalry. Guided by the Fey Enchantress and the Damsels of the Lady, the peasants toil while their noble lords protect them from the many dangers threating their survival. In times of war the whole kingdom can join together, led in a crusade against their enemies by King Louen Leoncoeur, against which no foe has known victory." />
@@ -1237,7 +1297,6 @@
   <string id="str_culture_description.sturgia" text="{=str_tor_culture_description_sturgia}The Dwarfs, or the Dawi in their tongue, are one of the oldest and proudest races of the world. The Everlasting Realm of the Dwarfs was at its peak when human nations were nothing more than bands of warring barbarian tribes. Hardy, stout hearts combined with, at times, excessive pride result in a harsh and durable folk – one that is utterly incapable of forgiveness. And so the Dawi record each and every single wrong suffered at the hands of other races, with hopes of avenging said grudges in the future. Alas, this merciless and stubborn attitude led the Dwarfs into a number of conflicts that eventually pushed their civilization into decline. Out of 22 major Dwarfen Holds, or Karaks, only 12 remain under Dawi control – with the remaining ones fallen into the hands of their Ancestral Foes: Skaven and Greenskins." />
   <string id="str_culture_description.chaos_culture" text="{=str_tor_culture_description_chaos_culture}No one truly knows the origin of Chaos in the mortal world. Even the long-lived scholars of the High Elves can only speculate as to where the forces of Chaos first originated. War, famine, natural disaster and the destroyer known as time have eroded away nearly all indications of the roots of Chaos." />
   <string id="str_culture_description.aserai" text="{=str_tor_culture_description_aserai}Orcs and Goblins have been a thorn in the side of every major and minor power for as long as anyone can remember. Caring nothing for history or legacy, in olden days the Greenskins were largely confined to the Southlands, where they waged savage wars amongst themselves, indifferent to the wider world. Yet this brutal isolation did not last. Earthquakes and volcanic activity drove them northwards in vast, rampaging hordes called Waaaghs!, looting and burning all in their path. The Dwarfs, weakened by the long and bitter War of Vengeance against the Elves, stood little chance against the green tide that washed over their homes, and many holds were lost. Ever since, Orcs and Goblins can be found in great numbers all over the planet, being outnumbered only by the Skaven, with whom they often wage wars deep underground." />
-	
   <string id="str_faction_official.empire" text="{=str_tor_faction_official_empire}a count" />
   <string id="str_faction_official.empire_f" text="{=str_tor_faction_official_empire_f}a countess" />
   <string id="str_faction_ruler.empire" text="{=str_tor_faction_ruler_empire}elector count" />
@@ -1633,7 +1692,6 @@
   <string id="tor_player_accept_vassalage.sturgia" text="{=str_tor_player_accept_vassalage_sturgia}Your oath is heard and hammered into the annals. Stand proud, for your kin shall weigh your deeds in stone." />
   <string id="tor_player_accept_vassalage.aserai" text="{=str_tor_player_accept_vassalage_aserai}You'z part uv me mob now! Go an' get to smashin' before I stab ya. WAAAAAAAGH!!!" />
   <string id="tor_player_accept_vassalage.chaos_culture" text="{=str_tor_player_accept_vassalage_chaos_culture}May Nurgle gift you with his blessings." />
-	
   <string id="str_liege_title.empire" text="{=str_tor_liege_title_empire}Elector Count of one of the Provinces of the Empire">
     <tags>
       <tag tag_name="EmpireTag" />
@@ -1973,10 +2031,8 @@
   <string id="str_crafting_template.tor_large_monster_weapon_template" text="{=str_tor_crafting_template_TORLargeMonsterWeapon}TOR-Large Monster Weapon (Hidden)" />
   <string id="str_crafting_template.tor_dual_wield_mainhand" text="{=str_tor_crafting_template_TORDualWieldMainhand}TOR-Dual-Wield Mainhand (Hidden)" />
   <string id="str_crafting_template.tor_axe_template" text="{=str_tor_crafting_template_TORAxes}TOR-Axes" />
-  <string id="str_crafting_template.tor_kotww_axe_template" text="Knight of the White Wolf Axe" />
   <string id="str_crafting_template.tor_twohandedaxe" text="{=str_tor_crafting_template_TORGreataxes}TOR-Greataxes" />
   <string id="str_crafting_template.tor_mace_template" text="{=str_tor_crafting_template_TORMaces}TOR-Maces" />
-  <string id="str_crafting_template.tor_mace_knight_template" text="{=str_tor_crafting_template_TORKnightlyMaces}TOR-Knightly Maces" />
   <string id="str_crafting_template.tor_orc_mace_template" text="{=str_tor_crafting_template_TOROrcMaces}TOR-Orc Maces" />
   <string id="str_crafting_template.tor_orc_axe_template" text="{=str_tor_crafting_template_TorOrcOneHandedAxe}TOR-Orc Axes" />
   <string id="str_crafting_template.tor_orc_sword_template" text="{=str_tor_crafting_template_TorOrcOneHandedSword}TOR-Orc Swords" />
@@ -2011,9 +2067,16 @@
   <string id="str_weapon_usage.TorOrcTwoHandedAxe" text="{=str_tor_weapon_usage_TorOrcTwoHandedAxe}Orc Two Handed Axe" />
   <string id="str_weapon_usage.TorOrcStaves" text="{=str_tor_weapon_usage_TorOrcStaves}Orc Staff" />
   <string id="str_weapon_usage.TorLargeMonsterWeapon" text="{=str_tor_weapon_usage_TorLargeMonsterWeapon}LargeMonsterWeapon" />
+  <string id="tor_refine_all_hint" text="{=str_tor_refine_all_hint}Refine repeatedly until stamina or materials are exhausted" />
+
+  <!-- Uncategorized -->
+  <string id="str_crafting_template.tor_kotww_axe_template" text="Knight of the White Wolf Axe" />
+  <string id="str_crafting_template.tor_mace_knight_template" text="{=str_tor_crafting_template_TORKnightlyMaces}TOR-Knightly Maces" />
+  <string id="str_formation_ai_sergeant_instruction_behaviour_text.TORBehaviorCharge" text="{=str_formation_ai_sergeant_instruction_behaviour_text.torbehaviorcharge}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are Charging." />
+
+  <!-- Refine -->
   <string id="tor_refine_all_text" text="{=str_tor_refine_all_text}Refine All" />
   <string id="tor_refine_all_count_text" text="{=str_tor_refine_all_count_text}Refine All ({COUNT})" />
-  <string id="tor_refine_all_hint" text="{=str_tor_refine_all_hint}Refine repeatedly until stamina or materials are exhausted" />
 
   <!-- inventory -->
   <string id="str_inventory_weapon.22" text="{=str_tor_inventory_weapon_22}Pistol" />
@@ -2202,7 +2265,7 @@
 
   <!-- Companion - Empire 0 - Bright Wizard -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_0" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_0}Begone, your kind is not welcome here!" />
-  <string id="tor_introduction.tor_wanderer_empire_0" text="{=str_tor_introduction_tor_wanderer_empire_0}Greetings, what can a member of the Bright College do for you?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_empire_0" text="{=str_tor_introduction_tor_wanderer_empire_0}Greetings, what can a member of the Bright College do for you?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_0" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_0}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_0" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_0}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_0" text="{=str_tor_prebackstory_tor_wanderer_empire_0}You wish to know my story? Very well." />
@@ -2222,7 +2285,7 @@
 
   <!-- Empire 1 - Warrior Priest of Sigmar - Empire 1 - Warrior Priest of Sigmar -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_1" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_1}Begone heretic. I have no business with your kind." />
-  <string id="tor_introduction.tor_wanderer_empire_1" text="{=str_tor_introduction_tor_wanderer_empire_1}Sigmar be with you. How can I help?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_empire_1" text="{=str_tor_introduction_tor_wanderer_empire_1}Sigmar be with you. How can I help?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_1" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_1}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_1" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_1}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_1" text="{=str_tor_prebackstory_tor_wanderer_empire_1}The story of my life is insignificant, but I will speak." />
@@ -2240,7 +2303,7 @@
 
   <!-- Empire 2 - Witch Hunter - Empire 2 - Witch Hunter -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_2" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_2}Begone, my fellow Templars are already on their way." />
-  <string id="tor_introduction.tor_wanderer_empire_2" text="{=str_tor_introduction_tor_wanderer_empire_2}Speak, citizen. I have work to do." />
+  <string id="tor_hire_companion_introduction.tor_wanderer_empire_2" text="{=str_tor_introduction_tor_wanderer_empire_2}Speak, citizen. I have work to do." />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_2" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_2}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_2" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_2}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_2" text="{=str_tor_prebackstory_tor_wanderer_empire_2}It is not much of a tale, but I will speak of my life." />
@@ -2258,7 +2321,7 @@
 
   <!-- Empire 3 - Light Wizard -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_3" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_3}Begone, your kind is not welcome here!" />
-  <string id="tor_introduction.tor_wanderer_empire_3" text="{=str_tor_introduction_tor_wanderer_empire_3}Greetings, what can a member of the Light College do for you?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_empire_3" text="{=str_tor_introduction_tor_wanderer_empire_3}Greetings, what can a member of the Light College do for you?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_3" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_3}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_3" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_3}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_3" text="{=str_tor_prebackstory_tor_wanderer_empire_3}You wish to know my story? Very well." />
@@ -2276,7 +2339,7 @@
 
   <!-- Empire 4 - Celestial Wizard -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_4" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_4}Begone, your kind is not welcome here!" />
-  <string id="tor_introduction.tor_wanderer_empire_4" text="{=str_tor_introduction_tor_wanderer_empire_4}Greetings, what can a member of the Celestial College do for you?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_empire_4" text="{=str_tor_introduction_tor_wanderer_empire_4}Greetings, what can a member of the Celestial College do for you?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_4" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_4}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_4" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_4}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_4" text="{=str_tor_prebackstory_tor_wanderer_empire_4}You wish to know my story? Very well." />
@@ -2294,7 +2357,7 @@
 
   <!-- Empire 5 - Engineer -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_5" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_5}Begone. I have no business with your kind." />
-  <string id="tor_introduction.tor_wanderer_empire_5" text="{=str_tor_introduction_tor_wanderer_empire_5}What is it? Can't you see I'm busy?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_empire_5" text="{=str_tor_introduction_tor_wanderer_empire_5}What is it? Can't you see I'm busy?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_5" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_5}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_5" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_5}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_5" text="{=str_tor_prebackstory_tor_wanderer_empire_5}Hm, on the other hand, a break would do me well." />
@@ -2312,7 +2375,7 @@
 
   <!-- Empire 6 - Priestess of Shallya -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_6" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_6}Leave at once. Do not test my gentle nature." />
-  <string id="tor_introduction.tor_wanderer_empire_6" text="{=str_tor_introduction_tor_wanderer_empire_6}May the White Dove bless your path and heart. How can I help?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_empire_6" text="{=str_tor_introduction_tor_wanderer_empire_6}May the White Dove bless your path and heart. How can I help?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_6" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_6}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_6" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_6}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_6" text="{=str_tor_prebackstory_tor_wanderer_empire_6}Who I am is second to what I do, I tend to those in need." />
@@ -2330,7 +2393,7 @@
 
   <!-- Empire 7 - Huntsman -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_7" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_7}Begone. I have no business with your kind." />
-  <string id="tor_introduction.tor_wanderer_empire_7" text="{=str_tor_introduction_tor_wanderer_empire_7}What do you require of this master hunter?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_empire_7" text="{=str_tor_introduction_tor_wanderer_empire_7}What do you require of this master hunter?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_7" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_7}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_7" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_7}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_7" text="{=str_tor_prebackstory_tor_wanderer_empire_7}You don't need to know my story stranger, just my skills." />
@@ -2348,7 +2411,7 @@
 
   <!-- Empire 8 - Metal Wizard -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_8" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_8}Begone, your kind is not welcome here!" />
-  <string id="tor_introduction.tor_wanderer_empire_8" text="{=str_tor_introduction_tor_wanderer_empire_8}Greetings, what can a member of the Gold College do for you?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_empire_8" text="{=str_tor_introduction_tor_wanderer_empire_8}Greetings, what can a member of the Gold College do for you?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_8" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_8}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_8" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_8}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_8" text="{=str_tor_prebackstory_tor_wanderer_empire_8}You wish to know my story? Very well." />
@@ -2366,7 +2429,7 @@
 
   <!-- Empire 9 - Life Wizard -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_9" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_9}Begone, your kind is not welcome here!" />
-  <string id="tor_introduction.tor_wanderer_empire_9" text="{=str_tor_introduction_tor_wanderer_empire_9}Greetings, what can a member of the Jade College do for you?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_empire_9" text="{=str_tor_introduction_tor_wanderer_empire_9}Greetings, what can a member of the Jade College do for you?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_9" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_9}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_9" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_9}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_9" text="{=str_tor_prebackstory_tor_wanderer_empire_9}You wish to know my story? Very well." />
@@ -2384,7 +2447,7 @@
 
   <!-- Empire 10 - Beast Wizard -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_10" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_10}Begone, your kind is not welcome here!" />
-  <string id="tor_introduction.tor_wanderer_empire_10" text="{=str_tor_introduction_tor_wanderer_empire_10}Greetings, what can a member of the Amber College do for you?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_empire_10" text="{=str_tor_introduction_tor_wanderer_empire_10}Greetings, what can a member of the Amber College do for you?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_10" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_10}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_10" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_10}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_10" text="{=str_tor_prebackstory_tor_wanderer_empire_10}You wish to know my story? Very well." />
@@ -2402,7 +2465,7 @@
 
   <!-- Empire 11 - Priest of Ulric -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_11" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_11}Begone. The Wolf is already bearing its teeth." />
-  <string id="tor_introduction.tor_wanderer_empire_11" text="{=str_tor_introduction_tor_wanderer_empire_11}The Wolf's blessings be with you. What do you want?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_empire_11" text="{=str_tor_introduction_tor_wanderer_empire_11}The Wolf's blessings be with you. What do you want?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_11" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_11}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_11" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_11}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_11" text="{=str_tor_prebackstory_tor_wanderer_empire_11}Hmmm. I smell the battle in you. You've shed blood for sure." />
@@ -2420,7 +2483,7 @@
 
   <!-- Empire 12 - Captain -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_12" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_12}Begone! The guards are already on their way." />
-  <string id="tor_introduction.tor_wanderer_empire_12" text="{=str_tor_introduction_tor_wanderer_empire_12}What is it, looking for a lieutenant?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_empire_12" text="{=str_tor_introduction_tor_wanderer_empire_12}What is it, looking for a lieutenant?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_12" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_12}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_12" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_12}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_12" text="{=str_tor_prebackstory_tor_wanderer_empire_12}I see you lead a war party, eh. Hope you're not like those sons of nobles that I've had the misfortune of knowing." />
@@ -2438,7 +2501,7 @@
 
   <!-- Empire 13 - Imperial Noble -->
   <string id="tor_hire_companion_begone.tor_wanderer_empire_13" text="{=str_tor_hire_companion_begone_tor_wanderer_empire_13}Begone! The guards are already on their way." />
-  <string id="tor_introduction.tor_wanderer_empire_13" text="{=str_tor_introduction_tor_wanderer_empire_13}You speak to a noble of the Empire. Mind your manners." />
+  <string id="tor_hire_companion_introduction.tor_wanderer_empire_13" text="{=str_tor_introduction_tor_wanderer_empire_13}You speak to a noble of the Empire. Mind your manners." />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_empire_13" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_empire_13}They call me {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_empire_13" text="{=str_tor_hire_companion_skip_p_tor_wanderer_empire_13}My name is {PLAYER.NAME}. Let us skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_empire_13" text="{=str_tor_prebackstory_tor_wanderer_empire_13}With great pleasure." />
@@ -2456,7 +2519,7 @@
 
   <!-- Vampire 0 - Necromancer -->
   <string id="tor_hire_companion_begone.tor_wanderer_vampire_0" text="{=str_tor_hire_companion_begone_tor_wanderer_vampire_0}Begone. The spirits are coming for you." />
-  <string id="tor_introduction.tor_wanderer_vampire_0" text="{=str_tor_introduction_tor_wanderer_vampire_0}You carry the stench of death. What do you want?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_vampire_0" text="{=str_tor_introduction_tor_wanderer_vampire_0}You carry the stench of death. What do you want?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_vampire_0" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_vampire_0}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_vampire_0" text="{=str_tor_hire_companion_skip_p_tor_wanderer_vampire_0}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_vampire_0" text="{=str_tor_prebackstory_tor_wanderer_vampire_0}I have always been surrounded by death, death is everything in Sylvania." />
@@ -2474,7 +2537,7 @@
 
   <!-- Vampire 1 - Fledgling Vampire -->
   <string id="tor_hire_companion_begone.tor_wanderer_vampire_1" text="{=str_tor_hire_companion_begone_tor_wanderer_vampire_1}Away with you. Consider yourself lucky for are I already feasted." />
-  <string id="tor_introduction.tor_wanderer_vampire_1" text="{=str_tor_introduction_tor_wanderer_vampire_1}Speak quickly before my patience runs dry." />
+  <string id="tor_hire_companion_introduction.tor_wanderer_vampire_1" text="{=str_tor_introduction_tor_wanderer_vampire_1}Speak quickly before my patience runs dry." />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_vampire_1" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_vampire_1}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_vampire_1" text="{=str_tor_hire_companion_skip_p_tor_wanderer_vampire_1}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_vampire_1" text="{=str_tor_prebackstory_tor_wanderer_vampire_1}Being human felt like a dream, a dream I was happily liberated from." />
@@ -2492,7 +2555,7 @@
 
   <!-- Vampire 2 - Wight King -->
   <string id="tor_hire_companion_begone.tor_wanderer_vampire_2" text="{=str_tor_hire_companion_begone_tor_wanderer_vampire_2}…Leave." />
-  <string id="tor_introduction.tor_wanderer_vampire_2" text="{=str_tor_introduction_tor_wanderer_vampire_2}…Eternal service." />
+  <string id="tor_hire_companion_introduction.tor_wanderer_vampire_2" text="{=str_tor_introduction_tor_wanderer_vampire_2}…Eternal service." />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_vampire_2" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_vampire_2}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_vampire_2" text="{=str_tor_hire_companion_skip_p_tor_wanderer_vampire_2}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_vampire_2" text="{=str_tor_prebackstory_tor_wanderer_vampire_2}Shattered memories, warrior, soldier? So long ago." />
@@ -2510,7 +2573,7 @@
 
   <!-- Vampire 3 - Lahmian Countess -->
   <string id="tor_hire_companion_begone.tor_wanderer_vampire_3" text="{=str_tor_hire_companion_begone_tor_wanderer_vampire_3}Away with you. Consider yourself lucky for are I already feasted." />
-  <string id="tor_introduction.tor_wanderer_vampire_3" text="{=str_tor_introduction_tor_wanderer_vampire_3}Speak. What business do you have with me?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_vampire_3" text="{=str_tor_introduction_tor_wanderer_vampire_3}Speak. What business do you have with me?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_vampire_3" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_vampire_3}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_vampire_3" text="{=str_tor_hire_companion_skip_p_tor_wanderer_vampire_3}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_vampire_3" text="{=str_tor_prebackstory_tor_wanderer_vampire_3}A pleasure to meet someone with… potential." />
@@ -2528,7 +2591,7 @@
 
   <!-- Vampire 4 - Strigani Matriarch -->
   <string id="tor_hire_companion_begone.tor_wanderer_vampire_4" text="{=str_tor_hire_companion_begone_tor_wanderer_vampire_4}Begone, you are not one of our people." />
-  <string id="tor_introduction.tor_wanderer_vampire_4" text="{=str_tor_introduction_tor_wanderer_vampire_4}What can the Strigany do for you?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_vampire_4" text="{=str_tor_introduction_tor_wanderer_vampire_4}What can the Strigany do for you?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_vampire_4" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_vampire_4}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_vampire_4" text="{=str_tor_hire_companion_skip_p_tor_wanderer_vampire_4}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_vampire_4" text="{=str_tor_prebackstory_tor_wanderer_vampire_4}Ah, a curious one. Very well, I shall enlighten you." />
@@ -2546,7 +2609,7 @@
 
   <!-- Bretonnia 0 - Questing Knight -->
   <string id="tor_hire_companion_begone.tor_wanderer_bretonnia_0" text="{=str_tor_hire_companion_begone_tor_wanderer_bretonnia_0}Away with you, churl!" />
-  <string id="tor_introduction.tor_wanderer_bretonnia_0" text="{=str_tor_introduction_tor_wanderer_bretonnia_0}Greetings. I am a Knight on my quest to prove myself worthy of the Lady's favor." />
+  <string id="tor_hire_companion_introduction.tor_wanderer_bretonnia_0" text="{=str_tor_introduction_tor_wanderer_bretonnia_0}Greetings. I am a Knight on my quest to prove myself worthy of the Lady's favor." />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_bretonnia_0" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_bretonnia_0}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_bretonnia_0" text="{=str_tor_hire_companion_skip_p_tor_wanderer_bretonnia_0}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_bretonnia_0" text="{=str_tor_prebackstory_tor_wanderer_bretonnia_0}I have no qualms speaking of my life, stranger." />
@@ -2564,7 +2627,7 @@
 
   <!-- Bretonnia 1 - Damsel -->
   <string id="tor_hire_companion_begone.tor_wanderer_bretonnia_1" text="{=str_tor_hire_companion_begone_tor_wanderer_bretonnia_1}You are not welcome in these lands, leave now." />
-  <string id="tor_introduction.tor_wanderer_bretonnia_1" text="{=str_tor_introduction_tor_wanderer_bretonnia_1}May the Lady guide you. I am a Damsel in service to Bretonnia." />
+  <string id="tor_hire_companion_introduction.tor_wanderer_bretonnia_1" text="{=str_tor_introduction_tor_wanderer_bretonnia_1}May the Lady guide you. I am a Damsel in service to Bretonnia." />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_bretonnia_1" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_bretonnia_1}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_bretonnia_1" text="{=str_tor_hire_companion_skip_p_tor_wanderer_bretonnia_1}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_bretonnia_1" text="{=str_tor_prebackstory_tor_wanderer_bretonnia_1}Who I am is second to what I do, I tend to those in need." />
@@ -2582,7 +2645,7 @@
 
   <!-- Bretonnia 2 - Yeoman -->
   <string id="tor_hire_companion_begone.tor_wanderer_bretonnia_2" text="{=str_tor_hire_companion_begone_tor_wanderer_bretonnia_2}You are not welcome here, leave." />
-  <string id="tor_introduction.tor_wanderer_bretonnia_2" text="{=str_tor_introduction_tor_wanderer_bretonnia_2}You look like you could use a real fighter. Care to hear my story?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_bretonnia_2" text="{=str_tor_introduction_tor_wanderer_bretonnia_2}You look like you could use a real fighter. Care to hear my story?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_bretonnia_2" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_bretonnia_2}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_bretonnia_2" text="{=str_tor_hire_companion_skip_p_tor_wanderer_bretonnia_2}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_bretonnia_2" text="{=str_tor_prebackstory_tor_wanderer_bretonnia_2}Well say no more. Do you wanna share a pint while listening to the exploits of a true warrior?" />
@@ -2600,7 +2663,7 @@
 
   <!-- Bretonnia 3 - Herrimault -->
   <string id="tor_hire_companion_begone.tor_wanderer_bretonnia_3" text="{=str_tor_hire_companion_begone_tor_wanderer_bretonnia_3}You are not welcome here, leave." />
-  <string id="tor_introduction.tor_wanderer_bretonnia_3" text="{=str_tor_introduction_tor_wanderer_bretonnia_3}Keep your voice down. I'm trying to stay out of sight." />
+  <string id="tor_hire_companion_introduction.tor_wanderer_bretonnia_3" text="{=str_tor_introduction_tor_wanderer_bretonnia_3}Keep your voice down. I'm trying to stay out of sight." />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_bretonnia_3" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_bretonnia_3}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_bretonnia_3" text="{=str_tor_hire_companion_skip_p_tor_wanderer_bretonnia_3}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_bretonnia_3" text="{=str_tor_prebackstory_tor_wanderer_bretonnia_3}Listen, I need to get away from this place as soon as possible. Not long ago I was hunting in one of the nearby woods, and then I heard some screaming. I ran to see what was happening and found myself at a small farm." />
@@ -2618,7 +2681,7 @@
 
   <!-- Bretonnia 4 - Wall Warden -->
   <string id="tor_hire_companion_begone.tor_wanderer_bretonnia_4" text="{=str_tor_hire_companion_begone_tor_wanderer_bretonnia_4}You are not welcome here, leave." />
-  <string id="tor_introduction.tor_wanderer_bretonnia_4" text="{=str_tor_introduction_tor_wanderer_bretonnia_4}Greetings, is there a noble sending you who needs an architect?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_bretonnia_4" text="{=str_tor_introduction_tor_wanderer_bretonnia_4}Greetings, is there a noble sending you who needs an architect?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_bretonnia_4" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_bretonnia_4}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_bretonnia_4" text="{=str_tor_hire_companion_skip_p_tor_wanderer_bretonnia_4}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_bretonnia_4" text="{=str_tor_prebackstory_tor_wanderer_bretonnia_4}Greetings, is there a noble sending you who needs an architect?" />
@@ -2636,7 +2699,7 @@
 
   <!-- Bretonnia 5 - Merchant -->
   <string id="tor_hire_companion_begone.tor_wanderer_bretonnia_5" text="{=str_tor_hire_companion_begone_tor_wanderer_bretonnia_5}You are not welcome here, leave." />
-  <string id="tor_introduction.tor_wanderer_bretonnia_5" text="{=str_tor_introduction_tor_wanderer_bretonnia_5}Greetings. Are you by any chance looking for people interested in a large enterprise?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_bretonnia_5" text="{=str_tor_introduction_tor_wanderer_bretonnia_5}Greetings. Are you by any chance looking for people interested in a large enterprise?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_bretonnia_5" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_bretonnia_5}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_bretonnia_5" text="{=str_tor_hire_companion_skip_p_tor_wanderer_bretonnia_5}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_bretonnia_5" text="{=str_tor_prebackstory_tor_wanderer_bretonnia_5}Greetings. Are you by any chance looking for people interested in a large enterprise?" />
@@ -2654,7 +2717,7 @@
 
   <!-- Mousillon 0 - Fallen Questing Knight -->
   <string id="tor_hire_companion_begone.tor_wanderer_mousillon_0" text="{=str_tor_hire_companion_begone_tor_wanderer_mousillon_0}Away with you, churl." />
-  <string id="tor_introduction.tor_wanderer_mousillon_0" text="{=str_tor_introduction_tor_wanderer_mousillon_0}You need a blade for hire? I am a Knight on a quest for the Black Grail." />
+  <string id="tor_hire_companion_introduction.tor_wanderer_mousillon_0" text="{=str_tor_introduction_tor_wanderer_mousillon_0}You need a blade for hire? I am a Knight on a quest for the Black Grail." />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_mousillon_0" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_mousillon_0}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_mousillon_0" text="{=str_tor_hire_companion_skip_p_tor_wanderer_mousillon_0}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_mousillon_0" text="{=str_tor_prebackstory_tor_wanderer_mousillon_0}Hmmph. You are speaking to Mousillonian nobility. Mind your manners." />
@@ -2672,7 +2735,7 @@
 
   <!-- Mousillon 1 - Necromancer -->
   <string id="tor_hire_companion_begone.tor_wanderer_mousillon_1" text="{=str_tor_hire_companion_begone_tor_wanderer_mousillon_1}Begone. The spirits are coming for you." />
-  <string id="tor_introduction.tor_wanderer_mousillon_1" text="{=str_tor_introduction_tor_wanderer_mousillon_1}You carry the stench of death. What do you want?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_mousillon_1" text="{=str_tor_introduction_tor_wanderer_mousillon_1}You carry the stench of death. What do you want?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_mousillon_1" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_mousillon_1}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_mousillon_1" text="{=str_tor_hire_companion_skip_p_tor_wanderer_mousillon_1}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_mousillon_1" text="{=str_tor_prebackstory_tor_wanderer_mousillon_1}I have always been surrounded by death, death is everything in our accursed lands." />
@@ -2690,7 +2753,7 @@
 
   <!-- Mousillon 2 - Hedge Witch -->
   <string id="tor_hire_companion_begone.tor_wanderer_mousillon_2" text="{=str_tor_hire_companion_begone_tor_wanderer_mousillon_2}Begone, I sense curses coiling around you." />
-  <string id="tor_introduction.tor_wanderer_mousillon_2" text="{=str_tor_introduction_tor_wanderer_mousillon_2}Greetings. Do you require a poultice? Or perhaps a good luck charm?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_mousillon_2" text="{=str_tor_introduction_tor_wanderer_mousillon_2}Greetings. Do you require a poultice? Or perhaps a good luck charm?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_mousillon_2" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_mousillon_2}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_mousillon_2" text="{=str_tor_hire_companion_skip_p_tor_wanderer_mousillon_2}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_mousillon_2" text="{=str_tor_prebackstory_tor_wanderer_mousillon_2}'Tis not an uncommon story. I was born and raised in the swampy forests of Mousillon." />
@@ -2708,7 +2771,7 @@
 
   <!-- Mousillon 3 - Smuggler -->
   <string id="tor_hire_companion_begone.tor_wanderer_mousillon_3" text="{=str_tor_hire_companion_begone_tor_wanderer_mousillon_3}*slips away into the crowd*" />
-  <string id="tor_introduction.tor_wanderer_mousillon_3" text="{=str_tor_introduction_tor_wanderer_mousillon_3}I was not doing anything illegal, I assure you!" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_mousillon_3" text="{=str_tor_introduction_tor_wanderer_mousillon_3}I was not doing anything illegal, I assure you!" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_mousillon_3" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_mousillon_3}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_mousillon_3" text="{=str_tor_hire_companion_skip_p_tor_wanderer_mousillon_3}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_mousillon_3" text="{=str_tor_prebackstory_tor_wanderer_mousillon_3}Oh, you are not one of the city guards? Lucky me." />
@@ -2726,7 +2789,7 @@
 
   <!-- Mousillon 4 - Fledgling Vampire -->
   <string id="tor_hire_companion_begone.tor_wanderer_mousillon_4" text="{=str_tor_hire_companion_begone_tor_wanderer_mousillon_4}Away with you. Consider yourself lucky for are I already feasted." />
-  <string id="tor_introduction.tor_wanderer_mousillon_4" text="{=str_tor_introduction_tor_wanderer_mousillon_4}Speak quickly before my patience runs dry." />
+  <string id="tor_hire_companion_introduction.tor_wanderer_mousillon_4" text="{=str_tor_introduction_tor_wanderer_mousillon_4}Speak quickly before my patience runs dry." />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_mousillon_4" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_mousillon_4}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_mousillon_4" text="{=str_tor_hire_companion_skip_p_tor_wanderer_mousillon_4}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_mousillon_4" text="{=str_tor_prebackstory_tor_wanderer_mousillon_4}Being human felt like a dream, a dream I was happily liberated from." />
@@ -2744,7 +2807,7 @@
 
   <!-- Eonir 0 - Ghost Strider -->
   <string id="tor_hire_companion_begone.tor_wanderer_eonir_0" text="{=str_tor_hire_companion_begone_tor_wanderer_eonir_0}Leave for my bow is already aimed at your heart, intruder." />
-  <string id="tor_introduction.tor_wanderer_eonir_0" text="{=str_tor_introduction_tor_wanderer_eonir_0}What is it that you seek, stranger?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_eonir_0" text="{=str_tor_introduction_tor_wanderer_eonir_0}What is it that you seek, stranger?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_eonir_0" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_eonir_0}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_eonir_0" text="{=str_tor_hire_companion_skip_p_tor_wanderer_eonir_0}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_eonir_0" text="{=str_tor_prebackstory_tor_wanderer_eonir_0}About me? There is not much to tell." />
@@ -2762,7 +2825,7 @@
 
   <!-- Eonir 1 - Guardian Mage -->
   <string id="tor_hire_companion_begone.tor_wanderer_eonir_1" text="{=str_tor_hire_companion_begone_tor_wanderer_eonir_1}What makes you think you have the right to speak to me?" />
-  <string id="tor_introduction.tor_wanderer_eonir_1" text="{=str_tor_introduction_tor_wanderer_eonir_1}An esteemed wizard stands before you. State your business." />
+  <string id="tor_hire_companion_introduction.tor_wanderer_eonir_1" text="{=str_tor_introduction_tor_wanderer_eonir_1}An esteemed wizard stands before you. State your business." />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_eonir_1" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_eonir_1}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_eonir_1" text="{=str_tor_hire_companion_skip_p_tor_wanderer_eonir_1}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_eonir_1" text="{=str_tor_prebackstory_tor_wanderer_eonir_1}What insolence! You stand before a Guardian Mage of the Eonir." />
@@ -2780,7 +2843,7 @@
 
   <!-- Eonir 2 - Envoy -->
   <string id="tor_hire_companion_begone.tor_wanderer_eonir_2" text="{=str_tor_hire_companion_begone_tor_wanderer_eonir_2}Away with you, you shan't waste my time." />
-  <string id="tor_introduction.tor_wanderer_eonir_2" text="{=str_tor_introduction_tor_wanderer_eonir_2}You speak to a well-respected member of the Eonir Senate." />
+  <string id="tor_hire_companion_introduction.tor_wanderer_eonir_2" text="{=str_tor_introduction_tor_wanderer_eonir_2}You speak to a well-respected member of the Eonir Senate." />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_eonir_2" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_eonir_2}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_eonir_2" text="{=str_tor_hire_companion_skip_p_tor_wanderer_eonir_2}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_eonir_2" text="{=str_tor_prebackstory_tor_wanderer_eonir_2}As the envoy of Laurelorn, I speak with the authority of the Senate and the Crown." />
@@ -2798,7 +2861,7 @@
 
   <!-- Wood Elf 0 - Spellsinger -->
   <string id="tor_hire_companion_begone.tor_wanderer_woodelf_0" text="{=str_tor_hire_companion_begone_tor_wanderer_woodelf_0}You trespass on sacred ground, leave at once." />
-  <string id="tor_introduction.tor_wanderer_woodelf_0" text="{=str_tor_introduction_tor_wanderer_woodelf_0}What purpose carries you here, stranger?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_woodelf_0" text="{=str_tor_introduction_tor_wanderer_woodelf_0}What purpose carries you here, stranger?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_woodelf_0" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_woodelf_0}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_woodelf_0" text="{=str_tor_hire_companion_skip_p_tor_wanderer_woodelf_0}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_woodelf_0" text="{=str_tor_prebackstory_tor_wanderer_woodelf_0}Ah, I do not believe we have met. Peace be upon you, stranger." />
@@ -2816,7 +2879,7 @@
 
   <!-- Wood Elf 1 - Glade Captain -->
   <string id="tor_hire_companion_begone.tor_wanderer_woodelf_1" text="{=str_tor_hire_companion_begone_tor_wanderer_woodelf_1}Begone. The forest has no place for you." />
-  <string id="tor_introduction.tor_wanderer_woodelf_1" text="{=str_tor_introduction_tor_wanderer_woodelf_1}I am a Glade Captain of the Asrai. State your purpose." />
+  <string id="tor_hire_companion_introduction.tor_wanderer_woodelf_1" text="{=str_tor_introduction_tor_wanderer_woodelf_1}I am a Glade Captain of the Asrai. State your purpose." />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_woodelf_1" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_woodelf_1}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_woodelf_1" text="{=str_tor_hire_companion_skip_p_tor_wanderer_woodelf_1}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_woodelf_1" text="{=str_tor_prebackstory_tor_wanderer_woodelf_1}I do not recall seeing you here before. Who might you be?" />
@@ -2834,7 +2897,7 @@
 
   <!-- Wood Elf 2 - Waywatcher -->
   <string id="tor_hire_companion_begone.tor_wanderer_woodelf_2" text="{=str_tor_hire_companion_begone_tor_wanderer_woodelf_2}Leave for my bow is already aimed at your heart, intruder." />
-  <string id="tor_introduction.tor_wanderer_woodelf_2" text="{=str_tor_introduction_tor_wanderer_woodelf_2}What is it that you seek, stranger?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_woodelf_2" text="{=str_tor_introduction_tor_wanderer_woodelf_2}What is it that you seek, stranger?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_woodelf_2" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_woodelf_2}I am {PLAYER.NAME}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_woodelf_2" text="{=str_tor_hire_companion_skip_p_tor_wanderer_woodelf_2}They call me {PLAYER.NAME}. What is it you do here?" />
   <string id="tor_prebackstory.tor_wanderer_woodelf_2" text="{=str_tor_prebackstory_tor_wanderer_woodelf_2}About me? There is not much to tell." />
@@ -2852,7 +2915,7 @@
 
   <!-- Dwarf 0 - Thane -->
   <string id="tor_hire_companion_begone.tor_wanderer_dawi_0" text="{=str_tor_hire_companion_begone_tor_wanderer_dawi_0}Begone, wazzok. How dare you wander our halls!?" />
-  <string id="tor_introduction.tor_wanderer_dawi_0" text="{=str_tor_introduction_tor_wanderer_dawi_0}It is disrespectful to stare, what do you want?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_dawi_0" text="{=str_tor_introduction_tor_wanderer_dawi_0}It is disrespectful to stare, what do you want?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_dawi_0" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_dawi_0}Forgive me. I am {PLAYER.NAME} of {PLAYER_CLAN}. What is it you are doing here?" />
   <string id="tor_hire_companion_skip_p.tor_wanderer_dawi_0" text="{=str_tor_hire_companion_skip_p_tor_wanderer_dawi_0}Forgive me, master dwarf. I am of {PLAYER_CLAN} blood. What is your profession?" />
   <string id="tor_prebackstory.tor_wanderer_dawi_0" text="{=str_tor_prebackstory_tor_wanderer_dawi_0}You are speaking to a gov, a thane, a champion of the Dawi, lad. Others would do well not to get in my way." />
@@ -2870,7 +2933,7 @@
 
   <!-- Dwarf 1 - Runesmith -->
   <string id="tor_hire_companion_begone.tor_wanderer_dawi_1" text="{=str_tor_hire_companion_begone_tor_wanderer_dawi_1}Begone, wazzok. How dare you wander our halls!?" />
-  <string id="tor_introduction.tor_wanderer_dawi_1" text="{=str_tor_introduction_tor_wanderer_dawi_1}*Grunt* Can't ye see I'm busy?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_dawi_1" text="{=str_tor_introduction_tor_wanderer_dawi_1}*Grunt* Can't ye see I'm busy?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_dawi_1" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_dawi_1}My apologies. I just couldn’t keep my eyes off your scribbles." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_dawi_1" text="{=str_tor_hire_companion_skip_p_tor_wanderer_dawi_1}I am sorry to disturb you, honoured runesmith. I wish to employ your services." />
   <string id="tor_prebackstory.tor_wanderer_dawi_1" text="{=str_tor_prebackstory_tor_wanderer_dawi_1}What is it that you seek with the masters of Runecraft?" />
@@ -2888,7 +2951,7 @@
 
   <!-- Dwarf 2 - Engineer -->
   <string id="tor_hire_companion_begone.tor_wanderer_dawi_2" text="{=str_tor_hire_companion_begone_tor_wanderer_dawi_2}Begone, wazzok. How dare you wander our halls!?" />
-  <string id="tor_introduction.tor_wanderer_dawi_2" text="{=str_tor_introduction_tor_wanderer_dawi_2}Aye lad, what is it? You here to take a wee look at my plans?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_dawi_2" text="{=str_tor_introduction_tor_wanderer_dawi_2}Aye lad, what is it? You here to take a wee look at my plans?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_dawi_2" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_dawi_2}My name is {PLAYER.NAME}. And what if I were?" />
   <string id="tor_hire_companion_skip_p.tor_wanderer_dawi_2" text="{=str_tor_hire_companion_skip_p_tor_wanderer_dawi_2}Of course not. I know that engineers like you are very protective of their designs." />
   <string id="tor_prebackstory.tor_wanderer_dawi_2" text="{=str_tor_prebackstory_tor_wanderer_dawi_2}I’d advise you not to, though. Many have lost one or both of their eyes peeking into my works." />
@@ -2906,7 +2969,7 @@
 
   <!-- Greenskin 0 - Big Boss -->
   <string id="tor_hire_companion_begone.tor_wanderer_greenskins_0" text="{=str_tor_hire_companion_begone_tor_wanderer_greenskins_0}OI! Get outta 'ere, ya puny git!" />
-  <string id="tor_introduction.tor_wanderer_greenskins_0" text="{=str_tor_introduction_tor_wanderer_greenskins_0}OI GIT! Pay attenchun, I'z da Big Boss 'round 'ere!" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_greenskins_0" text="{=str_tor_introduction_tor_wanderer_greenskins_0}OI GIT! Pay attenchun, I'z da Big Boss 'round 'ere!" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_greenskins_0" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_greenskins_0}I'z da mighty {PLAYER.NAME}. You'z betta watch yer yappin'." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_greenskins_0" text="{=str_tor_hire_companion_skip_p_tor_wanderer_greenskins_0}I'z da great {PLAYER.NAME}. An' you'z a git, not me!" />
   <string id="tor_prebackstory.tor_wanderer_greenskins_0" text="{=str_tor_prebackstory_tor_wanderer_greenskins_0}I'z not gunna be dis-respekted. I'z gun get da boys in line, cuz I'm da biggest an da strongest!" />
@@ -2924,7 +2987,7 @@
 
   <!-- Greenskin 1 - Shaman -->
   <string id="tor_hire_companion_begone.tor_wanderer_greenskins_1" text="{=str_tor_hire_companion_begone_tor_wanderer_greenskins_1}OI! Get outta 'ere, ya puny git!" />
-  <string id="tor_introduction.tor_wanderer_greenskins_1" text="{=str_tor_introduction_tor_wanderer_greenskins_1}Oi! Come closah… yoo wants da powah uv Gork an' Mork on yer side? I'z got sum uv dat zappy stuffs…" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_greenskins_1" text="{=str_tor_introduction_tor_wanderer_greenskins_1}Oi! Come closah… yoo wants da powah uv Gork an' Mork on yer side? I'z got sum uv dat zappy stuffs…" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_greenskins_1" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_greenskins_1}I'z da mighty {PLAYER.NAME}. You'z one uv 'em weird 'uns?" />
   <string id="tor_hire_companion_skip_p.tor_wanderer_greenskins_1" text="{=str_tor_hire_companion_skip_p_tor_wanderer_greenskins_1}I'z da great {PLAYER.NAME}. Dun seem to be many uv you weird 'uns 'round 'ere." />
   <string id="tor_prebackstory.tor_wanderer_greenskins_1" text="{=str_tor_prebackstory_tor_wanderer_greenskins_1}Yoo need a shaman to guide any proppa WAAAAGH!!!, an I’z da right ‘un fer da job." />
@@ -2942,7 +3005,7 @@
 
   <!-- Greenskin 2 - Bully -->
   <string id="tor_hire_companion_begone.tor_wanderer_greenskins_2" text="{=str_tor_hire_companion_begone_tor_wanderer_greenskins_2}OI! Get outta 'ere, ya puny git!" />
-  <string id="tor_introduction.tor_wanderer_greenskins_2" text="{=str_tor_introduction_tor_wanderer_greenskins_2}Wozzat? I ain't got time fer nonsense. Yoo look proppa green, so I'll tell ya wot I do." />
+  <string id="tor_hire_companion_introduction.tor_wanderer_greenskins_2" text="{=str_tor_introduction_tor_wanderer_greenskins_2}Wozzat? I ain't got time fer nonsense. Yoo look proppa green, so I'll tell ya wot I do." />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_greenskins_2" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_greenskins_2}I'z da mighty {PLAYER.NAME}. You'z betta watch yer yappin'." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_greenskins_2" text="{=str_tor_hire_companion_skip_p_tor_wanderer_greenskins_2}I'z da great {PLAYER.NAME}." />
   <string id="tor_prebackstory.tor_wanderer_greenskins_2" text="{=str_tor_prebackstory_tor_wanderer_greenskins_2}I'z 'ere to bash in da brainz uv' da lil' 'uns an' bully 'em til dey GET IN LINE!" />
@@ -2960,7 +3023,7 @@
 
   <!-- Greenskin 3 - Goblin Tinkerer -->
   <string id="tor_hire_companion_begone.tor_wanderer_greenskins_3" text="{=str_tor_hire_companion_begone_tor_wanderer_greenskins_3}AAIIIIEEEEEEE!! GOBBOS RUN!!!" />
-  <string id="tor_introduction.tor_wanderer_greenskins_3" text="{=str_tor_introduction_tor_wanderer_greenskins_3}Oi! Down 'ere! You look loik a tuff git, noice an' green! Y-you needs a proppa brain to go wiv all'a dat brawn ya gots dere?" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_greenskins_3" text="{=str_tor_introduction_tor_wanderer_greenskins_3}Oi! Down 'ere! You look loik a tuff git, noice an' green! Y-you needs a proppa brain to go wiv all'a dat brawn ya gots dere?" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_greenskins_3" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_greenskins_3}I'z da mighty {PLAYER.NAME}. You'z betta watch yer yappin', ya runt!" />
   <string id="tor_hire_companion_skip_p.tor_wanderer_greenskins_3" text="{=str_tor_hire_companion_skip_p_tor_wanderer_greenskins_3}I'z da great {PLAYER.NAME}. Wot's dis sneak doin' talkin' to me?" />
   <string id="tor_prebackstory.tor_wanderer_greenskins_3" text="{=str_tor_prebackstory_tor_wanderer_greenskins_3}I ken whip up sum'a da nastiest gubbinz you evah' seen! Need to take a–a fort? Dead 'ard an' not enuff ladderz? I'll make sum stone throwaz to knock dem wallz right down!" />
@@ -2978,7 +3041,7 @@
 
   <!-- Chaos 0 - Chosen -->
   <string id="tor_hire_companion_begone.tor_wanderer_chaos_0" text="{=str_tor_hire_companion_begone_tor_wanderer_chaos_0}Begone. The gods have no use for you." />
-  <string id="tor_introduction.tor_wanderer_chaos_0" text="{=str_tor_introduction_tor_wanderer_chaos_0}Do you hear them too? Those voices…" />
+  <string id="tor_hire_companion_introduction.tor_wanderer_chaos_0" text="{=str_tor_introduction_tor_wanderer_chaos_0}Do you hear them too? Those voices…" />
   <string id="tor_hire_companion_tell_me_p.tor_wanderer_chaos_0" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_chaos_0}My name is {PLAYER.NAME}, {?CONVERSATION_NPC.GENDER}madam{?}sir{\\?}. Tell me about yourself." />
   <string id="tor_hire_companion_skip_p.tor_wanderer_chaos_0" text="{=str_tor_hire_companion_skip_p_tor_wanderer_chaos_0}I'm {PLAYER.NAME}. Let's skip the pleasantries and get right to business." />
   <string id="tor_prebackstory.tor_wanderer_chaos_0" text="{=str_tor_prebackstory_tor_wanderer_chaos_0}Do you hear them too? Those voices…" />
@@ -3002,9 +3065,6 @@
   <string id="tor_religion_devotionlevel.Follower" text="{=str_tor_religion_devotionlevel_Follower}Follower" />
   <string id="tor_religion_devotionlevel.Devoted" text="{=str_tor_religion_devotionlevel_Devoted}Devoted" />
   <string id="tor_religion_devotionlevel.Fanatic" text="{=str_tor_religion_devotionlevel_Fanatic}Fanatic" />
-  <string id="tor_religion_affiliation" text="{=str_tor_religion_affiliation}Affiliation" />
-	
-	<!-- Religion - Cult descriptions -->
   <string id="tor_religion_description.cult_of_sigmar" text="{=str_tor_religion_description_cult_of_sigmar}The Cult of Sigmar, also sometimes called the Church of Sigmar, the Holy Temple of Sigmar, the Clergy of Sigmar or simply the Sigmarite Cult, is the state church of the Empire that administrates the worship of that realm's patron god, Sigmar Heldenhammer. The Cult of Sigmar was founded by the wild-eyed friar Johann Helstrum in the year 73 IC, when he appeared before the masses to relate a vision that he experienced of Sigmar kneeling before Ulric, the god of war and winter, who placed the crown of godhood upon his brow as Sigmar took his place amongst the deities of the Old World Pantheon. As of today, the Cult of Sigmar has become an essential part of Imperial society. Nearly every city, town or village within the Empire has dedicated a portion of their wealth and land to the creation and maintenance of a Sigmarite temple, from which a priest of the Cult of Sigmar will attend to the spiritual well-being of its citizenry, whether it be through holy words of prayer or through heroic actions and trials by combat." />
   <string id="tor_religion_description.cult_of_taal" text="{=str_tor_religion_description_cult_of_taal}The Cult of Taal and Rhya is among the most ancient and pervasive in the Old World, tracing a direct line to the primal gods from the deepest of history. The cult grew organically, as early Humans tried to explain natural phenomenon, such as thunder, the turning of the seasons, and the rise and ebb of the seas. Over time, the Gods Taal and Rhya came into being, beginning as a single entity, known as Ishnernos. This split occurred many thousands of years ago, and the Cult of Ishnernos faded into distant memory. Taal rules nature and is considered King of the Gods. He claims the wild places as his domain and is primarily worshipped by hardy woodsmen, trackers, and rangers. Rhya's worshippers are found in the cultivated fields and orchards of the Empire, as well as among farmers, fishermen, and young lovers everywhere. The Cult of Taal and Rhya is the sanctioned cult of Talabecland, and is wildly popular in the eastern and northern parts of the Empire. Of the two, Taal receives most recognition, and Rhya's role is much diminished. The grand city of Talabheim is particularly fervent in its worship of both Taal and Rhya. However, in other cities, although Rhya's name is commonly known, her worship is rare, leading many urbanites to conclude that her cult is on the decline." />
   <string id="tor_religion_description.cult_of_ulric" text="{=str_tor_religion_description_cult_of_ulric}The Ulrican cult, Church of Ulric or simply the Cult of Ulric is the state approved religious organisation that administrates the worship of the god of war, winter, and wolves. It is second in power and influence to the Cult of Sigmar, but is amongst the most ancient religions of the Empire of Man and dates back before the Empire was created by Sigmar. As a god of war, it is through battle and bloodshed that Ulric is worshipped, any who dare oppose him are merely awaiting the ferocious bite of his priests. {newline}   {newline}   Ulric give me the fangs of the wolf,   {newline}   Ulric give me the claws of the wolf,   {newline}   Ulric give me the coat of the wolf,   {newline}   And I will show your enemies the mercy of the wolf." />
@@ -3029,8 +3089,6 @@
   <string id="tor_religion_description.cult_of_grungni" text="{=str_tor_religion_description_cult_of_grungni}In elder days, when the Ancestor Gods walked amongst the Dwarfs, foremost among them was Grungni, master of smithing and lord of the forge. Grungni foresaw the coming of Chaos and guided his people beneath the earth and into the safety of the mountains. There he taught them to shape metal into weapons and armour of peerless craft, preparing them for the darkness that was to come. When the hordes of Chaos descended upon the world, Grungni led his kin forth to war. Yet Chaos was not so easily cast down, and in time the Dwarfs were driven back to their mountain holds. Only Grimnir, brother to Grungni, dared to venture beyond the mountains to combat the enemy. Grungni remained behind, forging artefacts of immense power to aid his people. Among these was the Throne of Power, upon which was set the Rune of Azamar, the Eternity Rune, a rune so powerful only one has ever existed, and can never be replicated. It was Grungni’s only work where he felt satisfied upon its completion, and with the rune came a promise, for as long as the rune endures, the Karaz Ankor shall never fall. After the great war, the surviving Ancestor Gods withdrew deep into the mountains, awaiting the hour when their children would have need of them once more." />
   <string id="tor_religion_description.cult_of_gork" text="{=str_tor_religion_description_cult_of_gork}Little is known about the major greenskin gods, and for outsiders they are hard to differentiate. Gork and Mork, the twin gods, both share the attributes of being brutal and cunning, but for the greenskins, it is clear who to worship for which boons. Gork is the brutally cunning part of the twins, a god of raw strength and might. As such, his main worshippers are the orcs, who value strength above all. Shamans that beseech Gork will sometimes succeed in summoning the god himself, or at least part of him. If they should succeed, they can summon enormous grasping hands to pluck their enemies apart or gigantic feet to stomp the enemy forces. Such is the raw power of Gork." />
   <string id="tor_religion_description.cult_of_mork" text="{=str_tor_religion_description_cult_of_mork}Little is known about the major greenskin gods, and for outsiders they are hard to differentiate. Gork and Mork, the twin gods, both share the attributes of being brutal and cunning, but for the greenskins it is clear who to worship for which boons. Mork is the cunningly brutal of the two twins and is primarily worshipped by goblins and other smarter varieties of greenskin. While the way of Gork is simply punching someone in the face, the way of Mork is much more refined: a worshipper of Mork would try to distract their foe and then punch them in the back of their head. Shamans that invoke the power of Mork do so not only to still damage their foes but also to protect their own. They can petition their god to hold his protecting hands over other greenskins or to manifest the piercing gaze of the god himself in the shaman’s own eyes, obliterating everything in his line of sight with deadly rays of energy." />
-	
-	<!-- Religion - God Names -->
   <string id="tor_religion_name_of_god.cult_of_sigmar" text="{=str_tor_religion_name_of_god_cult_of_sigmar}Sigmar" />
   <string id="tor_religion_name_of_god.cult_of_taal" text="{=str_tor_religion_name_of_god_cult_of_taal}Taal" />
   <string id="tor_religion_name_of_god.cult_of_ulric" text="{=str_tor_religion_name_of_god_cult_of_ulric}Ulric" />
@@ -3055,8 +3113,6 @@
   <string id="tor_religion_name_of_god.cult_of_tzeentch" text="{=str_tor_religion_name_of_god_cult_of_tzeentch}Tzeentch" />
   <string id="tor_religion_name_of_god.cult_of_gork" text="{=str_tor_religion_name_of_god_cult_of_gork}Gork" />
   <string id="tor_religion_name_of_god.cult_of_mork" text="{=str_tor_religion_name_of_god_cult_of_mork}Mork" />
-	
-	<!-- Religion - Blessing effects -->
   <string id="tor_religion_blessing_effect_description.cult_of_sigmar" text="{=str_tor_religion_blessing_effect_description_cult_of_sigmar}Earn 20% more prestige." />
   <string id="tor_religion_blessing_effect_description.cult_of_shallya" text="{=str_tor_religion_blessing_effect_description_cult_of_shallya}Your party members heal their wounds 20% faster." />
   <string id="tor_religion_blessing_effect_description.cult_of_taal" text="{=str_tor_religion_blessing_effect_description_cult_of_taal}Increase your party's movement speed in forests by 20%." />
@@ -3075,8 +3131,6 @@
   <string id="tor_religion_blessing_effect_description.cult_of_grimnir" text="{=str_tor_religion_blessing_effect_description_cult_of_grimnir}All troops in your party deal an extra 15% physical damage." />
   <string id="tor_religion_blessing_effect_description.cult_of_valaya" text="{=str_tor_religion_blessing_effect_description_cult_of_valaya}All troops in your party gain 5% ward save." />
   <string id="tor_religion_blessing_effect_description.cult_of_grungni" text="{=str_tor_religion_blessing_effect_description_cult_of_grungni}Gain 25% bonus crafting stamina." />
-	
-	<!-- Religion - Blessing names -->
   <string id="tor_religion_blessing_name.cult_of_sigmar" text="{=str_tor_religion_blessing_name_cult_of_sigmar}Blessing of Sigmar" />
   <string id="tor_religion_blessing_name.cult_of_shallya" text="{=str_tor_religion_blessing_name_cult_of_shallya}Blessing of Shallya" />
   <string id="tor_religion_blessing_name.cult_of_taal" text="{=str_tor_religion_blessing_name_cult_of_taal}Blessing of Taal" />
@@ -3095,6 +3149,9 @@
   <string id="tor_religion_blessing_name.cult_of_grimnir" text="{=str_tor_religion_blessing_name_cult_of_grimnir}Blessing of Grimnir" />
   <string id="tor_religion_blessing_name.cult_of_valaya" text="{=str_tor_religion_blessing_name_cult_of_valaya}Blessing of Valaya" />
   <string id="tor_religion_blessing_name.cult_of_grungni" text="{=str_tor_religion_blessing_name_cult_of_grungni}Blessing of Grungni" />
+
+  <!-- Religion -->
+  <string id="tor_religion_affiliation" text="{=str_tor_religion_affiliation}Affiliation" />
 
   <!-- Career related -->
   <string id="tor_career_title.WarriorPriest" text="{=str_tor_career_title_WarriorPriest}Warrior Priest of Sigmar" />
@@ -3197,8 +3254,6 @@
   <string id="tor_career_button_mercenary_not_tier5" text="{=str_tor_career_button_mercenary_not_tier5}Troop needs to reach tier 5 or higher." />
   <string id="tor_career_button_mercenary_wrong_culture" text="{=str_tor_career_button_mercenary_wrong_culture}Troop must be of your culture." />
   <string id="tor_waywatcher_select_arrows_text" text="{=str_tor_waywatcher_select_arrows_text}select magical arrows for this unit" />
-  <string id="tor_waywatcher_arrow_label" text="{=str_tor_waywatcher_arrow_label}Choose special arrows." />
-  <string id="tor_waywatcher_arrow_descr" text="{=str_tor_waywatcher_arrow_descr}Empower your ranged unit with a permanent magical effect." />
   <string id="tor_waywatcher_arrow_name.Swiftshiver" text="{=str_tor_waywatcher_arrow_name_swiftshiver}Swiftshiver Shards" />
   <string id="tor_waywatcher_arrow_name.Hagbane" text="{=str_tor_waywatcher_arrow_name_hagbane}Hagbane Tipps" />
   <string id="tor_waywatcher_arrow_name.Starfire" text="{=str_tor_waywatcher_arrow_name_starfire}Starfire Shafts" />
@@ -3231,6 +3286,16 @@
   <string id="tor_witch_hunter_not_enough_troops_text" text="{=str_tor_witch_hunter_not_enough_troops_text}Not enough healthy troops available" />
   <string id="tor_witch_hunter_culture_requirement_text" text="{=str_tor_witch_hunter_culture_requirement_text}Needs to be part of the empire or southern realms" />
   <string id="tor_witch_hunter_requires_text" text="{=str_tor_witch_hunter_requires_text}Requires atleast {EXCHANGE_COST} {PRESTIGE_ICON}" />
+
+  <!-- Waywatcher -->
+  <string id="tor_waywatcher_arrow_label" text="{=str_tor_waywatcher_arrow_label}Choose special arrows." />
+  <string id="tor_waywatcher_arrow_descr" text="{=str_tor_waywatcher_arrow_descr}Empower your ranged unit with a permanent magical effect." />
+  <string id="tor_careerunlock_level_1.Waywatcher" text="{=str_tor_careerunlock_level_1_waywatcher}" />
+  <string id="tor_careerunlock_level_2.Waywatcher" text="{=str_tor_careerunlock_level_2_waywatcher}Required clan renown: 2" />
+  <string id="tor_careerunlock_level_3.Waywatcher" text="{=str_tor_careerunlock_level_3_waywatcher}Required clan renown: 4" />
+  <string id="tor_careerunlock_reward_1.Waywatcher" text="{=str_tor_careerunlock_reward_1_waywatcher}Swiftshiver shards upgrade for troops" />
+  <string id="tor_careerunlock_reward_2.Waywatcher" text="{=str_tor_careerunlock_reward_2_waywatcher}Hagbane Tipps upgrade for troops" />
+  <string id="tor_careerunlock_reward_3.Waywatcher" text="{=str_tor_careerunlock_reward_3_waywatcher}Unlocks Starfire shafts" />
 
   <!-- Necromancer Choice Group Names -->
   <string id="tor_career_choicegroup_name.LiberNecris" text="{=str_tor_career_choicegroup_name_LiberNecris}Liber Necris" />
@@ -3907,7 +3972,7 @@
   <string id="tor_careerchoice_description.BlackGrailVowPassive4" text="{=str_tor_careerchoice_description_BlackGrailVowPassive4}+5 daily 'Dark Energy' per Necromancer and Vampire companion." />
 
   <!-- Career Choice Description - Waywatcher -->
-  <string id="tor_careerchoice_description.WayWatcherRoot" text="{=str_tor_careerchoice_description_WayWatcherRoot}Soon, the Lumberfoots shall regret their trespass! Fire a Lethal Shot, with deadly precision! +50% 'Physical' damage to your next shot. Every 'Keystone' career perk unlocked increases arrows affected by Lethal Shot by +1, but decreases its recharge rate. (Ability is charged by dealing 'Physical' damage with bows.)" />
+  <string id="tor_careerchoice_description.WayWatcherRoot" text="{=str_tor_careerchoice_description_WayWatcherRoot}Soon, the Lumberfoots shall regret their trespass! Fire a Lethal Shot, with deadly precision! +50% 'Physical' damage to your next shot. Every 'Keystone' career perk unlocked increases arrows affected by Lethal Shot by +1, but decreases its charge rate. (Ability is charged by dealing damage with bows.)" />
   <string id="tor_careerchoice_description.ProtectorOfTheWoodsKeystone" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsKeystone}Lethal Shot can be used on battle start, reduces required damage to use, and affects +1 shot." />
   <string id="tor_careerchoice_description.ProtectorOfTheWoodsPassive1" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsPassive1}+10% personal ranged 'Physical' damage." />
   <string id="tor_careerchoice_description.ProtectorOfTheWoodsPassive2" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsPassive2}+3 arrows per quiver you have equipped." />
@@ -4135,7 +4200,7 @@
   <string id="tor_careerchoice_description.TheLastJourneyPassive4" text="{=str_tor_careerchoice_description_TheLastJourneyPassive4}+40% ranged 'Physical Resistance' for all 'Slayer' troops." />
 
   <!-- Career Choice Description - Runelord -->
-  <string id="tor_careerchoice_description.RunelordRoot" text="{=str_tor_careerchoice_description_RunelordRoot}The runes are cast! By the Wisdom of Thungni, reduce the cooldown of the next 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. Also applies 15% extra damage dealt as 'Magic' to your weapon for 15s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)" />
+  <string id="tor_careerchoice_description.RunelordRoot" text="{=str_tor_careerchoice_description_RunelordRoot}The runes are cast! By the Wisdom of Thungni, reduce the remaining cooldown of one 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. Also applies 15% extra damage dealt as 'Magic' to your weapon for 15s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)" />
   <string id="tor_careerchoice_description.ForgefireBurningKeystone" text="{=str_tor_careerchoice_description_ForgefireBurningKeystone}Wisdom of Thungi now applies to the next 'Rune' in the sequence at half efficency as well." />
   <string id="tor_careerchoice_description.ForgefireBurningPassive1" text="{=str_tor_careerchoice_description_ForgefireBurningPassive1}+1 charcoal from burning wood." />
   <string id="tor_careerchoice_description.ForgefireBurningPassive2" text="{=str_tor_careerchoice_description_ForgefireBurningPassive2}+1 ingot when forging metal." />
@@ -4213,7 +4278,6 @@
   <!-- Career Choice Description - OrcShaman -->
   <string id="tor_careerchoice_description.OrcShamanRoot" text="{=str_tor_careerchoice_description_OrcShamanRoot}Da Shaman iz da centah uv da WAAAGH! You kunnect yerself to da boys ‘round, an’ dey will give you more ju-ju powa’ fer ZAPPIN’ an’ BLASTIN’. But if da boys start dyin’, den yer zappy energy gets blasted outta ya, an’ they take it wiv dem! Da betta ya get, de more you can kunnect to da WAAAGH!. An’ remember to stay close to da old ways. Wearin’ ‘ard bits an’ metal an’ stuff like dem ‘ard boyz iz gunna get ya less ju-ju powa’." />
   <string id="tor_careerchoice_description.BonesAnFirepitzKeystone" text="{=str_tor_careerchoice_description_BonesAnFirepitzKeystone}Call uv da Great Green iz always ready fer da scrap" />
-  <string id="tor_careerchoice_description.BonesAnFirepitzPassive1" text="{=str_tor_career_choice_description_BonesAnFirepitzPassive1}Get 15 mumbo-jumbo pointz afta' winnin' brawls" />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive2" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive2}10 more mumbo-jumbo pointz" />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive3" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive3}Betta findiness uv mumbo-jumbo fings afta' scraps" />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive4" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive4}More mumbo-jumbo eks-perr-yens afta' lootin' Idols" />
@@ -4302,6 +4366,9 @@
   <string id="tor_career_rank2_name.OrcShaman" text="{=str_tor_career_rank2_name_OrcShaman}Favoured uv Da Godz" />
   <string id="tor_career_rank3_name.OrcShaman" text="{=str_tor_career_rank3_name_OrcShaman}Great Shaman Lord" />
 
+  <!-- Careerchoice -->
+  <string id="tor_careerchoice_description.BonesAnFirepitzPassive1" text="{=str_tor_career_choice_description_BonesAnFirepitzPassive1}Get 15 mumbo-jumbo pointz afta' winnin' brawls" />
+
   <!-- Career Rank Label - Necrarch -->
   <string id="tor_career_rank1_name.Necrarch" text="{=str_tor_career_rank1_name_Necrarch}Apprentice" />
   <string id="tor_career_rank2_name.Necrarch" text="{=str_tor_career_rank2_name_Necrarch}Seeker" />
@@ -4375,14 +4442,6 @@
   <string id="tor_careerunlock_level_3.ImperialMagister" text="{=str_tor_careerunlock_level_3_imperialmagister}Required clan renown: 4" />
   <string id="tor_careerunlock_reward_2.ImperialMagister" text="{=str_tor_careerunlock_reward_2_imperialmagister}Unlocks Greater Powerstones" />
   <string id="tor_careerunlock_reward_3.ImperialMagister" text="{=str_tor_careerunlock_reward_3_imperialmagister}Unlocks Mighty Powerstones" />
-
-  <!-- Waywatcher -->
-  <string id="tor_careerunlock_level_1.Waywatcher" text="{=str_tor_careerunlock_level_1_waywatcher}" />
-  <string id="tor_careerunlock_level_2.Waywatcher" text="{=str_tor_careerunlock_level_2_waywatcher}Required clan renown: 2" />
-  <string id="tor_careerunlock_level_3.Waywatcher" text="{=str_tor_careerunlock_level_3_waywatcher}Required clan renown: 4" />
-  <string id="tor_careerunlock_reward_1.Waywatcher" text="{=str_tor_careerunlock_reward_1_waywatcher}Swiftshiver shards upgrade for troops" />
-  <string id="tor_careerunlock_reward_2.Waywatcher" text="{=str_tor_careerunlock_reward_2_waywatcher}Hagbane Tipps upgrade for troops" />
-  <string id="tor_careerunlock_reward_3.Waywatcher" text="{=str_tor_careerunlock_reward_3_waywatcher}Unlocks Starfire shafts" />
 
   <!-- Spellsinger -->
   <string id="tor_careerunlock_level_1.Spellsinger" text="{=str_tor_careerunlock_level_1_spellsinger}" />
@@ -4499,28 +4558,16 @@
   <string id="tor_career_button_knightoldworld_seal_decline.devout_no_perk_for_secular" text="{=tor_career_button_knightoldworld_seal_decline.devout_no_perk_for_secular}You need the Secular Orders perk to apply Templar seals to secular knights." />
   <string id="tor_career_button_knightoldworld_seal_decline.not_eligible" text="{=tor_career_button_knightoldworld_seal_decline.not_eligible}Not eligible for seal." />
 
-<!--TOR Information and data !-->
-
-  <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead - not affected by morale, and instead of fleeing, shall crumble to dust. If defeated, this unit cannot be wounded."/>
-  <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew - required to operate most artillery pieces."/>
-  <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale."/>
-  <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage."/>
-  <string id="tor_extendedInfo.Regeneration" text="{=str_tor_extendedinfo_regeneration}Regeneration - restores {VALUE} health per second.(...)"/>
-  <string id="tor_extendedInfo.Brute" text="{=str_tor_extendedinfo_brute}Brute - htis better(...)"/>
-  <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Piercing - {VALUE}% Armor Penetration(...)"/>
-  <string id="tor_extendedInfo.Bulwark" text="{=str_tor_extendedinfo_bulwark}Bulwark - {VALUE}% Ranged Damage Reduction(...)"/>
-  <string id="tor_extendedInfo.Swift" text="{=str_tor_extendedinfo_swift}Swift - {VALUE}% Movement Speed Bonus(...)"/>
-  <string id="tor_extendedInfo.Poisonous" text="{=str_tor_extendedinfo_poisonous}Poisonous - {CHANCE}% Chance on Hit to Poison the Target {DURATION} {DAMAGE}(...)"/>
-  <string id="tor_extendedInfo.TheHunger" text="{=str_tor_extendedinfo_the_hunger}The Hunger - Restores {VALUE}% Maximum Health after Killing an enemy(...)"/>
-  <string id="tor_extendedInfo.Frenzy" text="{=str_tor_extendedinfo_frenzy}Frenzy - Kill Grants {VALUE}% Movement Speed {VALUE}% Attack Speed for {DURATION} (...)"/>
-  <string id="tor_extendedInfo.UndeadSlayer" text="{=str_tor_extendedinfo_undead_slayer}Undead Slayer - +{VALUE}% Damage against Undead Units (...)"/>
-  <string id="tor_extendedInfo.Immortality" text="{=str_tor_extendedinfo_immortality}Immortality - Cannot be killed (...)"/>
-  <string id="tor_extendedInfo.Deadeye" text="{=str_tor_extendedinfo_deadeye}Deadeye - suffers no ranged accuracy penalty while moving(...)"/>
-  <string id="tor_extendedInfo.Ethereal" text="{=str_tor_extendedinfo_ethereal}Ethereal - {VALUE}% Chance to Ignore Purely Physical Hits(...)"/>
-  <string id="tor_extendedInfo.KillingBlow" text="{=str_tor_extendedinfo_killing_blow}Killing Blow - has a chance to instantly kill enemy units(...)"/>
-  <string id="tor_extendedInfo.WightKing" text="{=str_tor_extendedinfo_wight_king}Wight King - Has an Increased Chance to Instantly Kill Enemy Units(...)"/>
-  <string id="tor_extendedInfo.MonsterSlayer" text="{=str_tor_extendedinfo_monster_slayer}Monster Slayer - +{VALUE}% Damage against Monstrous Units(...)"/>
-  
+  <!-- TOR Information and data -->
+  <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead - The unit will not be affected by morale; instead of fleeing, it will disintegrate. If defeated, the unit will be lost and cannot be healed." />
+  <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - The unit will never flee, no matter how much morale it loses." />
+  <string id="tor_extendedInfo.Expendable" text="{=str_tor_extendedinfo_expendable}Expendable - The death or flight of these units will have no effect on the morale of the allied troops." />
+  <string id="tor_extendedInfo.Crushing" text="{=str_tor_extendedinfo_crushing}Crushing - Enemy weapons cannot block or parry this unit's attacks." />
+  <string id="tor_extendedInfo.Slice" text="{=str_tor_extendedinfo_slice}Slice - Melee attacks can cut through enemies(...)" />
+  <string id="tor_extendedInfo.TreeSpirit" text="{=str_tor_extendedinfo_treespirit}Tree Spirit - This unit is a Tree Spirit" />
+  <string id="tor_extendedInfo.Crew" text="{=str_tor_extendedinfo_crew}Artillery Crew - This unit can operate artillery. And it reloads {VALUE}% faster." />
+  <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage." />
+  <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Piercing - {VALUE}% Armor Penetration(...)" />
   <string id="tor_damagetype.Invalid" text="{=str_tor_damagetype_invalid}Invalid" />
   <string id="tor_damagetype.Physical" text="{=str_tor_damagetype_physical}Physical" />
   <string id="tor_damagetype.Magical" text="{=str_tor_damagetype_magical}Magical" />
@@ -4528,6 +4575,62 @@
   <string id="tor_damagetype.Holy" text="{=str_tor_damagetype_holy}Holy" />
   <string id="tor_damagetype.Frost" text="{=str_tor_damagetype_frost}Frost" />
   <string id="tor_damagetype.Lightning" text="{=str_tor_damagetype_lightning}Lightning" />
+
+  <!-- ExtendedInfo.Monstrous -->
+  <string id="tor_extendedInfo.Monstrous" text="{=str_tor_extendedinfo_monstrous}Monstrous - Attacks gates (...)" />
+
+  <!-- ExtendedInfo.cult -->
+  <string id="tor_extendedInfo.cult_of_loec" text="{=str_tor_extendedinfo_cult_of_loec}Cult of Loec - Religious unit of Loec.(...)" />
+  <string id="tor_extendedInfo.cult_of_manaan" text="{=str_tor_extendedinfo_cult_of_manaan}Cult of Manann - Religious unit of Manann(...)" />
+  <string id="tor_extendedInfo.cult_of_morr" text="{=str_tor_extendedinfo_cult_of_morr}Cult of Morr - Religious unit of Morr.(...)" />
+  <string id="tor_extendedInfo.cult_of_sigmar" text="{=str_tor_extendedinfo_cult_of_sigmar}Cult of Sigmar - Religious unit of Sigmar.(...)" />
+  <string id="tor_extendedInfo.cult_of_lady" text="{=str_tor_extendedinfo_cult_of_lady}Cult of the Lady - Religious unit of the Lady.(...)" />
+  <string id="tor_extendedInfo.cult_of_ulric" text="{=str_tor_extendedinfo_cult_of_ulric}Cult of Ulric - Religious unit of Ulric.(...)" />
+  <string id="tor_extendedInfo.cult_of_grimnir" text="{=str_tor_extendedinfo_cult_of_grimnir}Cult of Grimnir - Religious unit of Grimnir.(...)" />
+  <string id="tor_extendedInfo.cult_of_myrmidia" text="{=str_tor_extendedinfo_cult_of_myrmidia}Cult of Myrmidia - Religious unit of Myrmidia.(...)" />
+
+  <!-- ExtendedInfo.Regeneration -->
+  <string id="tor_extendedInfo.Regeneration" text="{=str_tor_extendedinfo_regeneration}Regeneration - restores {VALUE} health per second.(...)" />
+
+  <!-- ExtendedInfo.Brute -->
+  <string id="tor_extendedInfo.Brute" text="{=str_tor_extendedinfo_brute}Brute - htis better(...)" />
+
+  <!-- ExtendedInfo.Bulwark -->
+  <string id="tor_extendedInfo.Bulwark" text="{=str_tor_extendedinfo_bulwark}Bulwark - {VALUE}% Ranged Damage Reduction(...)" />
+
+  <!-- ExtendedInfo.Swift -->
+  <string id="tor_extendedInfo.Swift" text="{=str_tor_extendedinfo_swift}Swift - {VALUE}% Movement Speed Bonus(...)" />
+
+  <!-- ExtendedInfo.Poisonous -->
+  <string id="tor_extendedInfo.Poisonous" text="{=str_tor_extendedinfo_poisonous}Poisonous - {CHANCE}% Chance on Hit to Poison the Target {DURATION} {DAMAGE}(...)" />
+
+  <!-- ExtendedInfo.TheHunger -->
+  <string id="tor_extendedInfo.TheHunger" text="{=str_tor_extendedinfo_the_hunger}The Hunger - Restores {VALUE}% Maximum Health after Killing an enemy(...)" />
+
+  <!-- ExtendedInfo.Frenzy -->
+  <string id="tor_extendedInfo.Frenzy" text="{=str_tor_extendedinfo_frenzy}Frenzy - Kill grants {MOVEMENT}% Movement Speed and {ATTACK}% Attack Speed for {DURATION} seconds(...)" />
+
+  <!-- ExtendedInfo.UndeadSlayer -->
+  <string id="tor_extendedInfo.UndeadSlayer" text="{=str_tor_extendedinfo_undead_slayer}Undead Slayer - +{VALUE}% Damage against Undead Units (...)" />
+
+  <!-- ExtendedInfo.Immortality -->
+  <string id="tor_extendedInfo.Immortality" text="{=str_tor_extendedinfo_immortality}Immortality - Cannot be killed (...)" />
+
+  <!-- ExtendedInfo.Deadeye -->
+  <string id="tor_extendedInfo.Deadeye" text="{=str_tor_extendedinfo_deadeye}Deadeye - suffers no ranged accuracy penalty while moving(...)" />
+
+  <!-- ExtendedInfo.Ethereal -->
+  <string id="tor_extendedInfo.Ethereal" text="{=str_tor_extendedinfo_ethereal}Ethereal - {VALUE}% Chance to Ignore Purely Physical Hits(...)" />
+  <string id="tor_ethereal_hit_ignored" text="{=str_tor_ethereal_hit_ignored}Your blow passes harmlessly through the ethereal form!" />
+
+  <!-- ExtendedInfo.KillingBlow -->
+  <string id="tor_extendedInfo.KillingBlow" text="{=str_tor_extendedinfo_killing_blow}Killing Blow - has a chance to instantly kill enemy units(...)" />
+
+  <!-- ExtendedInfo.WightKing -->
+  <string id="tor_extendedInfo.WightKing" text="{=str_tor_extendedinfo_wight_king}Wight King - Has an Increased Chance to Instantly Kill Enemy Units(...)" />
+
+  <!-- ExtendedInfo.MonsterSlayer -->
+  <string id="tor_extendedInfo.MonsterSlayer" text="{=str_tor_extendedinfo_monster_slayer}Monster Slayer - +{VALUE}% Damage against Monstrous Units(...)" />
 
   <!-- Message Templates -->
   <string id="tor_damage_display_spell_damage" text="{=str_tor_damage_display_spell_damage}{ICON} {SPELL_NAME} dealt {DAMAGE} {DAMAGE_TYPE} damage to {COUNT} {TARGET_TEXT}" />
@@ -4630,9 +4733,10 @@
   <!-- TOR_CHOICE_TROOPUPGRADECOST -->
   <string id="tor_careerchoice_basic.Ammo" text="{=str_tor_careerchoice_basic_ammo}{EFFECT_VALUE} extra ammunition" />
 
-  <!-- Custom Resource -->
+  <!-- Custom -->
   <string id="tor_custom_resource_cost" text="{=str_tor_custom_resource_cost}Requires {AMOUNT} {RESOURCE_ICON}" />
-	
+
+  <!-- Custom Resource -->
   <string id="tor_custom_resource_name.Prestige" text="{=str_tor_custom_resource_name_prestige}Prestige" />
   <string id="tor_custom_resource_name.Chivalry" text="{=str_tor_custom_resource_name_chivalry}Chivalry" />
   <string id="tor_custom_resource_name.DarkEnergy" text="{=str_tor_custom_resource_name_darkenergy}Dark Energy" />
@@ -4643,7 +4747,6 @@
   <string id="tor_custom_resource_name.Meat" text="{=str_tor_custom_resource_name_meat}Meat" />
   <string id="tor_custom_resource_name.Waaagh" text="{=str_tor_custom_resource_name_waaagh}Fightiness" />
   <string id="tor_custom_resource_name.WindsOfMagic" text="{=str_tor_custom_resource_name_windsofmagic}Winds of Magic" />
-	
   <string id="tor_custom_resource_description.Prestige" text="{=str_tor_custom_resource_description_prestige}Prestige is a sign of respect within the Empire. A symbolic currency that allows upgrading Imperial troops and striking special deals with influential individuals." />
   <string id="tor_custom_resource_description.Chivalry" text="{=str_tor_custom_resource_description_chivalry}A representation of the chivalrous code of conduct driving the people of the fair land of Bretonnia. Higher Chivalry allows for greater recruitment of special troops and utilization of unique mechanics." />
   <string id="tor_custom_resource_description.DarkEnergy" text="{=str_tor_custom_resource_description_darkenergy}Dark Energy is used by practitioners of necromancy to raise and support their undead minions." />
@@ -4790,8 +4893,8 @@
   <string id="tor_inky_Duel.STR_PlayerLost1" text="{=!}" />
   <string id="tor_inky_Duel.STR_PlayerLost2" text="{=!}" />
   <string id="tor_inky_Duel.STR_DuelEnd" text="{=!}" />
-  
-  <!-- Orion defeat reward -->
+
+  <!-- Inky -->
   <string id="tor_inky_OrionDefeatedByPlayer.Title" text="{=str_tor_inky_orion_defeated_title}Orion Defeated" />
   <string id="tor_inky_OrionDefeatedByPlayer.STR_Start1" text="{=str_tor_inky_orion_defeated_start1}You defeated Orion." />
   <string id="tor_inky_OrionDefeatedByPlayer.STR_Start2" text="{=str_tor_inky_orion_defeated_start2}Wild Hunt has been broken." />
@@ -4800,7 +4903,6 @@
 
   <!-- Serve as a Hireling -->
   <string id="tor_hirelinglordquit.default" text="{=str_tor_hirelinglordquit_default}If this is your wish. Fine." />
-  <string id="tor_hirelinglordquit_serviceDuration" text="{=str_tor_hirelinglordquit_serviceDuration}Minimum service is {MINIMUM_SERVICE_TIME} days." />
   <string id="tor_hirelinglordexplain.default" text="{=str_tor_hirelinglordexplain_default}A hireling? Surely I have use for you. Just note that I am not accepting any additional troops." />
   <string id="tor_hirelinglordexplain.empire" text="{=str_tor_hirelinglordexplain_empire}The Empire needs fresh blood, surely I have use for you. Just note that I am not accepting any additional troops." />
   <string id="tor_hirelinglordexplain.vlandia" text="{=str_tor_hirelinglordexplain_vlandia}Serving the country in the knightly Service is the highest duty among Bretones. Just note that I am not accepting any additional troops." />
@@ -4823,8 +4925,18 @@
   <string id="tor_hireling_siege_engines_text" text="{=str_tor_hireling_siege_engines_text}Siege engines ready: {COUNT}" />
   <string id="tor_hireling_raiding_text" text="{=str_tor_hireling_raiding_text}Raiding {VILLAGE_NAME}" />
 
-  <!-- Hireling Battle Menu -->
+  <!-- Hirelinglordquit -->
+  <string id="tor_hirelinglordquit_serviceDuration" text="{=str_tor_hirelinglordquit_serviceDuration}Minimum service is {MINIMUM_SERVICE_TIME} days." />
+
+  <!-- Graveyard Menus -->
   <string id="tor_hireling_desert_warning" text="{=str_tor_hireling_desert_warning}This will damage your reputation with the {FACTION}. Serve for {MINIMUM_SERVICE_TIME} days, and speak to your enlisting Lord to avoid consequences." />
+  <string id="tor_graveyard_go_to" text="{=str_tor_graveyard_go_to}Go to the graveyard" />
+  <string id="tor_graveyard_title" text="{=str_tor_graveyard_title}Graveyard" />
+  <string id="tor_graveyard_leave" text="{=str_tor_graveyard_leave}Leave" />
+  <string id="tor_graveyard_caught_title" text="{=str_tor_graveyard_caught_title}Caught in the act" />
+  <string id="tor_graveyard_surrender" text="{=str_tor_graveyard_surrender}Surrender" />
+
+  <!-- Hireling Battle Menu -->
   <string id="tor_hireling_battle_fallback" text="{=str_tor_hireling_battle_fallback}Your Lord engages in a battle." />
   <string id="tor_hireling_battle_type_battle" text="{=str_tor_hireling_battle_type_battle}Battle" />
   <string id="tor_hireling_battle_type_siege_assault" text="{=str_tor_hireling_battle_type_siege_assault}Siege Assault" />
@@ -5439,13 +5551,6 @@
   <!-- Spell Trainer Eonir Dialogs -->
   <string id="tor_spelltrainer_eonir_open_book" text="{=str_tor_spelltrainer_eonir_open_book}I seek to further my knowledge of the Winds of Magic, can you help me achieve this?" />
 
-  <!-- Graveyard Menus -->
-  <string id="tor_graveyard_go_to" text="{=str_tor_graveyard_go_to}Go to the graveyard" />
-  <string id="tor_graveyard_title" text="{=str_tor_graveyard_title}Graveyard" />
-  <string id="tor_graveyard_leave" text="{=str_tor_graveyard_leave}Leave" />
-  <string id="tor_graveyard_caught_title" text="{=str_tor_graveyard_caught_title}Caught in the act" />
-  <string id="tor_graveyard_surrender" text="{=str_tor_graveyard_surrender}Surrender" />
-
   <!-- Greenskin Spell Trainer Dialogs -->
   <string id="tor_spelltrainer_greenskin_start_str" text="{=str_tor_spelltrainer_greenskin_start_str}You come to look into da fire?" />
   <string id="tor_spelltrainer_greenskin_hub_str" text="{=str_tor_spelltrainer_greenskin_hub_str}Wot you want, git?" />
@@ -5503,17 +5608,17 @@
   <string id="tor_powerstone_death_res_30_debuff_name" text="{=str_tor_powerstone_death_res_30_debuff_name}Lesser Deadening Endstone" />
   <string id="tor_powerstone_death_res_30_debuff_desc" text="{=str_tor_powerstone_death_res_30_debuff_desc}+25% physical resistance, 20% reduced swing-speed" />
 
-  <!-- Powerstone Texts - General -->
-	<string id="tor_powerstone_choose_title" text="{=str_tor_powerstone_choose_title_text}Choose Powerstone" />
-	<string id="tor_powerstone_choose_description" text="{=str_tor_powerstone_choose_description}Empower your troop with the persisting magical effect of a Powerstone. The effect will reduce the maximum Winds of all magisters sharing the stone's lore while it is active." />
-	<string id="tor_powerstone_inquiry_description" text="{=str_tor_powerstone_inquiry_description}{STONE_ICON}{STONE_NAME} {STONE_PRICE}{PRESTIGE_ICON} Reserved Winds : {STONE_UPKEEP}{WINDS_ICON}" />
-	<string id="tor_powerstone_remove_hint" text="{=str_tor_powerstone_remove_hint}Remove powerstone and recover some prestige." />
-	<string id="tor_powerstone_not_enough_winds" text="{=str_tor_powerstone_not_enough_winds}You don't have enough Winds" />
-	<string id="tor_powerstone_not_experienced_enough" text="{=str_tor_powerstone_not_experienced_enough}Troop is too inexperienced. Requires Tier 4+" />
-	<string id="tor_powerstone_not_enough_prestige" text="{=str_tor_powerstone_not_enough_prestige}You do not have enough prestige to create Powerstones" />
-	<string id="tor_powerstone_remove" text="{=str_tor_powerstone_remove}Remove Powerstone" />
-	<string id="tor_powerstone_apply_tooltip" text="{=str_tor_powerstone_apply_tooltip}Empower troop with a Powerstone" />
-	
+  <!-- Powerstone -->
+  <string id="tor_powerstone_choose_title" text="{=str_tor_powerstone_choose_title_text}Choose Powerstone" />
+  <string id="tor_powerstone_choose_description" text="{=str_tor_powerstone_choose_description}Empower your troop with the persisting magical effect of a Powerstone. The effect will reduce the maximum Winds of all magisters sharing the stone's lore while it is active." />
+  <string id="tor_powerstone_inquiry_description" text="{=str_tor_powerstone_inquiry_description}{STONE_ICON}{STONE_NAME} {STONE_PRICE}{PRESTIGE_ICON} Reserved Winds : {STONE_UPKEEP}{WINDS_ICON}" />
+  <string id="tor_powerstone_remove_hint" text="{=str_tor_powerstone_remove_hint}Remove powerstone and recover some prestige." />
+  <string id="tor_powerstone_not_enough_winds" text="{=str_tor_powerstone_not_enough_winds}You don't have enough Winds" />
+  <string id="tor_powerstone_not_experienced_enough" text="{=str_tor_powerstone_not_experienced_enough}Troop is too inexperienced. Requires Tier 4+" />
+  <string id="tor_powerstone_not_enough_prestige" text="{=str_tor_powerstone_not_enough_prestige}You do not have enough prestige to create Powerstones" />
+  <string id="tor_powerstone_remove" text="{=str_tor_powerstone_remove}Remove Powerstone" />
+  <string id="tor_powerstone_apply_tooltip" text="{=str_tor_powerstone_apply_tooltip}Empower troop with a Powerstone" />
+
   <!-- Powerstone Texts - Greater -->
   <string id="tor_powerstone_fire_dmg_35_name" text="{=str_tor_powerstone_fire_dmg_35_name}Greater Enlightening Fire Ruby" />
   <string id="tor_powerstone_fire_dmg_35_desc" text="{=str_tor_powerstone_fire_dmg_35_desc}+50% Fire amplification, 15% Fire damage+30%" />
@@ -5581,22 +5686,15 @@
   <string id="tor_encyclopedia_filter_campaign_issues" text="{=str_tor_encyclopedia_filter_campaign_issues}Campaign Issues" />
   <string id="tor_encyclopedia_filter_types" text="{=str_tor_encyclopedia_filter_types}Types" />
 
-  <!-- Quartermaster/Kwartamasta Texts -->
+  <!-- Quartermaster/Shop Texts -->
   <string id="tor_gs_quartermaster_intro_text" text="{=str_tor_gs_quartermaster_intro_text}Yoo dere, youz got sumfing fer da Boss?" />
   <string id="tor_gs_quartermaster_anything_else_text" text="{=str_tor_gs_quartermaster_anything_else_text}Wot, youz got more?" />
   <string id="tor_gs_quartermaster_shinies_option_text" text="{=str_tor_gs_quartermaster_shinies_option_text}Shinies" />
-  <string id="tor_gs_quartermaster_shinies_option_text_owner" text="{=str_tor_gs_quartermaster_shinies_option_text_owner}Shinies for me pile" />
   <string id="tor_gs_quartermaster_loot_option_text" text="{=str_tor_gs_quartermaster_loot_option_text}Loot" />
   <string id="tor_gs_quartermaster_leave_option_text" text="{=str_tor_gs_quartermaster_leave_option_text}Iz outta 'ere!" />
   <string id="tor_gs_quartermaster_owner_intro_text" text="{=str_tor_gs_quartermaster_owner_intro_text}Oi, Boss, youz got sum loot fer da pile?" />
   <string id="tor_gs_quartermaster_owner_anything_else_text" text="{=str_tor_gs_quartermaster_owner_anything_else_text}Iz dere more, Boss?" />
   <string id="tor_gs_quartermaster_make_teefbags_option_text" text="{=str_tor_gs_quartermaster_make_teefbags_option_text}Make Teefbags" />
-  <string id="tor_gs_give_items_to_boss_text" text="{=str_tor_gs_quartermaster_inventory_menu}Give Items to the Big Boss" />
-  <string id="tor_gs_spend_gold_description_text_teef" text="{=str_tor_gs_spend_gold_description_text_teef}The Big Boss takes your shinies. How much would you like to spend to obtain some Teef?" />
-  <string id="tor_gs_spend_gold_description_text_piles" text="{=str_tor_gs_spend_gold_description_text_piles}We takes your shinies Big Boss. How much for da loot pile (Stash)?" />
-	
-	
-	<!-- Dwarf Shop Texts -->
   <string id="tor_dw_shop_show_goods_text" text="{=str_tor_dw_shop_show_goods_text}Very well, take a look at our inventions." />
   <string id="tor_dw_engineer_buy_weapons_text" text="{=str_tor_dw_engineer_buy_weapons_text}I need better gear, Master Engineer." />
   <string id="tor_dw_quit_text" text="{=str_tor_dw_quit_text}That will be all." />
@@ -5605,6 +5703,12 @@
   <string id="tor_dw_engineer_recruit_crew_accept_text" text="{=str_tor_dw_engineer_recruit_crew_accept_text}They'll serve the hold well." />
   <string id="tor_dw_engineer_recruit_crew_no_funds_text" text="{=str_tor_dw_engineer_recruit_crew_no_funds_text}I don't have enough coin or Oathgold right now." />
   <string id="tor_dw_engineer_recruit_crew_decline_text" text="{=str_tor_dw_engineer_recruit_crew_decline_text}Maybe another time." />
+
+  <!-- Gs -->
+  <string id="tor_gs_quartermaster_shinies_option_text_owner" text="{=str_tor_gs_quartermaster_shinies_option_text_owner}Shinies for me pile" />
+  <string id="tor_gs_give_items_to_boss_text" text="{=str_tor_gs_quartermaster_inventory_menu}Give Items to the Big Boss" />
+  <string id="tor_gs_spend_gold_description_text_teef" text="{=str_tor_gs_spend_gold_description_text_teef}The Big Boss takes your shinies. How much would you like to spend to obtain some Teef?" />
+  <string id="tor_gs_spend_gold_description_text_piles" text="{=str_tor_gs_spend_gold_description_text_piles}We takes your shinies Big Boss. How much for da loot pile (Stash)?" />
 
   <!-- Priest Dialog Texts -->
   <string id="tor_priest_start_accept" text="{=str_tor_priest_start_accept}Welcome, faithful one. How may I serve you today?" />
@@ -5823,7 +5927,7 @@
   <string id="tor_settlement_graveyard_raise_dead_interrupt_action" text="{=str_tor_settlement_graveyard_raise_dead_interrupt_action}Defend yourself" />
   <string id="tor_settlement_graveyard_closed" text="{=str_tor_settlement_graveyard_closed}The Graveyard's massive iron gates are closed shut." />
 
-  <!-- Other Missing Texts -->
+  <!-- Ironingot6 -->
   <string id="tor_ironingot6_name" text="{=str_tor_ironingot6_name}Gromril{@Plural}loads of gromril{\@}" />
 
   <!-- Diplomacy -->
@@ -5877,8 +5981,167 @@
   <string id="str_formation_ai_behavior_text.TORBehaviorProtectArtillery" text="{=str_tor_formation_ai_behavior_text_torbehaviorprotectartillery}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are protecting artillery." />
   <string id="str_formation_ai_behavior_text.TORBehaviorRetreat" text="{=str_tor_formation_ai_behavior_text_torbehaviorretreat}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are retreating." />
   <string id="str_formation_ai_behavior_text.TORBehaviorSkirmish" text="{=str_tor_formation_ai_behavior_text_torbehaviorskirmish}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are skirmishing." />
-  <string id="str_formation_ai_sergeant_instruction_behaviour_text.TORBehaviorCharge" text="{=str_formation_ai_sergeant_instruction_behaviour_text.torbehaviorcharge}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are Charging." />
-  <string id="tor_we_scout" text="{=str_tor_we_scout}Asrai Ranger" category="Units" subcategory="Wood Elves" />
-  <string id="tor_we_kings_bowman" text="{=str_tor_we_kings_bowman}Asrai Kings Bowman" category="Units" subcategory="Wood Elves" />
-  <string id="tor_test_subject" text="{=str_tor_test_subject}Test Subject" category="Units" subcategory="Test" />
+
+  <!-- Units - Wood Elves -->
+  <string id="tor_we_scout" text="{=str_tor_we_scout}Asrai Ranger" />
+  <string id="tor_we_kings_bowman" text="{=str_tor_we_kings_bowman}Asrai Kings Bowman" />
+
+  <!-- Units - Test -->
+  <string id="tor_test_subject" text="{=str_tor_test_subject}Test Subject" />
+
+  <!-- Factions - Beastmen -->
+  <string id="str_tor_culture_beastmen" text="{=str_tor_culture_beastmen}Beastmen" />
+  <string id="str_tor_kingdom_beastmen" text="{=str_tor_kingdom_beastmen}Beastmen Herds" />
+  <string id="str_tor_kingdom_beastmen_short" text="{=str_tor_kingdom_beastmen_short}Beastmen" />
+  <string id="str_tor_kingdom_beastmen_title" text="{=str_tor_kingdom_beastmen_title}Beastmen Herds" />
+  <string id="str_tor_kingdom_beastmen_ruler" text="{=str_tor_kingdom_beastmen_ruler}Beastlord" />
+  <string id="str_tor_kingdom_beastmen_text" text="{=str_tor_kingdom_beastmen_text}The scattered herds of Chaos-corrupted beast-kin that stalk the Drakwald and the deep places of the Empire. Ruled by no crown but might, they raid the borderlands from herdstone-shadowed hollows in the trees." />
+  <string id="str_tor_clan_beastmen_1" text="{=str_tor_clan_beastmen_1}Great Herd" />
+  <string id="str_tor_clan_beastmen_1_text" text="{=str_tor_clan_beastmen_1_text}The paramount warherd of the Drakwald, gathered under the horns of the current Beastlord." />
+  <string id="str_tor_hero_beastmen_leader_text" text="{=str_tor_hero_beastmen_leader_text}The current Beastlord of the Great Herd, whose horns and hooves rule by fear and by strength alone." />
+  <string id="str_tor_beastmen_lord_factionleader" text="{=str_tor_beastmen_lord_factionleader}[TODO] The Beastlord" />
+  <string id="str_culture_rich_name.beastmen" text="{=str_culture_rich_name.beastmen}[TODO] Beastmen of Chaos" />
+  <string id="str_culture_description.beastmen" text="{=str_culture_description.beastmen}[TODO] The Beastmen are the twisted children of Chaos, mutated descendants of humans corrupted by the dark energies that flow from the north. They lurk in the deepest forests of the Old World, gathering in savage warherds around their herdstones. Driven by an instinctive hatred of civilization and all its works, the Beastmen live only to tear down what others have built. When the horns sound and the Beastlords rally their herds, the forests disgorge a tide of cloven-hoofed fury that sweeps away all in its path." />
+  <string id="str_faction_formal_name_for_culture.beastmen" text="{=str_faction_formal_name_for_culture.beastmen}[TODO] Beastmen Warherds" />
+  <string id="str_faction_informal_name_for_culture.beastmen" text="{=str_faction_informal_name_for_culture.beastmen}[TODO] the Beastmen" />
+  <string id="str_adjective_for_culture.beastmen" text="{=str_adjective_for_culture.beastmen}[TODO] beastman" />
+  <string id="str_neutral_term_for_culture.beastmen" text="{=str_neutral_term_for_culture.beastmen}[TODO] beastmen" />
+
+  <!-- Custom Resources - Beastmen -->
+  <string id="tor_custom_resource_name.DarkOmen" text="{=str_tor_custom_resource_name.DarkOmen}[TODO] Dark Omen" />
+  <string id="tor_custom_resource_description.DarkOmen" text="{=str_tor_custom_resource_description.DarkOmen}[TODO] A measure of the dark favor bestowed upon the herd by the Chaos Gods. Used to perform dark rituals and summon reinforcements." />
+
+  <!-- POIs - Wizard Hall -->
+  <string id="tor_poi_wizardhall.Name" text="{=str_tor_poi_wizardhall.Name}Wizard Hall" />
+  <string id="tor_poi_wizardhall.EnterLabel" text="{=str_tor_poi_wizardhall.EnterLabel}Visit the Wizard Hall" />
+  <string id="tor_poi_wizardhall.Undiscovered" text="{=str_tor_poi_wizardhall.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_wizardhall.Sealed" text="{=str_tor_poi_wizardhall.Sealed}This place is sealed." />
+  <string id="tor_poi_wizardhall.SiegeSealed" text="{=str_tor_poi_wizardhall.SiegeSealed}The gates of the College are sealed during the siege." />
+  <string id="tor_poi_wizardhall.Rejected" text="{=str_tor_poi_wizardhall.Rejected}The wards of the College turn you away." />
+  <string id="tor_poi_wizardhall.MustHaveCareer" text="{=str_tor_poi_wizardhall.MustHaveCareer}Only {REQUIRED_CAREER} may enter the College." />
+
+  <!-- POIs - Witch Hunter Lodge -->
+  <string id="tor_poi_witchhunter_lodge.Name" text="{=str_tor_poi_witchhunter_lodge.Name}Witch Hunter Lodge" />
+  <string id="tor_poi_witchhunter_lodge.EnterLabel" text="{=str_tor_poi_witchhunter_lodge.EnterLabel}Visit the Witch Hunter Lodge" />
+  <string id="tor_poi_witchhunter_lodge.Undiscovered" text="{=str_tor_poi_witchhunter_lodge.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_witchhunter_lodge.Sealed" text="{=str_tor_poi_witchhunter_lodge.Sealed}This place is sealed." />
+  <string id="tor_poi_witchhunter_lodge.SiegeSealed" text="{=str_tor_poi_witchhunter_lodge.SiegeSealed}The lodge is closed during the siege." />
+  <string id="tor_poi_witchhunter_lodge.Rejected" text="{=str_tor_poi_witchhunter_lodge.Rejected}The templars turn you away." />
+
+  <!-- POIs - Empire Engineer Hall -->
+  <string id="tor_poi_empire_engineer_hall.Name" text="{=str_tor_poi_empire_engineer_hall.Name}Empire Engineer Hall" />
+  <string id="tor_poi_empire_engineer_hall.EnterLabel" text="{=str_tor_poi_empire_engineer_hall.EnterLabel}Visit the Empire Engineer Hall" />
+  <string id="tor_poi_empire_engineer_hall.Undiscovered" text="{=str_tor_poi_empire_engineer_hall.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_empire_engineer_hall.Sealed" text="{=str_tor_poi_empire_engineer_hall.Sealed}This place is sealed." />
+  <string id="tor_poi_empire_engineer_hall.SiegeSealed" text="{=str_tor_poi_empire_engineer_hall.SiegeSealed}The gates of the Engineer Hall are sealed during the siege." />
+  <string id="tor_poi_empire_engineer_hall.Rejected" text="{=str_tor_poi_empire_engineer_hall.Rejected}The engineers turn you away." />
+  <string id="tor_poi_empire_engineer_hall.WrongCulture" text="{=str_tor_poi_empire_engineer_hall.WrongCulture}The Imperial engineers only serve those of the Empire." />
+
+  <!-- POIs - Smoke Test -->
+  <string id="tor_test_mcp_linkedfield_verification" text="{=str_tor_test_mcp_linkedfield_verification}Smoke test — safe to delete." />
+
+  <!-- POIs - Vampire Crypt -->
+  <string id="tor_poi_vampire_crypt.Name" text="{=str_tor_poi_vampire_crypt.Name}Vampire Crypt" />
+  <string id="tor_poi_vampire_crypt.EnterLabel" text="{=str_tor_poi_vampire_crypt.EnterLabel}Visit the Vampire Crypt" />
+  <string id="tor_poi_vampire_crypt.Undiscovered" text="{=str_tor_poi_vampire_crypt.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_vampire_crypt.Sealed" text="{=str_tor_poi_vampire_crypt.Sealed}This place is sealed." />
+  <string id="tor_poi_vampire_crypt.SiegeSealed" text="{=str_tor_poi_vampire_crypt.SiegeSealed}The crypt is sealed during the siege." />
+  <string id="tor_poi_vampire_crypt.Rejected" text="{=str_tor_poi_vampire_crypt.Rejected}The dead within turn you away." />
+  <string id="tor_poi_vampire_crypt.MustHaveCareer" text="{=str_tor_poi_vampire_crypt.MustHaveCareer}Only the undying may enter the crypt." />
+
+  <!-- POIs - Spellsingers Grove -->
+  <string id="tor_poi_spellsingers_grove.Name" text="{=str_tor_poi_spellsingers_grove.Name}Spellsingers' Grove" />
+  <string id="tor_poi_spellsingers_grove.EnterLabel" text="{=str_tor_poi_spellsingers_grove.EnterLabel}Visit the Spellsingers' Grove" />
+  <string id="tor_poi_spellsingers_grove.Undiscovered" text="{=str_tor_poi_spellsingers_grove.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_spellsingers_grove.Sealed" text="{=str_tor_poi_spellsingers_grove.Sealed}This place is sealed." />
+  <string id="tor_poi_spellsingers_grove.SiegeSealed" text="{=str_tor_poi_spellsingers_grove.SiegeSealed}The grove's wards close during the siege." />
+  <string id="tor_poi_spellsingers_grove.Rejected" text="{=str_tor_poi_spellsingers_grove.Rejected}The grove does not open for your kind." />
+  <string id="tor_poi_spellsingers_grove.MustHaveCareer" text="{=str_tor_poi_spellsingers_grove.MustHaveCareer}Only the children of Ariel may enter the grove." />
+
+  <!-- POIs - Shaman Hut -->
+  <string id="tor_poi_shaman_hut.Name" text="{=str_tor_poi_shaman_hut.Name}Shaman Hut" />
+  <string id="tor_poi_shaman_hut.EnterLabel" text="{=str_tor_poi_shaman_hut.EnterLabel}Visit the Shaman Hut" />
+  <string id="tor_poi_shaman_hut.Undiscovered" text="{=str_tor_poi_shaman_hut.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_shaman_hut.Sealed" text="{=str_tor_poi_shaman_hut.Sealed}This place is sealed." />
+  <string id="tor_poi_shaman_hut.SiegeSealed" text="{=str_tor_poi_shaman_hut.SiegeSealed}The shaman da hut iz closed. Bosses fightin'!" />
+  <string id="tor_poi_shaman_hut.Rejected" text="{=str_tor_poi_shaman_hut.Rejected}Da shaman don't see yer kind." />
+  <string id="tor_poi_shaman_hut.MustHaveCareer" text="{=str_tor_poi_shaman_hut.MustHaveCareer}Only shaman-boyz may enter." />
+
+  <!-- POIs - Forest Shrine of the Lady -->
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.Name" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.Name}Forest Shrine of the Lady" />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.EnterLabel" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.EnterLabel}Approach the shrine..." />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.Undiscovered" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.Sealed" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.Sealed}This place is sealed." />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.SiegeSealed" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.SiegeSealed}The grove's wards close during the siege." />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.WrongCulture" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.WrongCulture}The Lady's shrine is a sacred place of Bretonnia." />
+  <string id="tor_poi_bretonnia_forest_trainer_shrine.NotCaster" text="{=str_tor_poi_bretonnia_forest_trainer_shrine.NotCaster}Only those gifted with magic may approach the Lady." />
+
+  <!-- POIs - Runehall -->
+  <string id="tor_poi_runehall.Name" text="{=str_tor_poi_runehall.Name}Runehall" />
+  <string id="tor_poi_runehall.EnterLabel" text="{=str_tor_poi_runehall.EnterLabel}Visit the Runehall" />
+  <string id="tor_poi_runehall.Undiscovered" text="{=str_tor_poi_runehall.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_runehall.Sealed" text="{=str_tor_poi_runehall.Sealed}This place is sealed." />
+  <string id="tor_poi_runehall.SiegeSealed" text="{=str_tor_poi_runehall.SiegeSealed}The hold's gates are shut while under siege." />
+  <string id="tor_poi_runehall.WrongRace" text="{=str_tor_poi_runehall.WrongRace}The Runehall is open to the dawi alone." />
+  <string id="tor_poi_runehall.MustHaveCareer" text="{=str_tor_poi_runehall.MustHaveCareer}Only those who walk the path of Thungni may approach the anvil." />
+
+  <!-- POIs - Dwarf Engineer Hall -->
+  <string id="tor_poi_dwarf_engineer_hall.Name" text="{=str_tor_poi_dwarf_engineer_hall.Name}Engineers' Hall" />
+  <string id="tor_poi_dwarf_engineer_hall.EnterLabel" text="{=str_tor_poi_dwarf_engineer_hall.EnterLabel}Visit the Engineers' Hall" />
+  <string id="tor_poi_dwarf_engineer_hall.Undiscovered" text="{=str_tor_poi_dwarf_engineer_hall.Undiscovered}You have not yet found this place." />
+  <string id="tor_poi_dwarf_engineer_hall.Sealed" text="{=str_tor_poi_dwarf_engineer_hall.Sealed}This place is sealed." />
+  <string id="tor_poi_dwarf_engineer_hall.SiegeSealed" text="{=str_tor_poi_dwarf_engineer_hall.SiegeSealed}The hold's gates are shut while under siege." />
+  <string id="tor_poi_dwarf_engineer_hall.WrongCulture" text="{=str_tor_poi_dwarf_engineer_hall.WrongCulture}The Engineers' Hall is open to the dawi alone." />
+
+  <!-- Settlement Menus - Castle Courtyard -->
+  <string id="tor_castlecomplex" text="{=str_tor_castlecomplex}Visit the Quarters" />
+  <string id="tor_castle_courtyard.leave" text="{=str_tor_castle_courtyard.leave}Back to the keep..." />
+  <string id="tor_castlecomplex_intro" text="{=str_tor_castlecomplex_intro}You walk the quarters, trading nods with the hangers-on." />
+  <string id="tor_castlecomplex.vlandia" text="{=str_tor_castlecomplex.vlandia}Attend the household" />
+  <string id="tor_castlecomplex_intro.vlandia" text="{=str_tor_castlecomplex_intro.vlandia}The lower bailey of {SETTLEMENT_NAME} teems with retainers and petitioners. A damsel's attendants watch from a doorway." />
+  <string id="tor_castlecomplex.khuzait" text="{=str_tor_castlecomplex.khuzait}Descend to the undercroft" />
+  <string id="tor_castlecomplex_intro.khuzait" text="{=str_tor_castlecomplex_intro.khuzait}The undercroft of {SETTLEMENT_NAME} is cold and still. Only the dripping of water breaks the silence." />
+  <string id="tor_castlecomplex.mousillon" text="{=str_tor_castlecomplex.mousillon}Descend to the undercroft" />
+  <string id="tor_castlecomplex_intro.mousillon" text="{=str_tor_castlecomplex_intro.mousillon}The undercroft of {SETTLEMENT_NAME} smells of damp earth and old blood. Something scuttles beyond the lantern-light." />
+  <string id="tor_castlecomplex.sturgia" text="{=str_tor_castlecomplex.sturgia}Visit the clan workshops" />
+  <string id="tor_castlecomplex_intro.sturgia" text="{=str_tor_castlecomplex_intro.sturgia}The workshops of {SETTLEMENT_NAME} ring with hammer-blows deep inside the mountain, lit by furnace-glow and runic lanterns." />
+
+  <!-- Settlement Menus - Town Complex -->
+  <string id="tor_towncomplex" text="{=str_tor_towncomplex}Go to the artisan district" />
+  <string id="tor_towncomplex_intro" text="{=str_tor_towncomplex_intro}You have arrived at {SETTLEMENT_NAME}'s Artisan District. It is a lively place where artisans and craftsmen of varying professions are busy in their workshops." />
+  <string id="tor_towncomplex.vlandia" text="{=str_tor_towncomplex.vlandia}Walk the market square" />
+  <string id="tor_towncomplex_intro.vlandia" text="{=str_tor_towncomplex_intro.vlandia}The market square of {SETTLEMENT_NAME} bustles with Bretonnian craftsmen, their stalls fragrant with wine, leather, and fresh bread." />
+  <string id="tor_towncomplex.khuzait" text="{=str_tor_towncomplex.khuzait}Walk the dark alleys" />
+  <string id="tor_towncomplex_intro.khuzait" text="{=str_tor_towncomplex_intro.khuzait}The alleys of {SETTLEMENT_NAME} are quiet in the long twilight; townsfolk avert their eyes and hurry past." />
+  <string id="tor_towncomplex.mousillon" text="{=str_tor_towncomplex.mousillon}Walk the dark alleys" />
+  <string id="tor_towncomplex_intro.mousillon" text="{=str_tor_towncomplex_intro.mousillon}The alleys of {SETTLEMENT_NAME} reek of damp and rot. Figures huddle in doorways and watch you pass without comment." />
+  <string id="tor_towncomplex.sturgia" text="{=str_tor_towncomplex.sturgia}Visit the clan workshops" />
+  <string id="tor_towncomplex_intro.sturgia" text="{=str_tor_towncomplex_intro.sturgia}The workshops of {SETTLEMENT_NAME} ring with hammer-blows; smoke and sparks curl up through grates in the stone ceiling." />
+  <!-- Greenskin formations -->
+  <string id="tor_formation.greenskin_1" text="{=str_tor_formation_greenskin_1}Da Boyz" />
+  <string id="tor_formation.greenskin_2" text="{=str_tor_formation_greenskin_2}Da Tuffa Boyz" />
+  <string id="tor_formation.greenskin_3" text="{=str_tor_formation_greenskin_3}Da Choppaz" />
+  <string id="tor_formation.greenskin_4" text="{=str_tor_formation_greenskin_4}Arrer Boyz" />
+  <string id="tor_formation.greenskin_5" text="{=str_tor_formation_greenskin_5}Da Ridaz" />
+  <string id="tor_formation.greenskin_6" text="{=str_tor_formation_greenskin_6}Da Shooty Ridaz" />
+  <string id="tor_formation.greenskin_7" text="{=str_tor_formation_greenskin_7}Da Stompaz" />
+  <string id="tor_formation.greenskin_8" text="{=str_tor_formation_greenskin_8}Da Shamanz" />
+
+  <string id="tor_hire_companion_introduction.tor_wanderer_dawi_3" text="{=str_tor_hire_companion_introduction_tor_wanderer_dawi_3}Unless you know where a troll sleeps, you're wasting my time." />
+  <string id="tor_hire_companion_begone.tor_wanderer_dawi_3" text="{=str_tor_hire_companion_begone_tor_wanderer_dawi_3}Off with you. You're far too small to be my doom." />
+  <string id="tor_hire_companion_tell_me_p.tor_wanderer_dawi_3" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_dawi_3}I am {PLAYER.NAME}. What brings a Slayer this far from the mountains?" />
+  <string id="tor_hire_companion_skip_p.tor_wanderer_dawi_3" text="{=str_tor_hire_companion_skip_p_tor_wanderer_dawi_3}I am {PLAYER.NAME}, and I can find you worse than trolls." />
+  <string id="tor_prebackstory.tor_wanderer_dawi_3" text="{=str_tor_prebackstory_tor_wanderer_dawi_3}Don't ask what I did. Ask what I swore." />
+  <string id="tor_backstory_a.tor_wanderer_dawi_3" text="{=str_tor_backstory_a_tor_wanderer_dawi_3}I swore to Grimnir I'd seek out the mightiest foes and fall fighting one." />
+  <string id="tor_backstory_b.tor_wanderer_dawi_3" text="{=str_tor_backstory_b_tor_wanderer_dawi_3}Three trolls, a wyvern and one very surprised giant later, I'm still standing." />
+  <string id="tor_backstory_c.tor_wanderer_dawi_3" text="{=str_tor_backstory_c_tor_wanderer_dawi_3}Either Grimnir's having a laugh, or I've not found anything big enough yet." />
+  <string id="tor_response_1.tor_wanderer_dawi_3" text="{=str_tor_response_1_tor_wanderer_dawi_3}Stick with me. I'll find you something big enough." />
+  <string id="tor_response_2.tor_wanderer_dawi_3" text="{=str_tor_response_2_tor_wanderer_dawi_3}A dwarf who kills trolls? I'd rather you kept failing." />
+  <string id="tor_backstory_d.tor_wanderer_dawi_3" text="{=str_tor_backstory_d_tor_wanderer_dawi_3}Then hear my terms: I fight at the front, and no one drags me back. Ever." />
+  <string id="tor_hire_companion_p.tor_wanderer_dawi_3" text="{=str_tor_hire_companion_p_tor_wanderer_dawi_3}The front is yours." />
+  <string id="tor_companion_leave_p.tor_wanderer_dawi_3" text="{=str_tor_companion_leave_p_tor_wanderer_dawi_3}Good hunting, Slayer." />
+  <string id="tor_hire_companion_payment.tor_wanderer_dawi_3" text="{=str_tor_hire_companion_payment_tor_wanderer_dawi_3}{GOLD_AMOUNT}{GOLD_ICON}. Beer and whetstones; a Slayer needs nothing else." />
+  <string id="tor_hire_accept_p.tor_wanderer_dawi_3" text="{=str_tor_hire_accept_p_tor_wanderer_dawi_3}Done. Try not to drink it all at once." />
+  <string id="tor_hire_decline_p.tor_wanderer_dawi_3" text="{=str_tor_hire_decline_p_tor_wanderer_dawi_3}My purse can't stretch that far yet." />
+  <string id="tor_recruitment_culture_blocked" text="{=str_tor_recruitment_culture_blocked}You cannot recruit this troop due to cultural restrictions (...)" />
 </strings>

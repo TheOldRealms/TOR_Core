@@ -2,6 +2,7 @@ using NLog;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem.Extensions;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment;
@@ -110,7 +111,7 @@ namespace TOR_Core.Extensions
                 }
 
                 return textObject;
-                
+
             }
 
             var key = $"{id}::{variation}";
@@ -119,6 +120,42 @@ namespace TOR_Core.Extensions
                 TORCommon.Log(string.Format("[TEXT]Couldn't find text with id: {0} {1}. Substituting default.", id, variation), LogLevel.Error);
             }
 
+            return new TextObject(defaultText);
+        }
+
+        /// <summary>
+        /// Three-tier settlement vocabulary lookup for labels and intro text on settlement-complex menus
+        /// (<c>town_artisan</c>, <c>castle_courtyard</c>, future per-culture complexes).
+        /// Tries, in order:
+        /// <list type="number">
+        ///   <item><c>str_{id}.{settlementId}</c> — per-settlement override ("the markets of Marienburg")</item>
+        ///   <item><c>str_{id}.{ownerCultureId}</c> — per-culture flavor ("dark alleys" for vampire-held)</item>
+        ///   <item><paramref name="defaultText"/> — code-provided fallback</item>
+        /// </list>
+        /// Owner-clan culture drives tier 2 (ownership can transfer; vocabulary follows the owner).
+        /// Falls through silently on missing tiers — only all-miss hits the default, no log spam.
+        /// </summary>
+        public static string GetSettlementComplexText(string id, Settlement s, string defaultText)
+        {
+            return GetSettlementComplexTextObject(id, s, defaultText).ToString();
+        }
+
+        /// <summary>
+        /// <see cref="GetSettlementComplexText"/> returning a <see cref="TextObject"/> so callers can
+        /// still inject variables like <c>{SETTLEMENT_NAME}</c> on the intro-text path.
+        /// </summary>
+        public static TextObject GetSettlementComplexTextObject(string id, Settlement s, string defaultText)
+        {
+            if (s != null)
+            {
+                if (GameTexts.TryGetText(id, out var bySettlement, s.StringId))
+                    return bySettlement;
+
+                var cultureId = s.OwnerClan?.Culture?.StringId ?? s.Culture?.StringId;
+                if (!string.IsNullOrEmpty(cultureId) &&
+                    GameTexts.TryGetText(id, out var byCulture, cultureId))
+                    return byCulture;
+            }
             return new TextObject(defaultText);
         }
     }

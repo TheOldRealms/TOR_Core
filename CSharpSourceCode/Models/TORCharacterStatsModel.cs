@@ -94,13 +94,13 @@ namespace TOR_Core.Models
                     number.Add(character.Tier * 10, tierText);
                     break;
             }
-            if (character.IsUndead() && !character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION))
+            if (character.IsUndead() && !character.IsNecromancerChampion())
             {
                 number.Add(-25, TORTextHelper.GetTextObject("tor_stats_undead_body_text", "Undead body"));
             }
 
             // Must stay last: the champion's health is derived from the running total.
-            if (character.HasAttribute(CharacterAttributes.NECROMANCER_CHAMPION))
+            if (character.IsNecromancerChampion())
             {
                 if (Mission.Current == null) return;
                 var playerMainAgent = Mission.Current.MainAgent;

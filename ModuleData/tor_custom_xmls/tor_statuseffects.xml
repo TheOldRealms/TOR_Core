@@ -2267,6 +2267,7 @@
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="2"
+        duration="9"
 		type="DamageOverTime"
 		damage_type="Physical">
 	</StatusEffectTemplate>
@@ -2276,7 +2277,7 @@
 		particle_id="mistform_heal"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="0"
+		base_effect_value="0.15"
 		type="TemporaryAttributeOnly">
 	</StatusEffectTemplate>
 
@@ -2286,6 +2287,8 @@
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="0"
+        duration="40"
+        max_stacks="5"
 		type="TemporaryAttributeOnly">
 	</StatusEffectTemplate>
 	
@@ -2293,7 +2296,7 @@
     		id="frenzy_movement_speed"
     		particle_id=""
    		 do_not_attach_to_agent_skeleton="true"
-   		 base_effect_value="0.20"
+   		 base_effect_value="0.10"
     		applies_for_attack_type="All"
     		type="MovementManipulation"
    		 damage_type="Physical">
@@ -2303,7 +2306,7 @@
    		 id="frenzy_attack_speed"
   		  particle_id=""
   		  do_not_attach_to_agent_skeleton="true"
-  		  base_effect_value="0.20"
+  		  base_effect_value="0.15"
    		 applies_for_attack_type="All"
    		 type="AttackSpeedManipulation"
   		  damage_type="Physical">
@@ -2814,7 +2817,7 @@
 		applies_for_attack_type="All"
 		type="TemporaryAttributeOnly"
 		damage_type="Physical">
-		<temporary_attribute>MonsterAttack</temporary_attribute>
+		<temporary_attribute>Crushing</temporary_attribute>
 	</StatusEffectTemplate>
 
 	<StatusEffectTemplate
