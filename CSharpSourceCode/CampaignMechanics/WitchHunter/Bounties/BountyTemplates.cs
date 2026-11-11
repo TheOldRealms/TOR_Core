@@ -46,18 +46,23 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 titleKey: "tor_wh_bounty_minor_kill_chaos_title",
                 titleFallback: "Thin the Norscan Hordes"),
 
-            ["minor_kill_undead"] = new BountyTemplate(
-                id: "minor_kill_undead", tier: BountyTier.Minor,
-                objectiveType: BountyObjectiveType.KillTroops,
-                targetMatches: t => t?.IsUndead() == true,
-                targetLabel: "undead",
-                countMin: 15, countMax: 25,
-                goldMin: 0, goldMax: 0,
-                prestigeMin: 60, prestigeMax: 100,
-                briefKey: "tor_wh_bounty_minor_kill_undead_brief",
-                briefFallback: "Undead walk the lands near our chapterhouse. Burn {COUNT} of them and return — this is the Order's work.",
-                titleKey: "tor_wh_bounty_minor_kill_undead_title",
-                titleFallback: "Cleanse the Walking Dead"),
+            // Commented out per Zedforen's PR #46 feedback #10: undead belong
+            // to the Major tier (vampire counts / necromantic hosts), not the
+            // Minor. Leaving the dict entry for reference; restore if we add
+            // a lower-stakes undead encounter (e.g. village revenants) later.
+            //
+            // ["minor_kill_undead"] = new BountyTemplate(
+            //     id: "minor_kill_undead", tier: BountyTier.Minor,
+            //     objectiveType: BountyObjectiveType.KillTroops,
+            //     targetMatches: t => t?.IsUndead() == true,
+            //     targetLabel: "undead",
+            //     countMin: 15, countMax: 25,
+            //     goldMin: 0, goldMax: 0,
+            //     prestigeMin: 60, prestigeMax: 100,
+            //     briefKey: "tor_wh_bounty_minor_kill_undead_brief",
+            //     briefFallback: "Undead walk the lands near our chapterhouse. Burn {COUNT} of them and return — this is the Order's work.",
+            //     titleKey: "tor_wh_bounty_minor_kill_undead_title",
+            //     titleFallback: "Cleanse the Walking Dead"),
 
             // ---- Minor: CaptureTroops
             ["minor_capture_cultists"] = new BountyTemplate(
