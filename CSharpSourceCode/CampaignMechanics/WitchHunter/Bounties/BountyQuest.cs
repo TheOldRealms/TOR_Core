@@ -46,6 +46,12 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
         public CampaignTime AcceptedAt => _acceptedAt;
         public bool IsReadyForTurnIn => _readyForTurnIn;
 
+        // Bounded progress log for the quest panel ("N/M targets eliminated").
+        // Created on quest accept (AddDiscreteLog), updated on each BumpProgressBy
+        // via UpdateQuestTaskStage. Not saved: rebuilt in InitializeQuestOnGameLoad
+        // so the panel entry survives save/load.
+        private TaleWorlds.CampaignSystem.JournalLog _progressLog;
+
         public bool IsVoluntaryAbandonAvailable =>
             (CampaignTime.Now - _acceptedAt).ToDays >= 3f;
 
@@ -82,7 +88,14 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
         public override bool IsRemainingTimeHidden => false;
 
         protected override void HourlyTick() { }
-        protected override void InitializeQuestOnGameLoad() => SetDialogs();
+
+        protected override void InitializeQuestOnGameLoad()
+        {
+            SetDialogs();
+            // Re-seed the progress log entry on save/load so the quest panel
+            // keeps showing the N/M counter.
+            EnsureProgressLog();
+        }
 
         protected override void SetDialogs()
         {
@@ -147,6 +160,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
             acceptLog.SetTextVariable("COUNT", _targetCount);
             acceptLog.SetTextVariable("TARGET", t.TargetLabel);
             AddLog(acceptLog);
+            EnsureProgressLog();
         }
 
         /// <summary>Dispatches the failure flag to the correct tier counter on the behavior.</summary>
@@ -201,16 +215,33 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
         {
             var template = Template;
             if (template.ObjectiveType != BountyObjectiveType.ClearHideout) return;
-            if (template.IsEmpty || template.TargetMatches == null) return;
+            if (template.IsEmpty) return;
 
             var mapEvent = eventComponent?.MapEvent;
             if (mapEvent == null) return;
             if (!mapEvent.HasWinner || mapEvent.WinningSide != mapEvent.PlayerSide) return;
 
-            var defeatedSide = mapEvent.GetMapEventSide(mapEvent.DefeatedSide);
-            if (defeatedSide == null) return;
-            bool matched = defeatedSide.Parties
-                .Any(p => p.Troops.Any(t => template.TargetMatches(t.Troop)));
+            // Prefer matching the hideout settlement directly. Defender rosters
+            // use vanilla bandit cultures (sea_raiders, forest_bandits), not
+            // TOR cultures, so a troop-level predicate never matches a real
+            // hideout. Fall back to TargetMatches on the defeated roster for
+            // any template that doesn't declare a hideout-level predicate.
+            bool matched;
+            if (template.HideoutMatches != null)
+            {
+                matched = template.HideoutMatches(mapEvent.MapEventSettlement);
+            }
+            else if (template.TargetMatches != null)
+            {
+                var defeatedSide = mapEvent.GetMapEventSide(mapEvent.DefeatedSide);
+                if (defeatedSide == null) return;
+                matched = defeatedSide.Parties.Any(p => p.Troops.Any(t => template.TargetMatches(t.Troop)));
+            }
+            else
+            {
+                return;
+            }
+
             if (matched) BumpProgressBy(1);
         }
 
@@ -241,7 +272,9 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
         {
             if (amount <= 0) return;
             _progress += amount;
-            AddProgressLog();
+            EnsureProgressLog();
+            if (_progressLog != null)
+                UpdateQuestTaskStage(_progressLog, System.Math.Min(_progress, _targetCount));
             if (_progress >= _targetCount && !_readyForTurnIn)
             {
                 _readyForTurnIn = true;
@@ -251,16 +284,24 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
             }
         }
 
-        private void AddProgressLog()
+        /// <summary>
+        /// Ensure the quest panel has a discrete-progress entry (shows up as
+        /// "N / M targetLabel" with a progress bar). Idempotent via a cached
+        /// reference. Re-seeded on save/load from <see cref="InitializeQuestOnGameLoad"/>.
+        /// </summary>
+        private void EnsureProgressLog()
         {
+            if (_progressLog != null) return;
             var template = Template;
-            var log = TORTextHelper.GetTextObject(
-                "tor_wh_bounty_progress_log",
-                "Progress: {PROGRESS}/{TARGET_COUNT} {TARGET}.");
-            log.SetTextVariable("PROGRESS", System.Math.Min(_progress, _targetCount));
-            log.SetTextVariable("TARGET_COUNT", _targetCount);
-            log.SetTextVariable("TARGET", template.TargetLabel);
-            AddLog(log);
+            if (template.IsEmpty) return;
+            // Empty journal-entry text on purpose: the panel's task-name row
+            // ("Norscan hideouts 2/2") is enough, and a free-form entry above
+            // it was just visual noise.
+            _progressLog = AddDiscreteLog(
+                new TextObject(string.Empty),
+                new TextObject(template.TargetLabel),
+                System.Math.Min(_progress, _targetCount),
+                _targetCount);
         }
 
         private static int CountMatchingKills(MapEventSide defeatedSide, BountyTemplate template)

@@ -113,24 +113,36 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 titleKey: "tor_wh_bounty_minor_defeat_chaos_raids_title",
                 titleFallback: "Break the Norscan Raiders"),
 
-            // ---- Minor: ClearHideout
+            // ---- Minor: ClearHideout. HideoutMatches checks the hideout
+            // settlement id directly — the troop rosters inside hideouts use
+            // vanilla bandit cultures (sea_raiders, forest_bandits, …) rather
+            // than TOR cultures, so a troop-level predicate would never fire
+            // for the actual defenders. TargetMatches on these templates is
+            // unused but kept for log/API symmetry.
+            //
+            // TOR currently ships no cult-coded hideouts, so the cultist
+            // template temporarily targets beastmen hideouts (thematically
+            // the closest "chaos-touched wilderness lairs"). Revisit when /
+            // if dedicated cult hideouts are added.
             ["minor_clear_cultist_hideouts"] = new BountyTemplate(
                 id: "minor_clear_cultist_hideouts", tier: BountyTier.Minor,
                 objectiveType: BountyObjectiveType.ClearHideout,
                 targetMatches: t => t?.IsCultist() == true,
-                targetLabel: "cult lairs",
+                hideoutMatches: s => s?.StringId?.StartsWith("hideout_beastmen_") == true,
+                targetLabel: "beastmen lairs",
                 countMin: 2, countMax: 3,
                 goldMin: 0, goldMax: 0,
                 prestigeMin: 80, prestigeMax: 120,
                 briefKey: "tor_wh_bounty_minor_clear_cultist_hideouts_brief",
-                briefFallback: "The Order has mapped {COUNT} active cult lairs. Burn them out.",
+                briefFallback: "The Order has mapped {COUNT} active beastmen lairs. Burn them out.",
                 titleKey: "tor_wh_bounty_minor_clear_cultist_hideouts_title",
-                titleFallback: "Burn the Cult Lairs"),
+                titleFallback: "Burn the Beastmen Lairs"),
 
             ["minor_clear_chaos_hideouts"] = new BountyTemplate(
                 id: "minor_clear_chaos_hideouts", tier: BountyTier.Minor,
                 objectiveType: BountyObjectiveType.ClearHideout,
                 targetMatches: t => t?.IsNorscan() == true,
+                hideoutMatches: s => s?.StringId?.StartsWith("hideout_norscan_") == true,
                 targetLabel: "Norscan hideouts",
                 countMin: 2, countMax: 3,
                 goldMin: 3000, goldMax: 4500,

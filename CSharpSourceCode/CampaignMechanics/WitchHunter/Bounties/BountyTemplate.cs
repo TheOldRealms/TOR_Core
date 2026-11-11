@@ -1,11 +1,12 @@
 using System;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Settlements;
 
 namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
 {
     /// <summary>
     /// Parameterised shape of one bounty objective. Templates live in
-    /// <see cref="BountyTemplates"/>; a <see cref="MinorBountyIssue"/> rolls
+    /// <see cref="BountyTemplates"/>; a <see cref="BountyIssue"/> rolls
     /// specific counts and rewards from the template's ranges at generation.
     ///
     /// <para>The <see cref="TargetMatches"/> predicate is deliberately a
@@ -22,6 +23,15 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
 
         /// <summary>Predicate deciding whether a given killed/captured troop counts toward this bounty.</summary>
         public readonly Func<CharacterObject, bool> TargetMatches;
+
+        /// <summary>Optional predicate for ClearHideout templates: matches the hideout
+        /// settlement directly instead of iterating the defender roster. Needed
+        /// because hideout defenders often use vanilla bandit cultures
+        /// (e.g. <c>sea_raiders</c> for Norscan hideouts) rather than the
+        /// TOR culture a template-level troop predicate would expect.
+        /// If null, ClearHideout falls back to <see cref="TargetMatches"/>
+        /// on the defeated roster.</summary>
+        public readonly Func<Settlement, bool> HideoutMatches;
 
         /// <summary>Short target label used in title/log templating (e.g. "Chaos Cultists", "undead").</summary>
         public readonly string TargetLabel;
@@ -46,12 +56,14 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
             int goldMin, int goldMax,
             int prestigeMin, int prestigeMax,
             string briefKey, string briefFallback,
-            string titleKey, string titleFallback)
+            string titleKey, string titleFallback,
+            Func<Settlement, bool> hideoutMatches = null)
         {
             Id = id;
             Tier = tier;
             ObjectiveType = objectiveType;
             TargetMatches = targetMatches;
+            HideoutMatches = hideoutMatches;
             TargetLabel = targetLabel;
             CountMin = countMin;
             CountMax = countMax;
