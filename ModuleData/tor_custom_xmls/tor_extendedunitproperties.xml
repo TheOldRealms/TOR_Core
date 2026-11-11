@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -172,7 +172,7 @@
   <CharacterExtendedInfo id="tor_empire_reiksguard_knight">
     <Abilities />
     <Attributes>
-      <string>Knightly</string>
+      <string>EmpireKnight</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -205,7 +205,7 @@
   <CharacterExtendedInfo id="tor_empire_innercircle_knight">
     <Abilities />
     <Attributes>
-      <string>Knightly</string>
+      <string>EmpireKnight</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -217,7 +217,7 @@
   <CharacterExtendedInfo id="tor_demigryph_knight">
     <Abilities />
     <Attributes>
-      <string>Knightly</string>
+      <string>EmpireKnight</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -239,8 +239,7 @@
   <CharacterExtendedInfo id="tor_empire_novice_engineer">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
-      <string>CrewI</string>
+      <string>Crew</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -251,8 +250,7 @@
   <CharacterExtendedInfo id="tor_empire_trainee_artillery_crew">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
-      <string>CrewI</string>
+      <string>Crew</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -264,8 +262,7 @@
   <CharacterExtendedInfo id="tor_empire_apprentice_engineer">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
-      <string>CrewI</string>
+      <string>Crew</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -287,8 +284,7 @@
   <CharacterExtendedInfo id="tor_empire_experienced_artillery_crew">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
-      <string>CrewII</string>
+      <string>Crew2</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -300,9 +296,8 @@
   <CharacterExtendedInfo id="tor_empire_associate_engineer">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Piercing</string>
-      <string>CrewII</string>
+      <string>Crew2</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -326,8 +321,7 @@
   <CharacterExtendedInfo id="tor_empire_veteran_artillery_crew">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
-      <string>CrewIII</string>
+      <string>Crew3</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -339,9 +333,8 @@
   <CharacterExtendedInfo id="tor_empire_master_engineer">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
       <string>Piercing</string>
-      <string>CrewII</string>
+      <string>Crew2</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -493,8 +486,8 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
-      <string>Knightly</string>
       <string>Frenzy</string>
+      <string>EmpireKnight</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers>
@@ -642,7 +635,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_knight_errant">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>BretonnianKnight</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -653,6 +648,7 @@
   <CharacterExtendedInfo id="tor_br_realm_knight">
     <Abilities />
     <Attributes>
+      <string>BretonnianKnight</string>
       <string>Piercing</string>
     </Attributes>
     <Resistances />
@@ -665,6 +661,7 @@
   <CharacterExtendedInfo id="tor_br_quest_knight">
     <Abilities />
     <Attributes>
+      <string>BretonnianKnight</string>
       <string>Piercing</string>
       <string>Unbreakable</string>
     </Attributes>
@@ -678,10 +675,11 @@
   <CharacterExtendedInfo id="tor_br_grail_knight">
     <Abilities />
     <Attributes>
+      <string>BretonnianKnight</string>
       <string>Piercing</string>
       <string>Unbreakable</string>
       <string>Unstoppable</string>
-      <string>MonsterAttack</string>
+      <string>Crushing</string>
       <string>Regeneration</string>
     </Attributes>
     <Resistances>
@@ -873,7 +871,7 @@
     <Attributes>
       <string>Piercing</string>
       <string>Unstoppable</string>
-      <string>MonsterAttack</string>
+      <string>Crushing</string>
       <string>Frenzy</string>
       <string>KillingBlow</string>
     </Attributes>
@@ -1169,9 +1167,9 @@
   <CharacterExtendedInfo id="tor_we_treeman">
     <Abilities />
     <Attributes>
+      <string>Crushing</string>
       <string>Unbreakable</string>
       <string>Unstoppable</string>
-      <string>HasAnimationTriggeredEffects</string>
       <string>TreeSpirit</string>
       <string>Monstrous</string>
     </Attributes>
@@ -1189,9 +1187,9 @@
   <CharacterExtendedInfo id="tor_we_ancient_treeman">
     <Abilities />
     <Attributes>
+      <string>Crushing</string>
       <string>Unbreakable</string>
       <string>Unstoppable</string>
-      <string>HasAnimationTriggeredEffects</string>
       <string>TreeSpirit</string>
       <string>Monstrous</string>
     </Attributes>
@@ -1287,9 +1285,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_miner">
     <Abilities />
-    <Attributes>
-      <string>DwarfMiner</string>
-    </Attributes>
+    <Attributes />
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
@@ -1302,9 +1298,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_prospector">
     <Abilities />
-    <Attributes>
-      <string>DwarfMiner</string>
-    </Attributes>
+    <Attributes />
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
@@ -1388,7 +1382,6 @@
   <CharacterExtendedInfo id="tor_dw_thunderer">
     <Abilities />
     <Attributes>
-      <string>DwarfGun</string>
       <string>Piercing</string>
     </Attributes>
     <Resistances>
@@ -1405,7 +1398,6 @@
   <CharacterExtendedInfo id="tor_dw_sharpshooter">
     <Abilities />
     <Attributes>
-      <string>DwarfGun</string>
       <string>Piercing</string>
     </Attributes>
     <Resistances>
@@ -1422,7 +1414,6 @@
   <CharacterExtendedInfo id="tor_dw_grudge_raker">
     <Abilities />
     <Attributes>
-      <string>DwarfGun</string>
       <string>Piercing</string>
     </Attributes>
     <Resistances>
@@ -1479,9 +1470,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_ironbreaker">
     <Abilities />
-    <Attributes>
-      <string>Ironbreaker</string>
-    </Attributes>
+    <Attributes />
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
@@ -1495,9 +1484,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_ironbeard">
     <Abilities />
-    <Attributes>
-      <string>Ironbreaker</string>
-    </Attributes>
+    <Attributes />
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
@@ -1511,10 +1498,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_irondrake">
     <Abilities />
-    <Attributes>
-      <string>Ironbreaker</string>
-      <string>DwarfGun</string>
-    </Attributes>
+    <Attributes />
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
@@ -1529,8 +1513,6 @@
   <CharacterExtendedInfo id="tor_dw_irondrake_trollhammer">
     <Abilities />
     <Attributes>
-      <string>Ironbreaker</string>
-      <string>DwarfGun</string>
       <string>Piercing</string>
     </Attributes>
     <Resistances>
@@ -1688,8 +1670,7 @@
   <CharacterExtendedInfo id="tor_dw_artillery_crew">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
-      <string>CrewII</string>
+      <string>Crew2</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
@@ -1704,8 +1685,7 @@
   <CharacterExtendedInfo id="tor_dw_artillery_gunner">
     <Abilities />
     <Attributes>
-      <string>ArtilleryCrew</string>
-      <string>CrewIII</string>
+      <string>Crew3</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
@@ -2097,10 +2077,9 @@
   <CharacterExtendedInfo id="tor_gs_trolls">
     <Abilities />
     <Attributes>
-      <string>MonsterAttack</string>
+      <string>Crushing</string>
       <string>Unstoppable</string>
       <string>Regeneration</string>
-      <string>HasAnimationTriggeredEffects</string>
       <string>Monstrous</string>
       <string>Brute</string>
     </Attributes>
@@ -2819,10 +2798,6 @@
       <string>Undead</string>
       <string>Ethereal</string>
     </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
-      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
-    </Resistances>
     <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
@@ -2839,10 +2814,6 @@
       <string>Undead</string>
       <string>Ethereal</string>
     </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
-      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
-    </Resistances>
     <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
@@ -2859,10 +2830,6 @@
       <string>Undead</string>
       <string>Ethereal</string>
     </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
-      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
-    </Resistances>
     <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
@@ -2879,10 +2846,6 @@
       <string>Undead</string>
       <string>Ethereal</string>
     </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
-      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
-    </Resistances>
     <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
@@ -2899,10 +2862,6 @@
       <string>Undead</string>
       <string>Ethereal</string>
     </Attributes>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.75" />
-      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
-    </Resistances>
     <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
@@ -3525,7 +3484,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastmen_gor_gougehorn">
     <Attributes>
-      <string>MonsterAttack</string>
+      <string>Crushing</string>
       <string>Swift</string>
       <string>Piercing</string>
     </Attributes>
@@ -3541,11 +3500,10 @@
     <Attributes>
       <string>Unstoppable</string>
       <string>Frenzy</string>
-      <string>MonsterAttack</string>
+      <string>Crushing</string>
       <string>Monstrous</string>
       <string>Swift2</string>
       <string>Piercing</string>
-      <string>Minotaur</string>
     </Attributes>
     <AdditionalHealth>350</AdditionalHealth>
     <Resistances />
@@ -3941,7 +3899,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
-      <string>Knightly</string>
+      <string>EmpireKnight</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
@@ -3959,7 +3917,7 @@
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>
-      <string>Knightly</string>
+      <string>EmpireKnight</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.25" />
@@ -3999,7 +3957,7 @@
   <CharacterExtendedInfo id="tor_ror_griffon_initiate">
     <Abilities />
     <Attributes>
-      <string>Knightly</string>
+      <string>EmpireKnight</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4010,7 +3968,7 @@
   <CharacterExtendedInfo id="tor_ror_griffon_knight">
     <Abilities />
     <Attributes>
-      <string>Knightly</string>
+      <string>EmpireKnight</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4022,7 +3980,7 @@
   <CharacterExtendedInfo id="tor_ror_griffon_preceptor_knight">
     <Abilities />
     <Attributes>
-      <string>Knightly</string>
+      <string>EmpireKnight</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4034,7 +3992,7 @@
   <CharacterExtendedInfo id="tor_ror_griffon_innercircle_knight">
     <Abilities />
     <Attributes>
-      <string>Knightly</string>
+      <string>EmpireKnight</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4046,7 +4004,7 @@
   <CharacterExtendedInfo id="tor_ror_griffon_demi_knight">
     <Abilities />
     <Attributes>
-      <string>Knightly</string>
+      <string>EmpireKnight</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4058,7 +4016,7 @@
   <CharacterExtendedInfo id="tor_ror_griffon_demi_preceptor_knight">
     <Abilities />
     <Attributes>
-      <string>Knightly</string>
+      <string>EmpireKnight</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4485,7 +4443,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_lyonesse_knight_errant">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>BretonnianKnight</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -4494,7 +4454,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_lionhearted_knight">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>BretonnianKnight</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.15" />
     </Resistances>
@@ -4593,9 +4555,8 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
-      <string>NecromancerChampion</string>
       <string>Slice</string>
-      <string>MonsterAttack</string>
+      <string>Crushing</string>
       <string>Unstoppable</string>
     </Attributes>
     <Resistances />
@@ -4611,9 +4572,8 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
-      <string>NecromancerChampion</string>
       <string>Slice</string>
-      <string>MonsterAttack</string>
+      <string>Crushing</string>
       <string>Unstoppable</string>
     </Attributes>
     <Resistances />
@@ -4629,9 +4589,8 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
-      <string>NecromancerChampion</string>
       <string>Slice</string>
-      <string>MonsterAttack</string>
+      <string>Crushing</string>
       <string>Unstoppable</string>
     </Attributes>
     <Resistances />
@@ -4647,9 +4606,8 @@
     <Abilities />
     <Attributes>
       <string>Undead</string>
-      <string>NecromancerChampion</string>
       <string>Slice</string>
-      <string>MonsterAttack</string>
+      <string>Crushing</string>
       <string>Unstoppable</string>
     </Attributes>
     <Resistances />
@@ -5881,8 +5839,16 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_hochland_third_4">
-    <Abilities />
-    <Attributes />
+    <Abilities>
+      <string>UlricsGift</string>
+      <string>HeartOfTheWolf</string>
+      <string>IceStorm</string>
+      <string>SnowKingDecree</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>PriestUlric</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_emp_lord_hochland_third_5">
     <Abilities>
@@ -7535,8 +7501,18 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_lord_athel_loren_ninth_2">
-    <Abilities />
-    <Attributes />
+    <Abilities>
+      <string>Fireball</string>
+      <string>Regrowth</string>
+      <string>Apotheosis</string>
+      <string>SoulQuench</string>
+      <string>CurseOfArrowAttraction</string>
+      <string>ShieldOfSaphery</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_lord_athel_loren_tenth_1">
     <Abilities />
@@ -7590,8 +7566,18 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_lord_laurelorn_factionleader">
-    <Abilities />
-    <Attributes />
+    <Abilities>
+      <string>Fireball</string>
+      <string>Regrowth</string>
+      <string>Apotheosis</string>
+      <string>SoulQuench</string>
+      <string>CurseOfArrowAttraction</string>
+      <string>ShieldOfSaphery</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_lord_laurelorn_first_2">
     <Abilities />
@@ -7704,10 +7690,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_first_5">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
       <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_first_6">
@@ -7752,9 +7744,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_second_2">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_second_3">
@@ -7829,9 +7828,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_angazhar_first_6">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_angazhar_first_7">
@@ -7915,9 +7921,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_azgaraz_first_10">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_eksfilaz_factionleader">
@@ -7929,9 +7942,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_eksfilaz_first_2">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_eksfilaz_first_3">
@@ -7991,9 +8011,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_gantuk_first_2">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_gantuk_first_3">
@@ -8039,9 +8066,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_gantuk_first_10">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_hirn_factionleader">
@@ -8071,9 +8105,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_hirn_first_5">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_hirn_first_6">
@@ -8121,9 +8162,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_izor_first_3">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_izor_first_4">
@@ -8189,9 +8237,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kaferkammaz_first_4">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kaferkammaz_first_5">
@@ -8245,9 +8300,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_norn_first_3">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_norn_first_4">
@@ -8411,9 +8473,16 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_ziflin_first_9">
-    <Abilities />
+    <Abilities>
+      <string>OathAndSteel</string>
+      <string>HearthAndHome</string>
+      <string>RuneOfSpellbreaking</string>
+      <string>WrathAndRuin</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_ziflin_first_10">
@@ -8607,9 +8676,18 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_black_sunz_second_5">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>BrainBursta</string>
+      <string>DaHandUvGork</string>
+      <string>EreWeGo</string>
+      <string>FootUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_crooked_eye_factionleader">
@@ -8723,9 +8801,18 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_crooked_eye_second_6">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>BrainBursta</string>
+      <string>DaHandUvGork</string>
+      <string>EreWeGo</string>
+      <string>FootUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_crooked_eye_second_7">
@@ -9077,9 +9164,18 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_massif_choppas_second_4">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>BrainBursta</string>
+      <string>DaHandUvGork</string>
+      <string>EreWeGo</string>
+      <string>FootUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_massif_choppas_second_5">
@@ -9173,9 +9269,18 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_neck_snappers_first_10">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>BrainBursta</string>
+      <string>DaHandUvGork</string>
+      <string>EreWeGo</string>
+      <string>FootUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_neck_snappers_second_1">
@@ -9658,7 +9763,7 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
-      <string>MonsterAttack</string>
+      <string>Crushing</string>
       <string>Unstoppable</string>
       <string>Regeneration</string>
       <string>LegendaryLord</string>
@@ -10463,7 +10568,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_troll_lord_0">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Crushing</string>
+		</Attributes>
     <AdditionalHealth>450</AdditionalHealth>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_lord">
@@ -10965,7 +11072,7 @@
       <string>Ethereal2</string>
       <string>UndeadSlayer2</string>
       <string>Immortality</string>
-      <string>MonsterAttack</string>
+      <string>Crushing</string>
     </Attributes>
     <AdditionalHealth>250</AdditionalHealth>
     <Resistances>
@@ -10979,8 +11086,21 @@
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_11">
+    <Abilities>
+      <string>NagashGaze</string>
+      <string>SummonSkeleton</string>
+      <string>Shadowblood</string>
+      <string>Morkharn</string>
+      <string>CurseOfYears</string>
+      <string>VanHelsDanseMacabre</string>
+      <string>ScreamingSkull</string>
+      <string>WindOfDeath</string>
+      <string>GraveCall</string>
+    </Abilities>
     <Attributes>
       <string>Necromancer</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_10">
@@ -11045,12 +11165,35 @@
     </DamageAmplifiers>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_cygor">
+    <Abilities />
     <Attributes>
+      <string>Crushing</string>
+      <string>Unbreakable</string>
       <string>Unstoppable</string>
-      <string>Swift</string>
-      <string>Minotaur</string>
       <string>Piercing</string>
+      <string>MonsterAttack</string>
       <string>Monstrous</string>
+      <string>HasAnimationTriggeredEffects</string>
+      <string>CannotClimbLadders</string>
+    </Attributes>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.80" />
+    </Resistances>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_cygor_lord">
+    <Abilities />
+    <Attributes>
+      <string>Crushing</string>
+      <string>Unbreakable</string>
+      <string>Unstoppable</string>
+      <string>Piercing</string>
+      <string>MonsterAttack</string>
+      <string>Monstrous</string>
+      <string>HasAnimationTriggeredEffects</string>
+      <string>CannotClimbLadders</string>
     </Attributes>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -11064,7 +11207,6 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
     <Attributes>
-      <string>Tough</string>
       <string>Bulwark2</string>
     </Attributes>
   </CharacterExtendedInfo>
@@ -11080,24 +11222,88 @@
     </Resistances>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_fey_1">
+    <Abilities>
+      <string>Regrowth</string>
+      <string>Thunderbolt</string>
+      <string>TanglingThorn</string>
+      <string>AuraOfTheLady</string>
+      <string>ShieldOfCombat</string>
+      <string>LadysFavour</string>
+      <string>AerialShield</string>
+    </Abilities>
     <Attributes>
       <string>SpellCaster</string>
+      <string>AbilityUser</string>
+      <string>PriestLady</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_fey_leader">
+    <Abilities>
+      <string>DwellersBelow</string>
+      <string>TheGreenEye</string>
+      <string>Barkskin</string>
+      <string>SummerHeat</string>
+      <string>Regrowth</string>
+      <string>DrainLife</string>
+      <string>StormOfRenewal</string>
+      <string>ShieldOfThorns</string>
+      <string>LightningBolt</string>
+      <string>WindBlast</string>
+      <string>ChainLightning</string>
+      <string>HarmonicConvergence</string>
+      <string>Blizzard</string>
+      <string>CometOfCasandora</string>
+      <string>Thunderbolt</string>
+      <string>CurseOfMidnightWind</string>
+      <string>AmberSpear</string>
+      <string>TanglingThorn</string>
+      <string>PannsImpenetrablePelt</string>
+      <string>HailStorm</string>
+      <string>FlockOfDoom</string>
+      <string>TheBeastUnleashed</string>
+      <string>CurseOfAnraheir</string>
+      <string>AuraOfTheLady</string>
+      <string>ShieldOfCombat</string>
+      <string>LadysFavour</string>
+      <string>AerialShield</string>
+    </Abilities>
     <Attributes>
       <string>SpellCaster</string>
       <string>LegendaryLord</string>
+      <string>AbilityUser</string>
+      <string>PriestLady</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_fey_2">
+    <Abilities>
+      <string>Regrowth</string>
+      <string>Thunderbolt</string>
+      <string>TanglingThorn</string>
+      <string>AuraOfTheLady</string>
+      <string>ShieldOfCombat</string>
+      <string>LadysFavour</string>
+      <string>AerialShield</string>
+    </Abilities>
     <Attributes>
       <string>SpellCaster</string>
+      <string>AbilityUser</string>
+      <string>PriestLady</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_fey_3">
+    <Abilities>
+      <string>Regrowth</string>
+      <string>Thunderbolt</string>
+      <string>TanglingThorn</string>
+      <string>AuraOfTheLady</string>
+      <string>ShieldOfCombat</string>
+      <string>LadysFavour</string>
+      <string>AerialShield</string>
+    </Abilities>
     <Attributes>
       <string>SpellCaster</string>
+      <string>AbilityUser</string>
+      <string>PriestLady</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_duke_champion">
@@ -11112,7 +11318,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_knight">
     <Attributes>
-      <string>Knightly</string>
+      <string>EmpireKnight</string>
     </Attributes>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -11120,7 +11326,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_reiksguard_innercircle_knight">
     <Attributes>
-      <string>Knightly</string>
+      <string>EmpireKnight</string>
     </Attributes>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />

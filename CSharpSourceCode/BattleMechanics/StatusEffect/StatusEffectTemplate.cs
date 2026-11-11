@@ -22,6 +22,10 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public bool DoNotAttachToAgentSkeleton { get; set; } = false;
         [XmlAttribute("base_effect_value")]
         public float BaseEffectValue { get; set; } = 0;
+        [XmlAttribute("duration")]
+        public float Duration { get; set; }
+        [XmlAttribute("max_stacks")]
+        public int MaxStacks { get; set; }
         [XmlAttribute("type")]
         public EffectType Type { get; set; } = EffectType.Invalid;
         [XmlAttribute("damage_type")]
@@ -81,6 +85,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 ApplyToRootBoneOnly = ApplyToRootBoneOnly,
                 DoNotAttachToAgentSkeleton = DoNotAttachToAgentSkeleton,
                 BaseEffectValue = BaseEffectValue,
+                Duration = Duration,
+                MaxStacks = MaxStacks,
                 Type = Type,
                 AttackTypeMask = AttackTypeMask,
                 DamageType = DamageType,

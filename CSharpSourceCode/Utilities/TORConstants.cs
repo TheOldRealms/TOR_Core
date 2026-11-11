@@ -32,6 +32,9 @@ namespace TOR_Core.Utilities
         public const int TREESPIRIT_VOICES_COUNT = 1;
         public const float SHRINE_PRAYING_DURATION = 6f;
 
+        /// <remarks>
+        /// <see cref="CultureExtensions.IsEquivalentCulture"/> for how cultures are grouped together in usage.
+        /// </remarks>
         public readonly struct Cultures
         {
             public const string EMPIRE = "empire";
@@ -221,7 +224,6 @@ namespace TOR_Core.Utilities
             public const string NECROMANCER = "Necromancer";
             public const string VAMPIRE = "Vampire";//what is this actually doing?
             public const string WIGHT_KING = "WightKing";
-            public const string BRETONNIAN_KNIGHT = "BretonnianKnight";
             public const string AI_COMPANION = "AiCompanion";//is this still a thing?
             public const string SHAMAN_BOSS = "ShamanBoss";
             public const string GLADE_CAPTAIN = "GladeCaptain";
@@ -263,7 +265,7 @@ namespace TOR_Core.Utilities
             public const string SHIELD_PENETRATION = "ShieldPenetration";
             public const string THE_HUNGER = "TheHunger";
             public const string SLICE = "Slice";
-            public const string MONSTER_ATTACK = "MonsterAttack";
+            public const string CRUSHING = "Crushing";
             public const string EXPENDABLE = "Expendable";
             public const string FRENZY = "Frenzy";
             public const string DEADEYE = "Deadeye";
@@ -290,7 +292,6 @@ namespace TOR_Core.Utilities
             public const string WINDS_DEATH_LINK = "WindsDeathLink";//orc shaman
             public const string ACCUSATION_MARK = "AccusationMark";//witchhunter
             public const string FELLFANG_MARK = "FellfangMark";//greylord
-            public const string NECROMANCER_CHAMPION = "NecromancerChampion";//necromancer
             public const string IMPENETRABLE = "Impenetrable";//ironbreaker
             public const string NEST_CLEANSING = "NestCleansing";
             public const string DOOM_SEEKING = "DoomSeeking";//slayer
@@ -354,20 +355,17 @@ namespace TOR_Core.Utilities
             public const string WAAAAGH_3 = "Waaagh3";
             
             //Characters? generic?
-            public const string DWARF_MINER = "DwarfMiner";
-            public const string DWARF_GUN = "DwarfGun";
             public const string DWARF_WARRIOR = "DwarfWarrior";
-            public const string IRONBREAKER = "Ironbreaker";
-            public const string ARTILLERY_CREW = "ArtilleryCrew";
-            public const string CREW_2 = "CrewII";
-            public const string CREW_3 = "CrewIII";
-            public const string KNIGHTLY = "Knightly";
+            public const string CREW_1 = "Crew";
+            public const string CREW_2 = "Crew2";
+            public const string CREW_3 = "Crew3";
+            public const string EMPIRE_KNIGHT = "EmpireKnight";
+            public const string BRETONNIAN_KNIGHT = "BretonnianKnight";
             public const string MONSTROUS = "Monstrous";
             public const string TREE_SPIRIT = "TreeSpirit";//this detection should instead move to the race and LHM gets cleaned up to be specific to a single type, but dryads would be unaccounted for which is why it remains for the moment. I don't think keeping all of the giant races on a single race entry is saving us enough memory to be worth other headaches.
             public const string UNDEAD = "Undead";//is race detection faster than attribute lookup? It should be, particularly if we change to caching the race mapping and just performing integer comparisons. This is used for so many other things that there are hidden risks with a straight swap.
 
             //Other?
-            public const string HAS_ANIMATION_TRIGGERED_EFFECTS = "HasAnimationTriggeredEffects";//treemen and trolls
         }
 
         /// <summary>

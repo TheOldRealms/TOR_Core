@@ -16,7 +16,10 @@ using TaleWorlds.GauntletUI;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade.GauntletUI.Widgets.Information;
+using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.Items;
+using TOR_Core.Models;
 using TOR_Core.Extensions;
 using static TOR_Core.Utilities.TORConstants;
 
@@ -240,7 +243,8 @@ namespace TOR_Core.HarmonyPatches
                 });
             }
 
-            var displayedAttributes = character.GetAttributes()
+            var attributes = character.GetAttributes();
+            var displayedAttributes = attributes
                 .GroupBy(GetUnitAttributeLocalizationId)
                 .Select(group => group.OrderByDescending(GetUnitAttributeTier).First());
 
@@ -267,7 +271,7 @@ namespace TOR_Core.HarmonyPatches
                 }
 
                 var tier = GetUnitAttributeTier(attribute);
-                SetUnitAttributeTextVariables(descriptionText, localizationId, tier);
+                SetUnitAttributeTextVariables(descriptionText, localizationId, tier, attributes);
 
                 var attributeItem = new StringItemWithHintVM(iconPath, TextObject.GetEmpty());
                 UnitPropertyTooltips.Add(attributeItem.Hint, CreateUnitAttributeTooltip(descriptionText, localizationId, tier));
@@ -322,6 +326,9 @@ namespace TOR_Core.HarmonyPatches
                     return CharacterAttributes.PIERCING;
                 case CharacterAttributes.ETHEREAL_2:
                     return CharacterAttributes.ETHEREAL;
+                case CharacterAttributes.CREW_2:
+                case CharacterAttributes.CREW_3:
+                    return CharacterAttributes.CREW_1;
                 case CharacterAttributes.MONSTER_SLAYER_2:
                     return CharacterAttributes.MONSTER_SLAYER;
                 case CharacterAttributes.UNDEAD_SLAYER_2:
@@ -341,6 +348,7 @@ namespace TOR_Core.HarmonyPatches
                 case CharacterAttributes.BULWARK_3:
                 case CharacterAttributes.SWIFT_3:
                 case CharacterAttributes.REGENERATION_3:
+                case CharacterAttributes.CREW_3:
                     return 3;
                 case CharacterAttributes.BULWARK_2:
                 case CharacterAttributes.SWIFT_2:
@@ -350,6 +358,7 @@ namespace TOR_Core.HarmonyPatches
                 case CharacterAttributes.MONSTER_SLAYER_2:
                 case CharacterAttributes.UNDEAD_SLAYER_2:
                 case CharacterAttributes.REGENERATION_2:
+                case CharacterAttributes.CREW_2:
                     return 2;
                 default:
                     return 1;
@@ -365,46 +374,54 @@ namespace TOR_Core.HarmonyPatches
                    attribute == CharacterAttributes.ETHEREAL ||
                    attribute == CharacterAttributes.MONSTER_SLAYER ||
                    attribute == CharacterAttributes.UNDEAD_SLAYER ||
-                   attribute == CharacterAttributes.REGENERATION;
+                   attribute == CharacterAttributes.REGENERATION ||
+                   attribute == CharacterAttributes.CREW_1;
         }
 
-        private static void SetUnitAttributeTextVariables(TextObject text, string attribute, int tier)
+        private static void SetUnitAttributeTextVariables(TextObject text, string attribute, int tier, List<string> attributes)
         {
             switch (attribute)
             {
+                case CharacterAttributes.CREW_1:
+                    text.SetTextVariable("VALUE", (int)(TORSiegeEngineCalculationModel.GetCannonCrewReloadBonus(attributes) * 100f));
+                    break;
                 case CharacterAttributes.BULWARK:
-                    text.SetTextVariable("VALUE", tier == 3 ? 60 : tier == 2 ? 40 : 20);
+                    text.SetTextVariable("VALUE", (int)(AgentExtensions.GetBulwarkRangedDamageReduction(attributes) * 100f));
                     break;
                 case CharacterAttributes.SWIFT:
-                    text.SetTextVariable("VALUE", tier == 3 ? 40 : tier == 2 ? 30 : 20);
+                    text.SetTextVariable("VALUE", (int)(AgentExtensions.GetSwiftMovementSpeedBonus(attributes) * 100f));
                     break;
                 case CharacterAttributes.POISONOUS:
-                    text.SetTextVariable("CHANCE", tier == 2 ? 35 : 20);
-                    text.SetTextVariable("DURATION", 8);
-                    text.SetTextVariable("DAMAGE", 2);
+                    text.SetTextVariable("CHANCE", (int)(AgentExtensions.GetPoisonousHitChance(attributes) * 100f));
+                    var poison = StatusEffectManager.GetStatusEffectTemplate("poisonous_dot");
+                    text.SetTextVariable("DURATION", poison.Duration - 1f);
+                    text.SetTextVariable("DAMAGE", poison.BaseEffectValue);
                     break;
                 case CharacterAttributes.PIERCING:
-                    text.SetTextVariable("VALUE", tier == 2 ? 40 : 30);
+                    text.SetTextVariable("VALUE", (int)(AgentExtensions.GetPiercingArmorReduction(attributes) * 100f));
                     break;
                 case CharacterAttributes.THE_HUNGER:
-                    text.SetTextVariable("VALUE", 15);
+                    text.SetTextVariable("VALUE", (int)(StatusEffectManager.GetStatusEffectTemplate("the_hunger_heal").BaseEffectValue * 100f));
                     break;
                 case CharacterAttributes.FRENZY:
-                    text.SetTextVariable("VALUE", 20);
-                    text.SetTextVariable("DURATION", 40);
-                    text.SetTextVariable("STACKS", 5);
+                    text.SetTextVariable("MOVEMENT", (int)(StatusEffectManager.GetStatusEffectTemplate("frenzy_movement_speed").BaseEffectValue * 100f));
+                    text.SetTextVariable("ATTACK", (int)(StatusEffectManager.GetStatusEffectTemplate("frenzy_attack_speed").BaseEffectValue * 100f));
+                    var frenzy = StatusEffectManager.GetStatusEffectTemplate("frenzy_active");
+                    text.SetTextVariable("DURATION", frenzy.Duration);
+                    text.SetTextVariable("STACKS", frenzy.MaxStacks);
                     break;
                 case CharacterAttributes.ETHEREAL:
-                    text.SetTextVariable("VALUE", tier == 2 ? 40 : 25);
+                    text.SetTextVariable("VALUE", (int)(AgentExtensions.GetEtherealIgnoreChance(attributes) * 100f));
                     break;
                 case CharacterAttributes.MONSTER_SLAYER:
-                    text.SetTextVariable("VALUE", tier == 2 ? 150 : 75);
+                    text.SetTextVariable("VALUE", (int)(AgentExtensions.GetMonsterSlayerDamageBonus(attributes) * 100f));
                     break;
                 case CharacterAttributes.UNDEAD_SLAYER:
-                    text.SetTextVariable("VALUE", tier == 2 ? 60 : 30);
+                    text.SetTextVariable("VALUE", (int)(AgentExtensions.GetUndeadSlayerDamageBonus(attributes) * 100f));
                     break;
                 case CharacterAttributes.REGENERATION:
-                    text.SetTextVariable("VALUE", tier == 3 ? 12 : tier == 2 ? 5 : 2);
+                    var regenerationEffectId = tier == 3 ? "regeneration3" : tier == 2 ? "regeneration2" : "regeneration";
+                    text.SetTextVariable("VALUE", StatusEffectManager.GetStatusEffectTemplate(regenerationEffectId).BaseEffectValue);
                     break;
             }
         }
@@ -415,8 +432,6 @@ namespace TOR_Core.HarmonyPatches
             {
                 case CharacterAttributes.MONSTROUS:
                     return "attribute_icon_monstrous";
-                case CharacterAttributes.ARTILLERY_CREW:
-                    return "attribute_icon_artillery_crew";
                 case "cult_of_loec":
                     return "attribute_icon_cult_of_loec";
                 case "cult_of_manaan":
@@ -469,6 +484,15 @@ namespace TOR_Core.HarmonyPatches
                     return "attribute_icon_unbreakable";
                 case CharacterAttributes.UNSTOPPABLE:
                     return "attribute_icon_unstoppable";
+                case CharacterAttributes.CREW_1:
+                    return "attribute_icon_artillery_crew";
+                case CharacterAttributes.BRETONNIAN_KNIGHT:
+                    return "attribute_icon_bretonnian_knight";
+                case CharacterAttributes.EXPENDABLE:
+                case CharacterAttributes.CRUSHING:
+                case CharacterAttributes.SLICE:
+                case CharacterAttributes.TREE_SPIRIT:
+                    return null;
                 default:
                     return null;
             }

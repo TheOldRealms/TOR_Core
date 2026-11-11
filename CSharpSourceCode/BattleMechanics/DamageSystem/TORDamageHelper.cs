@@ -17,15 +17,6 @@ namespace TOR_Core.BattleMechanics.DamageSystem
     /// </summary>
     public static class TORDamageHelper
     {
-        public static bool IsNonMagicalSiegeOrExplosiveAmmunition(ItemObject item)
-        {
-            if (item?.WeaponComponent?.PrimaryWeapon == null) return false;
-
-            return item.IsExplosiveAmmunition() ||
-                item.StringId is "tor_dw_weapon_blasting_charges" or
-                    "tor_dw_iron_drake_trollhammer_torpedo";
-        }
-
         public static void ApplyNestCleansingExplosionResistance(Agent victim, float[] resistances)
         {
             if (victim?.HasAttribute(TORConstants.CharacterAttributes.NEST_CLEANSING) != true) return;

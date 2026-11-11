@@ -1440,7 +1440,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     break;
                 case TORConstants.Cultures.BEASTMEN:
                     keyValue = default_ungor;
-                    CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("ungor");
+                    CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("gor2");
                     break;
                 default:
                     keyValue = default_empire;

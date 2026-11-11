@@ -8,12 +8,21 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
     public static class CharacterObjectPatches
     {
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(GuardsCampaignBehavior), "InitializeGarrisonCharacters")]
+        public static void ExcludeMonstersFromSettlementGuards(List<(CharacterObject, int)> ____garrisonTroops)
+        {
+            // monstrous units are excluded from settlement garrisons to prevent them from appearing in towns and villages
+            ____garrisonTroops.RemoveAll(troop => troop.Item1.IsMonstrous());
+        }
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(CharacterHelper), "GetTroopTree")]
         public static void TroopTreePatch(ref IEnumerable<CharacterObject> __result, CharacterObject baseTroop)

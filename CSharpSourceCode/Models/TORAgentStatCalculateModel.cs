@@ -384,9 +384,16 @@ namespace TOR_Core.Models
                         agentDrivenProperties.SwingSpeedMultiplier *= 1.5f;
                     }
 
+                    if (character.IsCygor() || (agent.Monster != null && agent.Monster.StringId == "cygor"))
+                    {
+                        agentDrivenProperties.SwingSpeedMultiplier *= 1.18f;
+                        agentDrivenProperties.ThrustOrRangedReadySpeedMultiplier *= 1.10f;
+                    }
+
                     if (character.IsDwarf())
                     {
                         //Sly : if the CanRide flag is never changed during a mission, can this riding flag instead be set in an InitializeAgentStats override?
+                        //No, when an agent controller is set to player, the CanRide flag is readded. There are potential other cases.
                         agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanRide);
 
                         agentDrivenProperties.MaxSpeedMultiplier *= DwarfSpeedModificatior;
@@ -592,7 +599,7 @@ namespace TOR_Core.Models
                 agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent, swingSpeedMultiplier);
             }
             else
-            {
+            {//Sly: does this account for effects that grant bonuses which are not derived from status effects? Would this cause banner effects to disappear? Enchantments? Other?
                 agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent, 1f); //I have the feeling this call is not necessary given the many updates that are done per frame.
             }
 

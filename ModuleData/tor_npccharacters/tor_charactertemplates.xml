@@ -2853,4 +2853,26 @@
       <EquipmentSet id="tor_beastmen_mercenary_lord_heavy_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_wanderer_dawi_3" default_group="infantry" name="{=str_tor_wanderer_dawi_3}{FIRSTNAME} the Slayer" occupation="Wanderer" culture="Culture.sturgia" voice="ironic" age="30" race="dwarf" skill_template="SkillSet.tor_skills_wanderer_slayer" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_slayer_companion" />
+      <hair_tags>
+        <hair_tag name="SlayerHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="DawiWarriorBeard" />
+      </beard_tags>
+    </face>
+    <Traits>
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Genorosity" value="1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_wanderer_dawi_slayer_template" />
+      <EquipmentSet id="tor_wanderer_dawi_slayer_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
 </NPCCharacters>

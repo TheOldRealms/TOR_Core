@@ -32,6 +32,9 @@ using static TaleWorlds.MountAndBlade.Mission;
 
 namespace TOR_Core.Missions
 {
+    /// <remarks>
+    /// <see cref="TOR_Core.Extensions.MissionExtensions.IsAbilityOrHitScriptMission(Mission)"/> is used to disable abilities and item trait combat activations. Missions must have IsFriendlyMission set to false if these should be enabled.
+    /// </remarks>
     [MissionManager]
     public static class TorMissionManager
     {
@@ -183,7 +186,6 @@ namespace TOR_Core.Missions
             ], true, true);
         }
 
-
         [MissionMethod]
         public static Mission OpenGraveyardMission()
         {
@@ -232,6 +234,7 @@ namespace TOR_Core.Missions
                 return list.ToArray();
             }, true, true);
         }
+
         [MissionMethod]
         public static Mission OpenBrawlFightMission(Location location, TroopRoster playerSideTroops,
             TroopRoster enemyPartyRoster, int enemyPartySize, Action<BrawlMissionResult> onMissionEnd = null)
