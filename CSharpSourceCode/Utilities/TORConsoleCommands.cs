@@ -1461,13 +1461,13 @@ namespace TOR_Core.Utilities
         {
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType)) return CampaignCheats.ErrorType;
             if (CampaignCheats.CheckHelp(arguments))
-                return "Force a Bounty offer onto the inquisitor in the player's current lodge town. Optional arg: template id (any of the minor_* or major_* keys from BountyTemplates). No arg = random Minor.\n";
+                return "Force a Bounty offer onto the inquisitor in the player's current chapterhouse town. Optional arg: template id (any of the minor_* or major_* keys from BountyTemplates). No arg = random Minor.\n";
 
             var s = Settlement.CurrentSettlement;
             if (s == null) return "Not in a settlement.\n";
 
-            var lodge = s.LocationComplex?.GetLocationWithId("tor_witchhunter_lodge");
-            if (lodge == null || lodge.GetSceneCount() == 0) return $"{s.Name} has no Witch Hunter Lodge.\n";
+            var chapterhouse = s.LocationComplex?.GetLocationWithId("tor_witchhunter_chapterhouse");
+            if (chapterhouse == null || chapterhouse.GetSceneCount() == 0) return $"{s.Name} has no Witch Hunter Chapterhouse.\n";
 
             var inquisitor = s.HeroesWithoutParty.FirstOrDefault(h => h.IsBountyMaster());
             if (inquisitor == null) return $"No inquisitor found at {s.Name}. Try leaving + re-entering the settlement so the POI framework can place one.\n";

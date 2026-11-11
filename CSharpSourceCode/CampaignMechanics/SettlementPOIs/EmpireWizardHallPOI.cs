@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.CompanionRecruitment;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.Extensions;
@@ -10,7 +11,7 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
-    public class EmpireWizardHallPOI : SettlementPOI, ISpellTrainerHost, IEnchanterHost, ISkillTrainerHost
+    public class EmpireWizardHallPOI : SettlementPOI, ISpellTrainerHost, IEnchanterHost, ISkillTrainerHost, ICompanionRecruitmentHost
     {
         public override string LocationId => "tor_wizardhall";
         public override string ParentMenuId => "town_artisan";
@@ -102,6 +103,28 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 hubState:     "choices",
                 reintroState: "start",
                 restrictions: new[] { "SpellCaster" });
+        }
+
+        // ---- ICompanionRecruitmentHost
+        // One rotating slot of Empire College wizards offered by the magister:
+        // Bright / Light / Celestial / Gold / Life. The slot rolls one of these
+        // at random and rotates every 60 days.
+        public IEnumerable<CompanionRecruitmentConfig> GetCompanionRecruits()
+        {
+            yield return new CompanionRecruitmentConfig(
+                candidateTemplateIds: new[]
+                {
+                    "tor_wanderer_empire_0",   // Bright Wizard
+                    "tor_wanderer_empire_3",   // Light Wizard
+                    "tor_wanderer_empire_4",   // Celestial Wizard
+                    "tor_wanderer_empire_8",   // Gold Wizard
+                    "tor_wanderer_empire_9",   // Life Wizard
+                },
+                hostTemplateId: SpellTrainerTemplateId,
+                dialogSuffix:   "EmpireMagister",
+                hubState:       "choices",
+                reintroState:   "start",
+                refreshDays:    60);
         }
     }
 }

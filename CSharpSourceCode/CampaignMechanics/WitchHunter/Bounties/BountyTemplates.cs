@@ -69,7 +69,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 goldMin: 0, goldMax: 0,
                 prestigeMin: 50, prestigeMax: 100,
                 briefKey: "tor_wh_bounty_minor_capture_cultists_brief",
-                briefFallback: "The Order needs captives for interrogation. Bring {COUNT} living chaos cultists to the lodge — any lodge will do.",
+                briefFallback: "The Order needs captives for interrogation. Bring {COUNT} living chaos cultists to the chapterhouse — any chapterhouse will do.",
                 titleKey: "tor_wh_bounty_minor_capture_cultists_title",
                 titleFallback: "Captives for the Interrogators"),
 
@@ -296,10 +296,25 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
         public static IEnumerable<BountyTemplate> AllMinor() => _all.Values.Where(t => t.Tier == BountyTier.Minor);
         public static IEnumerable<BountyTemplate> AllMajor() => _all.Values.Where(t => t.Tier == BountyTier.Major);
 
-        public static BountyTemplate PickRandom(BountyTier tier)
+        /// <summary>
+        /// Random pick from the tier pool. If <paramref name="avoidId"/> is
+        /// supplied and the pool has more than one entry, retries up to four
+        /// times to pick a different template — a cheap "don't repeat the last
+        /// one back to back" weighting. Still returns the avoided template as
+        /// the last resort rather than failing, so a single-entry pool keeps
+        /// working.
+        /// </summary>
+        public static BountyTemplate PickRandom(BountyTier tier, string avoidId = null)
         {
             var pool = _all.Values.Where(t => t.Tier == tier).ToList();
             if (pool.Count == 0) return default;
+            if (pool.Count == 1 || string.IsNullOrEmpty(avoidId)) return pool[MBRandom.RandomInt(pool.Count)];
+
+            for (int i = 0; i < 4; i++)
+            {
+                var pick = pool[MBRandom.RandomInt(pool.Count)];
+                if (pick.Id != avoidId) return pick;
+            }
             return pool[MBRandom.RandomInt(pool.Count)];
         }
 

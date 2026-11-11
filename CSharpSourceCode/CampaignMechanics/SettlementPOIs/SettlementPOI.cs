@@ -10,7 +10,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
     /// <summary>
     /// Pure "town POI" descriptor — holds the identity, menu placement config, and access
-    /// rule for one TOR point of interest (Wizard Hall, Witch Hunter Lodge, future
+    /// rule for one TOR point of interest (Wizard Hall, Witch Hunter Chapterhouse, future
     /// Runehall / Engineer Hall / Chapel / Grove / Herdstone / Crypt / …).
     ///
     /// <para>Not a <c>CampaignBehaviorBase</c>. Shared lifecycle work plus the
@@ -94,7 +94,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         ///
         /// <para>POI-level static form — same icon for every settlement that has this
         /// POI. Override <see cref="MapIconTextFor"/> instead if you need per-settlement
-        /// variation (e.g. "lodge has a bounty offer available right now").</para>
+        /// variation (e.g. "chapterhouse has a bounty offer available right now").</para>
         /// </summary>
         public virtual string MapIconText => "";
 

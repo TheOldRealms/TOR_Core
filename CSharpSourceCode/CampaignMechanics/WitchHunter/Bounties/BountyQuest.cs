@@ -18,7 +18,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
     /// (<see cref="_tier"/>) and dispatched inside <see cref="MarkFailurePending"/>;
     /// the per-objective counter lives in the switch inside
     /// <see cref="OnBattleEnd"/> (plus <see cref="OnHideoutCompleted"/> and
-    /// <see cref="OnLodgePrisonersDonated"/> for the other two event shapes).
+    /// <see cref="OnChapterhousePrisonersDonated"/> for the other two event shapes).
     ///
     /// <para>Deliberately a single concrete class — earlier commits on this
     /// branch split it per-objective and per-tier before the user pointed out
@@ -115,7 +115,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
 
             AddLog(TORTextHelper.GetTextObject(
                 "tor_wh_bounty_timeout_log",
-                "The Order will note your failure to see this through. You will need to beg forgiveness at the lodge before taking another hunt of this kind."));
+                "The Order will note your failure to see this through. You will need to beg forgiveness at the chapterhouse before taking another hunt of this kind."));
             CompleteQuestWithFail();
             MarkFailurePending();
         }
@@ -216,10 +216,10 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
 
         /// <summary>
         /// Pushed by <see cref="WitchHunterInquisitionBehavior.OnPrisonersSold"/>
-        /// whenever the player uses the lodge's Prisoners turn-in. Only capture-
+        /// whenever the player uses the chapterhouse's Prisoners turn-in. Only capture-
         /// type bounties care; others no-op via the ObjectiveType check.
         /// </summary>
-        public void OnLodgePrisonersDonated(FlattenedTroopRoster roster)
+        public void OnChapterhousePrisonersDonated(FlattenedTroopRoster roster)
         {
             var template = Template;
             if (template.ObjectiveType != BountyObjectiveType.CaptureTroops) return;
@@ -247,7 +247,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
                 _readyForTurnIn = true;
                 AddLog(TORTextHelper.GetTextObject(
                     "tor_wh_bounty_ready_log",
-                    "All targets eliminated. Return to any Witch Hunter Lodge to collect your due."));
+                    "All targets eliminated. Return to any Witch Hunter Chapterhouse to collect your due."));
             }
         }
 

@@ -17,7 +17,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
 {
     /// <summary>
     /// Player's reputation with the Order of Sigmar. Source of truth for the Witch
-    /// Hunter Lodge's rank gates: completed-bounty counters are the stored state,
+    /// Hunter Chapterhouse's rank gates: completed-bounty counters are the stored state,
     /// <see cref="Rank"/> and the per-tier caps are derived, and tier crossings
     /// emit <c>INQUISITION_KNOWN/TRUSTED/RESPECTED</c> hero attributes so cross-
     /// system readers (store gates, hunt gates, future career perks, dialog
@@ -49,11 +49,11 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
         private bool _minorFailurePending;
         private bool _majorFailurePending;
 
-        // Companion Recruitment. Default CampaignTime (= Day 0) is treated as
-        // "never recruited" so a fresh campaign starts off the cooldown.
-        public const int CompanionRecruitCooldownDays = 60;
-        public const string WitchHunterWandererTemplateId = "tor_wanderer_empire_2";
-        private CampaignTime _lastCompanionRecruitAt;
+        // Last template picked per tier — used by the picker to avoid rolling
+        // the same bounty back-to-back. Persists across save/load so the player
+        // can't quit/reload to re-roll to a different template.
+        private string _lastMinorTemplateId;
+        private string _lastMajorTemplateId;
 
         // ---- Public read surface
 
@@ -98,7 +98,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
         };
 
         // Active-bounty count = number of ACCEPTED bounty quests of the matching
-        // tier only. Un-accepted issues sitting at the lodge don't fill the cap;
+        // tier only. Un-accepted issues sitting at the chapterhouse don't fill the cap;
         // the cap is about concurrent commitments. Must filter by IsOngoing —
         // vanilla QuestManager.Quests retains finished quests, so without it
         // every completed Minor keeps occupying its cap slot and the player
@@ -125,62 +125,6 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
         {
             _majorCompleted++;
             ApplyRankAttributes();
-        }
-
-        // ---- Companion Recruitment
-
-        /// <summary>True iff enough days have passed since the last recruit
-        /// (or no recruit yet). Design doc puts this at T1 availability — no
-        /// rank gate on top.</summary>
-        public bool CanRecruitCompanion
-        {
-            get
-            {
-                if (_lastCompanionRecruitAt == default) return true;   // never recruited
-                return (CampaignTime.Now - _lastCompanionRecruitAt).ToDays >= CompanionRecruitCooldownDays;
-            }
-        }
-
-        public int DaysUntilRecruitAvailable
-        {
-            get
-            {
-                if (_lastCompanionRecruitAt == default) return 0;
-                var days = CompanionRecruitCooldownDays - (CampaignTime.Now - _lastCompanionRecruitAt).ToDays;
-                return System.Math.Max(0, (int)System.Math.Ceiling(days));
-            }
-        }
-
-        /// <summary>
-        /// Spawn a Witch Hunter wanderer hero, set them up as a player-clan
-        /// companion, and add them to the main party. Returns the new hero via
-        /// out-param on success. Fails cleanly (returns false) if the template
-        /// is missing or the player is not in a settlement.
-        /// </summary>
-        public bool TryRecruitCompanionAtLodge(Settlement s, out Hero newCompanion)
-        {
-            newCompanion = null;
-            if (s == null) return false;
-            if (!CanRecruitCompanion) return false;
-
-            var template = MBObjectManager.Instance.GetObject<CharacterObject>(WitchHunterWandererTemplateId);
-            if (template == null) return false;
-
-            // Spawn in the lodge town; TOR_wanderer_empire_2 is "{FIRSTNAME} the
-            // Witch Hunter" (confirmed in tor_charactertemplates.xml). Age is
-            // arbitrary — vanilla's companion-spawn code uses the same recipe.
-            var age = Campaign.Current.Models.AgeModel.HeroComesOfAge + 5 + MBRandom.RandomInt(12);
-            var hero = HeroCreator.CreateSpecialHero(template, s, null, null, age);
-            if (hero == null) return false;
-
-            hero.ChangeState(Hero.CharacterStates.Active);
-            hero.Clan = Clan.PlayerClan;
-            AddCompanionAction.Apply(Clan.PlayerClan, hero);
-            AddHeroToPartyAction.Apply(hero, MobileParty.MainParty, showNotification: true);
-
-            _lastCompanionRecruitAt = CampaignTime.Now;
-            newCompanion = hero;
-            return true;
         }
 
         public void MarkMinorFailurePending() => _minorFailurePending = true;
@@ -215,40 +159,54 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
             CampaignEvents.OnPrisonerDonatedToSettlementEvent.AddNonSerializedListener(this, OnPrisonersSold);
             CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, OnDailyTickSettlement);
             CampaignEvents.OnIssueUpdatedEvent.AddNonSerializedListener(this, OnIssueUpdated);
+            // Daily tick covers the long game, but a chapterhouse whose inquisitor hasn't
+            // been placed yet (first visit on a fresh campaign) is skipped by that
+            // tick. SettlementEntered catches the follow-up: same fill logic, now
+            // the hero exists. Idempotent: no-op if the slot is already full.
+            CampaignEvents.SettlementEntered.AddNonSerializedListener(this, OnSettlementEntered);
+        }
+
+        private void OnDailyTickSettlement(Settlement settlement) => TryFillChapterhouse(settlement);
+
+        private void OnSettlementEntered(MobileParty party, Settlement settlement, Hero visitor)
+        {
+            if (party != MobileParty.MainParty) return;
+            TryFillChapterhouse(settlement);
         }
 
         /// <summary>
-        /// Roll bounty issues once per in-game day per lodge-containing settlement.
-        /// One lodge can only host one offer at a time (vanilla single-slot per
-        /// hero); the Minor roll fires first, Major second — if the Minor roll
-        /// succeeds, the slot fills and Major silently skips. Across the seven
-        /// lodges that's enough variance for both tiers to show up at the right
-        /// pace once the player has unlocked Major availability.
+        /// Fill the chapterhouse inquisitor's offer slot if it is empty and the player
+        /// is under the tier cap. Deterministic (no RNG gate) — design brief is
+        /// "a chapterhouse is probably worth checking after a week"; the old 25% roll
+        /// produced week-long dry spells on unlucky rolls and was the root cause
+        /// of PR #46 feedback point 8. Minor rolls first; if it fills the slot,
+        /// Major silently skips (single-slot vanilla constraint).
         /// </summary>
-        private void OnDailyTickSettlement(Settlement settlement)
+        private void TryFillChapterhouse(Settlement settlement)
         {
             if (settlement == null) return;
 
-            var lodge = settlement.LocationComplex?.GetLocationWithId("tor_witchhunter_lodge");
-            if (lodge == null || lodge.GetSceneCount() == 0) return;
+            var chapterhouse = settlement.LocationComplex?.GetLocationWithId("tor_witchhunter_chapterhouse");
+            if (chapterhouse == null || chapterhouse.GetSceneCount() == 0) return;
 
             var inquisitor = settlement.HeroesWithoutParty.FirstOrDefault(h => h.IsBountyMaster());
             if (inquisitor == null) return;
+            if (inquisitor.Issue != null) return;
 
             TryRollBounty(inquisitor, BountyTier.Minor);
-            TryRollBounty(inquisitor, BountyTier.Major);
+            if (inquisitor.Issue == null) TryRollBounty(inquisitor, BountyTier.Major);
         }
 
         private void TryRollBounty(Hero inquisitor, BountyTier tier)
         {
-            if (inquisitor.Issue != null) return;   // single slot filled already
-
             // Per-rank cap gate — don't generate what the player can't accept.
             var cap = tier == BountyTier.Minor ? MinorBountyCap : MajorBountyCap;
             var active = tier == BountyTier.Minor ? ActiveMinorBounties() : ActiveMajorBounties();
-            if (cap <= 0 || active >= cap) return;
-
-            if (MBRandom.RandomInt(0, 100) >= TORConstants.BOUNTY_QUEST_CHANCE) return;
+            if (cap <= 0 || active >= cap)
+            {
+                TORCommon.Say($"BountyGen[{tier}] skipped at {inquisitor.CurrentSettlement?.Name}: cap={cap} active={active}");
+                return;
+            }
 
             PotentialIssueData.StartIssueDelegate factory =
                 tier == BountyTier.Minor
@@ -259,7 +217,9 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
                 new PotentialIssueData(factory, typeof(BountyIssue), IssueBase.IssueFrequency.VeryCommon),
                 inquisitor);
 
-            // Tell nameplate VMs to re-render — the lodge icon flips to its
+            TORCommon.Say($"BountyGen[{tier}] placed at {inquisitor.CurrentSettlement?.Name} (issue assigned: {inquisitor.Issue != null})");
+
+            // Tell nameplate VMs to re-render — the chapterhouse icon flips to its
             // "offer available" variant when the inquisitor picks up an issue.
             SettlementPOIManagerCampaignBehavior.NotifyIconsChanged();
         }
@@ -267,10 +227,15 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
         private IssueBase OnMinorBountyIssueSelected(in PotentialIssueData pid, Hero issueOwner) => CreateBountyIssue(issueOwner, BountyTier.Minor);
         private IssueBase OnMajorBountyIssueSelected(in PotentialIssueData pid, Hero issueOwner) => CreateBountyIssue(issueOwner, BountyTier.Major);
 
-        private static IssueBase CreateBountyIssue(Hero issueOwner, BountyTier tier)
+        private IssueBase CreateBountyIssue(Hero issueOwner, BountyTier tier)
         {
-            var template = BountyTemplates.PickRandom(tier);
+            var avoid = tier == BountyTier.Minor ? _lastMinorTemplateId : _lastMajorTemplateId;
+            var template = BountyTemplates.PickRandom(tier, avoid);
             if (template.IsEmpty) return null;
+
+            if (tier == BountyTier.Minor) _lastMinorTemplateId = template.Id;
+            else                           _lastMajorTemplateId = template.Id;
+
             var count    = MBRandom.RandomInt(template.CountMin,    template.CountMax + 1);
             var gold     = MBRandom.RandomInt(template.GoldMin,     template.GoldMax + 1);
             var prestige = MBRandom.RandomInt(template.PrestigeMin, template.PrestigeMax + 1);
@@ -288,7 +253,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
             if (!(issue is BountyIssue bounty)) return;
 
             // Any state change on a bounty issue (accepted, cancelled, expired, done)
-            // means the lodge icon should re-evaluate — "H!" goes back to "H" once
+            // means the chapterhouse icon should re-evaluate — "H!" goes back to "H" once
             // the inquisitor isn't carrying an offer anymore.
             SettlementPOIManagerCampaignBehavior.NotifyIconsChanged();
 
@@ -308,7 +273,8 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
             dataStore.SyncData("_wh_inq_major_completed", ref _majorCompleted);
             dataStore.SyncData("_wh_inq_minor_failure", ref _minorFailurePending);
             dataStore.SyncData("_wh_inq_major_failure", ref _majorFailurePending);
-            dataStore.SyncData("_wh_inq_last_companion_recruit", ref _lastCompanionRecruitAt);
+            dataStore.SyncData("_wh_inq_last_minor_template", ref _lastMinorTemplateId);
+            dataStore.SyncData("_wh_inq_last_major_template", ref _lastMajorTemplateId);
         }
 
         private void OnSessionLaunched(CampaignGameStarter starter)
@@ -321,7 +287,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
 
         /// <summary>
         /// Prisoner-donation callback. Fires on every donation (ours, Eonir's,
-        /// vanilla's); checks our lodge-donation flag first and bails out
+        /// vanilla's); checks our chapterhouse-donation flag first and bails out
         /// cleanly otherwise. Rewards are ransom-broker-style gold per troop
         /// with a 2.5× multiplier for heretical categories, plus a small
         /// prestige stipend. Hero prisoners pay a flat high-tier rate and
@@ -331,15 +297,15 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
         /// </summary>
         private void OnPrisonersSold(MobileParty seller, FlattenedTroopRoster roster, Settlement receiving)
         {
-            if (!WitchHunterTurnInHelper.IsLodgeDonationActive) return;
+            if (!WitchHunterTurnInHelper.IsChapterhouseDonationActive) return;
             if (seller != MobileParty.MainParty) return;
 
-            // Defensive: if we're not actually in a lodge town, bail. Stale flag
+            // Defensive: if we're not actually in a chapterhouse town, bail. Stale flag
             // from a cancelled screen would otherwise fire against the wrong town.
-            var lodge = receiving?.LocationComplex?.GetLocationWithId("tor_witchhunter_lodge");
-            if (lodge == null || lodge.GetSceneCount() == 0)
+            var chapterhouse = receiving?.LocationComplex?.GetLocationWithId("tor_witchhunter_chapterhouse");
+            if (chapterhouse == null || chapterhouse.GetSceneCount() == 0)
             {
-                WitchHunterTurnInHelper.EndLodgeDonation();
+                WitchHunterTurnInHelper.EndChapterhouseDonation();
                 return;
             }
 
@@ -353,7 +319,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
 
                     if (el.Troop.IsHero && el.Troop.HeroObject != null && el.Troop.HeroObject.IsAlive)
                     {
-                        // Clean release — the envoy / lodge takes care of them. No vanilla
+                        // Clean release — the envoy / chapterhouse takes care of them. No vanilla
                         // execution path (that's a design non-goal; the Inquisition handles
                         // disposal off-screen).
                         EndCaptivityAction.ApplyByRansom(el.Troop.HeroObject, null);
@@ -376,12 +342,12 @@ namespace TOR_Core.CampaignMechanics.WitchHunter
                 if (quests != null)
                 {
                     foreach (var q in quests.OfType<Bounties.BountyQuest>())
-                        q.OnLodgePrisonersDonated(roster);
+                        q.OnChapterhousePrisonersDonated(roster);
                 }
             }
             finally
             {
-                WitchHunterTurnInHelper.EndLodgeDonation();
+                WitchHunterTurnInHelper.EndChapterhouseDonation();
             }
         }
 

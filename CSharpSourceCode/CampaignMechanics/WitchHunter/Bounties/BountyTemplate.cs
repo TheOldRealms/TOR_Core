@@ -30,7 +30,7 @@ namespace TOR_Core.CampaignMechanics.WitchHunter.Bounties
         public readonly int GoldMin, GoldMax;
         public readonly int PrestigeMin, PrestigeMax;
 
-        /// <summary>Lodge NPC's issue brief (first thing player hears when they ask about bounties).</summary>
+        /// <summary>Chapterhouse NPC's issue brief (first thing player hears when they ask about bounties).</summary>
         public readonly string BriefKey, BriefFallback;
 
         /// <summary>Quest title (what shows in the quest log and in the abandon-selection inquiry).</summary>

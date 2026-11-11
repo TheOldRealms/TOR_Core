@@ -13,7 +13,7 @@ using TOR_Core.Extensions;
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
     /// <summary>
-    /// Dialog consequences for the Witch Hunter Lodge's Turn-ins branch. Two
+    /// Dialog consequences for the Witch Hunter Chapterhouse's Turn-ins branch. Two
     /// sub-flows per the Chapterhouse design doc:
     ///
     /// <list type="bullet">
@@ -70,7 +70,7 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             if (options.Count == 0) return;
 
             var title = new TextObject(TORTextHelper.GetText(
-                "tor_poi_witchhunter_lodge.materials_title",
+                "tor_poi_witchhunter_chapterhouse.materials_title",
                 "For the Pyre"));
 
             Shared.MaterialPicker.MaterialPicker.Open(title, options, picked =>
@@ -93,29 +93,29 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public const int HeroGold = 1000;
 
         /// <summary>
-        /// True while a prisoner-donation flow originated from the lodge is in
+        /// True while a prisoner-donation flow originated from the chapterhouse is in
         /// flight. The Inquisition behavior's <c>OnPrisonersSold</c> handler
         /// checks this before processing — the same event also fires for other
         /// TOR flows (Eonir envoy) and vanilla donations.
         /// </summary>
-        public static bool IsLodgeDonationActive { get; private set; }
+        public static bool IsChapterhouseDonationActive { get; private set; }
 
         public static void OpenPrisonerTurnIn()
         {
-            IsLodgeDonationActive = true;
+            IsChapterhouseDonationActive = true;
             DonationSideEffectSuppression.Begin();
             Helpers.PartyScreenHelper.OpenScreenAsDonatePrisoners();
             // Flag + suppression are cleared in the behavior's OnPrisonersSold
             // handler. If the player cancels, the stale flag is harmless until
-            // the player enters another donation flow in a non-lodge town, where
+            // the player enters another donation flow in a non-chapterhouse town, where
             // the behavior's defensive settlement check will skip and clear it.
         }
 
-        public static void EndLodgeDonation()
+        public static void EndChapterhouseDonation()
         {
-            if (IsLodgeDonationActive)
+            if (IsChapterhouseDonationActive)
             {
-                IsLodgeDonationActive = false;
+                IsChapterhouseDonationActive = false;
                 DonationSideEffectSuppression.End();
             }
         }

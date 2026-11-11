@@ -79,7 +79,7 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(OrcShamanQuest1), 210);
             AddClassDefinition(typeof(OrcShamanQuest2), 211);
 
-            // Witch Hunter Lodge bounties. Ids 212/213 cover both Minor and Major
+            // Witch Hunter Chapterhouse bounties. Ids 212/213 cover both Minor and Major
             // via the unified BountyIssue/BountyQuest classes — tier is a
             // SaveableField on each. Earlier commits on this branch experimented
             // with per-objective (213/214/215) and per-tier subclasses before the

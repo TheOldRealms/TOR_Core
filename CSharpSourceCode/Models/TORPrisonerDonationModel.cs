@@ -9,7 +9,7 @@ namespace TOR_Core.Models
 {
     /// <summary>
     /// Zeroes the vanilla kingdom-influence gain on prisoner donation when a TOR
-    /// custom donation flow is active (Eonir envoy trade, Witch Hunter Lodge
+    /// custom donation flow is active (Eonir envoy trade, Witch Hunter Chapterhouse
     /// prisoner turn-in). The donate-to-town screen is being reused as a UI
     /// vehicle; the caller applies its own rewards, so vanilla's influence bonus
     /// would be a leak.

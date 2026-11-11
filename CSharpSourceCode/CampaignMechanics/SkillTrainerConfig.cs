@@ -23,7 +23,7 @@ namespace TOR_Core.CampaignMechanics
         public readonly string SkillId;
 
         /// <summary>Dialog state the training player-line attaches to (e.g. the
-        /// lodge hub). Must be a state already registered by the host before
+        /// chapterhouse hub). Must be a state already registered by the host before
         /// SkillTrainerBehavior's session-launched pass fires.</summary>
         public readonly string HubState;
 

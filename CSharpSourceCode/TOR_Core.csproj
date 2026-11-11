@@ -425,7 +425,7 @@
     <Compile Include="CampaignMechanics\SkillTrainerConfig.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\ISpellTrainerHost.cs" />
     <Compile Include="CampaignMechanics\SettlementPOIs\TrainerPlacement.cs" />
-    <Compile Include="CampaignMechanics\SettlementPOIs\WitchHunterLodgePOI.cs" />
+    <Compile Include="CampaignMechanics\SettlementPOIs\WitchHunterChapterhousePOI.cs" />
     <Compile Include="CampaignMechanics\WitchHunter\InquisitionRank.cs" />
     <Compile Include="CampaignMechanics\WitchHunter\WitchHunterInquisitionBehavior.cs" />
     <Compile Include="CampaignMechanics\WitchHunter\Bounties\BountyObjectiveType.cs" />

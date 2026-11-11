@@ -46,7 +46,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
 
         CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, Setup);
-        // POI framework spawns NPC heroes (e.g. the lodge Inquisitor) lazily
+        // POI framework spawns NPC heroes (e.g. the chapterhouse Inquisitor) lazily
         // via SettlementPOIManagerCampaignBehavior.GetOrCreateHero, which fires
         // after Setup. Without this listener those heroes never get the
         // SKILL_TRAINER / skill attributes and TrainerCondition rejects them.

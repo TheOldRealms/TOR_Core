@@ -34,6 +34,7 @@ using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.Careers;
 using TOR_Core.CampaignMechanics.Chaos;
 using TOR_Core.CampaignMechanics.Companions;
+using TOR_Core.CampaignMechanics.CompanionRecruitment;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.CustomDialogs;
 using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
@@ -218,6 +219,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORKingdomDecisionsCampaignBehavior());
                 starter.AddBehavior(new TORAllianceWarBehavior());
                 starter.AddBehavior(new SkillTrainerBehavior());
+                starter.AddBehavior(new CompanionRecruitmentBehavior());
                 starter.AddBehavior(new OathGoldBehavior());
                 new CraftingModule().RegisterCampaignBehaviors(starter);
                 starter.AddBehavior(new TeefBehavior());

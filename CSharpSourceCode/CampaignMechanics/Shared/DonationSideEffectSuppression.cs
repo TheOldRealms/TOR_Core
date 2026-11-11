@@ -5,7 +5,7 @@ namespace TOR_Core.CampaignMechanics.Shared
     /// <summary>
     /// Shared flag read by Harmony patches that suppress unwanted side-effects
     /// of vanilla's "donate prisoners to town" flow when a TOR custom donation
-    /// path (Eonir envoy, Witch Hunter Lodge, future donors) is using the
+    /// path (Eonir envoy, Witch Hunter Chapterhouse, future donors) is using the
     /// vanilla screen as a UI vehicle but handling rewards itself.
     ///
     /// <para>Ref-counted so nested Begin/End pairs don't collide. Pair every
