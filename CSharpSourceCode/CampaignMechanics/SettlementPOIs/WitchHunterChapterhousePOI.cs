@@ -108,19 +108,17 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// </summary>
         public override void RegisterDialogs(CampaignGameStarter obj)
         {
-            // Greeting — only fires when the player speaks to the chapterhouse's resident
-            // bounty-master-turned-Inquisitor inside the chapterhouse location. Guards against
-            // the hub appearing in a tavern where the bounty master may still live
-            // (Empire towns without a chapterhouse). Also skips when the Inquisitor is
-            // carrying a vanilla-offerable issue (Hunt or Bounty) that hasn't been
-            // accepted yet — so vanilla's natural start → hero_main_options → issue-intro
-            // chain fires and the player sees the quest-offer dialog directly. Once the
-            // issue converts to an accepted quest (IssueQuest != null) the greet returns
-            // to full duty and our hub (turn-ins, store, etc.) is reachable again.
+            // Greeting — fires whenever the player speaks to the chapterhouse's
+            // resident Inquisitor inside the chapterhouse location. No issue
+            // gate: when the Inquisitor has an offerable issue the hub still
+            // shows, and the player picks it up via a dedicated hub entry that
+            // routes directly to vanilla's issue_offer state (see below).
+            // Priority 300 keeps us above the 100-120 band of vanilla's start-
+            // state lines so our hub always wins when IsInquisitorPartner.
             obj.AddDialogLine("tor_witchhunter_chapterhouse_greet", "start", "tor_witchhunter_chapterhouse_hub",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_chapterhouse", "hub_greet",
                     "What brings you to the Chapterhouse?"),
-                () => IsInquisitorPartner() && !InquisitorHasOfferableIssue(), null, 200, null);
+                IsInquisitorPartner, null, 300, null);
 
             // Scout Master's mini-hub — a separate dialog branch so the Inquisitor
             // keeps his Hunts/Bounties/Turn-ins/Store/etc. tree uncluttered. The
@@ -135,10 +133,21 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     "That is all. Good hunting."),
                 null, null, 100, null);
 
-            // --- Hunts: two variants with identical player text. When the Inquisitor
-            // actually has a Hunt issue, the greet above skips entirely and vanilla's
-            // native issue-intro fires at `start` — no player line needed here. So
-            // this branch only handles the no-issue and rank-locked cases.
+            // --- Dedicated anchor for whatever vanilla-shaped issue the
+            // Inquisitor is currently carrying (Hunt, our BountyIssue, any
+            // future issue type on this hero template). Routes straight into
+            // vanilla's issue_offer state so the brief → explanation → accept
+            // chain plays out without us re-implementing it. The greet is
+            // always-on now, so this is the only way to reach the vanilla
+            // offer flow from our hub.
+            obj.AddPlayerLine("tor_witchhunter_chapterhouse_issue_entry", "tor_witchhunter_chapterhouse_hub", "issue_offer",
+                TORTextHelper.GetTextForNative("tor_poi_witchhunter_chapterhouse", "issue_entry",
+                    "You said you had work for me. Let's hear it."),
+                InquisitorHasOfferableIssue, null, 220, null);
+
+            // --- Hunts: no-issue and rank-locked stubs for when the Inquisitor
+            // has no offerable Hunt. The vanilla-offer path is served by the
+            // issue_entry line above.
             obj.AddPlayerLine("tor_witchhunter_chapterhouse_hunts_none", "tor_witchhunter_chapterhouse_hub", "tor_witchhunter_chapterhouse_hunts_stub",
                 TORTextHelper.GetTextForNative("tor_poi_witchhunter_chapterhouse", "player_hunts",
                     "Inquisitor, I wish to aid the Empire! Do you have anything special that needs doing?"),
