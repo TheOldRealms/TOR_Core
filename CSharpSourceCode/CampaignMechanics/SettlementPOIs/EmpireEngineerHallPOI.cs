@@ -26,7 +26,21 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public override string EnterLabelId => "tor_poi_empire_engineer_hall.EnterLabel";
         public override string EnterLabelDefault => "Visit the Empire Engineer Hall";
 
-        public string SkillTrainerTemplateId => "tor_nulnengineernpc_empire";
+        private const string EngineerTemplateId = "tor_nulnengineernpc_empire";
+
+        public override void EnsurePlaced(Settlement s) => PlaceResident(s, EngineerTemplateId);
+
+        public IEnumerable<SkillTrainerConfig> GetSkillTrainers()
+        {
+            // Engineer dialog hub states are the ones registered in RegisterDialogs
+            // below ("hub" / "hubaftermission"), not the POI-framework defaults.
+            yield return new SkillTrainerConfig(
+                templateId:   EngineerTemplateId,
+                dialogSuffix: "EngineerEmpire",
+                skillId:      "Engineering",
+                hubState:     "hub",
+                reintroState: "hubaftermission");
+        }
 
         public override string MapIconText => "<img src=\"cannon_icon\" extend=\"15\">";
 

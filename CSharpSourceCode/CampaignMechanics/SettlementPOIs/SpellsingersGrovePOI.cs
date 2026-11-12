@@ -32,6 +32,9 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public string EnchanterTemplateId    => "tor_spelltrainer_woodelves_0";
         public List<string> EnchantmentSuffixes => new() { "we_enchant", "asrai_enchant" };
 
+        // Same template fills both roles; template-id dedup in the manager keeps it one hero.
+        public override void EnsurePlaced(Settlement s) => PlaceResident(s, SpellTrainerTemplateId);
+
         public bool IsPartyEligibleForTrainer()
         {
             if (Hero.MainHero.HasCareer(TORCareers.Spellsinger)) return true;

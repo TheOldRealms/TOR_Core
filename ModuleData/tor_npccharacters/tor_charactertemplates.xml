@@ -2217,6 +2217,22 @@
       <EquipmentSet id="tor_qnpc_witchhunter_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_scoutmaster_empire_0" default_group="infantry" name="{=str_tor_scoutmaster_empire_0}{FIRSTNAME} the Order Scout" occupation="Special" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empireofman" />
+    </face>
+    <Traits>
+      <Trait id="Mercy" value="0" />
+      <Trait id="Valor" value="0" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Genorosity" value="0" />
+      <Trait id="Calculating" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_empire_scout_template" />
+      <EquipmentSet id="tor_empire_scout_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_nulnengineernpc_empire" default_group="infantry" name="{=str_tor_nulnengineernpc_empire}{FIRSTNAME} the Master Engineer" occupation="Special" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empireofman" />

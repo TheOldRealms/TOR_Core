@@ -40,16 +40,6 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             return mgr?.GetOrCreateHero(s, poi.LocationId, host.SpellTrainerTemplateId);
         }
 
-        public static void EnsurePlaced(this ISpellTrainerHost host, Settlement s)
-        {
-            if (!(host is SettlementPOI poi) || !poi.AppliesTo(s)) return;
-            var hero = host.GetOrCreateTrainer(s);
-            if (hero == null) return;
-            if (!s.HeroesWithoutParty.Contains(hero)) return;   // in party or visiting elsewhere → skip
-            var location = s.LocationComplex.GetLocationWithId(poi.LocationId);
-            TrainerPlacement.EnsureAt(s, hero, location);
-        }
-
         public static bool IsSpellTrainerHero(this Hero h, ISpellTrainerHost host)
         {
             return h?.Template?.StringId != null

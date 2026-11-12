@@ -278,7 +278,7 @@ namespace TOR_Core.HarmonyPatches
                     continue;
                 }
 
-                failureText = TORTextHelper.GetTextObject("tor_skill_training_reason.NoCustomResource", "You do not possess enough {CUSTOMRESOURCE}.");
+                failureText = TORTextHelper.GetTextObject("tor_skill_training_reason", "NoCustomResource", "You do not possess enough {CUSTOMRESOURCE}.");
                 failureText.SetTextVariable("CUSTOMRESOURCE", resource.Name);
                 return false;
             }
