@@ -249,19 +249,17 @@ namespace TOR_Core.Models
                             }
                         }
                     }
-                    if (playerHero.HasCareer(TORCareers.Runelord))
+                    if (playerHero.HasCareer(TORCareers.Runelord) && originAbilityTemplate.BelongsToLoreID == "RuneMagic")
                     {
                         if (playerHero.HasCareerChoice("ChiselAndHammerKeystone"))
                         {
                             explainedNumber.AddFactor(0.2f);
-                            var smithingValue = playerHero.GetSkillValue(DefaultSkills.Crafting);
-                            explainedNumber.AddFactor(0.05f * smithingValue);
                         }
 
                         if (playerHero.HasCareerChoice("LegacyOfGrungniPassive4"))
                         {
                             var smithingValue = playerHero.GetSkillValue(DefaultSkills.Crafting);
-                            explainedNumber.AddFactor(0.05f * smithingValue);
+                            explainedNumber.AddFactor(0.0005f * smithingValue); // 0.05% per point as per description
                         }
                     }
                 }
@@ -283,6 +281,18 @@ namespace TOR_Core.Models
             }
 
             return radius;
+        }
+
+        /// <summary>
+        /// Cast range of a targeted ability for the player. Runelord LegacyOfGrungniPassive4 extends 'Rune' abilities by 0.4% per Smithing point, up to +100%.
+        /// </summary>
+        public float CalculateMaxDistanceForAbility(CharacterObject character, AbilityTemplate abilityTemplate, float maxDistance)
+        {
+            if (character.HeroObject != Hero.MainHero || abilityTemplate.BelongsToLoreID != "RuneMagic" || !Hero.MainHero.HasCareerChoice("LegacyOfGrungniPassive4"))
+                return maxDistance;
+
+            var smithingValue = Hero.MainHero.GetSkillValue(DefaultSkills.Crafting);
+            return maxDistance * (1 + Math.Min(0.004f * smithingValue, 1f));
         }
 
         public float GetSkillEffectivenessForAbilityDuration(CharacterObject character, AbilityTemplate ability)
@@ -362,7 +372,7 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (Hero.MainHero.HasCareer(TORCareers.Runelord))
+                if (Hero.MainHero.HasCareer(TORCareers.Runelord) && template.BelongsToLoreID == "RuneMagic")
                 {
                     if (Hero.MainHero.HasCareerChoice("ForHearthAndHomePassive4"))
                     {

@@ -195,6 +195,17 @@ namespace TOR_Core.AbilitySystem
             _cooldownEndTime = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; // Adjustment copied for natural tick on UI
         }
 
+        /// <summary>
+        /// Refunds cooldown time exactly. Unlike <see cref="ReduceCooldownBy"/>, it works on the exact end time, so it neither rounds
+        /// to whole seconds nor re-adds the UI tick adjustment of <see cref="SetCoolDown"/>. The cooldown never drops below zero.
+        /// </summary>
+        public void RefundCooldown(float seconds)
+        {
+            if (Mission.Current == null) return;
+
+            _cooldownEndTime = Math.Max(Mission.Current.CurrentTime, _cooldownEndTime - seconds);
+        }
+
         internal void TickCastingState()
         {
             if (!IsCasting || IsActivationPending || Template.CastType != CastType.WindUp)
