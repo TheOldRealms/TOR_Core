@@ -21,7 +21,7 @@ namespace TOR_Core.CampaignMechanics.Crafting;
 /// </summary>
 public class LootCampaignBehavior : CampaignBehaviorBase
 {
-    protected readonly Dictionary<CharacterObject, int> _initialEnemyArmy = new();
+    private readonly Dictionary<CharacterObject, int> _initialEnemyArmy = new();
     private MapEvent _trackedEnemyArmyMapEvent;
     private bool _enemyArmySnapshotLocked;
     private readonly HashSet<ItemObject> _generatedMagicalLootItems = [];
@@ -40,24 +40,9 @@ public class LootCampaignBehavior : CampaignBehaviorBase
         if (!mapEvent.IsPlayerMapEvent)
             return;
 
-        _initialEnemyArmy.Clear();
-        _generatedMagicalLootItems.Clear();
+        ResetTracking();
         _trackedEnemyArmyMapEvent = mapEvent;
-        _enemyArmySnapshotLocked = false;
-
-        var enemySide = BattleSideEnum.Attacker;
-        if (mapEvent.PlayerSide == BattleSideEnum.Attacker)
-            enemySide = BattleSideEnum.Defender;
-
-        var side = mapEvent.GetMapEventSide(enemySide);
-
-        foreach (var characterObject in from enemyParties in side.Parties from troop in enemyParties.Troops select troop.Troop)
-        {
-            if (_initialEnemyArmy.TryGetValue(characterObject, out var count))
-                _initialEnemyArmy[characterObject] = count + 1;
-            else
-                _initialEnemyArmy.Add(characterObject, 1);
-        }
+        SnapshotEnemyArmy(mapEvent);
     }
 
     private void StoreInitialArmy(IMission obj)
@@ -75,35 +60,42 @@ public class LootCampaignBehavior : CampaignBehaviorBase
         if (playerEvent != _trackedEnemyArmyMapEvent || _enemyArmySnapshotLocked)
             return;
 
-        _initialEnemyArmy.Clear();
-
-        var enemySide = BattleSideEnum.Attacker;
-        if (playerEvent.PlayerSide == BattleSideEnum.Attacker)
-            enemySide = BattleSideEnum.Defender;
-
-
-        var side = playerEvent.GetMapEventSide(enemySide);
-
-        foreach (var characterObject in from enemyParties in side.Parties from troop in enemyParties.Troops select troop.Troop) //flattened rosters unstack all of the troops to create a list with length equal to the number of members - is this better to go MapEventParty.PartyBase.MemberRoster and iterate through the stacked list which stores CO + amount?
-        {
-            if (_initialEnemyArmy.TryGetValue(characterObject, out var count))
-                _initialEnemyArmy[characterObject] = count + 1;
-            else
-                _initialEnemyArmy.Add(characterObject, 1);
-        }
-
+        SnapshotEnemyArmy(playerEvent);
         _enemyArmySnapshotLocked = true;
     }
+
     private void OnTrackedMapEventEnded(MapEvent mapEvent)
     {
         if (mapEvent != _trackedEnemyArmyMapEvent)
             return;
 
+        ResetTracking();
+    }
+
+    private void ResetTracking()
+    {
         _initialEnemyArmy.Clear();
         _generatedMagicalLootItems.Clear();
         _trackedEnemyArmyMapEvent = null;
         _enemyArmySnapshotLocked = false;
     }
+
+    /// <summary>
+    /// Counts each enemy troop type as the battle stands now.
+    /// </summary>
+    private void SnapshotEnemyArmy(MapEvent mapEvent)
+    {
+        _initialEnemyArmy.Clear();
+
+        var enemySide = mapEvent.PlayerSide == BattleSideEnum.Attacker ? BattleSideEnum.Defender : BattleSideEnum.Attacker;
+
+        //flattened rosters unstack all of the troops to create a list with length equal to the number of members - is this better to go MapEventParty.PartyBase.MemberRoster and iterate through the stacked list which stores CO + amount?
+        foreach (var characterObject in from enemyParties in mapEvent.GetMapEventSide(enemySide).Parties from troop in enemyParties.Troops select troop.Troop)
+        {
+            _initialEnemyArmy[characterObject] = _initialEnemyArmy.TryGetValue(characterObject, out var count) ? count + 1 : 1;
+        }
+    }
+
     private void RemoveUnrelatedRuntimeMagicalLootItems(PartyBase winnerParty, ItemRoster gainedLoots)
     {
         if (winnerParty != PartyBase.MainParty || gainedLoots == null)
@@ -236,10 +228,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
     {
         if (Hero.MainHero.IsEnlisted())
         {
-            _initialEnemyArmy.Clear();
-            _generatedMagicalLootItems.Clear();
-            _trackedEnemyArmyMapEvent = null;
-            _enemyArmySnapshotLocked = false;
+            ResetTracking();
             return;
         }
 
@@ -281,66 +270,15 @@ public class LootCampaignBehavior : CampaignBehaviorBase
             var item = character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Cape).Where(x => !x.IsBannerItem()).TakeRandom(1).FirstOrDefault();
             if (item == null || item.NotMerchandise) continue;
 
+            var candidates = GetLootTraitCandidates(item);
             for (var j = 0; j < traitCount; j++)
-                if (item != null)
-                {
-                    var traits = ItemTrait.All.Where(x => x.ItemTraitStringId.Contains("lesser_loot"));
+            {
+                var trait = candidates.Where(x => !traitList.Contains(x.ItemTraitStringId)).TakeRandom(1).FirstOrDefault(); //Sly : could do TakeRandom(traitCount) and skip iteration
+                if (trait == null)
+                    break; // every candidate is already on the item
 
-
-                    if (item.IsArmor())
-                    {
-                        traits = traits.Where(x => x.ValidItemType == ItemTraitItemType.Armor).ToList();
-                    }
-                    else
-                    {
-                        //ammo/shields having weapon traits
-                        var validTypes = new HashSet<ItemTraitItemType>();
-
-                        if (item.HasWeaponComponent && item.PrimaryWeapon != null)
-                        {
-                            var primaryWeapon = item.PrimaryWeapon;
-
-                            if (primaryWeapon.IsAmmo)
-                            {
-                                validTypes.Add(ItemTraitItemType.Ammo);
-                            }
-                            else if (primaryWeapon.IsShield || item.ItemType == ItemObject.ItemTypeEnum.Shield)
-                            {
-                                validTypes.Add(ItemTraitItemType.Shield);
-                            }
-                            else
-                            {
-                                validTypes.Add(ItemTraitItemType.Weapon);
-
-                                if (primaryWeapon.IsMeleeWeapon)
-                                    validTypes.Add(ItemTraitItemType.Melee);
-
-                                if (primaryWeapon.IsRangedWeapon)
-                                    validTypes.Add(ItemTraitItemType.Ranged);
-
-                                if (primaryWeapon.IsRangedWeapon && primaryWeapon.IsConsumable) //throwables
-                                    validTypes.Add(ItemTraitItemType.Thrown);
-                            }
-                        }
-                        else if (item.ItemType == ItemObject.ItemTypeEnum.Shield)
-                        {
-                            validTypes.Add(ItemTraitItemType.Shield);
-                        }
-                        else
-                        {
-                            validTypes.Add(ItemTraitItemType.Weapon);
-                        }
-
-                        traits = traits.Where(x => validTypes.Contains(x.ValidItemType)).ToList();
-                    }
-                    traits = traits.Where(x => !traitList.Contains(x.ItemTraitStringId)).ToList();
-                    var trait = traits.TakeRandom(1).FirstOrDefault(); //Sly : could do TakeRandom(traitCount) and skip iteration
-
-                    if (trait == null)
-                        continue;
-
-                    traitList.Add(trait.ItemTraitStringId);
-                }
+                traitList.Add(trait.ItemTraitStringId);
+            }
             if (traitList.Count == 0)
             {
                 continue;
@@ -359,10 +297,64 @@ public class LootCampaignBehavior : CampaignBehaviorBase
         }
         finally
         {
+            // Not ResetTracking: RemoveUnrelatedRuntimeMagicalLootItems still needs _generatedMagicalLootItems.
             _initialEnemyArmy.Clear();
             _trackedEnemyArmyMapEvent = null;
             _enemyArmySnapshotLocked = false;
         }
+    }
+
+    /// <summary>
+    /// Lesser loot traits valid for <paramref name="item"/>'s type. Ammo and shields take
+    /// their own trait types rather than weapon traits.
+    /// </summary>
+    private static List<ItemTrait> GetLootTraitCandidates(ItemObject item)
+    {
+        var traits = ItemTrait.All.Where(x => x.ItemTraitStringId.Contains("lesser_loot"));
+
+        if (item.IsArmor())
+        {
+            return traits.Where(x => x.ValidItemType == ItemTraitItemType.Armor).ToList();
+        }
+
+        var validTypes = new HashSet<ItemTraitItemType>();
+
+        if (item.HasWeaponComponent && item.PrimaryWeapon != null)
+        {
+            var primaryWeapon = item.PrimaryWeapon;
+
+            if (primaryWeapon.IsAmmo)
+            {
+                validTypes.Add(ItemTraitItemType.Ammo);
+            }
+            else if (primaryWeapon.IsShield || item.ItemType == ItemObject.ItemTypeEnum.Shield)
+            {
+                validTypes.Add(ItemTraitItemType.Shield);
+            }
+            else
+            {
+                validTypes.Add(ItemTraitItemType.Weapon);
+
+                if (primaryWeapon.IsMeleeWeapon)
+                    validTypes.Add(ItemTraitItemType.Melee);
+
+                if (primaryWeapon.IsRangedWeapon)
+                    validTypes.Add(ItemTraitItemType.Ranged);
+
+                if (primaryWeapon.IsRangedWeapon && primaryWeapon.IsConsumable) //throwables
+                    validTypes.Add(ItemTraitItemType.Thrown);
+            }
+        }
+        else if (item.ItemType == ItemObject.ItemTypeEnum.Shield)
+        {
+            validTypes.Add(ItemTraitItemType.Shield);
+        }
+        else
+        {
+            validTypes.Add(ItemTraitItemType.Weapon);
+        }
+
+        return traits.Where(x => validTypes.Contains(x.ValidItemType)).ToList();
     }
 
     public override void SyncData(IDataStore dataStore)
