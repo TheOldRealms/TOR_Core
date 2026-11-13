@@ -7,6 +7,7 @@ using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics.Ambush;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 using static TOR_Core.Utilities.TORConstants;
@@ -314,7 +315,9 @@ namespace TOR_Core.Models
             float leaderBonus = MBMath.ClampFloat(s * DetectionScoutingPerPointBonus, 0f, DetectionScoutingBonusCap);
             float rosterBonus = AmbushTroopSpottingScore.GetBasePartyScore(observer, SpottingScoreSizeDampingReference)
                                 * SpottingScoreDetectionWeight;
-            return 1f + leaderBonus + rosterBonus;
+            int r = observer.LeaderHero?.GetSkillValue(DefaultSkills.Roguery) ?? 0;
+            float rogueryBonus = TORSkillEffects.AmbushSpottingBonus.GetSkillEffectValue(r);
+            return 1f + leaderBonus + rosterBonus + rogueryBonus;
         }
 
         protected virtual float TerrainDetectionMultiplier(MobileParty target)

@@ -16,6 +16,7 @@ namespace TOR_Core.CharacterDevelopment
         private SkillEffect _faithWardSave;
         private SkillEffect _blessingDuration;
         private SkillEffect _prayerDuration;
+        private SkillEffect _ambushSpottingBonus;
 
         public static TORSkillEffects Instance { get; private set; }
         public static SkillEffect GunReloadSpeed => Instance._gunReloadSpeed;
@@ -29,6 +30,7 @@ namespace TOR_Core.CharacterDevelopment
         public static SkillEffect MaxWinds => Instance._maxWinds;
         public static SkillEffect FaithWardSave => Instance._faithWardSave;
         public static SkillEffect BlessingDuration => Instance._blessingDuration;
+        public static SkillEffect AmbushSpottingBonus => Instance._ambushSpottingBonus;
 
         public TORSkillEffects()
         {
@@ -43,6 +45,7 @@ namespace TOR_Core.CharacterDevelopment
             _blessingDuration = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("BlessingDuration"));
             _prayerEffectiveness = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("PrayerEffectiveness"));
             _prayerDuration = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("PrayerDuration"));
+            _ambushSpottingBonus = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("AmbushSpottingBonus"));
 
             _gunReloadSpeed.Initialize(TORTextHelper.GetTextObject("tor_skill_effect_gun_reload_speed", "Gunpowder firearms reload speed: +{a0} %"),
             TORSkills.GunPowder, PartyRole.Personal, 0.0007f, EffectIncrementType.AddFactor, 0f, 0f);
@@ -74,6 +77,9 @@ namespace TOR_Core.CharacterDevelopment
 
             _prayerDuration.Initialize(TORTextHelper.GetTextObject("tor_skill_effect_prayer_duration", "Prayer duration increase(Only Priests): +{a0} %"),
             TORSkills.Faith, PartyRole.Personal, 0.00025f, EffectIncrementType.AddFactor, 0f, 0f);
+
+            _ambushSpottingBonus.Initialize(TORTextHelper.GetTextObject("tor_skill_effect_ambush_spotting", "Ambush detection: +{a0} %"),
+            DefaultSkills.Roguery, PartyRole.PartyLeader, 0.0015f, EffectIncrementType.AddFactor);
         }
     }
 }
