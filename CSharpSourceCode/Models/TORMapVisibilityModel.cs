@@ -22,24 +22,23 @@ namespace TOR_Core.Models
         {
             var result = base.GetPartySpottingRange(party, includeDescriptions);
             if (party.HasPerk(TORPerks.Faith.ForeSight, checkSecondaryRole: false)) PerkHelper.AddPerkBonusForParty(TORPerks.Faith.ForeSight, party, false, ref result);
-            if (party.HasPerk(TORPerks.Roguery.KeenSenses)) PerkHelper.AddPerkBonusForParty(TORPerks.Roguery.KeenSenses, party, isPrimaryBonus: true, ref result);
 
             if (party.IsMainParty && party.LeaderHero != null && party.LeaderHero.HasAnyCareer())
             {
                 CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref result, PassiveEffectType.PartySpottingRange, true);
             }
 
-            // Ambush stance: a crouched, watchful party notices approaching
-            // hostiles sooner. +25 % to the player's spotting range while in
-            // stealth. Player-only — AI stealth is handled separately via
-            // IgnoreByOtherPartiesTill, and we don't want a world-wide
-            // sighting bonus firing every tick for every AI stealther.
-            if (party.IsMainParty)
+            // Keen Senses gates the stealth-stance spotting bonus: crouching
+            // helps you spot approaching hostiles only if you've trained for
+            // it. Main-party only because AmbushCampaignBehavior.IsPlayerInStealth
+            // tracks the player; AI stealth uses IgnoreByOtherPartiesTill
+            // and never passes through this branch.
+            if (party.IsMainParty && party.HasPerk(TORPerks.Roguery.KeenSenses))
             {
                 var ambush = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
                 if (ambush != null && ambush.IsPlayerInStealth)
                 {
-                    result.AddFactor(0.25f, new TextObject("{=!}Ambush stance"));
+                    PerkHelper.AddPerkBonusForParty(TORPerks.Roguery.KeenSenses, party, isPrimaryBonus: true, ref result);
                 }
             }
 
