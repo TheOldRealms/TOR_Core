@@ -50,6 +50,10 @@ namespace TOR_Core.CharacterDevelopment
         private PerkObject _spirit;
         private PerkObject _miracle;
 
+        //Roguery perks (TOR rework)
+        private PerkObject _keenSenses;
+        private PerkObject _lowProfile;
+
         public static TORPerks Instance { get; private set; }
 
         public TORPerks()
@@ -103,6 +107,9 @@ namespace TOR_Core.CharacterDevelopment
             _revival = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("Revival"));
             _spirit = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("Spirit"));
             _miracle = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("Miracle"));
+            //Roguery perks (TOR rework)
+            _keenSenses = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_KeenSenses"));
+            _lowProfile = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_LowProfile"));
         }
 
         /// <remarks>
@@ -294,6 +301,13 @@ namespace TOR_Core.CharacterDevelopment
                 PartyRole.Personal, 1f, EffectIncrementType.Add,
                 "{=str_tor_perk_miracle_2}Allows you to apply 2 blessings.",
                 PartyRole.PartyMember, 2f, EffectIncrementType.Add);
+
+            _keenSenses.Initialize("{=str_tor_perk_keen_senses_label}Keen Senses", DefaultSkills.Roguery, 50, _lowProfile,
+                "{=str_tor_perk_keen_senses_1}Your party's spotting range is increased by 25%.",
+                PartyRole.PartyLeader, 0.25f, EffectIncrementType.AddFactor);
+            _lowProfile.Initialize("{=str_tor_perk_low_profile_label}Low Profile", DefaultSkills.Roguery, 50, _keenSenses,
+                "{=str_tor_perk_low_profile_1}Your party is 25% harder to spot by enemy parties.",
+                PartyRole.PartyLeader, 0.25f, EffectIncrementType.AddFactor);
         }
 
         public static class Spellcraft
@@ -344,6 +358,12 @@ namespace TOR_Core.CharacterDevelopment
             public static PerkObject Revival => Instance._revival;
             public static PerkObject Spirit => Instance._spirit;
             public static PerkObject Miracle => Instance._miracle;
+        }
+
+        public static class Roguery
+        {
+            public static PerkObject KeenSenses => Instance._keenSenses;
+            public static PerkObject LowProfile => Instance._lowProfile;
         }
     }
 }

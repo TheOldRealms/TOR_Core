@@ -264,6 +264,11 @@
   <string id="tor_perk_spirit_1" text="{=str_tor_perk_spirit_1}Whenever a tier 6 or higher unit dies, distribute their experience among the rest of the troops in the party." />
   <string id="tor_perk_miracle_label" text="{=str_tor_perk_miracle_label}Miracle" />
   <string id="tor_perk_miracle_1" text="{=str_tor_perk_miracle_1}Your faith is so strong that it is able to manifest miraculous events from time to time." />
+  <string id="tor_perk_keen_senses_label" text="{=str_tor_perk_keen_senses_label}Keen Senses" />
+  <string id="tor_perk_keen_senses_1" text="{=str_tor_perk_keen_senses_1}Your party's spotting range is increased by 25%." />
+  <string id="tor_perk_low_profile_label" text="{=str_tor_perk_low_profile_label}Low Profile" />
+  <string id="tor_perk_low_profile_1" text="{=str_tor_perk_low_profile_1}Your party is 25% harder to spot by enemy parties." />
+  <string id="tor_skill_effect_ambush_spotting" text="{=str_tor_skill_effect_ambush_spotting}Ambush detection: +{a0} %" />
 
   <!-- Ability System - Faith -->
   <string id="tor_ability_enabled" text="{=str_tor_ability_enabled}Enabled" />
