@@ -55,6 +55,7 @@ namespace TOR_Core.HarmonyPatches
             _ = new TORCharacterTraits();
             _ = new TORPerks();
             _ = new TORVillageTypes();
+            VanillaPerkStripper.StripRogueryPerks();
         }
     }
 }
