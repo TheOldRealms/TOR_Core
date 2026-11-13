@@ -22,6 +22,7 @@ namespace TOR_Core.Models
         {
             var result = base.GetPartySpottingRange(party, includeDescriptions);
             if (party.HasPerk(TORPerks.Faith.ForeSight, checkSecondaryRole: false)) PerkHelper.AddPerkBonusForParty(TORPerks.Faith.ForeSight, party, false, ref result);
+            if (party.HasPerk(TORPerks.Roguery.KeenSenses)) PerkHelper.AddPerkBonusForParty(TORPerks.Roguery.KeenSenses, party, isPrimaryBonus: true, ref result);
 
             if (party.IsMainParty && party.LeaderHero != null && party.LeaderHero.HasAnyCareer())
             {
@@ -85,6 +86,16 @@ namespace TOR_Core.Models
         /// 1.5.4 dropped the isDistanceDependent out-parameter from this overload (it survives only on
         /// GetSettlementInspectedState), so the 1.5.3 three-out signature no longer overrides anything.
         /// </remarks>
+        public override float GetPartySpottingRatioForMainPartySeeingRange(MobileParty party)
+        {
+            float baseRatio = base.GetPartySpottingRatioForMainPartySeeingRange(party);
+            if (party.HasPerk(TORPerks.Roguery.LowProfile))
+            {
+                return baseRatio * (1f - TORPerks.Roguery.LowProfile.PrimaryBonus);
+            }
+            return baseRatio;
+        }
+
         public override void GetMobilePartyVisibilityAndInspectedState(MobileParty mobileParty, Vec2[] points, float seeingRange, out bool isVisible, out bool isInspected)
         {
             if (mobileParty == MobileParty.MainParty && Hero.MainHero.IsEnlisted())
