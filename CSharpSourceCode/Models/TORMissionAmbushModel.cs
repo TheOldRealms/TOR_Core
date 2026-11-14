@@ -68,12 +68,12 @@ namespace TOR_Core.Models
         public virtual float SteadyWaveInterval => 15f;
 
         /// <summary>Each enemy wave is this fraction of their total roster.
-        /// 0.1 → 10% per wave: 15 troops/wave against a 150-strong lord party,
-        /// 30 against a 300-strong army. Scales naturally with target size.
-        /// Combined with <see cref="ReinforcementBatchFloor"/> so very small
-        /// parties still send meaningful waves instead of trickling in a
-        /// single troop at a time.</summary>
-        public virtual float ReinforcementBatchFraction => 0.1f;
+        /// 0.2 → 20% per wave: 30 troops/wave against a 150-strong lord
+        /// party, 60 against a 300-strong army. Scales naturally with
+        /// target size. Combined with <see cref="ReinforcementBatchFloor"/>
+        /// so very small parties still send meaningful waves instead of
+        /// trickling in a single troop at a time.</summary>
+        public virtual float ReinforcementBatchFraction => 0.2f;
 
         /// <summary>Minimum troops per reinforcement wave. If the
         /// fractional computation would yield fewer, we bump up to
