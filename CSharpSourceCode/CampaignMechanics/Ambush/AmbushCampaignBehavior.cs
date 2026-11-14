@@ -1453,14 +1453,33 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             RegisterMenus(starter);
 
-            // Defensive: a save mid-stealth loads with the flag set but no menu / no movement lock.
-            // Clear the flag so the player resumes with a normal map state.
+            // Mid-prep saves can't resume cleanly — the prep timer is
+            // tick-driven and the countdown window is seconds; cancel
+            // and let the player re-trigger. Prep is a cheap state to
+            // throw away.
+            if (_playerPreppingStealth)
+            {
+                _playerPreppingStealth = false;
+                _playerStealthPrepStartedAt = CampaignTime.Zero;
+            }
+
+            // Mid-stealth save resumes the stealth stance: restore
+            // party controls that EnterStealth sets, re-stop time, and
+            // reopen the stealth menu. Mirrors the settlement-visit
+            // pattern — persisted _playerInStealth flag is the source
+            // of truth, the menu is derived.
             if (_playerInStealth)
             {
-                _playerInStealth = false;
-                _currentTargets.Clear();
-                MobileParty.MainParty?.Ai?.SetDoNotMakeNewDecisions(false);
-                MobileParty.MainParty?.IgnoreByOtherPartiesTill(CampaignTime.Zero);
+                var main = MobileParty.MainParty;
+                if (main != null)
+                {
+                    main.Ai.SetDoNotMakeNewDecisions(true);
+                    main.SetMoveModeHold();
+                    main.IgnoreByOtherPartiesTill(CampaignTime.YearsFromNow(100f));
+                }
+                _cachedTimeControlMode = Campaign.Current.TimeControlMode;
+                GameMenu.ActivateGameMenu(StealthMenuId);
+                Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
             }
 
             // §6 bluff — IsInfoHidden is a vanilla SaveableField, so UI
