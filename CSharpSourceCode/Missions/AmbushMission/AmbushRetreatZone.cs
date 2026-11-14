@@ -212,9 +212,7 @@ namespace TOR_Core.Missions.AmbushMission
             _decal = Decal.CreateDecal(null);
             var material = Material.GetFromResource(RingMaterial);
             if (material != null) _decal.SetMaterial(material);
-            // "runtime_set" instead of "editor_set" so the decal isn't
-            // part of the editor-persisted decal pool.
-            Scene.AddDecalInstance(_decal, "runtime_set", false);
+            Scene.AddDecalInstance(_decal, "editor_set", false);
             _decalEntity.AddComponent(_decal);
             _decalEntity.SetVisibilityExcludeParents(false);
         }
