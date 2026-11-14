@@ -79,8 +79,8 @@ namespace TOR_Core.Models
         /// fractional computation would yield fewer, we bump up to
         /// this floor. If fewer than this many troops remain in the
         /// pool, the final wave sends whatever's left. At the current
-        /// 20% fraction this takes over for rosters ≤ 250.</summary>
-        public virtual int ReinforcementBatchFloor => 50;
+        /// 20% fraction this takes over for rosters ≤ 125.</summary>
+        public virtual int ReinforcementBatchFloor => 25;
 
         /// <summary>Per-point-of-Tactics speed-up on the ambushed
         /// side's reinforcement intervals. 0.002 → 0.2% faster per
