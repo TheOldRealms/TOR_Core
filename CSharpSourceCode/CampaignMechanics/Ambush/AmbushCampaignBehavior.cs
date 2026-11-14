@@ -1453,22 +1453,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             RegisterMenus(starter);
 
-            // Mid-prep saves can't resume cleanly — the prep timer is
-            // tick-driven and the countdown window is seconds; cancel
-            // and let the player re-trigger. Prep is a cheap state to
-            // throw away.
-            if (_playerPreppingStealth)
-            {
-                _playerPreppingStealth = false;
-                _playerStealthPrepStartedAt = CampaignTime.Zero;
-            }
-
-            // Mid-stealth save resumes the stealth stance: restore
-            // party controls that EnterStealth sets, re-stop time, and
-            // reopen the stealth menu. Mirrors the settlement-visit
-            // pattern — persisted _playerInStealth flag is the source
-            // of truth, the menu is derived.
-            if (_playerInStealth)
+            // Mid-stealth / mid-prep save resumes the stance. Mirrors
+            // vanilla's siege-preparation pattern: progress state is
+            // persisted (we SyncData the flags + timestamp; the
+            // elapsed delta uses CampaignTime which vanilla preserves),
+            // and on load we re-apply the derived state (party
+            // controls, menu, time stop). TickPlayerStealthPrep picks
+            // up prep from the restored timestamp naturally.
+            if (_playerInStealth || _playerPreppingStealth)
             {
                 var main = MobileParty.MainParty;
                 if (main != null)
