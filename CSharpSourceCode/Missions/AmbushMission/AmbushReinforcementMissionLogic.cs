@@ -6,6 +6,8 @@ using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.Extensions;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
 
@@ -80,6 +82,18 @@ namespace TOR_Core.Missions.AmbushMission
             for (int i = 0; i < baseIntervals.Length; i++)
                 _initialWaveIntervals[i] = baseIntervals[i] * intervalMult;
             _steadyWaveInterval = _model.SteadyWaveInterval * intervalMult;
+            // Reprisal secondary: a quartermaster-tier Roguery perk on
+            // the ambusher's side delays every reinforcement wave by a
+            // flat number of seconds (SecondaryBonus = 20 by default).
+            var ambusher = controller?.AmbusherParty;
+            if (ambusher != null
+                && ambusher.HasPerk(TORPerks.Roguery.Reprisal, checkSecondaryRole: true))
+            {
+                float delay = TORPerks.Roguery.Reprisal.SecondaryBonus;
+                for (int i = 0; i < _initialWaveIntervals.Length; i++)
+                    _initialWaveIntervals[i] += delay;
+                _steadyWaveInterval += delay;
+            }
             _reinforcementBatchFraction = _model.ReinforcementBatchFraction;
             _patrolClearedDelayBonus = _model.InitialPatrolClearedWaveDelayBonus;
             _waveTimer = new BasicMissionTimer();

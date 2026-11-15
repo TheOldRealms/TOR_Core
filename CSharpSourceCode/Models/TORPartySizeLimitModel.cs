@@ -152,6 +152,20 @@ namespace TOR_Core.Models
             return party.Settlement?.Culture ?? party.MapFaction?.Culture;
         }
         
+        public override ExplainedNumber GetPartyPrisonerSizeLimit(PartyBase party, bool includeDescriptions = false)
+        {
+            var result = base.GetPartyPrisonerSizeLimit(party, includeDescriptions);
+            // Diversion secondary: party-leader roguery perk raises the
+            // prisoner cap by a flat +SecondaryBonus (10 by default).
+            var mobileParty = party?.MobileParty;
+            if (mobileParty != null && mobileParty.HasPerk(TORPerks.Roguery.Diversion))
+            {
+                result.Add(TORPerks.Roguery.Diversion.SecondaryBonus,
+                    TORTextHelper.GetTextObject("tor_perk_diversion_capacity", "Diversion"));
+            }
+            return result;
+        }
+
         public override TroopRoster FindAppropriateInitialRosterForMobileParty(MobileParty party, PartyTemplateObject partyTemplate)
         {
             if (!party.IsRaidingParty())

@@ -144,6 +144,8 @@ namespace TOR_Core.Missions.AmbushMission
         /// patrols).</summary>
         public Hero VictimLeaderHero => _victimParty?.LeaderHero;
 
+        public MobileParty AmbusherParty => _ambusherParty?.MobileParty;
+
         /// <summary>
         /// Optional shared reference to the attacker-side troop supplier
         /// vanilla's DefaultBattleMissionAgentSpawnLogic also holds. When set,
@@ -731,6 +733,66 @@ namespace TOR_Core.Missions.AmbushMission
                 TORCommon.Log(LogLevel.Info,
                     "[AmbushMission] registered AmbushTacticHoldPositions on AttackerTeam");
             }
+
+            ValidatePostSpawnOrThrow();
+        }
+
+        /// <summary>
+        /// Final preflight on the custom-spawn result before vanilla's first
+        /// OnMissionTick fires DeploymentMissionController.SetupTeams().
+        ///
+        /// Vanilla SetupTeams dereferences Mission.InitialPlayerAgent
+        /// unconditionally (initialPlayerAgent.Controller = None, etc.).
+        /// If the custom spawn failed to produce a player-controlled agent,
+        /// SetupTeams throws a raw NullReferenceException with only
+        /// "DeploymentMissionController.SetupTeams" in the stack trace, which
+        /// reads as a mod bug but is almost always a scene-authoring issue
+        /// (player spawn point on broken navmesh, no attacker ambush spots,
+        /// etc.). Rather than let the scene author chase a native NRE, fail
+        /// loud here with the scene name and the usual causes.
+        /// </summary>
+        private void ValidatePostSpawnOrThrow()
+        {
+            if (Mission.InitialPlayerAgent != null) return;
+
+            string sceneName = Mission.SceneName ?? "(unknown)";
+            int attackerAgents = Mission.AttackerTeam?.ActiveAgents?.Count ?? 0;
+            int defenderAgents = Mission.DefenderTeam?.ActiveAgents?.Count ?? 0;
+            int layoutChunks = Layout?.Formations?.Count ?? 0;
+            int sceneSpots = SceneSpots?.Count ?? 0;
+
+            string msg =
+                "\n========================================\n"
+                + " AMBUSH SCENE VALIDATION FAILED\n"
+                + "========================================\n"
+                + " Scene:               " + sceneName + "\n"
+                + " Player side:         "
+                    + (IsPlayerAmbusher ? "Ambusher (Attacker)" : "Victim (Defender)") + "\n"
+                + " Attacker agents:     " + attackerAgents + "\n"
+                + " Defender agents:     " + defenderAgents + "\n"
+                + " Ambush spots found:  " + sceneSpots + "\n"
+                + " Formation chunks:    " + layoutChunks + "\n"
+                + "----------------------------------------\n"
+                + " The player's hero did not spawn with a Player controller,\n"
+                + " so vanilla's deployment phase will crash on the next tick.\n"
+                + "\n"
+                + " Likely scene-authoring causes (fix in the Bannerlord editor):\n"
+                + "   - sp_player entity is outside the walkable navmesh\n"
+                + "     (over water, off a cliff, inside geometry).\n"
+                + "   - No attacker_ambush_spawnpoint entities with a valid\n"
+                + "     attacker_ambush_<group> tag, OR all of them are\n"
+                + "     off-navmesh / under terrain.\n"
+                + "   - sp_battle_set / battle_set entity missing or misplaced.\n"
+                + "   - Scene terrain Z does not match entity Z (entities are\n"
+                + "     authored at a height the terrain does not reach).\n"
+                + "   - Navmesh not regenerated after moving spawn entities.\n"
+                + "----------------------------------------\n"
+                + " Compare against TOR_ambush_forest_001 (known working).\n"
+                + "========================================";
+
+            TORCommon.Log(LogLevel.Error, msg);
+            TORCommon.Say(msg);
+            throw new System.InvalidOperationException(msg);
         }
 
 
