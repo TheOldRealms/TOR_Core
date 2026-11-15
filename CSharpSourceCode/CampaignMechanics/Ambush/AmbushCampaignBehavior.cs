@@ -54,13 +54,6 @@ namespace TOR_Core.CampaignMechanics.Ambush
         // doesn't re-stack on player next tick.
         private const float AmbushEscapeTeleportDistance = 3f;
 
-        // Fallback scene (TOR_Environment/SceneObj/test_ambush/). Has an
-        // authored AmbushRetreatZone (Radius=10) + TacticalRegion=Forest.
-        // Used when AmbushScenes is empty or when dev paths want a known
-        // fixed scene. Terrain-biased selection stays an open question in
-        // phase-d-requirements.md.
-        public const string DefaultAmbushScene = "test_ambush";
-
         // Delivered forest ambush scenes from the scener (next_update branch
         // of TOR_Environment). PickAmbushScene() returns a random entry for
         // Phase D / Phase F mission opens.
@@ -73,7 +66,6 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         public static string PickAmbushScene()
         {
-            if (AmbushScenes == null || AmbushScenes.Length == 0) return DefaultAmbushScene;
             return AmbushScenes[MBRandom.RandomInt(AmbushScenes.Length)];
         }
 
