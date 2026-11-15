@@ -53,6 +53,15 @@ namespace TOR_Core.Models
             var leaderHero = mobileParty?.LeaderHero;
             if (leaderHero == null) return result;
 
+            // Raider primary: party-leader roguery perk gives a raiding-
+            // speed bonus. Applies to any lord party, not just the
+            // player — the perk fits NPC bandit lords too.
+            if (mobileParty.IsRaidingParty() && leaderHero.GetPerkValue(TORPerks.Roguery.Raider))
+            {
+                result.AddFactor(TORPerks.Roguery.Raider.PrimaryBonus,
+                    TORTextHelper.GetTextObject("tor_perk_raider_speed", "Raider"));
+            }
+
 
 
             if (mobileParty != MobileParty.MainParty)

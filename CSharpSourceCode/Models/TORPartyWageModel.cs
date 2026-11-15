@@ -228,6 +228,16 @@ namespace TOR_Core.Models
                     }
                 }
 
+                // High Roller secondary: quartermaster-tier Roguery
+                // perk reduces wages for stealth specialist troops
+                // (MASTER_AMBUSHER attribute). Factor is negative.
+                if (mobileParty.HasPerk(TORPerks.Roguery.HighRoller, checkSecondaryRole: true)
+                    && elementCopyAtIndex.Character.HasAttribute(CharacterAttributes.MASTER_AMBUSHER))
+                {
+                    value.Add(TORPerks.Roguery.HighRoller.SecondaryBonus * troopwage,
+                        includeDescriptions ? new TextObject("{=tor_perk_high_roller_wage}High Roller") : null);
+                }
+
                 if (leaderCulture.StringId == TORConstants.Cultures.DAWI)
                 {
                     if (elementCopyAtIndex.Character.IsDwarfGunUnit())

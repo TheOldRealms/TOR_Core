@@ -844,6 +844,14 @@ namespace TOR_Core.Models
                 var missionModel = Campaign.Current?.Models?.GetMissionAmbushModel();
                 if (missionModel != null) hours += missionModel.LoudnessPenaltyHours;
             }
+            // Reprisal primary: party-leader roguery perk shaves the
+            // post-failure cooldown. PrimaryBonus is negative (-0.15 at
+            // default), so the multiplier is (1 + bonus) = 0.85.
+            if (record != null && record.Ambusher != null
+                && record.Ambusher.HasPerk(TORPerks.Roguery.Reprisal))
+            {
+                hours *= 1f + TORPerks.Roguery.Reprisal.PrimaryBonus;
+            }
             return hours;
         }
 

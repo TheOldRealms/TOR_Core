@@ -144,6 +144,8 @@ namespace TOR_Core.Missions.AmbushMission
         /// patrols).</summary>
         public Hero VictimLeaderHero => _victimParty?.LeaderHero;
 
+        public MobileParty AmbusherParty => _ambusherParty?.MobileParty;
+
         /// <summary>
         /// Optional shared reference to the attacker-side troop supplier
         /// vanilla's DefaultBattleMissionAgentSpawnLogic also holds. When set,

@@ -1,5 +1,6 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TOR_Core.CharacterDevelopment;
 
 namespace TOR_Core.Models
 {
@@ -64,7 +65,14 @@ namespace TOR_Core.Models
         {
             if (leader == null) return AmbusherInMissionBaseCap;
             int tactics = leader.GetSkillValue(DefaultSkills.Tactics);
-            return AmbusherInMissionBaseCap + (int)(tactics * AmbusherInMissionPerTacticsBonus);
+            int cap = AmbusherInMissionBaseCap + (int)(tactics * AmbusherInMissionPerTacticsBonus);
+            // Wolf Pack primary: party-leader roguery perk adds a flat
+            // slot count on top of the Tactics bonus (PrimaryBonus = 5).
+            if (leader.GetPerkValue(TORPerks.Roguery.WolfPack))
+            {
+                cap += (int)TORPerks.Roguery.WolfPack.PrimaryBonus;
+            }
+            return cap;
         }
 
         /// <summary>Resolves the victim-side cap. Adds
