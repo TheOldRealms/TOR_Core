@@ -1679,6 +1679,78 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties> 
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_gor_lord_helmet_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_gor_lord_helmet_002" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_gor_lord_helmet_003" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_gor_lord_helmet_004" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_gor_lord_horns_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_gor_lord_horns_002" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_gor_lord_horns_003" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_gor_lord_shoulderpads_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_shoulder_cape_gor_lord_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_shoulder_cape_gor_lord_002" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armour_gor_lord_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armour_gor_lord_002" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armour_gor_lord_003" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_arm_bracers_gor_lord_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_arm_bracers_gor_lord_002" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_arm_bracers_gor_lord_003" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_legs_gor_lord_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_legs_gor_lord_002" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_bestigor_shoulderpads_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
