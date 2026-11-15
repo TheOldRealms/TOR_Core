@@ -766,7 +766,7 @@
     </face>
     <Equipments>
       <EquipmentSet id="tor_beast_bestigor_template" />
-      <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_bestigor_gougehorn_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_empire_deserter_lord_0" default_group="cavalry" name="{=str_tor_empire_deserter_lord_0}{FIRSTNAME} the Deserter Captain" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_commander_lord" is_template="true" is_hero="false">
