@@ -2023,7 +2023,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             var ctx = Campaign.Current?.CurrentMenuContext;
             var model = Campaign.Current?.Models?.GetMissionAmbushModel();
-            int cap = model?.ComputeInitialOnFieldCap(Hero.MainHero) ?? 25;
+            int cap = model?.ComputeAmbusherInMissionCap(Hero.MainHero) ?? 25;
             if (ctx == null)
             {
                 // Fallback: no menu context (shouldn't happen from strike

@@ -26,33 +26,58 @@ namespace TOR_Core.Models
         /// ambush — fewer bodies on screen at once.</summary>
         public virtual float TargetTotalTroopRatio => 0.25f;
 
-        /// <summary>Base cap on troops that spawn upfront per side,
-        /// before the Tactics bonus. See <see cref="ComputeInitialOnFieldCap"/>
-        /// for the full formula.</summary>
-        public virtual int InitialOnFieldBaseCap => 25;
+        /// <summary>Base cap on troops the ambusher side spawns upfront,
+        /// before the Tactics bonus. A tighter strike team: fewer bodies
+        /// in the opening wave than the column they hit.</summary>
+        public virtual int AmbusherInMissionBaseCap => 25;
 
-        /// <summary>Per-point-of-Tactics bonus to the initial on-field
-        /// cap. 0.2 → every 5 Tactics adds one troop. At 300 Tactics
-        /// the cap resolves to 85.</summary>
-        public virtual float InitialOnFieldPerTacticsBonus => 0.2f;
+        /// <summary>Base cap on troops the victim side spawns upfront,
+        /// before the Tactics bonus. Larger than the ambusher cap so the
+        /// column visibly outnumbers the strike team at first contact;
+        /// the ambusher advantage is tempo and positioning, not raw count.</summary>
+        public virtual int VictimInMissionBaseCap => 40;
 
-        /// <summary>Resolves the initial on-field cap for a given
-        /// leader hero. Reads the hero's Tactics skill and adds
-        /// <see cref="InitialOnFieldPerTacticsBonus"/> per point to
-        /// <see cref="InitialOnFieldBaseCap"/>. Leaderless parties
-        /// (caravans, some patrols) get the flat base cap — no hero
-        /// to pull a Tactics value from. Used by both the ambusher-
-        /// side spawn (how many troops lie in wait) and the
-        /// ambushed-side spawn (how many troops are on the column
-        /// when the strike lands). Rest of each side's roster:
-        /// ambusher's excess is simply not deployed (one-shot
-        /// commitment, post-MVP may add waves); ambushed's excess
-        /// feeds the reinforcement pool.</summary>
-        public virtual int ComputeInitialOnFieldCap(Hero leader)
+        /// <summary>Per-point-of-Tactics bonus to the ambusher cap.
+        /// 0.1 → every 10 Tactics adds one troop. At 300 Tactics that
+        /// is +30 troops on top of <see cref="AmbusherInMissionBaseCap"/>.
+        /// Smaller than the victim's bonus — an ambusher is constrained
+        /// by the terrain they chose and the need to stay hidden; extra
+        /// Tactics tips the stealth setup, not the on-field count.</summary>
+        public virtual float AmbusherInMissionPerTacticsBonus => 0.1f;
+
+        /// <summary>Per-point-of-Tactics bonus to the victim cap.
+        /// 0.2 → every 5 Tactics adds one troop. At 300 Tactics that
+        /// is +60 troops on top of <see cref="VictimInMissionBaseCap"/>.
+        /// Larger than the ambusher's bonus: a well-drilled column
+        /// leader rallies the march formation on contact and gets
+        /// more bodies into the fight, so Tactics on the defender
+        /// side pays in sheer response size.</summary>
+        public virtual float VictimInMissionPerTacticsBonus => 0.2f;
+
+        /// <summary>Resolves the ambusher-side cap. Adds
+        /// <see cref="AmbusherInMissionPerTacticsBonus"/> per Tactics
+        /// point to <see cref="AmbusherInMissionBaseCap"/>. Leaderless
+        /// (rare on the striker side: typically a player or lord party)
+        /// returns the flat base. Ambusher excess beyond the cap is
+        /// held in reserve and does not deploy — one-shot commitment.</summary>
+        public virtual int ComputeAmbusherInMissionCap(Hero leader)
         {
-            if (leader == null) return InitialOnFieldBaseCap;
+            if (leader == null) return AmbusherInMissionBaseCap;
             int tactics = leader.GetSkillValue(DefaultSkills.Tactics);
-            return InitialOnFieldBaseCap + (int)(tactics * InitialOnFieldPerTacticsBonus);
+            return AmbusherInMissionBaseCap + (int)(tactics * AmbusherInMissionPerTacticsBonus);
+        }
+
+        /// <summary>Resolves the victim-side cap. Adds
+        /// <see cref="VictimInMissionPerTacticsBonus"/> per Tactics
+        /// point to <see cref="VictimInMissionBaseCap"/>. Leaderless
+        /// parties (caravans, patrols) get the flat base. Victim
+        /// excess beyond the cap feeds the reinforcement wave pool
+        /// owned by <c>AmbushReinforcementMissionLogic</c>.</summary>
+        public virtual int ComputeVictimInMissionCap(Hero leader)
+        {
+            if (leader == null) return VictimInMissionBaseCap;
+            int tactics = leader.GetSkillValue(DefaultSkills.Tactics);
+            return VictimInMissionBaseCap + (int)(tactics * VictimInMissionPerTacticsBonus);
         }
 
         // ---- Reinforcement cadence ----

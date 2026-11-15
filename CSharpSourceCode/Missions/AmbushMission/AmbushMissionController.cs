@@ -254,7 +254,7 @@ namespace TOR_Core.Missions.AmbushMission
             // pool and never spawns — post-MVP may wire waves for the
             // ambusher. For now, excess troops are "held in reserve" in
             // the fiction and simply absent from the engagement.
-            int ambusherRequest = _model.ComputeInitialOnFieldCap(_ambusherParty?.LeaderHero);
+            int ambusherRequest = _model.ComputeAmbusherInMissionCap(_ambusherParty?.LeaderHero);
             if (ambusherRequest <= 0) ambusherRequest = int.MaxValue;
             var origins = _ambusherSupplier.SupplyTroops(ambusherRequest).ToList();
             bool isPlayerSide = _ambusherSide == BattleSideEnum.Attacker
@@ -765,7 +765,7 @@ namespace TOR_Core.Missions.AmbushMission
             // initial cap is what vanilla's reinforcement wave timer
             // pulls from on each tick when the pool is non-empty.
             // Cap scales with the victim leader's Tactics.
-            int victimRequest = _model.ComputeInitialOnFieldCap(_victimParty?.LeaderHero);
+            int victimRequest = _model.ComputeVictimInMissionCap(_victimParty?.LeaderHero);
             if (victimRequest <= 0) victimRequest = int.MaxValue;
             var origins = _victimSupplier.SupplyTroops(victimRequest).ToList();
             // In Phase F (AI ambusher) the victim IS the player. Their
@@ -1411,8 +1411,8 @@ namespace TOR_Core.Missions.AmbushMission
             // for them, so the extra troops idle in the supplier pool
             // and never arrive). Victim-side excess flows in via the
             // reinforcement waves owned by AmbushReinforcementMissionLogic.
-            int ambusherCap = _model.ComputeInitialOnFieldCap(_ambusherParty?.LeaderHero);
-            int victimCap = _model.ComputeInitialOnFieldCap(_victimParty?.LeaderHero);
+            int ambusherCap = _model.ComputeAmbusherInMissionCap(_ambusherParty?.LeaderHero);
+            int victimCap = _model.ComputeVictimInMissionCap(_victimParty?.LeaderHero);
             int defenderInitial = defenderTotal;
             int attackerInitial = attackerTotal;
             // Side → cap mapping follows who holds the role at this
