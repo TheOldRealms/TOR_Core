@@ -238,26 +238,44 @@ namespace TOR_Core.Models
         /// </summary>
         public virtual int PlayerMaxChunksPerClass => 2;
 
-        /// <summary>
-        /// Floor size per auto-chunked formation in AI mode. Prevents the
-        /// spread-to-fill logic from producing tiny formations on small AI
-        /// rosters: 20 archers across 2 archer spots stays as one formation
-        /// of 20, not two of 10.
-        /// </summary>
-        public virtual int MinAiFormationSize => 15;
+        /// <summary>Ranged class floor for AI-side chunking: formations
+        /// with this count or fewer stay as a single unit. Ranged splits
+        /// aggressively because concentrated bowfire is punishing; small
+        /// clumps that would fall below this size never get broken up.</summary>
+        public virtual int MinFormationSizeRanged => 5;
 
-        /// <summary>Weight for the Concentrated AI distribution pattern
-        /// (all troops of a class in one spot, other matching spots empty).
-        /// Relative to <see cref="AiDistributionEvenWeight"/> and
-        /// <see cref="AiDistributionAsymmetricWeight"/>.</summary>
-        public virtual float AiDistributionConcentratedWeight => 0.3f;
+        /// <summary>Ranged class ceiling for AI-side chunking: at or
+        /// above this count a formation always splits across matching
+        /// spots (if more than one is available). Between min and max the
+        /// split chance ramps linearly.</summary>
+        public virtual int MaxFormationSizeRanged => 20;
 
-        /// <summary>Weight for the Even AI distribution pattern (equal
-        /// split across matching spots).</summary>
-        public virtual float AiDistributionEvenWeight => 0.5f;
+        /// <summary>Melee class floor for AI-side chunking: melee prefers
+        /// to stay cohesive, so the floor is higher than the ranged one.
+        /// Below this, keep the shield-wall together.</summary>
+        public virtual int MinFormationSizeMelee => 15;
 
-        /// <summary>Weight for the Asymmetric AI distribution pattern
-        /// (skewed split like 25/75 across matching spots).</summary>
-        public virtual float AiDistributionAsymmetricWeight => 0.2f;
+        /// <summary>Melee class ceiling for AI-side chunking: at or
+        /// above this count a formation always splits across matching
+        /// spots.</summary>
+        public virtual int MaxFormationSizeMelee => 40;
+
+        /// <summary>Resolves the min-formation-size floor for a given
+        /// formation class. Ranged classes (bow, horse archer, skirmisher)
+        /// use <see cref="MinFormationSizeRanged"/>; everything else uses
+        /// <see cref="MinFormationSizeMelee"/>.</summary>
+        public virtual int GetMinFormationSize(FormationClass cls)
+            => IsRangedClass(cls) ? MinFormationSizeRanged : MinFormationSizeMelee;
+
+        /// <summary>Resolves the max-formation-size ceiling for a given
+        /// formation class. Pair with <see cref="GetMinFormationSize"/>
+        /// to build the split-probability ramp.</summary>
+        public virtual int GetMaxFormationSize(FormationClass cls)
+            => IsRangedClass(cls) ? MaxFormationSizeRanged : MaxFormationSizeMelee;
+
+        private static bool IsRangedClass(FormationClass cls)
+            => cls == FormationClass.Ranged
+            || cls == FormationClass.HorseArcher
+            || cls == FormationClass.Skirmisher;
     }
 }

@@ -54,10 +54,28 @@ namespace TOR_Core.CampaignMechanics.Ambush
         // doesn't re-stack on player next tick.
         private const float AmbushEscapeTeleportDistance = 3f;
 
-        // First delivered scene from the scener (TOR_Environment/SceneObj/test_ambush/).
-        // Has an authored AmbushRetreatZone (Radius=10) + TacticalRegion=Forest.
-        // Will become a lookup table (terrain → scene[]) once more scenes land.
+        // Fallback scene (TOR_Environment/SceneObj/test_ambush/). Has an
+        // authored AmbushRetreatZone (Radius=10) + TacticalRegion=Forest.
+        // Used when AmbushScenes is empty or when dev paths want a known
+        // fixed scene. Terrain-biased selection stays an open question in
+        // phase-d-requirements.md.
         public const string DefaultAmbushScene = "test_ambush";
+
+        // Delivered forest ambush scenes from the scener (next_update branch
+        // of TOR_Environment). PickAmbushScene() returns a random entry for
+        // Phase D / Phase F mission opens.
+        public static readonly string[] AmbushScenes =
+        {
+            "TOR_ambush_forest_001",
+            "TOR_ambush_forest_002",
+            "TOR_ambush_forest_003",
+        };
+
+        public static string PickAmbushScene()
+        {
+            if (AmbushScenes == null || AmbushScenes.Length == 0) return DefaultAmbushScene;
+            return AmbushScenes[MBRandom.RandomInt(AmbushScenes.Length)];
+        }
 
         private bool _playerInStealth;
         private CampaignTime _stealthEnteredAt = CampaignTime.Zero;
@@ -1582,7 +1600,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             GameMenu.ExitToLast();
             AmbushRetreatZone.ResetRegistry();
-            TorMissionManager.OpenAmbushedMission(DefaultAmbushScene);
+            TorMissionManager.OpenAmbushedMission(PickAmbushScene());
         }
 
         private void RegisterAmbushEscapeMenu(CampaignGameStarter starter)
@@ -1980,37 +1998,17 @@ namespace TOR_Core.CampaignMechanics.Ambush
             else
             {
                 // Strike roll fail: stealth is burnt regardless; the
-                // target has seen the player. Whether the target
-                // commits to a counter-attack is a strength roll —
-                // the same model AmbusherPressesAttack uses for the
-                // AI-side press decision, just with the roles flipped
-                // (target is now the aggressor, player is the victim).
+                // target has seen the player. No forced encounter — the
+                // target's own quarter-hourly AI tick decides whether to
+                // engage from here, same path a bandit uses to catch a
+                // caravan. Player eats the Disorganized debuff either
+                // way; direct SetDisorganized bypasses vanilla's
+                // TotalManCount >= 10 gate so even a small strike team
+                // takes the hit.
                 LeaveStealth(MobileParty.MainParty);
-                var ambushModel = Campaign.Current?.Models?.GetAmbushModel();
-                bool targetEngages = ambushModel == null
-                    || ambushModel.AmbusherPressesAttack(target, MobileParty.MainParty);
-                if (targetEngages)
-                {
-                    // Teleport the player onto the target before the
-                    // encounter so the campaign-map visualization
-                    // matches: "the target closed and caught you."
-                    MobileParty.MainParty.Position = target.Position;
-                    OnStrikeFailed(target, chancePct);
-                }
-                else
-                {
-                    // Target disengages. Player is visible and off
-                    // cooldown — vanilla's quarter-hourly AI runs from
-                    // the next tick. No teleport, no encounter.
-                    // Player's party IS disorganized from the botched
-                    // strike — the column was mid-strike when stealth
-                    // broke, formation ruined. Direct SetDisorganized
-                    // bypasses vanilla's TotalManCount >= 10 gate so
-                    // even a small ambush party eats the debuff.
-                    TORCommon.Say("Ambush failed (" + chancePct + "%) on " + GetPartyLabel(target)
-                                  + ". They chose not to press — too strong a target.");
-                    MobileParty.MainParty.SetDisorganized(true);
-                }
+                TORCommon.Say("Ambush failed (" + chancePct + "%) on " + GetPartyLabel(target)
+                              + ". You've been spotted — your formation is broken.");
+                MobileParty.MainParty.SetDisorganized(true);
             }
         }
 
@@ -2098,26 +2096,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // follows, so clearing after would wipe the just-registered
             // zone.
             AmbushRetreatZone.ResetRegistry();
-            TorMissionManager.OpenAmbushMission(DefaultAmbushScene, selected);
-        }
-
-        private void OnStrikeFailed(MobileParty target, int chancePct)
-        {
-            // Commit the player to the fight directly instead of
-            // routing through EncounterManager.StartPartyEncounter
-            // (which opens encounter_meeting with a Leave option).
-            // Sides are deliberately FLIPPED from the success path:
-            // the botched ambush gave the target the initiative, so
-            // the target is the attacker and the player the defender.
-            // Defender cannot cancel out — the attempt costs you the
-            // fight regardless of outcome.
-            TORCommon.Say("Ambush failed (" + chancePct + "%) on " + GetPartyLabel(target) + " — regular battle.");
-            PlayerEncounter.RestartPlayerEncounter(PartyBase.MainParty, target.Party, false);
-            if (PlayerEncounter.Battle == null)
-            {
-                PlayerEncounter.StartBattle();
-                PlayerEncounter.Update();
-            }
+            TorMissionManager.OpenAmbushMission(PickAmbushScene(), selected);
         }
 
         private static string GetPartyLabel(MobileParty p)

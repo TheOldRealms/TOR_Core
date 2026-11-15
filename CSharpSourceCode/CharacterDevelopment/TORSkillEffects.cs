@@ -78,8 +78,8 @@ namespace TOR_Core.CharacterDevelopment
             _prayerDuration.Initialize(TORTextHelper.GetTextObject("tor_skill_effect_prayer_duration", "Prayer duration increase(Only Priests): +{a0} %"),
             TORSkills.Faith, PartyRole.Personal, 0.00025f, EffectIncrementType.AddFactor, 0f, 0f);
 
-            _ambushSpottingBonus.Initialize(TORTextHelper.GetTextObject("tor_skill_effect_ambush_spotting", "Ambush detection: +{a0} %"),
-            DefaultSkills.Roguery, PartyRole.PartyLeader, 0.0015f, EffectIncrementType.AddFactor);
+            _ambushSpottingBonus.Initialize(TORTextHelper.GetTextObject("tor_skill_effect_ambush_spotting", "Ambush detection: +{a0} % (combined from leader and Scout, higher dominates)"),
+            DefaultSkills.Roguery, PartyRole.Scout, 0.0015f, EffectIncrementType.AddFactor);
         }
     }
 }

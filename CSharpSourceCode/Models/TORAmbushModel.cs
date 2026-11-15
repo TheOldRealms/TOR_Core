@@ -311,13 +311,13 @@ namespace TOR_Core.Models
 
         protected virtual float ScoutingDetectionMultiplier(MobileParty observer)
         {
-            int s = observer.LeaderHero?.GetSkillValue(DefaultSkills.Scouting) ?? 0;
-            float leaderBonus = MBMath.ClampFloat(s * DetectionScoutingPerPointBonus, 0f, DetectionScoutingBonusCap);
+            int s = GetDefenderScouting(observer);
+            float scoutingBonus = MBMath.ClampFloat(s * DetectionScoutingPerPointBonus, 0f, DetectionScoutingBonusCap);
             float rosterBonus = AmbushTroopSpottingScore.GetBasePartyScore(observer, SpottingScoreSizeDampingReference)
                                 * SpottingScoreDetectionWeight;
-            int r = observer.LeaderHero?.GetSkillValue(DefaultSkills.Roguery) ?? 0;
+            int r = GetDefenderRoguery(observer);
             float rogueryBonus = TORSkillEffects.AmbushSpottingBonus.GetSkillEffectValue(r);
-            return 1f + leaderBonus + rosterBonus + rogueryBonus;
+            return 1f + scoutingBonus + rosterBonus + rogueryBonus;
         }
 
         protected virtual float TerrainDetectionMultiplier(MobileParty target)
@@ -434,6 +434,18 @@ namespace TOR_Core.Models
             if (party == null) return 0;
             int leader = party.LeaderHero?.GetSkillValue(DefaultSkills.Scouting) ?? 0;
             int scout = party.EffectiveScout?.GetSkillValue(DefaultSkills.Scouting) ?? 0;
+            return CombineSkillPair(leader, scout);
+        }
+
+        /// <summary>Effective Roguery for the DEFENDER side. Feeds the
+        /// AmbushSpottingBonus skill effect into ScoutingDetectionMultiplier
+        /// using the same leader + Scout pair rule that every other skill
+        /// aggregation in this model uses.</summary>
+        public virtual int GetDefenderRoguery(MobileParty party)
+        {
+            if (party == null) return 0;
+            int leader = party.LeaderHero?.GetSkillValue(DefaultSkills.Roguery) ?? 0;
+            int scout = party.EffectiveScout?.GetSkillValue(DefaultSkills.Roguery) ?? 0;
             return CombineSkillPair(leader, scout);
         }
 
