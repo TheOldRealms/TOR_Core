@@ -7809,7 +7809,7 @@
 		elite_basic_troop="NPCCharacter.tor_chaos_aspiring_warrior"
 		basic_troop="NPCCharacter.tor_chaos_norscan_tribesman"
 		melee_militia_troop="NPCCharacter.tor_chaos_cultist_of_chaos"
-		ranged_militia_troop="NPCCharacter.tor_chaos_norscan_whaler"
+		ranged_militia_troop="NPCCharacter.tor_chaos_nefarious_of_chaos"
 		melee_elite_militia_troop="NPCCharacter.tor_chaos_undivided_warrior"
 		ranged_elite_militia_troop="NPCCharacter.tor_chaos_norscan_reaver"
 		can_have_settlement="true"
