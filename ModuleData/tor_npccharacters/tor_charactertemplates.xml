@@ -765,7 +765,7 @@
       <face_key_template value="BodyProperty.gor" />
     </face>
     <Equipments>
-      <EquipmentSet id="tor_beast_gor_gougehorn_template" />
+      <EquipmentSet id="tor_beast_bestigor_template" />
       <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
