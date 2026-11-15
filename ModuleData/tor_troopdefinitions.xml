@@ -2325,7 +2325,7 @@
       <EquipmentSet id="tor_gs_troll_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_savage_orc" name="{=str_tor_gs_savage_orc}Savage Orc" level="16" default_group="infantry" culture="Culture.aserai" occupation="Soldier" is_basic_troop="true" skill_template="SkillSet.tor_skills_level16" race="orc">
+  <NPCCharacter id="tor_gs_savage_orc" name="{=str_tor_gs_savage_orc}Savage Orc" level="16" default_group="infantry" culture="Culture.aserai" occupation="Soldier" is_basic_troop="true" skill_template="SkillSet.tor_skills_level16" race="orc" localizationId="str_tor_gs_savage_orc">
     <face>
       <face_key_template value="BodyProperty.orc_savage" />
     </face>
@@ -2333,7 +2333,7 @@
       <EquipmentSet id="tor_gs_savage_orc_template" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_savage_orc_boar" name="{=str_tor_gs_savage_orc_copy}Savage Boar Orc" level="21" default_group="cavalry" culture="Culture.aserai" occupation="Soldier" is_basic_troop="true" skill_template="SkillSet.tor_skills_level21" race="orc">
+  <NPCCharacter id="tor_gs_savage_orc_boar" name="{=str_tor_gs_savage_orc_copy}Savage Boar Orc" level="21" default_group="cavalry" culture="Culture.aserai" occupation="Soldier" is_basic_troop="true" skill_template="SkillSet.tor_skills_level21" race="orc" localizationId="str_tor_gs_savage_orc_copy">
     <face>
       <face_key_template value="BodyProperty.orc_savage" />
     </face>
@@ -3714,6 +3714,7 @@
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_chaos_darksoul_of_chaos" />
+      <upgrade_target id="NPCCharacter.tor_chaos_nefarious_of_chaos" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_chaos_cult_acolyte_template" />
@@ -3730,6 +3731,14 @@
     <Equipments>
       <EquipmentSet id="tor_chaos_cult_darksoul_template" />
       <EquipmentSet id="tor_chaos_cult_darksoul_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_nefarious_of_chaos" name="{=str_tor_chaos_nefarious_of_chaos}Nefarious Militia of Chaos" level="11" skill_template="SkillSet.tor_unitskills_chaos_darksoul_of_chaos" default_group="ranged" culture="Culture.chaos_culture" occupation="Soldier" race="chaos_ud_cultist">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <Equipments>
+      <EquipmentSet id="tor_chaos_cult_nefarious_template" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_acolyte_of_chaos" default_group="infantry" level="16" name="{=str_tor_chaos_acolyte_of_chaos}Acolyte of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_unitskills_chaos_acolyte_of_chaos" race="chaos_ud_cultist" localizationId="str_tor_chaos_acolyte_of_chaos">

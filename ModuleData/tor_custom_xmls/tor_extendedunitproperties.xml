@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -2798,7 +2798,10 @@
       <string>Undead</string>
       <string>Ethereal</string>
     </Attributes>
-    <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
+    </Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
     </DamageAmplifiers>
@@ -2814,7 +2817,10 @@
       <string>Undead</string>
       <string>Ethereal</string>
     </Attributes>
-    <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
+    </Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
     </DamageAmplifiers>
@@ -2830,7 +2836,10 @@
       <string>Undead</string>
       <string>Ethereal</string>
     </Attributes>
-    <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
+    </Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
     </DamageAmplifiers>
@@ -2846,7 +2855,10 @@
       <string>Undead</string>
       <string>Ethereal</string>
     </Attributes>
-    <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
+    </Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
     </DamageAmplifiers>
@@ -2862,7 +2874,10 @@
       <string>Undead</string>
       <string>Ethereal</string>
     </Attributes>
-    <Resistances><ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" /><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" /></Resistances>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
+    </Resistances>
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
     </DamageAmplifiers>
@@ -10570,7 +10585,7 @@
     <Abilities />
     <Attributes>
       <string>Crushing</string>
-		</Attributes>
+    </Attributes>
     <AdditionalHealth>450</AdditionalHealth>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_lord">
@@ -11046,15 +11061,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="new_entry_1">
     <DamageProportions>
-      <DamageProportionTuple DamageType="Magical" Percent="0.90" />
-      <DamageProportionTuple DamageType="Physical" Percent="0.10" />
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.70" />
-    </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.30" />
-    </DamageAmplifiers>
+    <Resistances />
+    <DamageAmplifiers />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_greenknight_leader">
     <Attributes>
@@ -11452,5 +11462,10 @@
     <DamageAmplifiers>
       <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.40" />
     </DamageAmplifiers>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_nefarious_of_chaos">
+    <Attributes>
+      <string>Expendable</string>
+    </Attributes>
   </CharacterExtendedInfo>
 </ArrayOfCharacterExtendedInfo>
