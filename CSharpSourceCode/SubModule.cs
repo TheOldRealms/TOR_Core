@@ -216,6 +216,7 @@ namespace TOR_Core
                 starter.AddBehavior(new AmbushCampaignBehavior());
                 starter.AddBehavior(new AiAmbushBehavior());
                 starter.AddBehavior(new RogueryPerkSweepBehavior());
+                starter.AddBehavior(new RogueryPerkEventBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -242,6 +243,8 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORBanditDensityModel());
                 gameStarterObject.AddModel(new TORCharacterStatsModel());
                 gameStarterObject.AddModel(new TORClanFinanceModel());
+                gameStarterObject.AddModel(new TORCrimeModel());
+                gameStarterObject.AddModel(new TORSettlementSecurityModel());
                 gameStarterObject.AddModel(new TORMinorFactionsModel());
                 gameStarterObject.AddModel(new TORClanTierModel());
                 gameStarterObject.AddModel(new TORCombatXpModel());

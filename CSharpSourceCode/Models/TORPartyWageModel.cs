@@ -325,6 +325,20 @@ namespace TOR_Core.Models
         {
             var value = base.GetTroopRecruitmentCost(troop, buyerHero, withoutItemCost);
 
+            // Intimidator secondary: party-leader roguery perk discounts
+            // mercenary-type troop hire costs (tavern mercs, gangsters,
+            // caravan guards). Applied before the TOR-only high-tier
+            // override path so it covers tavern mercs at any level.
+            bool isMercenaryType = troop.Occupation == Occupation.Mercenary
+                || troop.Occupation == Occupation.Gangster
+                || troop.Occupation == Occupation.CaravanGuard;
+            if (isMercenaryType && buyerHero?.PartyBelongedTo != null
+                && buyerHero.PartyBelongedTo.HasPerk(TORPerks.Roguery.Intimidator, checkSecondaryRole: true))
+            {
+                value.AddFactor(TORPerks.Roguery.Intimidator.SecondaryBonus,
+                    new TextObject("{=tor_perk_intimidator_hire}Intimidator"));
+            }
+
             if (troop.Level <= 41)
             {
                 return value;
