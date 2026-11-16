@@ -27,6 +27,9 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public string EnchanterTemplateId    => "tor_spelltrainer_greenskins_0";
         public List<string> EnchantmentSuffixes => new() { "gs_enchant" };
 
+        // Same template fills both roles; template-id dedup in the manager keeps it one hero.
+        public override void EnsurePlaced(Settlement s) => PlaceResident(s, SpellTrainerTemplateId);
+
         public bool IsPartyEligibleForTrainer()
         {
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN) return true;

@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.CompanionRecruitment;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.Extensions;
@@ -10,7 +11,7 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.SettlementPOIs
 {
-    public class EmpireWizardHallPOI : SettlementPOI, ISpellTrainerHost, IEnchanterHost
+    public class EmpireWizardHallPOI : SettlementPOI, ISpellTrainerHost, IEnchanterHost, ISkillTrainerHost, ICompanionRecruitmentHost
     {
         public override string LocationId => "tor_wizardhall";
         public override string ParentMenuId => "town_artisan";
@@ -23,6 +24,13 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         public string SpellTrainerTemplateId => "tor_spelltrainer_empire_0";
         public string EnchanterTemplateId    => "tor_enchanter_empire_0";
         public List<string> EnchantmentSuffixes => new() { "emp_enchant" };
+
+        // Two distinct heroes: the magister trainer and a separate enchanter.
+        public override void EnsurePlaced(Settlement s)
+        {
+            PlaceResident(s, SpellTrainerTemplateId);
+            PlaceResident(s, EnchanterTemplateId);
+        }
 
         public bool IsPartyEligibleForTrainer()
         {
@@ -80,6 +88,43 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 isMultiUse: false,
                 enchantmentSuffixes: EnchantmentSuffixes,
                 cultureAccess: IsPartyEligibleForEnchanter);
+        }
+
+        // Companion Spellcraft training plugs into the shared spelltrainer hub
+        // ("choices"/"start") registered by SpellTrainerHelper.RegisterCommonDialogs.
+        // TrainerCondition filters by partner.Template so this line only shows
+        // when the player is talking to the Empire Magister specifically.
+        public IEnumerable<SkillTrainerConfig> GetSkillTrainers()
+        {
+            yield return new SkillTrainerConfig(
+                templateId:   SpellTrainerTemplateId,
+                dialogSuffix: "EmpireMagister",
+                skillId:      "Spellcraft",
+                hubState:     "choices",
+                reintroState: "start",
+                restrictions: new[] { "SpellCaster" });
+        }
+
+        // ---- ICompanionRecruitmentHost
+        // One rotating slot of Empire College wizards offered by the magister:
+        // Bright / Light / Celestial / Gold / Life. The slot rolls one of these
+        // at random and rotates every 60 days.
+        public IEnumerable<CompanionRecruitmentConfig> GetCompanionRecruits()
+        {
+            yield return new CompanionRecruitmentConfig(
+                candidateTemplateIds: new[]
+                {
+                    "tor_wanderer_empire_0",   // Bright Wizard
+                    "tor_wanderer_empire_3",   // Light Wizard
+                    "tor_wanderer_empire_4",   // Celestial Wizard
+                    "tor_wanderer_empire_8",   // Gold Wizard
+                    "tor_wanderer_empire_9",   // Life Wizard
+                },
+                hostTemplateId: SpellTrainerTemplateId,
+                dialogSuffix:   "EmpireMagister",
+                hubState:       "choices",
+                reintroState:   "start",
+                refreshDays:    60);
         }
     }
 }
