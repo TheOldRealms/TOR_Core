@@ -28,8 +28,11 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(SaveLoadVM), "OnSaveSelection")]
         public static void Selection(SavedGameVM save)
         {
-            save.MainHeroVisualCode = save.Save.MetaData.GetCharacterVisualCode();
-            ParseSkeletonAndActionSet(save.MainHeroVisualCode);
+            if (save != null && save.Save != null && save.Save.MetaData != null)
+            {
+                save.MainHeroVisualCode = save.Save.MetaData.GetCharacterVisualCode();
+                ParseSkeletonAndActionSet(save.MainHeroVisualCode);
+            }
         }
 
         /// <summary>
