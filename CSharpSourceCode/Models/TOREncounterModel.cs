@@ -3,6 +3,9 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Siege;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
 {
@@ -13,29 +16,40 @@ namespace TOR_Core.Models
             return base.GetLeaderOfSiegeEvent(siegeEvent, side);
         }
 
-        // villager parties and caravans will no longer surrender if there's a lord helping them
         public override float GetSurrenderChance(MobileParty defenderParty, MobileParty attackerParty)
         {
             float baseChance = base.GetSurrenderChance(defenderParty, attackerParty);
 
-            if (defenderParty == null || (!defenderParty.IsCaravan && !defenderParty.IsVillager))
+            // Villager / caravan parties stop surrendering if a lord is helping them.
+            if (defenderParty != null && (defenderParty.IsCaravan || defenderParty.IsVillager))
             {
-                return baseChance;
-            }
-
-            var mapEvent = defenderParty.MapEvent;
-            if (mapEvent == null)
-            {
-                return baseChance;
-            }
-
-            foreach (var mapEventParty in mapEvent.DefenderSide.Parties)
-            {
-                var mobileParty = mapEventParty.Party?.MobileParty;
-                if (mobileParty != null && mobileParty != defenderParty && mobileParty.IsLordParty)
+                var mapEvent = defenderParty.MapEvent;
+                if (mapEvent != null)
                 {
-                    return 0f;
+                    foreach (var mapEventParty in mapEvent.DefenderSide.Parties)
+                    {
+                        var mobileParty = mapEventParty.Party?.MobileParty;
+                        if (mobileParty != null && mobileParty != defenderParty && mobileParty.IsLordParty)
+                        {
+                            baseChance = 0f;
+                            break;
+                        }
+                    }
                 }
+            }
+
+            // Intimidator primary (Roguery 150): "+30% chance for villagers,
+            // caravans, and bandits to surrender when you demand it." Mirrors
+            // the shape of the stripped vanilla Scarface perk (main hero, not
+            // at sea, multiplicative with a 1.0 clamp) so Intimidator plugs in
+            // as its direct replacement — see VanillaPerkStripper.
+            if (baseChance > 0f && defenderParty != null
+                && Hero.MainHero != null
+                && !MobileParty.MainParty.IsCurrentlyAtSea
+                && Hero.MainHero.GetPerkValue(TORPerks.Roguery.Intimidator)
+                && (defenderParty.IsCaravan || defenderParty.IsVillager || defenderParty.IsBandit))
+            {
+                baseChance = MathF.Min(1f, baseChance * (1f + TORPerks.Roguery.Intimidator.PrimaryBonus));
             }
 
             return baseChance;

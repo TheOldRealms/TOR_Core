@@ -296,6 +296,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORSettlementFoodModel());
                 gameStarterObject.AddModel(new TOREquipmentSelectionModel());
                 gameStarterObject.AddModel(new TOREncounterModel());
+                gameStarterObject.AddModel(new TORTroopSacrificeModel());
                 gameStarterObject.AddModel(new TORVolunteerModel());
                 new CraftingModule().RegisterModels(gameStarterObject);
                 gameStarterObject.AddModel(new TORCompanionTrainingModel());
