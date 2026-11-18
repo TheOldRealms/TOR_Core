@@ -598,6 +598,7 @@
     <Compile Include="HarmonyPatches\InventoryPatches.cs" />
     <Compile Include="HarmonyPatches\LogEntryNotificationPatches.cs" />
     <Compile Include="HarmonyPatches\ItemPatches.cs" />
+    <Compile Include="HarmonyPatches\ItemVisualPatches.cs" />
     <Compile Include="HarmonyPatches\LoadingScreenPatches.cs" />
     <Compile Include="HarmonyPatches\MainMenuCrashPatch.cs" />
     <Compile Include="HarmonyPatches\MainMenuOptionsPatches.cs" />

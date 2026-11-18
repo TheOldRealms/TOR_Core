@@ -432,5 +432,67 @@ namespace TOR_Core.Extensions
             AccessTools.Property(typeof(ItemObject), "WeaponDesign").SetValue(item, other.WeaponDesign);
             item.Type = other.Type;
         }
+
+        public static HideHandType GetHideHandType(this ItemObject item)
+        {
+            if (item == null) return HideHandType.None;
+            var info = item.GetTorSpecificDataReadOnly();
+            return info != null ? info.HideHand : HideHandType.None;
+        }
+
+        public static string GetForearmMeshName(this ItemObject item)
+        {
+            if (item == null) return "";
+            var info = item.GetTorSpecificDataReadOnly();
+            return info != null && !string.IsNullOrEmpty(info.ForearmMesh) ? info.ForearmMesh : "";
+        }
+
+        public static HideHandType GetCombinedHideHandType(this Equipment equipment)
+        {
+            if (equipment == null) return HideHandType.None;
+
+            bool hideRight = false;
+            bool hideLeft = false;
+
+            for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumAllWeaponSlots; i++)
+            {
+                var element = equipment[i];
+                if (!element.IsEmpty && element.Item != null)
+                {
+                    var mode = element.Item.GetHideHandType();
+                    if (mode == HideHandType.Right || mode == HideHandType.Both) hideRight = true;
+                    if (mode == HideHandType.Left || mode == HideHandType.Both) hideLeft = true;
+                }
+            }
+
+            if (hideRight && hideLeft) return HideHandType.Both;
+            if (hideRight) return HideHandType.Right;
+            if (hideLeft) return HideHandType.Left;
+            return HideHandType.None;
+        }
+
+        public static HideHandType GetCombinedHideHandType(this MissionEquipment equipment)
+        {
+            if (equipment == null) return HideHandType.None;
+
+            bool hideRight = false;
+            bool hideLeft = false;
+
+            for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumAllWeaponSlots; i++)
+            {
+                var element = equipment[i];
+                if (!element.IsEmpty && element.Item != null)
+                {
+                    var mode = element.Item.GetHideHandType();
+                    if (mode == HideHandType.Right || mode == HideHandType.Both) hideRight = true;
+                    if (mode == HideHandType.Left || mode == HideHandType.Both) hideLeft = true;
+                }
+            }
+
+            if (hideRight && hideLeft) return HideHandType.Both;
+            if (hideRight) return HideHandType.Right;
+            if (hideLeft) return HideHandType.Left;
+            return HideHandType.None;
+        }
     }
 }

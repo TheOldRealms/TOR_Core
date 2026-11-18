@@ -207,7 +207,7 @@ namespace TOR_Core.BattleMechanics
             // Runelord: Teachings of Thungni - runed units reduce career ability cooldown on kill
             if (Hero.MainHero.HasCareer(TORCareers.Runelord))
             {
-                if (affectorAgent != null && !affectorAgent.IsHero && affectorAgent.BelongsToMainParty() &&
+                if (affectorAgent != null && !affectorAgent.IsHero && affectorAgent.Character != null && affectorAgent.BelongsToMainParty() &&
                     Hero.MainHero.HasCareerChoice("TeachingsOfThungniKeystone"))
                 {
                     if (affectorAgent.Character.HasUnitRune() && Agent.Main != null && Agent.Main.IsActive())
@@ -363,7 +363,7 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
 
-                if (affectedAgent.IsUndead() || affectedAgent.Character.IsChaos()|| affectedAgent.Character.IsBeastman())
+                if (affectedAgent.IsUndead() || (affectedAgent.Character != null && (affectedAgent.Character.IsChaos() || affectedAgent.Character.IsBeastman())))
                 {
                     if (choices.Contains("SilverHammerPassive1") ||
                         choices.Contains("TemplarOrdersPassive2"))
@@ -392,7 +392,7 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
 
-                if (affectorAgent.Character.IsNecromancerChampion())
+                if (affectorAgent.Character != null && affectorAgent.Character.IsNecromancerChampion())
                 {
                     if (choices.Contains("GrimoireNecrisKeystone"))
                     {
