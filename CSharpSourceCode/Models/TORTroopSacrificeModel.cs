@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.Siege;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 
@@ -32,6 +33,23 @@ namespace TOR_Core.Models
             int baseCount = GetNumberOfTroopsSacrificedForTryingToGetAway(playerBattleSide, mapEvent);
             if (baseCount < 0) return -1;
             int available = MobileParty.MainParty?.PrisonRoster?.TotalRegulars ?? 0;
+            return baseCount <= available ? baseCount : -1;
+        }
+
+        /// <summary>Prisoner-cost mirror of
+        /// <see cref="GetLostTroopCountForBreakingInBesiegedSettlement"/>.
+        /// Returns <c>-1</c> if the main party doesn't hold enough prisoners
+        /// to cover vanilla's troop-loss count for breaking into a besieged
+        /// settlement. Lets the Diversion perk substitute prisoners for the
+        /// break-in sacrifice the same way it does for the encounter
+        /// escape.</summary>
+        public virtual int GetNumberOfPrisonersSacrificedForBreakInSiege(
+            MobileParty party, SiegeEvent siegeEvent)
+        {
+            int baseCount = GetLostTroopCountForBreakingInBesiegedSettlement(party, siegeEvent)
+                             .RoundedResultNumber;
+            if (baseCount <= 0) return -1;
+            int available = party?.PrisonRoster?.TotalRegulars ?? 0;
             return baseCount <= available ? baseCount : -1;
         }
 

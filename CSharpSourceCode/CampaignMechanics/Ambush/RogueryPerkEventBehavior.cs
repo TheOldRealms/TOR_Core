@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.CampaignSystem.Siege;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment;
@@ -24,6 +25,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private const string TryToGetAwayMenuId = "try_to_get_away";
         private const string DiversionOptionId = "diversion_use_prisoners";
         private const string DiversionDebriefMenuId = "tor_diversion_debrief";
+        private const string BreakInMenuId = "break_in_menu";
+        private const string BreakInDiversionOptionId = "diversion_use_prisoners_break_in";
+        private const string BreakInDiversionDebriefMenuId = "tor_diversion_break_in_debrief";
 
         public override void RegisterEvents()
         {
@@ -52,6 +56,23 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 "{=veWOovVv}Continue...",
                 args => { args.optionLeaveType = GameMenuOption.LeaveType.Continue; return true; },
                 FinishDiversionEncounter);
+
+            // Siege-break-in variant: same Diversion mechanic applied to
+            // the break_in_menu that fires when the player assaults a
+            // besieged settlement. Prisoners substitute for the vanilla
+            // troop sacrifice; debrief uses our own flavor text.
+            starter.AddGameMenuOption(BreakInMenuId, BreakInDiversionOptionId,
+                "{=!}Use your prisoners as a diversion. ({DIVERSION_PRISONER_COUNT} will be lost instead of your own men.)",
+                BreakInDiversionOnCondition, BreakInDiversionOnConsequence);
+
+            starter.AddGameMenu(BreakInDiversionDebriefMenuId,
+                "{=!}You set the prisoners loose at the gate — they scatter into the siege lines screaming for their lives. The defenders waste arrows on them while your column slips through intact.",
+                null, GameMenu.MenuOverlayType.Encounter);
+
+            starter.AddGameMenuOption(BreakInDiversionDebriefMenuId, "tor_diversion_break_in_debrief_continue",
+                "{=veWOovVv}Continue...",
+                args => { args.optionLeaveType = GameMenuOption.LeaveType.Continue; return true; },
+                FinishBreakInDiversion);
         }
 
         private bool DiversionOnCondition(MenuCallbackArgs args)
@@ -112,6 +133,66 @@ namespace TOR_Core.CampaignMechanics.Ambush
             PlayerEncounter.Battle.DiplomaticallyFinished = true;
             PlayerEncounter.ProtectPlayerSide();
             PlayerEncounter.Finish();
+        }
+
+        private bool BreakInDiversionOnCondition(MenuCallbackArgs args)
+        {
+            args.optionLeaveType = GameMenuOption.LeaveType.Escape;
+            if (Hero.MainHero == null) return false;
+            if (!Hero.MainHero.GetPerkValue(TORPerks.Roguery.Diversion)) return false;
+            if (MobileParty.MainParty == null) return false;
+            var siegeEvent = Settlement.CurrentSettlement?.SiegeEvent;
+            if (siegeEvent == null) return false;
+
+            var model = Campaign.Current?.Models?.TroopSacrificeModel as TORTroopSacrificeModel;
+            if (model == null) return false;
+
+            int count = model.GetNumberOfPrisonersSacrificedForBreakInSiege(
+                MobileParty.MainParty, siegeEvent);
+            if (count <= 0) return false;
+
+            MBTextManager.SetTextVariable("DIVERSION_PRISONER_COUNT", count);
+            return true;
+        }
+
+        private void BreakInDiversionOnConsequence(MenuCallbackArgs args)
+        {
+            var siegeEvent = Settlement.CurrentSettlement?.SiegeEvent;
+            if (siegeEvent == null) return;
+            var model = Campaign.Current?.Models?.TroopSacrificeModel as TORTroopSacrificeModel;
+            if (model == null) return;
+
+            int count = model.GetNumberOfPrisonersSacrificedForBreakInSiege(
+                MobileParty.MainParty, siegeEvent);
+            if (count <= 0) return;
+
+            model.ApplyPrisonerDiversion(count);
+            GameMenu.SwitchToMenu(BreakInDiversionDebriefMenuId);
+        }
+
+        /// <summary>Mirrors vanilla's <c>break_in_debrief_continue_on_consequence</c>:
+        /// enter the settlement if we're not already, start the player siege on
+        /// the defender side (we broke in to defend), branch on whether there's
+        /// an active map event there, and disembark if we came in by sea.</summary>
+        private void FinishBreakInDiversion(MenuCallbackArgs args)
+        {
+            if (Hero.MainHero.CurrentSettlement == null)
+                PlayerEncounter.EnterSettlement();
+            if (PlayerSiege.PlayerSiegeEvent == null)
+                PlayerSiege.StartPlayerSiege(BattleSideEnum.Defender);
+            if (Hero.MainHero.CurrentSettlement?.Party?.MapEvent != null)
+            {
+                GameMenu.SwitchToMenu("join_encounter");
+            }
+            else
+            {
+                PlayerEncounter.RestartPlayerEncounter(PartyBase.MainParty,
+                    PlayerEncounter.EncounterSettlement.SiegeEvent.BesiegerCamp.LeaderParty.Party,
+                    false);
+                PlayerSiege.StartSiegePreparation();
+            }
+            if (MobileParty.MainParty.IsCurrentlyAtSea)
+                MobileParty.MainParty.DisembarkToPosition(Settlement.CurrentSettlement.GatePosition);
         }
 
         /// <summary>BurntEarth secondary: "Village notables lose 75%
