@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
@@ -15,6 +16,7 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
+    /// <summary>Clan finance model with cached gold-change, career passives, Fencer governor tariff perk, and TOR culture income bonuses.</summary>
     public class TORClanFinanceModel : DefaultClanFinanceModel
     {
         private static readonly string _cheatGoldAdjustmentName = "AI Gold Adjustment";
@@ -31,6 +33,7 @@ namespace TOR_Core.Models
         }
         private static readonly Dictionary<string, ClanGoldChangeCacheEntry> _goldChangeCache = new();
 
+        /// <summary>Daily clan gold change, cached briefly and augmented with career perks, hireling wage, and an AI income floor.</summary>
         public override ExplainedNumber CalculateClanGoldChange(Clan clan, bool includeDescriptions = false, bool applyWithdrawals = false, bool includeDetails = false)
         {
             long nowTimestamp = 0;
@@ -88,6 +91,22 @@ namespace TOR_Core.Models
             return num;
         }
 
+        /// <summary>Town tariff revenue with Fencer governor perk layered on top of vanilla.</summary>
+        public override ExplainedNumber CalculateTownIncomeFromTariffs(Clan clan, Town town, bool applyWithdrawals = false)
+        {
+            var tariffs = base.CalculateTownIncomeFromTariffs(clan, town, applyWithdrawals);
+
+            // Fencer perk: flat tariff bonus for towns the governor manages.
+            if (town?.Governor != null)
+            {
+                TORSkillPerkHelper.ApplyPerkPassives(town.Governor, ref tariffs,
+                    SkillEffectType.GovernorTariff);
+            }
+
+            return tariffs;
+        }
+
+        /// <summary>Clan income with career perks, cheat-line pass-through, hireling wage, and greenskin teef-bag bonuses.</summary>
         public override ExplainedNumber CalculateClanIncome(Clan clan, bool includeDescriptions = false, bool applyWithdrawals = false, bool includeDetails = false)
         {
             var income = base.CalculateClanIncome(clan, includeDescriptions, applyWithdrawals, includeDetails);
@@ -141,7 +160,7 @@ namespace TOR_Core.Models
                 if (choices.Contains("MercenaryLordPassive3") && clan.IsUnderMercenaryService)
                 {
                     var choice = TORCareerChoices.GetChoice("MercenaryLordPassive3");
-                    int mercenaryAward = MathF.Ceiling(clan.Influence * (1f / Campaign.Current.Models.ClanFinanceModel.RevenueSmoothenFraction())) * clan.MercenaryAwardMultiplier; //stolen vanilla calculation, it got too messy to redirect the income.
+                    int mercenaryAward = MathF.Ceiling(clan.Influence * (1f / Campaign.Current.Models.ClanFinanceModel.RevenueSmoothenFraction())) * clan.MercenaryAwardMultiplier;
                     var skillFactor = ((float)playerHero.GetSkillValue(DefaultSkills.Trade)) / 300f;
                     var bonus = mercenaryAward * skillFactor;
                     income.Add((int)bonus, choice.BelongsToGroup.Name);

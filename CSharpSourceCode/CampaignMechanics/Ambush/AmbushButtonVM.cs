@@ -15,32 +15,22 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Ambush
 {
+    /// <summary>VM for the ambush HUD widget. Drives the eye sprite, event icons, terrain and context clusters, and the stealth toggle.</summary>
     public class AmbushButtonVM : ViewModel
     {
         private const string EyeSpritePrefix = "ambush_eye_";
-        private const int EyeFullyExposedIndex = 9;    // wide open: exposed / low concealment
-        private const int EyeFullyCoveredIndex = 0;    // closed: perfectly hidden
+        private const int EyeFullyExposedIndex = 9;    // wide open, exposed
+        private const int EyeFullyCoveredIndex = 0;    // closed, hidden
 
-        // UI-layer thresholds — not on the gameplay model because they don't
-        // affect any math, just when icons light. A UI reskin / variant widget
-        // can change these without touching the ambush model.
+        // UI-layer thresholds; independent of the gameplay model.
 
-        /// <summary>How many game-hours after a detection-roll success the
-        /// Spotted event icon stays lit. 0.5 = ~2 quarter-hour ticks —
-        /// visible long enough to notice, short enough to not lie.</summary>
+        /// <summary>Game-hours the Spotted icon stays lit after a detection roll success.</summary>
         private const float SpottedDisplayHours = 0.5f;
 
-        /// <summary>Minimum simultaneous hostile observers in detection
-        /// range before the Alert icon lights. 1 would fire on every
-        /// patrol; 2+ reads as "area is crowded."</summary>
+        /// <summary>Minimum simultaneous hostile observers before the Alert icon lights.</summary>
         private const int AlertObserverCountThreshold = 2;
 
-        /// <summary>Map-unit distance within which a single hostile observer
-        /// lights the Enemies-Close event icon. Tighter than
-        /// <c>TORAmbushModel.DetectionScanRadius</c> (default ~10u); this
-        /// fires when a party is IMMINENTLY close — about a third of the
-        /// detection ring — regardless of how many observers are in the
-        /// wider range.</summary>
+        /// <summary>Map-unit distance within which a single observer lights the Enemies-Close icon.</summary>
         private const float CloseEnemyProximityRadius = 3.5f;
 
         // ---- Backing fields ----
@@ -74,9 +64,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private bool _isTerrainOpen;
         private BasicTooltipViewModel _terrainTooltip;
 
-        // Context cluster (right, stackable). Settlement has two tiers —
-        // hostile and neutral — with separate sprites + distinct tooltips
-        // but the same proximity radius (TORAmbushModel.SettlementProximityRadius).
+        // Context cluster (right, stackable). Settlement has hostile and neutral tiers.
         private bool _isContextSnowy;
         private bool _isContextRainy;
         private bool _isContextCursed;
@@ -96,7 +84,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             _alertTooltip = new BasicTooltipViewModel(ComputeAlertText);
             _enemiesCloseTooltip = new BasicTooltipViewModel(() => TORTextHelper.GetText(
                 "tor_ambush_widget_tt_enemies_close",
-                "A hostile party is very close — detection risk is high."));
+                "A hostile party is very close. Detection risk is high."));
             _cooldownTooltip = new BasicTooltipViewModel(ComputeCooldownText);
             _backstabTooltip = new BasicTooltipViewModel(ComputeBackstabText);
             _hoodedTooltip = new BasicTooltipViewModel(() => TORTextHelper.GetText(
@@ -111,10 +99,10 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 "tor_ambush_widget_tt_cursed", "You are inside a cursed region."));
             _settlementHostileTooltip = new BasicTooltipViewModel(() => TORTextHelper.GetText(
                 "tor_ambush_widget_tt_settlement_hostile",
-                "A hostile settlement is nearby — garrisons are watching."));
+                "A hostile settlement is nearby. Garrisons are watching."));
             _settlementNeutralTooltip = new BasicTooltipViewModel(() => TORTextHelper.GetText(
                 "tor_ambush_widget_tt_settlement_neutral",
-                "A neutral settlement is nearby — passers-by notice more than empty roads do."));
+                "A neutral settlement is nearby. Passers-by notice more than empty roads do."));
             Refresh();
         }
 
@@ -126,20 +114,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
         [DataSourceProperty] public bool IsOnCooldown { get => _isOnCooldown; set { if (_isOnCooldown == value) return; _isOnCooldown = value; OnPropertyChangedWithValue(value); } }
         [DataSourceProperty] public bool IsBorderRed { get => _isBorderRed; set { if (_isBorderRed == value) return; _isBorderRed = value; OnPropertyChangedWithValue(value); OnPropertyChanged(nameof(BorderColor)); } }
 
-        /// <summary>Tint for the triangle backdrop. Three-state priority:
-        /// gold when the player has committed to stealth (either actively
-        /// hidden OR mid-prep — both count as "you chose stealth and it's
-        /// taking hold"), red when ambush is unavailable (cooldown /
-        /// backstab guarding), dark neutral when ambush is simply available.
-        /// Bound to the Widget Color attribute in <c>AmbushStealthWidget.xml</c>.
-        /// Pattern mirrors <c>GUI/Prefabs/Mission/FormationMarker.xml</c>'s
-        /// VM-bound Brush.GlobalColor for team colour — proven to work
-        /// in TOR's Gauntlet.</summary>
+        /// <summary>Tint for the triangle backdrop. Gold when committed to stealth, red when unavailable, dark neutral when available.</summary>
         [DataSourceProperty]
         public string BorderColor =>
-            (_isStealthActive || _isStealthPreparing) ? "#D4A830FF" :  // gold — committed
-            _isBorderRed                              ? "#B03030FF" :  // red — unavailable
-                                                        "#1A1A1AC0"; // neutral dark — available
+            (_isStealthActive || _isStealthPreparing) ? "#D4A830FF" :  // gold, committed
+            _isBorderRed                              ? "#B03030FF" :  // red, unavailable
+                                                        "#1A1A1AC0"; // neutral dark, available
         [DataSourceProperty] public string EyeSprite { get => _eyeSprite; set { if (_eyeSprite == value) return; _eyeSprite = value; OnPropertyChangedWithValue(value); } }
         [DataSourceProperty] public BasicTooltipViewModel EyeTooltip { get => _eyeTooltip; set { if (_eyeTooltip == value) return; _eyeTooltip = value; OnPropertyChangedWithValue(value); } }
 
@@ -174,15 +154,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
         [DataSourceProperty] public BasicTooltipViewModel SettlementHostileTooltip { get => _settlementHostileTooltip; set { _settlementHostileTooltip = value; OnPropertyChangedWithValue(value); } }
         [DataSourceProperty] public BasicTooltipViewModel SettlementNeutralTooltip { get => _settlementNeutralTooltip; set { _settlementNeutralTooltip = value; OnPropertyChangedWithValue(value); } }
 
-        // ---------- Click handler ----------
-
+        /// <summary>Click handler for the stealth toggle widget.</summary>
         public void ExecuteToggle()
         {
             Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>()?.OnStealthHotkeyPressed();
         }
 
-        // ---------- Refresh (called per OnMapScreenUpdate from AmbushMapView) ----------
-
+        /// <summary>Recompute all widget state. Called per map-screen update.</summary>
         public void Refresh()
         {
             var ambush = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
@@ -202,7 +180,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             IsStealthActive = ambush.IsPlayerInStealth;
             IsStealthPreparing = ambush.IsPlayerPreppingStealth;
             IsOnCooldown = ambush.IsOnAmbushCooldown;
-            IsBorderRed = IsOnCooldown;    // §21: border red when ambush unavailable
+            IsBorderRed = IsOnCooldown;    // red border when unavailable
 
             EyeSprite = ComputeEyeSprite(ambush, mainParty, model);
 
@@ -211,39 +189,19 @@ namespace TOR_Core.CampaignMechanics.Ambush
             UpdateContextFlags(mainParty, model);
         }
 
-        // ---------- Eye openness ----------
-
         private static string ComputeEyeSprite(AmbushCampaignBehavior ambush, MobileParty mainParty, TORAmbushModel model)
         {
-            // §21: eye semantics flip with stealth state.
-            //
-            //   NOT stealthed → how likely you'd succeed at entering stealth right now.
-            //                    High chance → closed eye (will slip in cleanly).
-            //                    Low chance  → open eye (visible, hard to hide).
-            //
-            //   IN stealth    → aggregated chance of being detected at least
-            //                    once within the next DetectionDisplayHorizonTicks
-            //                    quarter-hour ticks (default 4 = one in-game hour).
-            //                    Compounds (a) across every nearby observer and
-            //                    (b) across ticks, so modest per-tick numbers
-            //                    (e.g. 5 % with one observer → 18.5 %/hr, 10 %
-            //                    with three observers → 72 %/hr) read as real
-            //                    threat on the eye instead of a false "safe."
+            // Not stealthed: chance to fail entering stealth. In stealth: compounded detection chance over the horizon.
             float displayValue;
             if (ambush.IsPlayerInStealth)
             {
                 float detection = model.CalculateAggregatedDetectionChanceOverHorizon(
                     mainParty, ambush.CachedObserversInRange, ambush.StealthEnteredAt);
-                displayValue = detection;   // high detection → high idx = open eye
+                displayValue = detection;
             }
             else
             {
-                // Mirror of the detection-side Bernoulli compounding: treat
-                // entry as K=2 implicit micro-attempts (duck → settle). Failure
-                // at least once over 2 trials = 1 - entry^2. Linear (1 - entry)
-                // visually underweighted mid-range risk (a 60 % entry has 40 %
-                // failure but idx-4 reads "mostly closed"); the K=2 form lifts
-                // that to idx 6 while keeping 95 %+ entry at idx 0.
+                // Entry failure as 1 - entry^2 (two implicit micro-attempts).
                 float entry = model.CalculateEntryChance(mainParty, ambush.CachedObserversInRange);
                 displayValue = 1f - entry * entry;
             }
@@ -254,38 +212,19 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return EyeSpritePrefix + idx;
         }
 
-        // ---------- Flag updates ----------
-
         private void UpdateEventFlags(AmbushCampaignBehavior ambush, TORAmbushModel model)
         {
-            // Spotted — timestamp within SpottedDisplayHours of now.
             var spottedAt = ambush.PlayerSpottedAt;
             IsEventSpotted = spottedAt != CampaignTime.Zero
                              && (CampaignTime.Now - spottedAt).ToHours < SpottedDisplayHours;
-
-            // Alert — observer count clears threshold.
             IsEventAlert = ambush.CachedObserversInRange.Count >= AlertObserverCountThreshold;
-
-            // Enemies close — any observer within the tight proximity radius.
-            // Fires independently of Alert (the two can co-light: one very close
-            // enemy plus multiple others in the wider detection range).
             IsEventEnemiesClose = HasObserverWithinRadius(ambush, CloseEnemyProximityRadius);
 
-            // Backstab — a recent record where the player was the victim (not repelled)
-            // is still inside its guarding window. Takes priority as a distinct icon
-            // over Cooldown even though the underlying mechanic is the same gate.
             var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
+            // Backstab outranks Cooldown.
             IsEventBackstab = ai?.GetMostRecentActiveVictimRecord(MobileParty.MainParty) != null;
-
-            // Cooldown — any active cooldown that isn't already surfaced by the
-            // backstab icon. Keeps the two icons semantically distinct.
             IsEventCooldown = ambush.IsOnAmbushCooldown && !IsEventBackstab;
 
-            // Hooded — pending "free slip back to cover" opportunity
-            // from a silent clean-kill. Derived from the latest
-            // AmbushRecord involving the player via the model query;
-            // no sentinel timestamp. Suppressed while stealth is
-            // already active - nothing to nudge.
             var latest = ai?.GetMostRecentRecordInvolving(MobileParty.MainParty,
                 model.InstantAmbushWindowHours);
             IsEventHooded = !ambush.IsPlayerInStealth
@@ -311,7 +250,6 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private void UpdateContextFlags(MobileParty mainParty, TORAmbushModel model)
         {
-            // Weather — snowy / rainy per vanilla MapWeatherModel at party position.
             var weatherModel = Campaign.Current.Models.MapWeatherModel;
             var weather = weatherModel.GetWeatherEventInPosition(mainParty.Position.ToVec2());
             IsContextSnowy = weather == MapWeatherModel.WeatherEvent.Snowy
@@ -319,22 +257,18 @@ namespace TOR_Core.CampaignMechanics.Ambush
             IsContextRainy = weather == MapWeatherModel.WeatherEvent.LightRain
                              || weather == MapWeatherModel.WeatherEvent.HeavyRain;
 
-            // Cursed region — pattern lifted from MobilePartyExtensions.cs:76.
+            // Cursed region proximity.
             IsContextCursed = TORCommon.FindNearestSettlement(
                 mainParty, TORConstants.DEFAULT_CURSE_RADIUS,
                 x => x.SettlementComponent is CursedSiteComponent) != null;
 
-            // Settlement nearby — two-tier via model's classifier. Hostile wins
-            // over neutral when both are in range (model's priority).
+            // Settlement proximity, hostile beats neutral when both are in range.
             var kind = model.GetNearbySettlementKind(mainParty);
             IsContextSettlementHostile = kind == SettlementProximityKind.Hostile;
             IsContextSettlementNeutral = kind == SettlementProximityKind.Neutral;
         }
 
-        /// <summary>True when at least one cached hostile observer sits within
-        /// <paramref name="radius"/> of the main party. Reads from the behavior's
-        /// cached observer list (populated once per quarter-hour tick) so it's
-        /// cheap to call per-frame from Refresh.</summary>
+        /// <summary>True when any cached hostile observer sits within radius of the main party.</summary>
         private static bool HasObserverWithinRadius(AmbushCampaignBehavior ambush, float radius)
         {
             var main = MobileParty.MainParty;
@@ -348,8 +282,6 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
             return false;
         }
-
-        // ---------- Tooltip text computations ----------
 
         private string ComputeEyeBreakdownText()
         {
@@ -370,9 +302,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             var observers = ambush.CachedObserversInRange;
             float chance = model.CalculateEntryChance(mainParty, observers);
 
-            // Use GetTextObject (returns TextObject) rather than GetText (returns string)
-            // so the variable slots are honoured — wrapping a stringified result in a new
-            // TextObject does NOT reliably re-parse {VAR} tokens.
+            // Use GetTextObject so {VAR} slots are honoured; wrapping a string drops them.
             var sb = new StringBuilder();
             var header = TORTextHelper.GetTextObject(
                 "tor_ambush_widget_tt_eye_header", "Stealth entry chance: {PCT}%");
@@ -421,9 +351,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             obsLine.SetTextVariable("COUNT", observers.Count);
             sb.AppendLine(obsLine.ToString());
 
-            // Note any strong modifiers currently contributing. (Settlement nearby is
-            // likely the biggest stealthed-side signal that isn't already surfaced
-            // by the observer count — call it out explicitly.)
+            // Surface strong modifiers not already shown by observer count.
             var settlementKind = model.GetNearbySettlementKind(mainParty);
             if (settlementKind == SettlementProximityKind.Hostile)
                 sb.AppendLine(TORTextHelper.GetText(
@@ -441,7 +369,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
             sb.AppendLine();
             sb.Append(TORTextHelper.GetText("tor_ambush_widget_tt_eye_click_exit",
-                                             "(In stealth — click to break cover)"));
+                                             "(In stealth. Click to break cover)"));
             return sb.ToString();
         }
 
@@ -466,7 +394,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 {
                     var text = TORTextHelper.GetTextObject(
                         "tor_ambush_widget_tt_cooldown_hours",
-                        "Stealth cooling down — available in {HOURS}h.");
+                        "Stealth cooling down. Available in {HOURS}h.");
                     text.SetTextVariable("HOURS", hours);
                     return text.ToString();
                 }
@@ -482,7 +410,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             var model = Campaign.Current?.Models?.GetAmbushModel();
             if (rec == null || model == null)
                 return TORTextHelper.GetText("tor_ambush_widget_tt_backstab_now",
-                                              "Recently ambushed — enemies are still searching.");
+                                              "Recently ambushed. Enemies are still searching.");
 
             float cd = model.GetAmbushCooldownHours(rec);
             float elapsed = (float)(CampaignTime.Now - rec.At).ToHours;
@@ -490,7 +418,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             if (remaining < 0) remaining = 0;
             var text = TORTextHelper.GetTextObject(
                 "tor_ambush_widget_tt_backstab_hours",
-                "Recently ambushed — enemies still searching. Clear in {HOURS}h.");
+                "Recently ambushed. Enemies still searching. Clear in {HOURS}h.");
             text.SetTextVariable("HOURS", remaining);
             return text.ToString();
         }
@@ -498,19 +426,17 @@ namespace TOR_Core.CampaignMechanics.Ambush
         private string ComputeTerrainText()
         {
             if (IsTerrainForest)   return TORTextHelper.GetText("tor_ambush_widget_tt_terrain_forest",
-                                                                 "Forest — concealing terrain, bonus to entry chance.");
+                                                                 "Forest. Concealing terrain, bonus to entry chance.");
             if (IsTerrainMountain) return TORTextHelper.GetText("tor_ambush_widget_tt_terrain_mountain",
-                                                                 "Mountain — concealing terrain, bonus to entry chance.");
+                                                                 "Mountain. Concealing terrain, bonus to entry chance.");
             if (IsTerrainCanyon)   return TORTextHelper.GetText("tor_ambush_widget_tt_terrain_canyon",
-                                                                 "Canyon — concealing terrain, bonus to entry chance.");
+                                                                 "Canyon. Concealing terrain, bonus to entry chance.");
             if (IsTerrainSwamp)    return TORTextHelper.GetText("tor_ambush_widget_tt_terrain_swamp",
-                                                                 "Swamp — concealing terrain, bonus to entry chance.");
+                                                                 "Swamp. Concealing terrain, bonus to entry chance.");
             if (IsTerrainOpen)     return TORTextHelper.GetText("tor_ambush_widget_tt_terrain_open",
-                                                                 "Open ground — exposing, penalty to entry chance.");
+                                                                 "Open ground. Exposing, penalty to entry chance.");
             return "";
         }
-
-        // ---------- Visibility gate ----------
 
         private static bool CanShow()
         {

@@ -8,40 +8,17 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.Ambush
 {
-    /// <summary>
-    /// Strike-range visualization — draws a ring on the campaign map while
-    /// the player is in stealth, scaled to the current
-    /// <c>TORAmbushModel.CalculateStrikeRange(MainParty)</c>.
-    ///
-    /// Uses the same decal material (<c>map_circle_decal</c>) vanilla uses
-    /// for the yellow hover-highlight ring around a party. Pattern lifted
-    /// from <c>SandBox.View.Map.MapCursor</c>: create one GameEntity with
-    /// a Decal child at session start, then per frame reposition / rescale
-    /// / toggle visibility. No per-frame allocation.
-    /// </summary>
-    public class AmbushRangeDebugMapView : MapView
+    /// <summary>Draws a strike-range ring on the campaign map while the player is in stealth.</summary>
+    public class AmbushRangeMapView : MapView
     {
-        // Vanilla hover-ring material. Used by MapCursor's
-        // _partyHoverOutlineDecal for the same visual.
+        // Vanilla hover-ring material.
         private const string RingMaterial = "map_circle_decal";
 
         private GameEntity _ringEntity;
         private Decal _ringDecal;
-        // The map_circle_decal mesh is natively party-icon-sized (vanilla
-        // uses it at scale ~1-3 for hover rings around a single party /
-        // battle wreckage; see SandBox.View BattleWreckagesVisualManager
-        // and MapScreen._partyHoverOutlineDecal). We want the ring's
-        // rendered radius to approximate the strike range in map units:
-        //   scale = strikeRange / BaseMeshRadius
-        // With BaseMeshRadius=1 the ring radius scales linearly with
-        // strike range. Bump UP to shrink, DOWN to grow if the mesh's
-        // natural radius turns out to be bigger / smaller than ~1u.
+        // Ring mesh natural radius; scale = strikeRange / BaseMeshRadius.
         private const float BaseMeshRadius = 1f;
-        // Sky blue — stands out clearly against the yellow / green
-        // terrain and distinguishes the stealth range from vanilla's
-        // yellow hover ring.
-        // Factor1Linear is an ARGB uint: 0xFF0088FF = alpha 255,
-        // red 0, green 136, blue 255.
+        // Sky blue, ARGB.
         private const uint RingColor = 0xFF0088FFu;
 
         protected override void OnFinalize()
@@ -79,20 +56,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
             var pos = main.Position.ToVec2();
             float z = scene.GetGroundHeightAtPosition(new Vec3(pos.x, pos.y, 0f));
-            // Vanilla idiom: start from Identity, then uniform-scale.
-            // Matches BattleWreckagesVisualManager.OnVisualTick, which
-            // places map_circle_decal rings on wreckages the same way.
+            // Identity then uniform scale, same pattern as BattleWreckagesVisualManager.
             var frame = MatrixFrame.Identity;
             frame.origin = new Vec3(pos.x, pos.y, z);
             var scaleVec = Vec3.One * (range / BaseMeshRadius);
             frame.Scale(ref scaleVec);
             _ringEntity.SetGlobalFrame(frame);
 
-            // Shader state has to be re-set each frame — the decal
-            // pipeline resets its uniforms between passes. SetVectorArgument
-            // (0.166, 1, 0.83, 0) draws a THIN ring; SetFactor1Linear
-            // tints it. Vanilla's MapCursor does the same in its own
-            // per-frame update.
+            // Re-set shader state each frame; the decal pipeline resets uniforms between passes.
             _ringDecal.SetFactor1Linear(RingColor);
             _ringDecal.SetVectorArgument(0.166f, 1f, 0.83f, 0f);
         }

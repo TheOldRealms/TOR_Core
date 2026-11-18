@@ -349,6 +349,7 @@ namespace TOR_Core.CharacterDevelopment
                 PartyRole.PartyLeader, 0.05f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_raider_2}Your quartermaster earns Tactics experience from raid operations.",
                 PartyRole.Quartermaster, 1f, EffectIncrementType.Add);
+            // Parlay secondary stash is not implemented yet.
             _parlay.Initialize("{=str_tor_perk_parlay_label}Parlay", DefaultSkills.Roguery, 25, _raider,
                 "{=str_tor_perk_parlay_1}20% chance to end a bandit encounter peacefully during conversation.",
                 PartyRole.PartyLeader, 0.2f, EffectIncrementType.AddFactor,
@@ -364,7 +365,7 @@ namespace TOR_Core.CharacterDevelopment
                 "{=str_tor_perk_shakedown_1}Villagers are 15% less likely to resist when you demand goods.",
                 PartyRole.Quartermaster, -0.15f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_shakedown_2}Nearby villages reduce your ambush stealth by 10% less.",
-                PartyRole.ClanLeader, -0.1f, EffectIncrementType.AddFactor);
+                PartyRole.PartyLeader, -0.1f, EffectIncrementType.AddFactor);
 
             _reprisal.Initialize("{=str_tor_perk_reprisal_label}Reprisal", DefaultSkills.Roguery, 75, _byTheRoad,
                 "{=str_tor_perk_reprisal_1}Recover 15% faster from a failed ambush.",
@@ -430,7 +431,7 @@ namespace TOR_Core.CharacterDevelopment
 
             _backstabber.Initialize("{=str_tor_perk_backstabber_label}Backstabber", DefaultSkills.Roguery, 225, _negotiator,
                 "{=str_tor_perk_backstabber_1}+10 damage on your thrust attacks.",
-                PartyRole.Quartermaster, 10f, EffectIncrementType.Add,
+                PartyRole.PartyLeader, 10f, EffectIncrementType.Add,
                 "{=str_tor_perk_backstabber_2}Troops in your formation deal +4 damage on thrust attacks.",
                 PartyRole.Captain, 4f, EffectIncrementType.Add, TroopUsageFlags.Undefined, TroopUsageFlags.Any);
             _negotiator.Initialize("{=str_tor_perk_negotiator_label}Negotiator", DefaultSkills.Roguery, 225, _backstabber,

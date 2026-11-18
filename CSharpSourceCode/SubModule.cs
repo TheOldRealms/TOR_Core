@@ -215,8 +215,7 @@ namespace TOR_Core
                 starter.AddBehavior(new DuelBehavior());
                 starter.AddBehavior(new AmbushCampaignBehavior());
                 starter.AddBehavior(new AiAmbushBehavior());
-                starter.AddBehavior(new RogueryPerkSweepBehavior());
-                starter.AddBehavior(new RogueryPerkEventBehavior());
+                starter.AddBehavior(new RogueryPerkBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -296,6 +295,8 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORSettlementFoodModel());
                 gameStarterObject.AddModel(new TOREquipmentSelectionModel());
                 gameStarterObject.AddModel(new TOREncounterModel());
+                gameStarterObject.AddModel(new TORTroopSacrificeModel());
+                gameStarterObject.AddModel(new TORRansomValueCalculationModel());
                 gameStarterObject.AddModel(new TORVolunteerModel());
                 new CraftingModule().RegisterModels(gameStarterObject);
                 gameStarterObject.AddModel(new TORCompanionTrainingModel());

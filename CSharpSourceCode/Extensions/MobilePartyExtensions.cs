@@ -294,7 +294,7 @@ namespace TOR_Core.Extensions
             if (nearby.Count == 0) return 0.5f;
             int match = 0;
             foreach (var s in nearby)
-                if (s?.Culture == culture) match++;
+                if (s?.OriginalCulture() == culture) match++;
             return (float)match / nearby.Count;
         }
     }

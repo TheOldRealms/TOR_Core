@@ -15,146 +15,72 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.Missions.AmbushMission
 {
-    /// <summary>
-    /// Battle setup for the ambush mission. Clones the useful parts of vanilla
-    /// SallyOutMissionController (reinforcement timer, attacker-activation
-    /// deployment delay, troop-ratio balancing) and skips the castle-gate code
-    /// that doesn't apply to a field ambush.
-    ///
-    /// All tune-ables pulled from <see cref="TORMissionAmbushModel"/>.
-    /// </summary>
+    /// <summary>Battle setup for ambush missions. Owns custom spawn, retreat-zone fallback, phase transition, and tactic registration.</summary>
     public class AmbushMissionController : MissionLogic
     {
-        // Grace window before we decide the scene has no authored retreat zone
-        // and set a procedural fallback. ScriptComponentBehavior.OnInit on
-        // AmbushRetreatZone isn't guaranteed to run before OnDeploymentFinished,
-        // so checking immediately races with the engine and can turn a scene
-        // that DOES have an authored zone into "fallback at player position"
-        // (= instant extraction victory as soon as the player stands still).
+        // Grace window before the procedural retreat-zone fallback applies.
         private const float FallbackGraceSeconds = 2f;
 
         private AmbushMissionAgentSpawnLogic _spawnLogic;
         private AmbushReinforcementMissionLogic _reinforcementLogic;
-        // Guard flag read by OnAgentCreated so our own custom spawn
-        // pipeline doesn't re-teleport the agents we've just placed at
-        // the correct grid position via AgentBuildData.InitialPosition.
+        // True while our custom spawn runs; suppresses the OnAgentCreated safety-net teleport.
         private bool _customSpawnInProgress;
-        // One-shot flag: after vanilla's AutoDeployTeamUsingDeploymentPlan
-        // has run (which happens between AfterStart and first OnMissionTick),
-        // we reposition each attacker formation plate back to its authored
-        // ambush spot. Vanilla's auto-deploy sets every player-team formation
-        // plate to GetFormationsCenterFrameAndExtents when no deployment
-        // plan exists (we bypass vanilla's plan; our scene uses
-        // attacker_ambush_<group> tags, not vanilla's attacker_<class>).
-        // Running reposition at end of AfterStart would race the vanilla
-        // auto-deploy that runs after us; running it on first-tick lands
-        // after vanilla has finished, so the override sticks.
+        // One-shot flag; reposition formation plates to authored spots on first tick (after vanilla's auto-deploy).
         private bool _initialRepositionDone;
 
         private BasicMissionTimer _fallbackGraceTimer;
         private bool _fallbackResolved;
         private TORMissionAmbushModel _model;
-        // The two parties involved in the ambush. The controller works out
-        // which battle side each is on at AfterStart time (reads
-        // PartyBase.MapEventSide.MissionSide), so Phase D (player ambushes
-        // AI) and Phase F (AI ambushes player) share this class with no
-        // per-phase branching.
         private readonly PartyBase _ambusherParty;
         private readonly PartyBase _victimParty;
         private BattleSideEnum _ambusherSide;
         private BattleSideEnum _victimSide;
-        // Counts of agents our DoCustom*Spawn paths actually produced.
-        // Handed to AmbushMissionAgentSpawnLogic.MarkInitialSpawnComplete
-        // after the custom spawn finishes so the shared phase bookkeeping
-        // (RemainingSpawnNumber) mirrors what vanilla's SpawnTroops would
-        // have decremented after an initial batch.
+        // Agents actually spawned by the custom pipeline; handed to MarkInitialSpawnComplete.
         private int _ambusherInitialSpawnCount;
         private int _victimInitialSpawnCount;
 
-        // Per-class flat position + yaw lists built from the AmbushFormationLayout
-        // result: for each AmbushFormation chunk with N troops bound to a spot
-        // at (pos, yaw), the lists hold N copies of pos and yaw. OnAgentCreated
-        // round-robins through the matching-class list, so agents distribute
-        // across spots in proportion to each chunk's troop count.
+        // Per-class flat spawn lists; OnAgentCreated round-robins by matching FormationClass.
         private readonly Dictionary<FormationClass, List<Vec3>> _attackerSpawnPositions
             = new Dictionary<FormationClass, List<Vec3>>();
         private readonly Dictionary<FormationClass, List<float>> _attackerSpawnYaws
             = new Dictionary<FormationClass, List<float>>();
         private readonly Dictionary<FormationClass, int> _attackerSpawnIndex
             = new Dictionary<FormationClass, int>();
-        // Legacy fallback for scenes authored before the role-tag scheme —
-        // uses the flat `ambush_attacker` tag. Only populated if the role-
-        // specific lists come up empty.
+        // Legacy flat-tag fallback; populated only when role-specific lists are empty.
         private readonly List<Vec3> _legacyAttackerSpawnPositions = new List<Vec3>();
         private int _legacyAttackerSpawnIndex;
 
-        /// <summary>
-        /// Auto-chunked formation list plus default spot assignments from
-        /// <see cref="AmbushFormationLayout.Compute"/>. Computed at AfterStart
-        /// time. Null if the scene uses the legacy flat <c>ambush_attacker</c>
-        /// tag (no spot buckets) or has no attacker spawns at all. Readers:
-        /// the deployment UI binds sidebar panels / spot markers to this.
-        /// </summary>
+        /// <summary>Auto-chunked formation list plus default spot assignments. Null when the scene uses the legacy flat tag.</summary>
         public AmbushLayoutResult Layout { get; private set; }
 
-        /// <summary>
-        /// Every attacker spot the scener placed, in scene-order. Readers:
-        /// the deployment UI's spot-picker filters this to spots in the
-        /// clicked formation's bucket. Public list so VMs can read directly.
-        /// </summary>
+        /// <summary>Every attacker spot the scener placed, scene-order.</summary>
         public List<AmbushSpot> SceneSpots { get; private set; } = new List<AmbushSpot>();
 
-        /// <summary>
-        /// Stable 1-based number per spot, keyed by its scene position. Used
-        /// across the sidebar chips, the spot-picker rows, and the (deferred)
-        /// scene markers so the player sees the same "Spot 3" everywhere.
-        /// </summary>
+        /// <summary>Stable 1-based spot number keyed by scene position.</summary>
         public Dictionary<Vec3, int> SpotNumbers { get; private set; }
             = new Dictionary<Vec3, int>();
 
-        // Snapshot of defender agents present at OnDeploymentFinished — the
-        // "initial patrol". Reinforcement waves are NOT in this set. Phase 1
-        // → Phase 2 transition fires when every member is inactive.
+        // Snapshot of defender agents at OnDeploymentFinished. Phase 2 fires when all are inactive.
         private readonly List<Agent> _initialPatrol = new List<Agent>();
         private bool _initialPatrolDefeated;
 
-        /// <summary>True once every member of the initial defender spawn is
-        /// inactive. Readers: <see cref="AmbushEndLogic"/> gates Phase 2
-        /// behaviours on this; <see cref="AmbushReinforcementMissionLogic"/>
-        /// applies the one-shot delay bonus when it flips.</summary>
+        /// <summary>True once every member of the initial defender spawn is inactive.</summary>
         public bool IsInitialPatrolDefeated => _initialPatrolDefeated;
 
-        /// <summary>Fires once, the frame <see cref="IsInitialPatrolDefeated"/>
-        /// flips from false to true.</summary>
+        /// <summary>Fires once when IsInitialPatrolDefeated flips to true.</summary>
         public event System.Action InitialPatrolDefeated;
 
-        /// <summary>True when the local player's party is the ambusher side
-        /// (the player launched the ambush). False when the player is the
-        /// victim (an AI party ambushed the player). Drives the deployment-UI
-        /// gate — only the ambusher gets a placement screen; the victim is
-        /// dropped straight into combat.</summary>
+        /// <summary>True when the local player's party is the ambusher side.</summary>
         public bool IsPlayerAmbusher
             => _ambusherParty != null
                && _ambusherParty.MobileParty == MobileParty.MainParty;
 
-        /// <summary>Leader hero of the ambushed side, if any. Read by
-        /// <see cref="AmbushReinforcementMissionLogic.AfterStart"/> to
-        /// drive the Tactics-based reinforcement-interval multiplier.
-        /// Null for leaderless victim parties (caravans, loose
-        /// patrols).</summary>
+        /// <summary>Leader hero of the ambushed side, or null for leaderless parties.</summary>
         public Hero VictimLeaderHero => _victimParty?.LeaderHero;
 
         public MobileParty AmbusherParty => _ambusherParty?.MobileParty;
 
-        /// <summary>
-        /// Optional shared reference to the attacker-side troop supplier
-        /// vanilla's DefaultBattleMissionAgentSpawnLogic also holds. When set,
-        /// AfterStart drains it and spawns the ambusher roster manually at
-        /// AmbushFormation chunk positions, so vanilla's SetupTeams runs
-        /// against an empty supplier and places no agents at (0, 0, 0).
-        /// Null for player-victim missions (we don't take over the spawn
-        /// pipeline there).
-        /// </summary>
+        // Shared supplier instances the mission opener must pass in.
         private readonly IMissionTroopSupplier _ambusherSupplier;
         private readonly IMissionTroopSupplier _victimSupplier;
 
@@ -171,48 +97,13 @@ namespace TOR_Core.Missions.AmbushMission
         public override void OnBehaviorInitialize()
         {
             base.OnBehaviorInitialize();
-            // DO NOT call AmbushRetreatZone.ResetRegistry() here. Scene scripts
-            // (including AmbushRetreatZone.OnInit) fire during scene load, which
-            // happens before MissionLogic.OnBehaviorInitialize. Clearing the
-            // registry at this point wipes the zone that just registered —
-            // every subsequent IsAgentInsideAnyZone check falls through to the
-            // procedural fallback. Reset is done by the campaign behavior
-            // immediately before MissionState.OpenNew so stale zones from any
-            // prior scene are cleared BEFORE this scene's scripts fire.
+            // Do NOT ResetRegistry here; scene OnInit already ran during scene load.
             _spawnLogic = Mission.GetMissionBehavior<AmbushMissionAgentSpawnLogic>();
             _reinforcementLogic = Mission.GetMissionBehavior<AmbushReinforcementMissionLogic>();
             _model = Campaign.Current?.Models?.GetMissionAmbushModel() ?? new TORMissionAmbushModel();
             AmbushRetreatZone.ProceduralFallbackRadius = _model.ProceduralFallbackRadius;
 
-            // If the player is the victim (AI ambushed the player), there's no
-            // placement choice — the mission kicks straight into combat. Keep
-            // the vanilla deployment controller (it owns agent spawn kickoff
-            // + player-agent handoff — reimplementing that broke the mission
-            // in interesting ways: loading-screen hang when fully bypassed,
-            // spectator view when half-done). Subscribe to its OnAfterSetupTeams
-            // event instead: it fires on the first mission tick after the
-            // scene is ready, which is exactly when vanilla has done the
-            // per-side SetSpawnTroops + SetupAgentAIStates work and is just
-            // waiting for the player to click Confirm. Call FinishDeployment
-            // from there and the mission transitions as if Confirm had been
-            // pressed.
-            // If the player is the ambusher, vanilla's auto-spawn drops every
-            // attacker at (0, 0, 0) because the new scene uses sp_ambush_attacker_point
-            // entities instead of vanilla's sp_attacker_<class> names. Rather than
-            // chase the scene-side fix across every ambush scene we end up
-            // shipping, we intercept the deployment-controller's OnAfterSetupTeams
-            // (fires once per mission, after both sides' setup, before the first
-            // spawn tick), disable vanilla's attacker spawn there, and spawn our
-            // own agents at the AmbushFormation chunk positions. Decoupling us
-            // from vanilla's spawn pipeline is also what lets the pending
-            // "player ambushes with a subset of the party" feature land cleanly
-            // later: we already own the roster iteration, we can filter it.
-            // Ambusher custom spawn is driven by a Harmony prefix on
-            // BattleDeploymentMissionController.OnSetupTeamsOfSide, not by an
-            // event subscription here. See AmbusherCustomSpawnPatch. We
-            // tried OnAfterSetupTeams first; it fires one tick after the
-            // bad (0, 0, 0) spawn, too late to help.
-
+            // Victim path auto-finishes deployment once vanilla team setup is complete.
             if (!IsPlayerAmbusher)
             {
                 var deploymentController =
@@ -224,15 +115,7 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
-        /// <summary>
-        /// Disables vanilla's attacker auto-spawn (which places agents at
-        /// (0, 0, 0) because the scene lacks vanilla sp_attacker_<class>
-        /// entities) and spawns the ambusher roster ourselves at each
-        /// AmbushFormation chunk's AssignedSpot. Called once per mission
-        /// via BattleDeploymentMissionController.OnAfterSetupTeams, which
-        /// fires after per-side team setup but before the first spawn
-        /// tick, giving us a clean window to take over.
-        /// </summary>
+        /// <summary>Drain the ambusher supplier and place agents at AmbushFormation chunk spots.</summary>
         private void DoCustomAmbusherSpawn()
         {
             TORCommon.Log(LogLevel.Info, "[AmbushMission] DoCustomAmbusherSpawn entry");
@@ -250,12 +133,7 @@ namespace TOR_Core.Missions.AmbushMission
                     + "instance to the controller.");
             }
 
-            // Cap the ambusher's initial spawn via the Tactics-scaled
-            // on-field cap. Ambusher is still one-shot (no wave-batch
-            // fraction), so anything past the cap sits in the supplier
-            // pool and never spawns — post-MVP may wire waves for the
-            // ambusher. For now, excess troops are "held in reserve" in
-            // the fiction and simply absent from the engagement.
+            // Cap the ambusher's initial spawn via the Tactics-scaled on-field cap; excess stays unspawned.
             int ambusherRequest = _model.ComputeAmbusherInMissionCap(_ambusherParty?.LeaderHero);
             if (ambusherRequest <= 0) ambusherRequest = int.MaxValue;
             var origins = _ambusherSupplier.SupplyTroops(ambusherRequest).ToList();
@@ -263,9 +141,7 @@ namespace TOR_Core.Missions.AmbushMission
                                 && IsPlayerAmbusher;
             _customSpawnInProgress = true;
 
-            // Group by FormationClass so a class's agents spawn as one
-            // line (or grid when the spot has a MaxWidth budget) instead
-            // of all piling onto spot.Position.
+            // Group by FormationClass so each class forms a line (or grid under MaxWidth).
             var agentsByClass = new Dictionary<FormationClass, List<IAgentOriginBase>>();
             foreach (var origin in origins)
             {
@@ -296,16 +172,7 @@ namespace TOR_Core.Missions.AmbushMission
                     {
                         var origin = agents[i];
                         bool isPlayerChar = origin.Troop == CharacterObject.PlayerCharacter;
-                        // Spawn the player hero directly onto a tactical
-                        // child (strategic archer point etc.) when their
-                        // chosen formation's spot carries them. The ranged
-                        // anchor behavior scripted-positions NPC archers
-                        // onto these points every tick, but scripted
-                        // positions are ignored by player-controlled
-                        // agents, so without this the player would end up
-                        // at the spot's parent centre while their
-                        // squadmates fan out onto the firing slots they
-                        // chose to deploy at.
+                        // Place the player hero on a tactical child; scripted positions are ignored for player agents.
                         Vec3 pos = isPlayerChar
                                    && spot.Value.TacticalChildren != null
                                    && spot.Value.TacticalChildren.Count > 0
@@ -344,27 +211,7 @@ namespace TOR_Core.Missions.AmbushMission
                         spawned++;
                     }
 
-                    // Pin the formation plate to the scene spot. Vanilla's
-                    // Mission.SpawnAgent does this via SetFormationPositioningFromDeploymentPlan
-                    // when a deployment plan is made for the team. In Phase D
-                    // the player's deployment UI fills that plan with the
-                    // player-picked spots, so melee and ranged both land on
-                    // their authored positions. In Phase F no UI runs; the
-                    // plan carries vanilla's default auto-deploy positions
-                    // (team-center ish, close to the defender area in these
-                    // scenes), and the formation's OrderPosition ends up
-                    // there instead of our spawn spot. Ranged doesn't care
-                    // because AmbushTacticalAnchorLogic pins each archer
-                    // via scripted positions, overriding the formation
-                    // plate. Melee has no such anchor and marches from
-                    // the wrong plate position toward the enemy, which
-                    // visually reads as "the ambusher melee spawned
-                    // inside the ambushed army."
-                    //
-                    // Explicit SetPositioning overrides whichever branch
-                    // Mission.SpawnAgent took and pins the plate at the
-                    // scene spot. AmbushTacticHoldPositions then issues
-                    // its ConfigureMeleeFormation charge from here.
+                    // Pin the formation plate explicitly; vanilla's default auto-deploy would otherwise plant it near the enemy.
                     if (chunkFormation != null && Mission.Scene != null)
                     {
                         chunkFormation.SetPositioning(
@@ -385,11 +232,7 @@ namespace TOR_Core.Missions.AmbushMission
                 + "/" + origins.Count);
         }
 
-        // Shared helpers so attacker + defender spawns use the same
-        // line-/grid-layout math. Agents form a single row along the
-        // perpendicular to the spot's facing; when the spot carries a
-        // MaxWidth budget we wrap into additional rows that stack
-        // backward along the facing (behind the front row).
+        // Shared layout math for attacker + defender spawns.
         private const float AmbushSpawnUnitSpacing = 1.5f;
 
         private static Vec2 FacingFromYaw(float yaw)
@@ -410,14 +253,7 @@ namespace TOR_Core.Missions.AmbushMission
         private static Vec3 GridPositionFor(Vec3 center, Vec2 facing, Vec2 perp,
                                             int index, int groupCount, int cols)
         {
-            // Temporarily disabled: per-agent lateral offsets occasionally
-            // land off the scene's navmesh (cliffs, water, etc). The engine
-            // tolerates that at spawn time but hard-crashes during the
-            // deployment -> battle mode switch when it tries to initialize
-            // pathfinding from the invalid frame. Return the raw spot
-            // center so all troops stack at one point (the pre-refactor
-            // behaviour); re-enable once we clamp lateral/depth to the
-            // navmesh via Mission.DeploymentPlan.ProjectPositionToDeploymentBoundaries.
+            // Grid offsets disabled; off-navmesh frames crash during deployment to battle mode switch.
             _ = facing;
             _ = perp;
             _ = index;
@@ -426,15 +262,7 @@ namespace TOR_Core.Missions.AmbushMission
             return center;
         }
 
-        /// <summary>
-        /// Attaches a tactical-point anchor to a ranged formation so the
-        /// captain AI pins it at the spawn-point (parent) and the
-        /// individual archers scripted-position onto the tactical-child
-        /// entities authored under that spawn-point. Does nothing for
-        /// non-ranged classes or when the spot carries no tactical
-        /// children. Player override is handled by
-        /// <see cref="AmbushTacticalAnchorLogic"/>.
-        /// </summary>
+        /// <summary>Attach a tactical-point anchor to a ranged formation so archers pin to the authored child entities.</summary>
         private void TryAnchorRangedFormation(Formation formation,
                                                FormationClass cls,
                                                AmbushSpot spot)
@@ -475,13 +303,7 @@ namespace TOR_Core.Missions.AmbushMission
                 + " tactical points at spot " + spot.GroupTag);
         }
 
-        /// <summary>
-        /// Called by the sidebar spot-picker after a formation is
-        /// reassigned to a new spot. Rebinds the formation's tactical
-        /// anchor to the new spot's children, or unregisters the anchor
-        /// entirely if the new spot has none. Keeps the pinned state in
-        /// sync with the user's UI choice.
-        /// </summary>
+        /// <summary>Rebind the tactical anchor after the spot picker reassigns a formation.</summary>
         public void OnFormationSpotReassigned(Formation formation,
                                                FormationClass cls,
                                                AmbushSpot newSpot)
@@ -516,17 +338,7 @@ namespace TOR_Core.Missions.AmbushMission
                 + " tactical points at spot " + newSpot.GroupTag);
         }
 
-        /// <summary>
-        /// Resets every chunked formation back to its initial layout spot
-        /// (the <see cref="AmbushLayoutResult.DefaultAssignments"/> dict
-        /// built once at <c>AfterStart</c>), then repositions every spot
-        /// that gained or lost occupants so the troop plates follow the
-        /// reassignment. Wired to the vanilla "Reset Deployment" button
-        /// via <see cref="HarmonyPatches.AmbushResetDeploymentPatch"/>.
-        /// Safe to call during the deployment phase only; after
-        /// <c>OnDeploymentFinished</c> the formations are already in
-        /// combat and the player has no business resetting.
-        /// </summary>
+        /// <summary>Reset every chunked formation to its default spot assignment. Deployment-phase only.</summary>
         public void ResetAssignments()
         {
             if (Layout == null || Layout.Formations == null) return;
@@ -547,8 +359,7 @@ namespace TOR_Core.Missions.AmbushMission
                     touched.Add(def.Position);
                 }
             }
-            // Deduplicate by position; reposition once per spot so the
-            // share-spot side-by-side logic runs with the final occupants.
+            // Deduplicate by position so share-spot layout runs once with final occupants.
             foreach (var pos in touched)
             {
                 AmbushSpot? spot = null;
@@ -565,16 +376,7 @@ namespace TOR_Core.Missions.AmbushMission
                 + " formations across " + touched.Count + " spots");
         }
 
-        /// <summary>
-        /// Walks every vanilla attacker-team Formation and binds it to the
-        /// matching unbound <see cref="AmbushFormation"/> chunk in the
-        /// layout. The lazy binding in
-        /// <see cref="UI.AmbushFormationPanelExtension.GetOrCreateAmbushFormation"/>
-        /// is driven by the OoB panel VM and fires only for classes whose
-        /// panels have rendered. Our first-tick reposition needs bindings
-        /// for every Layout chunk regardless of whether its panel has
-        /// ticked yet, hence this eager pass.
-        /// </summary>
+        /// <summary>Eagerly bind every layout chunk to its vanilla Formation; the lazy VM binding may not have ticked yet.</summary>
         private void EagerBindVanillaFormations()
         {
             if (Layout?.Formations == null) return;
@@ -603,14 +405,7 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
-        /// <summary>
-        /// Repositions every <see cref="AmbushSpot"/> the layout currently
-        /// touches so each spot's plate (and its agents) land at the
-        /// authored scene position. Shared by the first-tick fix that
-        /// undoes vanilla's <c>AutoDeployTeamUsingDeploymentPlan</c>
-        /// fallback override, and by <see cref="ResetAssignments"/> on
-        /// the Reset-Deployment path.
-        /// </summary>
+        /// <summary>Reposition every spot the layout touches to its authored scene position.</summary>
         private void RepositionAllTouchedSpots()
         {
             if (Layout?.Formations == null) return;
@@ -633,11 +428,7 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
-        /// <summary>
-        /// First AmbushFormation chunk whose Class matches the requested
-        /// class; falls back to SceneSpots[0] if the layout has nothing
-        /// bound to the class so a troop never lands at (0, 0, 0).
-        /// </summary>
+        /// <summary>First assigned spot for a class, falling back to SceneSpots[0].</summary>
         private AmbushSpot? ChooseSpotForClass(FormationClass cls)
         {
             if (Layout?.Formations != null)
@@ -663,36 +454,12 @@ namespace TOR_Core.Missions.AmbushMission
         public override void AfterStart()
         {
             base.AfterStart();
-            // Resolve each party's battle side from its MapEventSide. Both
-            // parties are expected to be on the PlayerMapEvent at this point
-            // (set up by the opener via PlayerEncounter.RestartPlayerEncounter).
+            // Resolve each party's battle side from MapEventSide.
             _ambusherSide = _ambusherParty?.MapEventSide?.MissionSide ?? BattleSideEnum.Attacker;
             _victimSide = _victimParty?.MapEventSide?.MissionSide ?? BattleSideEnum.Defender;
             SetupInitialSpawn();
             CollectAttackerSpawnPositions();
-            // Custom spawn: drain the shared suppliers and place both sides
-            // ourselves before vanilla's first OnMissionTick fires its
-            // SetupTeams -> OnSetupTeamsOfSide -> SetSpawnTroops(..
-            // enforceSpawning: true), which synchronously spawns from the
-            // same supplier. By draining here, vanilla finds nothing left
-            // and never drops agents at (0, 0, 0). The walkable-area check
-            // hangs the loading screen on that point; this is the "(0,0,0)
-            // hang" referenced in feedback_bannerlord_initial_frame_hang.
-            //
-            // Runs for both Phase D (player ambusher) and Phase F (AI
-            // ambusher). Phase F has no deployment UI either way;
-            // AutoFinishDeploymentForVictim fires FinishDeployment on
-            // OnAfterSetupTeams so the battle drops straight into combat
-            // with agents already placed at the ambush spots.
-            //
-            // No null-guards around the suppliers. The mission opener is
-            // responsible for passing shared instances. A missing supplier
-            // is a bug we want surfaced, not silently skipped (silent skip
-            // is how Phase F's (0, 0, 0) loading-screen hang went unnoticed
-            // until the AI-ambush playtest). The catch is narrow: only our
-            // own AmbushSupplierMissingException lands here, with a context
-            // log then rethrow. Any other exception propagates with its
-            // own stack trace untouched.
+            // Drain the suppliers and place both sides before vanilla's first OnMissionTick.
             try
             {
                 DoCustomAmbusherSpawn();
@@ -709,23 +476,14 @@ namespace TOR_Core.Missions.AmbushMission
                 throw;
             }
 
-            // Hand phase bookkeeping back to the spawn-logic subclass in
-            // one call. See AmbushMissionAgentSpawnLogic for the full
-            // explanation of what gets zeroed / decremented / fired
-            // internally.
+            // Hand phase bookkeeping back to the spawn-logic subclass.
             _spawnLogic?.MarkInitialSpawnComplete(
                 _victimSide == BattleSideEnum.Defender
                     ? _victimInitialSpawnCount : _ambusherInitialSpawnCount,
                 _victimSide == BattleSideEnum.Defender
                     ? _ambusherInitialSpawnCount : _victimInitialSpawnCount);
 
-            // Register the ambush tactic on the ambusher team's TeamAI.
-            // Ambusher = Attacker in both phases. Does not short-circuit
-            // player control: if the player is the ambusher, the tactic
-            // is on the player's team but FormationAI only ticks on
-            // formations the player has flipped to captain control
-            // (F6-delegated). Direct-controlled player formations
-            // ignore the tactic's behavior entirely.
+            // Register the ambush tactic on the attacker team (ambusher side).
             var attacker = Mission.AttackerTeam;
             if (attacker != null)
             {
@@ -737,20 +495,7 @@ namespace TOR_Core.Missions.AmbushMission
             ValidatePostSpawnOrThrow();
         }
 
-        /// <summary>
-        /// Final preflight on the custom-spawn result before vanilla's first
-        /// OnMissionTick fires DeploymentMissionController.SetupTeams().
-        ///
-        /// Vanilla SetupTeams dereferences Mission.InitialPlayerAgent
-        /// unconditionally (initialPlayerAgent.Controller = None, etc.).
-        /// If the custom spawn failed to produce a player-controlled agent,
-        /// SetupTeams throws a raw NullReferenceException with only
-        /// "DeploymentMissionController.SetupTeams" in the stack trace, which
-        /// reads as a mod bug but is almost always a scene-authoring issue
-        /// (player spawn point on broken navmesh, no attacker ambush spots,
-        /// etc.). Rather than let the scene author chase a native NRE, fail
-        /// loud here with the scene name and the usual causes.
-        /// </summary>
+        /// <summary>Preflight before vanilla's SetupTeams; throws with a scene-author-friendly message if the player agent is missing.</summary>
         private void ValidatePostSpawnOrThrow()
         {
             if (Mission.InitialPlayerAgent != null) return;
@@ -796,16 +541,7 @@ namespace TOR_Core.Missions.AmbushMission
         }
 
 
-        /// <summary>
-        /// Vanilla's defender spawn occasionally drops specific troops (seen
-        /// with Ungor Raider in the test scene) at (0, 0, 0), which hangs
-        /// the walkable-area check on the deployment screen. The scene has
-        /// valid sp_defender_* entities, so we place the entire victim
-        /// roster at their world positions ourselves, same strategy as the
-        /// ambusher spawn. If the supplier isn't shared or the scene lacks
-        /// sp_defender_&lt;class&gt; entities we log and skip, letting
-        /// vanilla try.
-        /// </summary>
+        /// <summary>Drain the victim supplier and place agents at sp_defender_* scene entities.</summary>
         private void DoCustomVictimSpawn()
         {
             TORCommon.Log(LogLevel.Info, "[AmbushMission] DoCustomVictimSpawn entry");
@@ -823,32 +559,20 @@ namespace TOR_Core.Missions.AmbushMission
                     "[AmbushMission] DoCustomVictimSpawn skipped: no sp_defender_* entities in scene");
                 return;
             }
-            // Partial drain: whatever stays in the supplier past the
-            // initial cap is what vanilla's reinforcement wave timer
-            // pulls from on each tick when the pool is non-empty.
-            // Cap scales with the victim leader's Tactics.
+            // Partial drain; remainder arrives via reinforcement waves. Cap scales with victim leader's Tactics.
             int victimRequest = _model.ComputeVictimInMissionCap(_victimParty?.LeaderHero);
             if (victimRequest <= 0) victimRequest = int.MaxValue;
             var origins = _victimSupplier.SupplyTroops(victimRequest).ToList();
-            // In Phase F (AI ambusher) the victim IS the player. Their
-            // agents go on the player side and the player character gets
-            // AgentControllerType.Player. In Phase D the victim is AI, so
-            // isPlayerSide is false and no player character sits here.
+            // Victim is on the player side when player is the victim.
             bool isPlayerSide = !IsPlayerAmbusher;
-            // Scener-authored camera anchor. Only used in Phase F to
-            // override the player hero's spawn position so the vanilla
-            // camera init lands on a sensible overlook of the engagement
-            // instead of snapping across the scene.
+            // Scener-authored camera anchor used for victim-side player placement.
             Vec3 anchorPos = Vec3.Zero;
             Vec2 anchorFacing = new Vec2(0f, 1f);
             bool hasAnchor = !IsPlayerAmbusher
                              && TryGetCameraAnchor(out anchorPos, out anchorFacing);
             _customSpawnInProgress = true;
 
-            // Same grid layout as the ambusher side, grouped per
-            // FormationClass. Position + Yaw read off each defender
-            // scene entity so the line faces the direction the scener
-            // oriented the marker (not a hard-coded +X).
+            // Same grid layout as the ambusher side; position and yaw read off the scener entity.
             var agentsByClass = new Dictionary<FormationClass, List<IAgentOriginBase>>();
             foreach (var origin in origins)
             {
@@ -873,8 +597,7 @@ namespace TOR_Core.Missions.AmbushMission
                     var center = slot.Position;
                     var facing = FacingFromYaw(slot.Yaw);
                     var perp = new Vec2(-facing.Y, facing.X);
-                    // Victim entities carry no MaxWidth script yet; keep
-                    // them in a single line (cols = groupCount).
+                    // Victim entities have no MaxWidth script; single line.
                     int cols = ColumnsForLayout(agents.Count, 0f);
 
                     for (int i = 0; i < agents.Count; i++)
@@ -933,21 +656,7 @@ namespace TOR_Core.Missions.AmbushMission
                 + "/" + origins.Count);
         }
 
-        /// <summary>
-        /// Looks up the scener-authored <c>ambush_camera_anchor</c>
-        /// entity and returns its world position + forward direction.
-        /// Returns false when the scene has no such entity (older
-        /// ambush scenes without the convention still work; they just
-        /// miss the camera-anchor polish).
-        ///
-        /// Dual use:
-        /// Phase F spawns the player hero at this frame so the vanilla
-        /// camera init lands on the engagement instead of panning
-        /// across the scene from (0, 0, 0) to the victim column.
-        /// Phase D's <c>AmbushDeploymentMissionView</c> re-aims the
-        /// deployment camera here so the ambusher starts looking at
-        /// the kill zone instead of a scene corner.
-        /// </summary>
+        /// <summary>Look up the scener-authored ambush_camera_anchor entity; returns false if absent.</summary>
         public bool TryGetCameraAnchor(out Vec3 position, out Vec2 facing)
         {
             position = Vec3.Zero;
@@ -966,13 +675,7 @@ namespace TOR_Core.Missions.AmbushMission
 
         private Dictionary<FormationClass, (Vec3 Position, float Yaw)> CollectDefenderSceneSpots()
         {
-            // Vanilla defender entities carry tags without the sp_ prefix
-            // (the sp_ is only in the entity name). Archer entity carries
-            // both `defender_archer` and `defender_ranged` so FormationClass.Ranged
-            // can be found via either. Yaw is read off the entity's global
-            // frame rotation so the defender troops line up facing the
-            // direction the scener placed the marker, instead of a hard-
-            // coded +X default.
+            // Entity tags omit the sp_ prefix; archer entity carries both defender_archer and defender_ranged.
             var dict = new Dictionary<FormationClass, (Vec3, float)>();
             TryAdd(dict, FormationClass.Infantry,    "defender_infantry");
             TryAdd(dict, FormationClass.Ranged,      "defender_ranged");
@@ -994,15 +697,7 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
-        /// <summary>
-        /// Collects attacker spot entities from the scene (ambush_attacker_*
-        /// tags), runs <see cref="AmbushFormationLayout.Compute"/> against
-        /// the ambusher roster, and builds per-class flat teleport lists that
-        /// <see cref="OnAgentCreated"/> consumes. Scener convention (short
-        /// tags): attacker_infantry / attacker_archer / attacker_cavalry /
-        /// attacker_horsearcher. If none exist, falls back to the legacy
-        /// flat <c>ambush_attacker</c> tag with no layout computation.
-        /// </summary>
+        /// <summary>Collect attacker spot entities, compute the layout, and build per-class teleport lists.</summary>
         private void CollectAttackerSpawnPositions()
         {
             _attackerSpawnPositions.Clear();
@@ -1081,14 +776,7 @@ namespace TOR_Core.Missions.AmbushMission
                     + " first=" + (kv.Value.Count > 0 ? kv.Value[0].ToString() : "n/a"));
         }
 
-        /// <summary>
-        /// Reads every entity tagged <c>attacker_ambush_spawnpoint</c>; each
-        /// is paired with one group tag (e.g. <c>attacker_ambush_hill</c>)
-        /// that drives the picker grouping and the chip's localized label.
-        /// The group tag is whichever remaining tag on the entity carries
-        /// the <c>attacker_ambush_</c> prefix. Entities missing a group tag
-        /// are logged and dropped so the picker stays usable.
-        /// </summary>
+        /// <summary>Read every attacker_ambush_spawnpoint entity and pair it with its group tag.</summary>
         private List<AmbushSpot> CollectAmbushSpots()
         {
             const string MarkerTag = "attacker_ambush_spawnpoint";
@@ -1115,9 +803,7 @@ namespace TOR_Core.Missions.AmbushMission
                 {
                     if (child == null) continue;
                     totalChildren++;
-                    // Accept either a vanilla TacticalPosition or StrategicArea
-                    // script. The test scene uses StrategicArea prefabs
-                    // (strategic_archer_point); either is valid authoring.
+                    // Accept TacticalPosition or StrategicArea scripts; both are valid authoring.
                     bool hasTactical = child.HasScriptOfType<TaleWorlds.MountAndBlade.TacticalPosition>();
                     bool hasStrategic = child.HasScriptOfType<TaleWorlds.MountAndBlade.StrategicArea>();
                     bool isTacticalChild = hasTactical || hasStrategic;
@@ -1156,22 +842,13 @@ namespace TOR_Core.Missions.AmbushMission
             return list;
         }
 
-        /// <summary>
-        /// Fires per agent at creation time. For attacker humans we route to
-        /// a role-matching scener-tagged slot; for defenders we don't touch
-        /// anything (vanilla sp_defender_* placement is the authored default
-        /// now, no more `dynamic_patrol_area_tag` teleport).
-        /// </summary>
+        /// <summary>Route attacker humans to a role-matching scener-tagged slot; defenders keep vanilla placement.</summary>
         public override void OnAgentCreated(Agent agent)
         {
             base.OnAgentCreated(agent);
             if (agent == null || !agent.IsHuman) return;
 
-            // Diagnostic (task #79 follow-up): log every late-spawn
-            // defender agent so we can see where vanilla's reinforcement
-            // path actually placed them. OnAgentCreated reports (0,0,0)
-            // for the agent at this moment; the formation's OrderPosition
-            // is the authoritative spawn location.
+            // Diagnostic: log late-spawn defender placement; agent.Position is (0,0,0) at OnAgentCreated.
             if (!_customSpawnInProgress
                 && agent.Team != null
                 && agent.Team.Side == _victimSide)
@@ -1187,27 +864,10 @@ namespace TOR_Core.Missions.AmbushMission
                       + (agent.Formation?.HasBeenPositioned.ToString() ?? "null"));
             }
 
-            // Our shared-supplier custom spawn runs Mission.SpawnAgent
-            // with AgentBuildData.InitialPosition pre-set to the grid
-            // coordinates we want; teleporting the agent here would snap
-            // every troop of the same class onto one point and undo the
-            // line/grid layout. Skip the safety-net teleport while we're
-            // the ones doing the spawning. The teleport still runs for
-            // any vanilla-triggered spawn later (reinforcement etc.)
-            // so the (0, 0, 0) walkable-area hang stays covered.
+            // Skip the safety-net teleport while our own spawn is in flight.
             if (_customSpawnInProgress) return;
 
-            // Note: Agent.Position at OnAgentCreated time is (0, 0, 0)
-            // even for agents vanilla is about to position via AgentBuildData.
-            // The engine's "Agent initial frame is out of walkable area"
-            // warning fires for the same transient reason. Do not attempt
-            // to "fix" the position here; positioning happens after this
-            // callback returns.
-
-            // Only reject agents we know are on the WRONG side. A null team
-            // (sometimes the player hero at first-tick) still gets our
-            // teleport so they don't drop at (0, 0, 0) and hang the walkable
-            // area check.
+            // Null-team agents still get teleported; wrong-side agents are skipped.
             if (agent.Team != null && agent.Team.Side != _ambusherSide) return;
 
             TORCommon.Log(LogLevel.Info,
@@ -1216,9 +876,7 @@ namespace TOR_Core.Missions.AmbushMission
                 + " team=" + (agent.Team == null ? "null" : agent.Team.Side.ToString()));
 
             var formationClass = agent.Character?.DefaultFormationClass ?? FormationClass.Infantry;
-            // Flag the engine so its walkable-area check waits for our
-            // teleport before firing. Without this, the check runs on the
-            // agent's (0, 0, 0) initial frame and hangs the deployment.
+            // Signal to the engine that we're about to teleport; otherwise the walkable-area check hangs.
             bool prevTeleport = Mission.IsTeleportingAgents;
             Mission.IsTeleportingAgents = true;
             try
@@ -1245,12 +903,7 @@ namespace TOR_Core.Missions.AmbushMission
                     "[AmbushMission] NO class match for " + formationClass
                     + " falling back to SceneSpots");
 
-            // Class has no bound chunk (e.g. a hero whose FormationClass
-            // doesn't match any troop class in the roster, so autochunk
-            // didn't produce a chunk for it). Drop the agent at any spot
-            // the scene has rather than let vanilla spawn them at (0, 0),
-            // which triggers the "agent initial frame is out of walkable
-            // area" fatal + hangs the deployment screen.
+            // Fallback: use any SceneSpot so unbound classes don't spawn at (0,0,0).
             if (SceneSpots != null && SceneSpots.Count > 0)
             {
                 var spot = SceneSpots[0];
@@ -1261,8 +914,7 @@ namespace TOR_Core.Missions.AmbushMission
                 return;
             }
 
-            // Legacy fallback: scene has no typed spots and no new scheme
-            // either; use the flat `ambush_attacker` tag list.
+            // Legacy fallback: flat ambush_attacker tag list.
             if (_legacyAttackerSpawnPositions.Count > 0)
             {
                 int idx = _legacyAttackerSpawnIndex++;
@@ -1285,16 +937,7 @@ namespace TOR_Core.Missions.AmbushMission
                 + " defenderTeam=" + (Mission.DefenderTeam != null));
             base.OnDeploymentFinished();
 
-            // Attacker initial placement happens per-agent via OnAgentCreated
-            // (role-aware teleport to scener-tagged slots). Defender initial
-            // placement is left to vanilla sp_defender_* spawns inside the
-            // sp_battle_set subtree — the scener dropped dynamic_patrol_area_tag
-            // in favour of this. Reinforcement spawns on both sides use the
-            // sp_*_reinforcement subchildren naturally.
-
-            // Snapshot the initial-patrol defender agent set now. Reinforcement
-            // waves spawn later via DefaultBattleMissionAgentSpawnLogic and are
-            // NOT members. Phase 2 begins when all of these go inactive.
+            // Snapshot the initial-patrol defender set; reinforcement waves are excluded.
             _initialPatrol.Clear();
             if (Mission.DefenderTeam != null)
             {
@@ -1304,10 +947,7 @@ namespace TOR_Core.Missions.AmbushMission
                 }
             }
 
-            // Team membership diagnostic: the ambush-victory check in
-            // AmbushEndLogic triggers TotalVictory on CountActiveHumans
-            // (Mission.DefenderTeam) == 0, so if defenders landed on a
-            // different team the fight ends the moment the mission starts.
+            // Team census diagnostic for TotalVictory gating in AmbushEndLogic.
             int attackerActive = 0, attackerHuman = 0;
             if (Mission.AttackerTeam != null)
                 foreach (var a in Mission.AttackerTeam.ActiveAgents)
@@ -1323,21 +963,16 @@ namespace TOR_Core.Missions.AmbushMission
                 + " human=" + defenderHuman
                 + " | initialPatrol=" + _initialPatrol.Count);
 
-            // Start the grace clock for the procedural-fallback decision. The
-            // actual check happens in OnMissionTick once script OnInits have
-            // reliably fired — doing it here races with the script lifecycle
-            // and plants the fallback on the player, which auto-triggers
-            // extraction. See FallbackGraceSeconds.
+            // Start the grace clock; the actual check runs in OnMissionTick after script OnInits settle.
             _fallbackGraceTimer = new BasicMissionTimer();
             TORCommon.Log(LogLevel.Info, "[AmbushMission] OnDeploymentFinished exit");
         }
 
         public override InquiryData OnEndMissionRequest(out bool canLeave)
         {
-            // Tab-leave is disabled. The only exits are the extraction bar,
-            // dying, getting wiped, or the stalemate timer. See mission-design.md.
+            // Tab-leave disabled; exits are extraction, death, wipe, or stalemate timer.
             canLeave = false;
-            TOR_Core.Utilities.TORCommon.Say("You can't flee the ambush like this — look for the extraction point.");
+            TOR_Core.Utilities.TORCommon.Say("You can't flee the ambush like this. Look for the extraction point.");
             return null;
         }
 
@@ -1366,8 +1001,7 @@ namespace TOR_Core.Missions.AmbushMission
                 }
             }
 
-            // Phase 1 → Phase 2 transition. Check once per tick while Phase 1
-            // is still active; cheap since _initialPatrol is small.
+            // Phase 1 to Phase 2 transition check (cheap, _initialPatrol is small).
             if (!_initialPatrolDefeated && _initialPatrol.Count > 0)
             {
                 bool allDown = true;
@@ -1382,13 +1016,7 @@ namespace TOR_Core.Missions.AmbushMission
                     _reinforcementLogic?.OnInitialPatrolDefeated();
                     InitialPatrolDefeated?.Invoke();
 
-                    // Who's still on the defender side at the moment Phase 2
-                    // transitions? If this list is empty, Priority 3 should
-                    // fire TotalVictory the same tick. If anyone shows up
-                    // here, that's the agent blocking the clean win — their
-                    // char / isHuman / isActive / running / team membership
-                    // should tell us whether it's a routed stragger,
-                    // a late-added reinforcement, or something else.
+                    // Diagnostic: enumerate remaining defender agents at Phase 2 transition.
                     if (Mission.DefenderTeam != null)
                     {
                         int idx = 0;
@@ -1413,26 +1041,11 @@ namespace TOR_Core.Missions.AmbushMission
         {
             if (_spawnLogic == null) return;
 
-            // Full roster per side read directly off MemberRoster. Do
-            // NOT use MapEventSide.TroopCount here: that value is already
-            // clamped by vanilla's campaign-level battle-size budgeting,
-            // so for a 21-troop party on a low BattleSize setting it
-            // comes back as 15 and the leftover 6 stay invisible to our
-            // reinforcement pool (they linger on the campaign-map party
-            // as "reserves"). phase.TotalSpawnNumber ends up matching
-            // the pre-clamped side count instead of the real roster,
-            // phase.RemainingSpawnNumber drains to zero after the initial
-            // batch, and IsPoolDepleted reports true when there are
-            // actually troops to send.
-            //
-            // Simultaneous-on-field cap now comes from InitialOnFieldCap
-            // applied below; vanilla's global MaxNumberOfAgentsForMission
-            // still gates how many agents can physically exist at once.
+            // Read full roster per side off MemberRoster; MapEventSide.TroopCount is BattleSize-clamped.
             int ambusherTotal = _ambusherParty?.MemberRoster?.TotalManCount ?? 0;
             int victimTotal = _victimParty?.MemberRoster?.TotalManCount ?? 0;
 
-            // Map "ambusher" / "victim" totals back onto the Attacker /
-            // Defender slot slots the vanilla spawn pipeline expects.
+            // Map ambusher/victim totals back onto Attacker/Defender slots.
             int attackerTotal, defenderTotal;
             if (_ambusherSide == BattleSideEnum.Attacker)
             {
@@ -1450,12 +1063,7 @@ namespace TOR_Core.Missions.AmbushMission
                 + " -> defenderTotal=" + defenderTotal
                 + " attackerTotal=" + attackerTotal);
 
-            // Victim (patrol): entire force spawns upfront. Fiction is "the
-            // patrol being ambushed" — a 10% scout wave feels like 3 lost
-            // scouts, not the real force. Reinforcements arrive as alarm
-            // response later; 54 dynamic_patrol_area_tag spawn points.
-            // Ambusher: entire force spawns upfront; no reinforcements for
-            // the ambusher in the first-pass model.
+            // Full roster spawns upfront on both sides; ambusher has no reinforcements, victim gets alarm response later.
             _spawnLogic.SetSpawnHorses(BattleSideEnum.Defender, spawnHorses: true);
             _spawnLogic.SetSpawnHorses(BattleSideEnum.Attacker, spawnHorses: false);
 
@@ -1467,20 +1075,12 @@ namespace TOR_Core.Missions.AmbushMission
                 defenderReinforcementBatchPercentage: _model.ReinforcementBatchFraction,
                 attackerReinforcementBatchPercentage: _model.PlayerReinforcementBatchFraction);
 
-            // Initial-spawn cap applies to BOTH sides, Tactics-adjusted
-            // per side's leader. Ambusher-side excess just isn't spawned
-            // (one-shot commitment — no reinforcement fraction configured
-            // for them, so the extra troops idle in the supplier pool
-            // and never arrive). Victim-side excess flows in via the
-            // reinforcement waves owned by AmbushReinforcementMissionLogic.
+            // Initial-spawn cap applies to both sides; Tactics-adjusted. Victim-side excess flows through reinforcement waves.
             int ambusherCap = _model.ComputeAmbusherInMissionCap(_ambusherParty?.LeaderHero);
             int victimCap = _model.ComputeVictimInMissionCap(_victimParty?.LeaderHero);
             int defenderInitial = defenderTotal;
             int attackerInitial = attackerTotal;
-            // Side → cap mapping follows who holds the role at this
-            // mission opener: Phase D & F both place victim on Defender
-            // and ambusher on Attacker, but the branch reads MapEventSide
-            // in case a future opener flips sides.
+            // Side-to-cap mapping follows MapEventSide to allow for future opener variants.
             if (_victimSide == BattleSideEnum.Defender)
             {
                 defenderInitial = System.Math.Min(defenderTotal, victimCap);
@@ -1498,15 +1098,7 @@ namespace TOR_Core.Missions.AmbushMission
                 spawnDefenders: false, spawnAttackers: false,
                 in spawnSettings);
 
-            // Reinforcement waves are owned by AmbushReinforcementMissionLogic
-            // (registered by the opener). We still have to hand vanilla a
-            // non-null ICustomReinforcementSpawnTimer because
-            // DefaultBattleMissionAgentSpawnLogic.SetReinforcementsSpawnEnabled
-            // calls _customReinforcementSpawnTimer.ResetTimer without a
-            // null check when ReinforcementTimingMethod is CustomTimer,
-            // NPEing right after FinishDeployment. The stub always
-            // returns false from Check, so vanilla never actually spawns
-            // anything through this path.
+            // Vanilla requires a non-null ICustomReinforcementSpawnTimer; the stub always returns false.
             _spawnLogic.SetCustomReinforcementSpawnTimer(new NoOpReinforcementSpawnTimer());
         }
     }

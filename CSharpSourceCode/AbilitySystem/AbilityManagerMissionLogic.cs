@@ -653,13 +653,7 @@ namespace TOR_Core.AbilitySystem
                     if (team.TeamAgents.IsEmpty()) continue;
 
                     var leader = team.Leader ?? team.TeamAgents.FirstOrDefault();
-                    if (leader?.Character == null)
-                    {
-                        TOR_Core.Utilities.TORCommon.Log(NLog.LogLevel.Warn,
-                            "[AbilityManager] InitSummoningCombatants skip team side="
-                            + team.Side + " leader=" + (leader == null ? "null" : "no-character"));
-                        continue;
-                    }
+                    if (leader?.Character == null) continue;
 
                     if (team.Side == BattleSideEnum.Attacker && _attackerSummoningCombatant == null)
                     {

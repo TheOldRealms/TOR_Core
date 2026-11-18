@@ -7,20 +7,7 @@ using TOR_Core.CampaignMechanics.Ambush;
 
 namespace TOR_Core.Missions.AmbushMission
 {
-    /// <summary>
-    /// Counts player-side loudness events during the ambush — gunpowder shots
-    /// (Musket / Pistol <see cref="WeaponClass"/>) and non-silent magic casts.
-    /// The tally lands on <see cref="AmbushCampaignBehavior.LastAmbushLoudness"/>
-    /// at mission close; the campaign-side cooldown stamp + TotalVictory
-    /// cooldown-zero gate read it to decide whether the mission was quiet
-    /// enough to keep the stealth cooldown short / zero.
-    ///
-    /// Design: campaign-stealth-design.md § 6b.
-    ///
-    /// Shadow-lore exception is forward-looking: the lore isn't implemented
-    /// in TOR yet, so every spell counts as loud today. Once Shadow lands,
-    /// filter by its <c>BelongsToLoreID</c> in <see cref="OnAbilityCastComplete"/>.
-    /// </summary>
+    /// <summary>Counts player-side loudness events (gunpowder shots and magic casts) and writes the tally to the campaign behavior.</summary>
     public class AmbushLoudnessTracker : MissionLogic
     {
         private int _loudnessCount;
@@ -29,13 +16,7 @@ namespace TOR_Core.Missions.AmbushMission
         public override void AfterStart()
         {
             base.AfterStart();
-            // Subscribe here, not in OnBehaviorInitialize: the mission init
-            // sequence runs behavior OnBehaviorInitialize BEFORE submodules'
-            // OnMissionBehaviorInitialize, and TOR's SubModule adds
-            // AbilityManagerMissionLogic in that submodule pass. By AfterStart
-            // (after the EarlyStart loop) all behaviors from both passes are
-            // registered, so GetMissionBehavior<AbilityManagerMissionLogic>
-            // actually finds the instance to subscribe to.
+            // Subscribe in AfterStart; submodule-registered behaviors aren't present in OnBehaviorInitialize.
             _abilityLogic = Mission.GetMissionBehavior<AbilityManagerMissionLogic>();
             if (_abilityLogic != null)
                 _abilityLogic.OnAbilityCastComplete += OnAbilityCastComplete;
@@ -58,7 +39,7 @@ namespace TOR_Core.Missions.AmbushMission
                                      orientation, hasRigidBody, forcedMissileIndex);
 
             if (shooterAgent == null || !shooterAgent.IsHuman) return;
-            // Only count shots from the player's side (AttackerTeam in our mission).
+            // Count only the player side (AttackerTeam in ambusher missions).
             if (shooterAgent.Team != Mission.AttackerTeam) return;
 
             var weapon = shooterAgent.Equipment?[weaponIndex];
@@ -69,31 +50,18 @@ namespace TOR_Core.Missions.AmbushMission
 
         private static bool IsGunpowderClass(WeaponClass wc)
         {
-            // The TOR Firearms system treats Musket + Pistol as the two gunpowder
-            // weapon classes (see FirearmsMissionLogic). Grenades land in vanilla's
-            // Thrown family but TOR flags them separately — count them too if we
-            // find them. If TOR adds a dedicated gunpowder-grenade class later,
-            // add it here.
+            // TOR Firearms uses Musket + Pistol as the gunpowder classes.
             return wc == WeaponClass.Musket
                 || wc == WeaponClass.Pistol;
         }
 
-        /// <summary>
-        /// Fired by AbilityManagerMissionLogic.OnCastComplete whenever any
-        /// agent successfully completes a cast. We count the player side's
-        /// Spell-type casts; Prayer and CareerAbility are deliberately
-        /// excluded (not visible-magic in the "sends up a flare" sense).
-        /// Shadow-lore exclusion is a future filter — not yet implemented
-        /// upstream so there's nothing to check today.
-        /// </summary>
+        /// <summary>Count player-side Spell casts. Prayer and CareerAbility are excluded.</summary>
         private void OnAbilityCastComplete(Ability ability, Agent agent)
         {
             if (ability?.Template == null || agent == null) return;
             if (agent.Team != Mission.AttackerTeam) return;
             if (ability.Template.AbilityType != AbilityType.Spell) return;
-            // TODO: once Shadow lore lands, skip when
-            // ability.Template.BelongsToLoreID equals its StringId. For now
-            // every Spell is loud by design-doc default.
+            // TODO: filter by Shadow lore once implemented.
             _loudnessCount++;
         }
     }

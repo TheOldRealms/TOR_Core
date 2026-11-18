@@ -14,171 +14,105 @@ using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
+    /// <summary>Campaign-map ambush math: entry, strike, detection, cooldown, and AI propensity.</summary>
     public class TORAmbushModel : GameModel
     {
-        // Chance clamps — virtual so subclasses can rebalance via override.
+        // Chance clamps.
         public virtual float BaseAmbushChance => 0.5f;
         public virtual float MinChance => 0.1f;
         public virtual float MaxChance => 0.95f;
 
-        // Factor weights — virtual for the same reason.
-        public virtual float ScoutingPerPointBonus => 0.002f;   // ±100 skill delta = ±0.2
+        // Factor weights.
+        public virtual float ScoutingPerPointBonus => 0.002f;
         public virtual float ScoutingBonusCap => 0.2f;
-        public virtual float StealthDurationPerHour => 0.05f;   // +0.05 per in-game hour
-        public virtual float StealthDurationCap => 0.15f;       // capped at +0.15
+        public virtual float StealthDurationPerHour => 0.05f;
+        public virtual float StealthDurationCap => 0.15f;
 
-        public virtual float ConcealingTerrainBonus => 0.15f;   // forest / mountain / canyon / swamp
-        public virtual float OpenTerrainPenalty => -0.10f;      // plain / desert / steppe / dune
+        public virtual float ConcealingTerrainBonus => 0.15f;
+        public virtual float OpenTerrainPenalty => -0.10f;
 
-        public virtual float SmallAttackerBonus => 0.2f;        // attacker roster < 0.5× target
-        public virtual float SlightlySmallerAttackerBonus => 0.1f;  // 0.5× ≤ ratio < 1.0×
-        public virtual float OverwhelmingAttackerPenalty => -0.1f;  // attacker ≥ 2× target
+        public virtual float SmallAttackerBonus => 0.2f;
+        public virtual float SlightlySmallerAttackerBonus => 0.1f;
+        public virtual float OverwhelmingAttackerPenalty => -0.1f;
 
-        // Target proximity: applied as a MULTIPLICATIVE factor on the
-        // summed additive chance, so it dominates even when the chance
-        // has already saturated at MaxChance. At point-blank the factor
-        // is 1.0 (no reduction); at the strike-range edge it's
-        // EdgeProximityMultiplier (default 0.5 → half the chance). Half
-        // range → ~0.75× via linear interpolation, so edge vs 50 % → a
-        // ~24-point delta on a 95 % base chance. Pivot comes from the
-        // ambusher's live CalculateStrikeRange, not a static 15u
-        // constant.
+        /// <summary>Multiplicative proximity factor applied after additive chance. 1.0 at point-blank, this value at the strike-range edge.</summary>
         public virtual float EdgeProximityMultiplier => 0.5f;
 
-        // Day/night: night favours ambushers.
         public virtual float NightTimeBonus => 0.1f;
 
-        // ---- Entry chance ----
-        //
-        // Chance of successfully slipping into stealth stance on the hotkey
-        // press. Separate from CalculateAmbushSuccessChance (chance of a
-        // successful strike). Entry has a high floor so clean cover is near-
-        // automatic; drops sharply with nearby hostiles so mid-chase stealth
-        // is nearly impossible but never fully 0.
+        // Entry chance (slipping into stealth stance).
         public virtual float BaseEntryChance => 0.5f;
         public virtual float MinEntryChance => 0.05f;
         public virtual float MaxEntryChance => 0.98f;
         public virtual float EntryHostilePenaltyPerParty => 0.12f;
         public virtual float EntryHostilePenaltyCap => 0.4f;
-        /// <summary>Added penalty per point of observer Scouting (summed
-        /// across observers in range). 300 Scouting observer → +0.15
-        /// detection probability, on top of the per-party flat.</summary>
+        /// <summary>Added penalty per point of observer Scouting, summed across observers in range.</summary>
         public virtual float EntryHostileScoutingPenaltyPerPoint => 0.0005f;
-        /// <summary>Entry-chance bonus per point of the ambusher-leader's
-        /// Roguery skill. Thematically the stealth stat; Scouting lives
-        /// on the detection side only.</summary>
+        /// <summary>Entry-chance bonus per point of the ambusher-leader's Roguery.</summary>
         public virtual float EntryRogueryPerPointBonus => 0.001f;
         public virtual float EntryRogueryBonusCap => 0.15f;
 
-        /// <summary>Weight on the party-stealth-score delta (vs the
-        /// baseline 0.5 troop score). Positive when the party is
-        /// stealthier than neutral; negative when weighted down by
-        /// heavy cav / monstrous / plate. Baseline is 0.5 so a
-        /// goblin-skirmisher roster at 0.75 → +0.25 × weight; a
-        /// knightly roster at -0.1 → -0.6 × weight.</summary>
+        /// <summary>Weight on the party-stealth-score delta vs the neutral baseline.</summary>
         public virtual float EntryPartyStealthScoreWeight => 0.3f;
 
-        /// <summary>Baseline per-troop stealth score used as the pivot
-        /// for the party-stealth-score bonus. Any score above this
-        /// adds; below subtracts. Matches
-        /// <c>AmbushTroopStealthScore</c>'s neutral baseline.</summary>
+        /// <summary>Neutral per-troop stealth score; scores above this add to entry chance, below subtract.</summary>
         public virtual float PartyStealthScoreBaseline => 0.5f;
 
-        // ---- Roguery XP (hidden-tick + perfect-ambush bonus) ----
+        // Roguery XP for stealth upkeep and clean sweeps.
 
         public virtual int RogueryXpBasePerHiddenTick => 5;
         public virtual int RogueryXpPerHostileInRange => 1;
         public virtual int RogueryXpPerHostileCap => 5;
-        public virtual int RogueryXpScoutingDivisor => 50;  // +1 XP per 50 Scouting on the highest-skilled observer in range
+        public virtual int RogueryXpScoutingDivisor => 50;
         public virtual int RogueryXpTotalVictoryBase => 50;
         public virtual float RogueryXpTotalVictoryPerMember => 1f;
 
-        // ---- Detection model (Phase B v2) ----
-        //
-        // Fires on QuarterHourlyTickEvent per nearby hostile observer while the
-        // player is in stealth. Multiplicative composition (vs the additive
-        // CalculateAmbushSuccessChance above) because this is a per-tick "escape
-        // notice" roll called many times, not a one-shot strike outcome.
+        // Detection model: multiplicative per-tick roll fired on QuarterHourlyTickEvent.
         public virtual float BaseDetectionChancePerTick => 0.05f;
         public virtual float MinDetectionChance => 0f;
         public virtual float MaxDetectionChance => 0.45f;
         public virtual float DetectionScanRadius => 10f;
 
-        /// <summary>Time horizon (in quarter-hour ticks) that the eye widget
-        /// extrapolates the per-tick detection roll over. The display value is
-        /// <c>1 - (1 - p)^N</c> where <c>p</c> is the aggregated per-tick
-        /// chance across observers and <c>N</c> is this knob. Default 4
-        /// = one in-game hour, which keeps a useful gradient across the full
-        /// per-tick range without saturating too early. Longer horizons
-        /// (e.g. 24 for a 6-hour camp) saturate anything above ~10 % per
-        /// tick, losing resolution — surface those in the tooltip, not
-        /// the eye.</summary>
+        /// <summary>Map-unit radius around the main party within which a repelled
+        /// ambusher of an ally stays revealed on the player's map.</summary>
+        public virtual float AlliedRevealRadius => 12f;
+
+        /// <summary>Quarter-hour ticks that the eye widget extrapolates the per-tick detection roll over.</summary>
         public virtual int DetectionDisplayHorizonTicks => 4;
 
-        // Distance multiplier: closer = higher. Lerped from AdjacentDistanceMultiplier
-        // at distance 0 to FarDistanceMultiplier at the scan-radius edge.
+        // Distance multiplier: lerp from adjacent to far across scan radius.
         public virtual float AdjacentDistanceMultiplier => 2.5f;
         public virtual float FarDistanceMultiplier => 0.2f;
 
-        public virtual float DetectionScoutingPerPointBonus => 1f / 600f;  // 300 Scouting = +50% detection mult (cap below)
-        public virtual float DetectionScoutingBonusCap => 0.5f;
-
-        // §18 per-troop spotting score integration weights. Primary
-        // signal is the ambush-detection roll; fog-of-war spotting
-        // range gets a smaller weight since it's adjacent to the
-        // ambush mechanic and we don't want to accidentally rebalance
-        // broader map visibility.
+        // Per-troop spotting score integration weights.
         public virtual float SpottingScoreDetectionWeight => 0.2f;
         public virtual float SpottingScoreSightingWeight => 0.1f;
         public virtual float SpottingScoreSizeDampingReference => 100f;
 
-        public virtual float ConcealingTerrainMultiplier => 0.5f;        // forest / mountain / canyon / swamp
-        public virtual float OpenTerrainMultiplier => 1.5f;              // plain / desert / steppe / dune
+        public virtual float ConcealingTerrainMultiplier => 0.5f;
+        public virtual float OpenTerrainMultiplier => 1.5f;
 
         public virtual float NightDetectionMultiplier => 0.7f;
 
-        public virtual float StealthDurationDetectionPerHour => 0.1f;    // multiplicative +10% per hour
-        public virtual float StealthDurationDetectionCap => 0.5f;        // capped at +50%
+        public virtual float StealthDurationDetectionPerHour => 0.1f;
+        public virtual float StealthDurationDetectionCap => 0.5f;
 
-        /// <summary>Radius (map units) around the main party within which a
-        /// nearby settlement counts as "proximate." Shared by the two-tier
-        /// settlement check — a settlement inside this radius lights one of
-        /// two icons (hostile / neutral) and feeds into the entry- and
-        /// detection-chance math. Backed by vanilla's locatable-tree via
-        /// <c>TORCommon.FindNearestSettlement</c>, so lower radius = cheaper
-        /// query.</summary>
+        /// <summary>Map-unit radius for the two-tier nearby-settlement check.</summary>
         public virtual float SettlementProximityRadius => 8f;
 
-        /// <summary>Entry-chance penalty when a hostile-faction settlement is
-        /// within <see cref="SettlementProximityRadius"/>. Garrisons, watch
-        /// riders, and alert townsfolk make slipping into stealth harder.
-        /// Subtracted from the base entry-chance roll.</summary>
+        /// <summary>Entry-chance penalty when a hostile-faction settlement is in range.</summary>
         public virtual float HostileSettlementEntryPenalty => 0.2f;
 
-        /// <summary>Entry-chance penalty for a neutral-faction settlement
-        /// (not at war, not ours) in range. Smaller than the hostile case —
-        /// a neutral town's townsfolk aren't hunting you, but any busy
-        /// settlement reduces the shadows available.</summary>
+        /// <summary>Entry-chance penalty for a neutral-faction settlement in range.</summary>
         public virtual float NeutralSettlementEntryPenalty => 0.08f;
 
-        /// <summary>Per-tick detection multiplier when a hostile settlement
-        /// is within <see cref="SettlementProximityRadius"/> of the target
-        /// (the stealthed party). Applied multiplicatively on top of the
-        /// per-observer detection roll, so a hostile settlement lifts every
-        /// observer's chance of spotting the stealthed party this tick.
-        /// </summary>
+        /// <summary>Per-tick detection multiplier when a hostile settlement is near the stealthed party.</summary>
         public virtual float HostileSettlementDetectionMultiplier => 1.6f;
 
-        /// <summary>Per-tick detection multiplier for a neutral settlement
-        /// in range. Smaller lift — passers-by who aren't actively hunting
-        /// still add a bit of ambient attention.</summary>
+        /// <summary>Per-tick detection multiplier for a neutral settlement in range.</summary>
         public virtual float NeutralSettlementDetectionMultiplier => 1.1f;
 
-        // Filter: which parties count as "observers" that can even attempt a detection
-        // roll against a stealthed target. Default is hostile parties only — a friendly
-        // caravan or allied lord riding past shouldn't blow your cover. Overrides can
-        // widen this (e.g., bandit parties always count) or narrow it (e.g., only parties
-        // with a sufficiently high Scouting leader).
+        /// <summary>Which parties count as observers for detection rolls. Default is hostile-only.</summary>
         public virtual bool CanDetect(MobileParty observer, MobileParty target)
         {
             if (observer == null || target == null || observer == target) return false;
@@ -186,6 +120,7 @@ namespace TOR_Core.Models
             return FactionManager.IsAtWarAgainstFaction(observer.MapFaction, target.MapFaction);
         }
 
+        /// <summary>Single-observer detection roll. Returns true and fills reason on a hit.</summary>
         public virtual bool TryDetect(MobileParty observer, MobileParty target,
                                        CampaignTime stealthEnteredAt, out string reason)
         {
@@ -202,6 +137,7 @@ namespace TOR_Core.Models
             return true;
         }
 
+        /// <summary>Per-tick detection chance for a single observer, clamped.</summary>
         public virtual float CalculateDetectionChancePerTick(MobileParty observer, MobileParty target, CampaignTime stealthEnteredAt)
         {
             float chance = BaseDetectionChancePerTick
@@ -214,18 +150,12 @@ namespace TOR_Core.Models
             return MBMath.ClampFloat(chance, MinDetectionChance, MaxDetectionChance);
         }
 
-        /// <summary>Combined per-tick detection chance across all nearby
-        /// observers for the given target. Each observer rolls independently,
-        /// so the chance that at least one succeeds is <c>1 - ∏(1 - p_i)</c>.
-        /// Used by the eye widget to drive the openness continuum while the
-        /// player is in stealth — the eye shows how likely they are to be
-        /// seen in the next quarter-hour tick, not just the best single
-        /// observer's chance. See campaign-stealth-design.md §21.</summary>
+        /// <summary>Combined per-tick detection across all nearby observers using independent-Bernoulli composition.</summary>
         public virtual float CalculateAggregatedDetectionChancePerTick(
             MobileParty target, IReadOnlyList<MobileParty> observers, CampaignTime stealthEnteredAt)
         {
             if (target == null || observers == null || observers.Count == 0) return 0f;
-            float survival = 1f;   // probability that NO observer detects us
+            float survival = 1f;
             foreach (var observer in observers)
             {
                 float p = CalculateDetectionChancePerTick(observer, target, stealthEnteredAt);
@@ -234,13 +164,7 @@ namespace TOR_Core.Models
             return MBMath.ClampFloat(1f - survival, 0f, 1f);
         }
 
-        /// <summary>Per-tick aggregated detection chance extrapolated over
-        /// <see cref="DetectionDisplayHorizonTicks"/>. Answers "chance the
-        /// player is spotted at least once within the horizon." Composition
-        /// is <c>1 - (1 - p_tick)^N</c>, i.e. independent Bernoulli trials
-        /// across ticks. Used by the eye widget so the openness reads actual
-        /// threat over a stay rather than a per-tick snapshot that
-        /// understates compounding over time.</summary>
+        /// <summary>Aggregated per-tick detection extrapolated over <see cref="DetectionDisplayHorizonTicks"/>.</summary>
         public virtual float CalculateAggregatedDetectionChanceOverHorizon(
             MobileParty target, IReadOnlyList<MobileParty> observers, CampaignTime stealthEnteredAt)
         {
@@ -250,11 +174,7 @@ namespace TOR_Core.Models
             return MBMath.ClampFloat(1f - MathF.Pow(1f - pTick, horizon), 0f, 1f);
         }
 
-        /// <summary>Settlement-proximity multiplier on the per-tick detection
-        /// chance. Hostile and neutral settlements lift the base multiplier
-        /// by different amounts via the HostileSettlement- / NeutralSettlement-
-        /// DetectionMultiplier knobs. Returns 1.0 (neutral) when no settlement
-        /// is in range or the party has no faction to compare against.</summary>
+        /// <summary>Settlement-proximity multiplier on per-tick detection chance. 1.0 when no settlement is in range.</summary>
         protected virtual float SettlementDetectionMultiplier(MobileParty target)
         {
             if (target?.MapFaction == null) return 1f;
@@ -266,24 +186,34 @@ namespace TOR_Core.Models
             }
         }
 
-        /// <summary>Settlement-proximity penalty on the entry-chance roll.
-        /// Hostile settlement subtracts more, neutral less. Returns 0 if
-        /// no settlement in range.</summary>
+        /// <summary>Settlement-proximity penalty on the entry-chance roll. 0 when no settlement is in range.</summary>
         protected virtual float SettlementEntryPenalty(MobileParty self)
         {
             if (self?.MapFaction == null) return 0f;
+            float penalty;
             switch (GetNearbySettlementKind(self))
             {
-                case SettlementProximityKind.Hostile: return HostileSettlementEntryPenalty;
-                case SettlementProximityKind.Neutral: return NeutralSettlementEntryPenalty;
+                case SettlementProximityKind.Hostile: penalty = HostileSettlementEntryPenalty; break;
+                case SettlementProximityKind.Neutral: penalty = NeutralSettlementEntryPenalty; break;
                 default: return 0f;
             }
+            // Shakedown perk: reduce village-vicinity penalty.
+            if (self.HasPerk(TORPerks.Roguery.Shakedown)
+                && IsNearestInRangeAVillage(self))
+            {
+                penalty *= 1f + TORPerks.Roguery.Shakedown.SecondaryBonus;
+            }
+            return penalty;
         }
 
-        /// <summary>Classify any settlement inside
-        /// <see cref="SettlementProximityRadius"/> of the party. Hostile wins
-        /// over neutral when both are present — a hostile garrison in range
-        /// shouldn't be masked by a friendly town standing between.</summary>
+        /// <summary>True when the closest in-range settlement is a village.</summary>
+        protected virtual bool IsNearestInRangeAVillage(MobileParty self)
+        {
+            var nearest = TORCommon.FindNearestSettlement(self, SettlementProximityRadius, _ => true);
+            return nearest != null && nearest.IsVillage;
+        }
+
+        /// <summary>Classify any settlement inside the proximity radius. Hostile wins over neutral when both are present.</summary>
         public virtual SettlementProximityKind GetNearbySettlementKind(MobileParty party)
         {
             if (party?.MapFaction == null) return SettlementProximityKind.None;
@@ -312,12 +242,10 @@ namespace TOR_Core.Models
         protected virtual float ScoutingDetectionMultiplier(MobileParty observer)
         {
             int s = GetDefenderScouting(observer);
-            float scoutingBonus = MBMath.ClampFloat(s * DetectionScoutingPerPointBonus, 0f, DetectionScoutingBonusCap);
+            float scoutingBonus = TORSkillEffects.AmbushSpottingBonus.GetSkillEffectValue(s);
             float rosterBonus = AmbushTroopSpottingScore.GetBasePartyScore(observer, SpottingScoreSizeDampingReference)
                                 * SpottingScoreDetectionWeight;
-            int r = GetDefenderRoguery(observer);
-            float rogueryBonus = TORSkillEffects.AmbushSpottingBonus.GetSkillEffectValue(r);
-            return 1f + scoutingBonus + rosterBonus + rogueryBonus;
+            return 1f + scoutingBonus + rosterBonus;
         }
 
         protected virtual float TerrainDetectionMultiplier(MobileParty target)
@@ -361,42 +289,25 @@ namespace TOR_Core.Models
             return "You've been spotted by " + who + ".";
         }
 
-        // ---- Skill contest (party-level) ----
+        // Skill contest (party-level).
 
-        /// <summary>How much of the lower hero's skill contributes when
-        /// combining the leader + Scout-role hero into an effective
-        /// party skill. 0.5 = the specialist carries, but a second
-        /// decent hero still helps.</summary>
+        /// <summary>Lower-hero weight when combining leader + Scout-role hero into an effective party skill.</summary>
         public virtual float SkillPairLowerWeight => 0.5f;
 
-        /// <summary>Weights for the ambush success contest. Roguery
-        /// dominates on the ambusher side; Scouting + Tactics share
-        /// detection duty on the defender side.</summary>
+        /// <summary>Weights for the ambush success contest. Roguery dominates on the ambusher side.</summary>
         public virtual float ContestRogueryWeight  => 1.5f;
         public virtual float ContestScoutingWeight => 1.0f;
         public virtual float ContestTacticsWeight  => 0.7f;
 
-        /// <summary>Divisor applied to the raw skill-delta before it folds
-        /// into the chance. 300 = a 300-point weighted-Roguery advantage
-        /// shifts the chance by ~1.0 (clamped), so a typical 50-point
-        /// delta shifts ~0.17.</summary>
+        /// <summary>Divisor applied to the raw skill-delta before it folds into the chance.</summary>
         public virtual float ContestNormalizer => 300f;
 
-        /// <summary>Base strike range for the ambusher. Scouting of the
-        /// ambusher's leader + Scout-role hero scales this up — a well-
-        /// scouted party reaches further. Calibrated against the player's
-        /// in-game perception of "mid-tier distance" at Scouting 15 ≈
-        /// 0.5× that distance, Scouting 125 ≈ 1×, 250 ≈ 1.5×, cap at 300.
-        /// Anchor X ≈ 6 map units — iterate from stealth-entry diagnostics.</summary>
+        /// <summary>Base ambusher strike range. Scales up with Scouting.</summary>
         public virtual float BaseStrikeRange => 2.6f;
         public virtual float StrikeRangeScoutingPerPoint => 0.0273f;
         public virtual float MaxStrikeRange => 10.5f;
 
-        /// <summary>Combine two heroes' skill values using the half-weight-
-        /// lower rule: the higher score carries full weight, the lower
-        /// contributes <see cref="SkillPairLowerWeight"/> of its value.
-        /// A solo specialist equals max(solo, 0); two decent heroes stack
-        /// without doubling.</summary>
+        /// <summary>Combine two heroes' skill values; higher full-weight, lower contributes <see cref="SkillPairLowerWeight"/>.</summary>
         public virtual int CombineSkillPair(int a, int b)
         {
             int high = a > b ? a : b;
@@ -404,9 +315,7 @@ namespace TOR_Core.Models
             return high + (int)(low * SkillPairLowerWeight);
         }
 
-        /// <summary>Effective Roguery for the AMBUSHER side — leader + the
-        /// party's <c>EffectiveScout</c> hero, combined via the pair rule.
-        /// Drives the ambush success chance.</summary>
+        /// <summary>Effective Roguery for the ambusher side (leader + Scout-role hero).</summary>
         public virtual int GetAmbusherRoguery(MobileParty party)
         {
             if (party == null) return 0;
@@ -415,9 +324,7 @@ namespace TOR_Core.Models
             return CombineSkillPair(leader, scout);
         }
 
-        /// <summary>Effective Scouting for the AMBUSHER side. Drives the
-        /// strike range — a well-scouted ambusher can execute a successful
-        /// ambush from further away.</summary>
+        /// <summary>Effective Scouting for the ambusher side; drives strike range.</summary>
         public virtual int GetAmbusherScouting(MobileParty party)
         {
             if (party == null) return 0;
@@ -426,9 +333,7 @@ namespace TOR_Core.Models
             return CombineSkillPair(leader, scout);
         }
 
-        /// <summary>Effective Scouting for the DEFENDER side. Drives
-        /// ambush detection; contested against the ambusher's Roguery
-        /// in the success chance formula.</summary>
+        /// <summary>Effective Scouting for the defender side; drives detection.</summary>
         public virtual int GetDefenderScouting(MobileParty party)
         {
             if (party == null) return 0;
@@ -437,28 +342,11 @@ namespace TOR_Core.Models
             return CombineSkillPair(leader, scout);
         }
 
-        /// <summary>Effective Roguery for the DEFENDER side. Feeds the
-        /// AmbushSpottingBonus skill effect into ScoutingDetectionMultiplier
-        /// using the same leader + Scout pair rule that every other skill
-        /// aggregation in this model uses.</summary>
-        public virtual int GetDefenderRoguery(MobileParty party)
-        {
-            if (party == null) return 0;
-            int leader = party.LeaderHero?.GetSkillValue(DefaultSkills.Roguery) ?? 0;
-            int scout = party.EffectiveScout?.GetSkillValue(DefaultSkills.Roguery) ?? 0;
-            return CombineSkillPair(leader, scout);
-        }
-
-        /// <summary>Tactics is a leader-only skill — unlike Scouting, it's
-        /// not tied to the Scout role. Only the leader's value counts
-        /// toward reading the terrain for ambush spots.</summary>
+        /// <summary>Leader-only Tactics skill for defender terrain reading.</summary>
         public virtual int GetDefenderTactics(MobileParty party)
             => party?.LeaderHero?.GetSkillValue(DefaultSkills.Tactics) ?? 0;
 
-        /// <summary>Dynamic strike range: how far around the ambusher's
-        /// position a successful ambush can be executed. Scales with the
-        /// ambusher's effective Scouting (not Roguery — Scouting is "where
-        /// can we usefully lie in wait").</summary>
+        /// <summary>Dynamic strike range scaled by ambusher Scouting.</summary>
         public virtual float CalculateStrikeRange(MobileParty ambusher)
         {
             int scouting = GetAmbusherScouting(ambusher);
@@ -467,13 +355,7 @@ namespace TOR_Core.Models
             return range;
         }
 
-        /// <summary>
-        /// Ambush success chance for a given (ambusher, target) pair.
-        /// Combines a baseline, the skill contest (Roguery vs Scouting
-        /// + Tactics via the pair-combined effective skills), terrain,
-        /// force ratio, stealth-duration freshness, proximity, and night
-        /// bonus. Clamped to [MinChance, MaxChance].
-        /// </summary>
+        /// <summary>Ambush success chance for an (ambusher, target) pair. Combines skill contest, terrain, force ratio, duration, night, and proximity.</summary>
         public virtual float CalculateAmbushSuccessChance(MobileParty attacker, MobileParty target, CampaignTime stealthEnteredAt)
         {
             if (attacker == null || target == null) return MinChance;
@@ -484,18 +366,12 @@ namespace TOR_Core.Models
             chance += ForceRatioBonus(attacker, target);
             chance += StealthDurationBonus(stealthEnteredAt);
             chance += NightTimeBonusValue();
-            // Proximity is multiplicative — applied LAST so it survives
-            // the saturation that was previously pinning ambush chance
-            // at the 0.95 cap regardless of distance.
+            // Proximity is multiplicative, applied last.
             chance *= ProximityMultiplier(attacker, target);
             return MBMath.ClampFloat(chance, MinChance, MaxChance);
         }
 
-        /// <summary>Skill contest: ambusher Roguery vs defender Scouting +
-        /// Tactics. Positive when the ambusher's weighted skill advantage
-        /// clears the defender's awareness. Normalized by
-        /// <see cref="ContestNormalizer"/>; clamp mirrors the old
-        /// Scouting-delta bounds so no single factor dominates.</summary>
+        /// <summary>Skill contest: ambusher Roguery vs defender Scouting + Tactics, normalized and clamped.</summary>
         protected virtual float SkillContestBonus(MobileParty attacker, MobileParty target)
         {
             float attackerScore = GetAmbusherRoguery(attacker) * ContestRogueryWeight;
@@ -510,10 +386,7 @@ namespace TOR_Core.Models
             float strikeRange = CalculateStrikeRange(attacker);
             if (strikeRange <= 0f) return 1f;
             float distance = attacker.Position.ToVec2().Distance(target.Position.ToVec2());
-            // Linear fade from 1.0 at distance 0 to EdgeProximityMultiplier
-            // at the strike-range edge. Pinned at the edge value beyond
-            // the ring (same cliff whether you're just inside or just
-            // outside the attacker's live strike radius).
+            // Linear fade from 1.0 to EdgeProximityMultiplier across strike range.
             float t = MBMath.ClampFloat(distance / strikeRange, 0f, 1f);
             return MBMath.Lerp(1f, EdgeProximityMultiplier, t);
         }
@@ -567,28 +440,13 @@ namespace TOR_Core.Models
             return MBMath.ClampFloat(hours * StealthDurationPerHour, 0f, StealthDurationCap);
         }
 
-        /// <summary>
-        /// Chance that a party successfully slips into stealth stance.
-        /// Factors: ambusher Roguery (+), terrain (+/-), night (+),
-        /// observers in range (- per party AND - per observer-Scouting
-        /// point, both capped). Clamp [MinEntryChance..MaxEntryChance].
-        /// See campaign-stealth-design.md § 1.
-        ///
-        /// <paramref name="observers"/> is the live list of hostile
-        /// parties within <see cref="DetectionScanRadius"/>; passing it
-        /// in (rather than just the count) lets the penalty scale with
-        /// the observers' actual Scouting totals, so a lone scout-master
-        /// is a bigger problem than a herd of untrained levies.
-        /// </summary>
+        /// <summary>Chance a party successfully slips into stealth stance. Factors Roguery, terrain, night, observers, settlements.</summary>
         public virtual float CalculateEntryChance(MobileParty self,
             IReadOnlyList<MobileParty> observers)
         {
             if (self == null) return MinEntryChance;
 
-            // Silent clean-sweep chain: within the InstantAmbush window
-            // the hooded eye icon is lit, stealth entry is guaranteed.
-            // Keeps the hotkey flow identical (prep timer still runs) —
-            // we just skip the possibility of failure.
+            // Instant-ambush window: stealth entry guaranteed.
             var ai = Campaign.Current?.GetCampaignBehavior<CampaignMechanics.Ambush.AiAmbushBehavior>();
             var latest = ai?.GetMostRecentRecordInvolving(self, InstantAmbushWindowHours);
             if (IsInstantAmbushAllowed(latest)) return 1f;
@@ -603,23 +461,14 @@ namespace TOR_Core.Models
             return MBMath.ClampFloat(chance, MinEntryChance, MaxEntryChance);
         }
 
-        /// <summary>Pair-combined Roguery contribution to entry chance.
-        /// Uses <see cref="GetAmbusherRoguery"/> so a party with a
-        /// Roguery-specialist as either leader or dedicated Scout
-        /// benefits. Cap prevents a maxed hero from single-handedly
-        /// pushing entry chance to certainty.</summary>
+        /// <summary>Pair-combined Roguery contribution to entry chance, capped.</summary>
         protected virtual float EntryRogueryBonus(MobileParty self)
         {
             int r = GetAmbusherRoguery(self);
             return MBMath.ClampFloat(r * EntryRogueryPerPointBonus, 0f, EntryRogueryBonusCap);
         }
 
-        /// <summary>Party-roster stealth suitability contribution.
-        /// Reads <see cref="AmbushTroopStealthScore.GetBasePartyScore"/>
-        /// plus the dynamic bonus (perks / buffs), pivots around the
-        /// neutral baseline, scales by
-        /// <see cref="EntryPartyStealthScoreWeight"/>. Can be negative —
-        /// a heavy-cav roster actively drags entry chance down.</summary>
+        /// <summary>Party-roster stealth suitability contribution; can be negative for heavy rosters.</summary>
         protected virtual float EntryPartyStealthScoreBonus(MobileParty self)
         {
             float score = AmbushTroopStealthScore.GetBasePartyScore(self)
@@ -666,118 +515,59 @@ namespace TOR_Core.Models
             return MBMath.ClampFloat(raw, 0f, EntryHostilePenaltyCap);
         }
 
-        // ---- Phase F §6 follow-up: ambusher-presses-after-flee ----
+        // Ambusher-presses-after-flee follow-up.
 
-        /// <summary>Base strength-ratio threshold for the AI ambusher
-        /// deciding to press the attack after the player flees the
-        /// Phase F mission (AmbushedFled). The actual threshold is
-        /// scaled by <see cref="HomelandMultiplier"/> and
-        /// <see cref="TraitAmbushMultiplier"/> — a Wood Elf lord in
-        /// Laurelorn with a scheming hero presses at a far lower
-        /// ratio than a Bretonnian honour-bound knight in foreign
-        /// terrain. 1.0 means "equal strength = always press"
-        /// before culture/trait modifiers are applied.</summary>
+        /// <summary>Base strength-ratio threshold for the AI ambusher pressing after the victim flees.</summary>
         public virtual float AmbushPressBaseThreshold => 1.0f;
 
-        /// <summary>True if the AI ambusher presses the attack on the
-        /// campaign map after the player fled the Phase F mission.
-        /// Combination of raw strength ratio + culture-homeland +
-        /// hero-trait multipliers — mirrors the propensity formula
-        /// so cultures and heroes read consistently from the
-        /// entry decision through the press decision.</summary>
+        /// <summary>True if the AI ambusher presses the attack on the campaign map after the victim fled.</summary>
         public virtual bool AmbusherPressesAttack(MobileParty ambusher, MobileParty player)
         {
             if (ambusher == null || player == null) return false;
             float ambusherStrength = ambusher.Party?.EstimatedStrength ?? 0f;
             float playerStrength = player.Party?.EstimatedStrength ?? 0f;
-            if (playerStrength <= 0f) return true;    // player has no fighting force
-            if (ambusherStrength <= 0f) return false; // ambusher wiped
+            if (playerStrength <= 0f) return true;
+            if (ambusherStrength <= 0f) return false;
             float strengthRatio = ambusherStrength / playerStrength;
-            // Threshold shrinks for aggressive cultures / scheming heroes.
-            // AmbushPressBaseThreshold / mult inverts the same multipliers
-            // that boost propensity (homeland + traits).
             float threshold = AmbushPressBaseThreshold
                             / System.Math.Max(HomelandMultiplier(ambusher), 0.1f)
                             / System.Math.Max(TraitAmbushMultiplier(ambusher.LeaderHero), 0.1f);
             return strengthRatio >= threshold;
         }
 
-        /// <summary>Flat morale penalty applied to the main party when
-        /// the ambusher vanishes after a Phase F AmbushedFled outcome.
-        /// Light — fiction is "being ambushed is rattling but no
-        /// combat loss."</summary>
+        /// <summary>Flat morale penalty applied to the main party when the ambusher vanishes after an AmbushedFled outcome.</summary>
         public virtual float AmbushedFledVanishMoralePenalty => 5f;
 
-        /// <summary>Extra morale penalty stacked on top of vanilla's
-        /// defeat-morale when the player retreats from the follow-up
-        /// field battle (double-flee). Pushes a mid-morale party into
-        /// the desertion zone — the fiction is "running twice in one
-        /// afternoon shatters the band."</summary>
+        /// <summary>Extra morale penalty on top of vanilla's defeat-morale when the player retreats twice in one ambush.</summary>
         public virtual float AmbushedFledDoubleFleeExtraMoralePenalty => 20f;
 
-        /// <summary>Fraction of each committed troop type that gets
-        /// shifted from healthy → wounded when the player flees the
-        /// first ambush. Applied per-character-type via the roster
-        /// snapshot taken at mission start. E.g. 0.3 = 30% of each
-        /// troop stack from the ambushed-into-mission commitment ends
-        /// up carrying wounds.</summary>
+        /// <summary>Fraction of each committed troop type shifted from healthy to wounded on first flee.</summary>
         public virtual float AmbushedFledWoundShare => 0.3f;
 
-        /// <summary>Fraction of each committed troop type that gets
-        /// removed from the roster on double-flee (fled the follow-up
-        /// field battle too). Same snapshot semantics as
-        /// <see cref="AmbushedFledWoundShare"/>. These are the "left
-        /// behind for good" — not wounded, gone.</summary>
+        /// <summary>Fraction of each committed troop type removed from the roster on double-flee.</summary>
         public virtual float AmbushedDoubleFleeRemoveShare => 0.3f;
 
-        // ---- Preparation time (§19) ----
+        // Preparation time.
 
-        /// <summary>Minimum prep window for an ambush, in game-minutes.
-        /// Applied regardless of party size — a solo scout still needs
-        /// at least this long to pick a position. Full design in §19 of
-        /// campaign-stealth-design.md.</summary>
+        /// <summary>Minimum prep window for an ambush, in game-minutes.</summary>
         public virtual float BasePreparationMinutes => 15f;
 
-        /// <summary>Party sizes at or below this get the base floor only;
-        /// extra troops beyond this threshold stack
-        /// <see cref="PerTroopMinutes"/> each. Fiction: a small group
-        /// disperses into cover in minutes.</summary>
+        /// <summary>Party sizes at or below this get the base floor only; excess troops stack <see cref="PerTroopMinutes"/>.</summary>
         public virtual int SmallPartyThreshold => 25;
 
-        /// <summary>Added game-minutes per troop above
-        /// <see cref="SmallPartyThreshold"/>. 0.1 means a 100-man party
-        /// pays 7.5 extra minutes on top of base before the concealment
-        /// multiplier.</summary>
+        /// <summary>Added game-minutes per troop above <see cref="SmallPartyThreshold"/>.</summary>
         public virtual float PerTroopMinutes => 0.1f;
 
-        /// <summary>Floor on the concealment multiplier `(2 - stealthScore)`.
-        /// Clamps the worst-case penalty so an awful stealth-score party
-        /// still can set up eventually; also guards against an unexpected
-        /// stealthScore > 2 value from an edge case.</summary>
+        /// <summary>Floor on the concealment multiplier (2 - stealthScore).</summary>
         public virtual float MinimumConcealmentFactor => 0.3f;
 
-        /// <summary>AI only: scan radius around a candidate ambusher for
-        /// hostile parties when evaluating "could a pursuer intercept
-        /// before setup completes?" Larger than
-        /// <c>AiOpportunityScanRadius</c> so we see pursuers who are
-        /// slightly farther out but moving fast.</summary>
+        /// <summary>AI only: scan radius for pursuers that might intercept before setup completes.</summary>
         public virtual float AiPrepPursuitRejectionRadius => 25f;
 
-        /// <summary>Short-lived persistence window after the player spots
-        /// a stealthed AI party via the quarter-hourly detection roll.
-        /// For the window length the detected party stays visible on the
-        /// player's map regardless of fog-of-war distance. Lets the
-        /// player actually chase the detected party instead of having
-        /// them fade back into fog the second they walk out of Scouting
-        /// range. Full design in ai-ambushes-player-design.md §6
-        /// "Deferred — persistent on-map display for the detected party."
-        /// </summary>
+        /// <summary>Hours a player-detected stealthed AI party stays visible on the map regardless of fog distance.</summary>
         public virtual float PlayerDetectionRevealHours => 2f;
 
-        /// <summary>Game-minutes needed to set up an ambush, given the
-        /// party's size and troop composition. See §19 for the derivation
-        /// and target curve (solo scout → ~12 min, 300-man knight army
-        /// → ~98 min).</summary>
+        /// <summary>Game-minutes needed to set up an ambush given party size and stealth score.</summary>
         public virtual float CalculatePreparationMinutes(MobileParty party)
         {
             if (party == null) return BasePreparationMinutes;
@@ -790,42 +580,35 @@ namespace TOR_Core.Models
             float concealmentFactor = System.Math.Max(MinimumConcealmentFactor,
                                                       2f - stealthScore);
 
-            return (BasePreparationMinutes + sizeMinutes) * concealmentFactor;
+            float scoutMultiplier = GetPreparationScoutMultiplier(party);
+            return (BasePreparationMinutes + sizeMinutes) * concealmentFactor * scoutMultiplier;
         }
 
-        // ---- Record-cooldown ----
+        /// <summary>Per-point-of-Roguery speedup on the ambusher's preparation window.</summary>
+        public virtual float PreparationScoutPerPointReduction => 0.002f;
 
-        /// <summary>Protection window after the player gets ambushed:
-        /// hours during which the AI-ambush decision tick refuses to
-        /// re-target MainParty. Distinct from the stealth-rebuild
-        /// cooldown — "I was just ambushed and need to recover" is a
-        /// different mechanical state than "I just ambushed and gave
-        /// away my position." Shorter by default; the player should
-        /// get back to normal campaign play reasonably soon, just not
-        /// get stacked by back-to-back AI ambushes.
-        /// See [[feedback_ambush_role_asymmetry]].</summary>
+        /// <summary>Floor on the preparation Scout multiplier.</summary>
+        public virtual float MinPreparationScoutMultiplier => 0.3f;
+
+        /// <summary>Roguery-driven prep multiplier. Returns 1.0 for leaderless / zero-skill parties.</summary>
+        public virtual float GetPreparationScoutMultiplier(MobileParty party)
+        {
+            int rog = GetAmbusherRoguery(party);
+            if (rog <= 0) return 1f;
+            float mult = 1f - rog * PreparationScoutPerPointReduction;
+            if (mult < MinPreparationScoutMultiplier) mult = MinPreparationScoutMultiplier;
+            return mult;
+        }
+
+        // Record cooldown.
+
+        /// <summary>Protection window after the player gets ambushed, blocking AI re-targeting of MainParty.</summary>
         public virtual float AmbushGuardingHours => 3f;
 
-        /// <summary>How many game-hours an <see cref="AmbushRecord"/>
-        /// keeps a party on cooldown.
-        ///
-        /// Role-sensitive:
-        ///  - Phase F victim guard (<c>Victim == MainParty</c>, not
-        ///    repelled) → <see cref="AmbushGuardingHours"/>. Protects
-        ///    the player from immediate re-ambush.
-        ///  - Phase D / repelled / AI-vs-AI → baseline from
-        ///    <c>AmbushCampaignBehavior.CooldownHours</c>, plus the
-        ///    mission model's <c>LoudnessPenaltyHours</c> for loud
-        ///    ambushes (gunpowder / non-Shadow magic).</summary>
+        /// <summary>Game-hours an <see cref="AmbushRecord"/> keeps a party on cooldown; role-sensitive.</summary>
         public virtual float GetAmbushCooldownHours(AmbushRecord record)
         {
-            // Quiet successful strike — ambusher landed with no loud
-            // signature, no witnesses. Stealth should re-arm immediately
-            // so the player can slip straight into the next target. Was
-            // previously hardcoded into the TotalVictory quiet branch
-            // via a ClearRecentRecordsInvolving call; moved here so the
-            // record still exists for disorganize shield / hooded-eye
-            // queries but imposes no cooldown.
+            // Silent successful strike: zero cooldown, stealth re-arms.
             if (record != null && IsSilentSuccessfulStrike(record))
             {
                 return 0f;
@@ -844,9 +627,7 @@ namespace TOR_Core.Models
                 var missionModel = Campaign.Current?.Models?.GetMissionAmbushModel();
                 if (missionModel != null) hours += missionModel.LoudnessPenaltyHours;
             }
-            // Reprisal primary: party-leader roguery perk shaves the
-            // post-failure cooldown. PrimaryBonus is negative (-0.15 at
-            // default), so the multiplier is (1 + bonus) = 0.85.
+            // Reprisal perk shortens post-failure cooldown via a negative PrimaryBonus.
             if (record != null && record.Ambusher != null
                 && record.Ambusher.HasPerk(TORPerks.Roguery.Reprisal))
             {
@@ -855,12 +636,7 @@ namespace TOR_Core.Models
             return hours;
         }
 
-        /// <summary>True if the record represents a landed ambush
-        /// strike — ambusher held the field or got at least partial
-        /// kills. Consumed by the disorganize shield via
-        /// <see cref="AiAmbushBehavior"/>. Solo stealth-exit stamps
-        /// (Resolution=None) and repelled / stalemate resolutions
-        /// return false.</summary>
+        /// <summary>True when the record represents a landed strike (ambusher held the field or scored partial kills).</summary>
         public virtual bool IsSuccessfulStrike(AmbushRecord record)
         {
             if (record == null) return false;
@@ -876,25 +652,14 @@ namespace TOR_Core.Models
             }
         }
 
-        /// <summary>True when the strike landed silently (no loud
-        /// signature, no witnesses). Drives the zero-cooldown branch
-        /// in <see cref="GetAmbushCooldownHours"/> and the hooded eye
-        /// nudge via <see cref="IsInstantAmbushAllowed"/>.</summary>
+        /// <summary>True when the strike landed silently (no loud signature, no witnesses).</summary>
         public virtual bool IsSilentSuccessfulStrike(AmbushRecord record)
             => IsSuccessfulStrike(record) && !record.WasLoud;
 
-        /// <summary>Game-hours the hooded "slip back to cover now"
-        /// nudge stays lit after a silent clean sweep. Short enough
-        /// that an unused opportunity decays before the next day;
-        /// long enough to be noticed on the HUD.</summary>
+        /// <summary>Game-hours the hooded instant-ambush nudge stays lit after a silent clean sweep.</summary>
         public virtual float InstantAmbushWindowHours => 2f;
 
-        /// <summary>True when the latest record makes the player
-        /// eligible for an instant re-ambush (no cooldown wait, eye
-        /// widget lights the hooded icon). Only a silent
-        /// <see cref="AmbushResolution.AmbusherTotalVictory"/> that
-        /// didn't knock the ambusher's leader down qualifies, within
-        /// <see cref="InstantAmbushWindowHours"/>.</summary>
+        /// <summary>True when the latest record makes the player eligible for an instant re-ambush.</summary>
         public virtual bool IsInstantAmbushAllowed(AmbushRecord record)
             => record != null
                && record.Resolution == AmbushResolution.AmbusherTotalVictory
@@ -902,37 +667,20 @@ namespace TOR_Core.Models
                && !record.AmbusherLeaderDown
                && (CampaignTime.Now - record.At).ToHours < InstantAmbushWindowHours;
 
-        /// <summary>Minimum visible troop count before an enemy side's
-        /// numbers get masked ("?"). Below or equal to this the real
-        /// numbers show. Centralised here instead of hardcoded 5 in
-        /// each extension so the formation marker and scoreboard mask
-        /// stay in sync.</summary>
+        /// <summary>Visible troop count threshold below which real enemy numbers show instead of the bluff mask.</summary>
         public virtual int BluffVisibleThreshold => 5;
 
-        /// <summary>True when the scoreboard should render a row's
-        /// counts as "?" instead of real numbers. Fires for Phase F
-        /// ambushed (player on Defender) while the ambush's bluff
-        /// state is active, the row is not on the player's own party,
-        /// and the enemy-team visible total exceeds
-        /// <see cref="BluffVisibleThreshold"/>. All other missions,
-        /// phases, and player-party rows return false. The Dead /
-        /// Eliminated column stays visible regardless — the mask
-        /// only hides what the player hasn't already killed.</summary>
+        /// <summary>True when the scoreboard should render a row's counts as "?" instead of real numbers.</summary>
         public virtual bool ShouldMaskScoreboardRow(bool isRowOnPlayerSide)
         {
             if (isRowOnPlayerSide) return false;
             var mission = Mission.Current;
             if (mission?.PlayerTeam == null) return false;
-            // Scoreboard mask only applies when the player is the
-            // ambushed (Phase F). Phase D player-as-ambusher sees the
-            // enemy counts normally; the bluff is them-looking-at-us,
-            // not us-looking-at-them.
+            // Bluff mask only applies when the player is the ambushed defender.
             if (mission.PlayerTeam.Side != BattleSideEnum.Defender) return false;
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
             if (behavior == null || !behavior.IsCurrentMissionBluffed) return false;
-            // Enemy side visible total — if it's dropped to threshold
-            // or below, the mask lifts (matches the formation-marker
-            // bluff behaviour).
+            // Lift the mask once enemy visible count drops to threshold.
             var enemySide = mission.PlayerTeam.Side.GetOppositeSide();
             int visible = 0;
             foreach (var t in mission.Teams)
@@ -946,95 +694,45 @@ namespace TOR_Core.Models
             return visible > BluffVisibleThreshold;
         }
 
-        // ---- Phase F: AI-side propensity ----
+        // AI-side propensity.
 
-        /// <summary>Per-tick chance that an eligible AI lord/bandit party even
-        /// considers trying for an ambush. Baseline for a culture with no
-        /// override registered; keeps the system quiet until propensity data
-        /// is tuned per culture / hero.</summary>
+        /// <summary>Per-tick base propensity for any culture without a registered override.</summary>
         public virtual float DefaultCulturePropensity => 0f;
 
-        /// <summary>Multiplicative scalar on the per-tick propensity roll.
-        /// Each quarter-hour tick, every eligible party rolls
-        /// <c>MBRandom.RandomFloat &lt; propensity × AiDecisionTickFraction</c>
-        /// to decide whether to even try entering stealth. 1.0 means the
-        /// raw propensity drives the per-tick rate; 0.1 means ten times
-        /// fewer attempts per party per tick. Keep this as the primary
-        /// volume dial — propensity values stay flavor-shaped, this
-        /// knob controls world-wide rate.</summary>
+        /// <summary>Multiplicative scalar on the per-tick propensity roll; primary volume dial.</summary>
         public virtual float AiDecisionTickFraction => 0.1f;
 
-        // ---- Phase F Slice 2b: AI-vs-AI skirmish ----
+        // AI-vs-AI skirmish.
 
-        /// <summary>Fraction of the ambusher's roster that counts as the
-        /// "strike" force in a headless AI-vs-AI ambush. The strike delivers
-        /// casualties to the victim and takes some itself; the rest of the
-        /// ambusher roster sits in reserve. Default 0.5 — half the party
-        /// commits to the surprise salvo.</summary>
+        /// <summary>Fraction of the ambusher roster forming the strike force in a headless AI-vs-AI ambush.</summary>
         public virtual float AmbushSkirmishStrikePowerFraction => 0.5f;
 
-        /// <summary>Fraction of the strike force's power that lands as
-        /// wounds on the victim. Default 0.4 → a 50-troop strike wounds
-        /// ~20 of the victim's roster.</summary>
+        /// <summary>Fraction of strike-force power that lands as wounds on the victim.</summary>
         public virtual float AmbushSkirmishVictimCasualtyFraction => 0.4f;
 
-        /// <summary>Fraction of the strike force itself that gets wounded
-        /// in the exchange. Default 0.1 → surprise advantage keeps the
-        /// ambusher's own losses light.</summary>
+        /// <summary>Fraction of the strike force itself that gets wounded in the exchange.</summary>
         public virtual float AmbushSkirmishAmbusherCasualtyFraction => 0.1f;
 
-        /// <summary>Strength ratio above which the ambusher presses the
-        /// attack into a full field battle instead of melting away.
-        /// Mirrors design doc § 6 — same gate the Phase F AmbushedFled
-        /// follow-up uses on the player side.</summary>
+        /// <summary>Strength ratio above which the ambusher presses into a full field battle instead of melting away.</summary>
         public virtual float AmbushFollowupThreshold => 1.5f;
 
-        /// <summary>Minimum CalculateAmbushSuccessChance an AI ambusher
-        /// requires before committing to a strike. Below this, the party
-        /// stays in stealth and lets the target walk past — the
-        /// "lurking is also valid" case: small forces that spotted a
-        /// stronger hostile just vanish and wait for it to clear.
-        /// </summary>
+        /// <summary>Minimum predicted success chance an AI ambusher requires before committing to a strike.</summary>
         public virtual float AiMinCommitChance => 0.35f;
 
-        /// <summary>Radius an AI party scans for potential ambush targets
-        /// BEFORE deciding to enter stealth. If no hostile party is in
-        /// this range, the propensity / entry roll is skipped entirely —
-        /// the party doesn't lie in wait for ambushes that will never
-        /// happen. Wider than <see cref="AmbushCampaignBehavior.StealthRadius"/>
-        /// (the actual strike range) so the party stealths slightly
-        /// before the target walks into strike range, not at the moment
-        /// it's already too late to react.</summary>
+        /// <summary>Radius an AI party scans for potential ambush targets before deciding to enter stealth.</summary>
         public virtual float AiOpportunityScanRadius => 25f;
 
-        /// <summary>Minimum predicted ambush success chance against the
-        /// best candidate target before even considering entering
-        /// stealth. Below this, the party knows a strike wouldn't work
-        /// against anyone it can see, so it doesn't bother hiding.
-        /// Separate from <see cref="AiMinCommitChance"/> (which is the
-        /// strike-commit gate at target-detection time) — this is the
-        /// "is it worth even trying" entry gate.</summary>
+        /// <summary>Minimum predicted success against the best visible candidate before trying to enter stealth.</summary>
         public virtual float AiMinEntryViabilityChance => 0.3f;
 
-        /// <summary>Radius in which other already-stealthed friendlies
-        /// count as "cluster" — too many hiding in the same spot makes
-        /// the position obvious. Shared with the planned scoring
-        /// formula so the friendly-stealth multiplier reads the same
-        /// local density as this penalty.</summary>
+        /// <summary>Radius in which already-stealthed friendlies count as a cluster.</summary>
         public virtual float FriendlyStealthClusterRadius => 15f;
 
-        /// <summary>Entry-chance penalty per nearby already-stealthed
-        /// friendly party. Rationale: ten lords hiding behind the same
-        /// hill compound each other's trail / profile — enemies will
-        /// catch on. Capped by <see cref="FriendlyStealthClusterPenaltyCap"/>
-        /// so a dense cluster can't drive entry below the minimum
-        /// floor on its own.</summary>
+        /// <summary>Entry-chance penalty per nearby already-stealthed friendly party.</summary>
         public virtual float FriendlyStealthClusterPenaltyPerParty => 0.1f;
         public virtual float FriendlyStealthClusterPenaltyCap => 0.4f;
 
-        /// <summary>Returns the cluster penalty to subtract from entry
-        /// chance given the number of friendlies already stealthed in
-        /// range. Clamped at the cap. Zero if no cluster.</summary>
+        /// <summary>Cluster penalty to subtract from entry chance, clamped.</summary>
         public virtual float FriendlyStealthClusterPenalty(int nearbyStealthedFriendlies)
         {
             if (nearbyStealthedFriendlies <= 0) return 0f;
@@ -1042,33 +740,30 @@ namespace TOR_Core.Models
             return MBMath.ClampFloat(raw, 0f, FriendlyStealthClusterPenaltyCap);
         }
 
-        /// <summary>Runtime stealth-score delta for a party, on top of
-        /// its precomputed <see cref="AmbushTroopStealthScore.GetBasePartyScore"/>.
-        /// This is the hook for perks / buffs / culture-level dynamic
-        /// effects — anything that shifts stealth value during a session
-        /// (base is fixed per troop StringId). Returns 0 by default; a
-        /// subclass or future design pass fills in actual perks (e.g.
-        /// Roguery leader bonus, "Shadow Rites" career choice, etc.).
-        /// </summary>
-        public virtual float GetDynamicStealthBonus(MobileParty party) => 0f;
+        /// <summary>Runtime stealth-score delta for a party, additive on top of the precomputed base score.</summary>
+        public virtual float GetDynamicStealthBonus(MobileParty party)
+        {
+            if (party == null) return 0f;
+            // Combined leader + Scout Roguery as an additive stealth bonus, capped.
+            int rog = GetAmbusherRoguery(party);
+            if (rog <= 0) return 0f;
+            float bonus = rog * DynamicStealthRogueryPerPoint;
+            if (bonus > DynamicStealthRogueryCap) bonus = DynamicStealthRogueryCap;
+            return bonus;
+        }
 
-        /// <summary>Returns (ambusherWounds, victimWounds) for a headless
-        /// skirmish. The strike power is the ambusher's healthy count ×
-        /// <see cref="AmbushSkirmishStrikePowerFraction"/>; victim wounds
-        /// are clamped against the victim's available healthy count.
-        ///
-        /// Base-tier numbers (Normal success multiplier 1.0×). Call
-        /// <see cref="CalculateSkirmishCasualties(MobileParty, MobileParty, AmbushOutcomeTier)"/>
-        /// to scale by tier.
-        /// </summary>
+        /// <summary>Per-point-of-Roguery additive to the party stealth score.</summary>
+        public virtual float DynamicStealthRogueryPerPoint => 0.001f;
+
+        /// <summary>Cap on the Roguery-driven dynamic stealth bonus.</summary>
+        public virtual float DynamicStealthRogueryCap => 0.3f;
+
+        /// <summary>Base-tier (Normal success) skirmish casualties for the (ambusher, victim) pair.</summary>
         public virtual (int ambusherWounds, int victimWounds) CalculateSkirmishCasualties(
             MobileParty ambusher, MobileParty victim)
             => CalculateSkirmishCasualties(ambusher, victim, AmbushOutcomeTier.NormalSuccess);
 
-        /// <summary>Tier-scaled casualty computation. Multipliers per
-        /// tier are documented in campaign-stealth-design.md § 13.
-        /// Values are rounded via (int) truncation and clamped against
-        /// the available healthy count on each side.</summary>
+        /// <summary>Tier-scaled casualty computation, clamped against available healthy count on each side.</summary>
         public virtual (int ambusherWounds, int victimWounds) CalculateSkirmishCasualties(
             MobileParty ambusher, MobileParty victim, AmbushOutcomeTier tier)
         {
@@ -1094,20 +789,11 @@ namespace TOR_Core.Models
             return (ambusherWounds, victimWounds);
         }
 
-        /// <summary>Band widths for the outcome-tier margin check.
-        /// Critical / terrible require a decisive margin either way;
-        /// in between is a normal pass / minor fail.</summary>
+        /// <summary>Band widths for the outcome-tier margin check.</summary>
         public virtual float TierCriticalMargin => 0.25f;
         public virtual float TierTerribleMargin => 0.25f;
 
-        /// <summary>
-        /// Pick an outcome tier from a chance (0..1) and a roll (0..1).
-        /// margin = chance - roll; the magnitude decides how decisive the
-        /// outcome is. See campaign-stealth-design.md § 13 for the design.
-        ///
-        /// Only applies to AI-vs-AI skirmishes — player-involved cases
-        /// stay binary (pass → NormalSuccess, fail → MinorFail) per § 14.
-        /// </summary>
+        /// <summary>Pick an outcome tier from a success chance and roll. AI-vs-AI only.</summary>
         public virtual AmbushOutcomeTier RollOutcomeTier(float chance, float roll)
         {
             float margin = chance - roll;
@@ -1117,11 +803,7 @@ namespace TOR_Core.Models
             return AmbushOutcomeTier.TerribleFail;
         }
 
-        /// <summary>True when the ambusher's post-skirmish healthy count
-        /// clears the follow-up threshold against the victim's healthy
-        /// count — the signal to press the attack rather than fade back
-        /// into cover. First-pass uses raw healthy counts; a Slice 2c
-        /// refinement can promote to tier-weighted strength.</summary>
+        /// <summary>True when the ambusher's post-skirmish healthy count clears the follow-up threshold.</summary>
         public virtual bool ShouldPressAttackAfterSkirmish(MobileParty ambusher, MobileParty victim)
         {
             if (ambusher?.MemberRoster == null || victim?.MemberRoster == null) return false;
@@ -1131,15 +813,7 @@ namespace TOR_Core.Models
             return ambusherHealthy >= victimHealthy * AmbushFollowupThreshold;
         }
 
-        /// <summary>Returns the ambush propensity for a given AI party.
-        /// Composed of a base value (hero override or culture baseline),
-        /// a <see cref="HomelandMultiplier"/> that boosts when the party
-        /// is surrounded by its own culture's settlements, and a
-        /// <see cref="TraitAmbushMultiplier"/> that shifts per hero
-        /// personality (Calculating / Honor / Valor). Bandits bypass
-        /// the two multipliers — their fake-culture StringIds don't
-        /// match any settlement and they rarely have a LeaderHero.
-        /// </summary>
+        /// <summary>Ambush propensity for a given AI party, composed of base value plus homeland and trait multipliers.</summary>
         public virtual float GetAmbushPropensity(MobileParty party)
         {
             if (party == null) return 0f;
@@ -1151,10 +825,7 @@ namespace TOR_Core.Models
                 * TraitAmbushMultiplier(party.LeaderHero);
         }
 
-        /// <summary>Base propensity before the homeland / trait multipliers.
-        /// Hero override takes precedence over culture value — e.g. a
-        /// chivalric-culture hero known for banditry can still have a high
-        /// base (see <see cref="AmbushPropensityRegistry"/>).</summary>
+        /// <summary>Base propensity before multipliers. Hero override beats culture value.</summary>
         protected virtual float GetBaseAmbushPropensity(MobileParty party)
         {
             var hero = party.LeaderHero;
@@ -1165,68 +836,39 @@ namespace TOR_Core.Models
             }
             var culture = party.MapFaction?.Culture ?? hero?.Culture;
             if (culture == null) return DefaultCulturePropensity;
-            // No greenskin-goblin gate here — the "orcs are bad at
-            // stealth" penalty is already baked into the precomputed
-            // AmbushTroopStealthScore via RaceFactor. An orc-heavy
-            // greenskin party will naturally score too low to pass
-            // the entry chance; the culture-level propensity is only
-            // the inclination to try, not the capability.
             return AmbushPropensityRegistry.GetCulturePropensity(culture, DefaultCulturePropensity);
         }
 
-        // ---- Homeland awareness ----
+        // Homeland awareness.
 
-        /// <summary>Scan radius around an AI party for the homeland density
-        /// check. 25u is tuned against the TOR map (median same-culture
-        /// settlement spacing ~15u; at 25 the median settlement has ~4
-        /// neighbours in range — enough for a stable ratio without blurring
-        /// across lore regions).</summary>
+        /// <summary>Scan radius around an AI party for the homeland density check.</summary>
         public virtual float HomelandScanRadius => 25f;
 
-        /// <summary>Propensity multiplier when the ambusher's neighbourhood
-        /// is 100 % foreign (no same-culture settlements in scan). Thematic:
-        /// a lord lying in wait in enemy territory is cautious.</summary>
+        /// <summary>Propensity multiplier when the ambusher's neighbourhood is 100% foreign.</summary>
         public virtual float HomelandForeignMultiplier => 0.5f;
 
-        /// <summary>Propensity multiplier when the ambusher's neighbourhood
-        /// is 100 % own-culture (homeland). Wood elves in Laurelorn,
-        /// greenskins in orc hills, Empire lords in Reikland.</summary>
+        /// <summary>Propensity multiplier when the ambusher's neighbourhood is 100% own-culture.</summary>
         public virtual float HomelandOwnMultiplier => 1.5f;
 
-        /// <summary>Linear interpolation from <see cref="HomelandForeignMultiplier"/>
-        /// (ratio 0, foreign) to <see cref="HomelandOwnMultiplier"/> (ratio
-        /// 1, home). Reads density via the <see cref="Extensions.MobilePartyExtensions.GetHomelandDensity"/>
-        /// extension so other systems can reuse the same signal.</summary>
+        /// <summary>Lerp from foreign to own multiplier based on homeland density.</summary>
         protected virtual float HomelandMultiplier(MobileParty party)
         {
             float density = party.GetHomelandDensity(HomelandScanRadius);
             return MBMath.Lerp(HomelandForeignMultiplier, HomelandOwnMultiplier, density);
         }
 
-        // ---- Personality traits ----
+        // Personality traits.
 
-        /// <summary>How much a single trait step (±1 of
-        /// <c>Hero.GetTraitLevel</c>) shifts the ambush multiplier. 0.1 →
-        /// each ±1 trait step moves the multiplier by ±10 %. With three
-        /// contributing traits (<see cref="DefaultTraits.Calculating"/>,
-        /// <see cref="DefaultTraits.Honor"/>, <see cref="DefaultTraits.Valor"/>)
-        /// at max ±2 each, total swing is ±0.6 → clamped to the band
-        /// below.</summary>
+        /// <summary>Multiplier shift per ±1 trait step on Calculating / Honor / Valor.</summary>
         public virtual float TraitStepWeight => 0.1f;
 
-        /// <summary>Lower bound of the trait multiplier — a maxed-honorable,
-        /// maxed-valorous, zero-calculating lord. Thematic: a knight who
-        /// disdains ambushes to the point of practical refusal.</summary>
+        /// <summary>Lower bound of the trait multiplier (honorable, valorous, straightforward lord).</summary>
         public virtual float TraitMultiplierMin => 0.4f;
 
-        /// <summary>Upper bound of the trait multiplier — a scheming,
-        /// dishonourable, cowardly lord. The classic "cunning assassin"
-        /// archetype: ambushes whenever possible.</summary>
+        /// <summary>Upper bound of the trait multiplier (scheming, dishonourable, cowardly lord).</summary>
         public virtual float TraitMultiplierMax => 1.6f;
 
-        /// <summary>Combine Calculating (bonus), Honor (penalty), Valor
-        /// (penalty) trait levels into a propensity multiplier. Returns
-        /// 1.0 when no leader (bandit tag parties etc.).</summary>
+        /// <summary>Combine Calculating (bonus), Honor (penalty), Valor (penalty) traits into a multiplier.</summary>
         protected virtual float TraitAmbushMultiplier(Hero leader)
         {
             if (leader == null) return 1f;
