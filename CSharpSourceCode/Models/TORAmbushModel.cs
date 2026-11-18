@@ -282,14 +282,10 @@ namespace TOR_Core.Models
                 default: return 0f;
             }
             // Shakedown (Roguery 50 secondary): "Nearby villages reduce
-            // your ambush stealth by 10% less." PartyRole on this
-            // effect is ClanLeader, not Scout, so HasPerk
-            // checkSecondaryRole won't resolve it. Check the party
-            // leader's clan-leader directly.
-            var leader = self.LeaderHero;
-            var clanLeader = leader?.Clan?.Leader;
-            if (clanLeader != null
-                && clanLeader.GetPerkValue(TORPerks.Roguery.Shakedown)
+            // your ambush stealth by 10% less." Bound to the party
+            // leader — a clan leader sitting elsewhere shouldn't
+            // affect an ambush being set by a companion's party.
+            if (self.HasPerk(TORPerks.Roguery.Shakedown)
                 && IsNearestInRangeAVillage(self))
             {
                 penalty *= 1f + TORPerks.Roguery.Shakedown.SecondaryBonus;

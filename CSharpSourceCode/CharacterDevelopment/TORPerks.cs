@@ -364,7 +364,7 @@ namespace TOR_Core.CharacterDevelopment
                 "{=str_tor_perk_shakedown_1}Villagers are 15% less likely to resist when you demand goods.",
                 PartyRole.Quartermaster, -0.15f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_shakedown_2}Nearby villages reduce your ambush stealth by 10% less.",
-                PartyRole.ClanLeader, -0.1f, EffectIncrementType.AddFactor);
+                PartyRole.PartyLeader, -0.1f, EffectIncrementType.AddFactor);
 
             _reprisal.Initialize("{=str_tor_perk_reprisal_label}Reprisal", DefaultSkills.Roguery, 75, _byTheRoad,
                 "{=str_tor_perk_reprisal_1}Recover 15% faster from a failed ambush.",
