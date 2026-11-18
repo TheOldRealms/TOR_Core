@@ -120,8 +120,10 @@ namespace TOR_Core.Models
         public virtual float AdjacentDistanceMultiplier => 2.5f;
         public virtual float FarDistanceMultiplier => 0.2f;
 
-        public virtual float DetectionScoutingPerPointBonus => 1f / 600f;  // 300 Scouting = +50% detection mult (cap below)
-        public virtual float DetectionScoutingBonusCap => 0.5f;
+        // Scouting → detection bonus is now carried entirely by the
+        // AmbushSpottingBonus skill effect (0.0015 per point, unbounded).
+        // Old DetectionScoutingPerPointBonus / DetectionScoutingBonusCap
+        // knobs removed to avoid double-counting.
 
         // §18 per-troop spotting score integration weights. Primary
         // signal is the ambush-detection roll; fog-of-war spotting
@@ -311,13 +313,18 @@ namespace TOR_Core.Models
 
         protected virtual float ScoutingDetectionMultiplier(MobileParty observer)
         {
+            // Single Scouting-driven path: the AmbushSpottingBonus skill
+            // effect is bound to Scouting (tooltip surfaces there), and
+            // reading its value against the combined leader+scout
+            // Scouting here keeps the ambusher's trade (Roguery) out of
+            // the detection formula entirely. Previously double-counted
+            // via a separate DetectionScoutingPerPointBonus path + a
+            // Roguery-fed AmbushSpottingBonus; both removed.
             int s = GetDefenderScouting(observer);
-            float scoutingBonus = MBMath.ClampFloat(s * DetectionScoutingPerPointBonus, 0f, DetectionScoutingBonusCap);
+            float scoutingBonus = TORSkillEffects.AmbushSpottingBonus.GetSkillEffectValue(s);
             float rosterBonus = AmbushTroopSpottingScore.GetBasePartyScore(observer, SpottingScoreSizeDampingReference)
                                 * SpottingScoreDetectionWeight;
-            int r = GetDefenderRoguery(observer);
-            float rogueryBonus = TORSkillEffects.AmbushSpottingBonus.GetSkillEffectValue(r);
-            return 1f + scoutingBonus + rosterBonus + rogueryBonus;
+            return 1f + scoutingBonus + rosterBonus;
         }
 
         protected virtual float TerrainDetectionMultiplier(MobileParty target)
@@ -790,7 +797,34 @@ namespace TOR_Core.Models
             float concealmentFactor = System.Math.Max(MinimumConcealmentFactor,
                                                       2f - stealthScore);
 
-            return (BasePreparationMinutes + sizeMinutes) * concealmentFactor;
+            float scoutMultiplier = GetPreparationScoutMultiplier(party);
+            return (BasePreparationMinutes + sizeMinutes) * concealmentFactor * scoutMultiplier;
+        }
+
+        /// <summary>Per-point-of-Roguery speedup on the ambusher's
+        /// preparation window. Reads the combined leader + Scout
+        /// companion Roguery via <see cref="GetAmbusherRoguery"/> so
+        /// a skilled scout meaningfully shortens setup. 0.002 → 0.2%
+        /// faster per point; 300 Roguery → multiplier 0.4 (60 %
+        /// faster). Floored by
+        /// <see cref="MinPreparationScoutMultiplier"/>.</summary>
+        public virtual float PreparationScoutPerPointReduction => 0.002f;
+
+        /// <summary>Floor on the preparation Scout multiplier — a
+        /// maxed-Roguery pair still needs at least this fraction of
+        /// the base prep window. Prevents degenerate "instant ambush"
+        /// at extreme skill values.</summary>
+        public virtual float MinPreparationScoutMultiplier => 0.3f;
+
+        /// <summary>Resolves the Roguery-driven prep multiplier.
+        /// Leaderless / zero-skill parties return 1.0 (no bonus).</summary>
+        public virtual float GetPreparationScoutMultiplier(MobileParty party)
+        {
+            int rog = GetAmbusherRoguery(party);
+            if (rog <= 0) return 1f;
+            float mult = 1f - rog * PreparationScoutPerPointReduction;
+            if (mult < MinPreparationScoutMultiplier) mult = MinPreparationScoutMultiplier;
+            return mult;
         }
 
         // ---- Record-cooldown ----
@@ -1050,7 +1084,30 @@ namespace TOR_Core.Models
         /// subclass or future design pass fills in actual perks (e.g.
         /// Roguery leader bonus, "Shadow Rites" career choice, etc.).
         /// </summary>
-        public virtual float GetDynamicStealthBonus(MobileParty party) => 0f;
+        public virtual float GetDynamicStealthBonus(MobileParty party)
+        {
+            if (party == null) return 0f;
+            // Combined leader + Scout companion Roguery as an additive
+            // bonus to the party's stealth score. At 300 Roguery pair
+            // → +0.3; capped by DynamicStealthRogueryCap so a maxed
+            // pair doesn't single-handedly push a heavy-cav column to
+            // specialist-concealer territory.
+            int rog = GetAmbusherRoguery(party);
+            if (rog <= 0) return 0f;
+            float bonus = rog * DynamicStealthRogueryPerPoint;
+            if (bonus > DynamicStealthRogueryCap) bonus = DynamicStealthRogueryCap;
+            return bonus;
+        }
+
+        /// <summary>Per-point-of-Roguery additive to the party stealth
+        /// score via <see cref="GetDynamicStealthBonus"/>. 0.001 → 300
+        /// Roguery adds +0.3 (before cap).</summary>
+        public virtual float DynamicStealthRogueryPerPoint => 0.001f;
+
+        /// <summary>Cap on the Roguery-driven dynamic stealth bonus.
+        /// Prevents a maxed pair from dominating the per-troop
+        /// composition signal entirely.</summary>
+        public virtual float DynamicStealthRogueryCap => 0.3f;
 
         /// <summary>Returns (ambusherWounds, victimWounds) for a headless
         /// skirmish. The strike power is the ambusher's healthy count ×
