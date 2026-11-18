@@ -274,12 +274,32 @@ namespace TOR_Core.Models
         protected virtual float SettlementEntryPenalty(MobileParty self)
         {
             if (self?.MapFaction == null) return 0f;
+            float penalty;
             switch (GetNearbySettlementKind(self))
             {
-                case SettlementProximityKind.Hostile: return HostileSettlementEntryPenalty;
-                case SettlementProximityKind.Neutral: return NeutralSettlementEntryPenalty;
+                case SettlementProximityKind.Hostile: penalty = HostileSettlementEntryPenalty; break;
+                case SettlementProximityKind.Neutral: penalty = NeutralSettlementEntryPenalty; break;
                 default: return 0f;
             }
+            // Shakedown (Roguery 50 secondary): "Nearby villages reduce
+            // your ambush stealth by 10% less." Scale the penalty when
+            // the nearest settlement in range is a village.
+            if (self.LeaderHero != null
+                && self.HasPerk(TORPerks.Roguery.Shakedown, checkSecondaryRole: true)
+                && IsNearestInRangeAVillage(self))
+            {
+                penalty *= 1f + TORPerks.Roguery.Shakedown.SecondaryBonus;
+            }
+            return penalty;
+        }
+
+        /// <summary>True when the closest settlement inside
+        /// <see cref="SettlementProximityRadius"/> is a village.
+        /// Supports the Shakedown secondary village-vicinity perk.</summary>
+        protected virtual bool IsNearestInRangeAVillage(MobileParty self)
+        {
+            var nearest = TORCommon.FindNearestSettlement(self, SettlementProximityRadius, _ => true);
+            return nearest != null && nearest.IsVillage;
         }
 
         /// <summary>Classify any settlement inside
