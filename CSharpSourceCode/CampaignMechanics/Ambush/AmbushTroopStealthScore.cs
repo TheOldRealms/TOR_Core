@@ -129,8 +129,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
             // MasterAmbusher: floor at a specialist-worthy value, don't
             // let mount / plate / weight pull it below. Deliberately
             // AFTER the penalties so you still get the delta if the base
-            // race was already higher than the floor.
-            if (c.HasAttribute(CharacterAttributes.MASTER_AMBUSHER)
+            // race was already higher than the floor. Heroes are
+            // excluded by design — the attribute is a troop-template
+            // marker, not a hero-level trait.
+            if (!c.IsHero
+                && c.HasAttribute(CharacterAttributes.MASTER_AMBUSHER)
                 && score < MasterAmbusherFloor)
             {
                 score = MasterAmbusherFloor;

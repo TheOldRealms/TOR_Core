@@ -113,8 +113,11 @@ namespace TOR_Core.CampaignMechanics.Ambush
             score -= WeightPenalty(c);
             // MasterScout floor — applied AFTER penalties so a specialist
             // troop still accumulates deltas up to the floor if their
-            // base race / class was already higher.
-            if (c.HasAttribute(CharacterAttributes.MASTER_SCOUT)
+            // base race / class was already higher. Heroes are
+            // excluded by design — the attribute is a troop-template
+            // marker, not a hero-level trait.
+            if (!c.IsHero
+                && c.HasAttribute(CharacterAttributes.MASTER_SCOUT)
                 && score < MasterScoutFloor)
             {
                 score = MasterScoutFloor;
