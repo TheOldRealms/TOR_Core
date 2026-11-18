@@ -3,11 +3,42 @@ using SandBox.Tournaments.MissionLogics;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.TournamentGames;
 using TaleWorlds.Core;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
 
 namespace TOR_Core.HarmonyPatches
 {
+    /// <summary>
+    /// <para><b>Problem:</b> vanilla's <c>TournamentBehavior.GetMaximumBet</c>
+    /// is a non-virtual public method on a <c>MissionLogic</c> (not a
+    /// <c>GameModel</c>), so <c>AddModel</c> can't reach it and SandBox UI
+    /// call sites resolve against the base class statically. The hardcoded
+    /// perk check targets vanilla <c>DefaultPerks.Roguery.DeepPockets</c>,
+    /// which TOR strips via <c>VanillaPerkStripper</c>, so TOR's HighRoller
+    /// has no effect on the in-mission bet cap without intervention.</para>
+    /// <para><b>Fix:</b> prefix-replace with the same shape but keyed on
+    /// <c>TORPerks.Roguery.HighRoller</c>. The AddFactor-style PrimaryBonus
+    /// (1f ≡ +100%) folds into <c>(1 + bonus)</c> so "doubled" resolves to
+    /// <c>num × 2</c>. UI-adjacent, single-method, single call site —
+    /// tolerable per the Harmony policy.</para>
+    /// </summary>
+    [HarmonyPatch(typeof(TournamentBehavior), nameof(TournamentBehavior.GetMaximumBet))]
+    public static class TournamentBehavior_GetMaximumBet_Patch
+    {
+        public static bool Prefix(ref int __result)
+        {
+            int num = 150;
+            if (Hero.MainHero != null
+                && Hero.MainHero.GetPerkValue(TORPerks.Roguery.HighRoller))
+            {
+                num = (int)(num * (1f + TORPerks.Roguery.HighRoller.PrimaryBonus));
+            }
+            __result = num;
+            return false;
+        }
+    }
+
     /// <summary>
     /// Patches tournament equipment assignment to handle race-specific equipment for greenskins.
     /// Goblins need different equipment from orcs in tournaments.
