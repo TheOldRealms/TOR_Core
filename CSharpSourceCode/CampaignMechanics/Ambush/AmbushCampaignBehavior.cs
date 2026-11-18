@@ -66,7 +66,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         public static string PickAmbushScene()
         {
-            return AmbushScenes[MBRandom.RandomInt(AmbushScenes.Length)];
+            var scene = AmbushScenes[MBRandom.RandomInt(AmbushScenes.Length)];
+            TORCommon.Log(NLog.LogLevel.Info, "[Ambush] PickAmbushScene -> " + scene);
+            return scene;
         }
 
         private bool _playerInStealth;
@@ -714,20 +716,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 // means the IsPartyStealthed check won't short-circuit
                 // IsVisibilityPersistent. The player-detection record
                 // takes over for the short reveal window.
-                var spotPos = stealthed.Position.ToVec2();
                 ai.RecordPlayerDetection(stealthed);
                 ai.BreakStealthByDetection(stealthed);
 
-                var who = stealthed.LeaderHero?.Name?.ToString()
-                          ?? stealthed.Name?.ToString()
-                          ?? "A hostile party";
-                var text = new TextObject("{=!}{NAME} was spotted lying in wait!");
-                text.SetTextVariable("NAME", who);
-                Campaign.Current?.CampaignInformationManager?.NewMapNoticeAdded(
-                    new CampaignMechanics.MapNotifications.AmbushDetectedMapNotification(
-                        text, "tor_ambush_detected",
-                        "event:/ui/notification/hideout_found",
-                        spotPos));
+                // Audio cue mirrors vanilla's hideout-spotted alert. The
+                // on-party eye icon is ambient; the sound is what pulls
+                // the player's eye to the map on a successful roll.
+                TaleWorlds.Engine.SoundEvent.PlaySound2D("event:/ui/notification/hideout_found");
 
                 // Mirror vanilla's OnHideoutSpotted → Scouting XP for the
                 // Scout role. Partied-hero fallback to MainHero when no
@@ -737,8 +732,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
                 // One detection per tick — if several AI parties are
                 // stealthed near each other, the player sees one, next
-                // tick's roll surfaces the next if still hidden. Keeps
-                // the notification shelf from flooding.
+                // tick's roll surfaces the next so the on-party icons
+                // appear one at a time rather than lighting up every
+                // stealthed neighbour simultaneously.
                 return;
             }
         }

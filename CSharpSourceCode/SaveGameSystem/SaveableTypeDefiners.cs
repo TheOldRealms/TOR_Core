@@ -66,6 +66,8 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(ReinforcementBehavior.ReinforcementBattleState), 27);
             AddClassDefinition(typeof(ReinforcementBehavior.ReinforcementCandidateState), 28);
             AddClassDefinition(typeof(AmbushRecord), 29);
+            // ID 30 is free — formerly AmbushDetectedMapNotification; dropped
+            // when detection was switched to an on-party nameplate icon.
 
 
             //Quests and issues begin at 200 - they generally can't be expanded to cover new use cases

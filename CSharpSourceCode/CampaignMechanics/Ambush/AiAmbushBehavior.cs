@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Encounters;
@@ -298,13 +299,32 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// otherwise accumulate indefinitely across long campaigns.</summary>
         private void OnWeeklyTick()
         {
-            if (_ambushRecords.Count == 0) return;
             var now = CampaignTime.Now;
-            int before = _ambushRecords.Count;
-            _ambushRecords.RemoveAll(r => (now - r.At).ToHours >= MaxRecordAgeHours);
-            int dropped = before - _ambushRecords.Count;
-            if (dropped > 0)
-                TORCommon.Log(LogLevel.Info, "[AI Ambush] weekly sweep: dropped " + dropped + " stale ambush records (kept " + _ambushRecords.Count + ")");
+            if (_ambushRecords.Count > 0)
+            {
+                int before = _ambushRecords.Count;
+                _ambushRecords.RemoveAll(r => (now - r.At).ToHours >= MaxRecordAgeHours);
+                int dropped = before - _ambushRecords.Count;
+                if (dropped > 0)
+                    TORCommon.Log(LogLevel.Info, "[AI Ambush] weekly sweep: dropped " + dropped + " stale ambush records (kept " + _ambushRecords.Count + ")");
+            }
+
+            // Prune _playerDetectedParties for parties whose MobileParty
+            // got destroyed/disbanded while they were in the detection
+            // window. The IsRecentlyDetectedByPlayer read-path removes
+            // expired entries on hit, but nothing calls it for a party
+            // the nameplate system no longer sees. Without this, the
+            // dict grows unbounded over long campaigns.
+            if (_playerDetectedParties.Count > 0)
+            {
+                var stale = _playerDetectedParties
+                    .Where(kv => kv.Key == null || !kv.Key.IsActive)
+                    .Select(kv => kv.Key)
+                    .ToList();
+                foreach (var p in stale) _playerDetectedParties.Remove(p);
+                if (stale.Count > 0)
+                    TORCommon.Log(LogLevel.Info, "[AI Ambush] weekly sweep: dropped " + stale.Count + " orphaned detected-party entries");
+            }
         }
 
         /// <summary>
