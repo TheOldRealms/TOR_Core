@@ -3733,7 +3733,7 @@
       <EquipmentSet id="tor_chaos_cult_darksoul_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_nefarious_of_chaos" name="{=str_tor_chaos_nefarious_of_chaos}Nefarious Militia of Chaos" level="11" skill_template="SkillSet.tor_unitskills_chaos_darksoul_of_chaos" default_group="ranged" culture="Culture.chaos_culture" occupation="Soldier" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_nefarious_of_chaos" name="{=str_tor_chaos_nefarious_of_chaos}Nefarious Militia of Chaos" level="11" skill_template="SkillSet.tor_unitskills_chaos_darksoul_of_chaos" default_group="ranged" culture="Culture.chaos_culture" occupation="Soldier" race="chaos_ud_cultist" localizationId="str_tor_chaos_nefarious_of_chaos">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
