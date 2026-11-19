@@ -3917,7 +3917,7 @@
       <face_key_template value="BodyProperty.gor" />
     </face>
     <Equipments>
-      <EquipmentSet id="tor_beast_pestigor_template" />
+      <EquipmentSet id="tor_beast_slaangor_template" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastman_tzaangor" name="{=str_tor_beastman_tzaangor}Tzaangor" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_unitskills_beastman_tzaangor" race="gor2" localizationId="str_tor_beastman_tzaangor">
