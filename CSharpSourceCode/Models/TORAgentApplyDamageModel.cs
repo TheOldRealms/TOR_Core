@@ -426,6 +426,8 @@ namespace TOR_Core.Models
             // (parallel to CareerHelper's damage passives). Main-hero
             // attacks use SkillEffectType.Damage; formation troops get
             // SkillEffectType.TroopDamage via the attacker's party leader.
+            // targetCharacter is the attacker's own character so per-perk
+            // character predicates (MA-only, etc.) resolve correctly.
             var attackerHero = attackerAgent.GetHero();
             if (attackerHero != null && attackerAgent.IsMainAgent)
             {
@@ -433,7 +435,8 @@ namespace TOR_Core.Models
                 TOR_Core.CharacterDevelopment.TORSkillPerkHelper.ApplyPerkPassives(
                     attackerHero, ref skillPerkBonus,
                     TOR_Core.CharacterDevelopment.SkillEffectType.Damage,
-                    attackTypeMask, asFactor: false);
+                    targetCharacter: attackerAgent.Character as CharacterObject,
+                    mask: attackTypeMask, asFactor: false);
                 vanillaDamage = skillPerkBonus.ResultNumber;
             }
             else if (attackerAgent.Origin?.BattleCombatant is PartyBase attackerParty
@@ -443,7 +446,8 @@ namespace TOR_Core.Models
                 TOR_Core.CharacterDevelopment.TORSkillPerkHelper.ApplyPerkPassives(
                     attackerParty.LeaderHero, ref skillPerkBonus,
                     TOR_Core.CharacterDevelopment.SkillEffectType.TroopDamage,
-                    attackTypeMask, asFactor: false);
+                    targetCharacter: attackerAgent.Character as CharacterObject,
+                    mask: attackTypeMask, asFactor: false);
                 vanillaDamage = skillPerkBonus.ResultNumber;
             }
 

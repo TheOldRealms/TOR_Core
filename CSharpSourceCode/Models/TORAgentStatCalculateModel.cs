@@ -50,6 +50,21 @@ namespace TOR_Core.Models
                 agentDrivenProperties.WeaponsEncumbrance = weaponEncumbrance.ResultNumber;
             }
 
+            // TOR skill-tree perks: fold registered TroopSpeed-type perks
+            // into the agent's combat speed when a captain in the agent's
+            // formation holds the perk and the agent's character passes
+            // the per-perk predicate (e.g. Shadowed primary requires the
+            // agent to have the Master Ambusher attribute).
+            var captainChar = agent.GetCaptainCharacter();
+            if (captainChar?.HeroObject != null && agent.Character is CharacterObject agentChar)
+            {
+                var speedBonus = new ExplainedNumber(agentDrivenProperties.CombatMaxSpeedMultiplier);
+                TORSkillPerkHelper.ApplyPerkPassives(captainChar.HeroObject, ref speedBonus,
+                    SkillEffectType.TroopSpeed,
+                    targetCharacter: agentChar, asFactor: true);
+                agentDrivenProperties.CombatMaxSpeedMultiplier = speedBonus.ResultNumber;
+            }
+
             UpdateAgentDrivenProperties(agent, agentDrivenProperties);
         }
         

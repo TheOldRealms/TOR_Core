@@ -1,9 +1,13 @@
+using System;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.MountAndBlade;
+using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CharacterDevelopment
 {
@@ -15,83 +19,136 @@ namespace TOR_Core.CharacterDevelopment
     /// <see cref="SkillEffectType"/>, instead of a per-perk inline check
     /// at every stat site.
     ///
-    /// Perks are registered once (session launch) via
-    /// <see cref="Register"/> with their effect type + optional attack
-    /// mask + isPrimary flag. Model code then calls
-    /// <see cref="ApplyPerkPassives"/> at the same site it currently
-    /// calls <c>CareerHelper.ApplyBasicCareerPassives</c>.
-    ///
-    /// Semantics follow vanilla's own perk-apply shape:
-    ///  - <c>AddFactor</c> for multiplicative bonuses (asFactor = true)
-    ///  - <c>Add</c> for additive bonuses (asFactor = false)
-    ///  - <c>AttackTypeMask</c> filter mirrors vanilla's weapon-type gating.
+    /// Registration carries Career-style filter delegates so per-perk
+    /// conditions (e.g. "applies only to Master Ambusher troops", "only
+    /// fires when attacker is on foot") live with the perk rather than
+    /// at every call site:
+    ///  - <c>characterPredicate</c>: gates on the <c>targetCharacter</c>
+    ///    passed to Apply. Mirrors
+    ///    <c>PassiveEffect.SpecialCharacterEvaluationFunction</c>.
+    ///  - <c>combatPredicate</c>: gates on attacker/victim/mask for the
+    ///    combat Apply variant. Mirrors
+    ///    <c>PassiveEffect.SpecialCombatInteractionFunction</c>.
     /// </summary>
     public static class TORSkillPerkHelper
     {
-        private struct PerkEffectMapping
+        private class PerkEffectConfig
         {
             public PerkObject Perk;
             public SkillEffectType EffectType;
             public bool IsPrimary;
-            public AttackTypeMask AttackMask;
+            public AttackTypeMask AttackMask = AttackTypeMask.All;
+            public Func<CharacterObject, bool> CharacterPredicate;
+            public Func<Agent, Agent, AttackTypeMask, bool> CombatPredicate;
         }
 
-        private static readonly List<PerkEffectMapping> _mappings = new List<PerkEffectMapping>();
+        private static readonly List<PerkEffectConfig> _configs = new List<PerkEffectConfig>();
 
-        /// <summary>Register a TOR perk against the effect type and attack
-        /// mask it modifies. Call once at session launch after perks are
-        /// constructed. Multiple registrations per perk are allowed when
-        /// primary and secondary target different effect types or masks.</summary>
+        /// <summary>Register a TOR perk against the effect type + optional
+        /// filters. Call once at session launch after perks are constructed.
+        /// Multiple registrations per perk are allowed (primary and
+        /// secondary targeting different effects, or one perk firing on
+        /// multiple effect types).</summary>
         public static void Register(PerkObject perk, SkillEffectType effectType, bool isPrimary,
-                                     AttackTypeMask attackMask = AttackTypeMask.All)
+                                     AttackTypeMask attackMask = AttackTypeMask.All,
+                                     Func<CharacterObject, bool> characterPredicate = null,
+                                     Func<Agent, Agent, AttackTypeMask, bool> combatPredicate = null)
         {
             if (perk == null) return;
-            _mappings.Add(new PerkEffectMapping
+            _configs.Add(new PerkEffectConfig
             {
                 Perk = perk,
                 EffectType = effectType,
                 IsPrimary = isPrimary,
                 AttackMask = attackMask,
+                CharacterPredicate = characterPredicate,
+                CombatPredicate = combatPredicate,
             });
         }
 
         /// <summary>Fold all registered TOR perks of
-        /// <paramref name="type"/> that the hero holds into
-        /// <paramref name="number"/>. Mask filter matches
-        /// <c>CareerHelper.ApplyBasicCareerPassives</c>'s semantics:
-        /// a perk's bonus applies only if its mask intersects the
-        /// call-site's mask. Use <paramref name="asFactor"/> true for
-        /// multiplicative effects (percent scaling), false for flat
-        /// adds.</summary>
+        /// <paramref name="type"/> that the hero holds — and whose
+        /// per-perk filters accept the current context — into
+        /// <paramref name="number"/>.
+        ///
+        /// Pass the <paramref name="targetCharacter"/> that the effect
+        /// is landing on (e.g. the troop whose speed is being computed);
+        /// per-perk character predicates read this to filter by attribute
+        /// or troop flag. Pass <paramref name="mask"/> for attack-type
+        /// gating (vanilla's convention: perk mask must intersect
+        /// call-site mask).</summary>
         public static void ApplyPerkPassives(Hero hero, ref ExplainedNumber number,
-            SkillEffectType type, AttackTypeMask mask = AttackTypeMask.All, bool asFactor = false)
+            SkillEffectType type,
+            CharacterObject targetCharacter = null,
+            AttackTypeMask mask = AttackTypeMask.All,
+            bool asFactor = false)
         {
             if (hero == null) return;
-            foreach (var m in _mappings)
+            foreach (var cfg in _configs)
             {
-                if (m.EffectType != type) continue;
-                if ((mask & m.AttackMask) == 0) continue;
-                if (!hero.GetPerkValue(m.Perk)) continue;
-                float bonus = m.IsPrimary ? m.Perk.PrimaryBonus : m.Perk.SecondaryBonus;
+                if (cfg.EffectType != type) continue;
+                if ((mask & cfg.AttackMask) == 0) continue;
+                if (!hero.GetPerkValue(cfg.Perk)) continue;
+                if (cfg.CharacterPredicate != null
+                    && (targetCharacter == null || !cfg.CharacterPredicate(targetCharacter))) continue;
+
+                float bonus = cfg.IsPrimary ? cfg.Perk.PrimaryBonus : cfg.Perk.SecondaryBonus;
                 if (bonus == 0f) continue;
-                if (asFactor)
-                    number.AddFactor(bonus, m.Perk.Name);
-                else
-                    number.Add(bonus, m.Perk.Name);
+                if (asFactor) number.AddFactor(bonus, cfg.Perk.Name);
+                else number.Add(bonus, cfg.Perk.Name);
+            }
+        }
+
+        /// <summary>Combat-event variant with attacker/victim/mask
+        /// context. Used from damage-pass sites that want per-perk
+        /// combat filters (friendly-fire gates, melee-only gates, etc.)
+        /// in addition to the character predicate.</summary>
+        public static void ApplyPerkCombatPassives(Hero hero, ref ExplainedNumber number,
+            SkillEffectType type,
+            Agent attacker, Agent victim, AttackTypeMask mask,
+            bool asFactor = false)
+        {
+            if (hero == null) return;
+            foreach (var cfg in _configs)
+            {
+                if (cfg.EffectType != type) continue;
+                if ((mask & cfg.AttackMask) == 0) continue;
+                if (!hero.GetPerkValue(cfg.Perk)) continue;
+                if (cfg.CombatPredicate != null
+                    && !cfg.CombatPredicate(attacker, victim, mask)) continue;
+
+                float bonus = cfg.IsPrimary ? cfg.Perk.PrimaryBonus : cfg.Perk.SecondaryBonus;
+                if (bonus == 0f) continue;
+                if (asFactor) number.AddFactor(bonus, cfg.Perk.Name);
+                else number.Add(bonus, cfg.Perk.Name);
             }
         }
 
         /// <summary>One-shot registration of all TOR skill-tree perks
         /// against their effect-type mappings. Called from
-        /// <c>SubModule</c> after <c>TORPerks</c> init.</summary>
+        /// <c>ObjectManagerPatches</c> after <c>TORPerks</c> init.</summary>
         public static void RegisterAllPerks()
         {
-            _mappings.Clear();
+            _configs.Clear();
 
-            // Backstabber primary: +10 damage on your thrust attacks.
-            Register(TORPerks.Roguery.Backstabber, SkillEffectType.Damage, isPrimary: true, AttackTypeMask.Melee);
-            // Backstabber secondary: +4 damage on thrust attacks for troops in formation.
-            Register(TORPerks.Roguery.Backstabber, SkillEffectType.TroopDamage, isPrimary: false, AttackTypeMask.Melee);
+            // Backstabber primary: "+10 damage on your thrust attacks."
+            // Applies to the main-hero's own melee attacks (perk text says
+            // thrust; AttackTypeMask has no Thrust bucket so we gate on Melee).
+            Register(TORPerks.Roguery.Backstabber, SkillEffectType.Damage,
+                isPrimary: true, attackMask: AttackTypeMask.Melee);
+
+            // Backstabber secondary: "Troops in your formation deal +4
+            // damage on thrust attacks." No MA restriction — all troops.
+            Register(TORPerks.Roguery.Backstabber, SkillEffectType.TroopDamage,
+                isPrimary: false, attackMask: AttackTypeMask.Melee);
+
+            // Shadowed primary: "+10% combat speed for your Master Ambusher
+            // troops in formation." MA filter via character predicate; applies
+            // multiplicatively to CombatMaxSpeedMultiplier at stat-calc time.
+            Register(TORPerks.Roguery.Shadowed, SkillEffectType.TroopSpeed,
+                isPrimary: true,
+                characterPredicate: c => c != null
+                    && c.HasAttribute(CharacterAttributes.MASTER_AMBUSHER));
         }
     }
 }
