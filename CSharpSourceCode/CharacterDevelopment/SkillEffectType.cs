@@ -60,5 +60,11 @@ namespace TOR_Core.CharacterDevelopment
         /// governor while a tournament is active in the town. Fires
         /// in a daily tick for governed towns.</summary>
         GovernorTournamentIncome,
+
+        /// <summary>Multiplier bonus on
+        /// <c>AgentDrivenProperties.KickStunDurationMultiplier</c> for
+        /// the agent's own hero (vanilla's stripped
+        /// <c>DirtyFighting</c> primary target).</summary>
+        KickStunDuration,
     }
 }

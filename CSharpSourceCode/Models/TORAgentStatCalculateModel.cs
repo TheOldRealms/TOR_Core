@@ -48,6 +48,15 @@ namespace TOR_Core.Models
                 var weaponEncumbrance = new ExplainedNumber(agentDrivenProperties.WeaponsEncumbrance);
                 CareerHelper.ApplyBasicCareerPassives(hero, ref weaponEncumbrance, PassiveEffectType.EquipmentWeightReduction);
                 agentDrivenProperties.WeaponsEncumbrance = weaponEncumbrance.ResultNumber;
+
+                // Unarmed primary: replaces vanilla's stripped DirtyFighting
+                // hook on KickStunDurationMultiplier. Vanilla applied via a
+                // SandBox agent-stat pass on the drive property; TOR applies
+                // the equivalent factor here for the main hero.
+                var kickStun = new ExplainedNumber(agentDrivenProperties.KickStunDurationMultiplier);
+                TORSkillPerkHelper.ApplyPerkPassives(hero, ref kickStun,
+                    SkillEffectType.KickStunDuration);
+                agentDrivenProperties.KickStunDurationMultiplier = kickStun.ResultNumber;
             }
 
             // TOR skill-tree perks: fold registered TroopSpeed-type perks

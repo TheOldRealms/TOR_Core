@@ -203,6 +203,16 @@ namespace TOR_Core.CharacterDevelopment
             // while a tournament is active."
             Register(TORPerks.Roguery.Strider, SkillEffectType.GovernorTournamentIncome,
                 isPrimary: false);
+
+            // Unarmed primary: "50% longer stun duration on kick attacks."
+            // Vanilla ships with the equivalent hook in a SandBox agent-stat
+            // pass (DirtyFighting.PrimaryBonus → KickStunDurationMultiplier);
+            // TOR strips DirtyFighting so the mechanic is dead for TOR
+            // players unless Unarmed restores it. Applied as a factor on
+            // the drive property.
+            Register(TORPerks.Roguery.Unarmed, SkillEffectType.KickStunDuration,
+                isPrimary: true,
+                asFactor: true);
         }
     }
 }
