@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.CharacterDevelopment;
 
 namespace TOR_Core.Models
 {
@@ -36,6 +37,24 @@ namespace TOR_Core.Models
             float demand)
         {
             float vanillaPenalty = base.GetTradePenalty(item, clientParty, merchant, isSelling, inStore, supply, demand);
+
+            // Disguise secondary (Roguery 175): "Trade penalties with factions
+            // where you have a crime rating are reduced by 50%." Mirrors vanilla's
+            // stripped SmugglerConnections secondary — vanilla's base.GetTradePenalty
+            // would ordinarily apply SmugglerConnections' bonus via
+            // PerkHelper.AddPerkBonusForParty when the merchant's faction has a
+            // non-zero crime rating against the main hero, but the perk is
+            // stripped by VanillaPerkStripper, so the bonus never fires. Apply
+            // the equivalent reduction manually when the TOR perk is held.
+            if (clientParty != null
+                && clientParty.IsMainParty
+                && merchant?.MapFaction != null
+                && merchant.MapFaction.MainHeroCrimeRating > 0f
+                && Hero.MainHero != null
+                && Hero.MainHero.GetPerkValue(TORPerks.Roguery.Disguise))
+            {
+                vanillaPenalty *= 1f + TORPerks.Roguery.Disguise.SecondaryBonus;
+            }
 
             if (clientParty == null || item == null)
             {

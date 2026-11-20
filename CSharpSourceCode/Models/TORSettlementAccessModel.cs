@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.SettlementPOIs;
+using TOR_Core.CharacterDevelopment;
 
 namespace TOR_Core.Models
 {
@@ -35,6 +36,36 @@ namespace TOR_Core.Models
 
             bool allowed = poi.CheckAccess(settlement, Hero.MainHero, out disabledText);
             disableOption = !allowed;
+            return allowed;
+        }
+
+        /// <summary>Disguise primary (Roguery 175): "You can trade in towns
+        /// while disguised." Vanilla's <c>CanMainHeroTrade</c> is a private
+        /// helper gated on <c>DefaultPerks.Roguery.SmugglerConnections</c>,
+        /// which TOR strips. Intercept the public dispatcher for the Trade
+        /// case: let base compute the vanilla result first, then flip the
+        /// disabled flag when the ONLY possible reason for vanilla's
+        /// disabled-true in the non-village branch is the stripped-perk
+        /// gate. Village branch has its own non-disguise disables (war,
+        /// stock, gold) so it's skipped.</summary>
+        public override bool CanMainHeroDoSettlementAction(Settlement settlement,
+            SettlementAction settlementAction, out bool disableOption, out TextObject disabledText)
+        {
+            bool allowed = base.CanMainHeroDoSettlementAction(settlement, settlementAction,
+                out disableOption, out disabledText);
+
+            if (!allowed
+                && settlementAction == SettlementAction.Trade
+                && settlement != null && !settlement.IsVillage
+                && Campaign.Current != null && Campaign.Current.IsMainHeroDisguised
+                && Hero.MainHero != null
+                && Hero.MainHero.GetPerkValue(TORPerks.Roguery.Disguise))
+            {
+                disableOption = false;
+                disabledText = null;
+                return true;
+            }
+
             return allowed;
         }
     }
