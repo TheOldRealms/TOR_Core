@@ -127,6 +127,18 @@ namespace TOR_Core.Models
                 }
             }
 
+            // Skirmisher secondary (Roguery 200): "+1 recruitment slot when
+            // recruiting from gang leaders." Flat +1 to the max index when
+            // the buyer holds the perk and the seller notable is a gang
+            // leader. Applied last so faction / culture / relation gates
+            // land first.
+            if (buyerHero != null && sellerHero != null
+                && sellerHero.IsGangLeader
+                && buyerHero.GetPerkValue(CharacterDevelopment.TORPerks.Roguery.Skirmisher))
+            {
+                value += (int)CharacterDevelopment.TORPerks.Roguery.Skirmisher.SecondaryBonus;
+            }
+
             return value;
         }
     }

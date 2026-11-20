@@ -58,8 +58,29 @@ namespace TOR_Core.CampaignMechanics.Ambush
             CampaignEvents.RaidCompletedEvent.AddNonSerializedListener(this, OnRaidCompleted);
             CampaignEvents.VillageLooted.AddNonSerializedListener(this, OnVillageLooted);
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
+            CampaignEvents.DailyTickTownEvent.AddNonSerializedListener(this, OnDailyTickTown);
             CampaignEvents.OnCollectLootsItemsEvent.AddNonSerializedListener(this, OnCollectLootItems);
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
+        }
+
+        /// <summary>Strider secondary (Roguery 275): "Cities you govern
+        /// produce 250 denars per day while a tournament is active."
+        /// Reads GovernorTournamentIncome from the shared helper so the
+        /// bonus value lives with the registration, gives the governor's
+        /// clan the flat gold amount on daily tick.</summary>
+        private void OnDailyTickTown(Town town)
+        {
+            if (town == null || town.Governor == null) return;
+            if (!town.HasTournament) return;
+            var income = new ExplainedNumber(0f);
+            TOR_Core.CharacterDevelopment.TORSkillPerkHelper.ApplyPerkPassives(
+                town.Governor, ref income,
+                TOR_Core.CharacterDevelopment.SkillEffectType.GovernorTournamentIncome);
+            int denars = (int)income.ResultNumber;
+            if (denars <= 0) return;
+            var governorClan = town.Governor.Clan;
+            if (governorClan?.Leader != null)
+                GiveGoldAction.ApplyBetweenCharacters(null, governorClan.Leader, denars);
         }
 
         /// <summary>Master Thief (Roguery 300, Personal +0.01 Add): "+1%
