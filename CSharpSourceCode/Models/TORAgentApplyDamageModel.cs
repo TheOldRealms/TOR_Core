@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
@@ -419,6 +420,32 @@ namespace TOR_Core.Models
 
             // Determine attack type mask
             AttackTypeMask attackTypeMask = collisionData.IsMissile ? AttackTypeMask.Ranged : AttackTypeMask.Melee;
+
+            // TOR skill-tree perks: fold registered perk effects into the
+            // damage value via the generic TORSkillPerkHelper pipeline
+            // (parallel to CareerHelper's damage passives). Main-hero
+            // attacks use SkillEffectType.Damage; formation troops get
+            // SkillEffectType.TroopDamage via the attacker's party leader.
+            var attackerHero = attackerAgent.GetHero();
+            if (attackerHero != null && attackerAgent.IsMainAgent)
+            {
+                var skillPerkBonus = new ExplainedNumber(vanillaDamage);
+                TOR_Core.CharacterDevelopment.TORSkillPerkHelper.ApplyPerkPassives(
+                    attackerHero, ref skillPerkBonus,
+                    TOR_Core.CharacterDevelopment.SkillEffectType.Damage,
+                    attackTypeMask, asFactor: false);
+                vanillaDamage = skillPerkBonus.ResultNumber;
+            }
+            else if (attackerAgent.Origin?.BattleCombatant is PartyBase attackerParty
+                     && attackerParty.LeaderHero != null && !attackerAgent.IsHero)
+            {
+                var skillPerkBonus = new ExplainedNumber(vanillaDamage);
+                TOR_Core.CharacterDevelopment.TORSkillPerkHelper.ApplyPerkPassives(
+                    attackerParty.LeaderHero, ref skillPerkBonus,
+                    TOR_Core.CharacterDevelopment.SkillEffectType.TroopDamage,
+                    attackTypeMask, asFactor: false);
+                vanillaDamage = skillPerkBonus.ResultNumber;
+            }
 
             // Get property containers
             var attackerPropertyContainer = CreateAgentPropertyContainer(attackerAgent, PropertyMask.Attack, attackTypeMask);
