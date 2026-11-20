@@ -56,6 +56,19 @@ namespace TOR_Core.Models
                 vanillaPenalty *= 1f + TORPerks.Roguery.Disguise.SecondaryBonus;
             }
 
+            // Fence primary (Roguery 250): "-20% weapon sell-price penalty."
+            // Vanilla's stripped ArmsDealer perk fired here (same spot — weapon
+            // sale path inside GetTradePenalty) with `isPrimaryBonus: true`. TOR
+            // takes over on the Fence key: reduce the penalty by |PrimaryBonus|
+            // when the party leader holds Fence and we're selling a weapon.
+            if (isSelling
+                && item != null && item.HasWeaponComponent
+                && clientParty != null
+                && clientParty.HasPerk(TORPerks.Roguery.Fence))
+            {
+                vanillaPenalty *= 1f + TORPerks.Roguery.Fence.PrimaryBonus;
+            }
+
             if (clientParty == null || item == null)
             {
                 return vanillaPenalty;
