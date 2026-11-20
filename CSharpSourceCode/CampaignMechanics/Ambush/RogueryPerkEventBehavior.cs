@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.Siege;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -36,6 +37,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// on both perk-held and non-perk ambushes; only the clean-wipe
         /// Highwayman path suppresses it.</summary>
         private const int NeutralCaravanAmbushRelationDelta = -8;
+
+        /// <summary>Latch for the Parlay-primary dialog roll. Set by
+        /// <see cref="OnParlayAttempted"/> when the player picks the
+        /// peaceful-talk option; read by the two bandit-response
+        /// dialog lines to branch success vs failure.</summary>
+        private bool _parlayLastRollSucceeded;
 
         private const string TryToGetAwayMenuId = "try_to_get_away";
         private const string DiversionOptionId = "diversion_use_prisoners";
@@ -153,6 +160,41 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 "{=veWOovVv}Continue...",
                 args => { args.optionLeaveType = GameMenuOption.LeaveType.Continue; return true; },
                 FinishBreakInDiversion);
+
+            // Parlay primary (Roguery 25): new player line on the
+            // bandit_defender input (the robbery-threat state where a
+            // bandit party has demanded coin). Roll PrimaryBonus (0.2)
+            // on selection; success → PlayerEncounter.LeaveEncounter,
+            // failure → bandit bounces the player back to the original
+            // threat prompt so the standard fight/surrender/barter
+            // options are still available. The option itself is only
+            // visible when the main hero holds the perk.
+            starter.AddPlayerLine("tor_parlay_bandit_peaceful",
+                "bandit_defender", "tor_parlay_bandit_roll",
+                "{=!}Let's see if we can resolve this peacefully.",
+                ParlayOptionCondition, OnParlayAttempted);
+
+            starter.AddDialogLine("tor_parlay_bandit_success",
+                "tor_parlay_bandit_roll", "close_window",
+                "{=!}Hmph. Fine then — we'll find easier marks elsewhere. Move along, lads.",
+                () => _parlayLastRollSucceeded,
+                () => PlayerEncounter.LeaveEncounter = true);
+
+            starter.AddDialogLine("tor_parlay_bandit_fail",
+                "tor_parlay_bandit_roll", "bandit_defender",
+                "{=!}Save your sweet words. Your coin or your blood — your choice.",
+                () => !_parlayLastRollSucceeded, null);
+        }
+
+        private bool ParlayOptionCondition()
+        {
+            return Hero.MainHero != null
+                && Hero.MainHero.GetPerkValue(TORPerks.Roguery.Parlay);
+        }
+
+        private void OnParlayAttempted()
+        {
+            _parlayLastRollSucceeded = MBRandom.RandomFloat < TORPerks.Roguery.Parlay.PrimaryBonus;
         }
 
         private bool DiversionOnCondition(MenuCallbackArgs args)

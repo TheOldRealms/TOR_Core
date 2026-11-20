@@ -349,6 +349,17 @@ namespace TOR_Core.CharacterDevelopment
                 PartyRole.PartyLeader, 0.05f, EffectIncrementType.AddFactor,
                 "{=str_tor_perk_raider_2}Your quartermaster earns Tactics experience from raid operations.",
                 PartyRole.Quartermaster, 1f, EffectIncrementType.Add);
+            // BALANCE NOTE: Parlay sits at Roguery 25 (introductory tier),
+            // where effect sizes should match Raider's +5% raid speed and
+            // small event-tied XP trickles. The secondary — "keep 50% of
+            // your inventory on captivity" — is mechanically overweight for
+            // tier 25: any Roguery investment at all buys a permanent
+            // captivity safety net that higher-tier captivity perks
+            // (Shadowed secondary's +30% escape chance at 275) struggle to
+            // match. Kept at tier 25 for the ambush-feature MVP; revisit
+            // the tier placement on a balance pass or relocate the stash
+            // fiction to a smuggler-themed higher-tier slot (Disguise 175
+            // is the natural home).
             _parlay.Initialize("{=str_tor_perk_parlay_label}Parlay", DefaultSkills.Roguery, 25, _raider,
                 "{=str_tor_perk_parlay_1}20% chance to end a bandit encounter peacefully during conversation.",
                 PartyRole.PartyLeader, 0.2f, EffectIncrementType.AddFactor,
