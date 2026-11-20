@@ -16,12 +16,27 @@ namespace TOR_Core.CampaignMechanics.Ambush
 {
     /// <summary>
     /// Non-model Roguery-perk wiring: event listeners for perks that
-    /// fire on a campaign event (Raider secondary, BurntEarth secondary),
-    /// and menu additions for perks that attach new options to vanilla
-    /// menus (Diversion primary on <c>try_to_get_away</c>).
+    /// fire on a campaign event (Raider secondary, BurntEarth secondary,
+    /// Highwayman primary), and menu additions for perks that attach new
+    /// options to vanilla menus (Diversion primary on
+    /// <c>try_to_get_away</c> and <c>break_in_menu</c>).
     /// </summary>
     public class RogueryPerkEventBehavior : CampaignBehaviorBase
     {
+        /// <summary>Crime-rating hit when the player ambushes a neutral
+        /// caravan and witnesses survive. Repeated ambushes accumulate
+        /// toward the vanilla <c>CrimeModel.DeclareWarCrimeRatingThreshold</c>
+        /// and eventually cascade to war declaration. Flat per-ambush
+        /// value; roster-size scaling would read better but vanilla's
+        /// own caravan-attack path uses flat deltas.</summary>
+        private const float NeutralCaravanAmbushCrimeDelta = 20f;
+
+        /// <summary>Relation drop with the caravan owner's clan leader
+        /// when a neutral caravan ambush leaves witnesses alive. Fires
+        /// on both perk-held and non-perk ambushes; only the clean-wipe
+        /// Highwayman path suppresses it.</summary>
+        private const int NeutralCaravanAmbushRelationDelta = -8;
+
         private const string TryToGetAwayMenuId = "try_to_get_away";
         private const string DiversionOptionId = "diversion_use_prisoners";
         private const string DiversionDebriefMenuId = "tor_diversion_debrief";
@@ -33,7 +48,72 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             CampaignEvents.RaidCompletedEvent.AddNonSerializedListener(this, OnRaidCompleted);
             CampaignEvents.VillageLooted.AddNonSerializedListener(this, OnVillageLooted);
-            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, AddMenus);
+            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
+        }
+
+        private void OnSessionLaunched(CampaignGameStarter starter)
+        {
+            AddMenus(starter);
+            Utilities.TORCampaignEvents.Instance.AmbushResolved -= OnAmbushResolved;
+            Utilities.TORCampaignEvents.Instance.AmbushResolved += OnAmbushResolved;
+        }
+
+        /// <summary>Highwayman primary (Roguery 175) dispatch gate. Fires
+        /// on every ambush resolution. When the player ambushed a neutral
+        /// (not-at-war) caravan, this applies the crime-rating + relation
+        /// consequences that vanilla doesn't dispatch on its own — that
+        /// crime path auto-cascades to a war declaration via
+        /// <c>CrimeModel.DeclareWarCrimeRatingThreshold</c>, so repeated
+        /// non-perk ambushes eventually trigger war. With the perk held,
+        /// crime is suppressed entirely (no war cascade); relation still
+        /// drops if witnesses survived. On a clean wipe
+        /// (<c>AmbusherTotalVictory</c>) + perk held, nothing fires —
+        /// "no witnesses, no evidence".</summary>
+        private void OnAmbushResolved(object sender, Utilities.AmbushResolvedEventArgs args)
+        {
+            var record = args?.Record;
+            if (record == null) return;
+            if (record.Ambusher != MobileParty.MainParty) return;
+            var victim = record.Victim;
+            if (victim == null || !victim.IsCaravan) return;
+            var victimFaction = victim.MapFaction;
+            if (victimFaction == null) return;
+            // At-war caravan ambushes fall under existing wartime rules —
+            // no crime, no extra relation hit beyond vanilla's defeated-
+            // party flow. Only neutral caravans trigger this path.
+            if (FactionManager.IsAtWarAgainstFaction(MobileParty.MainParty.MapFaction, victimFaction)) return;
+            // The ambusher-repelled / stalemate branches don't count as
+            // an ambush landing — nobody got mugged, nobody saw you doing
+            // the mugging. Mirror the IsSuccessfulStrike classifier.
+            var model = Campaign.Current?.Models?.GetAmbushModel();
+            if (model == null || !model.IsSuccessfulStrike(record)) return;
+
+            bool hasPerk = Hero.MainHero != null
+                            && Hero.MainHero.GetPerkValue(TORPerks.Roguery.Highwayman);
+            bool cleanWipe = record.Resolution == AmbushResolution.AmbusherTotalVictory;
+
+            // Clean wipe + perk → no witnesses, no evidence, nothing fires.
+            if (hasPerk && cleanWipe) return;
+
+            // Relation always drops when witnesses survive — the owning
+            // clan knows who did it. Hits the clan leader like every
+            // other player-relation path.
+            var ownerClanLeader = victim.LeaderHero?.Clan?.Leader
+                                   ?? victim.MapFaction?.Leader;
+            if (ownerClanLeader != null && ownerClanLeader != Hero.MainHero)
+            {
+                ChangeRelationAction.ApplyPlayerRelation(ownerClanLeader,
+                    NeutralCaravanAmbushRelationDelta, affectRelatives: false, showQuickNotification: true);
+            }
+
+            // Crime fires for non-perk ambushes only. The perk lets the
+            // player operate off-the-books: faction leadership doesn't
+            // pin the ambush on them, so no crime rating accrues and
+            // the war-declaration cascade never triggers.
+            if (!hasPerk)
+            {
+                ChangeCrimeRatingAction.Apply(victimFaction, NeutralCaravanAmbushCrimeDelta);
+            }
         }
 
         /// <summary>Diversion primary (Roguery 125): sibling option on

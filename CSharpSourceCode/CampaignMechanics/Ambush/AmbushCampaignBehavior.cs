@@ -517,7 +517,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 if (p == null || !p.IsActive || p == attacker) continue;
                 if (!p.IsVisible) continue;   // fog-of-war-hidden parties can't be targeted
                 if (p.MapFaction == null) continue;
-                if (!FactionManager.IsAtWarAgainstFaction(attackerFaction, p.MapFaction)) continue;
+                // Caravans are ambushable even when not at war — the vanilla
+                // crime-rating path handles the fallout for non-perk-holders
+                // (eventual war declaration via CrimeModel.DeclareWarCrimeRatingThreshold),
+                // and Highwayman suppresses that fallout on a clean wipe.
+                // Scoped to the main party so AI parties don't start picking
+                // off neutral caravans on their own.
+                bool atWar = FactionManager.IsAtWarAgainstFaction(attackerFaction, p.MapFaction);
+                bool neutralCaravanPlayerTarget = !atWar && p.IsCaravan && attacker.IsMainParty;
+                if (!atWar && !neutralCaravanPlayerTarget) continue;
                 float distSq = p.Position.ToVec2().DistanceSquared(attackerPos);
                 if (distSq > radiusSq) continue;
                 candidates.Add((p, distSq));
