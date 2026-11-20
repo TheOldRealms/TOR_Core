@@ -1,4 +1,5 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using Helpers;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Siege;
@@ -53,6 +54,34 @@ namespace TOR_Core.Models
             }
 
             return baseChance;
+        }
+
+        /// <summary>Intimidator primary (Roguery 150) companion effect.
+        /// Vanilla's stripped Scarface applied its primary bonus to BOTH
+        /// <c>GetSurrenderChance</c> and <c>GetBribeChance</c> inside
+        /// <c>DefaultEncounterModel</c>. This override restores the bribe
+        /// side under the Intimidator key, scoped to the same villager /
+        /// caravan / bandit filter as the surrender side so the two
+        /// effects stay consistent. Applied via
+        /// <see cref="PerkHelper.AddPerkBonusForCharacter"/> (vanilla's
+        /// pattern on this method) so the bonus shows up in the
+        /// <c>ExplainedNumber</c> tooltip.</summary>
+        public override ExplainedNumber GetBribeChance(MobileParty defenderParty, MobileParty attackerParty)
+        {
+            var result = base.GetBribeChance(defenderParty, attackerParty);
+
+            if (defenderParty != null
+                && Hero.MainHero != null
+                && !MobileParty.MainParty.IsCurrentlyAtSea
+                && Hero.MainHero.GetPerkValue(TORPerks.Roguery.Intimidator)
+                && (defenderParty.IsCaravan || defenderParty.IsVillager || defenderParty.IsBandit))
+            {
+                PerkHelper.AddPerkBonusForCharacter(TORPerks.Roguery.Intimidator,
+                    Hero.MainHero.CharacterObject, isPrimaryBonus: true, ref result);
+                result.LimitMax(1f);
+            }
+
+            return result;
         }
     }
 }
