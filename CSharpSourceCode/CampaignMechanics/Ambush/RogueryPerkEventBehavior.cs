@@ -1,9 +1,11 @@
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.Siege;
 using TaleWorlds.Core;
@@ -56,7 +58,48 @@ namespace TOR_Core.CampaignMechanics.Ambush
             CampaignEvents.RaidCompletedEvent.AddNonSerializedListener(this, OnRaidCompleted);
             CampaignEvents.VillageLooted.AddNonSerializedListener(this, OnVillageLooted);
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
+            CampaignEvents.OnCollectLootsItemsEvent.AddNonSerializedListener(this, OnCollectLootItems);
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
+        }
+
+        /// <summary>Master Thief (Roguery 300, Personal +0.01 Add): "+1%
+        /// loot for every Roguery skill point above 200." Mirror of the
+        /// vanilla stripped <c>RogueryRogueExtraordinaire</c> epic perk —
+        /// that one scaled loot via
+        /// <c>PerkHelper.AddEpicPerkBonusForCharacter</c> inside
+        /// <c>DefaultBattleRewardModel.GetLootItemChancesForWinnerParties</c>,
+        /// pre-normalization. Since the vanilla application is dead code
+        /// (perk stripped) and overriding the full chances method is
+        /// heavy, we apply as a post-distribution top-up: subscribe to
+        /// <c>OnCollectLootItems</c>, top up the staged loot roster by
+        /// <c>(roguery - 200) × PrimaryBonus</c> of each merchandise
+        /// item. The staged roster is what vanilla transfers to the
+        /// party, so our additions flow through naturally.</summary>
+        private void OnCollectLootItems(PartyBase winnerParty, ItemRoster gainedLoots)
+        {
+            if (winnerParty != PartyBase.MainParty || gainedLoots == null) return;
+            if (Hero.MainHero == null
+                || !Hero.MainHero.GetPerkValue(TORPerks.Roguery.MasterThief)) return;
+
+            int roguery = Hero.MainHero.GetSkillValue(DefaultSkills.Roguery);
+            int excess = roguery - 200;
+            if (excess <= 0) return;
+
+            float bonusFactor = excess * TORPerks.Roguery.MasterThief.PrimaryBonus;
+            if (bonusFactor <= 0f) return;
+
+            // Iterate a snapshot so modifying the roster mid-loop is safe.
+            var items = gainedLoots.Where(x =>
+                x.EquipmentElement.Item != null
+                && !x.EquipmentElement.Item.NotMerchandise
+                && !x.EquipmentElement.IsQuestItem
+                && !x.EquipmentElement.Item.IsBannerItem).ToList();
+            foreach (var element in items)
+            {
+                int extra = (int)(element.Amount * bonusFactor);
+                if (extra > 0)
+                    gainedLoots.AddToCounts(element.EquipmentElement, extra);
+            }
         }
 
         /// <summary>Highwayman secondary (Roguery 175): "Your Master Ambusher
