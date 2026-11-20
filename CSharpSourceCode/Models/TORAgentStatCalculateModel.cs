@@ -285,6 +285,22 @@ namespace TOR_Core.Models
                 }
             }
 
+            // TOR skill-tree perks: fold registered TroopSkill-type perks
+            // into the effective skill when a captain in the agent's
+            // formation holds the perk and both the target character and
+            // the specific skill match the registered filter (e.g.
+            // Skirmisher primary: +10 to OneHanded/TwoHanded/Polearm/Bow/
+            // Crossbow/Throwing for MA troops under the captain).
+            var captainChar = agent.GetCaptainCharacter();
+            if (captainChar?.HeroObject != null && agent.Character is CharacterObject agentChar2)
+            {
+                TORSkillPerkHelper.ApplyPerkPassives(captainChar.HeroObject, ref effectiveSkill,
+                    SkillEffectType.TroopSkill,
+                    targetCharacter: agentChar2,
+                    targetSkill: skill,
+                    asFactor: false);
+            }
+
             return (int)effectiveSkill.ResultNumber;
         }
 

@@ -40,6 +40,11 @@ namespace TOR_Core.CharacterDevelopment
             public AttackTypeMask AttackMask = AttackTypeMask.All;
             public Func<CharacterObject, bool> CharacterPredicate;
             public Func<Agent, Agent, AttackTypeMask, bool> CombatPredicate;
+            /// <summary>Non-null set restricts this mapping to specific
+            /// skill StringIds (used for <see cref="SkillEffectType.TroopSkill"/>
+            /// perks that boost only particular weapon skills). Null = any
+            /// skill passes.</summary>
+            public HashSet<string> TargetSkillIds;
         }
 
         private static readonly List<PerkEffectConfig> _configs = new List<PerkEffectConfig>();
@@ -52,7 +57,8 @@ namespace TOR_Core.CharacterDevelopment
         public static void Register(PerkObject perk, SkillEffectType effectType, bool isPrimary,
                                      AttackTypeMask attackMask = AttackTypeMask.All,
                                      Func<CharacterObject, bool> characterPredicate = null,
-                                     Func<Agent, Agent, AttackTypeMask, bool> combatPredicate = null)
+                                     Func<Agent, Agent, AttackTypeMask, bool> combatPredicate = null,
+                                     HashSet<string> targetSkillIds = null)
         {
             if (perk == null) return;
             _configs.Add(new PerkEffectConfig
@@ -63,6 +69,7 @@ namespace TOR_Core.CharacterDevelopment
                 AttackMask = attackMask,
                 CharacterPredicate = characterPredicate,
                 CombatPredicate = combatPredicate,
+                TargetSkillIds = targetSkillIds,
             });
         }
 
@@ -81,6 +88,7 @@ namespace TOR_Core.CharacterDevelopment
             SkillEffectType type,
             CharacterObject targetCharacter = null,
             AttackTypeMask mask = AttackTypeMask.All,
+            SkillObject targetSkill = null,
             bool asFactor = false)
         {
             if (hero == null) return;
@@ -91,6 +99,8 @@ namespace TOR_Core.CharacterDevelopment
                 if (!hero.GetPerkValue(cfg.Perk)) continue;
                 if (cfg.CharacterPredicate != null
                     && (targetCharacter == null || !cfg.CharacterPredicate(targetCharacter))) continue;
+                if (cfg.TargetSkillIds != null
+                    && (targetSkill == null || !cfg.TargetSkillIds.Contains(targetSkill.StringId))) continue;
 
                 float bonus = cfg.IsPrimary ? cfg.Perk.PrimaryBonus : cfg.Perk.SecondaryBonus;
                 if (bonus == 0f) continue;
@@ -149,6 +159,26 @@ namespace TOR_Core.CharacterDevelopment
                 isPrimary: true,
                 characterPredicate: c => c != null
                     && c.HasAttribute(CharacterAttributes.MASTER_AMBUSHER));
+
+            // Skirmisher primary: "+10 vigor and control for your Master
+            // Ambusher troops in your formation." Vigor affects OneHanded /
+            // TwoHanded / Polearm weapon skills; Control affects Bow /
+            // Crossbow / Throwing. Applied as a flat +10 to each of those
+            // six skills' effective value for MA troops under the captain,
+            // via the TargetSkillIds set.
+            Register(TORPerks.Roguery.Skirmisher, SkillEffectType.TroopSkill,
+                isPrimary: true,
+                characterPredicate: c => c != null
+                    && c.HasAttribute(CharacterAttributes.MASTER_AMBUSHER),
+                targetSkillIds: new HashSet<string>
+                {
+                    DefaultSkills.OneHanded.StringId,
+                    DefaultSkills.TwoHanded.StringId,
+                    DefaultSkills.Polearm.StringId,
+                    DefaultSkills.Bow.StringId,
+                    DefaultSkills.Crossbow.StringId,
+                    DefaultSkills.Throwing.StringId,
+                });
         }
     }
 }
