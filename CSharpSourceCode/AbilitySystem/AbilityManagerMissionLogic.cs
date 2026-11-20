@@ -201,7 +201,7 @@ namespace TOR_Core.AbilitySystem
             _offHand = Agent.Main.GetOffhandWieldedItemIndex();
         }
 
-        private static bool ShouldKeepOffhandStaffWielded(MissionWeapon offhandWeapon)
+        internal static bool ShouldKeepOffhandStaffWielded(MissionWeapon offhandWeapon)
         {
             if (offhandWeapon.IsEmpty)
             {
@@ -209,6 +209,24 @@ namespace TOR_Core.AbilitySystem
             }
 
             return offhandWeapon.Item.StringId.IndexOf("staff", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        public static bool ShouldKeepMainHandForTemplate(AbilityTemplate template)
+        {
+            if (template == null || template.AbilityType != AbilityType.Spell)
+                return false;
+
+            var anim = template.AnimationActionName ?? string.Empty;
+            return template.SpellTier <= 1
+                && !anim.Contains("missile")
+                && !anim.Contains("kamehameha")
+                && !anim.Contains("adept")
+                && !anim.Contains("master");
+        }
+
+        private bool ShouldKeepMainHandForCurrentSpell()
+        {
+            return ShouldKeepMainHandForTemplate(_abilityComponent?.CurrentAbility?.Template);
         }
 
         private void EnableTargetingMode()
@@ -335,6 +353,14 @@ namespace TOR_Core.AbilitySystem
             {
                 _currentState = AbilityModeState.Casting;
                 SlowDownTime(false);
+                _wieldOffHandStaff = ShouldKeepOffhandStaffWielded(agent.WieldedOffhandWeapon);
+
+                if (ability.Template.AbilityType == AbilityType.Spell
+                    && !ShouldKeepMainHandForTemplate(ability.Template)
+                    && agent.GetPrimaryWieldedItemIndex() != EquipmentIndex.None)
+                {
+                    agent.TryToSheathWeaponInHand(Agent.HandIndex.MainHand, Agent.WeaponWieldActionType.Instant);
+                }
             }
 
             if (agent.GetHero().HasAnyCareer())
@@ -394,6 +420,14 @@ namespace TOR_Core.AbilitySystem
                         hero.AddSkillXp(skill, amount);
                     }
                 }
+            }
+        }
+
+        internal void OnCastCancelled(Ability ability, Agent agent)
+        {
+            if (agent == Agent.Main && CurrentState == AbilityModeState.Casting)
+            {
+                DisableAbilityMode(false, TORTextHelper.GetTextObject("tor_spell_cast_interrupted", "Spell cast interrupted"));
             }
         }
 
@@ -533,7 +567,8 @@ namespace TOR_Core.AbilitySystem
 
         private void CheckIfMainAgentHasPendingActivation()
         {
-            if (_abilityComponent.CurrentAbility.IsActivationPending) _abilityComponent.CurrentAbility.ActivateAbility(Agent.Main);
+            if (_abilityComponent?.CurrentAbility != null && _abilityComponent.CurrentAbility.IsActivationPending)
+                _abilityComponent.CurrentAbility.ActivateAbility(Agent.Main);
         }
 
         private void HandleAnimations()
@@ -558,7 +593,7 @@ namespace TOR_Core.AbilitySystem
 
             if (_currentState == AbilityModeState.Targeting && _shouldSheathWeapon)
             {
-                if (Agent.Main.GetPrimaryWieldedItemIndex() != EquipmentIndex.None)
+                if (!ShouldKeepMainHandForCurrentSpell() && Agent.Main.GetPrimaryWieldedItemIndex() != EquipmentIndex.None)
                 {
                     Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.MainHand, Agent.WeaponWieldActionType.WithAnimation);
                     return;
