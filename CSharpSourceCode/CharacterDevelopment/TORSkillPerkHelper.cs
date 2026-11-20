@@ -179,6 +179,30 @@ namespace TOR_Core.CharacterDevelopment
                 combatPredicate: (attacker, victim, mask) =>
                     attacker != null && !attacker.HasMount,
                 asFactor: true);
+
+            // Governor-tier passives: each fires in a dedicated settlement
+            // model/tick path. The model site gates the context (under
+            // siege, tournament active, etc.) and passes the governor as
+            // the hero argument; the helper reads the perk bonus. Flat
+            // adds, no character predicate (no per-troop filter in a
+            // settlement-level tick).
+
+            // Fencer secondary: "+5 tariff revenue from towns you govern."
+            Register(TORPerks.Roguery.Fencer, SkillEffectType.GovernorTariff,
+                isPrimary: false);
+
+            // Fence secondary: "+2 militia per day in besieged governed towns."
+            Register(TORPerks.Roguery.Fence, SkillEffectType.GovernorBesiegedMilitia,
+                isPrimary: false);
+
+            // Unarmed secondary: "+2 food per day in besieged governed towns."
+            Register(TORPerks.Roguery.Unarmed, SkillEffectType.GovernorBesiegedFood,
+                isPrimary: false);
+
+            // Strider secondary: "Cities you govern produce 250 denars per day
+            // while a tournament is active."
+            Register(TORPerks.Roguery.Strider, SkillEffectType.GovernorTournamentIncome,
+                isPrimary: false);
         }
     }
 }

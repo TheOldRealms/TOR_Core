@@ -41,5 +41,24 @@ namespace TOR_Core.CharacterDevelopment
         /// (e.g. vigor, control, athletics). Mirrors vanilla's
         /// <c>TroopSkill</c> pattern.</summary>
         TroopSkill,
+
+        /// <summary>Flat tariff-revenue bonus for the settlement's
+        /// governor. Fires in the tax model.</summary>
+        GovernorTariff,
+
+        /// <summary>Flat militia-per-day bonus for the settlement's
+        /// governor, applied only when the settlement is under siege.
+        /// Fires in the militia model.</summary>
+        GovernorBesiegedMilitia,
+
+        /// <summary>Flat food-per-day bonus for the settlement's
+        /// governor, applied only when the settlement is under siege.
+        /// Fires in the food model.</summary>
+        GovernorBesiegedFood,
+
+        /// <summary>Flat denars-per-day bonus for the settlement's
+        /// governor while a tournament is active in the town. Fires
+        /// in a daily tick for governed towns.</summary>
+        GovernorTournamentIncome,
     }
 }

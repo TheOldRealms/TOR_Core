@@ -17,6 +17,16 @@ namespace TOR_Core.Models
         public override ExplainedNumber CalculateMilitiaChange(Settlement settlement, bool includeDescriptions = false)
         {
             var result = base.CalculateMilitiaChange(settlement, includeDescriptions);
+
+            // Fence secondary (Roguery 250): "+2 militia per day in
+            // besieged governed towns." Fires via the shared skill-perk
+            // helper pipeline; the governor hero carries the perk, the
+            // besieged condition is gated here at the model site.
+            if (settlement.IsUnderSiege && settlement.Town?.Governor != null)
+            {
+                TORSkillPerkHelper.ApplyPerkPassives(settlement.Town.Governor, ref result,
+                    SkillEffectType.GovernorBesiegedMilitia);
+            }
             if (settlement.IsCastle)
             {
                 if (settlement.IsBloodKeep() && settlement.Owner.IsVampire() && !settlement.IsUnderSiege)

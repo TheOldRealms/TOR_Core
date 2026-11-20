@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
@@ -86,6 +87,22 @@ namespace TOR_Core.Models
                 };
             }
             return num;
+        }
+
+        public override ExplainedNumber CalculateTownIncomeFromTariffs(Clan clan, Town town, bool applyWithdrawals = false)
+        {
+            var tariffs = base.CalculateTownIncomeFromTariffs(clan, town, applyWithdrawals);
+
+            // Fencer secondary (Roguery 200): "+5 tariff revenue from towns
+            // you govern." Flat add via the shared skill-perk helper; the
+            // governor hero carries the perk.
+            if (town?.Governor != null)
+            {
+                TORSkillPerkHelper.ApplyPerkPassives(town.Governor, ref tariffs,
+                    SkillEffectType.GovernorTariff);
+            }
+
+            return tariffs;
         }
 
         public override ExplainedNumber CalculateClanIncome(Clan clan, bool includeDescriptions = false, bool applyWithdrawals = false, bool includeDetails = false)
