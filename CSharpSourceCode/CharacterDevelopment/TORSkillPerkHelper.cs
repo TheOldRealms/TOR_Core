@@ -45,6 +45,12 @@ namespace TOR_Core.CharacterDevelopment
             /// perks that boost only particular weapon skills). Null = any
             /// skill passes.</summary>
             public HashSet<string> TargetSkillIds;
+            /// <summary>Per-registration interpretation. <c>true</c> =
+            /// multiplicative via <c>AddFactor</c>, <c>false</c> = flat
+            /// via <c>Add</c>. Mirrors Career's <c>InterpretAsPercentage</c>
+            /// pattern so a single Apply call can fold in mixed-semantic
+            /// perks without the call-site picking one.</summary>
+            public bool AsFactor;
         }
 
         private static readonly List<PerkEffectConfig> _configs = new List<PerkEffectConfig>();
@@ -58,7 +64,8 @@ namespace TOR_Core.CharacterDevelopment
                                      AttackTypeMask attackMask = AttackTypeMask.All,
                                      Func<CharacterObject, bool> characterPredicate = null,
                                      Func<Agent, Agent, AttackTypeMask, bool> combatPredicate = null,
-                                     HashSet<string> targetSkillIds = null)
+                                     HashSet<string> targetSkillIds = null,
+                                     bool asFactor = false)
         {
             if (perk == null) return;
             _configs.Add(new PerkEffectConfig
@@ -70,6 +77,7 @@ namespace TOR_Core.CharacterDevelopment
                 CharacterPredicate = characterPredicate,
                 CombatPredicate = combatPredicate,
                 TargetSkillIds = targetSkillIds,
+                AsFactor = asFactor,
             });
         }
 
@@ -89,7 +97,8 @@ namespace TOR_Core.CharacterDevelopment
             CharacterObject targetCharacter = null,
             AttackTypeMask mask = AttackTypeMask.All,
             SkillObject targetSkill = null,
-            bool asFactor = false)
+            Agent attacker = null,
+            Agent victim = null)
         {
             if (hero == null) return;
             foreach (var cfg in _configs)
@@ -101,35 +110,12 @@ namespace TOR_Core.CharacterDevelopment
                     && (targetCharacter == null || !cfg.CharacterPredicate(targetCharacter))) continue;
                 if (cfg.TargetSkillIds != null
                     && (targetSkill == null || !cfg.TargetSkillIds.Contains(targetSkill.StringId))) continue;
-
-                float bonus = cfg.IsPrimary ? cfg.Perk.PrimaryBonus : cfg.Perk.SecondaryBonus;
-                if (bonus == 0f) continue;
-                if (asFactor) number.AddFactor(bonus, cfg.Perk.Name);
-                else number.Add(bonus, cfg.Perk.Name);
-            }
-        }
-
-        /// <summary>Combat-event variant with attacker/victim/mask
-        /// context. Used from damage-pass sites that want per-perk
-        /// combat filters (friendly-fire gates, melee-only gates, etc.)
-        /// in addition to the character predicate.</summary>
-        public static void ApplyPerkCombatPassives(Hero hero, ref ExplainedNumber number,
-            SkillEffectType type,
-            Agent attacker, Agent victim, AttackTypeMask mask,
-            bool asFactor = false)
-        {
-            if (hero == null) return;
-            foreach (var cfg in _configs)
-            {
-                if (cfg.EffectType != type) continue;
-                if ((mask & cfg.AttackMask) == 0) continue;
-                if (!hero.GetPerkValue(cfg.Perk)) continue;
                 if (cfg.CombatPredicate != null
-                    && !cfg.CombatPredicate(attacker, victim, mask)) continue;
+                    && (attacker == null || !cfg.CombatPredicate(attacker, victim, mask))) continue;
 
                 float bonus = cfg.IsPrimary ? cfg.Perk.PrimaryBonus : cfg.Perk.SecondaryBonus;
                 if (bonus == 0f) continue;
-                if (asFactor) number.AddFactor(bonus, cfg.Perk.Name);
+                if (cfg.AsFactor) number.AddFactor(bonus, cfg.Perk.Name);
                 else number.Add(bonus, cfg.Perk.Name);
             }
         }
@@ -158,7 +144,8 @@ namespace TOR_Core.CharacterDevelopment
             Register(TORPerks.Roguery.Shadowed, SkillEffectType.TroopSpeed,
                 isPrimary: true,
                 characterPredicate: c => c != null
-                    && c.HasAttribute(CharacterAttributes.MASTER_AMBUSHER));
+                    && c.HasAttribute(CharacterAttributes.MASTER_AMBUSHER),
+                asFactor: true);
 
             // Skirmisher primary: "+10 vigor and control for your Master
             // Ambusher troops in your formation." Vigor affects OneHanded /
@@ -179,6 +166,19 @@ namespace TOR_Core.CharacterDevelopment
                     DefaultSkills.Crossbow.StringId,
                     DefaultSkills.Throwing.StringId,
                 });
+
+            // Strider primary: "+50% damage bonus from speed while fighting
+            // on foot." Personal self-effect — applies to the main hero's
+            // own attacks. Combat predicate gates on attacker not being
+            // mounted. Interpreted as a flat +50% damage factor on on-foot
+            // attacks (approximation: vanilla's speed-damage scaling isn't
+            // directly reachable without touching the damage engine, so we
+            // land the bonus as a generic damage multiplier instead).
+            Register(TORPerks.Roguery.Strider, SkillEffectType.Damage,
+                isPrimary: true,
+                combatPredicate: (attacker, victim, mask) =>
+                    attacker != null && !attacker.HasMount,
+                asFactor: true);
         }
     }
 }

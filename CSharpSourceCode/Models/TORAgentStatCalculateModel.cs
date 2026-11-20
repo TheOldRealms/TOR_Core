@@ -61,7 +61,7 @@ namespace TOR_Core.Models
                 var speedBonus = new ExplainedNumber(agentDrivenProperties.CombatMaxSpeedMultiplier);
                 TORSkillPerkHelper.ApplyPerkPassives(captainChar.HeroObject, ref speedBonus,
                     SkillEffectType.TroopSpeed,
-                    targetCharacter: agentChar, asFactor: true);
+                    targetCharacter: agentChar);
                 agentDrivenProperties.CombatMaxSpeedMultiplier = speedBonus.ResultNumber;
             }
 
@@ -297,8 +297,7 @@ namespace TOR_Core.Models
                 TORSkillPerkHelper.ApplyPerkPassives(captainChar.HeroObject, ref effectiveSkill,
                     SkillEffectType.TroopSkill,
                     targetCharacter: agentChar2,
-                    targetSkill: skill,
-                    asFactor: false);
+                    targetSkill: skill);
             }
 
             return (int)effectiveSkill.ResultNumber;

@@ -436,7 +436,8 @@ namespace TOR_Core.Models
                     attackerHero, ref skillPerkBonus,
                     TOR_Core.CharacterDevelopment.SkillEffectType.Damage,
                     targetCharacter: attackerAgent.Character as CharacterObject,
-                    mask: attackTypeMask, asFactor: false);
+                    mask: attackTypeMask,
+                    attacker: attackerAgent, victim: victimAgent);
                 vanillaDamage = skillPerkBonus.ResultNumber;
             }
             else if (attackerAgent.Origin?.BattleCombatant is PartyBase attackerParty
@@ -447,7 +448,8 @@ namespace TOR_Core.Models
                     attackerParty.LeaderHero, ref skillPerkBonus,
                     TOR_Core.CharacterDevelopment.SkillEffectType.TroopDamage,
                     targetCharacter: attackerAgent.Character as CharacterObject,
-                    mask: attackTypeMask, asFactor: false);
+                    mask: attackTypeMask,
+                    attacker: attackerAgent, victim: victimAgent);
                 vanillaDamage = skillPerkBonus.ResultNumber;
             }
 
