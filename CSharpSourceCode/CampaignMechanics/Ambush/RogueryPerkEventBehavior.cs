@@ -55,7 +55,36 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             CampaignEvents.RaidCompletedEvent.AddNonSerializedListener(this, OnRaidCompleted);
             CampaignEvents.VillageLooted.AddNonSerializedListener(this, OnVillageLooted);
+            CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
+        }
+
+        /// <summary>Highwayman secondary (Roguery 175): "Your Master Ambusher
+        /// troops gain daily experience while your party is in ambush stance."
+        /// Grants <see cref="TORPerks.Roguery.Highwayman"/>.SecondaryBonus XP
+        /// to each MASTER_AMBUSHER-flagged troop in the main party's roster,
+        /// once per day, only while <c>IsPlayerInStealth</c> is true.</summary>
+        private void OnDailyTick()
+        {
+            var main = MobileParty.MainParty;
+            if (main?.MemberRoster == null) return;
+            if (!main.HasPerk(TORPerks.Roguery.Highwayman)) return;
+
+            var ambush = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
+            if (ambush == null || !ambush.IsPlayerInStealth) return;
+
+            int xp = (int)TORPerks.Roguery.Highwayman.SecondaryBonus;
+            if (xp <= 0) return;
+
+            var roster = main.MemberRoster;
+            for (int i = 0; i < roster.Count; i++)
+            {
+                var c = roster.GetCharacterAtIndex(i);
+                if (c == null || c.IsHero) continue;
+                if (roster.GetElementNumber(i) <= 0) continue;
+                if (!c.HasAttribute(Utilities.TORConstants.CharacterAttributes.MASTER_AMBUSHER)) continue;
+                roster.AddXpToTroopAtIndex(i, xp);
+            }
         }
 
         private void OnSessionLaunched(CampaignGameStarter starter)
