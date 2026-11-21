@@ -68,6 +68,7 @@ using TOR_Core.Models;
 using TOR_Core.Models.CustomBattleModels;
 using TOR_Core.Quests;
 using TOR_Core.Utilities;
+using TOR_Core.Models.Ambush;
 
 namespace TOR_Core
 {

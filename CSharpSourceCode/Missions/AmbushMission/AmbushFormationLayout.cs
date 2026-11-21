@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TOR_Core.Models;
+using TOR_Core.Models.Ambush;
 
 namespace TOR_Core.Missions.AmbushMission
 {
@@ -31,9 +32,13 @@ namespace TOR_Core.Missions.AmbushMission
         public string GroupTag;
         public Vec3 Position;
         public float Yaw;
-        /// <summary>Per-spot cap from the scene-attached AmbushSpawnPointScript. Zero = unlimited.</summary>
+        /// <summary>
+        /// Per-spot cap from the scene-attached AmbushSpawnPointScript. Zero = unlimited.
+        /// </summary>
         public int MaxFormations;
-        /// <summary>Per-spot width budget from the scene-attached AmbushSpawnPointScript. Zero = unlimited.</summary>
+        /// <summary>
+        /// Per-spot width budget from the scene-attached AmbushSpawnPointScript. Zero = unlimited.
+        /// </summary>
         public float MaxWidth;
         /// <summary>
         /// Preferred FormationClass (cast to int) for this spot, or -1 for
@@ -140,6 +145,9 @@ namespace TOR_Core.Missions.AmbushMission
             return dict;
         }
 
+        /// <summary>
+        /// Split player-side troops of a class into one or two chunks based on the model's chunk threshold.
+        /// </summary>
         private static List<AmbushFormation> ChunkForPlayer(FormationClass cls,
             List<CharacterObject> troops, TORMissionAmbushModel model)
         {
@@ -154,6 +162,9 @@ namespace TOR_Core.Missions.AmbushMission
             return list;
         }
 
+        /// <summary>
+        /// Split AI-side troops of a class into chunks bounded by spot count and the class min/max size.
+        /// </summary>
         private static List<AmbushFormation> ChunkForAi(FormationClass cls,
             List<CharacterObject> troops, int spotCount,
             TORMissionAmbushModel model)
@@ -190,6 +201,9 @@ namespace TOR_Core.Missions.AmbushMission
             return list;
         }
 
+        /// <summary>
+        /// Split the troop list into the requested number of near-equal chunks, appending each to output.
+        /// </summary>
         private static void SplitEven(List<CharacterObject> troops, int chunks,
             FormationClass cls, List<AmbushFormation> output)
         {
@@ -266,6 +280,9 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
+        /// <summary>
+        /// Return a Fisher-Yates-shuffled copy of the source list.
+        /// </summary>
         private static List<AmbushSpot> ShuffleCopy(IList<AmbushSpot> source)
         {
             var copy = new List<AmbushSpot>(source);

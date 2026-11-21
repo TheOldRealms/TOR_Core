@@ -21,7 +21,9 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch(typeof(EndCaptivityAction), nameof(EndCaptivityAction.ApplyByEscape))]
     public static class EndCaptivityAction_ApplyByEscape_Patch
     {
-        /// <summary>Returns false to cancel the escape when the perk roll passes.</summary>
+        /// <summary>
+        /// Returns false to cancel the escape when the perk roll passes.
+        /// </summary>
         public static bool Prefix(Hero character)
         {
             if (character == null || !character.IsLord || !character.IsPrisoner) return true;

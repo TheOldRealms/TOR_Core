@@ -95,6 +95,9 @@ namespace TOR_Core.Missions.AmbushMission.UI
             orderController.SetOrderWithPosition(OrderType.Move, worldPosition);
         }
 
+        /// <summary>
+        /// Resolve the current extraction-marker position from an active zone or the procedural fallback.
+        /// </summary>
         private static bool TryGetExtractionWorldPos(out Vec3 position)
         {
             var zones = AmbushRetreatZone.ActiveZones;

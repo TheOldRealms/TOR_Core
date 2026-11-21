@@ -2,18 +2,23 @@ using SandBox.ViewModelCollection;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.CampaignMechanics.Ambush;
 using TOR_Core.Extensions.UI;
 using TOR_Core.Missions.AmbushMission;
 
-namespace TOR_Core.CampaignMechanics.Ambush
+namespace TOR_Core.Missions.AmbushMission.UI
 {
-    /// <summary>Scoreboard overlay for ambush missions. Hides the result banner + Done button until the resolution is terminal.</summary>
+    /// <summary>
+    /// Scoreboard overlay for ambush missions. Hides the result banner + Done button until the resolution is terminal.
+    /// </summary>
     [ViewModelExtension(typeof(SPScoreboardVM), "OnTick")]
     public class AmbushScoreboardVMExtension : BaseViewModelExtension
     {
         private bool _isAmbushResultVisible = true;
 
-        /// <summary>True when the result banner + Done button should render.</summary>
+        /// <summary>
+        /// True when the result banner + Done button should render.
+        /// </summary>
         [DataSourceProperty]
         public bool IsAmbushResultVisible
         {
@@ -34,13 +39,15 @@ namespace TOR_Core.CampaignMechanics.Ambush
             IsAmbushResultVisible = ComputeVisibility();
         }
 
+        /// <summary>
+        /// True when the scoreboard result banner should remain visible for the current ambush mission.
+        /// </summary>
         private static bool ComputeVisibility()
         {
             var mission = Mission.Current;
             if (mission == null) return true;
 
-            bool isAmbush = mission.GetMissionBehavior<AmbushEndLogic>() != null
-                            || mission.GetMissionBehavior<AmbushedEndLogic>() != null;
+            bool isAmbush = mission.GetMissionBehavior<AmbushMissionLogicBase>() != null;
             if (!isAmbush) return true;
 
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();

@@ -3,10 +3,13 @@ using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.InputSystem;
+using TOR_Core.CampaignMechanics.Ambush.UI;
 
 namespace TOR_Core.CampaignMechanics.Ambush
 {
-    /// <summary>Map-screen view that attaches the ambush stealth widget and polls the stealth hotkey.</summary>
+    /// <summary>
+    /// Map-screen view that attaches the ambush stealth widget and polls the stealth hotkey.
+    /// </summary>
     public class AmbushMapView : MapView
     {
         private AmbushButtonVM _vm;
@@ -43,6 +46,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             base.OnFinalize();
         }
 
+        /// <summary>
+        /// Fire the stealth-toggle hotkey when the configured key is released.
+        /// </summary>
         private static void HandleInput()
         {
             if (!Input.IsKeyReleased(AmbushCampaignBehavior.StealthToggleKey)) return;

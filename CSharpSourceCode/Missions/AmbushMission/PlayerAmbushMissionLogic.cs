@@ -1,10 +1,6 @@
-using System.Collections.Generic;
 using NLog;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Encounters;
-using TaleWorlds.CampaignSystem.MapEvents;
-using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -12,59 +8,42 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Missions.MissionLogics;
 using TaleWorlds.MountAndBlade.Missions.Objectives;
 using TOR_Core.CampaignMechanics.Ambush;
-using TOR_Core.Extensions;
-using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Missions.AmbushMission
 {
-    /// <summary>End-condition priority table and extraction bar for the ambusher-side mission.</summary>
+    /// <summary>
+    /// Mission logic for the ambusher-side ambush (player strikes an AI
+    /// party from stealth). Owns the outcome priority table, the Phase 1
+    /// to Phase 2 objective transition, and the extraction-bar fill.
+    /// Role-specific SetOutcome flags come from <see cref="AmbushMissionLogicBase.WriteRoleFlags"/>.
+    /// </summary>
     /// <remarks>
-    /// Priority: hero inactive, attacker wiped, defender wiped + reinforcements drained, extraction complete, stalemate timer.
+    /// Outcome priority: hero inactive, attacker wiped, defender wiped + reinforcements drained, extraction complete, stalemate timer.
     /// </remarks>
-    public class AmbushEndLogic : MissionLogic
+    public class PlayerAmbushMissionLogic : AmbushMissionLogicBase
     {
-        private bool _outcomeDecided;
-        private bool _deploymentFinished;
-        private MissionResult _result;
-        private TORMissionAmbushModel _model;
         private AmbushMissionController _controller;
-        private AmbushReinforcementMissionLogic _reinforcementLogic;
 
         private float _extractionProgress;
         private bool _leftBehindWarningFired;
         private float _missionRealTimeSeconds;
 
-        private MissionObjectiveLogic _objectiveLogic;
-        private AmbushObjective _objective;
         private bool _objectiveIsPhase2;
         private int _lastRemainingShown = int.MinValue;
         private int _lastTotalPoolShown = int.MinValue;
         private bool _lastInZoneShown;
 
-        public override void AfterStart()
+        protected override string LogTag => "[PlayerAmbushMission]";
+
+        protected override void OnAfterStarted()
         {
-            base.AfterStart();
-            _model = Campaign.Current?.Models?.GetMissionAmbushModel() ?? new TORMissionAmbushModel();
             _controller = Mission.GetMissionBehavior<AmbushMissionController>();
-            _reinforcementLogic = Mission.GetMissionBehavior<AmbushReinforcementMissionLogic>();
-            _objectiveLogic = Mission.GetMissionBehavior<MissionObjectiveLogic>();
             StartPhase1Objective();
         }
 
-        public override void OnDeploymentFinished()
+        protected override void OnMissionTickReady(float dt)
         {
-            base.OnDeploymentFinished();
-            _deploymentFinished = true;
-        }
-
-        public override void OnMissionTick(float dt)
-        {
-            base.OnMissionTick(dt);
-            if (_outcomeDecided) return;
-            // Skip checks until deployment finishes; otherwise frame-1 would auto-defeat.
-            if (!_deploymentFinished) return;
-
             _missionRealTimeSeconds += dt;
 
             // Priority 1: hero down.
@@ -72,7 +51,7 @@ namespace TOR_Core.Missions.AmbushMission
             if (mainAgent != null && !mainAgent.IsActive())
             {
                 SetOutcome(AmbushResolution.AmbusherDefeated,
-                    successful: false, ambusherLeaderDown: true,
+                    successful: false, leaderDown: true,
                     reason: "hero inactive");
                 return;
             }
@@ -110,7 +89,49 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
-        /// <summary>Fill the extraction bar while the hero stands inside a retreat zone during Phase 2.</summary>
+        protected override void WriteRoleFlags(AmbushCampaignBehavior behavior, bool leaderDown)
+        {
+            behavior.PlayerWasAmbusher = true;
+            behavior.LastAmbusherLeaderDown = leaderDown;
+            behavior.LastVictimLeaderDown = false;
+        }
+
+        protected override void OnOutcomeSet(AmbushResolution resolution, bool successful, string reason,
+                                              AmbushCampaignBehavior behavior)
+        {
+            // Stamp SetPlayerVictorious at decision time; vanilla's OnBattleOver reads WinningSide synchronously.
+            if (resolution == AmbushResolution.AmbusherTotalVictory
+                && PlayerEncounter.Current != null)
+            {
+                PlayerEncounter.SetPlayerVictorious();
+                if (behavior != null) behavior.PendingPostAmbushCleanup = true;
+                TORCommon.Log(LogLevel.Info,
+                    LogTag + " SetPlayerVictorious stamped at SetOutcome"
+                    + " resolution=" + resolution
+                    + " WinningSide=" + PlayerEncounter.WinningSide
+                    + " enc.PlayerSide="
+                      + (PlayerEncounter.Current?.PlayerSide.ToString() ?? "n/a")
+                    + " Mission.PlayerTeam.Side="
+                      + (Mission.PlayerTeam?.Side.ToString() ?? "null"));
+            }
+
+            // Extraction path: pre-activate the escape menu and tear down immediately to beat the scoreboard.
+            if (resolution == AmbushResolution.AmbusherPartialVictory && behavior != null)
+            {
+                behavior.BeginExtractionTransition(behavior.ExtractionTroopsLeftBehind);
+                Mission.EndMission();
+            }
+        }
+
+        public override void OnMissionResultReady(MissionResult missionResult)
+        {
+            base.OnMissionResultReady(missionResult);
+            // Victory override moved to OnOutcomeSet so it lands before vanilla's iteration races in.
+        }
+
+        /// <summary>
+        /// Fill the extraction bar while the hero stands inside a retreat zone during Phase 2.
+        /// </summary>
         private void TickExtractionBar(float dt, Agent mainAgent)
         {
             // Suppress the bar in the frame before TotalVictory fires.
@@ -170,22 +191,9 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
-        /// <summary>True while the reinforcement wave timer may still deliver another defender batch.</summary>
-        private bool AreReinforcementsStillPending()
-        {
-            if (_reinforcementLogic == null) return false;
-            return !_reinforcementLogic.IsPoolDepleted;
-        }
-
-        private static int CountActiveHumans(Team team)
-        {
-            if (team == null) return 0;
-            int n = 0;
-            foreach (var a in team.ActiveAgents)
-                if (a != null && a.IsHuman && a.IsActive()) n++;
-            return n;
-        }
-
+        /// <summary>
+        /// Count the live human agents on the team that are outside every troop-extraction zone.
+        /// </summary>
         private static int CountActiveHumansOutsideZone(Team team)
         {
             if (team == null) return 0;
@@ -199,7 +207,9 @@ namespace TOR_Core.Missions.AmbushMission
             return n;
         }
 
-        /// <summary>Start the "defeat the patrol" objective; description is updated per tick with the live count.</summary>
+        /// <summary>
+        /// Start the "defeat the patrol" objective; description is updated per tick with the live count.
+        /// </summary>
         private void StartPhase1Objective()
         {
             if (_objectiveLogic == null) return;
@@ -215,7 +225,9 @@ namespace TOR_Core.Missions.AmbushMission
             _lastTotalPoolShown = int.MinValue;
         }
 
-        /// <summary>Start the Phase 2 "escape the ambush" objective and light the retreat-zone markers.</summary>
+        /// <summary>
+        /// Start the Phase 2 "escape the ambush" objective and light the retreat-zone markers.
+        /// </summary>
         private void StartPhase2Objective()
         {
             if (_objectiveLogic == null) return;
@@ -233,7 +245,9 @@ namespace TOR_Core.Missions.AmbushMission
             AmbushRetreatZone.ShowRuntimeMarker = true;
         }
 
-        /// <summary>Handle Phase 1 to Phase 2 transition and update objective description only when inputs change.</summary>
+        /// <summary>
+        /// Handle Phase 1 to Phase 2 transition and update objective description only when inputs change.
+        /// </summary>
         private void RefreshObjective(Agent mainAgent)
         {
             if (_objective == null || _controller == null) return;
@@ -272,7 +286,9 @@ namespace TOR_Core.Missions.AmbushMission
             _objective.SetDescription(phase2Desc);
         }
 
-        /// <summary>Phase 2 progress bar fill based on the cached in-zone flag.</summary>
+        /// <summary>
+        /// Phase 2 progress bar fill based on the cached in-zone flag.
+        /// </summary>
         private MissionObjectiveProgressInfo GetPhase2Progress()
         {
             if (!_lastInZoneShown) return default;
@@ -281,63 +297,6 @@ namespace TOR_Core.Missions.AmbushMission
                 RequiredProgressAmount = 100,
                 CurrentProgressAmount = (int)(_extractionProgress * 100f),
             };
-        }
-
-        public override bool MissionEnded(ref MissionResult missionResult)
-        {
-            if (!_outcomeDecided) return false;
-            missionResult = _result;
-            return true;
-        }
-
-        public override void OnMissionResultReady(MissionResult missionResult)
-        {
-            base.OnMissionResultReady(missionResult);
-            // Victory override moved to SetOutcome so it lands before vanilla's iteration races in.
-        }
-
-        private void SetOutcome(AmbushResolution resolution, bool successful, string reason,
-                                 bool ambusherLeaderDown = false)
-        {
-            _outcomeDecided = true;
-            _result = successful
-                ? MissionResult.CreateSuccessful(Mission)
-                : MissionResult.CreateDefeated(Mission);
-            var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
-            if (behavior != null)
-            {
-                behavior.LastResolution = resolution;
-                behavior.PlayerWasAmbusher = true;
-                behavior.LastAmbusherLeaderDown = ambusherLeaderDown;
-                behavior.LastVictimLeaderDown = false;
-            }
-
-            // Stamp SetPlayerVictorious at decision time; vanilla's OnBattleOver reads WinningSide synchronously.
-            if (resolution == AmbushResolution.AmbusherTotalVictory
-                && PlayerEncounter.Current != null)
-            {
-                PlayerEncounter.SetPlayerVictorious();
-                if (behavior != null) behavior.PendingPostAmbushCleanup = true;
-                TORCommon.Log(LogLevel.Info,
-                    "[AmbushEndLogic] SetPlayerVictorious stamped at SetOutcome"
-                    + " resolution=" + resolution
-                    + " WinningSide=" + PlayerEncounter.WinningSide
-                    + " enc.PlayerSide="
-                      + (PlayerEncounter.Current?.PlayerSide.ToString() ?? "n/a")
-                    + " Mission.PlayerTeam.Side="
-                      + (Mission.PlayerTeam?.Side.ToString() ?? "null"));
-            }
-
-            // Extraction path: pre-activate the escape menu and tear down immediately to beat the scoreboard.
-            if (resolution == AmbushResolution.AmbusherPartialVictory && behavior != null)
-            {
-                behavior.BeginExtractionTransition(behavior.ExtractionTroopsLeftBehind);
-                Mission.EndMission();
-            }
-
-            TORCommon.Log(LogLevel.Info,
-                "[AmbushEndLogic] resolution=" + resolution + " successful=" + successful
-                + " (" + reason + ")");
         }
     }
 }

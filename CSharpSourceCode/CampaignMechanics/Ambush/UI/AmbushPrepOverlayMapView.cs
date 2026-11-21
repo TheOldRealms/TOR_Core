@@ -3,9 +3,11 @@ using SandBox.View.Map;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.ScreenSystem;
 
-namespace TOR_Core.CampaignMechanics.Ambush
+namespace TOR_Core.CampaignMechanics.Ambush.UI
 {
-    /// <summary>Map overlay for the ambush preparation bar. Mirrors the vanilla siege-overlay pattern.</summary>
+    /// <summary>
+    /// Map overlay for the ambush preparation bar. Mirrors the vanilla siege-overlay pattern.
+    /// </summary>
     public class AmbushPrepOverlayMapView : MapView
     {
         private GauntletLayer _layer;

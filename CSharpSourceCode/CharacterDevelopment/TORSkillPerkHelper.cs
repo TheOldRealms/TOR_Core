@@ -18,7 +18,9 @@ namespace TOR_Core.CharacterDevelopment
     /// </summary>
     public static class TORSkillPerkHelper
     {
-        /// <summary>Per registration filter block for one perk.</summary>
+        /// <summary>
+        /// Per registration filter block for one perk.
+        /// </summary>
         private class SkillEffectConfig
         {
             public PerkObject Perk;
@@ -27,9 +29,13 @@ namespace TOR_Core.CharacterDevelopment
             public AttackTypeMask AttackMask = AttackTypeMask.All;
             public Func<CharacterObject, bool> CharacterPredicate;
             public Func<Agent, Agent, AttackTypeMask, bool> CombatPredicate;
-            /// <summary>Non-null set restricts the mapping to specific skill ids.</summary>
+            /// <summary>
+            /// Non-null set restricts the mapping to specific skill ids.
+            /// </summary>
             public HashSet<string> TargetSkillIds;
-            /// <summary>True applies the bonus through <c>AddFactor</c>, false uses <c>Add</c>.</summary>
+            /// <summary>
+            /// True applies the bonus through <c>AddFactor</c>, false uses <c>Add</c>.
+            /// </summary>
             public bool AsFactor;
         }
 

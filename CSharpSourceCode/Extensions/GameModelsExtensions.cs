@@ -1,6 +1,7 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TOR_Core.Models;
+using TOR_Core.Models.Ambush;
 
 namespace TOR_Core.Extensions
 {

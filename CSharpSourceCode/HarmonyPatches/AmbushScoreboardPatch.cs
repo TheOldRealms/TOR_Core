@@ -18,8 +18,7 @@ namespace TOR_Core.HarmonyPatches
         {
             var mission = Mission.Current;
             if (mission == null) return true;
-            bool isAmbush = mission.GetMissionBehavior<AmbushEndLogic>() != null
-                            || mission.GetMissionBehavior<AmbushedEndLogic>() != null;
+            bool isAmbush = mission.GetMissionBehavior<AmbushMissionLogicBase>() != null;
             if (!isAmbush) return true;
 
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();

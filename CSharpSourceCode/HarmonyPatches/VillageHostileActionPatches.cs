@@ -24,7 +24,9 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch(typeof(VillageHostileActionCampaignBehavior))]
     public static class VillageHostileActionCampaignBehavior_WillVillageResistHostileAction_Patch
     {
-        /// <summary>Rolls to turn resistance off when the perk is held.</summary>
+        /// <summary>
+        /// Rolls to turn resistance off when the perk is held.
+        /// </summary>
         [HarmonyPostfix]
         [HarmonyPatch("WillVillageResistHostileAction")]
         public static void WillVillageResistHostileAction_Postfix(ref bool __result)
@@ -53,7 +55,9 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch(typeof(VillageHostileActionCampaignBehavior))]
     public static class VillageHostileActionCampaignBehavior_Fencer_Patches
     {
-        /// <summary>Grants extra gold and production goods on a force-supplies success.</summary>
+        /// <summary>
+        /// Grants extra gold and production goods on a force-supplies success.
+        /// </summary>
         [HarmonyPostfix]
         [HarmonyPatch("village_force_supplies_ended_successfully_on_consequence")]
         public static void ForceSuppliesSuccess_Postfix()
@@ -87,7 +91,9 @@ namespace TOR_Core.HarmonyPatches
                     "Fencer: extracted an extra share from the compliant villagers.")));
         }
 
-        /// <summary>Grants extra basic-troop recruits on a force-volunteers success.</summary>
+        /// <summary>
+        /// Grants extra basic-troop recruits on a force-volunteers success.
+        /// </summary>
         [HarmonyPostfix]
         [HarmonyPatch("village_force_volunteers_ended_successfully_on_consequence")]
         public static void ForceVolunteersSuccess_Postfix()

@@ -5,9 +5,11 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.ViewModelCollection.HUD.FormationMarker;
 using TOR_Core.Extensions.UI;
 
-namespace TOR_Core.CampaignMechanics.Ambush
+namespace TOR_Core.CampaignMechanics.Ambush.UI
 {
-    /// <summary>Adds the IsBluffCountHidden flag to formation markers so the troop count hides during a bluff.</summary>
+    /// <summary>
+    /// Adds the IsBluffCountHidden flag to formation markers so the troop count hides during a bluff.
+    /// </summary>
     [ViewModelExtension(typeof(MissionFormationMarkerTargetVM), "Refresh")]
     public class AmbushBluffFormationMarkerExtension : BaseViewModelExtension
     {
@@ -35,6 +37,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             IsBluffCountHidden = ComputeBluffHide();
         }
 
+        /// <summary>
+        /// True when the formation marker's unit count should be hidden to maintain the ambush bluff.
+        /// </summary>
         private bool ComputeBluffHide()
         {
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();

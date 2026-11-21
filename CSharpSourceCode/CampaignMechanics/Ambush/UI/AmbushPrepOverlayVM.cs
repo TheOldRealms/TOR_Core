@@ -3,9 +3,11 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Library;
 using TOR_Core.Extensions;
 
-namespace TOR_Core.CampaignMechanics.Ambush
+namespace TOR_Core.CampaignMechanics.Ambush.UI
 {
-    /// <summary>VM for the ambush prep overlay. Drives a PreparationProgress bar shaped like the siege prep slider.</summary>
+    /// <summary>
+    /// VM for the ambush prep overlay. Drives a PreparationProgress bar shaped like the siege prep slider.
+    /// </summary>
     public class AmbushPrepOverlayVM : ViewModel
     {
         private float _preparationProgress;
@@ -35,7 +37,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
         }
 
-        /// <summary>Recompute the prep bar from live stealth state. Called per-frame.</summary>
+        /// <summary>
+        /// Recompute the prep bar from live stealth state. Called per-frame.
+        /// </summary>
         public void Update()
         {
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();

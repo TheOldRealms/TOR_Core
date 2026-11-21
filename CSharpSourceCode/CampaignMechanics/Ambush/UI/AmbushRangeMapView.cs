@@ -6,9 +6,11 @@ using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TOR_Core.Extensions;
 
-namespace TOR_Core.CampaignMechanics.Ambush
+namespace TOR_Core.CampaignMechanics.Ambush.UI
 {
-    /// <summary>Draws a strike-range ring on the campaign map while the player is in stealth.</summary>
+    /// <summary>
+    /// Draws a strike-range ring on the campaign map while the player is in stealth.
+    /// </summary>
     public class AmbushRangeMapView : MapView
     {
         // Vanilla hover-ring material.
@@ -68,6 +70,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             _ringDecal.SetVectorArgument(0.166f, 1f, 0.83f, 0f);
         }
 
+        /// <summary>
+        /// Lazily spawn the hidden range-ring decal entity on the given scene.
+        /// </summary>
         private void EnsureRingCreated(Scene scene)
         {
             if (_ringEntity != null) return;

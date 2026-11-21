@@ -7,11 +7,20 @@ using TaleWorlds.MountAndBlade.ViewModelCollection.Scoreboard;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.UI;
 
-namespace TOR_Core.CampaignMechanics.Ambush
+namespace TOR_Core.Missions.AmbushMission.UI
 {
-    /// <summary>Scoreboard row mask for ambushed missions. Enemy rows show
-    /// "?" instead of the troop name until the first casualty and instead of
-    /// the troop count until the whole stack is wiped.</summary>
+    /// <summary>
+    /// Scoreboard row mask for the ambushed (victim) side. Two layers:
+    /// (a) team-wide gate in <c>TORAmbushModel.ShouldMaskScoreboardRow</c>:
+    /// masking is active only while the enemy's visible headcount is above
+    /// <c>BluffVisibleThreshold</c> (5); once the stack drops to that size
+    /// the whole scoreboard reveals, fiction: "they're close enough to count".
+    /// (b) Per-row behaviour, once the gate passes: enemy rows render the
+    /// troop-type name as "?" until the first casualty of that type lands,
+    /// and render the remaining-count column as "?" until the stack is
+    /// wiped. The "?" glyph is painted by the scoreboard XAML binding on
+    /// <see cref="IsNameMasked"/> / <see cref="IsCountsMasked"/>.
+    /// </summary>
     [ViewModelExtension(typeof(SPScoreboardStatsVM), "UpdateScores")]
     public class AmbushScoreboardPartyVMExtension : BaseViewModelExtension
     {
@@ -68,6 +77,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             IsCountsMasked = vm.Remaining > 0;
         }
 
+        /// <summary>
+        /// True when a scoreboard row belongs to the player's side, resolved across party, side, or unit rows.
+        /// </summary>
         private static bool ResolveSideIsPlayer(SPScoreboardStatsVM vm)
         {
             if (vm == null) return false;

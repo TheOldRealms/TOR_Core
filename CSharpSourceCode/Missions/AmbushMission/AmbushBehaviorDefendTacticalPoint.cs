@@ -117,6 +117,14 @@ namespace TOR_Core.Missions.AmbushMission
             Formation.SetFiringOrder(FiringOrder.FiringOrderFireAtWill);
         }
 
+        /// <summary>
+        /// Preset the formation for holding an authored tactical anchor: a
+        /// loose spread so archers settle onto per-child scripted positions
+        /// instead of a single rank, fire-at-will so they shoot the moment
+        /// the ambush breaks, and a wide form so adjacent anchors don't push
+        /// units back into a line. Set once when this behavior activates;
+        /// per-agent placement then runs in <see cref="AssignScriptedPositionsToAgents"/>.
+        /// </summary>
         protected override void OnBehaviorActivatedAux()
         {
             Formation.SetArrangementOrder(ArrangementOrder.ArrangementOrderLoose);

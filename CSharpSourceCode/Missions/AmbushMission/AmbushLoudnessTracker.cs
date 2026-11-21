@@ -7,7 +7,9 @@ using TOR_Core.CampaignMechanics.Ambush;
 
 namespace TOR_Core.Missions.AmbushMission
 {
-    /// <summary>Counts player-side loudness events (gunpowder shots and magic casts) and writes the tally to the campaign behavior.</summary>
+    /// <summary>
+    /// Counts player-side loudness events (gunpowder shots and magic casts) and writes the tally to the campaign behavior.
+    /// </summary>
     public class AmbushLoudnessTracker : MissionLogic
     {
         private int _loudnessCount;
@@ -48,6 +50,9 @@ namespace TOR_Core.Missions.AmbushMission
             if (IsGunpowderClass(wc)) _loudnessCount++;
         }
 
+        /// <summary>
+        /// True for weapon classes that count as a loud gunpowder shot.
+        /// </summary>
         private static bool IsGunpowderClass(WeaponClass wc)
         {
             // TOR Firearms uses Musket + Pistol as the gunpowder classes.
@@ -55,7 +60,9 @@ namespace TOR_Core.Missions.AmbushMission
                 || wc == WeaponClass.Pistol;
         }
 
-        /// <summary>Count player-side Spell casts. Prayer and CareerAbility are excluded.</summary>
+        /// <summary>
+        /// Count player-side Spell casts. Prayer and CareerAbility are excluded.
+        /// </summary>
         private void OnAbilityCastComplete(Ability ability, Agent agent)
         {
             if (ability?.Template == null || agent == null) return;

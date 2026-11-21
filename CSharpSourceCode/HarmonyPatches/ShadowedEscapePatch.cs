@@ -22,7 +22,9 @@ namespace TOR_Core.HarmonyPatches
         nameof(PlayerCaptivityCampaignBehavior.CheckCaptivityChange))]
     public static class PlayerCaptivityCampaignBehavior_CheckCaptivityChange_Patch
     {
-        /// <summary>Captures the pre-call tick timestamp.</summary>
+        /// <summary>
+        /// Captures the pre-call tick timestamp.
+        /// </summary>
         public static void Prefix(out CampaignTime __state)
         {
             __state = PlayerCaptivity.IsCaptive
@@ -30,7 +32,9 @@ namespace TOR_Core.HarmonyPatches
                 : CampaignTime.Zero;
         }
 
-        /// <summary>Rolls the perk bonus when vanilla's tick fired.</summary>
+        /// <summary>
+        /// Rolls the perk bonus when vanilla's tick fired.
+        /// </summary>
         public static void Postfix(CampaignTime __state)
         {
             if (!PlayerCaptivity.IsCaptive) return;

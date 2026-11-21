@@ -3,7 +3,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 using TOR_Core.Extensions.UI;
 
-namespace TOR_Core.CampaignMechanics.Ambush
+namespace TOR_Core.CampaignMechanics.Ambush.UI
 {
     /// <summary>
     /// Surfaces <see cref="AiAmbushBehavior.IsRecentlyPlayerDetected"/>
@@ -16,7 +16,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
     {
         private bool _isAmbushDetected;
 
-        /// <summary>True while the ambush-detection window is active for this party.</summary>
+        /// <summary>
+        /// True while the ambush-detection window is active for this party.
+        /// </summary>
         [DataSourceProperty]
         public bool IsAmbushDetected
         {
@@ -31,7 +33,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         public AmbushDetectedNameplateExtension(ViewModel vm) : base(vm) { }
 
-        /// <summary>Reads the detection registry and updates the flag.</summary>
+        /// <summary>
+        /// Reads the detection registry and updates the flag.
+        /// </summary>
         public override void RefreshValues()
         {
             base.RefreshValues();

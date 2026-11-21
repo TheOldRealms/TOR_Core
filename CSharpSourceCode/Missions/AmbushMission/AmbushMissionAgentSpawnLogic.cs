@@ -135,8 +135,8 @@ namespace TOR_Core.Missions.AmbushMission
         }
 
         /// <summary>
-        /// Our own pool-depleted check, read by <c>AmbushEndLogic</c> and
-        /// <c>AmbushedEndLogic</c> for the "no more reinforcement waves
+        /// Our own pool-depleted check, read by <c>PlayerAmbushMissionLogic</c> and
+        /// <c>PlayerAmbushedMissionLogic</c> for the "no more reinforcement waves
         /// can arrive" half of the AmbusherTotalVictory /
         /// AmbusherDefeated (Phase F) gate.
         /// Decoupled from vanilla's <c>IsSideDepleted</c> which also

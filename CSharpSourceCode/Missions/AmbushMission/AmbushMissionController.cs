@@ -12,10 +12,13 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
+using TOR_Core.Models.Ambush;
 
 namespace TOR_Core.Missions.AmbushMission
 {
-    /// <summary>Battle setup for ambush missions. Owns custom spawn, retreat-zone fallback, phase transition, and tactic registration.</summary>
+    /// <summary>
+    /// Battle setup for ambush missions. Owns custom spawn, retreat-zone fallback, phase transition, and tactic registration.
+    /// </summary>
     public class AmbushMissionController : MissionLogic
     {
         // Grace window before the procedural retreat-zone fallback applies.
@@ -46,17 +49,20 @@ namespace TOR_Core.Missions.AmbushMission
             = new Dictionary<FormationClass, List<float>>();
         private readonly Dictionary<FormationClass, int> _attackerSpawnIndex
             = new Dictionary<FormationClass, int>();
-        // Legacy flat-tag fallback; populated only when role-specific lists are empty.
-        private readonly List<Vec3> _legacyAttackerSpawnPositions = new List<Vec3>();
-        private int _legacyAttackerSpawnIndex;
 
-        /// <summary>Auto-chunked formation list plus default spot assignments. Null when the scene uses the legacy flat tag.</summary>
+        /// <summary>
+        /// Auto-chunked formation list plus default spot assignments. Null when the scene uses the legacy flat tag.
+        /// </summary>
         public AmbushLayoutResult Layout { get; private set; }
 
-        /// <summary>Every attacker spot the scener placed, scene-order.</summary>
+        /// <summary>
+        /// Every attacker spot the scener placed, scene-order.
+        /// </summary>
         public List<AmbushSpot> SceneSpots { get; private set; } = new List<AmbushSpot>();
 
-        /// <summary>Stable 1-based spot number keyed by scene position.</summary>
+        /// <summary>
+        /// Stable 1-based spot number keyed by scene position.
+        /// </summary>
         public Dictionary<Vec3, int> SpotNumbers { get; private set; }
             = new Dictionary<Vec3, int>();
 
@@ -64,18 +70,26 @@ namespace TOR_Core.Missions.AmbushMission
         private readonly List<Agent> _initialPatrol = new List<Agent>();
         private bool _initialPatrolDefeated;
 
-        /// <summary>True once every member of the initial defender spawn is inactive.</summary>
+        /// <summary>
+        /// True once every member of the initial defender spawn is inactive.
+        /// </summary>
         public bool IsInitialPatrolDefeated => _initialPatrolDefeated;
 
-        /// <summary>Fires once when IsInitialPatrolDefeated flips to true.</summary>
+        /// <summary>
+        /// Fires once when IsInitialPatrolDefeated flips to true.
+        /// </summary>
         public event System.Action InitialPatrolDefeated;
 
-        /// <summary>True when the local player's party is the ambusher side.</summary>
+        /// <summary>
+        /// True when the local player's party is the ambusher side.
+        /// </summary>
         public bool IsPlayerAmbusher
             => _ambusherParty != null
                && _ambusherParty.MobileParty == MobileParty.MainParty;
 
-        /// <summary>Leader hero of the ambushed side, or null for leaderless parties.</summary>
+        /// <summary>
+        /// Leader hero of the ambushed side, or null for leaderless parties.
+        /// </summary>
         public Hero VictimLeaderHero => _victimParty?.LeaderHero;
 
         public MobileParty AmbusherParty => _ambusherParty?.MobileParty;
@@ -97,6 +111,10 @@ namespace TOR_Core.Missions.AmbushMission
         public override void OnBehaviorInitialize()
         {
             base.OnBehaviorInitialize();
+            // Vanilla Mission defaults IsFriendlyMission = true. The TOR
+            // AbilitySystem skips abilities on friendly missions, so without
+            // this the player can't cast and loudness never counts spells.
+            Mission.IsFriendlyMission = false;
             // Do NOT ResetRegistry here; scene OnInit already ran during scene load.
             _spawnLogic = Mission.GetMissionBehavior<AmbushMissionAgentSpawnLogic>();
             _reinforcementLogic = Mission.GetMissionBehavior<AmbushReinforcementMissionLogic>();
@@ -115,15 +133,18 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
-        /// <summary>Drain the ambusher supplier and place agents at AmbushFormation chunk spots.</summary>
+        /// <summary>
+        /// Drain the ambusher supplier and place agents at AmbushFormation chunk spots.
+        /// </summary>
         private void DoCustomAmbusherSpawn()
         {
             TORCommon.Log(LogLevel.Info, "[AmbushMission] DoCustomAmbusherSpawn entry");
             if (Layout == null || SceneSpots == null || SceneSpots.Count == 0)
             {
-                TORCommon.Log(LogLevel.Warn,
-                    "[AmbushMission] DoCustomAmbusherSpawn skipped: no layout/spots");
-                return;
+                throw new System.InvalidOperationException(
+                    "[AmbushMission] DoCustomAmbusherSpawn requires an attacker layout and "
+                    + "at least one scener-authored attacker spot. Silent return here used to "
+                    + "mask broken scenes; loud fail surfaces them immediately.");
             }
             if (_ambusherSupplier == null)
             {
@@ -141,44 +162,67 @@ namespace TOR_Core.Missions.AmbushMission
                                 && IsPlayerAmbusher;
             _customSpawnInProgress = true;
 
-            // Group by FormationClass so each class forms a line (or grid under MaxWidth).
-            var agentsByClass = new Dictionary<FormationClass, List<IAgentOriginBase>>();
+            // Queue agents per class so we can hand chunk-sized slices to each AmbushFormation.
+            var agentQueueByClass = new Dictionary<FormationClass, Queue<IAgentOriginBase>>();
             foreach (var origin in origins)
             {
                 var formationClass = origin.Troop.GetFormationClass();
-                if (!agentsByClass.TryGetValue(formationClass, out var list))
+                if (!agentQueueByClass.TryGetValue(formationClass, out var queue))
                 {
-                    list = new List<IAgentOriginBase>();
-                    agentsByClass[formationClass] = list;
+                    queue = new Queue<IAgentOriginBase>();
+                    agentQueueByClass[formationClass] = queue;
                 }
-                list.Add(origin);
+                queue.Enqueue(origin);
+            }
+
+            // Enumerate chunks (not classes). Each AmbushFormation chunk has its
+            // own AssignedSpot, so two Infantry chunks go to two different spots.
+            var chunks = Layout?.Formations;
+            if (chunks == null || chunks.Count == 0)
+            {
+                Debug.Print("[AmbushMission] no layout chunks, skipping custom spawn");
+                _customSpawnInProgress = false;
+                return;
             }
 
             int spawned = 0;
             try
             {
-                foreach (var classGroup in agentsByClass)
+                foreach (var chunk in chunks)
                 {
-                    var formationClass = classGroup.Key;
-                    var agents = classGroup.Value;
-                    var spot = ChooseSpotForClass(formationClass);
-                    if (!spot.HasValue) continue;
-                    var facing = FacingFromYaw(spot.Value.Yaw);
-                    var perp = new Vec2(-facing.Y, facing.X);
-                    int cols = ColumnsForLayout(agents.Count, spot.Value.MaxWidth);
-                    Formation chunkFormation = null;
+                    if (!chunk.AssignedSpot.HasValue) continue;
+                    if (!agentQueueByClass.TryGetValue(chunk.Class, out var queue)) continue;
 
-                    for (int i = 0; i < agents.Count; i++)
+                    var formationClass = chunk.Class;
+                    var spot = chunk.AssignedSpot.Value;
+                    var facing = FacingFromYaw(spot.Yaw);
+                    var perp = new Vec2(-facing.Y, facing.X);
+
+                    // Take up to chunk.Count agents from the per-class queue.
+                    int takeCount = System.Math.Min(chunk.Count, queue.Count);
+                    if (takeCount <= 0) continue;
+                    int cols = ColumnsForLayout(takeCount, spot.MaxWidth);
+
+                    TORCommon.Log(LogLevel.Info,
+                        "[AmbushSpawnDbg] chunk class=" + formationClass
+                        + " take=" + takeCount + " cols=" + cols
+                        + " spotTag=" + (spot.GroupTag ?? "null")
+                        + " spotPos=(" + spot.Position.X.ToString("F1")
+                        + "," + spot.Position.Y.ToString("F1")
+                        + "," + spot.Position.Z.ToString("F1") + ")"
+                        + " facingYaw=" + spot.Yaw.ToString("F2"));
+
+                    Formation chunkFormation = null;
+                    for (int i = 0; i < takeCount; i++)
                     {
-                        var origin = agents[i];
+                        var origin = queue.Dequeue();
                         bool isPlayerChar = origin.Troop == CharacterObject.PlayerCharacter;
-                        // Place the player hero on a tactical child; scripted positions are ignored for player agents.
                         Vec3 pos = isPlayerChar
-                                   && spot.Value.TacticalChildren != null
-                                   && spot.Value.TacticalChildren.Count > 0
-                            ? spot.Value.TacticalChildren[0]
-                            : GridPositionFor(spot.Value.Position, facing, perp,
-                                              i, agents.Count, cols);
+                                   && spot.TacticalChildren != null
+                                   && spot.TacticalChildren.Count > 0
+                            ? spot.TacticalChildren[0]
+                            : GridPositionFor(spot.Position, facing, perp,
+                                              i, takeCount, cols);
 
                         var buildData = Mission.GetAgentBuildDataToSpawnTroop(
                             origin,
@@ -211,15 +255,23 @@ namespace TOR_Core.Missions.AmbushMission
                         spawned++;
                     }
 
-                    // Pin the formation plate explicitly; vanilla's default auto-deploy would otherwise plant it near the enemy.
+                    // Bind this chunk's vanilla Formation for the UI picker, and
+                    // pin the formation plate at the spot so vanilla's default
+                    // auto-deploy does not plant it near the enemy.
+                    chunk.VanillaFormation = chunkFormation;
                     if (chunkFormation != null && Mission.Scene != null)
                     {
                         chunkFormation.SetPositioning(
-                            new WorldPosition(Mission.Scene, spot.Value.Position),
+                            new WorldPosition(Mission.Scene, spot.Position),
                             facing);
+                        // Constrain the formation width so vanilla's Line
+                        // arrangement wraps to new rows and produces a grid
+                        // rather than one very wide row.
+                        float gridWidth = cols * AmbushSpawnUnitSpacing;
+                        chunkFormation.SetFormOrder(FormOrder.FormOrderCustom(gridWidth));
                     }
 
-                    TryAnchorRangedFormation(chunkFormation, formationClass, spot.Value);
+                    TryAnchorRangedFormation(chunkFormation, formationClass, spot);
                 }
             }
             finally
@@ -230,11 +282,22 @@ namespace TOR_Core.Missions.AmbushMission
             TORCommon.Log(LogLevel.Info,
                 "[AmbushMission] DoCustomAmbusherSpawn: spawned=" + spawned
                 + "/" + origins.Count);
+
+            // Task24 immediate post-spawn snapshot: compare with OnDeploymentFinished
+            // to tell whether agents ever started at the ambush spot or whether
+            // some vanilla pass moved the plate+agents before deployment ends.
+            LogPostDeploymentPositions("post-ambusher-spawn");
         }
 
-        // Shared layout math for attacker + defender spawns.
-        private const float AmbushSpawnUnitSpacing = 1.5f;
+        // Shared layout math for attacker + defender spawns. Matches vanilla
+        // infantry footprint: Interval (0.38 at default UnitSpacing) +
+        // UnitDiameter (~0.6 for humans). Keeping our grid close to vanilla's
+        // internal grid minimizes post-spawn walk-to-slot drift.
+        private const float AmbushSpawnUnitSpacing = 1.0f;
 
+        /// <summary>
+        /// Convert a yaw angle in radians to a horizontal facing vector, with a safe fallback.
+        /// </summary>
         private static Vec2 FacingFromYaw(float yaw)
         {
             var f = new Vec2((float)System.Math.Cos(yaw),
@@ -242,27 +305,63 @@ namespace TOR_Core.Missions.AmbushMission
             return f.LengthSquared > 0.0001f ? f : new Vec2(0f, 1f);
         }
 
+        /// <summary>
+        /// Compute how many columns fit the given count within the max width at standard unit spacing.
+        /// </summary>
         private static int ColumnsForLayout(int groupCount, float maxWidth)
         {
             if (groupCount <= 0) return 1;
-            if (maxWidth <= 0.001f) return groupCount;
+            if (maxWidth <= 0.001f)
+            {
+                // Scene spot has no authored width. Fall back to a sqrt-based
+                // grid so the formation is roughly square instead of one wide row.
+                int sqrtCols = (int)System.Math.Ceiling(System.Math.Sqrt(groupCount));
+                return System.Math.Max(1, sqrtCols);
+            }
             int cols = (int)(maxWidth / AmbushSpawnUnitSpacing);
             return System.Math.Max(1, System.Math.Min(groupCount, cols));
         }
 
+        /// <summary>
+        /// Place an agent at its grid cell relative to the spot center,
+        /// snapping to the scene ground so no agent spawns off-navmesh.
+        /// </summary>
         private static Vec3 GridPositionFor(Vec3 center, Vec2 facing, Vec2 perp,
                                             int index, int groupCount, int cols)
         {
-            // Grid offsets disabled; off-navmesh frames crash during deployment to battle mode switch.
-            _ = facing;
-            _ = perp;
-            _ = index;
-            _ = groupCount;
-            _ = cols;
-            return center;
+            if (groupCount <= 1 || cols <= 1) return center;
+
+            int row = index / cols;
+            int col = index % cols;
+            // Center the row's agents around the row axis. Vanilla's Line
+            // arrangement centers partial rows on their own count, not on
+            // the full cols count, so border agents in the last row don't
+            // drift to their slot.
+            int rowStart = row * cols;
+            int rowCount = System.Math.Min(cols, groupCount - rowStart);
+            float colOffset = (col - (rowCount - 1) / 2f) * AmbushSpawnUnitSpacing;
+            float rowOffset = row * AmbushSpawnUnitSpacing;
+
+            // perp spreads the row horizontally across the spot; facing is the
+            // front direction, so rows are stacked behind the leading rank.
+            float dx = perp.X * colOffset - facing.X * rowOffset;
+            float dy = perp.Y * colOffset - facing.Y * rowOffset;
+            var candidate = new Vec3(center.X + dx, center.Y + dy, center.Z);
+
+            var scene = Mission.Current?.Scene;
+            if (scene == null) return center;
+
+            // Snap Z to terrain so off-navmesh spawn frames don't crash the
+            // deployment-to-battle transition.
+            var wp = new WorldPosition(scene, System.UIntPtr.Zero, candidate, hasValidZ: false);
+            Vec3 snapped = wp.GetGroundVec3();
+            if (snapped == Vec3.Zero) return center;
+            return snapped;
         }
 
-        /// <summary>Attach a tactical-point anchor to a ranged formation so archers pin to the authored child entities.</summary>
+        /// <summary>
+        /// Attach a tactical-point anchor to a ranged formation so archers pin to the authored child entities.
+        /// </summary>
         private void TryAnchorRangedFormation(Formation formation,
                                                FormationClass cls,
                                                AmbushSpot spot)
@@ -303,7 +402,9 @@ namespace TOR_Core.Missions.AmbushMission
                 + " tactical points at spot " + spot.GroupTag);
         }
 
-        /// <summary>Rebind the tactical anchor after the spot picker reassigns a formation.</summary>
+        /// <summary>
+        /// Rebind the tactical anchor after the spot picker reassigns a formation.
+        /// </summary>
         public void OnFormationSpotReassigned(Formation formation,
                                                FormationClass cls,
                                                AmbushSpot newSpot)
@@ -338,7 +439,9 @@ namespace TOR_Core.Missions.AmbushMission
                 + " tactical points at spot " + newSpot.GroupTag);
         }
 
-        /// <summary>Reset every chunked formation to its default spot assignment. Deployment-phase only.</summary>
+        /// <summary>
+        /// Reset every chunked formation to its default spot assignment. Deployment-phase only.
+        /// </summary>
         public void ResetAssignments()
         {
             if (Layout == null || Layout.Formations == null) return;
@@ -376,7 +479,9 @@ namespace TOR_Core.Missions.AmbushMission
                 + " formations across " + touched.Count + " spots");
         }
 
-        /// <summary>Eagerly bind every layout chunk to its vanilla Formation; the lazy VM binding may not have ticked yet.</summary>
+        /// <summary>
+        /// Eagerly bind every layout chunk to its vanilla Formation; the lazy VM binding may not have ticked yet.
+        /// </summary>
         private void EagerBindVanillaFormations()
         {
             if (Layout?.Formations == null) return;
@@ -405,7 +510,9 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
-        /// <summary>Reposition every spot the layout touches to its authored scene position.</summary>
+        /// <summary>
+        /// Reposition every spot the layout touches to its authored scene position.
+        /// </summary>
         private void RepositionAllTouchedSpots()
         {
             if (Layout?.Formations == null) return;
@@ -428,7 +535,9 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
-        /// <summary>First assigned spot for a class, falling back to SceneSpots[0].</summary>
+        /// <summary>
+        /// First assigned spot for a class, falling back to SceneSpots[0].
+        /// </summary>
         private AmbushSpot? ChooseSpotForClass(FormationClass cls)
         {
             if (Layout?.Formations != null)
@@ -442,6 +551,9 @@ namespace TOR_Core.Missions.AmbushMission
             return SceneSpots.Count > 0 ? SceneSpots[0] : (AmbushSpot?)null;
         }
 
+        /// <summary>
+        /// Skip the deployment screen for the victim side by finishing deployment automatically.
+        /// </summary>
         private void AutoFinishDeploymentForVictim()
         {
             var deploymentController =
@@ -495,7 +607,9 @@ namespace TOR_Core.Missions.AmbushMission
             ValidatePostSpawnOrThrow();
         }
 
-        /// <summary>Preflight before vanilla's SetupTeams; throws with a scene-author-friendly message if the player agent is missing.</summary>
+        /// <summary>
+        /// Preflight before vanilla's SetupTeams; throws with a scene-author-friendly message if the player agent is missing.
+        /// </summary>
         private void ValidatePostSpawnOrThrow()
         {
             if (Mission.InitialPlayerAgent != null) return;
@@ -541,7 +655,9 @@ namespace TOR_Core.Missions.AmbushMission
         }
 
 
-        /// <summary>Drain the victim supplier and place agents at sp_defender_* scene entities.</summary>
+        /// <summary>
+        /// Drain the victim supplier and place agents at sp_defender_* scene entities.
+        /// </summary>
         private void DoCustomVictimSpawn()
         {
             TORCommon.Log(LogLevel.Info, "[AmbushMission] DoCustomVictimSpawn entry");
@@ -558,6 +674,14 @@ namespace TOR_Core.Missions.AmbushMission
                 TORCommon.Log(LogLevel.Warn,
                     "[AmbushMission] DoCustomVictimSpawn skipped: no sp_defender_* entities in scene");
                 return;
+            }
+            foreach (var kv in spots)
+            {
+                TORCommon.Log(LogLevel.Info,
+                    "[AmbushSpawnDbg] defender spot class=" + kv.Key
+                    + " pos=(" + kv.Value.Position.X.ToString("F1")
+                    + "," + kv.Value.Position.Y.ToString("F1")
+                    + "," + kv.Value.Position.Z.ToString("F1") + ")");
             }
             // Partial drain; remainder arrives via reinforcement waves. Cap scales with victim leader's Tactics.
             int victimRequest = _model.ComputeVictimInMissionCap(_victimParty?.LeaderHero);
@@ -597,8 +721,11 @@ namespace TOR_Core.Missions.AmbushMission
                     var center = slot.Position;
                     var facing = FacingFromYaw(slot.Yaw);
                     var perp = new Vec2(-facing.Y, facing.X);
-                    // Victim entities have no MaxWidth script; single line.
+                    // Victim entities carry no MaxWidth; ColumnsForLayout falls
+                    // through to its sqrt heuristic so the formation is a grid,
+                    // not a wide line.
                     int cols = ColumnsForLayout(agents.Count, 0f);
+                    Formation chunkFormation = null;
 
                     for (int i = 0; i < agents.Count; i++)
                     {
@@ -636,6 +763,7 @@ namespace TOR_Core.Missions.AmbushMission
                         }
                         var agent = Mission.SpawnAgent(buildData, false);
                         _spawnLogic?.BumpSpawnedCount(_victimSide);
+                        if (chunkFormation == null) chunkFormation = agent.Formation;
                         if (isPlayerChar)
                         {
                             TORCommon.Log(LogLevel.Info,
@@ -643,6 +771,17 @@ namespace TOR_Core.Missions.AmbushMission
                                 + " initialPlayerAgent set=" + (Mission.InitialPlayerAgent != null));
                         }
                         spawned++;
+                    }
+
+                    // Mirror the ambusher-side FormOrder so vanilla's Line
+                    // arrangement wraps the victim formation into a grid.
+                    if (chunkFormation != null && Mission.Scene != null)
+                    {
+                        chunkFormation.SetPositioning(
+                            new WorldPosition(Mission.Scene, center),
+                            facing);
+                        float gridWidth = cols * AmbushSpawnUnitSpacing;
+                        chunkFormation.SetFormOrder(FormOrder.FormOrderCustom(gridWidth));
                     }
                 }
             }
@@ -656,7 +795,9 @@ namespace TOR_Core.Missions.AmbushMission
                 + "/" + origins.Count);
         }
 
-        /// <summary>Look up the scener-authored ambush_camera_anchor entity; returns false if absent.</summary>
+        /// <summary>
+        /// Look up the scener-authored ambush_camera_anchor entity; returns false if absent.
+        /// </summary>
         public bool TryGetCameraAnchor(out Vec3 position, out Vec2 facing)
         {
             position = Vec3.Zero;
@@ -683,9 +824,58 @@ namespace TOR_Core.Missions.AmbushMission
                 TryAdd(dict, FormationClass.Ranged,  "defender_archer");
             TryAdd(dict, FormationClass.Cavalry,     "defender_cavalry");
             TryAdd(dict, FormationClass.HorseArcher, "defender_horsearcher");
+
+            // Scene-authoring audit: any sp_defender_* entity whose tag we
+            // don't recognise is probably a typo that would otherwise
+            // silently land in the first-match-wins fallback. Surface it
+            // loudly in the log so the scener can fix the tag before
+            // playtest.
+            AuditDefenderEntityTags();
             return dict;
         }
 
+        private static readonly System.Collections.Generic.HashSet<string> KnownDefenderTags
+            = new System.Collections.Generic.HashSet<string>
+            {
+                "defender_infantry",
+                "defender_ranged",
+                "defender_archer",
+                "defender_cavalry",
+                "defender_horsearcher",
+            };
+
+        /// <summary>
+        /// Walks every sp_defender_* entity in the scene; logs a warning for
+        /// any whose tag isn't in the known-defender tag set. Catches typos
+        /// like "defender_archers" (plural) or "defender_horse_archer"
+        /// (underscored) that would otherwise spawn troops at the wrong spot.
+        /// </summary>
+        private void AuditDefenderEntityTags()
+        {
+            if (Mission?.Scene == null) return;
+            foreach (var e in Mission.Scene.FindEntitiesWithTag("sp_defender"))
+            {
+                var tags = e.Tags;
+                if (tags == null) continue;
+                bool hasKnown = false;
+                foreach (var t in tags)
+                {
+                    if (KnownDefenderTags.Contains(t)) { hasKnown = true; break; }
+                }
+                if (!hasKnown)
+                {
+                    TORCommon.Log(LogLevel.Warn,
+                        "[AmbushMission] defender entity '" + e.Name
+                        + "' has sp_defender but no known class tag; "
+                        + "add one of: defender_infantry / defender_ranged / "
+                        + "defender_archer / defender_cavalry / defender_horsearcher");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Resolve a defender spawn frame by scene tag and record it under the given formation class.
+        /// </summary>
         private void TryAdd(Dictionary<FormationClass, (Vec3, float)> dict,
                             FormationClass cls, string tag)
         {
@@ -697,14 +887,14 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
-        /// <summary>Collect attacker spot entities, compute the layout, and build per-class teleport lists.</summary>
+        /// <summary>
+        /// Collect attacker spot entities, compute the layout, and build per-class teleport lists.
+        /// </summary>
         private void CollectAttackerSpawnPositions()
         {
             _attackerSpawnPositions.Clear();
             _attackerSpawnYaws.Clear();
             _attackerSpawnIndex.Clear();
-            _legacyAttackerSpawnPositions.Clear();
-            _legacyAttackerSpawnIndex = 0;
             Layout = null;
             SceneSpots.Clear();
             SpotNumbers.Clear();
@@ -722,11 +912,9 @@ namespace TOR_Core.Missions.AmbushMission
             }
             if (spots.Count == 0)
             {
-                _legacyAttackerSpawnPositions.AddRange(CollectPositionsForTag("ambush_attacker"));
-                Debug.Print(
-                    "[AmbushMission] no typed attacker spots, legacy="
-                    + _legacyAttackerSpawnPositions.Count);
-                return;
+                throw new System.InvalidOperationException(
+                    "[AmbushMission] CollectAttackerSpawnPositions found no attacker_ambush_* "
+                    + "scene entities. Every ambush scene must author typed attacker spots.");
             }
 
             var roster = _ambusherParty?.MemberRoster;
@@ -776,7 +964,9 @@ namespace TOR_Core.Missions.AmbushMission
                     + " first=" + (kv.Value.Count > 0 ? kv.Value[0].ToString() : "n/a"));
         }
 
-        /// <summary>Read every attacker_ambush_spawnpoint entity and pair it with its group tag.</summary>
+        /// <summary>
+        /// Read every attacker_ambush_spawnpoint entity and pair it with its group tag.
+        /// </summary>
         private List<AmbushSpot> CollectAmbushSpots()
         {
             const string MarkerTag = "attacker_ambush_spawnpoint";
@@ -834,15 +1024,9 @@ namespace TOR_Core.Missions.AmbushMission
             return list;
         }
 
-        private List<Vec3> CollectPositionsForTag(string tag)
-        {
-            var list = new List<Vec3>();
-            foreach (var e in Mission.Scene.FindEntitiesWithTag(tag))
-                list.Add(e.GetGlobalFrame().origin);
-            return list;
-        }
-
-        /// <summary>Route attacker humans to a role-matching scener-tagged slot; defenders keep vanilla placement.</summary>
+        /// <summary>
+        /// Route attacker humans to a role-matching scener-tagged slot; defenders keep vanilla placement.
+        /// </summary>
         public override void OnAgentCreated(Agent agent)
         {
             base.OnAgentCreated(agent);
@@ -899,28 +1083,12 @@ namespace TOR_Core.Missions.AmbushMission
                     }
                     return;
                 }
-                TORCommon.Log(LogLevel.Info,
-                    "[AmbushMission] NO class match for " + formationClass
-                    + " falling back to SceneSpots");
-
-            // Fallback: use any SceneSpot so unbound classes don't spawn at (0,0,0).
-            if (SceneSpots != null && SceneSpots.Count > 0)
-            {
-                var spot = SceneSpots[0];
-                agent.TeleportToPosition(spot.Position);
-                var dir = new Vec2((float)System.Math.Cos(spot.Yaw),
-                                   (float)System.Math.Sin(spot.Yaw));
-                agent.SetMovementDirection(in dir);
-                return;
-            }
-
-            // Legacy fallback: flat ambush_attacker tag list.
-            if (_legacyAttackerSpawnPositions.Count > 0)
-            {
-                int idx = _legacyAttackerSpawnIndex++;
-                agent.TeleportToPosition(
-                    _legacyAttackerSpawnPositions[idx % _legacyAttackerSpawnPositions.Count]);
-            }
+                throw new System.InvalidOperationException(
+                    "[AmbushMission] OnAgentCreated has no spawn positions for "
+                    + formationClass + ". CollectAttackerSpawnPositions must populate a list "
+                    + "for every FormationClass that can reach OnAgentCreated; reaching here "
+                    + "means an unbound troop class slipped through and would otherwise "
+                    + "teleport to (0,0,0).");
             }
             finally
             {
@@ -947,7 +1115,7 @@ namespace TOR_Core.Missions.AmbushMission
                 }
             }
 
-            // Team census diagnostic for TotalVictory gating in AmbushEndLogic.
+            // Team census diagnostic for TotalVictory gating in PlayerAmbushMissionLogic.
             int attackerActive = 0, attackerHuman = 0;
             if (Mission.AttackerTeam != null)
                 foreach (var a in Mission.AttackerTeam.ActiveAgents)
@@ -963,9 +1131,76 @@ namespace TOR_Core.Missions.AmbushMission
                 + " human=" + defenderHuman
                 + " | initialPatrol=" + _initialPatrol.Count);
 
+            // Reapply the grid-width FormOrder to every ambusher chunk so
+            // the deployment-to-battle transition doesn't reset our custom
+            // widths back to vanilla's wide default.
+            ReapplyChunkGridFormOrders();
+
+            // Task24 post-deployment diagnostic: dump every attacker + defender
+            // agent's actual position and per-formation stats so we can see
+            // where units ended up AFTER vanilla's deployment-to-battle pass.
+            LogPostDeploymentPositions("OnDeploymentFinished");
+
+            // Also schedule a delayed second snapshot so we see positions
+            // after a few seconds of battle, not just the initial frame.
+            _postDeploymentDiagnosticTimer = new BasicMissionTimer();
+
             // Start the grace clock; the actual check runs in OnMissionTick after script OnInits settle.
             _fallbackGraceTimer = new BasicMissionTimer();
             TORCommon.Log(LogLevel.Info, "[AmbushMission] OnDeploymentFinished exit");
+        }
+
+        private BasicMissionTimer _postDeploymentDiagnosticTimer;
+        private bool _postDeploymentDiagnosticFired;
+
+        /// <summary>Dump each team's formations and agent-centroid positions so
+        /// we can see what the player actually sees on the ground.</summary>
+        private void LogPostDeploymentPositions(string trigger)
+        {
+            if (Mission.AttackerTeam == null || Mission.DefenderTeam == null) return;
+            foreach (var team in new[] { Mission.AttackerTeam, Mission.DefenderTeam })
+            {
+                string side = team == Mission.AttackerTeam ? "Attacker" : "Defender";
+                foreach (var f in team.FormationsIncludingSpecialAndEmpty)
+                {
+                    if (f == null || f.CountOfUnits == 0) continue;
+                    var plate = f.OrderPosition;
+                    Vec3 centroid = Vec3.Zero;
+                    int n = 0;
+                    f.ApplyActionOnEachUnit(a =>
+                    {
+                        if (a == null) return;
+                        centroid += a.Position;
+                        n++;
+                    });
+                    if (n > 0) centroid *= 1f / n;
+                    TORCommon.Log(LogLevel.Info,
+                        "[Task24Post] " + trigger + " " + side + "." + f.FormationIndex
+                        + " class=" + f.PhysicalClass
+                        + " units=" + f.CountOfUnits
+                        + " plate=(" + plate.X.ToString("F1") + "," + plate.Y.ToString("F1") + ")"
+                        + " centroid=(" + centroid.X.ToString("F1") + "," + centroid.Y.ToString("F1") + ")"
+                        + " width=" + f.Width.ToString("F1")
+                        + " arrangement=" + f.ArrangementOrder.OrderEnum);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Walks the chunk layout and reapplies the grid-width FormOrder on
+        /// each chunk's bound vanilla Formation, overriding whatever vanilla
+        /// deployment set up.
+        /// </summary>
+        private void ReapplyChunkGridFormOrders()
+        {
+            if (Layout?.Formations == null) return;
+            foreach (var chunk in Layout.Formations)
+            {
+                if (chunk.VanillaFormation == null || !chunk.AssignedSpot.HasValue) continue;
+                int cols = ColumnsForLayout(chunk.Count, chunk.AssignedSpot.Value.MaxWidth);
+                float gridWidth = cols * AmbushSpawnUnitSpacing;
+                chunk.VanillaFormation.SetFormOrder(FormOrder.FormOrderCustom(gridWidth));
+            }
         }
 
         public override InquiryData OnEndMissionRequest(out bool canLeave)
@@ -979,6 +1214,16 @@ namespace TOR_Core.Missions.AmbushMission
         public override void OnMissionTick(float dt)
         {
             base.OnMissionTick(dt);
+
+            // Delayed post-deployment snapshot: fire once ~3 s after deployment
+            // finishes so vanilla's layout and any charge orders have settled.
+            if (!_postDeploymentDiagnosticFired
+                && _postDeploymentDiagnosticTimer != null
+                && _postDeploymentDiagnosticTimer.ElapsedTime >= 3f)
+            {
+                _postDeploymentDiagnosticFired = true;
+                LogPostDeploymentPositions("+3s");
+            }
 
             if (!_initialRepositionDone
                 && IsPlayerAmbusher
@@ -1037,6 +1282,9 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
+        /// <summary>
+        /// Compute first-wave sizes per side from roster totals and hand them to the spawn logic.
+        /// </summary>
         private void SetupInitialSpawn()
         {
             if (_spawnLogic == null) return;

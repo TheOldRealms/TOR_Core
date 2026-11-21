@@ -21,7 +21,9 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch(typeof(TournamentBehavior), nameof(TournamentBehavior.GetMaximumBet))]
     public static class TournamentBehavior_GetMaximumBet_Patch
     {
-        /// <summary>Returns the final bet cap and skips the vanilla body.</summary>
+        /// <summary>
+        /// Returns the final bet cap and skips the vanilla body.
+        /// </summary>
         public static bool Prefix(ref int __result)
         {
             int num = 150;

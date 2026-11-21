@@ -6,41 +6,33 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.MountAndBlade.Missions.MissionLogics;
 using TaleWorlds.MountAndBlade.Missions.Objectives;
 using TOR_Core.CampaignMechanics.Ambush;
-using TOR_Core.Extensions;
-using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Missions.AmbushMission
 {
-    /// <summary>Mission end logic for the victim-side ambush. Player is defender; AI ambusher is attacker.</summary>
+    /// <summary>
+    /// Mission logic for the victim-side ambush (player is ambushed by an AI
+    /// party). Owns the 4-outcome priority table, the soft-border countdown
+    /// that drives the Fled outcome, and the roster snapshot used by the
+    /// post-mission wounded/remove flows. Role-specific SetOutcome flags come
+    /// from <see cref="AmbushMissionLogicBase.WriteRoleFlags"/>.
+    /// </summary>
     /// <remarks>
-    /// Priority order: hero inactive, defender wiped, attacker wiped, player across soft border for countdown seconds.
+    /// Outcome priority: hero inactive, defender wiped, attacker wiped, player across soft border for countdown seconds.
     /// </remarks>
-    public class AmbushedEndLogic : MissionLogic
+    public class PlayerAmbushedMissionLogic : AmbushMissionLogicBase
     {
-        private bool _outcomeDecided;
-        private bool _deploymentFinished;
-        private MissionResult _result;
-        private TORMissionAmbushModel _model;
-        private AmbushReinforcementMissionLogic _reinforcementLogic;
-
         private float _outsideBoundarySeconds;
-
-        private MissionObjectiveLogic _objectiveLogic;
-        private AmbushObjective _objective;
 
         // Non-hero roster snapshot captured at mission start; drives the wound/remove flows on flee.
         private Dictionary<CharacterObject, int> _ambushedRosterSnapshot;
 
-        public override void AfterStart()
+        protected override string LogTag => "[PlayerAmbushedMission]";
+
+        protected override void OnAfterStarted()
         {
-            base.AfterStart();
-            _model = Campaign.Current?.Models?.GetMissionAmbushModel() ?? new TORMissionAmbushModel();
-            _reinforcementLogic = Mission.GetMissionBehavior<AmbushReinforcementMissionLogic>();
-            _objectiveLogic = Mission.GetMissionBehavior<MissionObjectiveLogic>();
             StartObjective();
 
             _ambushedRosterSnapshot = new Dictionary<CharacterObject, int>();
@@ -56,30 +48,19 @@ namespace TOR_Core.Missions.AmbushMission
                     _ambushedRosterSnapshot[c] = healthy;
                 }
             }
-            TORCommon.Log(LogLevel.Info, "[AmbushedEndLogic] AfterStart: committed roster snapshot, "
+            TORCommon.Log(LogLevel.Info, LogTag + " AfterStart: committed roster snapshot, "
                 + _ambushedRosterSnapshot.Count + " non-hero troop types captured");
         }
 
-        public override void OnDeploymentFinished()
+        protected override void OnMissionTickReady(float dt)
         {
-            base.OnDeploymentFinished();
-            _deploymentFinished = true;
-        }
-
-        public override void OnMissionTick(float dt)
-        {
-            base.OnMissionTick(dt);
-            if (_outcomeDecided) return;
-            // Deployment not finished: engine reports 0 active humans while agents are spawning.
-            if (!_deploymentFinished) return;
-
             var mainAgent = Mission.MainAgent;
 
             // Priority 1: hero down.
             if (mainAgent != null && !mainAgent.IsActive())
             {
                 SetOutcome(AmbushResolution.VictimDefeated, successful: false,
-                    victimLeaderDown: true,
+                    leaderDown: true,
                     reason: "hero inactive");
                 return;
             }
@@ -117,10 +98,18 @@ namespace TOR_Core.Missions.AmbushMission
                     return;
                 }
             }
-
         }
 
-        /// <summary>Starts the single "survive the ambush" objective. No live enemy count, preserves the bluff.</summary>
+        protected override void WriteRoleFlags(AmbushCampaignBehavior behavior, bool leaderDown)
+        {
+            behavior.PlayerWasAmbusher = false;
+            behavior.LastAmbusherLeaderDown = false;
+            behavior.LastVictimLeaderDown = leaderDown;
+        }
+
+        /// <summary>
+        /// Starts the single "survive the ambush" objective. No live enemy count, preserves the bluff.
+        /// </summary>
         private void StartObjective()
         {
             if (_objectiveLogic == null) return;
@@ -132,40 +121,19 @@ namespace TOR_Core.Missions.AmbushMission
             _objectiveLogic.StartObjective(_objective);
         }
 
-        /// <summary>True while the reinforcement wave timer may still deliver another defender batch.</summary>
-        private bool AreReinforcementsStillPending()
-        {
-            if (_reinforcementLogic == null) return false;
-            return !_reinforcementLogic.IsPoolDepleted;
-        }
-
-        private static int CountActiveHumans(Team team)
-        {
-            if (team == null) return 0;
-            int n = 0;
-            foreach (var a in team.ActiveAgents)
-                if (a != null && a.IsHuman && a.IsActive()) n++;
-            return n;
-        }
-
-        public override bool MissionEnded(ref MissionResult missionResult)
-        {
-            if (!_outcomeDecided) return false;
-            missionResult = _result;
-            return true;
-        }
-
-        /// <summary>Only AmbusherDefeated nudges the vanilla victory flow; other resolutions leave PlayerEncounter alive.</summary>
+        /// <summary>
+        /// Only AmbusherDefeated nudges the vanilla victory flow; other resolutions leave PlayerEncounter alive.
+        /// </summary>
         public override void OnMissionResultReady(MissionResult missionResult)
         {
             base.OnMissionResultReady(missionResult);
-            TORCommon.Log(LogLevel.Info, "[AmbushedEndLogic] OnMissionResultReady fired. missionResult="
+            TORCommon.Log(LogLevel.Info, LogTag + " OnMissionResultReady fired. missionResult="
                 + (missionResult != null ? "ok" : "null"));
             if (missionResult == null) return;
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
             if (behavior == null) return;
             var resolution = behavior.LastResolution;
-            TORCommon.Log(LogLevel.Info, "[AmbushedEndLogic] OnMissionResultReady resolution=" + resolution);
+            TORCommon.Log(LogLevel.Info, LogTag + " OnMissionResultReady resolution=" + resolution);
 
             // Victim won: nudge vanilla victory flow; OnPlayerBattleEnd dispatches the record.
             if (resolution == AmbushResolution.AmbusherDefeated)
@@ -178,27 +146,9 @@ namespace TOR_Core.Missions.AmbushMission
             // VictimFled / hero-down cleanup runs from OnEndMission; OnMissionResultReady doesn't fire on retreat paths.
         }
 
-        private void SetOutcome(AmbushResolution resolution, bool successful, string reason,
-                                 bool victimLeaderDown = false)
-        {
-            _outcomeDecided = true;
-            _result = successful
-                ? MissionResult.CreateSuccessful(Mission)
-                : MissionResult.CreateDefeated(Mission);
-            var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
-            if (behavior != null)
-            {
-                behavior.LastResolution = resolution;
-                behavior.PlayerWasAmbusher = false;
-                behavior.LastAmbusherLeaderDown = false;
-                behavior.LastVictimLeaderDown = victimLeaderDown;
-            }
-            TORCommon.Log(LogLevel.Info,
-                "[AmbushedEndLogic] resolution=" + resolution + " successful=" + successful
-                + " (" + reason + ")");
-        }
-
-        /// <summary>Teardown callback that always fires. Runs the Fled/HeroWounded cleanup and dispatches the record.</summary>
+        /// <summary>
+        /// Teardown callback that always fires. Runs the Fled/HeroWounded cleanup and dispatches the record.
+        /// </summary>
         protected override void OnEndMission()
         {
             base.OnEndMission();
@@ -216,7 +166,7 @@ namespace TOR_Core.Missions.AmbushMission
             var aiBehavior = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
             var ambusher = aiBehavior?.CurrentAmbusherOnPlayer;
 
-            TORCommon.Log(LogLevel.Info, "[AmbushedEndLogic] OnEndMission stash+finish: resolution="
+            TORCommon.Log(LogLevel.Info, LogTag + " OnEndMission stash+finish: resolution="
                 + resolution
                 + " committed-types=" + (_ambushedRosterSnapshot?.Count ?? -1)
                 + " ambusher=" + (ambusher?.LeaderHero?.Name?.ToString()

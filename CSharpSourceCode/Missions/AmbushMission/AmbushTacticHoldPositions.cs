@@ -4,6 +4,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Models.Ambush;
 
 namespace TOR_Core.Missions.AmbushMission
 {
@@ -83,6 +84,13 @@ namespace TOR_Core.Missions.AmbushMission
         /// just-arrived formation from being treated as "settled".</summary>
         public const float MinDwellSeconds = 5f;
 
+        /// <summary>Seconds after Battle mode begins before the tactic is
+        /// allowed to touch melee behavior weights. Prevents charge
+        /// orders from firing during the deployment-to-battle transition,
+        /// which otherwise lets vanilla snap the whole formation onto
+        /// the enemy's deployment plate.</summary>
+        public const float MeleeChargeGraceSeconds = 3f;
+
         private struct AnchorEntry
         {
             public AmbushSpot Spot;
@@ -95,9 +103,13 @@ namespace TOR_Core.Missions.AmbushMission
         private AmbushMissionController _controller;
         private AmbushTacticalAnchorLogic _anchorLogic;
         private bool _seededFromLayout;
+        private float _battleStartTime = -1f;
 
         public AmbushTacticHoldPositions(Team team) : base(team) { }
 
+        /// <summary>
+        /// Lazily cache references to the mission controller and anchor logic.
+        /// </summary>
         private void EnsureCached()
         {
             if (_controller == null)
@@ -166,13 +178,23 @@ namespace TOR_Core.Missions.AmbushMission
             }
 
             float now = Mission.Current.CurrentTime;
+            // Latch battle-start time the first tick we see Battle mode.
+            // During Deployment we don't touch melee weights at all so
+            // vanilla's deployment pass can finalize formation plates
+            // without a charge order pulling them onto the enemy.
+            bool inBattle = Mission.Current.Mode == MissionMode.Battle;
+            if (inBattle && _battleStartTime < 0f) _battleStartTime = now;
+            bool meleeChargeAllowed = inBattle
+                && _battleStartTime >= 0f
+                && (now - _battleStartTime) >= MeleeChargeGraceSeconds;
+
             var claimed = new HashSet<int>();
             foreach (var f in FormationsIncludingEmpty)
             {
                 if (f == null || f.CountOfUnits == 0) continue;
                 if (IsRangedClass(f.PhysicalClass))
                     EvaluateFormation(f, now, claimed);
-                else
+                else if (meleeChargeAllowed)
                     ConfigureMeleeFormation(f);
             }
             if (!_loggedCurrent)
@@ -229,6 +251,9 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
+        /// <summary>
+        /// Pick the best unclaimed spot for a ranged formation and rebind its anchor if it changed.
+        /// </summary>
         private void EvaluateFormation(Formation formation, float now, HashSet<int> claimed)
         {
             // Skip evaluation while the formation hasn't resolved a
@@ -288,6 +313,9 @@ namespace TOR_Core.Missions.AmbushMission
             RebindFormation(formation, picked, now);
         }
 
+        /// <summary>
+        /// Attach or retune the formation's defend-tactical-point behavior onto the picked spot.
+        /// </summary>
         private void RebindFormation(Formation formation, AmbushSpot picked, float now)
         {
             var scene = Mission.Current.Scene;
@@ -323,6 +351,9 @@ namespace TOR_Core.Missions.AmbushMission
                 + picked.GroupTag + " (tacticalChildren=" + children.Count + ")");
         }
 
+        /// <summary>
+        /// Score an ambush spot for a formation combining elevation, distance, flank, class preference, and dwell commitment.
+        /// </summary>
         private float ScorePoint(AmbushSpot point, Formation formation,
                                   float dwellStartTime, float now)
         {
@@ -365,6 +396,9 @@ namespace TOR_Core.Missions.AmbushMission
             return score;
         }
 
+        /// <summary>
+        /// True when a formation is on its spot, armed with ammo, and in effective range of an enemy.
+        /// </summary>
         private bool IsSettledAndFiring(Formation formation, AmbushSpot anchor)
         {
             var avg = formation.CachedAveragePosition;
@@ -378,6 +412,9 @@ namespace TOR_Core.Missions.AmbushMission
             return d >= 20f && d <= 150f;
         }
 
+        /// <summary>
+        /// True if any live agent in the formation carries a ranged weapon with ammo.
+        /// </summary>
         private static bool HasAnyArmedAgent(Formation formation)
         {
             bool found = false;
@@ -389,6 +426,9 @@ namespace TOR_Core.Missions.AmbushMission
             return found;
         }
 
+        /// <summary>
+        /// Fraction of live agents in the formation that have a ranged weapon with ammo.
+        /// </summary>
         private static float ArmedRatio(Formation formation)
         {
             int total = 0, armed = 0;
@@ -401,6 +441,9 @@ namespace TOR_Core.Missions.AmbushMission
             return total == 0 ? 0f : (float)armed / total;
         }
 
+        /// <summary>
+        /// True when the formation class fires projectiles.
+        /// </summary>
         private static bool IsRangedClass(FormationClass cls)
         {
             return cls == FormationClass.Ranged

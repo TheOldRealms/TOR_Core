@@ -85,49 +85,20 @@ namespace TOR_Core.Missions.AmbushMission.UI
             }
         }
 
-        // Bumped whenever any panel reassigns a spot, so every extension
-        // instance can notice (next time its own RefreshValues runs) that
-        // somewhere a formation moved and re-dirty its cached plate
-        // position. This is how sibling formations keep their troop plate
-        // in sync when a share-spot reassignment shifts them laterally
-        // without them being the one the user clicked.
+        // Bumped on reassignment so sibling panels re-dirty their cached plate on the next tick.
         internal static int s_moveGeneration;
         private int _lastSeenMoveGeneration;
 
-        /// <summary>Bump the shared move-generation counter so every
-        /// panel extension re-dirties its cached plate position on the
-        /// next RefreshValues. Called by the controller after Reset
-        /// Deployment reassigns every formation.</summary>
+        /// <summary>
+        /// Bump the shared move-generation counter so every panel extension re-dirties its cached plate position on the next RefreshValues.
+        /// </summary>
         public static void BumpMoveGeneration() => s_moveGeneration++;
-
-        private bool _warnedLifecycleGone;
 
         public override void RefreshValues()
         {
             base.RefreshValues();
-            // Hooked on OrderOfBattleFormationItemVM.Tick so we fire per
-            // frame during deployment. After mission end the VMs are
-            // mid-teardown: Formation references become disposed, Mission
-            // .Current flips to null, and vanilla's own Tick inside those
-            // VMs starts reading dead state. Our Recompute reads from the
-            // same places (Mission.Current, panel.Formation, the ambush
-            // controller) and setting any [DataSourceProperty] on a
-            // tearing-down VM fires OnPropertyChangedWithValue into a
-            // Gauntlet layer that can wedge the UI thread. Bail the
-            // moment Mission.Current is gone — our chip / spot picker is
-            // a deployment-time widget, nothing we show matters after.
-            if (Mission.Current == null || _vm == null)
-            {
-                if (!_warnedLifecycleGone)
-                {
-                    _warnedLifecycleGone = true;
-                    NLog.LogManager.GetCurrentClassLogger().Info(
-                        "[AmbushFormationPanel] UI lifecycle gone (mission="
-                        + (Mission.Current != null) + " vm=" + (_vm != null)
-                        + ") — skipping updates");
-                }
-                return;
-            }
+            // Mission teardown invalidates VM state; bail before setting [DataSourceProperty]s on a disposed VM.
+            if (Mission.Current == null || _vm == null) return;
             Recompute();
             if (_lastSeenMoveGeneration != s_moveGeneration)
             {
@@ -136,23 +107,18 @@ namespace TOR_Core.Missions.AmbushMission.UI
             }
         }
 
-        private string _lastHideReason;
-
+        /// <summary>
+        /// Refresh the spot-chip label from the ambush layout, or hide it for empty formation slots.
+        /// </summary>
         private void Recompute()
         {
             var panel = _vm as OrderOfBattleFormationItemVM;
             var vanillaFormation = panel?.Formation;
-            // Hide the chip for empty / unassigned formation slots: the
-            // sidebar still renders a card for every FormationClass, but
-            // the ambush layout only cares about ones with troops in them.
             if (vanillaFormation == null || !PanelHasFormation(panel))
             {
                 HasSpotAssignment = false;
                 IsSpotPickerOpen = false;
                 SpotLabel = "";
-                LogHideTransition("empty-slot "
-                    + (vanillaFormation == null ? "noFormation" : "noHasFormation")
-                    + " class=" + vanillaFormation?.FormationIndex);
                 return;
             }
             var controller = Mission.Current?.GetMissionBehavior<AmbushMissionController>();
@@ -162,34 +128,11 @@ namespace TOR_Core.Missions.AmbushMission.UI
             {
                 HasSpotAssignment = false;
                 SpotLabel = "";
-                LogHideTransition("no-spot "
-                    + (controller == null ? "noController" :
-                       ambushFormation == null ? "noAmbushFormation" :
-                       spot == null ? "noAssignedSpot" : "emptyGroupTag")
-                    + " class=" + vanillaFormation.FormationIndex);
                 return;
             }
-            _lastHideReason = null;
             HasSpotAssignment = true;
             SpotLabel = LocalizedGroupName(spot.Value.GroupTag)
                        + " " + GlobalSpotNumber(controller, spot.Value);
-        }
-
-        /// <summary>
-        /// Fires an NLog line and an in-game message only when the hide
-        /// reason changes, so a chip that stays hidden across many ticks
-        /// produces one entry per state transition instead of 60 lines per
-        /// second. The in-game echo is loud on purpose for the current
-        /// debugging slice: split-formation panels aren't always showing
-        /// the chip and we need the user to see why live.
-        /// </summary>
-        private void LogHideTransition(string reason)
-        {
-            if (reason == _lastHideReason) return;
-            _lastHideReason = reason;
-            NLog.LogManager.GetCurrentClassLogger().Info(
-                "[AmbushFormationPanel] chip hidden: " + reason);
-            TORCommon.Say("[Ambush] chip hidden: " + reason);
         }
 
         /// <summary>
@@ -297,6 +240,9 @@ namespace TOR_Core.Missions.AmbushMission.UI
             return created;
         }
 
+        /// <summary>
+        /// Return the first scene spot not already assigned to a layout formation, or the first spot if all are claimed.
+        /// </summary>
         private static AmbushSpot? FindFirstUnusedSpot(AmbushMissionController controller)
         {
             if (controller.SceneSpots == null) return null;
@@ -337,6 +283,9 @@ namespace TOR_Core.Missions.AmbushMission.UI
             IsSpotPickerOpen = true;
         }
 
+        /// <summary>
+        /// Build the spot-picker dropdown items grouped by tag with per-spot occupancy caps applied.
+        /// </summary>
         private void PopulateSpotPickerItems()
         {
             SpotPickerGroups.Clear();
@@ -402,6 +351,9 @@ namespace TOR_Core.Missions.AmbushMission.UI
             }
         }
 
+        /// <summary>
+        /// Reassign the formation to the picked spot and relayout anyone sharing the old or new spot.
+        /// </summary>
         private void AssignSpot(AmbushFormation formation, AmbushSpot spot,
                                 AmbushMissionController controller)
         {
@@ -508,6 +460,9 @@ namespace TOR_Core.Missions.AmbushMission.UI
             }
         }
 
+        /// <summary>
+        /// Teleport a vanilla formation to the given position and facing, optionally forcing a narrower width.
+        /// </summary>
         private static void RepositionFormation(TaleWorlds.MountAndBlade.Formation vanilla,
                                                 Vec3 pos,
                                                 Vec2 facing,
@@ -520,22 +475,29 @@ namespace TOR_Core.Missions.AmbushMission.UI
             mission.IsTeleportingAgents = true;
             try
             {
-                vanilla.SetFormOrder(narrowWidth.HasValue
-                    ? FormOrder.FormOrderCustom(narrowWidth.Value)
-                    : FormOrder.FormOrderWide);
+                // Count units for the sqrt-based grid fallback when no
+                // narrowWidth is supplied.
+                int total = 0;
+                vanilla.ApplyActionOnEachUnit(_ => total++);
+                int gridCols = ColumnsForLayout(total, narrowWidth);
+                float appliedWidth = narrowWidth ?? (gridCols * UnitSpacing);
+                vanilla.SetFormOrder(FormOrder.FormOrderCustom(appliedWidth));
                 vanilla.SetMovementOrder(MovementOrder.MovementOrderMove(worldPos));
                 vanilla.SetPositioning(worldPos, facing, vanilla.UnitSpacing);
                 vanilla.SetFacingOrder(FacingOrder.FacingOrderLookAtDirection(facing));
-                // Project each agent forward along facing by its row offset
-                // so the line lies along the perpendicular to facing, same
-                // orientation vanilla uses for a wide formation at spawn.
+                // Teleport each agent into a grid cell around pos so the
+                // formation does not collapse into a bulk on the one frame
+                // before vanilla's layout re-spreads them.
+                var perp = new Vec2(-facing.Y, facing.X);
+                int idx = 0;
                 vanilla.ApplyActionOnEachUnit(agent =>
                 {
                     if (agent == null) return;
-                    agent.TeleportToPosition(pos);
+                    agent.TeleportToPosition(GridCell(pos, facing, perp, idx, total, gridCols));
                     agent.ForceUpdateCachedAndFormationValues(
                         updateOnlyMovement: true,
                         arrangementChangeAllowed: false);
+                    idx++;
                 });
                 vanilla.SetHasPendingUnitPositions(hasPendingUnitPositions: false);
                 vanilla.SetMovementOrder(MovementOrder.MovementOrderStop);
@@ -550,6 +512,50 @@ namespace TOR_Core.Missions.AmbushMission.UI
             }
         }
 
+        // Matches vanilla infantry footprint (Interval + UnitDiameter) so our
+        // grid cells line up with vanilla's formation slots. See
+        // AmbushMissionController.AmbushSpawnUnitSpacing for the derivation.
+        private const float UnitSpacing = 1.0f;
+
+        /// <summary>
+        /// Column count for a grid of <paramref name="total"/> units given
+        /// an optional narrow-width cap. Mirrors the spawn-path heuristic.
+        /// </summary>
+        private static int ColumnsForLayout(int total, float? narrowWidth)
+        {
+            if (total <= 1) return 1;
+            if (narrowWidth.HasValue && narrowWidth.Value > 0.001f)
+            {
+                int cols = (int)(narrowWidth.Value / UnitSpacing);
+                return System.Math.Max(1, System.Math.Min(total, cols));
+            }
+            int sqrtCols = (int)System.Math.Ceiling(System.Math.Sqrt(total));
+            return System.Math.Max(1, sqrtCols);
+        }
+
+        /// <summary>
+        /// Per-unit grid cell position around <paramref name="center"/>.
+        /// </summary>
+        private static Vec3 GridCell(Vec3 center, Vec2 facing, Vec2 perp,
+                                      int index, int total, int cols)
+        {
+            if (total <= 1 || cols <= 1) return center;
+            int row = index / cols;
+            int col = index % cols;
+            // Center partial last rows on their own count so border agents
+            // don't drift to vanilla's centered slot after spawn.
+            int rowStart = row * cols;
+            int rowCount = System.Math.Min(cols, total - rowStart);
+            float colOffset = (col - (rowCount - 1) / 2f) * UnitSpacing;
+            float rowOffset = row * UnitSpacing;
+            float dx = perp.X * colOffset - facing.X * rowOffset;
+            float dy = perp.Y * colOffset - facing.Y * rowOffset;
+            return new Vec3(center.X + dx, center.Y + dy, center.Z);
+        }
+
+        /// <summary>
+        /// Reflection-invoke the vanilla ExecuteSelection to activate the formation panel.
+        /// </summary>
         private static void InvokeVanillaSelection(OrderOfBattleFormationItemVM panel)
         {
             var method = typeof(OrderOfBattleFormationItemVM).GetMethod(

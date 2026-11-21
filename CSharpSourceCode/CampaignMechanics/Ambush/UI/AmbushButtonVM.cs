@@ -12,10 +12,13 @@ using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
+using TOR_Core.Models.Ambush;
 
-namespace TOR_Core.CampaignMechanics.Ambush
+namespace TOR_Core.CampaignMechanics.Ambush.UI
 {
-    /// <summary>VM for the ambush HUD widget. Drives the eye sprite, event icons, terrain and context clusters, and the stealth toggle.</summary>
+    /// <summary>
+    /// VM for the ambush HUD widget. Drives the eye sprite, event icons, terrain and context clusters, and the stealth toggle.
+    /// </summary>
     public class AmbushButtonVM : ViewModel
     {
         private const string EyeSpritePrefix = "ambush_eye_";
@@ -24,13 +27,19 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         // UI-layer thresholds; independent of the gameplay model.
 
-        /// <summary>Game-hours the Spotted icon stays lit after a detection roll success.</summary>
+        /// <summary>
+        /// Game-hours the Spotted icon stays lit after a detection roll success.
+        /// </summary>
         private const float SpottedDisplayHours = 0.5f;
 
-        /// <summary>Minimum simultaneous hostile observers before the Alert icon lights.</summary>
+        /// <summary>
+        /// Minimum simultaneous hostile observers before the Alert icon lights.
+        /// </summary>
         private const int AlertObserverCountThreshold = 2;
 
-        /// <summary>Map-unit distance within which a single observer lights the Enemies-Close icon.</summary>
+        /// <summary>
+        /// Map-unit distance within which a single observer lights the Enemies-Close icon.
+        /// </summary>
         private const float CloseEnemyProximityRadius = 3.5f;
 
         // ---- Backing fields ----
@@ -114,7 +123,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
         [DataSourceProperty] public bool IsOnCooldown { get => _isOnCooldown; set { if (_isOnCooldown == value) return; _isOnCooldown = value; OnPropertyChangedWithValue(value); } }
         [DataSourceProperty] public bool IsBorderRed { get => _isBorderRed; set { if (_isBorderRed == value) return; _isBorderRed = value; OnPropertyChangedWithValue(value); OnPropertyChanged(nameof(BorderColor)); } }
 
-        /// <summary>Tint for the triangle backdrop. Gold when committed to stealth, red when unavailable, dark neutral when available.</summary>
+        /// <summary>
+        /// Tint for the triangle backdrop. Gold when committed to stealth, red when unavailable, dark neutral when available.
+        /// </summary>
         [DataSourceProperty]
         public string BorderColor =>
             (_isStealthActive || _isStealthPreparing) ? "#D4A830FF" :  // gold, committed
@@ -154,13 +165,17 @@ namespace TOR_Core.CampaignMechanics.Ambush
         [DataSourceProperty] public BasicTooltipViewModel SettlementHostileTooltip { get => _settlementHostileTooltip; set { _settlementHostileTooltip = value; OnPropertyChangedWithValue(value); } }
         [DataSourceProperty] public BasicTooltipViewModel SettlementNeutralTooltip { get => _settlementNeutralTooltip; set { _settlementNeutralTooltip = value; OnPropertyChangedWithValue(value); } }
 
-        /// <summary>Click handler for the stealth toggle widget.</summary>
+        /// <summary>
+        /// Click handler for the stealth toggle widget.
+        /// </summary>
         public void ExecuteToggle()
         {
             Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>()?.OnStealthHotkeyPressed();
         }
 
-        /// <summary>Recompute all widget state. Called per map-screen update.</summary>
+        /// <summary>
+        /// Recompute all widget state. Called per map-screen update.
+        /// </summary>
         public void Refresh()
         {
             var ambush = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
@@ -189,6 +204,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             UpdateContextFlags(mainParty, model);
         }
 
+        /// <summary>
+        /// Pick the eye-icon sprite from entry failure or compounded detection risk.
+        /// </summary>
         private static string ComputeEyeSprite(AmbushCampaignBehavior ambush, MobileParty mainParty, TORAmbushModel model)
         {
             // Not stealthed: chance to fail entering stealth. In stealth: compounded detection chance over the horizon.
@@ -212,6 +230,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return EyeSpritePrefix + idx;
         }
 
+        /// <summary>
+        /// Refresh event-row flags: spotted, alert, enemies-close, backstab, cooldown, and hooded.
+        /// </summary>
         private void UpdateEventFlags(AmbushCampaignBehavior ambush, TORAmbushModel model)
         {
             var spottedAt = ambush.PlayerSpottedAt;
@@ -231,6 +252,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
                             && model.IsInstantAmbushAllowed(latest);
         }
 
+        /// <summary>
+        /// Refresh terrain-row flags from the main party's current nav mesh face.
+        /// </summary>
         private void UpdateTerrainFlags(MobileParty mainParty)
         {
             var face = mainParty.CurrentNavigationFace;
@@ -248,6 +272,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
                                 || terrain == TerrainType.Steppe || terrain == TerrainType.Dune;
         }
 
+        /// <summary>
+        /// Refresh context-row flags from weather, cursed-site proximity, and nearby settlements.
+        /// </summary>
         private void UpdateContextFlags(MobileParty mainParty, TORAmbushModel model)
         {
             var weatherModel = Campaign.Current.Models.MapWeatherModel;
@@ -268,7 +295,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             IsContextSettlementNeutral = kind == SettlementProximityKind.Neutral;
         }
 
-        /// <summary>True when any cached hostile observer sits within radius of the main party.</summary>
+        /// <summary>
+        /// True when any cached hostile observer sits within radius of the main party.
+        /// </summary>
         private static bool HasObserverWithinRadius(AmbushCampaignBehavior ambush, float radius)
         {
             var main = MobileParty.MainParty;
@@ -283,6 +312,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return false;
         }
 
+        /// <summary>
+        /// Build the eye-icon tooltip text, routing to entry or detection breakdown depending on stealth state.
+        /// </summary>
         private string ComputeEyeBreakdownText()
         {
             var mainParty = MobileParty.MainParty;
@@ -297,6 +329,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 : ComputeEntryBreakdown(mainParty, model, ambush);
         }
 
+        /// <summary>
+        /// Build the pre-stealth tooltip breakdown showing base chance, observer count, and night bonus.
+        /// </summary>
         private string ComputeEntryBreakdown(MobileParty mainParty, TORAmbushModel model, AmbushCampaignBehavior ambush)
         {
             var observers = ambush.CachedObserversInRange;
@@ -333,6 +368,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Build the in-stealth tooltip breakdown showing hourly detection chance and strong modifiers.
+        /// </summary>
         private string ComputeDetectionBreakdown(MobileParty mainParty, TORAmbushModel model, AmbushCampaignBehavior ambush)
         {
             var observers = ambush.CachedObserversInRange;
@@ -373,6 +411,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Tooltip text for the alert icon showing the number of hostile observers in range.
+        /// </summary>
         private string ComputeAlertText()
         {
             var ambush = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
@@ -383,6 +424,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return text.ToString();
         }
 
+        /// <summary>
+        /// Tooltip text for the cooldown icon showing hours remaining before stealth re-enters.
+        /// </summary>
         private string ComputeCooldownText()
         {
             var ambush = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
@@ -403,6 +447,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
                                           "Stealth cooling down.");
         }
 
+        /// <summary>
+        /// Tooltip text for the backstab icon showing hours until recent-ambusher pressure clears.
+        /// </summary>
         private string ComputeBackstabText()
         {
             var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
@@ -423,6 +470,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return text.ToString();
         }
 
+        /// <summary>
+        /// Tooltip text describing the current terrain's effect on stealth entry.
+        /// </summary>
         private string ComputeTerrainText()
         {
             if (IsTerrainForest)   return TORTextHelper.GetText("tor_ambush_widget_tt_terrain_forest",
@@ -438,6 +488,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return "";
         }
 
+        /// <summary>
+        /// Return true when the ambush widget should be visible on the map HUD.
+        /// </summary>
         private static bool CanShow()
         {
             if (Hero.MainHero == null || Hero.MainHero.IsPrisoner) return false;

@@ -27,13 +27,19 @@ namespace TOR_Core.CampaignMechanics.Ambush
     /// </summary>
     public class RogueryPerkBehavior : CampaignBehaviorBase
     {
-        /// <summary>Crime added on a neutral caravan ambush with witnesses.</summary>
+        /// <summary>
+        /// Crime added on a neutral caravan ambush with witnesses.
+        /// </summary>
         private const float NeutralCaravanAmbushCrimeDelta = 20f;
 
-        /// <summary>Relation drop with the caravan owner on a neutral caravan ambush.</summary>
+        /// <summary>
+        /// Relation drop with the caravan owner on a neutral caravan ambush.
+        /// </summary>
         private const int NeutralCaravanAmbushRelationDelta = -8;
 
-        /// <summary>Latch for the Parlay dialog roll result.</summary>
+        /// <summary>
+        /// Latch for the Parlay dialog roll result.
+        /// </summary>
         private bool _parlayLastRollSucceeded;
 
         private const string TryToGetAwayMenuId = "try_to_get_away";
@@ -124,6 +130,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
         }
 
+        /// <summary>
+        /// Register perk menus, subscribe to ambush resolutions, and wipe vanilla Roguery perks.
+        /// </summary>
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
             AddMenus(starter);
@@ -132,7 +141,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             SweepVanillaRogueryPerks();
         }
 
-        /// <summary>Clear vanilla Roguery perks from every alive hero. Idempotent.</summary>
+        /// <summary>
+        /// Clear vanilla Roguery perks from every alive hero. Idempotent.
+        /// </summary>
         private static void SweepVanillaRogueryPerks()
         {
             foreach (var hero in Hero.AllAliveHeroes)
@@ -178,7 +189,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
         }
 
-        /// <summary>Registers the Diversion options and the Parlay dialog.</summary>
+        /// <summary>
+        /// Registers the Diversion options and the Parlay dialog.
+        /// </summary>
         private void AddMenus(CampaignGameStarter starter)
         {
             string diversionOption = TORTextHelper.GetTextForNative(
@@ -235,17 +248,26 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 () => !_parlayLastRollSucceeded, null);
         }
 
+        /// <summary>
+        /// Show the Parlay dialog line only when the main hero has the Parlay perk.
+        /// </summary>
         private bool ParlayOptionCondition()
         {
             return Hero.MainHero != null
                 && Hero.MainHero.GetPerkValue(TORPerks.Roguery.Parlay);
         }
 
+        /// <summary>
+        /// Roll the Parlay success check once when the player picks the peaceful-exit line.
+        /// </summary>
         private void OnParlayAttempted()
         {
             _parlayLastRollSucceeded = MBRandom.RandomFloat < TORPerks.Roguery.Parlay.PrimaryBonus;
         }
 
+        /// <summary>
+        /// Show the Diversion escape option when the perk is active and prisoners are available.
+        /// </summary>
         private bool DiversionOnCondition(MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Escape;
@@ -265,6 +287,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return true;
         }
 
+        /// <summary>
+        /// Spend prisoners to break contact and switch to the Diversion debrief menu.
+        /// </summary>
         private void DiversionOnConsequence(MenuCallbackArgs args)
         {
             if (PlayerEncounter.Current == null || PlayerEncounter.Battle == null) return;
@@ -306,6 +331,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             PlayerEncounter.Finish();
         }
 
+        /// <summary>
+        /// Show the Diversion siege break-in option when the perk is active and prisoners are available.
+        /// </summary>
         private bool BreakInDiversionOnCondition(MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Escape;
@@ -326,6 +354,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return true;
         }
 
+        /// <summary>
+        /// Spend prisoners to force a siege break-in and switch to the break-in debrief menu.
+        /// </summary>
         private void BreakInDiversionOnConsequence(MenuCallbackArgs args)
         {
             var siegeEvent = Settlement.CurrentSettlement?.SiegeEvent;

@@ -10,6 +10,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
+using TOR_Core.Models.Ambush;
 
 namespace TOR_Core.Missions.AmbushMission
 {
@@ -154,7 +155,7 @@ namespace TOR_Core.Missions.AmbushMission
         }
 
         /// <summary>
-        /// Read by <c>AmbushEndLogic</c> as the "no more waves coming"
+        /// Read by <c>PlayerAmbushMissionLogic</c> as the "no more waves coming"
         /// half of the TotalVictory gate. Delegates to the spawn-logic
         /// subclass's pool check, which reads
         /// <c>phase.RemainingSpawnNumber</c> directly. That value is set

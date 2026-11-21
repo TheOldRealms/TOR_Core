@@ -7,9 +7,11 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
 using static TOR_Core.Utilities.TORConstants;
 
-namespace TOR_Core.CampaignMechanics.Ambush
+namespace TOR_Core.Models.Ambush
 {
-    /// <summary>Per-troop stealth suitability roughly in [0, 1]. Precomputed per session; combine with a dynamic bonus for the full party score.</summary>
+    /// <summary>
+    /// Per-troop stealth suitability roughly in [0, 1]. Precomputed per session; combine with a dynamic bonus for the full party score.
+    /// </summary>
     public static class AmbushTroopStealthScore
     {
         private const float Baseline = 0.5f;
@@ -37,7 +39,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private static readonly Dictionary<string, float> _baseCache = new Dictionary<string, float>();
 
-        /// <summary>Precompute base scores for every CharacterObject. Called once per session.</summary>
+        /// <summary>
+        /// Precompute base scores for every CharacterObject. Called once per session.
+        /// </summary>
         public static void PrecomputeAll()
         {
             _baseCache.Clear();
@@ -48,7 +52,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
         }
 
-        /// <summary>O(1) read from the precomputed base, falls back to compute if missing.</summary>
+        /// <summary>
+        /// O(1) read from the precomputed base, falls back to compute if missing.
+        /// </summary>
         public static float GetBaseTroopScore(CharacterObject c)
         {
             if (c == null) return Baseline;
@@ -58,7 +64,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return v;
         }
 
-        /// <summary>Healthy-weighted party average of base troop scores.</summary>
+        /// <summary>
+        /// Healthy-weighted party average of base troop scores.
+        /// </summary>
         public static float GetBasePartyScore(MobileParty party)
         {
             if (party?.MemberRoster == null) return Baseline;
@@ -76,6 +84,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return count > 0 ? sum / count : Baseline;
         }
 
+        /// <summary>
+        /// Build a single troop's stealth score from race, mount, knightly tier, and gear weight.
+        /// </summary>
         private static float ComputeBase(CharacterObject c)
         {
             float score = Baseline;
@@ -95,13 +106,18 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return score;
         }
 
-        /// <summary>True when the troop carries any of TOR's culture-specific knightly-tier attribute tags.</summary>
+        /// <summary>
+        /// True when the troop carries any of TOR's culture-specific knightly-tier attribute tags.
+        /// </summary>
         private static bool IsKnightlyTier(CharacterObject c)
         {
             return c.HasAttribute(CharacterAttributes.EMPIRE_KNIGHT)
                 || c.HasAttribute(CharacterAttributes.BRETONNIAN_KNIGHT);
         }
 
+        /// <summary>
+        /// Return the race-based stealth modifier for TOR body types.
+        /// </summary>
         private static float RaceFactor(CharacterObject c)
         {
             // Priority order, most specific first.
@@ -113,6 +129,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return 0f;
         }
 
+        /// <summary>
+        /// Penalty proportional to total equipment weight, capped at WeightPenaltyCap.
+        /// </summary>
         private static float WeightPenalty(CharacterObject c)
         {
             // Sum weights across the first battle equipment set.

@@ -4630,9 +4630,13 @@
   <string id="tor_career_button_knightoldworld_seal_decline.not_eligible" text="{=tor_career_button_knightoldworld_seal_decline.not_eligible}Not eligible for seal." />
 
   <!-- TOR Information and data -->
-  <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead - not affected by morale, and instead of fleeing, shall crumble to dust. If defeated, this unit cannot be wounded." />
-  <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew - required to operate most artillery pieces." />
-  <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale." />
+  <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead - The unit will not be affected by morale; instead of fleeing, it will disintegrate. If defeated, the unit will be lost and cannot be healed." />
+  <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - The unit will never flee, no matter how much morale it loses." />
+  <string id="tor_extendedInfo.Expendable" text="{=str_tor_extendedinfo_expendable}Expendable - The death or flight of these units will have no effect on the morale of the allied troops." />
+  <string id="tor_extendedInfo.Crushing" text="{=str_tor_extendedinfo_crushing}Crushing - Enemy weapons cannot block or parry this unit's attacks." />
+  <string id="tor_extendedInfo.Slice" text="{=str_tor_extendedinfo_slice}Slice - Melee attacks can cut through enemies(...)" />
+  <string id="tor_extendedInfo.TreeSpirit" text="{=str_tor_extendedinfo_treespirit}Tree Spirit - This unit is a Tree Spirit" />
+  <string id="tor_extendedInfo.Crew" text="{=str_tor_extendedinfo_crew}Artillery Crew - This unit can operate artillery. And it reloads {VALUE}% faster." />
   <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage." />
   <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Piercing - {VALUE}% Armor Penetration(...)" />
   <string id="tor_damagetype.Invalid" text="{=str_tor_damagetype_invalid}Invalid" />
@@ -6201,6 +6205,33 @@
   <string id="tor_towncomplex_intro.mousillon" text="{=str_tor_towncomplex_intro.mousillon}The alleys of {SETTLEMENT_NAME} reek of damp and rot. Figures huddle in doorways and watch you pass without comment." />
   <string id="tor_towncomplex.sturgia" text="{=str_tor_towncomplex.sturgia}Visit the clan workshops" />
   <string id="tor_towncomplex_intro.sturgia" text="{=str_tor_towncomplex_intro.sturgia}The workshops of {SETTLEMENT_NAME} ring with hammer-blows; smoke and sparks curl up through grates in the stone ceiling." />
+  <!-- Greenskin formations -->
+  <string id="tor_formation.greenskin_1" text="{=str_tor_formation_greenskin_1}Da Boyz" />
+  <string id="tor_formation.greenskin_2" text="{=str_tor_formation_greenskin_2}Da Tuffa Boyz" />
+  <string id="tor_formation.greenskin_3" text="{=str_tor_formation_greenskin_3}Da Choppaz" />
+  <string id="tor_formation.greenskin_4" text="{=str_tor_formation_greenskin_4}Arrer Boyz" />
+  <string id="tor_formation.greenskin_5" text="{=str_tor_formation_greenskin_5}Da Ridaz" />
+  <string id="tor_formation.greenskin_6" text="{=str_tor_formation_greenskin_6}Da Shooty Ridaz" />
+  <string id="tor_formation.greenskin_7" text="{=str_tor_formation_greenskin_7}Da Stompaz" />
+  <string id="tor_formation.greenskin_8" text="{=str_tor_formation_greenskin_8}Da Shamanz" />
+
+  <string id="tor_hire_companion_introduction.tor_wanderer_dawi_3" text="{=str_tor_hire_companion_introduction_tor_wanderer_dawi_3}Unless you know where a troll sleeps, you're wasting my time." />
+  <string id="tor_hire_companion_begone.tor_wanderer_dawi_3" text="{=str_tor_hire_companion_begone_tor_wanderer_dawi_3}Off with you. You're far too small to be my doom." />
+  <string id="tor_hire_companion_tell_me_p.tor_wanderer_dawi_3" text="{=str_tor_hire_companion_tell_me_p_tor_wanderer_dawi_3}I am {PLAYER.NAME}. What brings a Slayer this far from the mountains?" />
+  <string id="tor_hire_companion_skip_p.tor_wanderer_dawi_3" text="{=str_tor_hire_companion_skip_p_tor_wanderer_dawi_3}I am {PLAYER.NAME}, and I can find you worse than trolls." />
+  <string id="tor_prebackstory.tor_wanderer_dawi_3" text="{=str_tor_prebackstory_tor_wanderer_dawi_3}Don't ask what I did. Ask what I swore." />
+  <string id="tor_backstory_a.tor_wanderer_dawi_3" text="{=str_tor_backstory_a_tor_wanderer_dawi_3}I swore to Grimnir I'd seek out the mightiest foes and fall fighting one." />
+  <string id="tor_backstory_b.tor_wanderer_dawi_3" text="{=str_tor_backstory_b_tor_wanderer_dawi_3}Three trolls, a wyvern and one very surprised giant later, I'm still standing." />
+  <string id="tor_backstory_c.tor_wanderer_dawi_3" text="{=str_tor_backstory_c_tor_wanderer_dawi_3}Either Grimnir's having a laugh, or I've not found anything big enough yet." />
+  <string id="tor_response_1.tor_wanderer_dawi_3" text="{=str_tor_response_1_tor_wanderer_dawi_3}Stick with me. I'll find you something big enough." />
+  <string id="tor_response_2.tor_wanderer_dawi_3" text="{=str_tor_response_2_tor_wanderer_dawi_3}A dwarf who kills trolls? I'd rather you kept failing." />
+  <string id="tor_backstory_d.tor_wanderer_dawi_3" text="{=str_tor_backstory_d_tor_wanderer_dawi_3}Then hear my terms: I fight at the front, and no one drags me back. Ever." />
+  <string id="tor_hire_companion_p.tor_wanderer_dawi_3" text="{=str_tor_hire_companion_p_tor_wanderer_dawi_3}The front is yours." />
+  <string id="tor_companion_leave_p.tor_wanderer_dawi_3" text="{=str_tor_companion_leave_p_tor_wanderer_dawi_3}Good hunting, Slayer." />
+  <string id="tor_hire_companion_payment.tor_wanderer_dawi_3" text="{=str_tor_hire_companion_payment_tor_wanderer_dawi_3}{GOLD_AMOUNT}{GOLD_ICON}. Beer and whetstones; a Slayer needs nothing else." />
+  <string id="tor_hire_accept_p.tor_wanderer_dawi_3" text="{=str_tor_hire_accept_p_tor_wanderer_dawi_3}Done. Try not to drink it all at once." />
+  <string id="tor_hire_decline_p.tor_wanderer_dawi_3" text="{=str_tor_hire_decline_p_tor_wanderer_dawi_3}My purse can't stretch that far yet." />
+  <string id="tor_recruitment_culture_blocked" text="{=str_tor_recruitment_culture_blocked}You cannot recruit this troop due to cultural restrictions (...)" />
 
   <!-- Ambush -->
   <string id="tor_ambush_widget_tt_eye_unavailable" text="{=str_tor_ambush_widget_tt_eye_unavailable}Stealth entry chance unavailable." />

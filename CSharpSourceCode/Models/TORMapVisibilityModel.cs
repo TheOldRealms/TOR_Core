@@ -14,6 +14,7 @@ using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 using static TOR_Core.Utilities.TORConstants;
+using TOR_Core.Models.Ambush;
 
 namespace TOR_Core.Models
 {
@@ -29,18 +30,14 @@ namespace TOR_Core.Models
                 CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref result, PassiveEffectType.PartySpottingRange, true);
             }
 
-            // Keen Senses gates the stealth-stance spotting bonus: crouching
-            // helps you spot approaching hostiles only if you've trained for
-            // it. Main-party only because AmbushCampaignBehavior.IsPlayerInStealth
-            // tracks the player; AI stealth uses IgnoreByOtherPartiesTill
-            // and never passes through this branch.
-            if (party.IsMainParty && party.HasPerk(TORPerks.Roguery.KeenSenses))
+            // Keen Senses: stealth-stance spotting bonus for any party (main
+            // or AI) that has the perk and is currently stealthed. Main-party
+            // stealth state comes from AmbushCampaignBehavior; AI stealth
+            // state from AiAmbushBehavior, which tracks each stealthed party
+            // in its _stealthedParties dict.
+            if (party.HasPerk(TORPerks.Roguery.KeenSenses) && IsPartyInStealthStance(party))
             {
-                var ambush = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
-                if (ambush != null && ambush.IsPlayerInStealth)
-                {
-                    PerkHelper.AddPerkBonusForParty(TORPerks.Roguery.KeenSenses, party, isPrimaryBonus: true, ref result);
-                }
+                PerkHelper.AddPerkBonusForParty(TORPerks.Roguery.KeenSenses, party, isPrimaryBonus: true, ref result);
             }
 
             // Per-troop spotting score bump for scout-heavy rosters.
@@ -159,5 +156,22 @@ namespace TOR_Core.Models
         /// off persistence can trigger the manual distance correction.</summary>
         private static readonly HashSet<MobileParty> _wasPersisted
             = new HashSet<MobileParty>();
+
+        /// <summary>
+        /// True when the given party is currently in an ambush stealth stance,
+        /// whether player-driven (tracked by AmbushCampaignBehavior) or AI
+        /// (tracked by AiAmbushBehavior).
+        /// </summary>
+        private static bool IsPartyInStealthStance(MobileParty party)
+        {
+            if (party == null) return false;
+            if (party.IsMainParty)
+            {
+                var ambush = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
+                return ambush != null && ambush.IsPlayerInStealth;
+            }
+            var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
+            return ai != null && ai.IsPartyStealthed(party);
+        }
     }
 }

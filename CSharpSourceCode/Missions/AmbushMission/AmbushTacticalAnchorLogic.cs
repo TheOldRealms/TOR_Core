@@ -5,7 +5,9 @@ using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.Missions.AmbushMission
 {
-    /// <summary>Mission-level owner of the ranged-formation tactical-point anchors.</summary>
+    /// <summary>
+    /// Mission-level owner of the ranged-formation tactical-point anchors.
+    /// </summary>
     public class AmbushTacticalAnchorLogic : MissionLogic
     {
         private const float ReassignIntervalSeconds = 2.0f;
@@ -15,7 +17,9 @@ namespace TOR_Core.Missions.AmbushMission
         private float _reassignAccumulator;
         private Team _subscribedPlayerTeam;
 
-        /// <summary>Register an anchor and teleport agents onto tactical children at spawn.</summary>
+        /// <summary>
+        /// Register an anchor and teleport agents onto tactical children at spawn.
+        /// </summary>
         public void RegisterAnchor(Formation formation,
                                    AmbushBehaviorDefendTacticalPoint behavior)
         {
@@ -24,7 +28,9 @@ namespace TOR_Core.Missions.AmbushMission
             behavior.AssignScriptedPositionsToAgents(true);
         }
 
-        /// <summary>Switch an anchored formation to a new spot without teleporting.</summary>
+        /// <summary>
+        /// Switch an anchored formation to a new spot without teleporting.
+        /// </summary>
         public void RebindAnchor(Formation formation,
                                  AmbushBehaviorDefendTacticalPoint behavior)
         {
@@ -33,7 +39,9 @@ namespace TOR_Core.Missions.AmbushMission
             behavior.AssignScriptedPositionsToAgents();
         }
 
-        /// <summary>Unregister an anchor and clear scripted positions on its agents.</summary>
+        /// <summary>
+        /// Unregister an anchor and clear scripted positions on its agents.
+        /// </summary>
         public void UnregisterAnchor(Formation formation)
         {
             if (formation == null) return;
@@ -41,7 +49,9 @@ namespace TOR_Core.Missions.AmbushMission
             AmbushBehaviorDefendTacticalPoint.ClearScriptedPositions(formation);
         }
 
-        /// <summary>Subscribe to the player order controller so plate-moving orders release matching anchors.</summary>
+        /// <summary>
+        /// Subscribe to the player order controller so plate-moving orders release matching anchors.
+        /// </summary>
         public override void AfterStart()
         {
             base.AfterStart();
@@ -62,6 +72,9 @@ namespace TOR_Core.Missions.AmbushMission
             base.OnEndMission();
         }
 
+        /// <summary>
+        /// Release the anchor on any formation the player just ordered to move.
+        /// </summary>
         private void OnPlayerOrderIssued(OrderType orderType, MBReadOnlyList<Formation> appliedFormations,
                                           OrderController orderController, params object[] delegateParams)
         {
@@ -79,6 +92,9 @@ namespace TOR_Core.Missions.AmbushMission
             foreach (var f in toRelease) UnregisterAnchor(f);
         }
 
+        /// <summary>
+        /// True for player orders that move the formation plate rather than just reshape it.
+        /// </summary>
         private static bool IsPlateMovingOrder(OrderType orderType)
         {
             // Plate-moving orders only; shape/firing/stance don't release the anchor.
@@ -124,6 +140,9 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
+        /// <summary>
+        /// True when the formation class fires projectiles.
+        /// </summary>
         private static bool IsRangedClass(FormationClass cls)
         {
             return cls == FormationClass.Ranged

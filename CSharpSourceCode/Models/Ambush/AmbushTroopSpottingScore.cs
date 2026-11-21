@@ -6,9 +6,11 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
 using static TOR_Core.Utilities.TORConstants;
 
-namespace TOR_Core.CampaignMechanics.Ambush
+namespace TOR_Core.Models.Ambush
 {
-    /// <summary>Per-troop spotting suitability. Mirror of AmbushTroopStealthScore on the detection side.</summary>
+    /// <summary>
+    /// Per-troop spotting suitability. Mirror of AmbushTroopStealthScore on the detection side.
+    /// </summary>
     public static class AmbushTroopSpottingScore
     {
         private const float Baseline = 0.0f;
@@ -34,7 +36,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private static readonly Dictionary<string, float> _baseCache = new Dictionary<string, float>();
 
-        /// <summary>Precompute base scores for every CharacterObject. Called once per session.</summary>
+        /// <summary>
+        /// Precompute base scores for every CharacterObject. Called once per session.
+        /// </summary>
         public static void PrecomputeAll()
         {
             _baseCache.Clear();
@@ -45,7 +49,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
         }
 
-        /// <summary>Base spotting score for a single troop.</summary>
+        /// <summary>
+        /// Base spotting score for a single troop.
+        /// </summary>
         public static float GetBaseTroopScore(CharacterObject c)
         {
             if (c == null) return Baseline;
@@ -55,7 +61,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return v;
         }
 
-        /// <summary>Healthy-weighted party score with size damping.</summary>
+        /// <summary>
+        /// Healthy-weighted party score with size damping.
+        /// </summary>
         public static float GetBasePartyScore(MobileParty party, float sizeDampingReference)
         {
             if (party?.MemberRoster == null) return Baseline;
@@ -77,6 +85,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return avg * damp;
         }
 
+        /// <summary>
+        /// Build a single troop's spotting score from race, formation, knightly tier, and gear weight.
+        /// </summary>
         private static float ComputeBase(CharacterObject c)
         {
             float score = Baseline;
@@ -96,12 +107,18 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return score;
         }
 
+        /// <summary>
+        /// True if the character is an Empire or Bretonnian knight tier.
+        /// </summary>
         private static bool IsKnightlyTier(CharacterObject c)
         {
             return c.HasAttribute(CharacterAttributes.EMPIRE_KNIGHT)
                 || c.HasAttribute(CharacterAttributes.BRETONNIAN_KNIGHT);
         }
 
+        /// <summary>
+        /// Return the race-based spotting bonus for elves and dwarves.
+        /// </summary>
         private static float RaceFactor(CharacterObject c)
         {
             // Race via FaceGen-based IsElf / IsDwarf; both Wood Elves and Eonir fall under IsElf.
@@ -110,6 +127,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return 0f;
         }
 
+        /// <summary>
+        /// Return the formation-based spotting bonus for ranged classes.
+        /// </summary>
         private static float FormationFactor(CharacterObject c)
         {
             switch (c.DefaultFormationClass)
@@ -120,6 +140,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
         }
 
+        /// <summary>
+        /// Penalty proportional to total equipment weight, capped at WeightPenaltyCap.
+        /// </summary>
         private static float WeightPenalty(CharacterObject c)
         {
             var equipment = c.FirstBattleEquipment;

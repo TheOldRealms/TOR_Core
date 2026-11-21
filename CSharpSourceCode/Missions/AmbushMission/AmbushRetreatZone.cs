@@ -5,19 +5,29 @@ using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.Missions.AmbushMission
 {
-    /// <summary>Scene-authored retreat zone. Scener attaches the script; entity position is the zone centre.</summary>
+    /// <summary>
+    /// Scene-authored retreat zone. Scener attaches the script; entity position is the zone centre.
+    /// </summary>
     public class AmbushRetreatZone : ScriptComponentBehavior
     {
-        /// <summary>Zone inner radius for the hero. Scener-tunable.</summary>
+        /// <summary>
+        /// Zone inner radius for the hero. Scener-tunable.
+        /// </summary>
         public float Radius = 10f;
 
-        /// <summary>Multiplier on Radius for the forgiving troop-extraction radius. Default 1.5.</summary>
+        /// <summary>
+        /// Multiplier on Radius for the forgiving troop-extraction radius. Default 1.5.
+        /// </summary>
         public float TroopExtractionRadiusMultiplier = 1.5f;
 
-        /// <summary>Draw ground markers during the mission (debug aid).</summary>
+        /// <summary>
+        /// Draw ground markers during the mission (debug aid).
+        /// </summary>
         public bool ShowDebugMarkerInGame = false;
 
-        /// <summary>Flipped true by the controller when Phase 2 begins; reset on teardown.</summary>
+        /// <summary>
+        /// Flipped true by the controller when Phase 2 begins; reset on teardown.
+        /// </summary>
         public static bool ShowRuntimeMarker { get; set; }
 
         // Opaque green ARGB; material thins it to an outline.
@@ -32,10 +42,14 @@ namespace TOR_Core.Missions.AmbushMission
 
         private static readonly List<AmbushRetreatZone> _activeZones = new List<AmbushRetreatZone>();
 
-        /// <summary>Zones currently alive in the running mission's scene.</summary>
+        /// <summary>
+        /// Zones currently alive in the running mission's scene.
+        /// </summary>
         public static IReadOnlyList<AmbushRetreatZone> ActiveZones => _activeZones;
 
-        /// <summary>Purge stale references from any prior scene.</summary>
+        /// <summary>
+        /// Purge stale references from any prior scene.
+        /// </summary>
         public static void ResetRegistry()
         {
             _activeZones.Clear();
@@ -43,13 +57,19 @@ namespace TOR_Core.Missions.AmbushMission
             ShowRuntimeMarker = false;
         }
 
-        /// <summary>Procedural fallback position when a scene has no authored zones.</summary>
+        /// <summary>
+        /// Procedural fallback position when a scene has no authored zones.
+        /// </summary>
         public static Vec3? ProceduralFallbackPosition { get; set; }
 
-        /// <summary>Radius for the procedural fallback.</summary>
+        /// <summary>
+        /// Radius for the procedural fallback.
+        /// </summary>
         public static float ProceduralFallbackRadius { get; set; } = 15f;
 
-        /// <summary>True if the agent is inside any authored zone or the procedural fallback.</summary>
+        /// <summary>
+        /// True if the agent is inside any authored zone or the procedural fallback.
+        /// </summary>
         public static bool IsAgentInsideAnyZone(Agent agent)
         {
             if (agent == null || !agent.IsActive()) return false;
@@ -67,7 +87,9 @@ namespace TOR_Core.Missions.AmbushMission
             return false;
         }
 
-        /// <summary>True if the agent is inside the forgiving troop-extraction radius of any zone.</summary>
+        /// <summary>
+        /// True if the agent is inside the forgiving troop-extraction radius of any zone.
+        /// </summary>
         public static bool IsAgentInsideAnyTroopExtractionZone(Agent agent)
         {
             if (agent == null || !agent.IsActive()) return false;
@@ -112,7 +134,9 @@ namespace TOR_Core.Missions.AmbushMission
             UpdateDecal(true);
         }
 
-        /// <summary>Update the ground ring position and tint per tick.</summary>
+        /// <summary>
+        /// Update the ground ring position and tint per tick.
+        /// </summary>
         private void UpdateDecal(bool visible)
         {
             if (Scene == null) return;
@@ -132,6 +156,9 @@ namespace TOR_Core.Missions.AmbushMission
             _decal.SetVectorArgument(0.166f, 1f, 0.83f, 0f);
         }
 
+        /// <summary>
+        /// Lazily spawn the retreat-zone ring decal entity in the scene.
+        /// </summary>
         private void EnsureDecalCreated()
         {
             if (_decalEntity != null) return;
@@ -159,10 +186,14 @@ namespace TOR_Core.Missions.AmbushMission
             base.OnRemoved(removeReason);
         }
 
-        /// <summary>World position of the zone centre; reads per-call so moving entities work.</summary>
+        /// <summary>
+        /// World position of the zone centre; reads per-call so moving entities work.
+        /// </summary>
         public Vec3 Position => GameEntity.GlobalPosition;
 
-        /// <summary>True if the agent is inside the inner Radius.</summary>
+        /// <summary>
+        /// True if the agent is inside the inner Radius.
+        /// </summary>
         public bool IsAgentInside(Agent agent)
         {
             if (agent == null || !agent.IsActive()) return false;
@@ -173,7 +204,9 @@ namespace TOR_Core.Missions.AmbushMission
             return (dx * dx + dy * dy) <= Radius * Radius;
         }
 
-        /// <summary>True if the agent is inside the troop-extraction radius.</summary>
+        /// <summary>
+        /// True if the agent is inside the troop-extraction radius.
+        /// </summary>
         public bool IsAgentInsideTroopExtractionZone(Agent agent)
         {
             if (agent == null || !agent.IsActive()) return false;

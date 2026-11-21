@@ -4,7 +4,9 @@ using TaleWorlds.SaveSystem;
 
 namespace TOR_Core.CampaignMechanics.Ambush
 {
-    /// <summary>One entry in the ambush history. Source of truth for all cooldown and reveal queries.</summary>
+    /// <summary>
+    /// One entry in the ambush history. Source of truth for all cooldown and reveal queries.
+    /// </summary>
     public class AmbushRecord
     {
         [SaveableField(1)] public CampaignTime At;
@@ -15,7 +17,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
         [SaveableField(6)] public bool AmbusherLeaderDown;
         [SaveableField(7)] public bool VictimLeaderDown;
 
-        /// <summary>True when the victim beat the ambusher off (used by cooldown + shield queries).</summary>
+        /// <summary>
+        /// True when the victim beat the ambusher off (used by cooldown + shield queries).
+        /// </summary>
         public bool AmbusherRepelled
             => Resolution == AmbushResolution.AmbusherDefeated
             || Resolution == AmbushResolution.VictimFled
@@ -38,7 +42,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             VictimLeaderDown = victimLeaderDown;
         }
 
-        /// <summary>True if the party is the ambusher or victim of this record.</summary>
+        /// <summary>
+        /// True if the party is the ambusher or victim of this record.
+        /// </summary>
         public bool Involves(MobileParty party)
             => party != null && (Ambusher == party || Victim == party);
     }

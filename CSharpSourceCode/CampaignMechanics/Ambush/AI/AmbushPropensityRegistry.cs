@@ -5,7 +5,9 @@ using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.Ambush
 {
-    /// <summary>Static per-culture and per-hero ambush propensity in [0, 1]. Culture value is overridden by hero value when present.</summary>
+    /// <summary>
+    /// Static per-culture and per-hero ambush propensity in [0, 1]. Culture value is overridden by hero value when present.
+    /// </summary>
     public static class AmbushPropensityRegistry
     {
         // Culture StringId to propensity. Unregistered cultures fall through to the model default.
@@ -45,14 +47,18 @@ namespace TOR_Core.CampaignMechanics.Ambush
             { "hero_bertram_of_beregac", 0.5f },
         };
 
-        /// <summary>Culture propensity, or the provided default if unregistered.</summary>
+        /// <summary>
+        /// Culture propensity, or the provided default if unregistered.
+        /// </summary>
         public static float GetCulturePropensity(CultureObject culture, float defaultValue)
         {
             if (culture == null || string.IsNullOrEmpty(culture.StringId)) return defaultValue;
             return _culturePropensity.TryGetValue(culture.StringId, out var v) ? v : defaultValue;
         }
 
-        /// <summary>Hero propensity override, or -1 if none registered.</summary>
+        /// <summary>
+        /// Hero propensity override, or -1 if none registered.
+        /// </summary>
         public static float GetHeroPropensity(Hero hero)
         {
             if (hero == null || string.IsNullOrEmpty(hero.StringId)) return -1f;
