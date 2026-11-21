@@ -202,22 +202,38 @@ namespace TOR_Core.BattleMechanics
             }
         }
 
+        /// <summary>
+        /// Whether an enemy was killed or knocked out, as opposed to retreating or being hit by friendly fire.
+        /// </summary>
+        private static bool IsEnemyTakenDown(Agent affectorAgent, Agent affectedAgent, AgentState agentState)
+        {
+            return (agentState == AgentState.Killed || agentState == AgentState.Unconscious) &&
+                   affectorAgent?.Team != null && affectedAgent?.Team != null && affectorAgent.Team.IsEnemyOf(affectedAgent.Team);
+        }
+
+        /// <summary>
+        /// Whether the killing weapon carries a Dawi rune. The blow names the missile for ranged kills, so the launcher's runes count as well.
+        /// </summary>
+        private static bool IsRuneWeaponKill(Agent affectorAgent, KillingBlow blow)
+        {
+            if (!blow.IsValid) return false;
+
+            return ItemObject.GetItemFromWeaponKind(blow.WeaponItemKind).GetDawiRuneCount() > 0 ||
+                   (blow.IsMissile && affectorAgent.WieldedWeapon.Item.GetDawiRuneCount() > 0);
+        }
+
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
             // Runelord: Teachings of Thungni - runed units reduce career ability cooldown on kill
             if (Hero.MainHero.HasCareer(TORCareers.Runelord))
             {
-                if (affectorAgent != null && !affectorAgent.IsHero && affectorAgent.BelongsToMainParty() &&
+                if (affectorAgent != null && !affectorAgent.IsHero && affectorAgent.Character != null && affectorAgent.BelongsToMainParty() &&
+                    IsEnemyTakenDown(affectorAgent, affectedAgent, agentState) &&
                     Hero.MainHero.HasCareerChoice("TeachingsOfThungniKeystone"))
                 {
                     if (affectorAgent.Character.HasUnitRune() && Agent.Main != null && Agent.Main.IsActive())
                     {
-                        var careerAbility = Agent.Main.GetCareerAbility();
-                        if (careerAbility != null)
-                        {
-                            var cooldown = careerAbility.GetCoolDownLeft();
-                            careerAbility.SetCoolDown(cooldown - 1);
-                        }
+                        Agent.Main.GetCareerAbility()?.RefundCooldown(1);
                     }
                 }
             }
@@ -313,13 +329,10 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
                 
-                if (choices.Contains("ChiselAndHammerPassive2"))
+                if (choices.Contains("ChiselAndHammerPassive2") && IsEnemyTakenDown(affectorAgent, affectedAgent, agentState) && IsRuneWeaponKill(affectorAgent, blow))
                 {
                     var value = ((int)blow.InflictedDamage) / 10; //Not sure if this is too much can be adjusted
-                    if (affectorAgent.WieldedWeapon.Item.HasAnyTrait())
-                    {
-                        Hero.MainHero.AddSkillXp(TORSkills.Spellcraft, value);
-                    }
+                    Hero.MainHero.AddSkillXp(TORSkills.Spellcraft, value);
                 }
 
                 if (choices.Contains("ControlledHungerPassive4"))
@@ -363,7 +376,7 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
 
-                if (affectedAgent.IsUndead() || affectedAgent.Character.IsChaos()|| affectedAgent.Character.IsBeastman())
+                if (affectedAgent.IsUndead() || (affectedAgent.Character != null && (affectedAgent.Character.IsChaos() || affectedAgent.Character.IsBeastman())))
                 {
                     if (choices.Contains("SilverHammerPassive1") ||
                         choices.Contains("TemplarOrdersPassive2"))
@@ -392,7 +405,7 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
 
-                if (affectorAgent.Character.IsNecromancerChampion())
+                if (affectorAgent.Character != null && affectorAgent.Character.IsNecromancerChampion())
                 {
                     if (choices.Contains("GrimoireNecrisKeystone"))
                     {

@@ -142,26 +142,27 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
         if (hasRunes)
         {
             var runeNames = string.Join(", ", currentRunes.Select(r => r.RuneName.ToString()));
-            warningText = TORTextHelper.GetTextObject("tor_unit_rune_warning_text", "WARNING : Current {CURRENT_RUNE} will be removed without compensation.");
+            warningText = TORTextHelper.GetTextObject("tor_unit_rune_warning_text", "WARNING : Current {CURRENT_RUNE} will be removed without compensation unless selected again.");
             warningText.SetTextVariable("CURRENT_RUNE", runeNames);
         }
 
         foreach (var unitRune in available)
         {
-            // Skip runes already applied to this unit
-            if (currentRuneIds.Contains(unitRune.EffectId))
-            {
-                continue;
-            }
-
             var blueprintList = unitRune.EnchantmentBluePrintIdList;
 
             var hint = unitRune.HintText;
 
-            var hasIngredients = HasIngredientsForUse(blueprintList, out var failed);
-
             var icon = GetRuneIcon(unitRune.EffectId);
             var displayText = $"{{{icon}}}{unitRune.RuneName}";
+
+            // Runes already applied stay selectable, so one can be kept while a second is added. Keeping a rune costs nothing.
+            if (currentRuneIds.Contains(unitRune.EffectId))
+            {
+                list.Add(new InquiryElement(unitRune, new TextObject(displayText).ToString(), null, true, hint.ToString()));
+                continue;
+            }
+
+            var hasIngredients = HasIngredientsForUse(blueprintList, out var failed);
 
             if (failed.Any(x => x.notKnown == true))
             {
@@ -195,39 +196,11 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
                 continue;
             }
 
-            // Build required runes display
-            var itemTraits = ItemTrait.All.WhereQ(x => blueprintList.Contains(x.ItemTraitStringId)).ToList();
-            var requiredRunesEntries = new StringBuilder();
-            foreach (var trait in itemTraits)
-            {
-                requiredRunesEntries.Append(trait.ItemTraitName + "{newline}");
-            }
-
             // Build cost display - aggregate costs by ingredient type
             var costEntries = new StringBuilder();
             var itemRoster = Hero.MainHero.PartyBelongedTo.Party.ItemRoster;
+            var ingredientCosts = GetIngredientCosts(blueprintList);
 
-            // Aggregate total cost per ingredient
-            var ingredientCosts = new Dictionary<ItemObject, int>();
-            foreach (var itemTrait in itemTraits)
-            {
-                var cost = GetIngredientCost(itemTrait);
-                var ingredient = TorEnchantingIngredients.GetItemObjectForIngredient(itemTrait.IngredientItem);
-
-                if (ingredient != null)
-                {
-                    if (ingredientCosts.ContainsKey(ingredient))
-                    {
-                        ingredientCosts[ingredient] += cost;
-                    }
-                    else
-                    {
-                        ingredientCosts[ingredient] = cost;
-                    }
-                }
-            }
-
-            // Display aggregated costs
             foreach (var kvp in ingredientCosts)
             {
                 var availableCount = itemRoster.GetItemNumber(kvp.Key);
@@ -276,47 +249,60 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
 
     private void SelectedRunes(List<InquiryElement> inquiryElements)
     {
-        var currentRunes = GetCurrentActiveRunes(_currentCharacter);
+        var currentRunes = GetCurrentActiveRunes(_currentCharacter) ?? [];
 
-        CareerButtonHelper.ProcessSelection(
-            _currentCharacter,
-            inquiryElements,
-            currentRunes,
-            rune => rune.EffectId,
-            rune => DeductRuneCost(rune)
-        );
+        if (!CareerButtonHelper.IsRemoveSelected(inquiryElements))
+        {
+            // Runes the unit already has are kept for free, only the newly added ones are paid for.
+            var newRunes = CareerButtonHelper.GetSelectedItems<UnitRune>(inquiryElements).WhereQ(rune => !currentRunes.Contains(rune));
+            if (!TryPayForRunes(newRunes)) return;
+        }
+
+        CareerButtonHelper.ProcessSelection(_currentCharacter, inquiryElements, currentRunes, rune => rune.EffectId);
     }
 
-    private void DeductRuneCost(UnitRune rune)
+    /// <summary>
+    /// Pays for all <paramref name="runes"/> at once. Two runes can need the same ingredient, so the combined cost is checked
+    /// before anything is deducted. If the party cannot afford it, nothing is paid and the selection is abandoned.
+    /// </summary>
+    private bool TryPayForRunes(IEnumerable<UnitRune> runes)
     {
+        var ingredientCosts = GetIngredientCosts(runes.SelectMany(rune => rune.EnchantmentBluePrintIdList));
         var itemRoster = Hero.MainHero.PartyBelongedTo.ItemRoster;
 
-        // Aggregate total cost per ingredient type
-        var ingredientCosts = new Dictionary<ItemObject, int>();
-        foreach (var traitId in rune.EnchantmentBluePrintIdList)
+        if (ingredientCosts.Any(cost => itemRoster.GetItemNumber(cost.Key) < cost.Value))
         {
-            var itemTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == traitId);
+            MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_unit_rune_combined_cost_insufficient", "You do not have enough ingredients for all selected runes."));
+            return false;
+        }
+
+        foreach (var cost in ingredientCosts)
+        {
+            itemRoster.AddToCounts(cost.Key, -cost.Value);
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Total ingredient cost of inscribing the given item runes, summed per ingredient. Runes listed twice are paid twice.
+    /// </summary>
+    private Dictionary<ItemObject, int> GetIngredientCosts(IEnumerable<string> blueprintIds)
+    {
+        var ingredientCosts = new Dictionary<ItemObject, int>();
+        foreach (var blueprintId in blueprintIds)
+        {
+            var itemTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == blueprintId);
             if (itemTrait == null) continue;
 
-            var cost = GetIngredientCost(itemTrait);
             var ingredient = TorEnchantingIngredients.GetItemObjectForIngredient(itemTrait.IngredientItem);
             if (ingredient == null) continue;
 
-            if (ingredientCosts.ContainsKey(ingredient))
-            {
-                ingredientCosts[ingredient] += cost;
-            }
-            else
-            {
-                ingredientCosts[ingredient] = cost;
-            }
+            ingredientCosts.TryGetValue(ingredient, out var cost);
+            ingredientCosts[ingredient] = cost + GetIngredientCost(itemTrait);
         }
 
-        // Remove aggregated costs
-        foreach (var kvp in ingredientCosts)
-        {
-            itemRoster.AddToCounts(kvp.Key, -kvp.Value);
-        }
+        return ingredientCosts;
     }
 
     private int GetIngredientCost(ItemTrait itemTrait)
@@ -388,28 +374,8 @@ public class RunelordCareerButtonBehavior : CareerButtonBehaviorBase
             return false;
         }
 
-        // Aggregate total cost per ingredient type
-        var ingredientCosts = new Dictionary<ItemObject, int>();
-        foreach (var itemTrait in itemTraits)
-        {
-            var cost = GetIngredientCost(itemTrait);
-            var ingredient = TorEnchantingIngredients.GetItemObjectForIngredient(itemTrait.IngredientItem);
-
-            if (ingredient != null)
-            {
-                if (ingredientCosts.ContainsKey(ingredient))
-                {
-                    ingredientCosts[ingredient] += cost;
-                }
-                else
-                {
-                    ingredientCosts[ingredient] = cost;
-                }
-            }
-        }
-
         // Check if we have enough of each aggregated ingredient
-        foreach (var kvp in ingredientCosts)
+        foreach (var kvp in GetIngredientCosts(blueprintList))
         {
             var ingredient = kvp.Key;
             var totalCost = kvp.Value;

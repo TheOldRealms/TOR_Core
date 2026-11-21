@@ -762,7 +762,7 @@ namespace TOR_Core.Models
 
         public AgentPropertyContainer CreateAgentPropertyContainer(Agent agent, PropertyMask propertyMask, AttackTypeMask attackTypeMask)
         {
-            if (agent.IsMount)
+            if (agent == null || agent.IsMount || !agent.IsHuman || agent.Character == null)
                 return AgentPropertyContainer.InitNew();
 
             if (Mission.Current.IsArenaMission())

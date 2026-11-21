@@ -36738,6 +36738,24 @@
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_beast_slaangor_template" culture="Culture.beastmen">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_beastmen_weapon_slaangor_claw_001" />
+      <Equipment slot="Item1" id="Item.tor_beastmen_shield_slaangor_defend_claw_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_slaangor_hood_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_slaangor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_slaangor_shoulderpads_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_slaangor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_beastmen_weapon_slaangor_claw_001" />
+      <Equipment slot="Item1" id="Item.tor_beastmen_shield_slaangor_defend_claw_001" />
+      <Equipment slot="Head" id="Item.tor_beastmen_head_slaangor_hood_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_slaangor_001" />
+      <Equipment slot="Cape" id="Item.tor_beastmen_slaangor_shoulderpads_001" />
+      <Equipment slot="Leg" id="Item.tor_beastmen_legs_slaangor_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_beast_cygor_template" culture="Culture.empire">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.cygor_boulder" />

@@ -1751,6 +1751,30 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_slaangor_hood_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_slaangor_hood_002" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_slaangor_hood_003" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>  
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_slaangor_shoulderpads_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armour_slaangor_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_legs_slaangor_001" RaceLock="gor2">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_bestigor_shoulderpads_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
@@ -7519,4 +7543,22 @@
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
-<ExtendedItemObjectProperties ItemStringId="tor_bretonnian_lost_sons_trident_001"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_lance_lost_sons_001"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="tor_we_weapon_orion_spear"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="tor_bret_weapon_mace_fish_hook_flail"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="tor_vc_ghoul_1h_mace_001"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="tor_vc_ghoul_1h_mace_002"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_axe_kotww_001"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_greatsword_knight_001"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="cygor_boulder"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="tor_greenskin_bow_003_copy"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties></ArrayOfExtendedItemObjectProperties>
+<ExtendedItemObjectProperties ItemStringId="tor_bretonnian_lost_sons_trident_001"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_lance_lost_sons_001"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="tor_we_weapon_orion_spear"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="tor_bret_weapon_mace_fish_hook_flail"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="tor_vc_ghoul_1h_mace_001"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="tor_vc_ghoul_1h_mace_002"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_axe_kotww_001"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="tor_bretonnia_weapon_greatsword_knight_001"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="cygor_boulder"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties><ExtendedItemObjectProperties ItemStringId="tor_greenskin_bow_003_copy"><DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions></ExtendedItemObjectProperties>
+  <!-- Right-Hand Attack Claw: Hides ONLY Right Hand (gor_hands_v2) and renders forearm-skinned claw mesh -->
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_weapon_slaangor_claw_001" RaceLock="gor2">
+    <HideHand>Right</HideHand>
+    <ForearmMesh>slaangor_claw_forearm_mesh</ForearmMesh>
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <Description />
+  </ExtendedItemObjectProperties>
+  <!-- Left-Hand Defend Claw Shield: Hides ONLY Left Hand (gor_hands_v2.1) and renders forearm-skinned defend claw mesh -->
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_shield_slaangor_defend_claw_001" RaceLock="gor2">
+    <HideHand>Left</HideHand>
+    <ForearmMesh>slaangor_defend_claw_forearm_mesh</ForearmMesh>
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+</ArrayOfExtendedItemObjectProperties>
