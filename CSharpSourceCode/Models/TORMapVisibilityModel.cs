@@ -42,10 +42,7 @@ namespace TOR_Core.Models
                 }
             }
 
-            // §18 per-troop spotting score — a roster stacked with scouts
-            // and rangers sees farther; a column of heavy knights sees
-            // less. Smaller weight than the ambush-detection hook so the
-            // broader fog-of-war game doesn't get rebalanced accidentally.
+            // Per-troop spotting score bump for scout-heavy rosters.
             var model = Campaign.Current?.Models?.GetAmbushModel();
             if (model != null)
             {
@@ -108,48 +105,19 @@ namespace TOR_Core.Models
         }
 
         /// <summary>
-        /// Overrides vanilla's fog-of-war distance pass for two
-        /// ambush-related cases, both using the same mechanism
-        /// <c>PlayerCaptivity.CaptorParty</c> uses — returning
-        /// <c>true</c> here makes <c>UpdateVisibilitiesBasedOnPoint</c>
-        /// skip the distance check for this party and leave its
-        /// current <c>IsVisible</c> value in place:
-        ///
-        /// • <b>Stealthed AI party</b> — <c>EnterAiStealth</c> sets
-        ///   <c>IsVisible = false</c> once; without this persistence
-        ///   override vanilla would flip it back to <c>true</c> on the
-        ///   next tick as soon as the player's party is in seeing
-        ///   range. The whole stealth fiction depends on them staying
-        ///   off the campaign map.
-        /// • <b>Repelled ambusher</b> — <c>LeaveAiStealth</c> sets
-        ///   <c>IsVisible = true</c> before the mission opens; this
-        ///   persistence keeps them visible to the player regardless
-        ///   of fog-of-war until the record's cooldown lapses.
+        /// Keeps stealthed and revealed ambushers' visibility flags stable
+        /// against vanilla's distance pass.
         /// </summary>
         public override bool IsVisibilityPersistent(MobileParty mobileParty)
         {
             var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
             if (ai != null)
             {
-                // Stealth persistence: only relevant when the party is
-                // already flagged invisible (set by EnterAiStealth). Fast
-                // path for the 99 % of parties that are visible — skips
-                // the dict lookup. Also self-healing: if stealth state
-                // and IsVisible get desynced, vanilla's distance check
-                // runs this tick and re-aligns the IsVisible side;
-                // persistence resumes on the next tick when they match.
+                // Stealth persistence. Fast-pass for visible parties.
                 if (!mobileParty.IsVisible && ai.IsPartyStealthed(mobileParty)) return true;
-                // Reveal persistence: specifically overrides distance so
-                // visible-but-far parties stay visible. Can't short-circuit
-                // on IsVisible since the whole point is keeping them
-                // visible when vanilla would otherwise hide them.
+                // Reveal persistence keeps far ambushers visible.
                 if (ai.IsPartyRevealed(mobileParty)) return true;
-                // Player-detection persistence (§6, deferred-landed): a
-                // party the player just spotted stays visible for
-                // PlayerDetectionRevealHours even if they move out of
-                // Scouting range. Short-lived vs the full IsPartyRevealed
-                // window so a genuinely-stealthy party can still fade if
-                // the player loses them for a while.
+                // Player-detection short window.
                 if (ai.IsRecentlyPlayerDetected(mobileParty)) return true;
             }
             return base.IsVisibilityPersistent(mobileParty);

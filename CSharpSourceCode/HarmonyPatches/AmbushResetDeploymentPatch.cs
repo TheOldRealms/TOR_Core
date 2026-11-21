@@ -9,34 +9,8 @@ using TOR_Core.Utilities;
 namespace TOR_Core.HarmonyPatches
 {
     /// <summary>
-    /// Problem: the vanilla "Reset Deployment" button on the OoB screen routes
-    /// through <see cref="MissionOrderDeploymentControllerVM.ExecuteAutoDeploy"/>,
-    /// which calls <c>BattleDeploymentHandler.AutoDeployTeamUsingDeploymentPlan</c>
-    /// and <c>HandleGeneralsDeploymentFrames</c>. Both assume a populated
-    /// deployment plan + a General agent; ambush missions have neither (we
-    /// use custom spawn via <see cref="Missions.AmbushMission.AmbushMissionController"/>)
-    /// so the vanilla path hits <c>Mission.GetFormationSpawnFrame</c> on missing
-    /// data and the game dies.
-    ///
-    /// Fix: in ambush missions, hand the Reset action off to the ambush
-    /// controller's <see cref="Missions.AmbushMission.AmbushMissionController.ResetAssignments"/>
-    /// method, which restores each chunk to its initial computed spot
-    /// (preferred-class-matched first) and re-lays-out the formations.
-    /// Non-ambush missions keep the vanilla flow untouched.
-    ///
-    /// Why Harmony here rather than subclass/VM-extension:
-    /// <list type="bullet">
-    /// <item><c>ExecuteAutoDeploy</c> is a non-virtual method on a vanilla
-    /// VM instantiated by Sandbox code we don't control; shadowing with
-    /// <c>new</c> wouldn't catch the hotkey path (the handler calls it on
-    /// the typed base reference).</item>
-    /// <item>There is no event / observer surface on the deployment
-    /// controller VM for this action.</item>
-    /// <item>The TOR VM extension framework can add properties but not
-    /// override an existing method.</item>
-    /// </list>
-    /// Patch target is looked up via <c>AccessTools.Method</c> to survive
-    /// method renames across game updates.
+    /// Problem: vanilla's Reset Deployment button on the OoB screen assumes a populated deployment plan and a General agent, which ambush missions never have.
+    /// Fix: in ambush missions, hand the Reset action to the ambush controller's ResetAssignments method so formations snap back to their initial computed spots.
     /// </summary>
     [HarmonyPatch]
     public static class AmbushResetDeploymentPatch
@@ -55,9 +29,9 @@ namespace TOR_Core.HarmonyPatches
             {
                 var mission = Mission.Current;
                 var controller = mission?.GetMissionBehavior<Missions.AmbushMission.AmbushMissionController>();
-                if (controller == null) return true; // not ambush: let vanilla run
+                if (controller == null) return true; // not an ambush, run vanilla
                 controller.ResetAssignments();
-                return false; // skip vanilla's deployment-plan path
+                return false; // skip vanilla deployment-plan path
             }
             catch (Exception e)
             {

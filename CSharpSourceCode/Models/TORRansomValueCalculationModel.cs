@@ -5,19 +5,10 @@ using TOR_Core.CharacterDevelopment;
 
 namespace TOR_Core.Models
 {
-    /// <summary>
-    /// Replaces the stripped vanilla <c>DefaultPerks.Roguery.RansomBroker</c>
-    /// hook that would otherwise fire inside
-    /// <see cref="DefaultRansomValueCalculationModel.PrisonerRansomValue"/>
-    /// for hero prisoners sold by a party leader. TOR's
-    /// <see cref="TORPerks.Roguery.Negotiator"/> primary ("25% better deals
-    /// when ransoming heroes through brokers") takes over the same slot.
-    /// Non-hero ransom (vanilla's stripped <c>Manhunter</c> secondary) is
-    /// not covered — TOR's Negotiator secondary targets a different
-    /// mechanic (hero prisoner escape chance).
-    /// </summary>
+    /// <summary>Ransom model override: Negotiator perk adds a bonus to hero-prisoner ransom when the seller is the party leader.</summary>
     public class TORRansomValueCalculationModel : DefaultRansomValueCalculationModel
     {
+        /// <summary>Hero prisoner ransom with Negotiator perk bonus applied for party-leader sellers.</summary>
         public override int PrisonerRansomValue(CharacterObject prisoner, Hero sellerHero = null)
         {
             int baseValue = base.PrisonerRansomValue(prisoner, sellerHero);

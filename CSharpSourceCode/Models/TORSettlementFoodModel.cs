@@ -10,16 +10,16 @@ using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
+    /// <summary>Town food model with Unarmed governor perk, culture bonuses, and greenskin/karak food modifiers.</summary>
     public class TORSettlementFoodModel : DefaultSettlementFoodModel
     {
+        /// <summary>Daily food change with TOR culture, guild, and perk bonuses layered onto the vanilla base.</summary>
         public override ExplainedNumber CalculateTownFoodStocksChange(Town town, bool includeMarketStocks = true, bool includeDescriptions = false)
         {
             base.CalculateTownFoodStocksChange(town, includeMarketStocks, includeDescriptions);
             var explainedNumber = base.CalculateTownFoodStocksChange(town, includeMarketStocks, includeDescriptions);
 
-            // Unarmed secondary (Roguery 250): "+2 food per day in
-            // besieged governed towns." Model-site gates the besieged
-            // condition; helper applies the governor's perk bonus.
+            // Unarmed perk: food bonus in besieged governed towns.
             if (town.IsUnderSiege && town.Governor != null)
             {
                 TORSkillPerkHelper.ApplyPerkPassives(town.Governor, ref explainedNumber,

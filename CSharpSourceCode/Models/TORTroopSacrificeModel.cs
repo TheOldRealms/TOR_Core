@@ -9,24 +9,10 @@ using TaleWorlds.Library;
 
 namespace TOR_Core.Models
 {
-    /// <summary>
-    /// Extends the vanilla troop-sacrifice model so the Diversion perk can
-    /// substitute prisoners for the regular-soldier cost of the "try to
-    /// break away" encounter option. Vanilla's own methods stay untouched;
-    /// we add a prisoner-sacrifice-count query and a matching remove
-    /// helper. The menu side reads these; vanilla's troop sacrifice is
-    /// bypassed by not calling the vanilla accept consequence.
-    /// </summary>
+    /// <summary>Troop-sacrifice model extension letting the Diversion perk substitute prisoners for regular troops on break-away costs.</summary>
     public class TORTroopSacrificeModel : DefaultTroopSacrificeModel
     {
-        /// <summary>How many prisoners the Diversion branch spends to
-        /// replicate the same break-away effect as vanilla's troop
-        /// sacrifice. Uses the same vanilla formula as
-        /// <see cref="GetNumberOfTroopsSacrificedForTryingToGetAway"/> so
-        /// the cost scales identically with force ratio and party size;
-        /// returns <c>-1</c> if the main party doesn't hold enough
-        /// prisoners to cover the full count. Override to tune the
-        /// prisoner-side cost independently of the troop-side cost.</summary>
+        /// <summary>Prisoner count needed for a Diversion break-away. Returns -1 when the main party lacks enough prisoners.</summary>
         public virtual int GetNumberOfPrisonersSacrificedForDiversion(
             BattleSideEnum playerBattleSide, MapEvent mapEvent)
         {
@@ -36,13 +22,7 @@ namespace TOR_Core.Models
             return baseCount <= available ? baseCount : -1;
         }
 
-        /// <summary>Prisoner-cost mirror of
-        /// <see cref="GetLostTroopCountForBreakingInBesiegedSettlement"/>.
-        /// Returns <c>-1</c> if the main party doesn't hold enough prisoners
-        /// to cover vanilla's troop-loss count for breaking into a besieged
-        /// settlement. Lets the Diversion perk substitute prisoners for the
-        /// break-in sacrifice the same way it does for the encounter
-        /// escape.</summary>
+        /// <summary>Prisoner count needed for a Diversion break-in on a besieged settlement. Returns -1 when the main party lacks enough prisoners.</summary>
         public virtual int GetNumberOfPrisonersSacrificedForBreakInSiege(
             MobileParty party, SiegeEvent siegeEvent)
         {
@@ -53,11 +33,7 @@ namespace TOR_Core.Models
             return baseCount <= available ? baseCount : -1;
         }
 
-        /// <summary>Remove <paramref name="count"/> prisoners from the
-        /// main party's prisoner roster. Mirrors vanilla's
-        /// <c>SacrificeTroopsWithRatio</c> picker: lowest-level non-hero
-        /// prisoner wins each pick, with a small random tie-breaker.
-        /// No-op when the party has no eligible prisoners.</summary>
+        /// <summary>Remove <paramref name="count"/> prisoners from the main party's prisoner roster, lowest-level non-hero first with a small random tiebreaker.</summary>
         public virtual void ApplyPrisonerDiversion(int count)
         {
             var party = MobileParty.MainParty;

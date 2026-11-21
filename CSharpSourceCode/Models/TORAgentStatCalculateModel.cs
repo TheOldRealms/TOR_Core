@@ -25,6 +25,7 @@ using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
+    /// <summary>Agent stat model. Applies race, status, career, perk, and item-trait modifiers to combat and movement stats.</summary>
     public class TORAgentStatCalculateModel : SandboxAgentStatCalculateModel
     {
         private const float OrcSpeedModificatior = 0.95f;
@@ -33,7 +34,7 @@ namespace TOR_Core.Models
         private float vampireDaySpeedModificator = 1.1f;
         private float vampireNightSpeedModificator = 1.2f;
         private CustomCrosshairMissionBehavior _crosshairBehavior;
-        private const float BruteHandlingMultiplier = 2.0f; // will result in more or less 4 times the energy for interrupted swings combined with orc energy bonus
+        private const float BruteHandlingMultiplier = 2.0f; // ~4x energy for interrupted swings combined with orc bonus
 
         private bool _checkedMissionType = false;
         private bool _isDuelMission = false;
@@ -49,21 +50,14 @@ namespace TOR_Core.Models
                 CareerHelper.ApplyBasicCareerPassives(hero, ref weaponEncumbrance, PassiveEffectType.EquipmentWeightReduction);
                 agentDrivenProperties.WeaponsEncumbrance = weaponEncumbrance.ResultNumber;
 
-                // Unarmed primary: replaces vanilla's stripped DirtyFighting
-                // hook on KickStunDurationMultiplier. Vanilla applied via a
-                // SandBox agent-stat pass on the drive property; TOR applies
-                // the equivalent factor here for the main hero.
+                // Unarmed perk: KickStunDurationMultiplier bonus for the main hero.
                 var kickStun = new ExplainedNumber(agentDrivenProperties.KickStunDurationMultiplier);
                 TORSkillPerkHelper.ApplyPerkPassives(hero, ref kickStun,
                     SkillEffectType.KickStunDuration);
                 agentDrivenProperties.KickStunDurationMultiplier = kickStun.ResultNumber;
             }
 
-            // TOR skill-tree perks: fold registered TroopSpeed-type perks
-            // into the agent's combat speed when a captain in the agent's
-            // formation holds the perk and the agent's character passes
-            // the per-perk predicate (e.g. Shadowed primary requires the
-            // agent to have the Master Ambusher attribute).
+            // TOR TroopSpeed perks: captain-driven combat-speed bonus, gated by per-perk character predicates.
             var captainChar = agent.GetCaptainCharacter();
             if (captainChar?.HeroObject != null && agent.Character is CharacterObject agentChar)
             {

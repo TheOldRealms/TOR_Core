@@ -11,17 +11,15 @@ using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
+    /// <summary>Settlement militia model with culture bonuses, Fence governor perk, and guild/attribute boosters.</summary>
     public class TORSettlementMilitiaModel : DefaultSettlementMilitiaModel
     {
-
+        /// <summary>Daily militia change with TOR culture bonuses and Fence besieged-town governor perk layered onto the vanilla base.</summary>
         public override ExplainedNumber CalculateMilitiaChange(Settlement settlement, bool includeDescriptions = false)
         {
             var result = base.CalculateMilitiaChange(settlement, includeDescriptions);
 
-            // Fence secondary (Roguery 250): "+2 militia per day in
-            // besieged governed towns." Fires via the shared skill-perk
-            // helper pipeline; the governor hero carries the perk, the
-            // besieged condition is gated here at the model site.
+            // Fence perk: militia bonus in besieged governed towns.
             if (settlement.IsUnderSiege && settlement.Town?.Governor != null)
             {
                 TORSkillPerkHelper.ApplyPerkPassives(settlement.Town.Governor, ref result,
@@ -35,7 +33,6 @@ namespace TOR_Core.Models
                     {
                         result.LimitMin(10);
                     }
-                    //result.Add(10f,new TextObject("Blood Keep bonus"));
                     return result;
                 }
 

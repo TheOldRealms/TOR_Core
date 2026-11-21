@@ -9,16 +9,18 @@ using TOR_Core.CharacterDevelopment;
 
 namespace TOR_Core.Models
 {
+    /// <summary>Trade pricing model: equipment sell nerf scaled by Trade skill, plus Disguise and Fence perk effects.</summary>
     public sealed class TORTradeItemPriceFactorModel : DefaultTradeItemPriceFactorModel
     {
-        // nerfing sale prices of equipment by 50%, then increasing it back by .3% for every level
+        // Equipment sell price starts at 50% and ramps with Trade skill.
         private const float EQUIPMENT_SELL_PRICE_BASE_MULTIPLIER = 0.5f;
-        private const float EQUIPMENT_TRADE_SKILL_BONUS_PER_LEVEL = 0.0073f; // same prices as vanilla at 300 trade
+        private const float EQUIPMENT_TRADE_SKILL_BONUS_PER_LEVEL = 0.0073f; // vanilla parity at 300 Trade
         private const float PLAYER_SMITHED_SALE_PRICE_MULTIPLIER = 0.25f;
 
         private const string TRADE_PENALTY_REDUCTION_DESCRIPTION =
             "{=str_tor_trade_skill_description}Trade penalty Reduction +0.2% per level for trade goods and animals.\n" +
             "Equipment sell price starts at 50% and increases by +0.73% per Trade level.";
+        /// <summary>Override the Trade-penalty-reduction skill-effect description to reflect TOR's equipment nerf.</summary>
         public static void ApplyTradePenaltyReductionDescriptionOverride()
         {
             var tradePenaltyReductionEffect = DefaultSkillEffects.TradePenaltyReduction;
@@ -27,6 +29,7 @@ namespace TOR_Core.Models
             tradePenaltyReductionEffect.Initialize(tradePenaltyReductionEffect.Name, newDescription);
         }
 
+        /// <summary>Trade penalty override. Applies Disguise (crime-rating merchant discount), Fence (weapon sell discount), and strips vanilla's equipment penalty.</summary>
         public override float GetTradePenalty(
             ItemObject item,
             MobileParty clientParty,
@@ -38,14 +41,7 @@ namespace TOR_Core.Models
         {
             float vanillaPenalty = base.GetTradePenalty(item, clientParty, merchant, isSelling, inStore, supply, demand);
 
-            // Disguise secondary (Roguery 175): "Trade penalties with factions
-            // where you have a crime rating are reduced by 50%." Mirrors vanilla's
-            // stripped SmugglerConnections secondary — vanilla's base.GetTradePenalty
-            // would ordinarily apply SmugglerConnections' bonus via
-            // PerkHelper.AddPerkBonusForParty when the merchant's faction has a
-            // non-zero crime rating against the main hero, but the perk is
-            // stripped by VanillaPerkStripper, so the bonus never fires. Apply
-            // the equivalent reduction manually when the TOR perk is held.
+            // Disguise perk: trade-penalty reduction with factions where the hero has a crime rating.
             if (clientParty != null
                 && clientParty.IsMainParty
                 && merchant?.MapFaction != null
@@ -56,11 +52,7 @@ namespace TOR_Core.Models
                 vanillaPenalty *= 1f + TORPerks.Roguery.Disguise.SecondaryBonus;
             }
 
-            // Fence primary (Roguery 250): "-20% weapon sell-price penalty."
-            // Vanilla's stripped ArmsDealer perk fired here (same spot — weapon
-            // sale path inside GetTradePenalty) with `isPrimaryBonus: true`. TOR
-            // takes over on the Fence key: reduce the penalty by |PrimaryBonus|
-            // when the party leader holds Fence and we're selling a weapon.
+            // Fence perk: weapon sell-price penalty reduction.
             if (isSelling
                 && item != null && item.HasWeaponComponent
                 && clientParty != null
@@ -79,11 +71,12 @@ namespace TOR_Core.Models
                 return vanillaPenalty;
             }
 
-            // revert vanilla effect on equipment back
+            // Revert vanilla trade-skill reduction on equipment items.
             float tradePenaltyFactor = Campaign.Current.Models.PartyTradeModel.GetTradePenaltyFactor(clientParty);
             return vanillaPenalty / tradePenaltyFactor;
         }
 
+        /// <summary>Sell-price override. Equipment items get the TOR sell nerf scaled by Trade; player-smithed weapons take an extra reduction.</summary>
         public override int GetPrice(
             EquipmentElement itemRosterElement,
             MobileParty clientParty,

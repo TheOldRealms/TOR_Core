@@ -10,6 +10,7 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
 {
+    /// <summary>Encounter model override with villager-surrender guards and Intimidator perk bonuses.</summary>
     public class TOREncounterModel : DefaultEncounterModel
     {
         public override Hero GetLeaderOfSiegeEvent(SiegeEvent siegeEvent, BattleSideEnum side)
@@ -17,11 +18,12 @@ namespace TOR_Core.Models
             return base.GetLeaderOfSiegeEvent(siegeEvent, side);
         }
 
+        /// <summary>Surrender chance override. Villagers and caravans stop surrendering when a lord is helping them; Intimidator perk boosts the chance against vulnerable parties.</summary>
         public override float GetSurrenderChance(MobileParty defenderParty, MobileParty attackerParty)
         {
             float baseChance = base.GetSurrenderChance(defenderParty, attackerParty);
 
-            // Villager / caravan parties stop surrendering if a lord is helping them.
+            // Villager and caravan parties stop surrendering if a lord is helping them.
             if (defenderParty != null && (defenderParty.IsCaravan || defenderParty.IsVillager))
             {
                 var mapEvent = defenderParty.MapEvent;
@@ -39,11 +41,7 @@ namespace TOR_Core.Models
                 }
             }
 
-            // Intimidator primary (Roguery 150): "+30% chance for villagers,
-            // caravans, and bandits to surrender when you demand it." Mirrors
-            // the shape of the stripped vanilla Scarface perk (main hero, not
-            // at sea, multiplicative with a 1.0 clamp) so Intimidator plugs in
-            // as its direct replacement — see VanillaPerkStripper.
+            // Intimidator perk: bonus surrender chance for villagers, caravans, and bandits.
             if (baseChance > 0f && defenderParty != null
                 && Hero.MainHero != null
                 && !MobileParty.MainParty.IsCurrentlyAtSea
@@ -56,16 +54,7 @@ namespace TOR_Core.Models
             return baseChance;
         }
 
-        /// <summary>Intimidator primary (Roguery 150) companion effect.
-        /// Vanilla's stripped Scarface applied its primary bonus to BOTH
-        /// <c>GetSurrenderChance</c> and <c>GetBribeChance</c> inside
-        /// <c>DefaultEncounterModel</c>. This override restores the bribe
-        /// side under the Intimidator key, scoped to the same villager /
-        /// caravan / bandit filter as the surrender side so the two
-        /// effects stay consistent. Applied via
-        /// <see cref="PerkHelper.AddPerkBonusForCharacter"/> (vanilla's
-        /// pattern on this method) so the bonus shows up in the
-        /// <c>ExplainedNumber</c> tooltip.</summary>
+        /// <summary>Bribe chance override. Intimidator perk boosts the bribe chance against villagers, caravans, and bandits.</summary>
         public override ExplainedNumber GetBribeChance(MobileParty defenderParty, MobileParty attackerParty)
         {
             var result = base.GetBribeChance(defenderParty, attackerParty);
