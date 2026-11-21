@@ -5,26 +5,7 @@ using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.Missions.AmbushMission
 {
-    /// <summary>
-    /// Mission-level owner of the ranged-formation tactical-point anchors.
-    /// Holds one <see cref="AmbushBehaviorDefendTacticalPoint"/> per
-    /// anchored formation and periodically re-asserts the per-agent
-    /// scripted positions so agents stay on their tactical children for
-    /// the whole mission. Design preference (confirmed in the task
-    /// thread): archers do NOT release when the player issues a direct
-    /// order; the formation plate can still be commanded, but individual
-    /// agents stay pinned to the tactical children via
-    /// <c>Agent.SetScriptedPosition</c>. Only an explicit
-    /// <see cref="RebindAnchor"/> or <see cref="UnregisterAnchor"/> call
-    /// (hit by the sidebar spot picker reassigning the formation) can
-    /// change that.
-    ///
-    /// Reassignment rebinds on the new spot's children; a reassignment
-    /// to a spot with no tactical children unregisters and releases.
-    ///
-    /// Tick rate is coarse (<see cref="ReassignIntervalSeconds"/>):
-    /// per-agent native calls aren't free and positions are stable.
-    /// </summary>
+    /// <summary>Mission-level owner of the ranged-formation tactical-point anchors.</summary>
     public class AmbushTacticalAnchorLogic : MissionLogic
     {
         private const float ReassignIntervalSeconds = 2.0f;
@@ -34,12 +15,7 @@ namespace TOR_Core.Missions.AmbushMission
         private float _reassignAccumulator;
         private Team _subscribedPlayerTeam;
 
-        /// <summary>
-        /// First-time anchor for a formation (initial spawn placement).
-        /// Teleports agents to their tactical children so the opening
-        /// scene reads correctly without a visible walk from the
-        /// formation plate to the hill ledges.
-        /// </summary>
+        /// <summary>Register an anchor and teleport agents onto tactical children at spawn.</summary>
         public void RegisterAnchor(Formation formation,
                                    AmbushBehaviorDefendTacticalPoint behavior)
         {
@@ -48,14 +24,7 @@ namespace TOR_Core.Missions.AmbushMission
             behavior.AssignScriptedPositionsToAgents(true);
         }
 
-        /// <summary>
-        /// Switch an already-anchored formation to a new tactical spot
-        /// mid-mission (tactic re-evaluated, picker reassigned, etc.).
-        /// Does NOT teleport. Agents walk to the new tactical children
-        /// via their updated scripted positions. Mid-battle snapping
-        /// looks bad to the player and can drag archers through enemy
-        /// formations.
-        /// </summary>
+        /// <summary>Switch an anchored formation to a new spot without teleporting.</summary>
         public void RebindAnchor(Formation formation,
                                  AmbushBehaviorDefendTacticalPoint behavior)
         {
@@ -64,6 +33,7 @@ namespace TOR_Core.Missions.AmbushMission
             behavior.AssignScriptedPositionsToAgents();
         }
 
+        /// <summary>Unregister an anchor and clear scripted positions on its agents.</summary>
         public void UnregisterAnchor(Formation formation)
         {
             if (formation == null) return;
@@ -71,16 +41,7 @@ namespace TOR_Core.Missions.AmbushMission
             AmbushBehaviorDefendTacticalPoint.ClearScriptedPositions(formation);
         }
 
-        /// <summary>
-        /// Subscribes to the player-team order controller once both
-        /// teams are set up. Must run post-<c>AmbushMissionController</c>
-        /// so <see cref="Mission.PlayerTeam"/> resolves. The event
-        /// payload carries the formations the order was applied to —
-        /// we release any of those that are currently anchored and the
-        /// order type actually moves the plate (Move / Charge /
-        /// variants). F6-delegation orders or formation layout orders
-        /// shouldn't release, so we filter on OrderType.
-        /// </summary>
+        /// <summary>Subscribe to the player order controller so plate-moving orders release matching anchors.</summary>
         public override void AfterStart()
         {
             base.AfterStart();
@@ -120,10 +81,7 @@ namespace TOR_Core.Missions.AmbushMission
 
         private static bool IsPlateMovingOrder(OrderType orderType)
         {
-            // OrderType values that move the formation plate. Doesn't
-            // cover formation-shape / firing-mode / stance orders —
-            // those don't justify releasing the anchor. Enum values
-            // from TaleWorlds.MountAndBlade.OrderType.
+            // Plate-moving orders only; shape/firing/stance don't release the anchor.
             return orderType == OrderType.Move
                 || orderType == OrderType.MoveToLineSegment
                 || orderType == OrderType.MoveToLineSegmentWithHorizontalLayout
@@ -144,12 +102,7 @@ namespace TOR_Core.Missions.AmbushMission
             if (_reassignAccumulator < ReassignIntervalSeconds) return;
             _reassignAccumulator = 0f;
 
-            // Drop anchors whose formation has either emptied or shifted
-            // away from a ranged PhysicalClass (archers dying off → the
-            // formation's dominant class flips to Infantry, our tactical
-            // scripted positions start pulling the surviving melee heroes
-            // onto hill firing spots). Clean up before reassigning so the
-            // stale ticks stop.
+            // Drop anchors whose formation emptied or shifted away from a ranged class.
             List<Formation> toUnregister = null;
             foreach (var kv in _anchors)
             {

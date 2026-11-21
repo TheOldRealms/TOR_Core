@@ -18,21 +18,10 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.Missions.AmbushMission
 {
-    /// <summary>
-    /// Owns the ambush mission's end-condition priority table + the extraction
-    /// bar. Full state machine documented in
-    /// <c>TORTasks/ambush-feature/mission-design.md</c>.
-    ///
-    /// Priority order (first match wins):
-    ///  1. Hero (MainAgent) inactive                               → HeroWounded
-    ///  2. AttackerTeam has 0 active humans                        → Defeated
-    ///  3. DefenderTeam 0 active humans + reinforcement queue empty → TotalVictory
-    ///  4. Phase 2 active AND hero in zone AND bar at 100%          → Extracted
-    ///  5. Phase 1 real-time elapsed past StalemateMinutes          → Stalemate
-    ///
-    /// Phase 1 → Phase 2 is driven by <see cref="AmbushMissionController.IsInitialPatrolDefeated"/>.
-    /// The retreat zone is inert in Phase 1 (bar can't fill).
-    /// </summary>
+    /// <summary>End-condition priority table and extraction bar for the ambusher-side mission.</summary>
+    /// <remarks>
+    /// Priority: hero inactive, attacker wiped, defender wiped + reinforcements drained, extraction complete, stalemate timer.
+    /// </remarks>
     public class AmbushEndLogic : MissionLogic
     {
         private bool _outcomeDecided;
@@ -73,16 +62,12 @@ namespace TOR_Core.Missions.AmbushMission
         {
             base.OnMissionTick(dt);
             if (_outcomeDecided) return;
-            // Don't run end-condition checks until the engine signals deployment
-            // is done. Before that, teams can report 0 active human agents
-            // simply because the vanilla spawn pipeline hasn't placed them yet,
-            // and we'd auto-defeat on frame 1.
+            // Skip checks until deployment finishes; otherwise frame-1 would auto-defeat.
             if (!_deploymentFinished) return;
 
             _missionRealTimeSeconds += dt;
 
-            // Priority 1 — hero down. Takes precedence over everything else;
-            // the "Ambush Failed" menu is specifically for this case.
+            // Priority 1: hero down.
             var mainAgent = Mission.MainAgent;
             if (mainAgent != null && !mainAgent.IsActive())
             {
@@ -92,8 +77,7 @@ namespace TOR_Core.Missions.AmbushMission
                 return;
             }
 
-            // Priority 2 — attacker wipe (hero somehow still up but no other
-            // active humans; unusual but possible via routing / morale).
+            // Priority 2: attacker wiped.
             if (CountActiveHumans(Mission.AttackerTeam) == 0)
             {
                 SetOutcome(AmbushResolution.AmbusherDefeated, successful: false,
@@ -101,16 +85,7 @@ namespace TOR_Core.Missions.AmbushMission
                 return;
             }
 
-            // Priority 3 — total victory. The custom spawn now does a
-            // partial drain (capped at InitialOnFieldCap per side) so the
-            // supplier legitimately holds reinforcement origins past the
-            // initial wave. Firing TotalVictory the frame the initial
-            // patrol drops would end the mission before a single wave
-            // arrives; the player clears 15 troops in Phase 1 and the
-            // "you win" fires before reinforcements can even appear.
-            // Gate on the spawn-logic's pool-depleted flag so the mission
-            // only completes once the authored reinforcement schedule is
-            // fully consumed AND the field is clear.
+            // Priority 3: total victory. Wait for the reinforcement pool to drain before calling it.
             if (CountActiveHumans(Mission.DefenderTeam) == 0
                 && !AreReinforcementsStillPending())
             {
@@ -119,14 +94,13 @@ namespace TOR_Core.Missions.AmbushMission
                 return;
             }
 
-            // Priority 4 — extraction bar (only during Phase 2).
+            // Priority 4: extraction bar (Phase 2 only).
             TickExtractionBar(dt, mainAgent);
-            if (_outcomeDecided) return;  // bar just filled
+            if (_outcomeDecided) return;
 
             RefreshObjective(mainAgent);
 
-            // Priority 5 — stalemate (Phase 1 only; Phase 2 has the bar as its
-            // natural termination).
+            // Priority 5: Phase 1 stalemate timer.
             if (_controller != null && !_controller.IsInitialPatrolDefeated
                 && _missionRealTimeSeconds >= _model.StalemateMinutes * 60f)
             {
@@ -136,21 +110,10 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
-        /// <summary>
-        /// Extraction bar: fills 0 → 1 while the hero is inside any retreat
-        /// zone AND Phase 2 is active. Resets to 0 the moment the hero leaves.
-        /// Fires one left-behind-troops warning at the configured threshold.
-        /// Completes → outcome Extracted; count of attacker humans NOT in zone
-        /// is handed to AmbushCampaignBehavior for post-mission wounding.
-        /// </summary>
+        /// <summary>Fill the extraction bar while the hero stands inside a retreat zone during Phase 2.</summary>
         private void TickExtractionBar(float dt, Agent mainAgent)
         {
-            // Safety guard: when the field is clear AND no more
-            // reinforcements are pending, Priority 3 will fire TotalVictory
-            // next tick. Suppress the extraction UI during that short
-            // window. When the field is momentarily empty between waves
-            // but reinforcements are still pending, keep the bar filling —
-            // extracting early is a valid choice.
+            // Suppress the bar in the frame before TotalVictory fires.
             if (CountActiveHumans(Mission.DefenderTeam) == 0
                 && !AreReinforcementsStillPending())
             {
@@ -179,8 +142,7 @@ namespace TOR_Core.Missions.AmbushMission
             _extractionProgress += dt / _model.ExtractionBarSeconds;
             if (_extractionProgress > 1f) _extractionProgress = 1f;
 
-            // Left-behind warning (one-shot). Banner mirrors the vanilla
-            // JoustFightMissionController pattern.
+            // One-shot left-behind warning.
             if (!_leftBehindWarningFired
                 && _extractionProgress >= _model.LeftBehindWarningThreshold
                 && CountActiveHumansOutsideZone(Mission.AttackerTeam) > 0)
@@ -192,12 +154,7 @@ namespace TOR_Core.Missions.AmbushMission
 
             if (_extractionProgress >= 1f)
             {
-                // Promote to AmbusherTotalVictory only if the field is
-                // fully clear AND the reinforcement pool is exhausted.
-                // The escape-menu flow assumes surviving enemies are
-                // "forming up where you struck"; with reinforcements
-                // still pending that fiction holds even when the
-                // current wave is dead between arrivals.
+                // Promote to TotalVictory only if the field is clear AND the pool is exhausted.
                 if (CountActiveHumans(Mission.DefenderTeam) == 0
                     && !AreReinforcementsStillPending())
                 {
@@ -213,15 +170,7 @@ namespace TOR_Core.Missions.AmbushMission
             }
         }
 
-        /// <summary>
-        /// True while the reinforcement wave timer may still deliver
-        /// another defender batch. Reads directly from the authoritative
-        /// pool-depleted flag on
-        /// <see cref="AmbushReinforcementMissionLogic"/>, so we're not
-        /// coupled to vanilla's phase bookkeeping for the gate. Attacker
-        /// side has no wave schedule (one-shot ambusher commitment);
-        /// callers only need the defender answer, so this is parameter-free.
-        /// </summary>
+        /// <summary>True while the reinforcement wave timer may still deliver another defender batch.</summary>
         private bool AreReinforcementsStillPending()
         {
             if (_reinforcementLogic == null) return false;
@@ -244,22 +193,13 @@ namespace TOR_Core.Missions.AmbushMission
             foreach (var a in team.ActiveAgents)
             {
                 if (a == null || !a.IsHuman || !a.IsActive()) continue;
-                // Troop extraction is forgiving: anyone within the
-                // zone's larger troop radius (Radius *
-                // TroopExtractionRadiusMultiplier) counts as
-                // extracted, not just the tight hero circle. Scener
-                // tunes per-zone via the script's
-                // <c>TroopExtractionRadiusMultiplier</c> field.
+                // Troop extraction uses the zone's larger troop radius; scener-tuned per zone.
                 if (!AmbushRetreatZone.IsAgentInsideAnyTroopExtractionZone(a)) n++;
             }
             return n;
         }
 
-        /// <summary>
-        /// Starts the Phase 1 "defeat the patrol" objective. Called from
-        /// AfterStart. Description is a fixed line; live enemy count is
-        /// updated per tick via RefreshObjective.
-        /// </summary>
+        /// <summary>Start the "defeat the patrol" objective; description is updated per tick with the live count.</summary>
         private void StartPhase1Objective()
         {
             if (_objectiveLogic == null) return;
@@ -275,6 +215,7 @@ namespace TOR_Core.Missions.AmbushMission
             _lastTotalPoolShown = int.MinValue;
         }
 
+        /// <summary>Start the Phase 2 "escape the ambush" objective and light the retreat-zone markers.</summary>
         private void StartPhase2Objective()
         {
             if (_objectiveLogic == null) return;
@@ -283,32 +224,16 @@ namespace TOR_Core.Missions.AmbushMission
                 new TextObject("{=tor_ambush_obj_phase2_name}Escape the Ambush"),
                 new TextObject("{=tor_ambush_obj_phase2_desc_init}Retreat to the Extraction Point or fight off the reinforcements."));
             _objective.SetProgressCallback(GetPhase2Progress);
-            // World-anchored extraction marker: vanilla's MissionObjectiveMarkers
-            // (embedded in MissionObjectives.xml via DataSource="{Markers}")
-            // reads the objective's targets and projects each one every
-            // frame via MBWindowManager.WorldToScreenInsideUsableArea.
-            // That gives us a proper world marker (icon + name + distance,
-            // auto-clamped to screen edges when off-camera) for free —
-            // the earlier custom AmbushRetreatZoneMarkerView attempted the
-            // same thing manually and never got the projection reliable.
+            // Use vanilla MissionObjectiveMarkers (world-anchored projection via objective targets).
             _objective.AddTarget(new AmbushRetreatZoneObjectiveTarget());
             _objectiveLogic.StartObjective(_objective);
             _objectiveIsPhase2 = true;
             _lastInZoneShown = false;
             _lastTotalPoolShown = int.MinValue;
-            // Phase 2 is live; show the retreat-zone ground markers so
-            // the player can see the circle they need to stand in.
             AmbushRetreatZone.ShowRuntimeMarker = true;
         }
 
-        /// <summary>
-        /// Transitions Phase 1 → Phase 2 when the controller flips the
-        /// patrol-defeated flag, then updates the active objective's
-        /// description text based on live state (remaining enemies in
-        /// Phase 1, extracting-vs-pressing in Phase 2). Description
-        /// rebuilds only when its inputs change so the vanilla VM's
-        /// OnUpdated event doesn't fire every tick.
-        /// </summary>
+        /// <summary>Handle Phase 1 to Phase 2 transition and update objective description only when inputs change.</summary>
         private void RefreshObjective(Agent mainAgent)
         {
             if (_objective == null || _controller == null) return;
@@ -347,12 +272,7 @@ namespace TOR_Core.Missions.AmbushMission
             _objective.SetDescription(phase2Desc);
         }
 
-        /// <summary>
-        /// Progress bar fill for the Phase 2 objective: 0-100 while the
-        /// hero is inside the extraction zone, hidden otherwise. Uses the
-        /// cached in-zone flag that RefreshObjective maintains so the
-        /// callback stays cheap.
-        /// </summary>
+        /// <summary>Phase 2 progress bar fill based on the cached in-zone flag.</summary>
         private MissionObjectiveProgressInfo GetPhase2Progress()
         {
             if (!_lastInZoneShown) return default;
@@ -370,28 +290,10 @@ namespace TOR_Core.Missions.AmbushMission
             return true;
         }
 
-        /// <summary>
-        /// On TotalVictory, kick vanilla's post-battle state machine so loot
-        /// and party cleanup actually run. Our MissionEnded wins the race
-        /// against BattleEndLogic so vanilla's natural path never gets to
-        /// transition MapEvent.BattleState; we do it ourselves via
-        /// PlayerEncounter.SetPlayerVictorious. The post-mission cleanup
-        /// flag is read by AmbushCampaignBehavior to break the chicken-and-
-        /// egg between the stealth wait-menu's TimeControlMode = Stop and
-        /// the TickEvent that would unstop it.
-        ///
-        /// Other outcomes deliberately leave PlayerEncounter alive:
-        /// Extracted / HeroWounded need the encounter state intact for the
-        /// Ambush Escape / Failed menus; Defeated / Stalemate use the vanilla
-        /// loss flow.
-        /// </summary>
         public override void OnMissionResultReady(MissionResult missionResult)
         {
             base.OnMissionResultReady(missionResult);
-            // SetPlayerVictorious + PendingPostAmbushCleanup moved to
-            // SetOutcome so the encounter override lands before vanilla's
-            // behavior-list iteration races in BattleObserverMissionLogic
-            // → BattleResultsReady → OnBattleOver. See SetOutcome.
+            // Victory override moved to SetOutcome so it lands before vanilla's iteration races in.
         }
 
         private void SetOutcome(AmbushResolution resolution, bool successful, string reason,
@@ -410,19 +312,7 @@ namespace TOR_Core.Missions.AmbushMission
                 behavior.LastVictimLeaderDown = false;
             }
 
-            // Stamp the player-victorious override on AmbusherTotalVictory
-            // the moment the outcome is decided, before any MissionEnded
-            // → MissionResultReady cascade. BattleObserverMissionLogic
-            // .OnMissionResultReady synchronously fires
-            // BattleObserver.BattleResultsReady → SPScoreboardVM.OnBattleOver
-            // whenever MissionResult.PlayerVictory is true. OnBattleOver
-            // reads PlayerEncounter.WinningSide (set here via
-            // SetPlayerVictorious → MapEvent.SetOverrideWinner) and
-            // latches IsOver=true. Setting it here takes behavior-
-            // iteration order out of the equation. TotalVictory: vanilla's
-            // DoApplyMapEventResults runs — standard loot + XP flow, the
-            // player cleared the field fair and square. Dispatches
-            // OnPlayerBattleEndEvent naturally.
+            // Stamp SetPlayerVictorious at decision time; vanilla's OnBattleOver reads WinningSide synchronously.
             if (resolution == AmbushResolution.AmbusherTotalVictory
                 && PlayerEncounter.Current != null)
             {
@@ -438,15 +328,7 @@ namespace TOR_Core.Missions.AmbushMission
                       + (Mission.PlayerTeam?.Side.ToString() ?? "null"));
             }
 
-            // AmbusherPartialVictory (Extracted): hit-and-run fiction —
-            // player breaks contact before the enemy regroups. No loot
-            // screen, enemy party stays intact (vanilla only destroys
-            // roster-collapsed losers, and Finish-without-winner skips
-            // that path). Mirror the brawl / POI-visit pattern: pre-
-            // activate the post-mission menu so it's live on the
-            // campaign layer by the time the mission screen tears
-            // down, and force teardown immediately so the scoreboard
-            // tick path never reaches its 1.5s render.
+            // Extraction path: pre-activate the escape menu and tear down immediately to beat the scoreboard.
             if (resolution == AmbushResolution.AmbusherPartialVictory && behavior != null)
             {
                 behavior.BeginExtractionTransition(behavior.ExtractionTroopsLeftBehind);

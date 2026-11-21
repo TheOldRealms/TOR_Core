@@ -9,70 +9,35 @@ using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.CampaignMechanics.Ambush
 {
-    /// <summary>
-    /// Phase F prototype — per-troop stealth suitability. Values are in
-    /// roughly [0, 1] where 1 is "perfect ambusher" (goblin skirmisher)
-    /// and 0 is "could not possibly hide" (ogre, lancer knight).
-    ///
-    /// Split into two layers:
-    /// - **Base** (this class): fixed-per-troop values — race, mount,
-    ///   knightly tier, equipment weight, MasterAmbusher attribute.
-    ///   Precomputed at session launch into <see cref="_baseCache"/> and
-    ///   never recomputed; the whole roster's base score is a sequence
-    ///   of O(1) dict lookups.
-    /// - **Dynamic bonus** (lives on <c>TORAmbushModel.GetDynamicStealth-
-    ///   Bonus</c>, called by whoever needs the full score): per-party
-    ///   runtime deltas — leader perks, buffs, culture-level dynamic
-    ///   effects. Zero in the base implementation; override points for
-    ///   future perk hooks.
-    ///
-    /// Final party stealth value = <see cref="GetBasePartyScore"/> + the
-    /// dynamic bonus. Keeping them separate avoids re-walking the roster
-    /// each tick for the heavy per-troop factors.
-    /// </summary>
+    /// <summary>Per-troop stealth suitability roughly in [0, 1]. Precomputed per session; combine with a dynamic bonus for the full party score.</summary>
     public static class AmbushTroopStealthScore
     {
-        // Baseline for a neutral human foot infantry troop.
         private const float Baseline = 0.5f;
 
-        // Race-based factors.
-        private const float GoblinBodyBonus = 0.3f;    // small, sneaky
-        private const float OrcBodyPenalty = -0.2f;    // bulky, loud
-        private const float MonstrousPenalty = -0.5f;  // trolls / giants — practically impossible
-        private const float UndeadPenalty = -0.1f;     // skeletons rattle; vampires override at hero level
-        private const float TreeSpiritBonus = 0.2f;    // woodland camouflage
+        // Race factors.
+        private const float GoblinBodyBonus = 0.3f;
+        private const float OrcBodyPenalty = -0.2f;
+        private const float MonstrousPenalty = -0.5f;
+        private const float UndeadPenalty = -0.1f;
+        private const float TreeSpiritBonus = 0.2f;
 
         // Equipment / role factors.
-        private const float MountedPenalty = -0.3f;    // horses are loud
-        private const float KnightlyPenalty = -0.2f;   // heavy plate on top of mount
-        // Equipment weight: tuned so a bare-chested goblin (~5kg) is
-        // ~neutral and a fully-plated knight (~40kg) adds ~−0.15. Scales
-        // linearly with sum of equipped weights.
+        private const float MountedPenalty = -0.3f;
+        private const float KnightlyPenalty = -0.2f;
+        // Weight scales linearly; cap keeps a single heavy piece from dominating.
         private const float WeightPenaltyPerKg = 0.004f;
         private const float WeightPenaltyCap = 0.2f;
 
-        // MasterAmbusher floor — specialist units can't drop below this
-        // regardless of mount / size / weight penalties.
+        // MasterAmbusher floor.
         private const float MasterAmbusherFloor = 0.6f;
 
-        // Hard clamp bounds. Negative scores are allowed and meaningful —
-        // a plated knight / troll actively DRAGS a party's average below
-        // neutral, so you can't ambush effectively if half the roster
-        // is heavy cav. -0.5 is the practical floor (worse than that
-        // produces runaway drag from a few monstrous units).
+        // Clamp bounds; negative scores allowed so heavy cav drags the party average down.
         private const float ScoreFloor = -0.5f;
         private const float ScoreCeiling = 1.0f;
 
         private static readonly Dictionary<string, float> _baseCache = new Dictionary<string, float>();
 
-        /// <summary>Precomputes the base stealth score for every registered
-        /// CharacterObject in the ObjectManager and caches it. Call once
-        /// per session (fires from <see cref="AiAmbushBehavior.OnSessionLaunched"/>
-        /// so the dict is populated before any decision tick runs). The
-        /// base is static per troop StringId — equipment / race / mount /
-        /// attributes don't shift mid-session. Dynamic deltas (perks /
-        /// buffs) live on <c>TORAmbushModel.GetDynamicStealthBonus</c>.
-        /// </summary>
+        /// <summary>Precompute base scores for every CharacterObject. Called once per session.</summary>
         public static void PrecomputeAll()
         {
             _baseCache.Clear();
@@ -83,25 +48,17 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
         }
 
-        /// <summary>Fast O(1) read from the precomputed base. Falls back
-        /// to on-the-fly compute if the cache hasn't been primed (e.g.
-        /// in tests). Returns the baseline for null input.</summary>
+        /// <summary>O(1) read from the precomputed base, falls back to compute if missing.</summary>
         public static float GetBaseTroopScore(CharacterObject c)
         {
             if (c == null) return Baseline;
             if (_baseCache.TryGetValue(c.StringId, out var cached)) return cached;
-            // Shouldn't normally hit — session launch populates everyone.
-            // Lazy fallback keeps callers robust against pre-session use.
             float v = ComputeBase(c);
             _baseCache[c.StringId] = v;
             return v;
         }
 
-        /// <summary>Party-level base score: healthy-weighted average of
-        /// per-troop base scores. Pair with
-        /// <c>TORAmbushModel.GetDynamicStealthBonus(party)</c> for the
-        /// full stealth value. Baseline when the party has no healthy
-        /// troops.</summary>
+        /// <summary>Healthy-weighted party average of base troop scores.</summary>
         public static float GetBasePartyScore(MobileParty party)
         {
             if (party?.MemberRoster == null) return Baseline;
@@ -126,12 +83,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             if (c.IsMounted) score += MountedPenalty;
             if (IsKnightlyTier(c)) score += KnightlyPenalty;
             score -= WeightPenalty(c);
-            // MasterAmbusher: floor at a specialist-worthy value, don't
-            // let mount / plate / weight pull it below. Deliberately
-            // AFTER the penalties so you still get the delta if the base
-            // race was already higher than the floor. Heroes are
-            // excluded by design — the attribute is a troop-template
-            // marker, not a hero-level trait.
+            // MasterAmbusher floor applies after penalties. Heroes excluded; it's a troop-template marker.
             if (!c.IsHero
                 && c.HasAttribute(CharacterAttributes.MASTER_AMBUSHER)
                 && score < MasterAmbusherFloor)
@@ -143,13 +95,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             return score;
         }
 
-        /// <summary>True when the troop carries any of TOR's culture-
-        /// specific knightly-tier attribute tags. There's no generic
-        /// "Knightly" flag — knights are marked per culture
-        /// (<c>EmpireKnight</c>, <c>BretonnianKnight</c>). Grouped here
-        /// so new culture-knight tags (Blood Knight, Chaos Knight, …)
-        /// can extend the clause in one spot without touching
-        /// <see cref="ComputeBase"/>.</summary>
+        /// <summary>True when the troop carries any of TOR's culture-specific knightly-tier attribute tags.</summary>
         private static bool IsKnightlyTier(CharacterObject c)
         {
             return c.HasAttribute(CharacterAttributes.EMPIRE_KNIGHT)
@@ -158,27 +104,22 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         private static float RaceFactor(CharacterObject c)
         {
-            // Checks in priority order — most-specific first.
+            // Priority order, most specific first.
             if (c.HasAttribute(CharacterAttributes.MONSTROUS)) return MonstrousPenalty;
             if (c.HasAttribute(CharacterAttributes.TREE_SPIRIT)) return TreeSpiritBonus;
             if (c.HasAttribute(CharacterAttributes.UNDEAD)) return UndeadPenalty;
             if (c.IsGoblin()) return GoblinBodyBonus;
             if (c.IsOrc()) return OrcBodyPenalty;
-            return 0f;  // neutral humanoid (empire, bretonnia, aserai, etc.)
+            return 0f;
         }
 
         private static float WeightPenalty(CharacterObject c)
         {
-            // Sum weights of items in the first battle equipment set.
-            // Vanilla heroes / troops carry at most one battle equipment
-            // reference — good enough for a prototype. If future TOR work
-            // adds alternate loadouts, average or max across the set.
+            // Sum weights across the first battle equipment set.
             var equipment = c.FirstBattleEquipment;
             if (equipment == null) return 0f;
             float totalWeight = 0f;
-            // 12 standard equipment slots (weapons 0-3, armor pieces,
-            // horse, horse harness). EquipmentIndex.NumEquipmentSetSlots
-            // is the loop bound; iterate numerically to stay enum-agnostic.
+            // Iterate numerically to stay enum-agnostic.
             for (int i = 0; i < (int)EquipmentIndex.NumEquipmentSetSlots; i++)
             {
                 var slot = equipment[i];

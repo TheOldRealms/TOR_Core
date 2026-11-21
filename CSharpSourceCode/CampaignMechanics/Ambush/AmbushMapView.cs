@@ -6,6 +6,7 @@ using TaleWorlds.InputSystem;
 
 namespace TOR_Core.CampaignMechanics.Ambush
 {
+    /// <summary>Map-screen view that attaches the ambush stealth widget and polls the stealth hotkey.</summary>
     public class AmbushMapView : MapView
     {
         private AmbushButtonVM _vm;
@@ -16,10 +17,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         {
             base.CreateLayout();
             _vm = new AmbushButtonVM();
-            // Reuse the main map's GauntletLayer (same pattern as WaaaghMeterMapView).
-            // Creating a fresh GauntletLayer leaves input routing unconfigured, so
-            // ButtonWidget clicks never fire. The main map layer already has input
-            // wired for the campaign HUD.
+            // Reuse the main map's GauntletLayer; a fresh one lacks input wiring and clicks never fire.
             var mapBasicView = MapScreen.GetMapView<GauntletMapBasicView>();
             Layer = mapBasicView.GauntletLayer;
             _layer = Layer as GauntletLayer;
@@ -29,16 +27,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
         protected override void OnMapScreenUpdate(float dt)
         {
             base.OnMapScreenUpdate(dt);
-            // OnMapScreenUpdate fires unconditionally from MapScreen.OnFrameTick, so this covers
-            // both free-map and in-menu states for input polling AND VM refresh.
             _vm?.Refresh();
             HandleInput();
         }
 
         protected override void OnFinalize()
         {
-            // We don't own the layer — it belongs to GauntletMapBasicView — so only
-            // release the movie we loaded onto it; don't remove the layer.
+            // Release the movie but leave the layer; it belongs to GauntletMapBasicView.
             if (_layer != null)
                 _layer.ReleaseMovie(_movie);
             _movie = null;

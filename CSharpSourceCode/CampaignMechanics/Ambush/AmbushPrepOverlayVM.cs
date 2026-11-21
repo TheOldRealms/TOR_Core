@@ -5,18 +5,7 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.Ambush
 {
-    /// <summary>
-    /// ViewModel for the §19 ambush-prep overlay. Mirrors the shape of
-    /// vanilla's <c>MapSiegeVM</c> prep slider (PreparationProgress /
-    /// IsPreparationsCompleted / PreparationTitleText) so the same
-    /// prefab vocabulary carries over — our XML copies the vanilla
-    /// MapSiegeOverlay.xml "Preparation Slider" block verbatim.
-    ///
-    /// <see cref="Update"/> is called from
-    /// <see cref="AmbushPrepOverlayMapView.OnMapScreenUpdate"/> per
-    /// frame; it pulls the live prep state from
-    /// <see cref="AmbushCampaignBehavior"/>.
-    /// </summary>
+    /// <summary>VM for the ambush prep overlay. Drives a PreparationProgress bar shaped like the siege prep slider.</summary>
     public class AmbushPrepOverlayVM : ViewModel
     {
         private float _preparationProgress;
@@ -46,13 +35,13 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
         }
 
+        /// <summary>Recompute the prep bar from live stealth state. Called per-frame.</summary>
         public void Update()
         {
             var behavior = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
             if (behavior == null || !behavior.IsPlayerPreppingStealth)
             {
-                // Hide the overlay — the prefab's ListPanel has
-                // IsHidden="@IsPreparationsCompleted".
+                // Hide via the prefab's IsHidden binding.
                 IsPreparationsCompleted = true;
                 return;
             }

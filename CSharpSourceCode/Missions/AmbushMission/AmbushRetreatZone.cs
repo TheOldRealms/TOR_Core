@@ -5,67 +5,26 @@ using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.Missions.AmbushMission
 {
-    /// <summary>
-    /// Scene-authored retreat zone for the ambush mission. The scener attaches this
-    /// script to a GameEntity in the scene; the entity's world position becomes the
-    /// zone centre. Any mesh / decal parented to that entity is the player-facing
-    /// visual (glow / aura / banner — scener's choice).
-    ///
-    /// At runtime, <see cref="AmbushEndLogic"/> queries <see cref="ActiveZones"/> to
-    /// find all zones in the current mission. On a successful ambush extraction the
-    /// player must move the main agent inside <see cref="Radius"/> metres of a zone
-    /// before the pressure clock elapses.
-    ///
-    /// Scenes without any <c>AmbushRetreatZone</c> fall back to a procedural zone
-    /// placed by <see cref="AmbushMission"/> code at mission start (map edge opposite
-    /// the enemy spawn). So scene authoring is NOT blocking Phase D ship.
-    /// </summary>
+    /// <summary>Scene-authored retreat zone. Scener attaches the script; entity position is the zone centre.</summary>
     public class AmbushRetreatZone : ScriptComponentBehavior
     {
-        /// <summary>
-        /// Distance (metres) from the zone centre at which the player's main agent
-        /// is considered "in the zone." Scener-tunable per instance.
-        /// </summary>
+        /// <summary>Zone inner radius for the hero. Scener-tunable.</summary>
         public float Radius = 10f;
 
-        /// <summary>
-        /// Non-hero troops only need to be within <c>Radius * this</c>
-        /// metres of the zone to count as extracted. Forgives
-        /// stragglers who couldn't quite keep up with the hero into
-        /// the tight inner circle. Scener-tunable per instance;
-        /// default 1.5 means a 10m player zone forgives troops out
-        /// to 15m.
-        /// </summary>
+        /// <summary>Multiplier on Radius for the forgiving troop-extraction radius. Default 1.5.</summary>
         public float TroopExtractionRadiusMultiplier = 1.5f;
 
-        /// <summary>
-        /// If true, also draw the ground markers during a running mission (not just in
-        /// the editor). Useful for playtesting zone placement before dedicated art
-        /// is parented. Default off so shipped scenes don't accidentally leak the
-        /// debug visual into normal play. The Phase-2 runtime render is independent
-        /// of this (gated by <see cref="ShowRuntimeMarker"/>).
-        /// </summary>
+        /// <summary>Draw ground markers during the mission (debug aid).</summary>
         public bool ShowDebugMarkerInGame = false;
 
-        /// <summary>
-        /// Set true by <see cref="AmbushMissionController"/> when Phase 2 begins so
-        /// the retreat zone visuals light up on the ground. Flipped off on mission
-        /// teardown via <see cref="ResetRegistry"/>. Zones in a scene without an
-        /// ambush controller (test scenes, editor preview) stay dark unless
-        /// <see cref="ShowDebugMarkerInGame"/> is set.
-        /// </summary>
+        /// <summary>Flipped true by the controller when Phase 2 begins; reset on teardown.</summary>
         public static bool ShowRuntimeMarker { get; set; }
 
-        // ARGB tint fed to the map_circle_decal shader via
-        // SetFactor1Linear. Fully opaque green — the material's own
-        // ring shader thins it to a soft outline so an opaque tint
-        // still reads as a glowing ring, not a solid circle.
+        // Opaque green ARGB; material thins it to an outline.
         private const uint PlayerZoneColor = 0xFF_00_C8_32u;
-        // Vanilla hover-ring material. Same one AmbushRangeDebugMapView
-        // uses on the campaign map.
+        // Vanilla hover-ring material.
         private const string RingMaterial = "map_circle_decal";
-        // Natural decal-mesh radius (vanilla uses ~1 for party hover
-        // rings). Our scale factor = Radius / BaseMeshRadius.
+        // Natural mesh radius; scale factor = Radius / BaseMeshRadius.
         private const float BaseMeshRadius = 1f;
 
         private TaleWorlds.Engine.GameEntity _decalEntity;
@@ -76,9 +35,7 @@ namespace TOR_Core.Missions.AmbushMission
         /// <summary>Zones currently alive in the running mission's scene.</summary>
         public static IReadOnlyList<AmbushRetreatZone> ActiveZones => _activeZones;
 
-        /// <summary>Called by AmbushMissionController at mission-boot to purge any
-        /// stale references left over from a prior scene (scripts don't always
-        /// call OnRemoved on scene teardown).</summary>
+        /// <summary>Purge stale references from any prior scene.</summary>
         public static void ResetRegistry()
         {
             _activeZones.Clear();
@@ -86,18 +43,13 @@ namespace TOR_Core.Missions.AmbushMission
             ShowRuntimeMarker = false;
         }
 
-        /// <summary>Procedural fallback zone position set by
-        /// AmbushMissionController when a scene has no scener-authored zones.
-        /// Null = scene has authored zones (or the controller hasn't run yet).</summary>
+        /// <summary>Procedural fallback position when a scene has no authored zones.</summary>
         public static Vec3? ProceduralFallbackPosition { get; set; }
 
-        /// <summary>Radius for the procedural fallback. Slightly generous
-        /// vs the authored default because the player doesn't have a visual
-        /// to home in on.</summary>
+        /// <summary>Radius for the procedural fallback.</summary>
         public static float ProceduralFallbackRadius { get; set; } = 15f;
 
-        /// <summary>Returns true if the agent is inside any authored zone OR
-        /// inside the procedural fallback. One-stop query for AmbushEndLogic.</summary>
+        /// <summary>True if the agent is inside any authored zone or the procedural fallback.</summary>
         public static bool IsAgentInsideAnyZone(Agent agent)
         {
             if (agent == null || !agent.IsActive()) return false;
@@ -115,13 +67,7 @@ namespace TOR_Core.Missions.AmbushMission
             return false;
         }
 
-        /// <summary>Returns true if the agent is within the forgiving
-        /// troop-extraction radius of any authored zone OR the
-        /// procedural fallback (scaled by
-        /// <see cref="TroopExtractionRadiusMultiplier"/>). Used for the
-        /// "troops left behind" count so stragglers who couldn't quite
-        /// keep up with the hero into the tight inner circle still
-        /// count as extracted.</summary>
+        /// <summary>True if the agent is inside the forgiving troop-extraction radius of any zone.</summary>
         public static bool IsAgentInsideAnyTroopExtractionZone(Agent agent)
         {
             if (agent == null || !agent.IsActive()) return false;
@@ -134,9 +80,7 @@ namespace TOR_Core.Missions.AmbushMission
                 var pos = ProceduralFallbackPosition.Value;
                 var dx = agent.Position.x - pos.x;
                 var dy = agent.Position.y - pos.y;
-                // Procedural fallback has no scener-tunable multiplier;
-                // reuse the per-zone default (1.5x) so the behaviour
-                // matches when a scene has no authored zones.
+                // Fallback uses the per-zone default multiplier.
                 const float fallbackMult = 1.5f;
                 float r = ProceduralFallbackRadius * fallbackMult;
                 return (dx * dx + dy * dy) <= r * r;
@@ -164,20 +108,11 @@ namespace TOR_Core.Missions.AmbushMission
         protected override void OnEditorTick(float dt)
         {
             base.OnEditorTick(dt);
-            // Always visible in the editor so the scener sees the actual Radius while placing.
+            // Always visible in the editor.
             UpdateDecal(true);
         }
 
-        /// <summary>
-        /// Per-tick visibility + position update for the ground ring.
-        /// Mirrors the pattern <see cref="CampaignMechanics.Ambush.AmbushRangeDebugMapView"/>
-        /// uses on the campaign map for the strike-range ring: one
-        /// GameEntity + Decal created on first call, repositioned +
-        /// re-tinted per tick, toggled via
-        /// <see cref="GameEntity.SetVisibilityExcludeParents"/>.
-        /// Shader uniforms reset between passes so the color /
-        /// ring-thickness args must be re-set every frame.
-        /// </summary>
+        /// <summary>Update the ground ring position and tint per tick.</summary>
         private void UpdateDecal(bool visible)
         {
             if (Scene == null) return;
@@ -192,8 +127,7 @@ namespace TOR_Core.Missions.AmbushMission
             frame.Scale(ref scaleVec);
             _decalEntity.SetGlobalFrame(frame);
 
-            // Ring thickness profile matches AmbushRangeDebugMapView
-            // (0.166, 1, 0.83, 0 — thin glowing outline).
+            // Thin glowing outline profile, same as the campaign strike-range ring.
             _decal.SetFactor1Linear(PlayerZoneColor);
             _decal.SetVectorArgument(0.166f, 1f, 0.83f, 0f);
         }
@@ -201,11 +135,7 @@ namespace TOR_Core.Missions.AmbushMission
         private void EnsureDecalCreated()
         {
             if (_decalEntity != null) return;
-            // isModifiableFromEditor:false so the editor doesn't treat
-            // the runtime-created ring as a scene edit and bake it into
-            // the scene file on save — otherwise successive editor
-            // sessions accumulate copies across loads. Physics off: a
-            // pure visual, no collision.
+            // Not editor-modifiable so the editor doesn't bake the ring into the scene file.
             _decalEntity = TaleWorlds.Engine.GameEntity.CreateEmpty(Scene,
                 isModifiableFromEditor: false, createPhysics: false, callScriptCallbacks: true);
             _decalEntity.Name = "TOR_AmbushRetreatZoneRing";
@@ -229,24 +159,21 @@ namespace TOR_Core.Missions.AmbushMission
             base.OnRemoved(removeReason);
         }
 
-        /// <summary>
-        /// World position of the zone centre. Reads the GameEntity frame each call so
-        /// moving the entity in-mission (e.g., a scener-placed moving target) works.
-        /// </summary>
+        /// <summary>World position of the zone centre; reads per-call so moving entities work.</summary>
         public Vec3 Position => GameEntity.GlobalPosition;
 
+        /// <summary>True if the agent is inside the inner Radius.</summary>
         public bool IsAgentInside(Agent agent)
         {
             if (agent == null || !agent.IsActive()) return false;
-            // Horizontal distance only — zone is a cylinder, not a sphere; we don't
-            // want vertical placement (hilltops, ramps) to accidentally exclude the
-            // player.
+            // Horizontal distance only; zone is a cylinder.
             var zonePos = GameEntity.GlobalPosition;
             var dx = agent.Position.x - zonePos.x;
             var dy = agent.Position.y - zonePos.y;
             return (dx * dx + dy * dy) <= Radius * Radius;
         }
 
+        /// <summary>True if the agent is inside the troop-extraction radius.</summary>
         public bool IsAgentInsideTroopExtractionZone(Agent agent)
         {
             if (agent == null || !agent.IsActive()) return false;

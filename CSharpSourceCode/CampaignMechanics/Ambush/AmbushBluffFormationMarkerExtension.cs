@@ -7,17 +7,7 @@ using TOR_Core.Extensions.UI;
 
 namespace TOR_Core.CampaignMechanics.Ambush
 {
-    /// <summary>
-    /// §6 bluff — VM extension on <see cref="MissionFormationMarkerTargetVM"/>
-    /// that adds the <c>IsBluffCountHidden</c> data-source property. The
-    /// TOR override of <c>FormationMarker.xml</c> binds the troop-count
-    /// TextWidget's <c>IsHidden</c> to this property.
-    ///
-    /// Pattern mirrors <c>TORMapInfoVMExtension</c>: hook the vanilla
-    /// VM's refresh method, recompute our property each tick. Zero
-    /// hijack of existing vanilla properties — the extended property
-    /// is dedicated to our bluff logic.
-    /// </summary>
+    /// <summary>Adds the IsBluffCountHidden flag to formation markers so the troop count hides during a bluff.</summary>
     [ViewModelExtension(typeof(MissionFormationMarkerTargetVM), "Refresh")]
     public class AmbushBluffFormationMarkerExtension : BaseViewModelExtension
     {
