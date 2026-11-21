@@ -10,22 +10,18 @@ using TOR_Core.Models;
 namespace TOR_Core.HarmonyPatches
 {
     /// <summary>
-    /// <para><b>Problem:</b> vanilla's <c>TournamentBehavior.GetMaximumBet</c>
-    /// is a non-virtual public method on a <c>MissionLogic</c> (not a
-    /// <c>GameModel</c>), so <c>AddModel</c> can't reach it and SandBox UI
-    /// call sites resolve against the base class statically. The hardcoded
-    /// perk check targets vanilla <c>DefaultPerks.Roguery.DeepPockets</c>,
-    /// which TOR strips via <c>VanillaPerkStripper</c>, so TOR's HighRoller
-    /// has no effect on the in-mission bet cap without intervention.</para>
-    /// <para><b>Fix:</b> prefix-replace with the same shape but keyed on
-    /// <c>TORPerks.Roguery.HighRoller</c>. The AddFactor-style PrimaryBonus
-    /// (1f ≡ +100%) folds into <c>(1 + bonus)</c> so "doubled" resolves to
-    /// <c>num × 2</c>. UI-adjacent, single-method, single call site —
-    /// tolerable per the Harmony policy.</para>
+    /// Doubles the tournament max bet when the player holds HighRoller.
+    /// <para><b>Problem:</b> <c>GetMaximumBet</c> lives on a non-virtual
+    /// public method of <c>MissionLogic</c> and is not reachable through
+    /// <c>AddModel</c>. The vanilla hardcode targets stripped vanilla perks.</para>
+    /// <para><b>Fix:</b> prefix replace the whole method and key on
+    /// <c>TORPerks.Roguery.HighRoller</c>. PrimaryBonus folds into
+    /// <c>(1 + bonus)</c> so the cap doubles at 1.0.</para>
     /// </summary>
     [HarmonyPatch(typeof(TournamentBehavior), nameof(TournamentBehavior.GetMaximumBet))]
     public static class TournamentBehavior_GetMaximumBet_Patch
     {
+        /// <summary>Returns the final bet cap and skips the vanilla body.</summary>
         public static bool Prefix(ref int __result)
         {
             int num = 150;

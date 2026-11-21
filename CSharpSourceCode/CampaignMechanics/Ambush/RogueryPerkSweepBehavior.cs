@@ -6,12 +6,8 @@ using TaleWorlds.Core;
 namespace TOR_Core.CampaignMechanics.Ambush
 {
     /// <summary>
-    /// Clears vanilla Roguery perks off every hero on session launch. Vanilla's own
-    /// <c>Hero.ClearChangedPerks</c> trash-filters IsTrash perks in <c>AfterLoad</c>,
-    /// but new campaigns don't hit AfterLoad on template-baked heroes, so perks
-    /// seeded through <c>characterData.UnlockedPerks</c> would otherwise stick.
-    /// Running every session is idempotent — calling ClearPerksForSkill on a
-    /// hero with no Roguery perks set is a no-op.
+    /// Clears vanilla Roguery perks off every hero at session launch.
+    /// Idempotent: running against a hero with no Roguery perks is a no-op.
     /// </summary>
     public class RogueryPerkSweepBehavior : CampaignBehaviorBase
     {
@@ -20,6 +16,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         }
 
+        /// <summary>Sweep hook. Clears vanilla Roguery perks from every alive hero.</summary>
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
             foreach (var hero in Hero.AllAliveHeroes)

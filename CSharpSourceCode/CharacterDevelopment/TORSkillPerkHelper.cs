@@ -12,26 +12,13 @@ using static TOR_Core.Utilities.TORConstants;
 namespace TOR_Core.CharacterDevelopment
 {
     /// <summary>
-    /// Parallel to <c>CareerHelper.ApplyBasicCareerPassives</c>, but for
-    /// TOR skill-tree perks (Roguery, future skills). Lets model code
-    /// fold TOR perk effects into a stat computation via a single
-    /// <see cref="ApplyPerkPassives"/> call keyed on
-    /// <see cref="SkillEffectType"/>, instead of a per-perk inline check
-    /// at every stat site.
-    ///
-    /// Registration carries Career-style filter delegates so per-perk
-    /// conditions (e.g. "applies only to Master Ambusher troops", "only
-    /// fires when attacker is on foot") live with the perk rather than
-    /// at every call site:
-    ///  - <c>characterPredicate</c>: gates on the <c>targetCharacter</c>
-    ///    passed to Apply. Mirrors
-    ///    <c>PassiveEffect.SpecialCharacterEvaluationFunction</c>.
-    ///  - <c>combatPredicate</c>: gates on attacker/victim/mask for the
-    ///    combat Apply variant. Mirrors
-    ///    <c>PassiveEffect.SpecialCombatInteractionFunction</c>.
+    /// Registry of TOR perks keyed by <see cref="SkillEffectType"/>.
+    /// Model code calls <see cref="ApplyPerkPassives"/> to fold every
+    /// applicable perk the hero holds into a running number.
     /// </summary>
     public static class TORSkillPerkHelper
     {
+        /// <summary>Per registration filter block for one perk.</summary>
         private class PerkEffectConfig
         {
             public PerkObject Perk;
@@ -40,26 +27,18 @@ namespace TOR_Core.CharacterDevelopment
             public AttackTypeMask AttackMask = AttackTypeMask.All;
             public Func<CharacterObject, bool> CharacterPredicate;
             public Func<Agent, Agent, AttackTypeMask, bool> CombatPredicate;
-            /// <summary>Non-null set restricts this mapping to specific
-            /// skill StringIds (used for <see cref="SkillEffectType.TroopSkill"/>
-            /// perks that boost only particular weapon skills). Null = any
-            /// skill passes.</summary>
+            /// <summary>Non-null set restricts the mapping to specific skill ids.</summary>
             public HashSet<string> TargetSkillIds;
-            /// <summary>Per-registration interpretation. <c>true</c> =
-            /// multiplicative via <c>AddFactor</c>, <c>false</c> = flat
-            /// via <c>Add</c>. Mirrors Career's <c>InterpretAsPercentage</c>
-            /// pattern so a single Apply call can fold in mixed-semantic
-            /// perks without the call-site picking one.</summary>
+            /// <summary>True applies the bonus through <c>AddFactor</c>, false uses <c>Add</c>.</summary>
             public bool AsFactor;
         }
 
         private static readonly List<PerkEffectConfig> _configs = new List<PerkEffectConfig>();
 
-        /// <summary>Register a TOR perk against the effect type + optional
-        /// filters. Call once at session launch after perks are constructed.
-        /// Multiple registrations per perk are allowed (primary and
-        /// secondary targeting different effects, or one perk firing on
-        /// multiple effect types).</summary>
+        /// <summary>
+        /// Register a perk against an effect type. Call once during setup.
+        /// A perk can register more than once to cover multiple effects.
+        /// </summary>
         public static void Register(PerkObject perk, SkillEffectType effectType, bool isPrimary,
                                      AttackTypeMask attackMask = AttackTypeMask.All,
                                      Func<CharacterObject, bool> characterPredicate = null,
@@ -81,17 +60,11 @@ namespace TOR_Core.CharacterDevelopment
             });
         }
 
-        /// <summary>Fold all registered TOR perks of
-        /// <paramref name="type"/> that the hero holds — and whose
-        /// per-perk filters accept the current context — into
+        /// <summary>
+        /// Fold every registered perk of <paramref name="type"/> that the
+        /// hero holds and that passes the registered filters into
         /// <paramref name="number"/>.
-        ///
-        /// Pass the <paramref name="targetCharacter"/> that the effect
-        /// is landing on (e.g. the troop whose speed is being computed);
-        /// per-perk character predicates read this to filter by attribute
-        /// or troop flag. Pass <paramref name="mask"/> for attack-type
-        /// gating (vanilla's convention: perk mask must intersect
-        /// call-site mask).</summary>
+        /// </summary>
         public static void ApplyPerkPassives(Hero hero, ref ExplainedNumber number,
             SkillEffectType type,
             CharacterObject targetCharacter = null,
@@ -120,39 +93,30 @@ namespace TOR_Core.CharacterDevelopment
             }
         }
 
-        /// <summary>One-shot registration of all TOR skill-tree perks
-        /// against their effect-type mappings. Called from
-        /// <c>ObjectManagerPatches</c> after <c>TORPerks</c> init.</summary>
+        /// <summary>
+        /// Register every TOR skill-tree perk against its effect type.
+        /// Called once at session launch after <c>TORPerks</c> is built.
+        /// </summary>
         public static void RegisterAllPerks()
         {
             _configs.Clear();
 
-            // Backstabber primary: "+10 damage on your thrust attacks."
-            // Applies to the main-hero's own melee attacks (perk text says
-            // thrust; AttackTypeMask has no Thrust bucket so we gate on Melee).
+            // Backstabber primary: flat thrust damage for the main hero.
             Register(TORPerks.Roguery.Backstabber, SkillEffectType.Damage,
                 isPrimary: true, attackMask: AttackTypeMask.Melee);
 
-            // Backstabber secondary: "Troops in your formation deal +4
-            // damage on thrust attacks." No MA restriction — all troops.
+            // Backstabber secondary: formation troops gain thrust damage.
             Register(TORPerks.Roguery.Backstabber, SkillEffectType.TroopDamage,
                 isPrimary: false, attackMask: AttackTypeMask.Melee);
 
-            // Shadowed primary: "+10% combat speed for your Master Ambusher
-            // troops in formation." MA filter via character predicate; applies
-            // multiplicatively to CombatMaxSpeedMultiplier at stat-calc time.
+            // Shadowed primary: Master Ambusher troops move faster under captain.
             Register(TORPerks.Roguery.Shadowed, SkillEffectType.TroopSpeed,
                 isPrimary: true,
                 characterPredicate: c => c != null
                     && c.HasAttribute(CharacterAttributes.MASTER_AMBUSHER),
                 asFactor: true);
 
-            // Skirmisher primary: "+10 vigor and control for your Master
-            // Ambusher troops in your formation." Vigor affects OneHanded /
-            // TwoHanded / Polearm weapon skills; Control affects Bow /
-            // Crossbow / Throwing. Applied as a flat +10 to each of those
-            // six skills' effective value for MA troops under the captain,
-            // via the TargetSkillIds set.
+            // Skirmisher primary: vigor and control for Master Ambusher troops.
             Register(TORPerks.Roguery.Skirmisher, SkillEffectType.TroopSkill,
                 isPrimary: true,
                 characterPredicate: c => c != null
@@ -167,49 +131,32 @@ namespace TOR_Core.CharacterDevelopment
                     DefaultSkills.Throwing.StringId,
                 });
 
-            // Strider primary: "+50% damage bonus from speed while fighting
-            // on foot." Personal self-effect — applies to the main hero's
-            // own attacks. Combat predicate gates on attacker not being
-            // mounted. Interpreted as a flat +50% damage factor on on-foot
-            // attacks (approximation: vanilla's speed-damage scaling isn't
-            // directly reachable without touching the damage engine, so we
-            // land the bonus as a generic damage multiplier instead).
+            // Strider primary: on-foot damage bonus for the main hero.
             Register(TORPerks.Roguery.Strider, SkillEffectType.Damage,
                 isPrimary: true,
                 combatPredicate: (attacker, victim, mask) =>
                     attacker != null && !attacker.HasMount,
                 asFactor: true);
 
-            // Governor-tier passives: each fires in a dedicated settlement
-            // model/tick path. The model site gates the context (under
-            // siege, tournament active, etc.) and passes the governor as
-            // the hero argument; the helper reads the perk bonus. Flat
-            // adds, no character predicate (no per-troop filter in a
-            // settlement-level tick).
+            // Governor passives below. Each fires in a dedicated model path.
 
-            // Fencer secondary: "+5 tariff revenue from towns you govern."
+            // Fencer secondary: flat tariff revenue for governed towns.
             Register(TORPerks.Roguery.Fencer, SkillEffectType.GovernorTariff,
                 isPrimary: false);
 
-            // Fence secondary: "+2 militia per day in besieged governed towns."
+            // Fence secondary: extra militia per day while besieged.
             Register(TORPerks.Roguery.Fence, SkillEffectType.GovernorBesiegedMilitia,
                 isPrimary: false);
 
-            // Unarmed secondary: "+2 food per day in besieged governed towns."
+            // Unarmed secondary: extra food per day while besieged.
             Register(TORPerks.Roguery.Unarmed, SkillEffectType.GovernorBesiegedFood,
                 isPrimary: false);
 
-            // Strider secondary: "Cities you govern produce 250 denars per day
-            // while a tournament is active."
+            // Strider secondary: denars per day while a tournament is active.
             Register(TORPerks.Roguery.Strider, SkillEffectType.GovernorTournamentIncome,
                 isPrimary: false);
 
-            // Unarmed primary: "50% longer stun duration on kick attacks."
-            // Vanilla ships with the equivalent hook in a SandBox agent-stat
-            // pass (DirtyFighting.PrimaryBonus → KickStunDurationMultiplier);
-            // TOR strips DirtyFighting so the mechanic is dead for TOR
-            // players unless Unarmed restores it. Applied as a factor on
-            // the drive property.
+            // Unarmed primary: longer stun duration on kick attacks.
             Register(TORPerks.Roguery.Unarmed, SkillEffectType.KickStunDuration,
                 isPrimary: true,
                 asFactor: true);

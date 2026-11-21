@@ -7,29 +7,16 @@ namespace TOR_Core.CampaignMechanics.Ambush
 {
     /// <summary>
     /// Surfaces <see cref="AiAmbushBehavior.IsRecentlyPlayerDetected"/>
-    /// as a boolean on <see cref="PartyNameplateVM"/> so the campaign-map
-    /// nameplate can show an on-party status icon for the duration of
-    /// the detection window. Replaces the earlier
-    /// <c>AmbushDetectedMapNotification</c> feed-tray entry.
-    ///
-    /// Hooks <see cref="PartyNameplateVM.RefreshDynamicProperties"/> —
-    /// the same callback that writes vanilla's <c>_isDisorganizedBind</c>.
-    /// Choosing this hook means the icon updates on the exact same
-    /// cadence as every other per-party status flag on the nameplate
-    /// (per map frame at active cadence, slower when the map is paused),
-    /// so there is no bespoke refresh timer to maintain.
-    ///
-    /// Save/load safety: <see cref="AiAmbushBehavior._playerDetectedParties"/>
-    /// is already SyncData'd. On reload the dict repopulates; the first
-    /// nameplate refresh after load reads this extension's RefreshValues
-    /// and the icon reappears on the correct parties with correct
-    /// remaining window.
+    /// as a boolean on <see cref="PartyNameplateVM"/> so the nameplate
+    /// can show an on-party status icon while the detection window lasts.
+    /// Refreshes on the same callback vanilla uses for the disorganized flag.
     /// </summary>
     [ViewModelExtension(typeof(PartyNameplateVM), nameof(PartyNameplateVM.RefreshDynamicProperties))]
     public class AmbushDetectedNameplateExtension : BaseViewModelExtension
     {
         private bool _isAmbushDetected;
 
+        /// <summary>True while the ambush-detection window is active for this party.</summary>
         [DataSourceProperty]
         public bool IsAmbushDetected
         {
@@ -44,6 +31,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         public AmbushDetectedNameplateExtension(ViewModel vm) : base(vm) { }
 
+        /// <summary>Reads the detection registry and updates the flag.</summary>
         public override void RefreshValues()
         {
             base.RefreshValues();
