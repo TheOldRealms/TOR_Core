@@ -18,32 +18,20 @@ using TOR_Core.Models;
 namespace TOR_Core.CampaignMechanics.Ambush
 {
     /// <summary>
-    /// Non-model Roguery-perk wiring: event listeners for perks that
-    /// fire on a campaign event (Raider secondary, BurntEarth secondary,
-    /// Highwayman primary), and menu additions for perks that attach new
-    /// options to vanilla menus (Diversion primary on
-    /// <c>try_to_get_away</c> and <c>break_in_menu</c>).
+    /// Event listeners and menu additions for Roguery perks that are not
+    /// routed through a <c>GameModel</c>. Covers Raider secondary,
+    /// BurntEarth secondary, Highwayman primary and secondary, Master Thief,
+    /// Strider secondary, Parlay primary, and Diversion primary on two menus.
     /// </summary>
     public class RogueryPerkEventBehavior : CampaignBehaviorBase
     {
-        /// <summary>Crime-rating hit when the player ambushes a neutral
-        /// caravan and witnesses survive. Repeated ambushes accumulate
-        /// toward the vanilla <c>CrimeModel.DeclareWarCrimeRatingThreshold</c>
-        /// and eventually cascade to war declaration. Flat per-ambush
-        /// value; roster-size scaling would read better but vanilla's
-        /// own caravan-attack path uses flat deltas.</summary>
+        /// <summary>Crime added on a neutral caravan ambush with witnesses.</summary>
         private const float NeutralCaravanAmbushCrimeDelta = 20f;
 
-        /// <summary>Relation drop with the caravan owner's clan leader
-        /// when a neutral caravan ambush leaves witnesses alive. Fires
-        /// on both perk-held and non-perk ambushes; only the clean-wipe
-        /// Highwayman path suppresses it.</summary>
+        /// <summary>Relation drop with the caravan owner on a neutral caravan ambush.</summary>
         private const int NeutralCaravanAmbushRelationDelta = -8;
 
-        /// <summary>Latch for the Parlay-primary dialog roll. Set by
-        /// <see cref="OnParlayAttempted"/> when the player picks the
-        /// peaceful-talk option; read by the two bandit-response
-        /// dialog lines to branch success vs failure.</summary>
+        /// <summary>Latch for the Parlay dialog roll result.</summary>
         private bool _parlayLastRollSucceeded;
 
         private const string TryToGetAwayMenuId = "try_to_get_away";
@@ -63,11 +51,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         }
 
-        /// <summary>Strider secondary (Roguery 275): "Cities you govern
-        /// produce 250 denars per day while a tournament is active."
-        /// Reads GovernorTournamentIncome from the shared helper so the
-        /// bonus value lives with the registration, gives the governor's
-        /// clan the flat gold amount on daily tick.</summary>
+        /// <summary>Strider secondary. Grants the governor's clan a flat
+        /// tournament-income bonus when a tournament is running.</summary>
         private void OnDailyTickTown(Town town)
         {
             if (town == null || town.Governor == null) return;
@@ -83,19 +68,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 GiveGoldAction.ApplyBetweenCharacters(null, governorClan.Leader, denars);
         }
 
-        /// <summary>Master Thief (Roguery 300, Personal +0.01 Add): "+1%
-        /// loot for every Roguery skill point above 200." Mirror of the
-        /// vanilla stripped <c>RogueryRogueExtraordinaire</c> epic perk —
-        /// that one scaled loot via
-        /// <c>PerkHelper.AddEpicPerkBonusForCharacter</c> inside
-        /// <c>DefaultBattleRewardModel.GetLootItemChancesForWinnerParties</c>,
-        /// pre-normalization. Since the vanilla application is dead code
-        /// (perk stripped) and overriding the full chances method is
-        /// heavy, we apply as a post-distribution top-up: subscribe to
-        /// <c>OnCollectLootItems</c>, top up the staged loot roster by
-        /// <c>(roguery - 200) × PrimaryBonus</c> of each merchandise
-        /// item. The staged roster is what vanilla transfers to the
-        /// party, so our additions flow through naturally.</summary>
+        /// <summary>Master Thief. Tops up the staged loot roster by one
+        /// percent per Roguery point above 200.</summary>
         private void OnCollectLootItems(PartyBase winnerParty, ItemRoster gainedLoots)
         {
             if (winnerParty != PartyBase.MainParty || gainedLoots == null) return;
@@ -109,7 +83,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
             float bonusFactor = excess * TORPerks.Roguery.MasterThief.PrimaryBonus;
             if (bonusFactor <= 0f) return;
 
-            // Iterate a snapshot so modifying the roster mid-loop is safe.
+            // Snapshot avoids modifying the roster while iterating.
             var items = gainedLoots.Where(x =>
                 x.EquipmentElement.Item != null
                 && !x.EquipmentElement.Item.NotMerchandise
@@ -123,11 +97,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
         }
 
-        /// <summary>Highwayman secondary (Roguery 175): "Your Master Ambusher
-        /// troops gain daily experience while your party is in ambush stance."
-        /// Grants <see cref="TORPerks.Roguery.Highwayman"/>.SecondaryBonus XP
-        /// to each MASTER_AMBUSHER-flagged troop in the main party's roster,
-        /// once per day, only while <c>IsPlayerInStealth</c> is true.</summary>
+        /// <summary>Highwayman secondary. Grants daily XP to Master Ambusher
+        /// troops in the main party while in stealth stance.</summary>
         private void OnDailyTick()
         {
             var main = MobileParty.MainParty;
@@ -158,17 +129,9 @@ namespace TOR_Core.CampaignMechanics.Ambush
             Utilities.TORCampaignEvents.Instance.AmbushResolved += OnAmbushResolved;
         }
 
-        /// <summary>Highwayman primary (Roguery 175) dispatch gate. Fires
-        /// on every ambush resolution. When the player ambushed a neutral
-        /// (not-at-war) caravan, this applies the crime-rating + relation
-        /// consequences that vanilla doesn't dispatch on its own — that
-        /// crime path auto-cascades to a war declaration via
-        /// <c>CrimeModel.DeclareWarCrimeRatingThreshold</c>, so repeated
-        /// non-perk ambushes eventually trigger war. With the perk held,
-        /// crime is suppressed entirely (no war cascade); relation still
-        /// drops if witnesses survived. On a clean wipe
-        /// (<c>AmbusherTotalVictory</c>) + perk held, nothing fires —
-        /// "no witnesses, no evidence".</summary>
+        /// <summary>Highwayman primary. Applies neutral-caravan ambush
+        /// consequences. Perk clean-wipe suppresses both relation and crime.
+        /// Perk with witnesses still drops relation. No perk applies both.</summary>
         private void OnAmbushResolved(object sender, Utilities.AmbushResolvedEventArgs args)
         {
             var record = args?.Record;
@@ -178,13 +141,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
             if (victim == null || !victim.IsCaravan) return;
             var victimFaction = victim.MapFaction;
             if (victimFaction == null) return;
-            // At-war caravan ambushes fall under existing wartime rules —
-            // no crime, no extra relation hit beyond vanilla's defeated-
-            // party flow. Only neutral caravans trigger this path.
+            // Wartime caravans fall under normal defeated-party rules.
             if (FactionManager.IsAtWarAgainstFaction(MobileParty.MainParty.MapFaction, victimFaction)) return;
-            // The ambusher-repelled / stalemate branches don't count as
-            // an ambush landing — nobody got mugged, nobody saw you doing
-            // the mugging. Mirror the IsSuccessfulStrike classifier.
             var model = Campaign.Current?.Models?.GetAmbushModel();
             if (model == null || !model.IsSuccessfulStrike(record)) return;
 
@@ -192,12 +150,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
                             && Hero.MainHero.GetPerkValue(TORPerks.Roguery.Highwayman);
             bool cleanWipe = record.Resolution == AmbushResolution.AmbusherTotalVictory;
 
-            // Clean wipe + perk → no witnesses, no evidence, nothing fires.
             if (hasPerk && cleanWipe) return;
 
-            // Relation always drops when witnesses survive — the owning
-            // clan knows who did it. Hits the clan leader like every
-            // other player-relation path.
             var ownerClanLeader = victim.LeaderHero?.Clan?.Leader
                                    ?? victim.MapFaction?.Leader;
             if (ownerClanLeader != null && ownerClanLeader != Hero.MainHero)
@@ -206,30 +160,26 @@ namespace TOR_Core.CampaignMechanics.Ambush
                     NeutralCaravanAmbushRelationDelta, affectRelatives: false, showQuickNotification: true);
             }
 
-            // Crime fires for non-perk ambushes only. The perk lets the
-            // player operate off-the-books: faction leadership doesn't
-            // pin the ambush on them, so no crime rating accrues and
-            // the war-declaration cascade never triggers.
             if (!hasPerk)
             {
                 ChangeCrimeRatingAction.Apply(victimFaction, NeutralCaravanAmbushCrimeDelta);
             }
         }
 
-        /// <summary>Diversion primary (Roguery 125): sibling option on
-        /// vanilla's <c>try_to_get_away</c> encounter menu that spends
-        /// prisoners instead of regulars. Fiction is a loud, panicked
-        /// prisoner break drawing pursuers off the player's trail.
-        /// Visible on land, with the perk, and when prisoner count
-        /// covers <see cref="TORTroopSacrificeModel.GetNumberOfPrisonersSacrificedForDiversion"/>.</summary>
+        /// <summary>Registers the Diversion options and the Parlay dialog.</summary>
         private void AddMenus(CampaignGameStarter starter)
         {
+            string diversionOption = TORTextHelper.GetTextForNative(
+                "tor_perk_diversion_option_text",
+                "Use your prisoners as a diversion. ({DIVERSION_PRISONER_COUNT} will be lost instead of your own men.)");
+
             starter.AddGameMenuOption(TryToGetAwayMenuId, DiversionOptionId,
-                "{=!}Use your prisoners as a diversion. ({DIVERSION_PRISONER_COUNT} will be lost instead of your own men.)",
+                diversionOption,
                 DiversionOnCondition, DiversionOnConsequence);
 
             starter.AddGameMenu(DiversionDebriefMenuId,
-                "{=!}Your prisoners stage a loud, panicked break and bolt into the trees. The pursuers wheel to run them down, and in the confusion you and your men slip away.",
+                TORTextHelper.GetTextForNative("tor_perk_diversion_debrief_text",
+                    "Your prisoners stage a loud, panicked break and bolt into the trees. The pursuers wheel to run them down, and in the confusion you and your men slip away."),
                 null, GameMenu.MenuOverlayType.Encounter);
 
             starter.AddGameMenuOption(DiversionDebriefMenuId, "tor_diversion_debrief_continue",
@@ -237,16 +187,14 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 args => { args.optionLeaveType = GameMenuOption.LeaveType.Continue; return true; },
                 FinishDiversionEncounter);
 
-            // Siege-break-in variant: same Diversion mechanic applied to
-            // the break_in_menu that fires when the player assaults a
-            // besieged settlement. Prisoners substitute for the vanilla
-            // troop sacrifice; debrief uses our own flavor text.
+            // Siege break-in variant of the same Diversion mechanic.
             starter.AddGameMenuOption(BreakInMenuId, BreakInDiversionOptionId,
-                "{=!}Use your prisoners as a diversion. ({DIVERSION_PRISONER_COUNT} will be lost instead of your own men.)",
+                diversionOption,
                 BreakInDiversionOnCondition, BreakInDiversionOnConsequence);
 
             starter.AddGameMenu(BreakInDiversionDebriefMenuId,
-                "{=!}You set the prisoners loose at the gate — they scatter into the siege lines screaming for their lives. The defenders waste arrows on them while your column slips through intact.",
+                TORTextHelper.GetTextForNative("tor_perk_diversion_break_in_debrief_text",
+                    "You set the prisoners loose at the gate. They scatter into the siege lines screaming for their lives. The defenders waste arrows on them while your column slips through intact."),
                 null, GameMenu.MenuOverlayType.Encounter);
 
             starter.AddGameMenuOption(BreakInDiversionDebriefMenuId, "tor_diversion_break_in_debrief_continue",
@@ -254,28 +202,24 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 args => { args.optionLeaveType = GameMenuOption.LeaveType.Continue; return true; },
                 FinishBreakInDiversion);
 
-            // Parlay primary (Roguery 25): new player line on the
-            // bandit_defender input (the robbery-threat state where a
-            // bandit party has demanded coin). Roll PrimaryBonus (0.2)
-            // on selection; success → PlayerEncounter.LeaveEncounter,
-            // failure → bandit bounces the player back to the original
-            // threat prompt so the standard fight/surrender/barter
-            // options are still available. The option itself is only
-            // visible when the main hero holds the perk.
+            // Parlay primary. Peaceful-exit option on the bandit robbery dialog.
             starter.AddPlayerLine("tor_parlay_bandit_peaceful",
                 "bandit_defender", "tor_parlay_bandit_roll",
-                "{=!}Let's see if we can resolve this peacefully.",
+                TORTextHelper.GetTextForNative("tor_perk_parlay_player_line",
+                    "Let's see if we can resolve this peacefully."),
                 ParlayOptionCondition, OnParlayAttempted);
 
             starter.AddDialogLine("tor_parlay_bandit_success",
                 "tor_parlay_bandit_roll", "close_window",
-                "{=!}Hmph. Fine then — we'll find easier marks elsewhere. Move along, lads.",
+                TORTextHelper.GetTextForNative("tor_perk_parlay_success_line",
+                    "Hmph. Fine then, we'll find easier marks elsewhere. Move along, lads."),
                 () => _parlayLastRollSucceeded,
                 () => PlayerEncounter.LeaveEncounter = true);
 
             starter.AddDialogLine("tor_parlay_bandit_fail",
                 "tor_parlay_bandit_roll", "bandit_defender",
-                "{=!}Save your sweet words. Your coin or your blood — your choice.",
+                TORTextHelper.GetTextForNative("tor_perk_parlay_fail_line",
+                    "Save your sweet words. Your coin or your blood, your choice."),
                 () => !_parlayLastRollSucceeded, null);
         }
 
@@ -332,8 +276,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 GameMenu.ActivateGameMenu(DiversionDebriefMenuId);
         }
 
-        /// <summary>Mirrors vanilla's <c>game_menu_try_to_get_away_end</c>
-        /// so our diversion debrief tears the encounter down the same way.</summary>
+        /// <summary>Tears the encounter down after a Diversion success.
+        /// Mirrors vanilla <c>game_menu_try_to_get_away_end</c>.</summary>
         private void FinishDiversionEncounter(MenuCallbackArgs args)
         {
             if (PlayerEncounter.Current == null || PlayerEncounter.Battle == null) return;
@@ -385,10 +329,8 @@ namespace TOR_Core.CampaignMechanics.Ambush
             GameMenu.SwitchToMenu(BreakInDiversionDebriefMenuId);
         }
 
-        /// <summary>Mirrors vanilla's <c>break_in_debrief_continue_on_consequence</c>:
-        /// enter the settlement if we're not already, start the player siege on
-        /// the defender side (we broke in to defend), branch on whether there's
-        /// an active map event there, and disembark if we came in by sea.</summary>
+        /// <summary>Finishes the siege break-in after a Diversion success.
+        /// Mirrors vanilla <c>break_in_debrief_continue_on_consequence</c>.</summary>
         private void FinishBreakInDiversion(MenuCallbackArgs args)
         {
             if (Hero.MainHero.CurrentSettlement == null)
@@ -410,29 +352,18 @@ namespace TOR_Core.CampaignMechanics.Ambush
                 MobileParty.MainParty.DisembarkToPosition(Settlement.CurrentSettlement.GatePosition);
         }
 
-        /// <summary>BurntEarth secondary: "Village notables lose 75%
-        /// less relation with you after their village is raided."
-        /// Fires after vanilla's raid-complete relation drop; applies
-        /// an offsetting positive nudge equal to
-        /// <c>-BurntEarth.PrimaryBonus</c> (0.75) × the vanilla drop
-        /// magnitude. Vanilla drops notable relation by -2 per raid
-        /// (empirically consistent across vanilla raid handlers), so
-        /// a +1.5 nudge (floored to +1 for integer relation) leaves
-        /// a net -1 instead of -2.</summary>
+        /// <summary>BurntEarth secondary. Softens the notable relation drop
+        /// after the player raids a village.</summary>
         private void OnVillageLooted(Village village)
         {
             if (village == null) return;
             var main = MobileParty.MainParty;
             if (main?.LeaderHero != Hero.MainHero) return;
-            // Only fire if the main party actually looted this village
-            // (closest raider in range).
             if (village.Settlement == null || main.Position.DistanceSquared(
                     village.Settlement.Position) > 1f) return;
             if (!main.HasPerk(TORPerks.Roguery.BurntEarth)) return;
 
-            // Vanilla notable-relation drop on raid is -2. Perk
-            // reduces that by 75% → net -0.5, floored to integer
-            // means +1 compensating nudge leaves -1 remaining.
+            // Vanilla drop is -2. Net target with perk is -1.
             int offset = 1;
             foreach (var notable in village.Settlement.Notables)
             {
@@ -441,11 +372,12 @@ namespace TOR_Core.CampaignMechanics.Ambush
             }
         }
 
+        /// <summary>Raider secondary. Grants Tactics XP to the raider's
+        /// quartermaster when a raid completes in their favor.</summary>
         private void OnRaidCompleted(BattleSideEnum winnerSide, RaidEventComponent component)
         {
             var mapEvent = component?.MapEvent;
             if (mapEvent == null) return;
-            // Only credit the aggressor side — the raider, not the defenders.
             if (winnerSide != BattleSideEnum.Attacker) return;
             var attackerParty = mapEvent.AttackerSide?.LeaderParty?.MobileParty;
             if (attackerParty == null) return;

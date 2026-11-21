@@ -6262,4 +6262,14 @@
   <string id="tor_ambush_widget_tt_eye_settlement_hostile" text="{=str_tor_ambush_widget_tt_eye_settlement_hostile}  Hostile settlement nearby: strong pressure" />
   <string id="tor_ambush_widget_tt_eye_settlement_neutral" text="{=str_tor_ambush_widget_tt_eye_settlement_neutral}  Neutral settlement nearby: slight pressure" />
   <string id="tor_ambush_widget_tt_eye_night_stealth" text="{=str_tor_ambush_widget_tt_eye_night_stealth}  Night: detection reduced" />
+
+  <!-- Roguery perks: menu options, dialog lines, and information messages -->
+  <string id="tor_perk_diversion_option_text" text="{=str_tor_perk_diversion_option_text}Use your prisoners as a diversion. ({DIVERSION_PRISONER_COUNT} will be lost instead of your own men.)" />
+  <string id="tor_perk_diversion_debrief_text" text="{=str_tor_perk_diversion_debrief_text}Your prisoners stage a loud, panicked break and bolt into the trees. The pursuers wheel to run them down, and in the confusion you and your men slip away." />
+  <string id="tor_perk_diversion_break_in_debrief_text" text="{=str_tor_perk_diversion_break_in_debrief_text}You set the prisoners loose at the gate. They scatter into the siege lines screaming for their lives. The defenders waste arrows on them while your column slips through intact." />
+  <string id="tor_perk_parlay_player_line" text="{=str_tor_perk_parlay_player_line}Let's see if we can resolve this peacefully." />
+  <string id="tor_perk_parlay_success_line" text="{=str_tor_perk_parlay_success_line}Hmph. Fine then, we'll find easier marks elsewhere. Move along, lads." />
+  <string id="tor_perk_parlay_fail_line" text="{=str_tor_perk_parlay_fail_line}Save your sweet words. Your coin or your blood, your choice." />
+  <string id="tor_perk_fencer_supplies_msg" text="{=str_tor_perk_fencer_supplies_msg}Fencer: extracted an extra share from the compliant villagers." />
+  <string id="tor_perk_fencer_volunteers_msg" text="{=str_tor_perk_fencer_volunteers_msg}Fencer: an extra group of villagers signs on under duress." />
 </strings>
