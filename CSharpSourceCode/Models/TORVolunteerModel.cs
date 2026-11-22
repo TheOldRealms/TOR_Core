@@ -9,10 +9,12 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
+    /// <summary>Volunteer model with RoR / Eonir / undead overrides, war-time production boost, and Skirmisher gang-leader recruit perk.</summary>
     public class TORVolunteerModel : DefaultVolunteerModel
     {
         public override int MaxVolunteerTier => 6;
 
+        /// <summary>Basic volunteer for a seller hero. RoR settlements return cultured regiment troops; Eonir gets elite in Lithanel towns.</summary>
         public override CharacterObject GetBasicVolunteer(Hero sellerHero)
         {
             var settlement = sellerHero.CurrentSettlement;
@@ -83,6 +85,7 @@ namespace TOR_Core.Models
                     sellerHero.Occupation == Occupation.RuralNotable;
         }
 
+        /// <summary>Daily volunteer production probability, doubled when the owner clan's kingdom is at war.</summary>
         public override float GetDailyVolunteerProductionProbability(
             Hero hero,
             int index,
@@ -99,6 +102,7 @@ namespace TOR_Core.Models
 
         }
 
+        /// <summary>Recruit index cap with undead necromancer gate, enlisted lockout, hire-compatibility check, and Skirmisher gang-leader bonus.</summary>
         public override int MaximumIndexHeroCanRecruitFromHero(Hero buyerHero, Hero sellerHero, int useValueAsRelation = -101)
         {
             if (GetBasicVolunteer(sellerHero).IsUndead())
@@ -111,7 +115,7 @@ namespace TOR_Core.Models
 
             var value = base.MaximumIndexHeroCanRecruitFromHero(buyerHero, sellerHero, useValueAsRelation);
 
-            if (buyerHero.IsEnlisted()) //make sure only the player is affected!
+            if (buyerHero.IsEnlisted()) // only the player is affected
             {
                 return -1;
             }
@@ -125,6 +129,18 @@ namespace TOR_Core.Models
                 {
                     return -1;
                 }
+            }
+
+            // Skirmisher secondary (Roguery 200): "+1 recruitment slot when
+            // recruiting from gang leaders." Flat +1 to the max index when
+            // the buyer holds the perk and the seller notable is a gang
+            // leader. Applied last so faction / culture / relation gates
+            // land first.
+            if (buyerHero != null && sellerHero != null
+                && sellerHero.IsGangLeader
+                && buyerHero.GetPerkValue(CharacterDevelopment.TORPerks.Roguery.Skirmisher))
+            {
+                value += (int)CharacterDevelopment.TORPerks.Roguery.Skirmisher.SecondaryBonus;
             }
 
             return value;

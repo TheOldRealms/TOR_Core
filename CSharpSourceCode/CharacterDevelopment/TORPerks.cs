@@ -50,6 +50,31 @@ namespace TOR_Core.CharacterDevelopment
         private PerkObject _spirit;
         private PerkObject _miracle;
 
+        //Roguery perks (TOR rework)
+        private PerkObject _keenSenses;
+        private PerkObject _lowProfile;
+        private PerkObject _raider;
+        private PerkObject _parlay;
+        private PerkObject _highRoller;
+        private PerkObject _shakedown;
+        private PerkObject _reprisal;
+        private PerkObject _byTheRoad;
+        private PerkObject _diversion;
+        private PerkObject _wolfPack;
+        private PerkObject _intimidator;
+        private PerkObject _burntEarth;
+        private PerkObject _highwayman;
+        private PerkObject _disguise;
+        private PerkObject _skirmisher;
+        private PerkObject _fencer;
+        private PerkObject _backstabber;
+        private PerkObject _negotiator;
+        private PerkObject _fence;
+        private PerkObject _unarmed;
+        private PerkObject _strider;
+        private PerkObject _shadowed;
+        private PerkObject _masterThief;
+
         public static TORPerks Instance { get; private set; }
 
         public TORPerks()
@@ -103,6 +128,30 @@ namespace TOR_Core.CharacterDevelopment
             _revival = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("Revival"));
             _spirit = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("Spirit"));
             _miracle = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("Miracle"));
+            //Roguery perks (TOR rework)
+            _keenSenses = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_KeenSenses"));
+            _lowProfile = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_LowProfile"));
+            _raider = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_Raider"));
+            _parlay = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_Parlay"));
+            _highRoller = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_HighRoller"));
+            _shakedown = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_Shakedown"));
+            _reprisal = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_Reprisal"));
+            _byTheRoad = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_ByTheRoad"));
+            _diversion = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_Diversion"));
+            _wolfPack = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_WolfPack"));
+            _intimidator = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_Intimidator"));
+            _burntEarth = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_BurntEarth"));
+            _highwayman = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_Highwayman"));
+            _disguise = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_Disguise"));
+            _skirmisher = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_Skirmisher"));
+            _fencer = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_Fencer"));
+            _backstabber = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_Backstabber"));
+            _negotiator = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_Negotiator"));
+            _fence = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_Fence"));
+            _unarmed = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_Unarmed"));
+            _strider = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_Strider"));
+            _shadowed = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_Shadowed"));
+            _masterThief = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TOR_Roguery_MasterThief"));
         }
 
         /// <remarks>
@@ -294,6 +343,128 @@ namespace TOR_Core.CharacterDevelopment
                 PartyRole.Personal, 1f, EffectIncrementType.Add,
                 "{=str_tor_perk_miracle_2}Allows you to apply 2 blessings.",
                 PartyRole.PartyMember, 2f, EffectIncrementType.Add);
+
+            _raider.Initialize("{=str_tor_perk_raider_label}Raider", DefaultSkills.Roguery, 25, _parlay,
+                "{=str_tor_perk_raider_1}Your party moves 5% faster while raiding villages.",
+                PartyRole.PartyLeader, 0.05f, EffectIncrementType.AddFactor,
+                "{=str_tor_perk_raider_2}Your quartermaster earns Tactics experience from raid operations.",
+                PartyRole.Quartermaster, 1f, EffectIncrementType.Add);
+            // Parlay secondary stash is not implemented yet.
+            _parlay.Initialize("{=str_tor_perk_parlay_label}Parlay", DefaultSkills.Roguery, 25, _raider,
+                "{=str_tor_perk_parlay_1}20% chance to end a bandit encounter peacefully during conversation.",
+                PartyRole.PartyLeader, 0.2f, EffectIncrementType.AddFactor,
+                "{=str_tor_perk_parlay_2}You keep 50% of your inventory when taken prisoner.",
+                PartyRole.Personal, 0.5f, EffectIncrementType.AddFactor);
+
+            _highRoller.Initialize("{=str_tor_perk_high_roller_label}High Roller", DefaultSkills.Roguery, 50, _shakedown,
+                "{=str_tor_perk_high_roller_1}Your maximum tournament bet is doubled.",
+                PartyRole.Personal, 1f, EffectIncrementType.AddFactor,
+                "{=str_tor_perk_high_roller_2}Wages for your Master Ambusher troops are reduced by 20%.",
+                PartyRole.Quartermaster, -0.2f, EffectIncrementType.AddFactor);
+            _shakedown.Initialize("{=str_tor_perk_shakedown_label}Shakedown", DefaultSkills.Roguery, 50, _highRoller,
+                "{=str_tor_perk_shakedown_1}Villagers are 15% less likely to resist when you demand goods.",
+                PartyRole.Quartermaster, -0.15f, EffectIncrementType.AddFactor,
+                "{=str_tor_perk_shakedown_2}Nearby villages reduce your ambush stealth by 10% less.",
+                PartyRole.PartyLeader, -0.1f, EffectIncrementType.AddFactor);
+
+            _reprisal.Initialize("{=str_tor_perk_reprisal_label}Reprisal", DefaultSkills.Roguery, 75, _byTheRoad,
+                "{=str_tor_perk_reprisal_1}Recover 15% faster from a failed ambush.",
+                PartyRole.PartyLeader, -0.15f, EffectIncrementType.AddFactor,
+                "{=str_tor_perk_reprisal_2}Enemy reinforcements take 20 seconds longer to arrive during your ambush attacks.",
+                PartyRole.Quartermaster, 20f, EffectIncrementType.Add);
+            _byTheRoad.Initialize("{=str_tor_perk_by_the_road_label}By the Road", DefaultSkills.Roguery, 75, _reprisal,
+                "{=str_tor_perk_by_the_road_1}+5% loot from caravans and villages.",
+                PartyRole.PartyLeader, 0.05f, EffectIncrementType.AddFactor,
+                "{=str_tor_perk_by_the_road_2}+1 security per day in settlements you govern.",
+                PartyRole.Governor, 1f, EffectIncrementType.Add);
+
+            _keenSenses.Initialize("{=str_tor_perk_keen_senses_label}Keen Senses", DefaultSkills.Roguery, 100, _lowProfile,
+                "{=str_tor_perk_keen_senses_1}Your party's spotting range is increased by 25%.",
+                PartyRole.PartyLeader, 0.25f, EffectIncrementType.AddFactor);
+            _lowProfile.Initialize("{=str_tor_perk_low_profile_label}Low Profile", DefaultSkills.Roguery, 100, _keenSenses,
+                "{=str_tor_perk_low_profile_1}Your party is 25% harder to spot by enemy parties.",
+                PartyRole.PartyLeader, 0.25f, EffectIncrementType.AddFactor);
+
+            _diversion.Initialize("{=str_tor_perk_diversion_label}Diversion", DefaultSkills.Roguery, 125, _wolfPack,
+                "{=str_tor_perk_diversion_1}Prisoners in your party can create a diversion, increasing your chance to escape from captivity.",
+                PartyRole.PartyLeader, 1f, EffectIncrementType.Add,
+                "{=str_tor_perk_diversion_2}+10 prisoner capacity.",
+                PartyRole.PartyLeader, 10f, EffectIncrementType.Add);
+            _wolfPack.Initialize("{=str_tor_perk_wolf_pack_label}Wolf Pack", DefaultSkills.Roguery, 125, _diversion,
+                "{=str_tor_perk_wolf_pack_1}Bring 5 additional ambushers to your ambush attacks.",
+                PartyRole.PartyLeader, 5f, EffectIncrementType.Add,
+                "{=str_tor_perk_wolf_pack_2}Your party consumes 10% less food while in ambush stance.",
+                PartyRole.PartyLeader, -0.1f, EffectIncrementType.AddFactor);
+
+            _intimidator.Initialize("{=str_tor_perk_intimidator_label}Intimidator", DefaultSkills.Roguery, 150, _burntEarth,
+                "{=str_tor_perk_intimidator_1}30% chance for villagers, caravans, and bandits to surrender when you demand it.",
+                PartyRole.Personal, 0.3f, EffectIncrementType.AddFactor,
+                "{=str_tor_perk_intimidator_2}Tavern mercenaries cost 20% less to hire.",
+                PartyRole.PartyLeader, -0.2f, EffectIncrementType.AddFactor);
+            _burntEarth.Initialize("{=str_tor_perk_burnt_earth_label}Burnt Earth", DefaultSkills.Roguery, 150, _intimidator,
+                "{=str_tor_perk_burnt_earth_1}Your crime rating rises 20% more slowly.",
+                PartyRole.Personal, -0.2f, EffectIncrementType.AddFactor,
+                "{=str_tor_perk_burnt_earth_2}Village notables lose 75% less relation with you after their village is raided.",
+                PartyRole.PartyLeader, -0.75f, EffectIncrementType.AddFactor);
+
+            _highwayman.Initialize("{=str_tor_perk_highwayman_label}Highwayman", DefaultSkills.Roguery, 175, _disguise,
+                "{=str_tor_perk_highwayman_1}Fully wiping out a caravan during an ambush leaves no witnesses: no crime rating, no relation loss, no war declared.",
+                PartyRole.PartyLeader, 1f, EffectIncrementType.Add,
+                "{=str_tor_perk_highwayman_2}Your Master Ambusher troops gain daily experience while your party is in ambush stance.",
+                PartyRole.PartyLeader, 20f, EffectIncrementType.Add);
+            _disguise.Initialize("{=str_tor_perk_disguise_label}Disguise", DefaultSkills.Roguery, 175, _highwayman,
+                "{=str_tor_perk_disguise_1}You can trade in towns while disguised.",
+                PartyRole.PartyLeader, 1f, EffectIncrementType.Add,
+                "{=str_tor_perk_disguise_2}Trade penalties with factions where you have a crime rating are reduced by 50%.",
+                PartyRole.ClanLeader, -0.5f, EffectIncrementType.AddFactor);
+
+            _skirmisher.Initialize("{=str_tor_perk_skirmisher_label}Skirmisher", DefaultSkills.Roguery, 200, _fencer,
+                "{=str_tor_perk_skirmisher_1}+10 vigor and control for your Master Ambusher troops in your formation.",
+                PartyRole.Captain, 10f, EffectIncrementType.Add,
+                "{=str_tor_perk_skirmisher_2}+1 recruitment slot when recruiting from gang leaders.",
+                PartyRole.PartyLeader, 1f, EffectIncrementType.Add, TroopUsageFlags.Any, TroopUsageFlags.Undefined);
+            _fencer.Initialize("{=str_tor_perk_fencer_label}Fencer", DefaultSkills.Roguery, 200, _skirmisher,
+                "{=str_tor_perk_fencer_1}+20% loot when villagers comply with your hostile action.",
+                PartyRole.PartyLeader, 0.2f, EffectIncrementType.AddFactor,
+                "{=str_tor_perk_fencer_2}+5 tariff revenue from towns you govern.",
+                PartyRole.Governor, 5f, EffectIncrementType.Add);
+
+            _backstabber.Initialize("{=str_tor_perk_backstabber_label}Backstabber", DefaultSkills.Roguery, 225, _negotiator,
+                "{=str_tor_perk_backstabber_1}+10 damage on your thrust attacks.",
+                PartyRole.PartyLeader, 10f, EffectIncrementType.Add,
+                "{=str_tor_perk_backstabber_2}Troops in your formation deal +4 damage on thrust attacks.",
+                PartyRole.Captain, 4f, EffectIncrementType.Add, TroopUsageFlags.Undefined, TroopUsageFlags.Any);
+            _negotiator.Initialize("{=str_tor_perk_negotiator_label}Negotiator", DefaultSkills.Roguery, 225, _backstabber,
+                "{=str_tor_perk_negotiator_1}25% better deals when ransoming heroes through brokers.",
+                PartyRole.Quartermaster, 0.25f, EffectIncrementType.AddFactor,
+                "{=str_tor_perk_negotiator_2}+30% escape chance for your hero prisoners.",
+                PartyRole.Quartermaster, 0.3f, EffectIncrementType.AddFactor);
+
+            _fence.Initialize("{=str_tor_perk_fence_label}Fence", DefaultSkills.Roguery, 250, _unarmed,
+                "{=str_tor_perk_fence_1}-20% weapon sell-price penalty.",
+                PartyRole.PartyLeader, -0.2f, EffectIncrementType.AddFactor,
+                "{=str_tor_perk_fence_2}+2 militia per day in besieged towns you govern.",
+                PartyRole.Governor, 2f, EffectIncrementType.Add);
+            _unarmed.Initialize("{=str_tor_perk_unarmed_label}Unarmed", DefaultSkills.Roguery, 250, _fence,
+                "{=str_tor_perk_unarmed_1}50% longer stun duration on kick attacks.",
+                PartyRole.Personal, 0.5f, EffectIncrementType.AddFactor,
+                "{=str_tor_perk_unarmed_2}+2 food in besieged towns you govern.",
+                PartyRole.Governor, 2f, EffectIncrementType.Add);
+
+            _strider.Initialize("{=str_tor_perk_strider_label}Strider", DefaultSkills.Roguery, 275, _shadowed,
+                "{=str_tor_perk_strider_1}+50% damage bonus from speed while fighting on foot.",
+                PartyRole.Personal, 0.5f, EffectIncrementType.AddFactor,
+                "{=str_tor_perk_strider_2}Cities you govern produce 250 denars per day while a tournament is active.",
+                PartyRole.Governor, 250f, EffectIncrementType.Add);
+            _shadowed.Initialize("{=str_tor_perk_shadowed_label}Shadowed", DefaultSkills.Roguery, 275, _strider,
+                "{=str_tor_perk_shadowed_1}+10% combat speed for your Master Ambusher troops in formation.",
+                PartyRole.Captain, 0.1f, EffectIncrementType.AddFactor,
+                "{=str_tor_perk_shadowed_2}+30% escape chance when you are captured by mobile parties.",
+                PartyRole.Personal, 0.3f, EffectIncrementType.AddFactor, TroopUsageFlags.Any, TroopUsageFlags.Undefined);
+
+            _masterThief.Initialize("{=str_tor_perk_master_thief_label}Master Thief", DefaultSkills.Roguery, 300, null,
+                "{=str_tor_perk_master_thief_1}You gain +1% loot for every Roguery skill point above 200.",
+                PartyRole.Personal, 0.01f, EffectIncrementType.AddFactor);
         }
 
         public static class Spellcraft
@@ -344,6 +515,33 @@ namespace TOR_Core.CharacterDevelopment
             public static PerkObject Revival => Instance._revival;
             public static PerkObject Spirit => Instance._spirit;
             public static PerkObject Miracle => Instance._miracle;
+        }
+
+        public static class Roguery
+        {
+            public static PerkObject KeenSenses => Instance._keenSenses;
+            public static PerkObject LowProfile => Instance._lowProfile;
+            public static PerkObject Raider => Instance._raider;
+            public static PerkObject Parlay => Instance._parlay;
+            public static PerkObject HighRoller => Instance._highRoller;
+            public static PerkObject Shakedown => Instance._shakedown;
+            public static PerkObject Reprisal => Instance._reprisal;
+            public static PerkObject ByTheRoad => Instance._byTheRoad;
+            public static PerkObject Diversion => Instance._diversion;
+            public static PerkObject WolfPack => Instance._wolfPack;
+            public static PerkObject Intimidator => Instance._intimidator;
+            public static PerkObject BurntEarth => Instance._burntEarth;
+            public static PerkObject Highwayman => Instance._highwayman;
+            public static PerkObject Disguise => Instance._disguise;
+            public static PerkObject Skirmisher => Instance._skirmisher;
+            public static PerkObject Fencer => Instance._fencer;
+            public static PerkObject Backstabber => Instance._backstabber;
+            public static PerkObject Negotiator => Instance._negotiator;
+            public static PerkObject Fence => Instance._fence;
+            public static PerkObject Unarmed => Instance._unarmed;
+            public static PerkObject Strider => Instance._strider;
+            public static PerkObject Shadowed => Instance._shadowed;
+            public static PerkObject MasterThief => Instance._masterThief;
         }
     }
 }

@@ -13441,8 +13441,8 @@
       <Trait id="Generosity" value="-3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_gor_gougehorn_template" />
-      <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_bestigor_gougehorn_template" />
+      <EquipmentSet id="tor_beast_bestigor_gougehorn_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_lord_stormcrow" default_group="infantry" name="{=str_tor_beastmen_lord_stormcrow}Fgodhm the Stormcrow" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_caster_lord" is_hero="true">
@@ -13455,8 +13455,8 @@
       <Trait id="Generosity" value="-3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_gor_manripper_template" />
-      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_bestigor_template" />
+      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_lord_halfspawn" default_group="infantry" name="{=str_tor_beastmen_lord_halfspawn}Wilphfkhob the Half Spawn" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_berserker_lord" is_hero="true">
@@ -13469,8 +13469,8 @@
       <Trait id="Generosity" value="-3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_gor_manripper_template" />
-      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_bestigor_template" />
+      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_lord_guiym" default_group="infantry" name="{=str_tor_beastmen_lord_guiym}Guiym Phlar" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_warrior_lord" is_hero="true">
@@ -13483,8 +13483,8 @@
       <Trait id="Generosity" value="-3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_gor_manripper_template" />
-      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_bestigor_template" />
+      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_lord_nodhph" default_group="infantry" name="{=str_tor_beastmen_lord_nodhph}Nodhph Ndhuiaodh" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_berserker_lord" is_hero="true">
@@ -13497,8 +13497,8 @@
       <Trait id="Generosity" value="-3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_gor_manripper_template" />
-      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_bestigor_template" />
+      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_lord_shdhimib" default_group="infantry" name="{=str_tor_beastmen_lord_shdhimib}Shdhimib" occupation="Lord" culture="Culture.beastmen" voice="curt" age="65" race="gor2" skill_template="SkillSet.tor_skills_beastmen_commander_lord" is_hero="true">
@@ -13511,8 +13511,8 @@
       <Trait id="Generosity" value="-3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_gor_manripper_template" />
-      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_bestigor_template" />
+      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_lord_shodhshodh" default_group="infantry" name="{=str_tor_beastmen_lord_shodhshodh}Shodhshodh" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_berserker_lord" is_hero="true">
@@ -13525,8 +13525,8 @@
       <Trait id="Generosity" value="-3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_gor_manripper_template" />
-      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_bestigor_template" />
+      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_lord_hryndyr" default_group="infantry" name="{=str_tor_beastmen_lord_hryndyr}Hrýndyr Split-Horn" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_ndhiub_lord" is_hero="true">
@@ -13539,8 +13539,8 @@
       <Trait id="Generosity" value="-3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_gor_gougehorn_template" />
-      <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_bestigor_gougehorn_template" />
+      <EquipmentSet id="tor_beast_bestigor_gougehorn_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_lord_koka_dudlu" default_group="infantry" name="{=str_tor_beastmen_lord_koka_dudlu}Koka’Dudlu" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_caster_lord" is_hero="true">
@@ -13567,8 +13567,8 @@
       <Trait id="Generosity" value="-3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_gor_gougehorn_template" />
-      <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_bestigor_gougehorn_template" />
+      <EquipmentSet id="tor_beast_bestigor_gougehorn_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_lord_khazsnorr" default_group="infantry" name="{=str_tor_beastmen_lord_khazsnorr}Khazsnorr the Red" occupation="Lord" culture="Culture.beastmen" voice="curt" age="35" race="gor2" skill_template="SkillSet.tor_skills_beastmen_berserker_lord" is_hero="true">
@@ -13609,8 +13609,8 @@
       <Trait id="Generosity" value="-3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_gor_gougehorn_template" />
-      <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_bestigor_gougehorn_template" />
+      <EquipmentSet id="tor_beast_bestigor_gougehorn_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_lord_dhrothok" default_group="infantry" name="{=str_tor_beastmen_lord_dhrothok}Dhrothok Doomherald" occupation="Lord" culture="Culture.beastmen" voice="curt" age="33" race="gor2" skill_template="SkillSet.tor_skills_beastmen_commander_lord" is_hero="true">
@@ -13665,8 +13665,8 @@
       <Trait id="Generosity" value="-3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_gor_gougehorn_template" />
-      <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_bestigor_gougehorn_template" />
+      <EquipmentSet id="tor_beast_bestigor_gougehorn_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_lord_gnarl_tooth" default_group="infantry" name="{=str_tor_beastmen_lord_gnarl_tooth}Gnarl-Tooth the Twisted" occupation="Lord" culture="Culture.beastmen" voice="curt" age="59" race="gor2" skill_template="SkillSet.tor_skills_beastmen_caster_lord" is_hero="true">

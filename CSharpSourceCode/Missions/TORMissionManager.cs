@@ -23,12 +23,15 @@ using TaleWorlds.MountAndBlade.Missions.Handlers;
 using TaleWorlds.MountAndBlade.Source.Missions;
 using TaleWorlds.MountAndBlade.Source.Missions.Handlers;
 using TaleWorlds.MountAndBlade.Source.Missions.Handlers.Logic;
+using TOR_Core.Extensions;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.MountAndBlade.View.MissionViews.Order;
 using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.Missions.AmbushMission;
 using static TaleWorlds.MountAndBlade.Mission;
+using TOR_Core.Models.Ambush;
 
 namespace TOR_Core.Missions
 {
@@ -234,6 +237,249 @@ namespace TOR_Core.Missions
                 return list.ToArray();
             }, true, true);
         }
+        /// <summary>
+        /// Open an ambush mission with the player on the attacker side,
+        /// striking from stealth against the MapEvent's defender. Caller
+        /// must have run EncounterManager.StartPartyEncounter +
+        /// PlayerEncounter.StartBattle so MapEvent.PlayerMapEvent is set.
+        /// The scene string is picked by the caller (e.g. the stealth menu
+        /// randomising over a bank of authored ambush scenes); scenes that
+        /// don't author a retreat zone fall back to the procedural one the
+        /// mission controller places near the player spawn.
+        /// </summary>
+        [MissionMethod]
+        public static Mission OpenAmbushMission(string scene, TroopRoster ambusherSelection = null)
+        {
+            var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All);
+            return MissionState.OpenNew("Battle", rec, delegate (Mission mission)
+            {
+                // Ambusher supplier: if the caller passed a specific
+                // troop selection (player-ambusher UI pick), inject it
+                // as priorTroops so the allocator drains those first;
+                // the remainder stays unspawned (one-shot ambusher).
+                var ambusherPrior = BuildFlattenedPriorTroops(ambusherSelection);
+                var ambusherSupplier = new PartyGroupTroopSupplier(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Attacker, ambusherPrior);
+                // Victim supplier: ordering is a shuffled view of the
+                // victim-side roster so the initial-on-field cap
+                // allocates random troops ("the column was caught
+                // unprepared — this subset happened to be at the front
+                // when the ambush sprung"). Remainder flows in as
+                // reinforcement waves via AmbushReinforcementMissionLogic.
+                var victimPrior = BuildShuffledPriorTroopsForSide(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Defender);
+                var victimSupplier = new PartyGroupTroopSupplier(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Defender, victimPrior);
+                IMissionTroopSupplier[] suppliers =
+                [
+                    victimSupplier,
+                    ambusherSupplier,
+                ];
+                // Player (ambusher) sits on Attacker, target (victim) on
+                // Defender. Pass the two parties through to the controller;
+                // it resolves sides and counts from them.
+                var ambusherParty = PartyBase.MainParty;
+                var victimParty = MapEvent.PlayerMapEvent.DefenderSide.LeaderParty;
+                // Ambush spawn logic subclass: keeps vanilla type
+                // identity for all dependents (BattleEndLogic, our end
+                // logics, TOR's campaign-wide ReinforcementMissionLogic)
+                // while encapsulating the per-ambush bookkeeping our
+                // custom spawn needs.
+                var ambushSpawnLogic = new AmbushMission.AmbushMissionAgentSpawnLogic(
+                    suppliers, BattleSideEnum.Attacker, BattleSizeType.Battle);
+                var model = Campaign.Current?.Models?.GetMissionAmbushModel()
+                            ?? new TOR_Core.Models.Ambush.TORMissionAmbushModel();
+                List<MissionBehavior> list =
+                [
+                    ambushSpawnLogic,
+                    new BattlePowerCalculationLogic(),
+                    new BattleSpawnLogic("battle_set"),
+                    new AmbushMission.AmbushMissionController(ambusherParty, victimParty, ambusherSupplier, victimSupplier),
+                    new AmbushMission.AmbushReinforcementMissionLogic(victimSupplier, ambushSpawnLogic, model),
+                    new TaleWorlds.MountAndBlade.Missions.MissionLogics.MissionObjectiveLogic(),
+                    ViewCreator.CreateMissionObjectiveView(mission),
+                    new AmbushMission.PlayerAmbushMissionLogic(),
+                    new AmbushMission.AmbushLoudnessTracker(),
+                    new AmbushMission.AmbushTacticalAnchorLogic(),
+                    new MissionExperienceBehavior(),
+                    new CampaignMissionComponent(),
+                    new BattleAgentLogic(),
+                    new MountAgentLogic(),
+                    new MissionOptionsComponent(),
+                    // AmbushBattleEndLogic : BattleEndLogic. Subclass so all
+                    // the base OnMissionTick side effects still fire
+                    // (victory reactions on AgentVictoryLogic, retreat
+                    // detection, enemy-pullback tracking, battle-won /
+                    // lost messages — the post-mission stealth-menu /
+                    // loot-flow handoff depends on them). Only
+                    // MissionEnded is overridden to return false so
+                    // vanilla's frame-one "IsSideDepleted → instant
+                    // Player Victory" can't win the CheckMissionEnded
+                    // race against PlayerAmbushMissionLogic, which is the
+                    // authoritative outcome decider.
+                    new AmbushMission.AmbushBattleEndLogic(),
+                    new MissionCombatantsLogic(
+                        MobileParty.MainParty.MapEvent.InvolvedParties,
+                        PartyBase.MainParty,
+                        MobileParty.MainParty.MapEvent.GetLeaderParty(BattleSideEnum.Defender),
+                        MobileParty.MainParty.MapEvent.GetLeaderParty(BattleSideEnum.Attacker),
+                        Mission.MissionTeamAITypeEnum.FieldBattle, false),
+                    new BattleObserverMissionLogic(),
+                    new AgentHumanAILogic(),
+                    new AgentVictoryLogic(),
+                    new MissionAgentPanicHandler(),
+                    new BattleMissionAgentInteractionLogic(),
+                    new AgentMoraleInteractionLogic(),
+                    new AssignPlayerRoleInTeamMissionController(true, false, false),
+                    new BannerBearerLogic(),
+                ];
+                // SandboxGeneralsAndCaptainsAssignmentLogic deliberately
+                // NOT added. Its OnDeploymentFinished treats the player
+                // ambusher as a team General and calls
+                // SetFormationPositioningFromDeploymentPlan on a formation
+                // our ambush scene has no plan entry for; the native call
+                // derefs invalid data and the game dies with no managed
+                // exception. Ambush missions don't use the generals /
+                // bodyguard mechanic anyway, so skipping registration
+                // avoids the crash without needing a Harmony patch.
+                list.Add(new EquipmentControllerLeaveLogic());
+                list.Add(new MissionHardBorderPlacer());
+                list.Add(new MissionBoundaryPlacer());
+                list.Add(new MissionBoundaryCrossingHandler());
+                list.Add(new HighlightsController());
+                list.Add(new BattleHighlightsController());
+                list.Add(new BattleDeploymentMissionController(false));
+                list.Add(new BattleDeploymentHandler(false));
+                return list.ToArray();
+            }, true, true);
+        }
+
+        /// <summary>
+        /// Open the "player is being ambushed" mission. Same scene +
+        /// controller as <see cref="OpenAmbushMission"/>; only the end-logic
+        /// set differs so the victim-side outcome state machine fires
+        /// (player-escapes-with-wounded vs. player-wiped) instead of the
+        /// ambusher-side one (total victory / partial victory / defender
+        /// fled / stalemate).
+        ///
+        /// Side mapping follows the fiction: the ambusher (AI) sits on the
+        /// Attacker side, the victim (player) on the Defender side. The
+        /// controller teleports the Attacker team to the ambush_attacker_*
+        /// scene slots in both openers — "ambusher = Attacker" is the
+        /// invariant that lets the same controller serve both missions
+        /// without branching inside it.
+        /// </summary>
+        [MissionMethod]
+        public static Mission OpenAmbushedMission(string scene)
+        {
+            var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All);
+            return MissionState.OpenNew("Battle", rec, delegate (Mission mission)
+            {
+                // Share the supplier instances between vanilla's spawn logic
+                // and AmbushMissionController, same as OpenAmbushMission. Our
+                // AfterStart drains them so vanilla's SetSpawnTroops sees an
+                // empty supplier and never drops agents at (0, 0, 0). Without
+                // this, the victim-side opener hangs the loading screen on
+                // the engine's walkable-area check when the scene lacks
+                // vanilla-named sp_attacker_<class> entities.
+                var ambusherSupplier = new PartyGroupTroopSupplier(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Attacker);
+                // Victim supplier with shuffled priorTroops: initial
+                // cap draws a random slice of the player's roster
+                // ("whoever happened to be at the front when the
+                // column was ambushed"). Rest reinforces via waves.
+                var victimPrior = BuildShuffledPriorTroopsForSide(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Defender);
+                var victimSupplier = new PartyGroupTroopSupplier(
+                    MapEvent.PlayerMapEvent, BattleSideEnum.Defender, victimPrior);
+                IMissionTroopSupplier[] suppliers =
+                [
+                    victimSupplier,
+                    ambusherSupplier,
+                ];
+                // AI ambusher on Attacker, player (victim) on Defender.
+                // Pass the two parties + their suppliers through to the
+                // controller.
+                var ambusherParty = MapEvent.PlayerMapEvent.AttackerSide.LeaderParty;
+                var victimParty = PartyBase.MainParty;
+                // Player is on the Defender side here. The spawn logic's
+                // "player side" arg is purely informational for vanilla's
+                // deployment-UI / hiding behaviour; it doesn't gate the
+                // spawn pipeline. Subclass identity reasoning same as the
+                // ambusher-side opener above.
+                var ambushSpawnLogic = new AmbushMission.AmbushMissionAgentSpawnLogic(
+                    suppliers, BattleSideEnum.Defender, BattleSizeType.Battle);
+                var model = Campaign.Current?.Models?.GetMissionAmbushModel()
+                            ?? new TOR_Core.Models.Ambush.TORMissionAmbushModel();
+                List<MissionBehavior> list =
+                [
+                    ambushSpawnLogic,
+                    new BattlePowerCalculationLogic(),
+                    new BattleSpawnLogic("battle_set"),
+                    new AmbushMission.AmbushMissionController(ambusherParty, victimParty, ambusherSupplier, victimSupplier),
+                    new AmbushMission.AmbushReinforcementMissionLogic(victimSupplier, ambushSpawnLogic, model),
+                    new TaleWorlds.MountAndBlade.Missions.MissionLogics.MissionObjectiveLogic(),
+                    ViewCreator.CreateMissionObjectiveView(mission),
+                    new AmbushMission.PlayerAmbushedMissionLogic(),
+                    new AmbushMission.AmbushLoudnessTracker(),
+                    new AmbushMission.AmbushTacticalAnchorLogic(),
+                    new MissionExperienceBehavior(),
+                    new CampaignMissionComponent(),
+                    new BattleAgentLogic(),
+                    new MountAgentLogic(),
+                    new MissionOptionsComponent(),
+                    // Same frame-one race as the ambusher-side opener.
+                    // Vanilla's BattleEndLogic.MissionEnded calls
+                    // IsSideDepleted on both sides before our custom spawn
+                    // has settled; it fires AttackerVictory, which with
+                    // the player on Defender is instant player defeat.
+                    // AmbushBattleEndLogic : BattleEndLogic overrides
+                    // MissionEnded to return false so PlayerAmbushedMissionLogic is
+                    // the authoritative outcome decider. The base class's
+                    // OnMissionTick side effects (victory reactions,
+                    // retreat detection, enemy-pullback tracking) still
+                    // fire so the post-mission handoff isn't broken.
+                    new AmbushMission.AmbushBattleEndLogic(),
+                    new MissionCombatantsLogic(
+                        MobileParty.MainParty.MapEvent.InvolvedParties,
+                        PartyBase.MainParty,
+                        MobileParty.MainParty.MapEvent.GetLeaderParty(BattleSideEnum.Defender),
+                        MobileParty.MainParty.MapEvent.GetLeaderParty(BattleSideEnum.Attacker),
+                        Mission.MissionTeamAITypeEnum.FieldBattle, false),
+                    new BattleObserverMissionLogic(),
+                    new AgentHumanAILogic(),
+                    new AgentVictoryLogic(),
+                    new MissionAgentPanicHandler(),
+                    new BattleMissionAgentInteractionLogic(),
+                    new AgentMoraleInteractionLogic(),
+                    new AssignPlayerRoleInTeamMissionController(true, false, false),
+                    new BannerBearerLogic(),
+                ];
+                // SandboxGeneralsAndCaptainsAssignmentLogic deliberately
+                // NOT added (same reason as the ambusher-side opener): it derefs
+                // invalid data when our ambush scene has no deployment
+                // plan entry for the generals formation class, and the
+                // generals / bodyguard mechanic isn't used in ambush.
+                list.Add(new EquipmentControllerLeaveLogic());
+                list.Add(new MissionHardBorderPlacer());
+                list.Add(new MissionBoundaryPlacer());
+                list.Add(new MissionBoundaryCrossingHandler());
+                list.Add(new HighlightsController());
+                list.Add(new BattleHighlightsController());
+                // Player is the ambush victim here, caught by surprise — no
+                // placement step. Keep the vanilla deployment behaviours
+                // anyway: they own agent spawn kickoff + initial-player-agent
+                // handoff via FinishDeployment. AmbushMissionController
+                // subscribes to BattleDeploymentMissionController.OnAfterSetupTeams
+                // and calls FinishDeployment immediately on that event, so the
+                // player sees no deployment UI and the mission drops straight
+                // into combat without us re-implementing vanilla's spawn
+                // lifecycle.
+                list.Add(new BattleDeploymentMissionController(false));
+                list.Add(new BattleDeploymentHandler(false));
+                return list.ToArray();
+            }, true, true);
+        }
 
         [MissionMethod]
         public static Mission OpenBrawlFightMission(Location location, TroopRoster playerSideTroops,
@@ -301,6 +547,72 @@ namespace TOR_Core.Missions
 
                 return list.ToArray();
             }, true, true);
+        }
+
+        /// <summary>
+        /// Builds a shuffled <see cref="FlattenedTroopRoster"/> from
+        /// every party on the given side, to pass as
+        /// <c>priorTroops</c> to the <see cref="PartyGroupTroopSupplier"/>.
+        /// The supplier allocates from priorTroops in enumeration
+        /// order, so a shuffled roster makes the initial-cap draw
+        /// random instead of leader-first. Non-hero combatants only
+        /// (heroes are placed by the controller's hero-spawn path).
+        /// </summary>
+        private static FlattenedTroopRoster BuildShuffledPriorTroopsForSide(
+            MapEvent mapEvent, BattleSideEnum side)
+        {
+            if (mapEvent == null) return null;
+            var flat = new FlattenedTroopRoster();
+            var entries = new List<(CharacterObject troop, bool wounded)>();
+            foreach (var mep in mapEvent.GetMapEventSide(side).Parties)
+            {
+                var roster = mep.Party?.MemberRoster;
+                if (roster == null) continue;
+                for (int i = 0; i < roster.Count; i++)
+                {
+                    var ch = roster.GetCharacterAtIndex(i);
+                    if (ch == null || ch.IsHero) continue;
+                    int healthy = roster.GetElementNumber(i) - roster.GetElementWoundedNumber(i);
+                    for (int k = 0; k < healthy; k++) entries.Add((ch, false));
+                    int wounded = roster.GetElementWoundedNumber(i);
+                    for (int k = 0; k < wounded; k++) entries.Add((ch, true));
+                }
+            }
+            // Fisher-Yates shuffle via MBRandom so the selection is
+            // run-deterministic within the game's random stream.
+            for (int i = entries.Count - 1; i > 0; i--)
+            {
+                int j = MBRandom.RandomInt(i + 1);
+                (entries[i], entries[j]) = (entries[j], entries[i]);
+            }
+            foreach (var (troop, wounded) in entries)
+            {
+                flat.Add(troop, wounded);
+            }
+            return flat;
+        }
+
+        /// <summary>
+        /// Converts a UI-selected <see cref="TroopRoster"/> into a
+        /// <see cref="FlattenedTroopRoster"/> for the ambusher-side
+        /// supplier. Null input returns null (vanilla allocation
+        /// order). Preserves the selection order so the player's
+        /// pick drives the initial spawn directly.
+        /// </summary>
+        private static FlattenedTroopRoster BuildFlattenedPriorTroops(TroopRoster selection)
+        {
+            if (selection == null) return null;
+            var flat = new FlattenedTroopRoster();
+            for (int i = 0; i < selection.Count; i++)
+            {
+                var ch = selection.GetCharacterAtIndex(i);
+                if (ch == null || ch.IsHero) continue;
+                int healthy = selection.GetElementNumber(i) - selection.GetElementWoundedNumber(i);
+                for (int k = 0; k < healthy; k++) flat.Add(ch, false);
+                int wounded = selection.GetElementWoundedNumber(i);
+                for (int k = 0; k < wounded; k++) flat.Add(ch, true);
+            }
+            return flat;
         }
     }
 
