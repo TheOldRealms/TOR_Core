@@ -34,9 +34,11 @@ namespace TOR_Core.CharacterDevelopment
             _gunPowder = Game.Current.ObjectManager.RegisterPresumedObject(new SkillObject("Gunpowder"));
             _spellCraft = Game.Current.ObjectManager.RegisterPresumedObject(new SkillObject("Spellcraft"));
             _feralCombat = Game.Current.ObjectManager.RegisterPresumedObject(new SkillObject("FeralCombat"));
-            // NOT registered with ObjectManager: we only want it as a
-            // placeholder SkillVM source, never in Skills.All iterations.
-            _emptySkillSlot = new SkillObject(EmptySkillSlotStringId);
+            // Registered with ObjectManager so SkillVM's ctor can call
+            // hero.GetSkillValue(sentinel) + hero.HeroDeveloper.GetFocus(sentinel)
+            // without NREing on unknown PropertyObject keys. Filtered out
+            // of attribute grouping downstream by its empty Attributes array.
+            _emptySkillSlot = Game.Current.ObjectManager.RegisterPresumedObject(new SkillObject(EmptySkillSlotStringId));
             _faith.Initialize(TORTextHelper.GetTextObject("tor_skill_faith", "Faith"), TORTextHelper.GetTextObject("tor_skill_faith_description", "Faith signifies your beliefs and your conviction in your chosen religion."), [DefaultCharacterAttributes.Social]);
             _gunPowder.Initialize(TORTextHelper.GetTextObject("tor_skill_gunpowder", "Gunpowder"), TORTextHelper.GetTextObject("tor_skill_gunpowder_description", "Gunpowder skill governs your ability to handle firearms and artillery."), [DefaultCharacterAttributes.Control]);
             _spellCraft.Initialize(TORTextHelper.GetTextObject("tor_skill_spellcraft", "Spellcraft"), TORTextHelper.GetTextObject("tor_skill_spellcraft_description", "Spellcraft is your ability to use magic."), [DefaultCharacterAttributes.Intelligence]);
