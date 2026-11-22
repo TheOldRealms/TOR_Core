@@ -24,6 +24,7 @@ using TOR_Core.BattleMechanics.AI.TeamAI;
 using TOR_Core.BattleMechanics.Banners;
 using TOR_Core.BattleMechanics.Dismemberment;
 using TOR_Core.BattleMechanics.Firearms;
+using TOR_Core.BattleMechanics.ForearmVisuals;
 using TOR_Core.BattleMechanics.Morale;
 using TOR_Core.BattleMechanics.Reinforcements;
 using TOR_Core.BattleMechanics.StatusEffect;
@@ -339,6 +340,7 @@ namespace TOR_Core
             mission.AddMissionBehavior(new WeaponHitScriptsMissionLogic());
             mission.AddMissionBehavior(new CustomBannerMissionLogic());
             mission.AddMissionBehavior(new DismembermentMissionLogic());
+            mission.AddMissionBehavior(new ForearmVisualMissionBehavior());
             mission.AddMissionBehavior(new AddAgentComponentsMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new AnimationTriggerMissionLogic());
