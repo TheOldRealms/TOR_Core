@@ -11468,4 +11468,24 @@
       <string>Expendable</string>
     </Attributes>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_lord_skulltakers_first_2">
+    <Attributes>
+      <string>EncyclopediaHelmet</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_lord_skulltakers_first_3">
+    <Attributes>
+      <string>EncyclopediaHelmet</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_lord_skulltakers_first_4">
+    <Attributes>
+      <string>EncyclopediaHelmet</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_lord_skulltakers_first_6">
+    <Attributes>
+      <string>EncyclopediaHelmet</string>
+    </Attributes>
+  </CharacterExtendedInfo>
 </ArrayOfCharacterExtendedInfo>

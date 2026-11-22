@@ -761,4 +761,8 @@
   <Hero id="tor_beastmen_lord_morbagh" faction="Faction.tor_beastmen_gorehollow_clan" text="{=str_tor_beastmen_lord_morbagh_biography}Morbagh the Blood-Choked has butchered his way to the position of Beastlord, slaking his thirst on the blood of his tribe. Now blessed by the god of war, his mouth is constantly filled with blood, forever spilling and foaming between his tusks. He claims to hear the voice of Khorne and to feel more keenly the call of the god than any other beastman, yet glorious carnage on a scale pleasing to Khorne is yet to start." />
   <Hero id="tor_beastmen_lord_gnarl_tooth" faction="Faction.tor_beastmen_gorehollow_clan" text="{=str_tor_beastmen_lord_gnarl_tooth_biography}The shaman of the tribe is mutated beyond reason, as if his very existence was an affront to Khorne and his abhorrence of magic. Yet, Gnarl-Tooth survived the night of death and frenzy and so has been spared for now. He leads the smallest of the brayherd at the service of Morbagh, made of the rejected, the despised and the weak. Yet, for all their flaws, they will follow Gnarl-Tooth and its deep cunning. Indeed, the shaman’s broken body hides a sinister and vengeful mind, and he has found in Vorgar a tool for his dark deeds." />
   <Hero id="tor_chaos_lord_skulltakers_factionleader" faction="Faction.skulltakers_clan_1" text="(...)" />
+  <Hero id="tor_chaos_lord_skulltakers_first_2" faction="Faction.skulltakers_clan_1" text="(...)" />
+  <Hero id="tor_chaos_lord_skulltakers_first_3" faction="Faction.skulltakers_clan_1" text="(...)" />
+  <Hero id="tor_chaos_lord_skulltakers_first_4" faction="Faction.skulltakers_clan_1" text="(...)" />
+  <Hero id="tor_chaos_lord_skulltakers_first_5" faction="Faction.skulltakers_clan_1" text="(...)" />
 </Heroes>

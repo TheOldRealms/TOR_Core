@@ -6086,7 +6086,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_brass_keep_atmo_w_night" scene_name_1="TOR_brass_keep_atmo_w_night" scene_name_2="TOR_brass_keep_atmo_w_night" scene_name_3="TOR_brass_keep_atmo_w_night" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="lordshall" scene_name_1="TOR_nurgle_keep_atmo_w_night" scene_name_2="TOR_nurgle_keep_atmo_w_night" scene_name_3="TOR_nurgle_keep_atmo_w_night" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
     </Locations>
   </Settlement>
@@ -7306,19 +7306,19 @@
   </Settlement>
   <Settlement id="castle_LY1" name="{=Settlements.Settlement.name.castle_LY1}Barley Motte" owner="Faction.skulltakers_clan_1" posX="838.565" posY="1235.31" culture="Culture.chaos_culture" gate_posX="837.9566" gate_posY="1234.493" text="{=Settlements.Settlement.text.castle_LY1}Bordering the Dukedom of L'Anguille is Barley Motte, a strategic castle situated on a hilltop that oversees the surrounding northern Lyonesse hills. The castle serves as a military stronghold and a symbol of protection for the neighboring villages. However, the location is also infamous in Bretonnia for being home to bandits, necromancers, and Chaos cults, with most Lyonens believing the Motte to be cursed despite its strategic importance.">
     <Components>
-      <Town id="castle_comp_LY1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="490">
+      <Town id="castle_comp_LY1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="820">
         <Buildings>
-          <Building id="building_castle_fortifications" level="1" />
-          <Building id="building_castle_barracks" level="0" />
-          <Building id="building_castle_training_fields" level="0" />
-          <Building id="building_castle_guard_house" level="0" />
-          <Building id="building_castle_siege_workshop" level="0" />
+          <Building id="building_castle_fortifications" level="3" />
+          <Building id="building_castle_barracks" level="2" />
+          <Building id="building_castle_training_fields" level="1" />
+          <Building id="building_castle_guard_house" level="2" />
+          <Building id="building_castle_siege_workshop" level="3" />
           <Building id="building_castle_castallans_office" level="0" />
-          <Building id="building_castle_granary" level="0" />
-          <Building id="building_castle_craftmans_quarters" level="0" />
+          <Building id="building_castle_granary" level="1" />
+          <Building id="building_castle_craftmans_quarters" level="1" />
           <Building id="building_castle_farmlands" level="1" />
           <Building id="building_castle_mason" level="0" />
-          <Building id="building_castle_roads_and_paths" level="0" />
+          <Building id="building_castle_roads_and_paths" level="1" />
         </Buildings>
       </Town>
     </Components>
@@ -7328,9 +7328,9 @@
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_LY2_2" name="{=Settlements.Settlement.name.castle_village_LYI_2_2}Le Havre" posX="850.523" posY="1268.381" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_LY2_2}Le Havre is the only Lyonesse port village with naval access to the Sea of Chaos. Vital to maritime trade, the docks are always busy with ships transporting goods to and from distant lands, and the villagers are known for their skills in navigation and commerce.">
+  <Settlement id="castle_village_LY1_1" name="{=Settlements.Settlement.name.castle_village_LYI_1_1}Le Havre" posX="850.523" posY="1268.381" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_LY1_1}Le Havre is the only Lyonesse port village with naval access to the Sea of Chaos. Vital to maritime trade, the docks are always busy with ships transporting goods to and from distant lands, and the villagers are known for their skills in navigation and commerce.">
     <Components>
-      <Village id="castle_village_comp_LY2_2" village_type="VillageType.wheat_farm" hearth="200" bound="Settlement.castle_LY2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_LY1_1" village_type="VillageType.wheat_farm" hearth="200" bound="Settlement.town_LY3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_bretonnia_village_006" />
