@@ -129,8 +129,8 @@
   <string id="tor_skill_gunpowder_description" text="{=str_tor_skill_gunpowder_description}Gunpowder skill governs your ability to handle firearms and artillery." />
   <string id="tor_skill_spellcraft" text="{=str_tor_skill_spellcraft}Spellcraft" />
   <string id="tor_skill_spellcraft_description" text="{=str_tor_skill_spellcraft_description}Spellcraft is your ability to use magic." />
-  <string id="tor_skill_feral_combat" text="{=str_tor_skill_feral_combat}Feral Combat" />
-  <string id="tor_skill_feral_combat_description" text="{=str_tor_skill_feral_combat_description}Feral Combat governs natural weapons, claws, and the paired weapons of those who fight without a shield." />
+  <string id="tor_skill_berserk" text="{=str_tor_skill_berserk}Berserk" />
+  <string id="tor_skill_berserk_description" text="{=str_tor_skill_berserk_description}Berserk governs natural weapons, claws, and the paired weapons of those who fight without a shield." />
   <string id="tor_skill_empty_slot" text="{=str_tor_skill_empty_slot} " />
   <string id="tor_skill_empty_slot_description" text="{=str_tor_skill_empty_slot_description} " />
 

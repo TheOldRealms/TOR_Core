@@ -17,7 +17,7 @@ namespace TOR_Core.Extensions.UI
     /// Adds <see cref="PaddedSkills"/> to <see cref="CharacterDeveloperHeroItemVM"/>,
     /// a parallel view of the hero's skills grouped by attribute and padded
     /// to a fixed 4-column width. The CharacterDeveloper prefab binds its
-    /// SkillsGrid to this list so Vigor's four skills (incl. FeralCombat)
+    /// SkillsGrid to this list so Vigor's four skills (incl. Berserk)
     /// line up with the other attributes' three + empty slot without
     /// breaking the per-attribute row alignment.
     /// </summary>
