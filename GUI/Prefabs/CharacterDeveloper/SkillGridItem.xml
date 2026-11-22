@@ -22,7 +22,7 @@
     <Constant Name="SkillIcon.Size" BooleanCheck="*HasExtraSkills" OnTrue="78" OnFalse="76" />
     <Constant Name="SkillIconShadow.Width" BooleanCheck="*HasExtraSkills" OnTrue="94" OnFalse="92" />
     <Constant Name="SkillIconShadow.Height" BooleanCheck="*HasExtraSkills" OnTrue="84" OnFalse="94" />
-    <Constant Name="SkillIconShadow.MarginLeft" BooleanCheck="*HasExtraSkills" OnTrue="5" OnFalse="0" />
+    <Constant Name="SkillIconShadow.MarginLeft" BooleanCheck="*HasExtraSkills" OnTrue="0" OnFalse="0" />
     <Constant Name="SkillIconShadow.MarginTop" BooleanCheck="*HasExtraSkills" OnTrue="20" OnFalse="28" />
 
     <Constant Name="LevelText.MarginBottom" BooleanCheck="*HasExtraSkills" OnTrue="36" OnFalse="46" />
