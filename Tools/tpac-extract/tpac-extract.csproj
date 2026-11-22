@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>TOR.TpacExtract</RootNamespace>
+    <AssemblyName>tpac-extract</AssemblyName>
+    <!-- Keep the tool out of the Modding Kit's module-assembly scan. -->
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="TpacTool.Lib">
+      <HintPath>lib/TpacTool.Lib.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="TpacTool.IO">
+      <HintPath>lib/TpacTool.IO.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Runtime dependency of TpacTool.Lib; not transitively resolvable
+         since we reference the DLL directly, so we restate it here. -->
+    <PackageReference Include="lz4net" Version="1.0.15.93" />
+  </ItemGroup>
+
+</Project>

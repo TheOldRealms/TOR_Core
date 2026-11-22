@@ -330,5 +330,24 @@ namespace TOR_Core.Models
 
             return totalMeat;
         }
+
+        /// <summary>ByTheRoad (Roguery 75 primary): "+5% loot from
+        /// caravans and villages." Scales the plundered gold amount
+        /// when the defeated party is a caravan or a village (either
+        /// as a mobile caravan party or when raiding/looting the
+        /// village settlement).</summary>
+        public override int CalculatePlunderedGoldAmountFromDefeatedParty(PartyBase defeatedParty)
+        {
+            int baseGold = base.CalculatePlunderedGoldAmountFromDefeatedParty(defeatedParty);
+            var main = MobileParty.MainParty;
+            if (main?.LeaderHero == null) return baseGold;
+            if (!main.HasPerk(TOR_Core.CharacterDevelopment.TORPerks.Roguery.ByTheRoad)) return baseGold;
+            bool isCaravan = defeatedParty?.MobileParty?.IsCaravan ?? false;
+            bool isVillage = defeatedParty?.IsSettlement == true
+                              && defeatedParty.Settlement?.IsVillage == true;
+            if (!isCaravan && !isVillage) return baseGold;
+            float scale = 1f + TOR_Core.CharacterDevelopment.TORPerks.Roguery.ByTheRoad.PrimaryBonus;
+            return (int)(baseGold * scale);
+        }
     }
 }

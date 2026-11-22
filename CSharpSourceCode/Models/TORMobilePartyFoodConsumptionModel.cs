@@ -104,6 +104,21 @@ namespace TOR_Core.Models
                 }
             }
 
+            // Wolf Pack secondary: party-leader roguery perk reduces
+            // food consumption while the player is in ambush stance.
+            // Food is stored as a negative number, so the "less
+            // consumption" factor is positive and lifts it toward zero.
+            if (party.LeaderHero != null
+                && party.LeaderHero.GetPerkValue(TOR_Core.CharacterDevelopment.TORPerks.Roguery.WolfPack))
+            {
+                var ambush = Campaign.Current?.GetCampaignBehavior<TOR_Core.CampaignMechanics.Ambush.AmbushCampaignBehavior>();
+                if (ambush != null && ambush.IsPlayerInStealth)
+                {
+                    float factor = -TOR_Core.CharacterDevelopment.TORPerks.Roguery.WolfPack.SecondaryBonus;
+                    consumption.AddFactor(factor, TORTextHelper.GetTextObject("tor_wolfpack_stealth_food", "Wolf Pack (ambush stance)"));
+                }
+            }
+
             //there exist divisions that blindly take in consumption values for the denominator - the AI will crash if food consumption hits 0. For the player, unknown.
             consumption.LimitMax(-0.01f);//food consumption is a negative number
             return consumption;

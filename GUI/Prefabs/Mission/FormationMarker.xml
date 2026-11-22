@@ -1,0 +1,51 @@
+<Prefab>
+  <!-- §6 bluff override of Native/GUI/Prefabs/Mission/FormationMarker.xml.
+       Only diff from vanilla is the `IsHidden="@IsBluffCountHidden"` on
+       the troop-count TextWidget (line 12 below). AmbushBluffPatches
+       hijacks IsCenterOfFocus to true when the current mission is
+       bluffed, the formation is enemy, and CountOfUnits > 5 — hides
+       the number only, keeps the formation icon + direction + targeting
+       untouched. Side effect: when the player is actively aiming at a
+       bluffed enemy formation, the focus ring may render — minor
+       since the player is close enough to see troops directly in that
+       moment. -->
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+      <Children>
+
+        <Widget DataSource="{Targets}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+          <ItemTemplate>
+
+            <FormationMarkerListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Position="@ScreenPosition" StackLayout.LayoutMethod="VerticalTopToBottom" IsTargetingAFormation="@IsTargetingAFormation" WSign="@WSign" IsMarkerEnabled="@IsEnabled" Distance="@Distance" ShowDistanceTexts="@ShowDistanceTexts" FarAlphaTarget="@FarAlphaTarget" FarDistanceCutoff="@FarDistanceCutoff" CloseDistanceCutoff="@CloseDistanceCutoff" ClosestFadeoutRange="@ClosestFadeoutRange" VisibilityRatio="@VisibilityRatio" AlwaysOnDistance="@AlwaysOnDistance" VisibilityState="@VisibilityState" MarkerType="@FormationType" FormationTypeMarker="PlacementList\TeamTypeWidget\FormationTypeMarker" TeamType="@TeamType" TeamTypeMarker="PlacementList\TeamTypeWidget" IconBrush="Compass.Type.Icons">
+              <Children>
+
+                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" HorizontalAlignment="Center" IntText="@Size" Brush="NameMarker.Distance.Text" IsHidden="@IsBluffCountHidden"/>
+
+                <ListPanel Id="PlacementList" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
+                  <Children>
+                    <BrushWidget Id="TeamTypeWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="50" SuggestedWidth="50" Brush="FormationMarker.TeamType" Brush.GlobalColor="@TeamColor">
+                      <Children>
+                        <Widget Id="FormationTypeMarker" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center"/>
+                        <FormationFocusedMarkerWidget Id="FormationFocusedMarker" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" Brush="OrderOfBattle.Formation.Focus.Indicator" Brush.AlphaFactor="1.0" HorizontalAlignment="Center" VerticalAlignment="Center" NormalSize="65" FocusedSize="71" IsCenterOfFocus="@IsCenterOfFocus" IsTargetingAFormation="@IsTargetingAFormation" IsFormationTargetRelevant="@IsFormationTargetRelevant" />
+                      </Children>
+                    </BrushWidget>
+                  </Children>
+                </ListPanel>
+
+                <ListPanel Id="DistanceLayout" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="60" StackLayout.LayoutMethod="HorizontalCentered" HorizontalAlignment="Center" IsVisible="@ShowDistanceTexts">
+                  <Children>
+                    <Widget Id="FootprintIcon" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="36" SuggestedWidth="22" Sprite="General\Mission\namemarker_distance" AlphaFactor="0.7" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextWidget Id="DistanceTextWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="NameMarker.Distance.Text" HorizontalAlignment="Center" VerticalAlignment="Center" Text="@DistanceText"/>
+                  </Children>
+                </ListPanel>
+
+              </Children>
+            </FormationMarkerListPanel>
+
+          </ItemTemplate>
+        </Widget>
+
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

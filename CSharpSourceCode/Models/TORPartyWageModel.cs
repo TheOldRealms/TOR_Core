@@ -228,6 +228,16 @@ namespace TOR_Core.Models
                     }
                 }
 
+                // High Roller secondary: quartermaster-tier Roguery
+                // perk reduces wages for stealth specialist troops
+                // (MASTER_AMBUSHER attribute). Factor is negative.
+                if (mobileParty.HasPerk(TORPerks.Roguery.HighRoller, checkSecondaryRole: true)
+                    && elementCopyAtIndex.Character.HasAttribute(CharacterAttributes.MASTER_AMBUSHER))
+                {
+                    value.Add(TORPerks.Roguery.HighRoller.SecondaryBonus * troopwage,
+                        includeDescriptions ? new TextObject("{=tor_perk_high_roller_wage}High Roller") : null);
+                }
+
                 if (leaderCulture.StringId == TORConstants.Cultures.DAWI)
                 {
                     if (elementCopyAtIndex.Character.IsDwarfGunUnit())
@@ -314,6 +324,20 @@ namespace TOR_Core.Models
         public override ExplainedNumber GetTroopRecruitmentCost(CharacterObject troop, Hero buyerHero, bool withoutItemCost = false)
         {
             var value = base.GetTroopRecruitmentCost(troop, buyerHero, withoutItemCost);
+
+            // Intimidator secondary: party-leader roguery perk discounts
+            // mercenary-type troop hire costs (tavern mercs, gangsters,
+            // caravan guards). Applied before the TOR-only high-tier
+            // override path so it covers tavern mercs at any level.
+            bool isMercenaryType = troop.Occupation == Occupation.Mercenary
+                || troop.Occupation == Occupation.Gangster
+                || troop.Occupation == Occupation.CaravanGuard;
+            if (isMercenaryType && buyerHero?.PartyBelongedTo != null
+                && buyerHero.PartyBelongedTo.HasPerk(TORPerks.Roguery.Intimidator, checkSecondaryRole: true))
+            {
+                value.AddFactor(TORPerks.Roguery.Intimidator.SecondaryBonus,
+                    new TextObject("{=tor_perk_intimidator_hire}Intimidator"));
+            }
 
             if (troop.Level <= 41)
             {
