@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using NLog;
 using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
@@ -7,6 +9,7 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.CharacterDeveloper;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.UI
 {
@@ -55,6 +58,21 @@ namespace TOR_Core.Extensions.UI
         /// <see cref="SlotsPerAttribute"/> entries using placeholder SkillVMs.
         /// </summary>
         private void RebuildPaddedSkills()
+        {
+            try
+            {
+                RebuildPaddedSkillsCore();
+            }
+            catch (Exception e)
+            {
+                TORCommon.Log(LogLevel.Error,
+                    "[PaddedSkills] RebuildPaddedSkills threw: " + e.GetType().Name
+                    + ": " + e.Message + "\n" + e.StackTrace);
+                PaddedSkills = new MBBindingList<SkillVM>();
+            }
+        }
+
+        private void RebuildPaddedSkillsCore()
         {
             var heroItem = _vm as CharacterDeveloperHeroItemVM;
             if (heroItem?.Skills == null || heroItem.Hero == null)

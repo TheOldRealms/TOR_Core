@@ -1,6 +1,9 @@
+using System;
+using NLog;
 using TaleWorlds.CampaignSystem.ViewModelCollection.CharacterDeveloper;
 using TaleWorlds.Library;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.UI
 {
@@ -19,8 +22,17 @@ namespace TOR_Core.Extensions.UI
 
         public SkillVMExtension(ViewModel vm) : base(vm)
         {
-            var skillVm = vm as SkillVM;
-            IsPlaceholder = skillVm?.Skill?.StringId == TORSkills.EmptySkillSlotStringId;
+            try
+            {
+                var skillVm = vm as SkillVM;
+                IsPlaceholder = skillVm?.Skill?.StringId == TORSkills.EmptySkillSlotStringId;
+            }
+            catch (Exception e)
+            {
+                TORCommon.Log(LogLevel.Error,
+                    "[SkillVMExtension] ctor threw: " + e.GetType().Name
+                    + ": " + e.Message + "\n" + e.StackTrace);
+            }
         }
 
         [DataSourceProperty]
