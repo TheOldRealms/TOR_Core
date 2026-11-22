@@ -129,6 +129,8 @@
   <string id="tor_skill_gunpowder_description" text="{=str_tor_skill_gunpowder_description}Gunpowder skill governs your ability to handle firearms and artillery." />
   <string id="tor_skill_spellcraft" text="{=str_tor_skill_spellcraft}Spellcraft" />
   <string id="tor_skill_spellcraft_description" text="{=str_tor_skill_spellcraft_description}Spellcraft is your ability to use magic." />
+  <string id="tor_skill_feral_combat" text="{=str_tor_skill_feral_combat}Feral Combat" />
+  <string id="tor_skill_feral_combat_description" text="{=str_tor_skill_feral_combat_description}Feral Combat governs natural weapons, claws, and the paired weapons of those who fight without a shield." />
 
   <!-- Skill Effects - Skill labels -->
   <string id="tor_skill_effect_gun_reload_speed" text="{=str_tor_skill_effect_gun_reload_speed}Gunpowder firearms reload speed: +{a0} %" />

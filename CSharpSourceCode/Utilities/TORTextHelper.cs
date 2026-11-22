@@ -27,8 +27,6 @@ namespace TOR_Core.Extensions
         {
             attributeId = attributeId.ToLower();
             List<CharacterAttribute> attributes = Game.Current.DefaultCharacterAttributes.GetCharacterAttributes();
-            
-            attributes.Add(TORAttributes.Discipline);
 
             return attributes.FirstOrDefault(attribute => attributeId == attribute.StringId)?.Name;
         }

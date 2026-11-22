@@ -27,9 +27,12 @@ namespace TOR_Core.CharacterDevelopment
             {
                 if (perk == TORPerks.GunPowder.FiringDrills)
                 {
-                    if (hero.GetAttributeValue(TORAttributes.Discipline) < Campaign.Current.Models.CharacterDevelopmentModel.MaxAttribute)
+                    // Discipline retired; Gunpowder lives on vanilla Control now.
+                    // FiringDrills still grants an attribute point; route it to Control.
+                    var target = DefaultCharacterAttributes.Control;
+                    if (hero.GetAttributeValue(target) < Campaign.Current.Models.CharacterDevelopmentModel.MaxAttribute)
                     {
-                        hero.HeroDeveloper.AddAttribute(TORAttributes.Discipline, 1, false);
+                        hero.HeroDeveloper.AddAttribute(target, 1, false);
                     }
                     else hero.HeroDeveloper.UnspentAttributePoints += 1;
                 }

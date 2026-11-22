@@ -3,19 +3,21 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.CharacterDevelopment
 {
+    /// <summary>
+    /// Discipline was retired when Faith / Gunpowder / Spellcraft moved onto
+    /// vanilla attributes. The accessor stays for binary compatibility with
+    /// callers that still reference it; it now returns null and those
+    /// callers must null-check before dereferencing.
+    /// </summary>
     public class TORAttributes
     {
-        private CharacterAttribute _discipline;
-
         public static TORAttributes Instance { get; private set; }
 
-        public static CharacterAttribute Discipline => Instance._discipline;
+        public static CharacterAttribute Discipline => null;
 
         public TORAttributes()
         {
             Instance = this;
-            _discipline = Game.Current.ObjectManager.RegisterPresumedObject(new CharacterAttribute("discipline"));
-            _discipline.Initialize(TORTextHelper.GetTextObject("tor_attribute_discipline", "Discipline"), TORTextHelper.GetTextObject("tor_attribute_discipline_description", "Discipline represents mental fortitude and self-control."), TORTextHelper.GetTextObject("tor_attribute_discipline_abbreviation", "DIS"));
         }
     }
 }

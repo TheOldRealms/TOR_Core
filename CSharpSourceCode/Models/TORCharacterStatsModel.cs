@@ -331,7 +331,8 @@ namespace TOR_Core.Models
         {
             if (hero.GetPerkValue(TORPerks.Faith.Devotee))
             {
-                number.Add(TORPerks.Faith.Devotee.PrimaryBonus * hero.GetAttributeValue(TORAttributes.Discipline), TORTextHelper.GetTextObject("tor_stats_perks_text", "Perks"));
+                // Discipline retired; Faith lives on vanilla Social now.
+                number.Add(TORPerks.Faith.Devotee.PrimaryBonus * hero.GetAttributeValue(DefaultCharacterAttributes.Social), TORTextHelper.GetTextObject("tor_stats_perks_text", "Perks"));
             }
 
             var healthFromEquipment = hero.GetAggregatedStatEffectFromEquipment(ItemTraitStatType.HealthMax);

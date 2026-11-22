@@ -26,7 +26,8 @@ namespace TOR_Core.HarmonyPatches
 
             if (perk == TORPerks.GunPowder.FiringDrills)
             {
-                hero.HeroDeveloper.RemoveAttribute(TORAttributes.Discipline, 1);
+                // Discipline retired; mirror the Control-side award in TORPerkHandlerCampaignBehavior.
+                hero.HeroDeveloper.RemoveAttribute(DefaultCharacterAttributes.Control, 1);
             }
             if (perk == TORPerks.Faith.DivineMission)
             {

@@ -1,0 +1,71 @@
+<Prefab>
+  <!--
+    TOR override: forces the Small-icon variant (HasExtraSkills=true default)
+    because the 4-column SkillsGrid cell is 134 wide. At the Default (178)
+    sizes the focus-point dots and the level number both land on top of the
+    icon. Dot widths are also halved from vanilla so the 5-dot focus bar
+    fits alongside the icon in the narrower cell.
+  -->
+  <Parameters>
+    <Parameter Name="HasExtraSkills" DefaultValue="true" />
+  </Parameters>
+  <Constants>
+
+    <Constant Name="CharacterDeveloper.SkillButtonBackground.Width" BrushLayer="Default" BrushName="CharacterDeveloper.SkillButtonBackground" BrushValueType="Width" />
+    <Constant Name="CharacterDeveloper.SkillButtonBackground.Height" BooleanCheck="*HasExtraSkills" OnTrue="!CharacterDeveloper.SkillButtonBackground.Height.Small" OnFalse="!CharacterDeveloper.SkillButtonBackground.Height.Default" />
+
+    <Constant Name="CharacterDeveloper.SkillButtonBackground.Height.Default" BrushLayer="Default" BrushName="CharacterDeveloper.SkillButtonBackground" BrushValueType="Height" />
+    <Constant Name="CharacterDeveloper.SkillButtonBackground.Height.Small" BrushLayer="Default" BrushName="CharacterDeveloper.SkillButtonBackground" BrushValueType="Height" MultiplyResult="0.857" />
+
+    <Constant Name="NameText.Height" BooleanCheck="*HasExtraSkills" OnTrue="24" OnFalse="30" />
+
+    <Constant Name="SkillIcon.Size" BooleanCheck="*HasExtraSkills" OnTrue="60" OnFalse="76" />
+    <Constant Name="SkillIconShadow.Width" BooleanCheck="*HasExtraSkills" OnTrue="72" OnFalse="92" />
+    <Constant Name="SkillIconShadow.Height" BooleanCheck="*HasExtraSkills" OnTrue="76" OnFalse="94" />
+    <Constant Name="SkillIconShadow.MarginLeft" BooleanCheck="*HasExtraSkills" OnTrue="5" OnFalse="0" />
+
+    <Constant Name="LevelText.MarginBottom" BooleanCheck="*HasExtraSkills" OnTrue="36" OnFalse="46" />
+    <Constant Name="SkillPoints.MarginBottom" BooleanCheck="*HasExtraSkills" OnTrue="6" OnFalse="16" />
+
+  </Constants>
+  <Window>
+    <SkillGridItemButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="134" SuggestedHeight="!CharacterDeveloper.SkillButtonBackground.Height" VerticalAlignment="Top" CanLearnBrush="CharacterDeveloper.SkillButtonBackground" CannotLearnBrush="CharacterDeveloper.SkillButtonBackground.CannotLearn" Command.Click="ExecuteInspect" CurrentFocusLevel="@CurrentFocusLevel" FocusLevelWidget="FocusLevelWidget" IsSelected="@IsInspected" Command.AlternateClick="ExecuteShowSkillConcept" CanLearnSkill="@CanLearnSkill" IsHidden="@IsPlaceholder">
+      <Children>
+
+        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="!NameText.Height" VerticalAlignment="Top" MarginLeft="10" Brush="CharacterDeveloper.GridSkillName.Text" IsEnabled="@CanLearnSkill" Text="@NameText" DoNotAcceptEvents="true"/>
+
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!SkillIconShadow.Width" SuggestedHeight="!SkillIconShadow.Height" HorizontalAlignment="Left" MarginLeft="!SkillIconShadow.MarginLeft" MarginTop="28" Sprite="CharacterDeveloper\skills_icon_shadow" IsDisabled="true">
+          <Children>
+            <SkillIconVisualWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!SkillIcon.Size" SuggestedHeight="!SkillIcon.Size" HorizontalAlignment="Center" VerticalAlignment="Center" SkillId="@SkillId"  UseSmallVariation="true"/>
+          </Children>
+        </Widget>
+
+        <!-- Level number: right of the icon, both bottom-aligned. -->
+        <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="44" SuggestedHeight="36" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="5" MarginTop="18" Brush="CharacterDeveloper.GridSkillLevel.Text" IntText="@Level" DoNotAcceptEvents="true" IsEnabled="@CanLearnSkill"/>
+
+        <BrushWidget Id="FocusLevelWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="87" SuggestedHeight="43" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginRight="3" MarginBottom="4" Brush="SkillFocusLevelBrush" IsDisabled="true" IsVisible="false"/>
+
+        <!-- Focus-point dots: moved below the icon, centred, tighter spacing so five fit the 134 cell. -->
+        <SkillPointsContainerListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="4" CurrentFocusLevel="@CurrentFocusLevel" IsEnabled="false">
+          <Children>
+            <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="7" SuggestedHeight="20" Brush="Skill.Point.Small" MarginRight="2" ForcePixelPerfectRenderPlacement="true"/>
+            <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="7" SuggestedHeight="20" Brush="Skill.Point.Small" MarginRight="2" ForcePixelPerfectRenderPlacement="true"/>
+            <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="7" SuggestedHeight="20" Brush="Skill.Point.Small" MarginRight="2" ForcePixelPerfectRenderPlacement="true"/>
+            <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="7" SuggestedHeight="20" Brush="Skill.Point.Small" MarginRight="2" ForcePixelPerfectRenderPlacement="true"/>
+            <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="7" SuggestedHeight="20" Brush="Skill.Point.Small" ForcePixelPerfectRenderPlacement="true"/>
+          </Children>
+        </SkillPointsContainerListPanel>
+
+        <!-- <HintWidget DataSource="{SkillFocusAndLevelHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true" /> -->
+        <ValueBasedVisibilityWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="33" SuggestedHeight="36" IndexToBeVisible="0" WatchType="BiggerThan" IndexToWatch="@NumOfUnopenedPerks" HorizontalAlignment="Right" VerticalAlignment="Top" PositionYOffset="-4" IsEnabled="false">
+          <Children>
+            <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="CharacterDeveloper.PerkNotificationBrush"/>
+            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush.FontSize="18"  IntText="@NumOfUnopenedPerks" ClipContents="false"/>
+          </Children>
+        </ValueBasedVisibilityWidget>
+
+
+      </Children>
+    </SkillGridItemButtonWidget>
+  </Window>
+</Prefab>

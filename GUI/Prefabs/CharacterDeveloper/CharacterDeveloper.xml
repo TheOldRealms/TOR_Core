@@ -577,8 +577,8 @@
                 </NavigatableListPanel>
 
                 <!--Skills Grid-->
-                <NavigationScopeTargeter ScopeID="SkillsScope" ScopeParent="..\SkillsGrid" ScopeMovements="Horizontal" AlternateScopeMovements="Vertical" AlternateMovementStepSize="3" LeftNavigationScope="AttributesScope" RightNavigationScope="PerksFirstScope" />
-                <NavigatableGridWidget Id="SkillsGrid" DataSource="{CurrentCharacter\Skills}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" DefaultCellWidth="178" DefaultCellHeight="130" ColumnCount="3" MarginLeft="11.558">
+                <NavigationScopeTargeter ScopeID="SkillsScope" ScopeParent="..\SkillsGrid" ScopeMovements="Horizontal" AlternateScopeMovements="Vertical" AlternateMovementStepSize="4" LeftNavigationScope="AttributesScope" RightNavigationScope="PerksFirstScope" />
+                <NavigatableGridWidget Id="SkillsGrid" DataSource="{CurrentCharacter\PaddedSkills}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" DefaultCellWidth="134" DefaultCellHeight="130" ColumnCount="4" MarginLeft="11.558">
                   <ItemTemplate>
                     <SkillGridItem VerticalAlignment="Top" HorizontaAlignment="Center"/>
                   </ItemTemplate>
