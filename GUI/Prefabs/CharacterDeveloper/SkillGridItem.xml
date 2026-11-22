@@ -19,9 +19,9 @@
 
     <Constant Name="NameText.Height" BooleanCheck="*HasExtraSkills" OnTrue="24" OnFalse="30" />
 
-    <Constant Name="SkillIcon.Size" BooleanCheck="*HasExtraSkills" OnTrue="60" OnFalse="76" />
-    <Constant Name="SkillIconShadow.Width" BooleanCheck="*HasExtraSkills" OnTrue="72" OnFalse="92" />
-    <Constant Name="SkillIconShadow.Height" BooleanCheck="*HasExtraSkills" OnTrue="76" OnFalse="94" />
+    <Constant Name="SkillIcon.Size" BooleanCheck="*HasExtraSkills" OnTrue="84" OnFalse="76" />
+    <Constant Name="SkillIconShadow.Width" BooleanCheck="*HasExtraSkills" OnTrue="100" OnFalse="92" />
+    <Constant Name="SkillIconShadow.Height" BooleanCheck="*HasExtraSkills" OnTrue="90" OnFalse="94" />
     <Constant Name="SkillIconShadow.MarginLeft" BooleanCheck="*HasExtraSkills" OnTrue="5" OnFalse="0" />
 
     <Constant Name="LevelText.MarginBottom" BooleanCheck="*HasExtraSkills" OnTrue="36" OnFalse="46" />
@@ -45,8 +45,8 @@
 
         <BrushWidget Id="FocusLevelWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="87" SuggestedHeight="43" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginRight="3" MarginBottom="4" Brush="SkillFocusLevelBrush" IsDisabled="true" IsVisible="false"/>
 
-        <!-- Focus-point dots: moved below the icon, centred, tighter spacing so five fit the 134 cell. -->
-        <SkillPointsContainerListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="4" CurrentFocusLevel="@CurrentFocusLevel" IsEnabled="false">
+        <!-- Focus-point dots: right-aligned at the bottom, tightened so five fit alongside the icon. -->
+        <SkillPointsContainerListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginBottom="4" MarginRight="5" CurrentFocusLevel="@CurrentFocusLevel" IsEnabled="false">
           <Children>
             <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="7" SuggestedHeight="20" Brush="Skill.Point.Small" MarginRight="2" ForcePixelPerfectRenderPlacement="true"/>
             <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="7" SuggestedHeight="20" Brush="Skill.Point.Small" MarginRight="2" ForcePixelPerfectRenderPlacement="true"/>
