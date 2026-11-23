@@ -504,5 +504,21 @@ namespace TOR_Core.Extensions
             if (hideLeft) return HideHandType.Left;
             return HideHandType.None;
         }
+
+        /// <summary>
+        /// True if the item declares <c>GovernedBy=Berserk</c> in
+        /// <c>ExtendedItemObjectProperties</c>. Signals that this is
+        /// a dual-wield attack weapon: it should pair into an agent's
+        /// offhand via <c>BerserkWieldMissionLogic</c> and later earn
+        /// XP toward the Berserk skill instead of its weapon-class
+        /// default. Does NOT include defensive-forearm items; they're
+        /// not Berserk-governed.
+        /// </summary>
+        public static bool IsBerserkGoverned(this ItemObject item)
+        {
+            if (item == null) return false;
+            var info = item.GetTorSpecificDataReadOnly();
+            return info != null && info.GovernedBy == WeaponGovernance.Berserk;
+        }
     }
 }

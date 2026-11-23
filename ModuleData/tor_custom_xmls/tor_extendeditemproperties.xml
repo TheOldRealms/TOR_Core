@@ -7548,16 +7548,18 @@
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_weapon_slaangor_claw_001" RaceLock="gor2">
     <HideHand>Right</HideHand>
     <ForearmMesh>slaangor_claw_forearm_mesh</ForearmMesh>
+    <GovernedBy>Berserk</GovernedBy>
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
     <Description />
   </ExtendedItemObjectProperties>
-  <!-- Left-Hand Defend Claw Shield: Hides ONLY Left Hand (gor_hands_v2.1) and renders forearm-skinned defend claw mesh -->
+  <!-- Left-hand claw (converted from shield to a second attack claw for Phase 1 dual-wield validation). Hides left hand mesh, renders forearm-skinned claw, Berserk-governed so BerserkWieldMissionLogic auto-wields it into the offhand. -->
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_shield_slaangor_defend_claw_001" RaceLock="gor2">
     <HideHand>Left</HideHand>
     <ForearmMesh>slaangor_defend_claw_forearm_mesh</ForearmMesh>
+    <GovernedBy>Berserk</GovernedBy>
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>

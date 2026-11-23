@@ -16,6 +16,13 @@ namespace TOR_Core.Items
     }
 
     [Serializable]
+    public enum WeaponGovernance
+    {
+        OneHanded = 0,
+        Berserk = 1
+    }
+
+    [Serializable]
     public class ExtendedItemObjectProperties
     {
         [XmlAttribute]
@@ -26,6 +33,8 @@ namespace TOR_Core.Items
         public HideHandType HideHand = HideHandType.None;
         [XmlElement("ForearmMesh")]
         public string ForearmMesh = "";
+        [XmlElement("GovernedBy")]
+        public WeaponGovernance GovernedBy = WeaponGovernance.OneHanded;
         [XmlElement]
         public string Description = "";
         [XmlArray("DamageProportions")]
@@ -60,6 +69,7 @@ namespace TOR_Core.Items
                 RaceLock = RaceLock,
                 HideHand = HideHand,
                 ForearmMesh = ForearmMesh,
+                GovernedBy = GovernedBy,
                 ItemTraits = []
             };
             foreach (var trait in ItemTraits)

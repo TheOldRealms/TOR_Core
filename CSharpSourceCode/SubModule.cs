@@ -22,6 +22,7 @@ using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.AI.TeamAI;
 using TOR_Core.BattleMechanics.Banners;
+using TOR_Core.BattleMechanics.BerserkWield;
 using TOR_Core.BattleMechanics.Dismemberment;
 using TOR_Core.BattleMechanics.Firearms;
 using TOR_Core.BattleMechanics.ForearmVisuals;
@@ -341,6 +342,7 @@ namespace TOR_Core
             mission.AddMissionBehavior(new CustomBannerMissionLogic());
             mission.AddMissionBehavior(new DismembermentMissionLogic());
             mission.AddMissionBehavior(new ForearmVisualMissionBehavior());
+            mission.AddMissionBehavior(new BerserkWieldMissionLogic());
             mission.AddMissionBehavior(new AddAgentComponentsMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new AnimationTriggerMissionLogic());
