@@ -22,6 +22,38 @@ namespace TOR_Core.Extensions
             return false;
         }
 
+        public static bool IsBrassKeep(this Settlement settlement)
+        {
+            if (settlement != null)
+                return settlement.StringId == "castle_BK2";
+
+            return false;
+        }
+
+        public static bool IsMelkhiorsTower(this Settlement settlement)
+        {
+            if (settlement != null)
+                return settlement.StringId == "castle_MT1";
+
+            return false;
+        }
+
+        public static bool IsBarleyMotte(this Settlement settlement)
+        {
+            if (settlement != null)
+                return settlement.StringId == "castle_LY1";
+
+            return false;
+        }
+
+        public static bool IsCastleMousillon(this Settlement settlement)
+        {
+            if (settlement != null)
+                return settlement.StringId == "town_MS1";
+
+            return false;
+        }
+
         public static bool IsRoRSettlement(this Settlement settlement)
         {
             return RORManager.GetTemplateFor(settlement.StringId) != null;
