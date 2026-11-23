@@ -36,7 +36,7 @@ namespace TOR_Core.Models
                     return result;
                 }
 
-                if (settlement.StringId == "castle_BK2")
+                if (settlement.IsBrassKeep())
                 {
                     if (settlement.Militia < 2000)
                     {
@@ -44,7 +44,7 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (settlement.StringId == "castle_MT1")
+                if (settlement.IsMelkhiorsTower())
                 {
                     if (settlement.Militia < 2000)
                     {

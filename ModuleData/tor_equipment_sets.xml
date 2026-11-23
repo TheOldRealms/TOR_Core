@@ -45866,52 +45866,104 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_generic_khorne_lord_template" culture="Culture.chaos_culture">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.aserai_2haxe_3_t5" />
-      <Equipment slot="Item1" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item2" id="Item.tor_chaos_weapon_shield_001" />
-      <Equipment slot="Head" id="Item.tor_chaos_head_helm_khorne_warrior_001" />
-      <Equipment slot="Body" id="Item.tor_chaos_body_armor_khorne_warrior_001" />
-      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_pauldron_khorne_warrior_001" />
-      <Equipment slot="Gloves" id="Item.tor_chaos_arm_gauntlet_khorne_warrior_001" />
-      <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_khorne_warrior_001" />
-      <Equipment slot="Horse" id="Item.tor_chs_mount_horse_chaos_horse_001" />
-      <Equipment slot="HorseHarness" id="Item.light_harness" />
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_chaos_head_helm_khorne_warrior_002" />
+      <Equipment slot="Body" id="Item.tor_chaos_body_armor_khorne_warrior_002" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_pauldron_khorne_warrior_002" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_gauntlet_khorne_warrior_002" />
+      <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_khorne_warrior_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.aserai_2haxe_3_t5" />
-      <Equipment slot="Item1" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item2" id="Item.tor_chaos_weapon_shield_001" />
-      <Equipment slot="Head" id="Item.tor_chaos_head_helm_khorne_warrior_001" />
-      <Equipment slot="Body" id="Item.tor_chaos_body_armor_khorne_warrior_001" />
-      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_pauldron_khorne_warrior_001" />
-      <Equipment slot="Gloves" id="Item.tor_chaos_arm_gauntlet_khorne_warrior_001" />
-      <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_khorne_warrior_001" />
-      <Equipment slot="Horse" id="Item.tor_chs_mount_horse_chaos_horse_001" />
-      <Equipment slot="HorseHarness" id="Item.light_harness" />
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_chaos_head_helm_khorne_warrior_002" />
+      <Equipment slot="Body" id="Item.tor_chaos_body_armor_khorne_warrior_002" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_pauldron_khorne_warrior_002" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_gauntlet_khorne_warrior_002" />
+      <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_khorne_warrior_002" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.aserai_2haxe_3_t5" />
-      <Equipment slot="Item1" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item2" id="Item.tor_chaos_weapon_shield_001" />
-      <Equipment slot="Head" id="Item.tor_chaos_head_helm_khorne_warrior_001" />
-      <Equipment slot="Body" id="Item.tor_chaos_body_armor_khorne_warrior_001" />
-      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_pauldron_khorne_warrior_001" />
-      <Equipment slot="Gloves" id="Item.tor_chaos_arm_gauntlet_khorne_warrior_001" />
-      <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_khorne_warrior_001" />
-      <Equipment slot="Horse" id="Item.tor_chs_mount_horse_chaos_horse_001" />
-      <Equipment slot="HorseHarness" id="Item.light_harness" />
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_chaos_head_helm_khorne_warrior_002" />
+      <Equipment slot="Body" id="Item.tor_chaos_body_armor_khorne_warrior_002" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_pauldron_khorne_warrior_002" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_gauntlet_khorne_warrior_002" />
+      <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_khorne_warrior_002" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.aserai_2haxe_3_t5" />
-      <Equipment slot="Item1" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item2" id="Item.tor_chaos_weapon_shield_001" />
-      <Equipment slot="Head" id="Item.tor_chaos_head_helm_khorne_warrior_001" />
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_chaos_head_helm_khorne_warrior_002" />
+      <Equipment slot="Body" id="Item.tor_chaos_body_armor_khorne_warrior_002" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_pauldron_khorne_warrior_002" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_gauntlet_khorne_warrior_002" />
+      <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_khorne_warrior_002" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_generic_khorne_lord_female_template" culture="Culture.chaos_culture">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_invisible_head_01" />
       <Equipment slot="Body" id="Item.tor_chaos_body_armor_khorne_warrior_001" />
       <Equipment slot="Cape" id="Item.tor_chaos_shoulder_pauldron_khorne_warrior_001" />
       <Equipment slot="Gloves" id="Item.tor_chaos_arm_gauntlet_khorne_warrior_001" />
       <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_khorne_warrior_001" />
-      <Equipment slot="Horse" id="Item.tor_chs_mount_horse_chaos_horse_001" />
-      <Equipment slot="HorseHarness" id="Item.light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_invisible_head_01" />
+      <Equipment slot="Body" id="Item.tor_chaos_body_armor_khorne_warrior_001" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_pauldron_khorne_warrior_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_gauntlet_khorne_warrior_001" />
+      <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_khorne_warrior_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian">
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_invisible_head_01" />
+      <Equipment slot="Body" id="Item.tor_chaos_body_armor_khorne_warrior_001" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_pauldron_khorne_warrior_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_gauntlet_khorne_warrior_001" />
+      <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_khorne_warrior_001" />
+    </EquipmentSet>
+    <EquipmentSet equipmentType="Civilian" civilian="true">
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_invisible_head_01" />
+      <Equipment slot="Body" id="Item.tor_chaos_body_armor_khorne_warrior_001" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_pauldron_khorne_warrior_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_gauntlet_khorne_warrior_001" />
+      <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_khorne_warrior_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_chammon_khorne_template" culture="Culture.chaos_culture">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_invisible_head_01" />
+      <Equipment slot="Body" id="Item.tor_chaos_body_armor_khorne_warrior_002" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_cape_chaos_warrior_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_gauntlet_khorne_warrior_002" />
+      <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_khorne_warrior_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_invisible_head_01" />
+      <Equipment slot="Body" id="Item.tor_chaos_body_armor_khorne_warrior_002" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_cape_chaos_warrior_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_gauntlet_khorne_warrior_002" />
+      <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_khorne_warrior_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_invisible_head_01" />
+      <Equipment slot="Body" id="Item.tor_chaos_body_armor_khorne_warrior_002" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_cape_chaos_warrior_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_gauntlet_khorne_warrior_002" />
+      <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_khorne_warrior_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_chaos_2h_weapon_warrior_greataxe_001" />
+      <Equipment slot="Head" id="Item.tor_invisible_head_01" />
+      <Equipment slot="Body" id="Item.tor_chaos_body_armor_khorne_warrior_002" />
+      <Equipment slot="Cape" id="Item.tor_chaos_shoulder_cape_chaos_warrior_001" />
+      <Equipment slot="Gloves" id="Item.tor_chaos_arm_gauntlet_khorne_warrior_002" />
+      <Equipment slot="Leg" id="Item.tor_chaos_leg_boots_khorne_warrior_002" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_generic_druchii_lord_template" culture="Culture.druchii">

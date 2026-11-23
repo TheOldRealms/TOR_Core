@@ -12897,6 +12897,108 @@
       <EquipmentSet id="tor_brasskeep_lord_1_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_chaos_lord_skulltakers_factionleader" name="Chaos Lord Chammon" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord">
+    <Equipments>
+      <EquipmentSet id="tor_chammon_khorne_template" />
+    </Equipments>
+    <face>
+      <BodyProperties age="25" weight="0.3148" build="0.8627" key="0000FC0FCB000A53797664884754DCBAA35E866295A0967774414A498C83368601CD56140CA7B7A500000000000000000000000000000000000000003D942000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="9" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Politician" value="3" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_lord_skulltakers_first_2" name="Vekhoth Chosen of Khorne" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord">
+    <Equipments>
+      <EquipmentSet id="tor_generic_khorne_lord_template" />
+    </Equipments>
+    <face>
+      <BodyProperties age="25" weight="0.6331" build="0.6065" key="0016FC0FCD0003C085D64C4C5C6BA757BA99657AC7994E77D68579D87465E18A0179961407838D58000000000000000000000000000000000000000028DC2000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_lord_skulltakers_first_3" name="Bael the Crimson Barbarian" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord">
+    <Equipments>
+      <EquipmentSet id="tor_generic_khorne_lord_template" />
+    </Equipments>
+    <face>
+      <BodyProperties age="25" weight="0.6331" build="0.6065" key="0016FC0FCD0003C085D64C4C5C6BA757BA99657AC7994E77D68579D87465E18A0179961407838D58000000000000000000000000000000000000000028DC2000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_lord_skulltakers_first_4" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="Khrovak Scarred Pillager of Lyonesse">
+    <Equipments>
+      <EquipmentSet id="tor_generic_khorne_lord_template" />
+    </Equipments>
+    <face>
+      <BodyProperties age="25" weight="0.6331" build="0.6065" key="0016FC0FCD0003C085D64C4C5C6BA757BA99657AC7994E77D68579D87465E18A0179961407838D58000000000000000000000000000000000000000028DC2000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_lord_skulltakers_first_5" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="Skeinya Daugter of Red Mist" is_female="true">
+    <Equipments>
+      <EquipmentSet id="tor_generic_khorne_lord_female_template" />
+    </Equipments>
+    <face>
+      <BodyProperties age="25" weight="0.3333" build="0.9934" key="0000FC0FC50010098A7D879C3978E59967674C777E1BC37365A6704F78A845E3008F5604087A926600000000000000000000000000000000000000003B0C4000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_lord_skulltakers_first_6" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="Khuzorath Chosen of Khorne">
+    <Equipments>
+      <EquipmentSet id="tor_generic_khorne_lord_template" />
+    </Equipments>
+    <face>
+      <BodyProperties age="25" weight="0.6331" build="0.6065" key="0016FC0FCD0003C085D64C4C5C6BA757BA99657AC7994E77D68579D87465E18A0179961407838D58000000000000000000000000000000000000000028DC2000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+  </NPCCharacter>
   <NPCCharacter id="tor_de_lord_factionleader" default_group="cavalry" name="{=str_tor_de_lord_factionleader}Draxor Bloodscar" occupation="Lord" culture="Culture.druchii" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="50" weight="0.5" build="0.5" key="0039B8000000300FE90675CE1663F9E2334183BAC5AE860C69B35046831589100077760307A6408700000000000000000000000000000000000000003AF46002" />

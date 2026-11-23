@@ -130,6 +130,9 @@ namespace TOR_Core.Utilities
             public const string SKULL_SMASHERZ = "skull_smasherz";
             public const string REAVAZ = "reavaz";
 
+            // Chaos warbands with holdings on the campaign map
+            public const string SKULLTAKERS = "skulltakers";
+
 
             public static readonly List<string> AllEmpire =
             [
