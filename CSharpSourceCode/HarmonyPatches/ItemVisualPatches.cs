@@ -1,9 +1,11 @@
 using HarmonyLib;
+using NLog;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -34,6 +36,7 @@ namespace TOR_Core.HarmonyPatches
     {
         private const string InvisibleWeaponMaterialName = "lhm_fist_weapon";
         private const VisibilityMaskFlags HiddenMask = (VisibilityMaskFlags)0;
+        private static bool _loggedMissingMaterial;
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(ItemCollectionElementViewExtensions), nameof(ItemCollectionElementViewExtensions.OnGetWeaponData))]
@@ -58,6 +61,13 @@ namespace TOR_Core.HarmonyPatches
             if (invisibleMat != null)
             {
                 mm.SetMaterial(invisibleMat);
+            }
+            else if (!_loggedMissingMaterial)
+            {
+                _loggedMissingMaterial = true;
+                TORCommon.Log(
+                    $"ForearmInventoryIconPatch: material '{InvisibleWeaponMaterialName}' unresolved. Forearm items still hide via visibility mask, but the fallback material swap is disabled for this game session.",
+                    LogLevel.Warn);
             }
 
             for (int i = 0; i < mm.MeshCount; i++)
