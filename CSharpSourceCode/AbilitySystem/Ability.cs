@@ -32,7 +32,7 @@ namespace TOR_Core.AbilitySystem
         public AbilityScript AbilityScript { get; protected set; }
         public AbilityCrosshair Crosshair { get; private set; }
         public bool IsActivationPending { get; private set; }
-        public bool IsActive => IsCasting || IsActivationPending || (AbilityScript != null && !AbilityScript.IsFading);
+        public bool IsActive => IsCasting || IsActivationPending || (AbilityScript != null && !AbilityScript.IsFading && !AbilityScript.IsVisualOnly);
         public AbilityEffectType AbilityEffectType => Template.AbilityEffectType;
         public bool IsSingleTarget => Template.AbilityTargetType == AbilityTargetType.SingleAlly || Template.AbilityTargetType == AbilityTargetType.SingleEnemy; //Sly : Self isn't necessarily SingleTarget because some abilities have triggered effects that are aoe even if the target is self-centered
         public bool RequiresTargeting => Template.AbilityTargetType != AbilityTargetType.Self;

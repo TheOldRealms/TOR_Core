@@ -1,0 +1,476 @@
+<prefabs>
+
+	<game_entity name="bolt_of_aqshy" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{530948C6-AC87-41AF-A0E7-44F0F161038B}"/>
+			</particle_system_instanced_component>
+		</components>
+		<children>
+			<game_entity name="aqshy_bolt_core" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.400, 0.000" rotation_euler="1.571, 0.000, 0.000" scale="0.500, 0.500, 3.200"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_column_mesh">
+						<mesh name="tor_hysh_column_mesh" factor="4294937640"/>
+					</meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="aqshy_bolt_sheath" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.600, 0.000" rotation_euler="1.571, 0.000, 0.000" scale="1.400, 1.400, 4.800"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_column_mesh">
+						<mesh name="tor_hysh_column_mesh" factor="4285403652"/>
+					</meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="aqshy_bolt_head_glow" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000" scale="1.000, 1.000, 1.000"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_quad_mesh">
+						<mesh name="tor_hysh_quad_mesh" material="tor_hysh_flash_mat" factor="4292633624"/>
+					</meta_mesh_component>
+				</components>
+			</game_entity>
+		</children>
+	</game_entity>
+
+	<game_entity name="burning_skull" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<meta_mesh_component name="spellskull" position="0.000, 0.000, 0.700" rotation="0.000, 0.000, 0.000" scale="1.200, 1.200, 1.200"/>
+			<particle_system_instanced_component _index_="1">
+				<effect_ref base_effect="{D4EBED35-DC9E-4E7E-A415-1BD7E90BFD28}"/>
+			</particle_system_instanced_component>
+		</components>
+		<children>
+			<game_entity name="skull_soot" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, 0.400" rotation_euler="0.000, 0.000, 0.000"/>
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{EA2CDD28-414C-4E1F-9241-8DECE2A3AF3D}"/>
+					</particle_system_instanced_component>
+				</components>
+			</game_entity>
+			<game_entity name="skull_firewrap" old_prefab_name="" mobility="1">
+				<transform position="0.000, 3.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{64F26783-BCB9-40BA-93D7-667793BDABCC}"/>
+					</particle_system_instanced_component>
+				</components>
+			</game_entity>
+			<game_entity name="skull_sootwrap" old_prefab_name="" mobility="1">
+				<transform position="0.000, 3.500, 1.100" rotation_euler="0.000, 0.000, 0.000"/>
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{6F50599F-C1A9-496A-B1BC-EB8464C9E500}"/>
+					</particle_system_instanced_component>
+				</components>
+			</game_entity>
+			<game_entity name="skull_heart" old_prefab_name="" mobility="1">
+				<transform position="0.000, 1.800, 0.200" rotation_euler="0.000, 0.000, 0.000"/>
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{05B41D0C-F826-4F2F-808C-1B291C8E7772}"/>
+					</particle_system_instanced_component>
+				</components>
+			</game_entity>
+			<game_entity name="skull_embers" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, 0.600" rotation_euler="0.000, 0.000, 0.000"/>
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{9335AC9C-B975-4D49-BEFB-0FA44DF7E7B1}"/>
+					</particle_system_instanced_component>
+				</components>
+			</game_entity>
+			<game_entity name="skull_dust" old_prefab_name="" mobility="1">
+				<transform position="0.000, 2.500, -1.350" rotation_euler="0.000, 0.000, 0.000"/>
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{B27CBEE7-3A45-42F9-B647-487F669FC908}"/>
+					</particle_system_instanced_component>
+				</components>
+			</game_entity>
+		</children>
+	</game_entity>
+
+	<game_entity name="cinder_blast" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{0A242FE6-4DD8-4832-8236-F4E251703FDB}"/>
+			</particle_system_instanced_component>
+		</components>
+		<children>
+			<game_entity name="cinder_chunk_01" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.720, 0.020" rotation_euler="3.131, -1.983, -2.383" scale="1.358, 0.935, 0.875"/>
+				<components>
+					<meta_mesh_component name="projectile_rock">
+						<mesh name="projectile_rock" factor="4282267188"/>
+					</meta_mesh_component>
+					<meta_mesh_component name="projectile_rock" position="0.000, 0.000, 0.000" rotation="0.000, 0.000, 0.000" scale="1.040, 1.040, 1.040">
+						<mesh name="projectile_rock" material="tor_aqshy_shell_mat" factor="4294940210"/>
+					</meta_mesh_component>
+				</components>
+				<scripts>
+					<script name="TORSpinner">
+						<variables>
+							<variable name="RotationSpeed" value="5453.276"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="cinder_chunk_02" old_prefab_name="" mobility="1">
+				<transform position="-0.300, 0.480, 0.140" rotation_euler="2.990, -2.015, 0.327" scale="0.747, 0.828, 0.734"/>
+				<components>
+					<meta_mesh_component name="projectile_rock">
+						<mesh name="projectile_rock" factor="4282267188"/>
+					</meta_mesh_component>
+					<meta_mesh_component name="projectile_rock" position="0.000, 0.000, 0.000" rotation="0.000, 0.000, 0.000" scale="1.040, 1.040, 1.040">
+						<mesh name="projectile_rock" material="tor_aqshy_shell_mat" factor="4294940210"/>
+					</meta_mesh_component>
+				</components>
+				<scripts>
+					<script name="TORSpinner">
+						<variables>
+							<variable name="RotationSpeed" value="5149.214"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="cinder_chunk_03" old_prefab_name="" mobility="1">
+				<transform position="0.280, 0.400, -0.120" rotation_euler="-1.189, -1.946, 2.197" scale="0.656, 0.975, 0.863"/>
+				<components>
+					<meta_mesh_component name="projectile_rock">
+						<mesh name="projectile_rock" factor="4282267188"/>
+					</meta_mesh_component>
+					<meta_mesh_component name="projectile_rock" position="0.000, 0.000, 0.000" rotation="0.000, 0.000, 0.000" scale="1.040, 1.040, 1.040">
+						<mesh name="projectile_rock" material="tor_aqshy_shell_mat" factor="4294940210"/>
+					</meta_mesh_component>
+				</components>
+				<scripts>
+					<script name="TORSpinner">
+						<variables>
+							<variable name="RotationSpeed" value="-5114.187"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="cinder_chunk_04" old_prefab_name="" mobility="1">
+				<transform position="-0.100, 0.020, -0.220" rotation_euler="-1.178, 1.765, 2.855" scale="0.615, 0.520, 0.708"/>
+				<components>
+					<meta_mesh_component name="projectile_rock">
+						<mesh name="projectile_rock" factor="4282267188"/>
+					</meta_mesh_component>
+					<meta_mesh_component name="projectile_rock" position="0.000, 0.000, 0.000" rotation="0.000, 0.000, 0.000" scale="1.040, 1.040, 1.040">
+						<mesh name="projectile_rock" material="tor_aqshy_shell_mat" factor="4294940210"/>
+					</meta_mesh_component>
+				</components>
+				<scripts>
+					<script name="TORSpinner">
+						<variables>
+							<variable name="RotationSpeed" value="-3606.293"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="cinder_chunk_05" old_prefab_name="" mobility="1">
+				<transform position="0.420, -0.200, 0.200" rotation_euler="-0.990, 2.520, -0.506" scale="0.436, 0.531, 0.472"/>
+				<components>
+					<meta_mesh_component name="projectile_rock">
+						<mesh name="projectile_rock" factor="4282267188"/>
+					</meta_mesh_component>
+					<meta_mesh_component name="projectile_rock" position="0.000, 0.000, 0.000" rotation="0.000, 0.000, 0.000" scale="1.040, 1.040, 1.040">
+						<mesh name="projectile_rock" material="tor_aqshy_shell_mat" factor="4294940210"/>
+					</meta_mesh_component>
+				</components>
+				<scripts>
+					<script name="TORSpinner">
+						<variables>
+							<variable name="RotationSpeed" value="4422.607"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="cinder_chunk_06" old_prefab_name="" mobility="1">
+				<transform position="-0.450, -0.380, 0.060" rotation_euler="2.615, -1.210, -0.793" scale="0.541, 0.514, 0.576"/>
+				<components>
+					<meta_mesh_component name="projectile_rock">
+						<mesh name="projectile_rock" factor="4282267188"/>
+					</meta_mesh_component>
+					<meta_mesh_component name="projectile_rock" position="0.000, 0.000, 0.000" rotation="0.000, 0.000, 0.000" scale="1.040, 1.040, 1.040">
+						<mesh name="projectile_rock" material="tor_aqshy_shell_mat" factor="4294940210"/>
+					</meta_mesh_component>
+				</components>
+				<scripts>
+					<script name="TORSpinner">
+						<variables>
+							<variable name="RotationSpeed" value="-3670.347"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="cinder_chunk_07" old_prefab_name="" mobility="1">
+				<transform position="0.120, -0.700, 0.260" rotation_euler="1.088, 0.177, -2.587" scale="0.428, 0.418, 0.397"/>
+				<components>
+					<meta_mesh_component name="projectile_rock">
+						<mesh name="projectile_rock" factor="4282267188"/>
+					</meta_mesh_component>
+					<meta_mesh_component name="projectile_rock" position="0.000, 0.000, 0.000" rotation="0.000, 0.000, 0.000" scale="1.040, 1.040, 1.040">
+						<mesh name="projectile_rock" material="tor_aqshy_shell_mat" factor="4294940210"/>
+					</meta_mesh_component>
+				</components>
+				<scripts>
+					<script name="TORSpinner">
+						<variables>
+							<variable name="RotationSpeed" value="3880.519"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="cinder_chunk_08" old_prefab_name="" mobility="1">
+				<transform position="-0.200, -1.000, -0.160" rotation_euler="2.840, 0.075, -0.624" scale="0.359, 0.354, 0.444"/>
+				<components>
+					<meta_mesh_component name="projectile_rock">
+						<mesh name="projectile_rock" factor="4282267188"/>
+					</meta_mesh_component>
+					<meta_mesh_component name="projectile_rock" position="0.000, 0.000, 0.000" rotation="0.000, 0.000, 0.000" scale="1.040, 1.040, 1.040">
+						<mesh name="projectile_rock" material="tor_aqshy_shell_mat" factor="4294940210"/>
+					</meta_mesh_component>
+				</components>
+				<scripts>
+					<script name="TORSpinner">
+						<variables>
+							<variable name="RotationSpeed" value="-4252.327"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+		</children>
+	</game_entity>
+	<game_entity name="cinder_explosion_fx" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{69E19E11-4DC4-484D-8F98-67AB7094032F}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="fireball_prefab" old_prefab_name="" mobility="1" season_mask="255">
+		<flags>
+			<flag name="record_to_scene_replay" value="true"/>
+		</flags>
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<children>
+			<game_entity name="fireball_trail" old_prefab_name="" mobility="1">
+				<transform position="0.000, -0.600, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{218EDFFA-0940-46E7-AE2B-1CB1E8DCB41A}"/>
+					</particle_system_instanced_component>
+				</components>
+			</game_entity>
+			<game_entity name="fireball_core" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, 0.000" rotation_euler="0.400, -0.700, 1.100" scale="1.900, 1.900, 1.900"/>
+				<components>
+					<meta_mesh_component name="projectile_rock">
+						<mesh name="projectile_rock" factor="4288029708"/>
+					</meta_mesh_component>
+					<meta_mesh_component name="projectile_rock" position="0.000, 0.000, 0.000" rotation="0.000, 0.000, 0.000" scale="1.040, 1.040, 1.040">
+						<mesh name="projectile_rock" material="tor_aqshy_shell_mat" factor="4294950490"/>
+					</meta_mesh_component>
+				</components>
+				<scripts>
+					<script name="TORSpinner">
+						<variables>
+							<variable name="RotationSpeed" value="4600.000"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="fireball_flame_a" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, 0.000" rotation_euler="2.100, 0.900, -0.600" scale="2.350, 2.350, 2.350"/>
+				<components>
+					<meta_mesh_component name="projectile_rock">
+						<mesh name="projectile_rock" material="tor_aqshy_shell_mat" factor="4294932520"/>
+					</meta_mesh_component>
+				</components>
+				<scripts>
+					<script name="TORSpinner">
+						<variables>
+							<variable name="RotationSpeed" value="-3400.000"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="fireball_flame_b_shape" old_prefab_name="" mobility="1">
+				<transform position="0.000, -0.250, 0.000" rotation_euler="0.000, 0.000, 0.000" scale="1.000, 1.450, 1.000"/>
+				<children>
+					<game_entity name="fireball_flame_b" old_prefab_name="" mobility="1">
+						<transform position="0.000, 0.000, 0.000" rotation_euler="-1.300, 0.300, 2.400" scale="2.750, 2.750, 2.750"/>
+						<components>
+							<meta_mesh_component name="projectile_rock">
+								<mesh name="projectile_rock" material="tor_aqshy_shell_mat" factor="4291310096"/>
+							</meta_mesh_component>
+						</components>
+						<scripts>
+							<script name="TORSpinner">
+								<variables>
+									<variable name="RotationSpeed" value="2500.000"/>
+								</variables>
+							</script>
+						</scripts>
+					</game_entity>
+				</children>
+			</game_entity>
+		</children>
+	</game_entity>
+	<game_entity name="fireball_explosion_fx" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{B80281FD-26CD-4DD7-99E3-CF0F1CFBA73D}"/>
+			</particle_system_instanced_component>
+		</components>
+		<children>
+			<game_entity name="fireball_blast_layers" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{1BEAC2E2-F62C-4F8F-9151-221A3D3670E1}"/>
+					</particle_system_instanced_component>
+				</components>
+			</game_entity>
+		</children>
+	</game_entity>
+	<game_entity name="flamestorm_classic_plus" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<children>
+			<game_entity name="classic_core_spin" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+				<scripts>
+					<script name="TORSpinner">
+						<variables>
+							<variable name="RotationSpeed" value="3000.000"/>
+						</variables>
+					</script>
+				</scripts>
+				<children>
+					<game_entity name="classic_fire" old_prefab_name="" mobility="1">
+						<transform position="1.000, 0.000, -2.900" rotation_euler="0.000, 0.000, 0.000"/>
+						<components>
+							<particle_system_instanced_component>
+								<effect_ref base_effect="{82ACF668-E6CF-4470-A182-ADE1B096497B}"/>
+							</particle_system_instanced_component>
+						</components>
+					</game_entity>
+					<game_entity name="classic_soot" old_prefab_name="" mobility="1">
+						<transform position="-0.800, 0.000, -2.700" rotation_euler="0.000, 0.000, 0.000"/>
+						<components>
+							<particle_system_instanced_component>
+								<effect_ref base_effect="{65D24421-0F70-44E3-916A-A9B2926C76E4}"/>
+							</particle_system_instanced_component>
+						</components>
+					</game_entity>
+					<game_entity name="classic_dust_a" old_prefab_name="" mobility="1">
+						<transform position="0.000, 2.000, -2.800" rotation_euler="0.000, 0.000, 0.000"/>
+						<components>
+							<particle_system_instanced_component>
+								<effect_ref base_effect="{5133F02F-1AC7-4902-AC88-693987D3E9ED}"/>
+							</particle_system_instanced_component>
+						</components>
+					</game_entity>
+					<game_entity name="classic_dust_b" old_prefab_name="" mobility="1">
+						<transform position="0.000, -2.000, -2.800" rotation_euler="0.000, 0.000, 0.000"/>
+						<components>
+							<particle_system_instanced_component>
+								<effect_ref base_effect="{5133F02F-1AC7-4902-AC88-693987D3E9ED}"/>
+							</particle_system_instanced_component>
+						</components>
+					</game_entity>
+				</children>
+			</game_entity>
+			<game_entity name="classic_arm_spin" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+				<scripts>
+					<script name="TORSpinner">
+						<variables>
+							<variable name="RotationSpeed" value="4000.000"/>
+						</variables>
+					</script>
+				</scripts>
+				<children>
+					<game_entity name="classic_ember_a" old_prefab_name="" mobility="1">
+						<transform position="1.600, 0.000, -2.600" rotation_euler="0.000, 0.000, 0.000"/>
+						<components>
+							<particle_system_instanced_component>
+								<effect_ref base_effect="{5439E036-69ED-478D-B35A-78C149BD9082}"/>
+							</particle_system_instanced_component>
+						</components>
+					</game_entity>
+					<game_entity name="classic_ember_b" old_prefab_name="" mobility="1">
+						<transform position="-1.600, 0.000, -2.600" rotation_euler="0.000, 0.000, 0.000"/>
+						<components>
+							<particle_system_instanced_component>
+								<effect_ref base_effect="{5439E036-69ED-478D-B35A-78C149BD9082}"/>
+							</particle_system_instanced_component>
+						</components>
+					</game_entity>
+				</children>
+			</game_entity>
+		</children>
+	</game_entity>
+	<game_entity name="sear" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<children>
+			<game_entity name="sear_nozzle" old_prefab_name="" mobility="1">
+				<transform position="-0.300, -0.900, 0.450" rotation_euler="0.000, 0.000, 0.000"/>
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{8FF4DE37-B4D7-40A2-AA05-9656E48C96C6}"/>
+					</particle_system_instanced_component>
+				</components>
+				<scripts>
+					<script name="TORHandAnchor">
+						<variables>
+							<variable name="Forward" value="0.920"/>
+							<variable name="FollowSeconds" value="1.300"/>
+							<variable name="Up" value="0.130"/>
+						</variables>
+					</script>
+					<script name="TOREmissionWindow">
+						<variables>
+							<variable name="StopAt" value="1.200"/>
+						</variables>
+					</script>
+				</scripts>
+				<children>
+					<game_entity name="sear_soot" old_prefab_name="" mobility="1">
+						<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+						<components>
+							<particle_system_instanced_component>
+								<effect_ref base_effect="{B4DFF8FB-31F1-4884-B74E-FFD9307FD295}"/>
+							</particle_system_instanced_component>
+						</components>
+						<scripts>
+							<script name="TOREmissionWindow">
+								<variables>
+									<variable name="StopAt" value="1.200"/>
+								</variables>
+							</script>
+						</scripts>
+					</game_entity>
+					<game_entity name="sear_embers" old_prefab_name="" mobility="1">
+						<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+						<components>
+							<particle_system_instanced_component>
+								<effect_ref base_effect="{05039CDB-B9D7-4147-8B25-EA3597D39010}"/>
+							</particle_system_instanced_component>
+						</components>
+					</game_entity>
+				</children>
+			</game_entity>
+		</children>
+	</game_entity>
+</prefabs>

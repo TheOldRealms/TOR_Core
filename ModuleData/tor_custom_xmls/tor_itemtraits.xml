@@ -13,7 +13,7 @@
     <IngredientAmount>1</IngredientAmount>
     <ItemTraitDescription>{=str_tor_itemtraits_flaming_weapon}"This weapon is engulfed in flames. Adds extra 25% fire damage and applies burning on contact."</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Fire" Percent="0.25" />
-    <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
+    <WeaponParticlePreset ParticlePrefab="tor_aqshy_weapon_fire7" IsUniqueSingleCopy="false" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="lesser_flaming_weapon" ItemTraitName="Lesser Flaming Weapon" IsCraftable="false" ImbuedStatusEffectId="fireball_dot" ImbuedEffectChance="0.25" IconName="traits_fire_icon">
     <ValidItemType>Weapon</ValidItemType>

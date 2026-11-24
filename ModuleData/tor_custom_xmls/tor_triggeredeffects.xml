@@ -104,9 +104,10 @@
                              ScriptNameToTrigger="none" />
     <!-- Lore of Fire -->
     <TriggeredEffectTemplate StringID="fireball_explosion"
-                             BurstParticleEffectPrefab="psys_fireball_explosion_1"
+                             BurstParticleEffectPrefab="prefab:fireball_explosion_fx"
                              SoundEffectId="fireball_explosion"
-                             SoundEffectLength="2.5"
+                             SoundEffectLength="6"
+                             DoNotAlignParticleEffectPrefabOnImpact="true"
                              DamageType="Fire"
                              DamageAmount="60"
                              Radius="4"
@@ -118,16 +119,16 @@
         <ImbuedStatusEffect>fireball_dot</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
     <TriggeredEffectTemplate StringID="cinderblast_explosion"
-                             BurstParticleEffectPrefab="cinder_explosion"
+                             BurstParticleEffectPrefab="prefab:cinder_explosion_fx"
                              SoundEffectId="none"
-                             SoundEffectLength="2.5"
+                             SoundEffectLength="3"
                              DamageType="Physical"
                              DamageAmount="55"
                              Radius="3"
                              HasShockWave="false"
                              TargetType="All"
                              DamageVariance="0.1"
-                             ScriptNameToTrigger="none" />
+                             ScriptNameToTrigger="none"  DoNotAlignParticleEffectPrefabOnImpact="true" />
     <TriggeredEffectTemplate StringID="boltofaqshy_explosion"
                              BurstParticleEffectPrefab="fire_particle_explosion"
                              SoundEffectId="dart_explosion"

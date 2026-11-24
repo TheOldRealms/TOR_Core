@@ -76,6 +76,10 @@ namespace TOR_Core.AbilitySystem
         [XmlAttribute]
         public bool ShouldSoundLoopOverDuration { get; set; } = true;
         [XmlAttribute]
+        public float SoundPlaybackDuration { get; set; }
+        [XmlAttribute]
+        public bool KeepMovingVisualUntilSoundEnds { get; set; }
+        [XmlAttribute]
         public CastType CastType { get; set; } = CastType.Instant;
         [XmlAttribute]
         public float CastTime { get; set; } = 0;
@@ -228,6 +232,8 @@ namespace TOR_Core.AbilitySystem
                 ParticleEffectSizeModifier = ParticleEffectSizeModifier,
                 SoundEffectToPlay = SoundEffectToPlay,
                 ShouldSoundLoopOverDuration = ShouldSoundLoopOverDuration,
+                SoundPlaybackDuration = SoundPlaybackDuration,
+                KeepMovingVisualUntilSoundEnds = KeepMovingVisualUntilSoundEnds,
                 CastType = CastType,
                 CastTime = CastTime,
                 AnimationActionName = AnimationActionName,

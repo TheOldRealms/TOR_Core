@@ -12,6 +12,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem.Crosshairs;
+using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.AbilitySystem.SpellCasting;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics.AI.CastingAI.Components;
@@ -34,6 +35,7 @@ namespace TOR_Core.AbilitySystem
     public class AbilityManagerMissionLogic : MissionLogic
     {
         private bool _shouldSheathWeapon;
+        private readonly List<(SoundEvent Sound, AbilityScript Source, float EndTime)> _timedSpellSounds = [];
         private bool _shouldWieldWeapon;
         private bool _shouldPlayIdleCastStanceAnim;
         private bool _hasInitializedForMainAgent;
@@ -129,12 +131,47 @@ namespace TOR_Core.AbilitySystem
         public override void OnMissionTick(float dt)
         {
             base.OnMissionTick(dt);
+            UpdateTimedSpellSounds();
 
             //Sly : couldn't find a better event to put this in that would have it be checked just once.
             if (!_inputCategoryAdded && MissionInputContext !=  null)
             {
                 (MissionInputContext as InputContext).RegisterHotKeyCategory(HotKeyManager.GetCategory(nameof(TORGameKeyContext)));
                 _inputCategoryAdded = true;
+            }
+        }
+
+        internal float TrackSpellSound(SoundEvent sound, AbilityScript source, float duration)
+        {
+            float endTime = Game.Current.ApplicationTime + duration;
+            _timedSpellSounds.Add((sound, source, endTime));
+            return endTime;
+        }
+
+        public override void OnClearScene()
+        {
+            UpdateTimedSpellSounds(stopAll: true);
+            base.OnClearScene();
+        }
+
+        private void UpdateTimedSpellSounds(bool stopAll = false)
+        {
+            for (int i = _timedSpellSounds.Count - 1; i >= 0; i--)
+            {
+                var (sound, source, endTime) = _timedSpellSounds[i];
+                if (sound.IsValid)
+                {
+                    if (!stopAll && Game.Current.ApplicationTime < endTime)
+                    {
+                        // After removal the same sound keeps its last world position.
+                        if (source.Ability != null && !source.IsFading)
+                            sound.SetPosition(source.CurrentGlobalPosition);
+                        continue;
+                    }
+                    if (sound.IsPlaying()) sound.Stop();
+                    else sound.Release();
+                }
+                _timedSpellSounds.RemoveAt(i);
             }
         }
 
@@ -804,6 +841,7 @@ namespace TOR_Core.AbilitySystem
         protected override void OnEndMission()
         {
             base.OnEndMission();
+            UpdateTimedSpellSounds(stopAll: true);
             ClampExceedingWinds();
 
             BindWeaponKeys();
