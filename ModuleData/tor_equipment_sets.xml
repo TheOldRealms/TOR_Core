@@ -39164,8 +39164,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_gold_wizard_template" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.sturgia_noble_sword_4_t5" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_staff_lw_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_staff_lw_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_mask_gold_wizard_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_gold_wizard_001" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_cape_gold_wizard_001" />
@@ -39173,8 +39172,7 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_gold_wizard_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.sturgia_noble_sword_4_t5" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_staff_lw_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_staff_lw_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_mask_gold_wizard_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_gold_wizard_001" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_cape_gold_wizard_001" />
@@ -39182,8 +39180,7 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_gold_wizard_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.sturgia_noble_sword_4_t5" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_staff_lw_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_staff_lw_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_mask_gold_wizard_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_gold_wizard_001" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_cape_gold_wizard_001" />
@@ -39191,8 +39188,7 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_gold_wizard_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.sturgia_noble_sword_4_t5" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_staff_lw_001" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_staff_lw_001" />
       <Equipment slot="Head" id="Item.tor_empire_head_mask_gold_wizard_001" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_gold_wizard_001" />
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_cape_gold_wizard_001" />
@@ -41445,7 +41441,7 @@
   <EquipmentRoster id="tor_prophetess_template" culture="Culture.vlandia">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.sturgia_noble_sword_4_t5" />
-      <Equipment slot="Item1" id="Item.tor_prophetess_staff_combined" />
+      <Equipment slot="Item1" id="Item.tor_prophetess_staff_levitate" />
       <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_staff_proph_001" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_prophetess_001" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_prophetess_001" />
@@ -41456,7 +41452,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.sturgia_noble_sword_4_t5" />
-      <Equipment slot="Item1" id="Item.tor_prophetess_staff_combined" />
+      <Equipment slot="Item1" id="Item.tor_prophetess_staff_levitate" />
       <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_staff_proph_001" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_prophetess_001" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_prophetess_001" />
@@ -41467,7 +41463,7 @@
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.sturgia_noble_sword_4_t5" />
-      <Equipment slot="Item1" id="Item.tor_prophetess_staff_combined" />
+      <Equipment slot="Item1" id="Item.tor_prophetess_staff_levitate" />
       <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_staff_proph_001" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_prophetess_001" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_prophetess_001" />
@@ -41478,7 +41474,7 @@
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.sturgia_noble_sword_4_t5" />
-      <Equipment slot="Item1" id="Item.tor_prophetess_staff_combined" />
+      <Equipment slot="Item1" id="Item.tor_prophetess_staff_levitate" />
       <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_staff_proph_001" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_prophetess_001" />
       <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_prophetess_001" />

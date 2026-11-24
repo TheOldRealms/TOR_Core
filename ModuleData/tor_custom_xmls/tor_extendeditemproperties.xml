@@ -6172,6 +6172,11 @@
       <ItemTrait>magical_res_amp_10</ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_prophetess_staff_levitate">
+    <ItemTraits>
+      <ItemTrait>magical_res_amp_10</ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_nm_staff_001_combined">
     <ItemTraits>
       <ItemTrait>magical_res_amp_10</ItemTrait>
