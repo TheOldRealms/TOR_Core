@@ -2021,7 +2021,7 @@ namespace TOR_Core.CampaignMechanics.UniqueSpawns
             return UniqueSpawnCampaignBehavior.EnemyDeepPatrolSettlements(
                     targetFaction,
                     DistanceToAthelLorenBorder)
-                .Where(settlement => settlement.StringId != "castle_BK2");
+                .Where(settlement => !settlement.IsBrassKeep());
         }
 
         private IEnumerable<Settlement> EnemyLootableVillages(IFaction targetFaction)

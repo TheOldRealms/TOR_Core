@@ -31,6 +31,7 @@ using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.BattleMechanics.Voice;
 using TOR_Core.CampaignMechanics;
+using TOR_Core.CampaignMechanics.Ambush;
 using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Careers;
@@ -68,6 +69,7 @@ using TOR_Core.Models;
 using TOR_Core.Models.CustomBattleModels;
 using TOR_Core.Quests;
 using TOR_Core.Utilities;
+using TOR_Core.Models.Ambush;
 
 namespace TOR_Core
 {
@@ -221,6 +223,9 @@ namespace TOR_Core
                 starter.AddBehavior(new GreenskinBrawlBehavior());
                 starter.AddBehavior(new GoblinRecruitmentBehavior());
                 starter.AddBehavior(new DuelBehavior());
+                starter.AddBehavior(new AmbushCampaignBehavior());
+                starter.AddBehavior(new AiAmbushBehavior());
+                starter.AddBehavior(new RogueryPerkBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -256,6 +261,8 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORBanditDensityModel());
                 gameStarterObject.AddModel(new TORCharacterStatsModel());
                 gameStarterObject.AddModel(new TORClanFinanceModel());
+                gameStarterObject.AddModel(new TORCrimeModel());
+                gameStarterObject.AddModel(new TORSettlementSecurityModel());
                 gameStarterObject.AddModel(new TORMinorFactionsModel());
                 gameStarterObject.AddModel(new TORClanTierModel());
                 gameStarterObject.AddModel(new TORCombatXpModel());
@@ -279,6 +286,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORStrikeMagnitudeModel());
                 gameStarterObject.AddModel(new TORCombatSimulationModel());
                 gameStarterObject.AddModel(new TORPartyMoraleModel());
+                gameStarterObject.AddModel(new TORPartyImpairmentModel());
                 gameStarterObject.AddModel(new TORPartyDesertionModel());
                 gameStarterObject.AddModel(new TORPersuasionModel());
                 gameStarterObject.AddModel(new TORVoiceOverModel());
@@ -286,6 +294,8 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORCustomResourceModel());
                 gameStarterObject.AddModel(new TORClanPoliticsModel());
                 gameStarterObject.AddModel(new TORMapVisibilityModel());
+                gameStarterObject.AddModel(new TORAmbushModel());
+                gameStarterObject.AddModel(new TORMissionAmbushModel());
                 gameStarterObject.AddModel(new TORMobilePartyAIModel());
                 gameStarterObject.AddModel(new TORTournamentModel());
                 gameStarterObject.AddModel(new TORAlleyModel());
@@ -304,6 +314,8 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORSettlementFoodModel());
                 gameStarterObject.AddModel(new TOREquipmentSelectionModel());
                 gameStarterObject.AddModel(new TOREncounterModel());
+                gameStarterObject.AddModel(new TORTroopSacrificeModel());
+                gameStarterObject.AddModel(new TORRansomValueCalculationModel());
                 gameStarterObject.AddModel(new TORVolunteerModel());
                 new CraftingModule().RegisterModels(gameStarterObject);
                 gameStarterObject.AddModel(new TORCompanionTrainingModel());

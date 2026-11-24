@@ -130,6 +130,7 @@
     <Abilities />
     <Attributes>
       <string>MonsterSlayer</string>
+      <string>MasterScout</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -1024,6 +1025,7 @@
     <Abilities />
     <Attributes>
       <string>Piercing</string>
+      <string>MasterScout</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -1037,6 +1039,7 @@
     <Attributes>
       <string>Piercing</string>
       <string>Deadeye</string>
+      <string>MasterAmbusher</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -1050,6 +1053,7 @@
     <Attributes>
       <string>Piercing</string>
       <string>Deadeye</string>
+      <string>MasterAmbusher</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -1102,7 +1106,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_wildwood_ranger">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>MasterAmbusher</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -1111,7 +1117,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_wildwood_warden">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>MasterAmbusher</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -1429,7 +1437,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_ranger">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>MasterScout</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
@@ -1443,7 +1453,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_ol_deadeye">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>MasterScout</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
@@ -1973,6 +1985,7 @@
     <Attributes>
       <string>Expendable</string>
       <string>Piercing</string>
+      <string>MasterAmbusher</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers>
@@ -2217,6 +2230,7 @@
     <Abilities />
     <Attributes>
       <string>Deadeye</string>
+      <string>MasterScout</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -2229,6 +2243,7 @@
     <Abilities />
     <Attributes>
       <string>Piercing</string>
+      <string>MasterScout</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -3038,6 +3053,7 @@
     <Attributes>
       <string>Unbreakable</string>
       <string>TheHunger</string>
+      <string>MasterAmbusher</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" />
@@ -3054,6 +3070,7 @@
     <Attributes>
       <string>Unbreakable</string>
       <string>TheHunger</string>
+      <string>MasterAmbusher</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" />
@@ -3071,6 +3088,7 @@
       <string>Unbreakable</string>
       <string>TheHunger</string>
       <string>Piercing</string>
+      <string>MasterAmbusher</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" />
@@ -4347,6 +4365,7 @@
     <Attributes>
       <string>Piercing</string>
       <string>Deadeye</string>
+      <string>MasterAmbusher</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers>
@@ -4502,6 +4521,7 @@
     <Attributes>
       <string>Piercing</string>
       <string>Unbreakable</string>
+      <string>MasterScout</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
@@ -11466,6 +11486,29 @@
   <CharacterExtendedInfo id="tor_chaos_nefarious_of_chaos">
     <Attributes>
       <string>Expendable</string>
+    </Attributes>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_lord_skulltakers_first_2">
+    <Attributes>
+      <string>EncyclopediaHelmet</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_lord_skulltakers_first_3">
+    <Attributes>
+      <string>EncyclopediaHelmet</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_lord_skulltakers_first_4">
+    <Attributes>
+      <string>EncyclopediaHelmet</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_lord_skulltakers_first_6">
+    <Attributes>
+      <string>EncyclopediaHelmet</string>
     </Attributes>
   </CharacterExtendedInfo>
 </ArrayOfCharacterExtendedInfo>

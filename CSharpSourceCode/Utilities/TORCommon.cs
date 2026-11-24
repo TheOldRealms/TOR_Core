@@ -71,6 +71,14 @@ namespace TOR_Core.Utilities
             logger.Log(severity, message);
         }
 
+        /// <summary>Severity-first convenience overload. Both arg orders
+        /// are supported since callers mix them.</summary>
+        public static void Log(LogLevel severity, string message)
+        {
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Log(severity, message);
+        }
+
         /// <summary>
         /// Finds the Settlement closest to the party within the radius given. Lower values for radius will lead to better performance.
         /// </summary>
