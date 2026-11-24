@@ -1117,7 +1117,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     break;
                 case "lore_of_light":
                     hero.AddKnownLore("LoreOfLight");
-                    hero.AddAbility("ShemsGaze");
+                    hero.AddAbility("ShemGaze");
                     break;
                 case "lore_of_metal":
                     hero.AddKnownLore("LoreOfMetal");
