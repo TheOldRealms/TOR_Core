@@ -22,6 +22,8 @@ using static TOR_Core.Utilities.TORConstants;
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
+    // Mission method prep during OnSubModuleLoad can initialize ActionIndexCache before action_types.xml loads.
+    [HarmonyPatchCategory("LatePatches")]
     public static class MissionPatches
     {
         private static readonly FieldInfo SimulationFormationTempField = AccessTools.Field(typeof(Formation), "_simulationFormationTemp");

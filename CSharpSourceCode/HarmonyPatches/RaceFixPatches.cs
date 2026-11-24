@@ -39,7 +39,7 @@ namespace TOR_Core.HarmonyPatches
         {
             var monsterName = FaceGen.GetRaceNames()[bodyGeneratorView.BodyGen.Race];
             var monster = FaceGen.GetMonster(monsterName);
-            string isFemale = bodyGeneratorView.BodyGen.IsFemale ? "_female_" : "";
+            string isFemale = bodyGeneratorView.BodyGen.IsFemale ? "_female" : "";
             return MBGlobals.GetActionSet($"as_{monsterName}{isFemale}_facegen");
         }
 
@@ -47,7 +47,7 @@ namespace TOR_Core.HarmonyPatches
         {
             var monsterName = FaceGen.GetRaceNames()[raceId];
             var monster = FaceGen.GetMonster(monsterName);
-            string isFemaleText = isFemale ? "_female_" : "";
+            string isFemaleText = isFemale ? "_female" : "";
             return MBGlobals.GetActionSet($"as_{monsterName}{isFemaleText}_warrior");
         }
         private static bool IsSafeMissionFaceCacheRace(int race)
@@ -222,6 +222,7 @@ namespace TOR_Core.HarmonyPatches
             if (monster == null)
             {
                 __result = "as_human" + (isFemale ? "_female" : "") + suffix;
+                return false;
             }
 
             var monsterId = monster.StringId;
@@ -238,11 +239,11 @@ namespace TOR_Core.HarmonyPatches
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CharacterTableau), "RefreshCharacterTableau")]
-        public static void SetEarlyActionSet(ref AgentVisuals ____oldAgentVisuals, ref AgentVisuals ____agentVisuals, int ____race)
+        public static void SetEarlyActionSet(ref AgentVisuals ____oldAgentVisuals, ref AgentVisuals ____agentVisuals, int ____race, bool ____isFemale)
         {
             var newdata = ____oldAgentVisuals.GetCopyAgentVisualsData();
             var raceName = FaceGen.GetRaceNames()[____race];
-            newdata.ActionSet(GetActionSetTableau(____race, false)).Race(____race).Monster(FaceGen.GetMonster(raceName));
+            newdata.ActionSet(GetActionSetTableau(____race, ____isFemale)).Race(____race).Monster(FaceGen.GetMonster(raceName));
             ____oldAgentVisuals.Refresh(false, newdata, false);
         }
 

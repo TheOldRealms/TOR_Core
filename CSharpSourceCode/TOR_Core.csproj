@@ -239,6 +239,7 @@
     <Compile Include="BattleMechanics\Reinforcements\ReinforcementPartyAgentOrigin.cs" />
     <Compile Include="BattleMechanics\CareerPerkMissionBehavior.cs" />
     <Compile Include="BattleMechanics\CinematicCameraMissionView.cs" />
+    <Compile Include="BattleMechanics\LevitationVisualLiftMissionView.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\ArcheryContestAgentController.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\ArcheryContestTournamentGame.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\CustomTournamentBehaviors.cs" />
@@ -581,6 +582,7 @@
     <Compile Include="HarmonyPatches\CharacterObjectPatches.cs" />
     <Compile Include="HarmonyPatches\ClanMembersRenamePatch.cs" />
     <Compile Include="HarmonyPatches\CaravanVisualPatch.cs" />
+    <Compile Include="HarmonyPatches\CampaignMapLevitationPatches.cs" />
     <Compile Include="HarmonyPatches\ConversationPatches.cs" />
     <Compile Include="HarmonyPatches\CustomBattlePatches.cs" />
     <Compile Include="HarmonyPatches\CustomResourcePatches.cs" />
