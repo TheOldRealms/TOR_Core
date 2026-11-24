@@ -918,7 +918,7 @@
 
 	<StatusEffectTemplate 
 		id="fire_cloak_phy_res" 
-		particle_id="firecloak"
+		particle_id=""
 		do_not_attach_to_agent_skeleton="true"
 		particle_intensity="High"
 		base_effect_value="0.2"
@@ -926,8 +926,8 @@
 		type="Resistance"/>
 	<StatusEffectTemplate 
 		id="fire_cloak_fire_res" 
-		particle_id="firecloak"
-		do_not_attach_to_agent_skeleton="true"
+		particle_id="tor_aqshy_cloak_smoke"
+		do_not_attach_to_agent_skeleton="false"
 		particle_intensity="High"
 		base_effect_value="0.7"
 		damage_type="Fire"
@@ -936,7 +936,7 @@
 	</StatusEffectTemplate>
 	<StatusEffectTemplate 
 		id="fire_cloak_thorns" 
-		particle_id="firecloak"
+		particle_id="tor_aqshy_cloak_embers3"
 		do_not_attach_to_agent_skeleton="true"
 		particle_intensity="High"
 		base_effect_value="0.7"

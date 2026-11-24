@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -29,6 +30,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         private float _additionalDuration = 0;
         private Vec3 _previousFrameOrigin = Vec3.Zero;
         private bool _lifeTimeExpired;
+        private float _visualEndTime;
         private GameEntity _entity;
         private int _castId = -1;
 
@@ -44,6 +46,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         }
         public Ability Ability => _ability;
         public bool IsFading { get; private set; }
+        public bool IsVisualOnly { get; private set; }
         public Vec3 CurrentGlobalPosition => GameEntity.GetGlobalFrame().origin;
         public Vec3 LastFrameGlobalPosition => _previousFrameOrigin;
         public bool HasTickedOnce => _hasTickedOnce;
@@ -118,6 +121,15 @@ namespace TOR_Core.AbilitySystem.Scripts
 
             if (_ability == null) return;
 
+            if (IsVisualOnly)
+            {
+                if (Game.Current.ApplicationTime >= _visualEndTime)
+                    Stop();
+                else if (!IsFading)
+                    UpdatePosition(GameEntity.GetGlobalFrame(), dt);
+                return;
+            }
+
             OnBeforeTick(dt);
 
             _timeSinceLastTick += dt;
@@ -165,7 +177,10 @@ namespace TOR_Core.AbilitySystem.Scripts
 
             if (_lifeTimeExpired)
             {
-                Stop();
+                if (_visualEndTime > 0f && Game.Current.ApplicationTime < _visualEndTime)
+                    IsVisualOnly = true;
+                else
+                    Stop();
             }
         }
 
@@ -243,8 +258,20 @@ namespace TOR_Core.AbilitySystem.Scripts
 
             if (!_soundStarted)
             {
-                _sound.Play();
+                bool started = _sound.Play();
                 _soundStarted = true;
+                var template = _ability.Template;
+                if (started && !template.ShouldSoundLoopOverDuration && template.SoundPlaybackDuration > 0f)
+                {
+                    var audioOwner = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
+                    if (audioOwner != null)
+                    {
+                        var endTime = audioOwner.TrackSpellSound(_sound, this, template.SoundPlaybackDuration);
+                        if (template.KeepMovingVisualUntilSoundEnds && template.AbilityEffectType == AbilityEffectType.Wind)
+                            _visualEndTime = endTime;
+                        _sound = null;
+                    }
+                }
             }
             else if (_ability.Template.ShouldSoundLoopOverDuration)
             {
