@@ -1,7 +1,6 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TOR_Core.Models;
-using TOR_Core.Models.Ambush;
 
 namespace TOR_Core.Extensions
 {
@@ -10,16 +9,6 @@ namespace TOR_Core.Extensions
         public static TORAbilityModel GetAbilityModel(this GameModels models)
         {
             return models.GetGameModels().OfType<TORAbilityModel>().LastOrDefault();
-        }
-
-        public static TORAmbushModel GetAmbushModel(this GameModels models)
-        {
-            return models.GetGameModels().OfType<TORAmbushModel>().LastOrDefault();
-        }
-
-        public static TORMissionAmbushModel GetMissionAmbushModel(this GameModels models)
-        {
-            return models.GetGameModels().OfType<TORMissionAmbushModel>().LastOrDefault();
         }
 
         public static TORFaithModel GetFaithModel(this GameModels models)

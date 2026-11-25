@@ -3733,7 +3733,7 @@
       <EquipmentSet id="tor_chaos_cult_darksoul_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_nefarious_of_chaos" name="{=str_tor_chaos_nefarious_of_chaos}Nefarious Militia of Chaos" level="11" skill_template="SkillSet.tor_unitskills_chaos_darksoul_of_chaos" default_group="ranged" culture="Culture.chaos_culture" occupation="Soldier" race="chaos_ud_cultist" localizationId="str_tor_chaos_nefarious_of_chaos">
+  <NPCCharacter id="tor_chaos_nefarious_of_chaos" name="{=str_tor_chaos_nefarious_of_chaos}Nefarious Militia of Chaos" level="11" skill_template="SkillSet.tor_unitskills_chaos_darksoul_of_chaos" default_group="ranged" culture="Culture.chaos_culture" occupation="Soldier" race="chaos_ud_cultist">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
@@ -3873,8 +3873,8 @@
       <upgrade_target id="NPCCharacter.tor_beastmen_gor_gougehorn" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_beast_bestigor_template" />
-      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_gor_gougehorn" name="{=str_tor_beast_gor_gougehorn}Bestigor Gouge-Horn" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Soldier" skill_template="SkillSet.tor_unitskills_beastmen_gor_gougehorn" race="gor2" localizationId="str_tor_beast_gor_gougehorn">
@@ -3882,8 +3882,8 @@
       <face_key_template value="BodyProperty.gor" />
     </face>
     <Equipments>
-      <EquipmentSet id="tor_beast_bestigor_gougehorn_template" />
-      <EquipmentSet id="tor_beast_bestigor_gougehorn_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" />
+      <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_minotaur" default_group="infantry" level="36" name="{=str_tor_beast_minotaur}Minotaur" occupation="Mercenary" culture="Culture.beastmen" skill_template="SkillSet.tor_unitskills_beastmen_minotaur" is_basic_troop="true" race="minotaur" localizationId="str_tor_beast_minotaur">

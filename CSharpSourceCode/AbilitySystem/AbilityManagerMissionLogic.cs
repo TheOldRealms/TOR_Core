@@ -96,16 +96,6 @@ namespace TOR_Core.AbilitySystem
 
         public delegate void OnHideOutBossFightInit();
         public event OnHideOutBossFightInit OnInitHideOutBossFight;
-
-        /// <summary>
-        /// Fires once a cast completes successfully (same site as the Specialize-
-        /// Lore quest counter / cast skill XP). Subscribers see the raw
-        /// <see cref="Ability"/> and the caster <see cref="Agent"/> and can filter
-        /// by whatever criteria they want (ability type, lore, agent team, etc.).
-        /// Used by <c>AmbushLoudnessTracker</c> to count non-silent casts as
-        /// loudness events during an ambush mission.
-        /// </summary>
-        public event System.Action<Ability, Agent> OnAbilityCastComplete;
         private static ActionIndexCache IdleAnimation
         {
             get
@@ -469,8 +459,6 @@ namespace TOR_Core.AbilitySystem
                     }
                 }
             }
-
-            OnAbilityCastComplete?.Invoke(ability, agent);
         }
 
         internal void OnCastCancelled(Ability ability, Agent agent)
@@ -721,32 +709,22 @@ namespace TOR_Core.AbilitySystem
         {
             foreach (var team in Mission.Teams)
             {
-                try
+                if (team.TeamAgents.IsEmpty()) continue;
+
+                var leader = team.Leader ?? team.TeamAgents.FirstOrDefault();
+
+                if (team.Side == BattleSideEnum.Attacker && _attackerSummoningCombatant == null)
                 {
-                    if (team.TeamAgents.IsEmpty()) continue;
-
-                    var leader = team.Leader ?? team.TeamAgents.FirstOrDefault();
-                    if (leader?.Character == null) continue;
-
-                    if (team.Side == BattleSideEnum.Attacker && _attackerSummoningCombatant == null)
-                    {
-                        var culture = leader.Character.Culture;
-                        // BasicBattleAgentOrigin has no BattleCombatant. agent resolves the mission environment and fallback
-                        var battleEnvironment = leader.CurrentBattleEnvironment;
-                        _attackerSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
-                    }
-                    else if (team.Side == BattleSideEnum.Defender && _defenderSummoningCombatant == null)
-                    {
-                        var culture = leader.Character.Culture;
-                        var battleEnvironment = leader.CurrentBattleEnvironment;
-                        _defenderSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
-                    }
+                    var culture = leader.Character.Culture;
+                    // BasicBattleAgentOrigin has no BattleCombatant. agent resolves the mission environment and fallback
+                    var battleEnvironment = leader.CurrentBattleEnvironment;
+                    _attackerSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
                 }
-                catch (Exception e)
+                else if (team.Side == BattleSideEnum.Defender && _defenderSummoningCombatant == null)
                 {
-                    TOR_Core.Utilities.TORCommon.Log(NLog.LogLevel.Error,
-                        "[AbilityManager] InitSummoningCombatants team side=" + team.Side
-                        + " EXCEPTION: " + e);
+                    var culture = leader.Character.Culture;
+                    var battleEnvironment = leader.CurrentBattleEnvironment;
+                    _defenderSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
                 }
             }
         }

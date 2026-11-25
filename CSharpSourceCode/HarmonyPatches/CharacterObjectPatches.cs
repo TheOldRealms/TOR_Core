@@ -12,19 +12,17 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.HarmonyPatches
 {
-    /// <summary>Patches that filter monstrous units out of garrisons, double town/village NPC spawn rates, race-preserve CharacterObject.CreateFrom, and reskin townsfolk children.</summary>
     [HarmonyPatch]
     public static class CharacterObjectPatches
     {
-        /// <summary>Removes monstrous troops from the garrison roster so towns and villages don't spawn them as guards.</summary>
         [HarmonyPostfix]
         [HarmonyPatch(typeof(GuardsCampaignBehavior), "InitializeGarrisonCharacters")]
         public static void ExcludeMonstersFromSettlementGuards(List<(CharacterObject, int)> ____garrisonTroops)
         {
+            // monstrous units are excluded from settlement garrisons to prevent them from appearing in towns and villages
             ____garrisonTroops.RemoveAll(troop => troop.Item1.IsMonstrous());
         }
 
-        /// <summary>Retries the troop-tree lookup when vanilla returns an empty list.</summary>
         [HarmonyPostfix]
         [HarmonyPatch(typeof(CharacterHelper), "GetTroopTree")]
         public static void TroopTreePatch(ref IEnumerable<CharacterObject> __result, CharacterObject baseTroop)
@@ -35,7 +33,6 @@ namespace TOR_Core.HarmonyPatches
             }
         }
 
-        /// <summary>Preserves the source character's Race on CharacterObject.CreateFrom clones.</summary>
         [HarmonyPostfix]
         [HarmonyPatch(typeof(CharacterObject), "CreateFrom")]
         public static void TroopTreePatch(ref CharacterObject __result, CharacterObject character)
@@ -43,7 +40,6 @@ namespace TOR_Core.HarmonyPatches
             __result.Race = character.Race;
         }
 
-        /// <summary>Replaces vanilla's male-child townsfolk with an adult townsman so monstrous races don't produce child models.</summary>
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CommonTownsfolkCampaignBehavior), "CreateMaleChild")]
         public static bool PreventMaleChild(ref LocationCharacter __result, CultureObject culture, LocationCharacter.CharacterRelations relation)
@@ -55,7 +51,7 @@ namespace TOR_Core.HarmonyPatches
             return false;
         }
         
-        /// <summary>Doubles the townsfolk NPC spawn rate.</summary>
+        // increase NPCs in towns
         [HarmonyPatch(typeof(CommonTownsfolkCampaignBehavior), "GetSpawnRate")]
         public static class CommonTownsfolkCampaignBehavior_GetSpawnRate_Patch
         {
@@ -65,7 +61,7 @@ namespace TOR_Core.HarmonyPatches
             }
         }
 
-        /// <summary>Doubles the villager NPC spawn rate.</summary>
+        // increase NPCs in villages
         [HarmonyPatch(typeof(CommonVillagersCampaignBehavior), "GetSpawnRate")]
         public static class CommonVillagersCampaignBehavior_GetSpawnRate_Patch
         {
@@ -75,7 +71,6 @@ namespace TOR_Core.HarmonyPatches
             }
         }
 
-        /// <summary>Replaces vanilla's male-teen townsfolk with an adult townsman.</summary>
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CommonTownsfolkCampaignBehavior), "CreateMaleTeenager")]
         public static bool PreventMaleTeenager(ref LocationCharacter __result, CultureObject culture, LocationCharacter.CharacterRelations relation)
@@ -87,7 +82,6 @@ namespace TOR_Core.HarmonyPatches
             return false;
         }
 
-        /// <summary>Replaces vanilla's female-child townsfolk with an adult townswoman.</summary>
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CommonTownsfolkCampaignBehavior), "CreateFemaleChild")]
         public static bool PreventFemaleChild(ref LocationCharacter __result, CultureObject culture, LocationCharacter.CharacterRelations relation)
@@ -99,7 +93,6 @@ namespace TOR_Core.HarmonyPatches
             return false;
         }
 
-        /// <summary>Replaces vanilla's female-teen townsfolk with an adult townswoman.</summary>
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CommonTownsfolkCampaignBehavior), "CreateFemaleTeenager")]
         public static bool PreventFemaleTeenager(ref LocationCharacter __result, CultureObject culture, LocationCharacter.CharacterRelations relation)
@@ -111,7 +104,6 @@ namespace TOR_Core.HarmonyPatches
             return false;
         }
 
-        /// <summary>Replaces vanilla's male-child villager with an adult villager.</summary>
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CommonVillagersCampaignBehavior), "CreateMaleChild")]
         public static bool PreventMaleChild2(ref LocationCharacter __result, CultureObject culture, LocationCharacter.CharacterRelations relation)
@@ -123,7 +115,6 @@ namespace TOR_Core.HarmonyPatches
             return false;
         }
 
-        /// <summary>Replaces vanilla's male-teen villager with an adult villager.</summary>
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CommonVillagersCampaignBehavior), "CreateMaleTeenager")]
         public static bool PreventMaleTeenager2(ref LocationCharacter __result, CultureObject culture, LocationCharacter.CharacterRelations relation)
@@ -135,7 +126,6 @@ namespace TOR_Core.HarmonyPatches
             return false;
         }
 
-        /// <summary>Replaces vanilla's female-child villager with an adult villager.</summary>
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CommonVillagersCampaignBehavior), "CreateFemaleChild")]
         public static bool PreventFemaleChild2(ref LocationCharacter __result, CultureObject culture, LocationCharacter.CharacterRelations relation)
@@ -147,7 +137,6 @@ namespace TOR_Core.HarmonyPatches
             return false;
         }
 
-        /// <summary>Replaces vanilla's female-teen villager with an adult villager.</summary>
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CommonVillagersCampaignBehavior), "CreateFemaleTeenager")]
         public static bool PreventFemaleTeenager2(ref LocationCharacter __result, CultureObject culture, LocationCharacter.CharacterRelations relation)

@@ -1,5 +1,4 @@
 using Helpers;
-using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
@@ -7,14 +6,12 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TOR_Core.CampaignMechanics.Ambush;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 using static TOR_Core.Utilities.TORConstants;
-using TOR_Core.Models.Ambush;
 
 namespace TOR_Core.Models
 {
@@ -28,29 +25,6 @@ namespace TOR_Core.Models
             if (party.IsMainParty && party.LeaderHero != null && party.LeaderHero.HasAnyCareer())
             {
                 CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref result, PassiveEffectType.PartySpottingRange, true);
-            }
-
-            // Keen Senses: stealth-stance spotting bonus for any party (main
-            // or AI) that has the perk and is currently stealthed. Main-party
-            // stealth state comes from AmbushCampaignBehavior; AI stealth
-            // state from AiAmbushBehavior, which tracks each stealthed party
-            // in its _stealthedParties dict.
-            if (party.HasPerk(TORPerks.Roguery.KeenSenses) && IsPartyInStealthStance(party))
-            {
-                PerkHelper.AddPerkBonusForParty(TORPerks.Roguery.KeenSenses, party, isPrimaryBonus: true, ref result);
-            }
-
-            // Per-troop spotting score bump for scout-heavy rosters.
-            var model = Campaign.Current?.Models?.GetAmbushModel();
-            if (model != null)
-            {
-                float rosterSpottingBonus = AmbushTroopSpottingScore.GetBasePartyScore(
-                    party, model.SpottingScoreSizeDampingReference)
-                    * model.SpottingScoreSightingWeight;
-                if (rosterSpottingBonus > 0.01f || rosterSpottingBonus < -0.01f)
-                {
-                    result.AddFactor(rosterSpottingBonus, new TextObject("{=tor_spotting_troop_composition}Troop composition"));
-                }
             }
 
             // DwarfBrewers handling
@@ -80,16 +54,6 @@ namespace TOR_Core.Models
         /// 1.5.4 dropped the isDistanceDependent out-parameter from this overload (it survives only on
         /// GetSettlementInspectedState), so the 1.5.3 three-out signature no longer overrides anything.
         /// </remarks>
-        public override float GetPartySpottingRatioForMainPartySeeingRange(MobileParty party)
-        {
-            float baseRatio = base.GetPartySpottingRatioForMainPartySeeingRange(party);
-            if (party.HasPerk(TORPerks.Roguery.LowProfile))
-            {
-                return baseRatio * (1f - TORPerks.Roguery.LowProfile.PrimaryBonus);
-            }
-            return baseRatio;
-        }
-
         public override void GetMobilePartyVisibilityAndInspectedState(MobileParty mobileParty, Vec2[] points, float seeingRange, out bool isVisible, out bool isInspected)
         {
             if (mobileParty == MobileParty.MainParty && Hero.MainHero.IsEnlisted())
@@ -100,78 +64,6 @@ namespace TOR_Core.Models
             }
 
             base.GetMobilePartyVisibilityAndInspectedState(mobileParty, points, seeingRange, out isVisible, out isInspected);
-        }
-
-        /// <summary>
-        /// Keeps stealthed and revealed ambushers' visibility flags stable
-        /// against vanilla's distance pass.
-        /// </summary>
-        public override bool IsVisibilityPersistent(MobileParty mobileParty)
-        {
-            var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
-            if (ai != null)
-            {
-                if (!mobileParty.IsVisible && ai.IsPartyStealthed(mobileParty))
-                {
-                    _wasPersisted.Add(mobileParty);
-                    return true;
-                }
-                if (ai.IsPartyRevealed(mobileParty))
-                {
-                    _wasPersisted.Add(mobileParty);
-                    return true;
-                }
-                if (ai.IsRecentlyPlayerDetected(mobileParty))
-                {
-                    _wasPersisted.Add(mobileParty);
-                    return true;
-                }
-            }
-            bool baseResult = base.IsVisibilityPersistent(mobileParty);
-            if (baseResult)
-            {
-                _wasPersisted.Add(mobileParty);
-            }
-            else if (_wasPersisted.Remove(mobileParty))
-            {
-                // Vanilla's distance pass only reaches parties inside the
-                // LocatorGrid around the main party. For parties beyond that,
-                // correct IsVisible here so previously-pinned parties don't
-                // stay stuck visible once persistence drops.
-                var mp = MobileParty.MainParty;
-                if (mp != null)
-                {
-                    float r = mp.SeeingRange * 2f;
-                    if (mobileParty.Position.DistanceSquared(mp.Position) > r * r
-                        && mobileParty.IsVisible)
-                    {
-                        mobileParty.IsVisible = false;
-                    }
-                }
-            }
-            return baseResult;
-        }
-
-        /// <summary>Tracks parties this model previously pinned so a transition
-        /// off persistence can trigger the manual distance correction.</summary>
-        private static readonly HashSet<MobileParty> _wasPersisted
-            = new HashSet<MobileParty>();
-
-        /// <summary>
-        /// True when the given party is currently in an ambush stealth stance,
-        /// whether player-driven (tracked by AmbushCampaignBehavior) or AI
-        /// (tracked by AiAmbushBehavior).
-        /// </summary>
-        private static bool IsPartyInStealthStance(MobileParty party)
-        {
-            if (party == null) return false;
-            if (party.IsMainParty)
-            {
-                var ambush = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
-                return ambush != null && ambush.IsPlayerInStealth;
-            }
-            var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
-            return ai != null && ai.IsPartyStealthed(party);
         }
     }
 }

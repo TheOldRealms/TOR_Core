@@ -5,14 +5,6 @@
       "args": [
         "/home/Zerca/.local/share/Steam/steamapps/common/Mount & Blade II Bannerlord/Modules/TOR_Tools/release-mcp/TORTools.Mcp.Host.dll"
       ]
-    },
-    "tortasks": {
-      "command": "/home/Zerca/Dokumente/kanban/kanban-widget/.venv/bin/python",
-      "args": ["-u", "-m", "tortasks_mcp"],
-      "env": {
-        "PYTHONUNBUFFERED": "1",
-        "PYTHONPATH": "/home/Zerca/Dokumente/kanban/kanban-widget"
-      }
     }
   }
 }

@@ -2,7 +2,6 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.CampaignSystem.MapEvents;
-using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.SaveSystem;
@@ -10,7 +9,6 @@ using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.BattleMechanics.Reinforcements;
 using TOR_Core.CampaignMechanics;
-using TOR_Core.CampaignMechanics.Ambush;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.MapNotifications;
 using TOR_Core.CampaignMechanics.RaidingParties;
@@ -65,9 +63,6 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(GreenKnightBehavior.GreenKnightBattleState), 26);
             AddClassDefinition(typeof(ReinforcementBehavior.ReinforcementBattleState), 27);
             AddClassDefinition(typeof(ReinforcementBehavior.ReinforcementCandidateState), 28);
-            AddClassDefinition(typeof(AmbushRecord), 29);
-            // ID 30 is free (formerly AmbushDetectedMapNotification; dropped
-            // when detection switched to an on-party nameplate icon).
 
 
             //Quests and issues begin at 200 - they generally can't be expanded to cover new use cases
@@ -91,7 +86,6 @@ namespace TOR_Core.SaveGameSystem
             // 100 was EngineerQuestStates — retired with the quest; slot preserved.
             AddEnumDefinition(typeof(SpellCastingLevel), 101);
             AddEnumDefinition(typeof(UniqueSpawnState), 102);
-            AddEnumDefinition(typeof(AmbushResolution), 103);
         }
 
         protected override void DefineContainerDefinitions()
@@ -119,12 +113,6 @@ namespace TOR_Core.SaveGameSystem
             ConstructContainerDefinition(typeof(List<ReinforcementBehavior.ReinforcementCandidateState>));
             ConstructContainerDefinition(typeof(List<ScriptUseData>));
             ConstructContainerDefinition(typeof(List<string>));
-            // AiAmbushBehavior serialises _stealthedParties as a
-            // MobileParty-keyed dict.
-            ConstructContainerDefinition(typeof(Dictionary<MobileParty, CampaignTime>));
-            // AiAmbushBehavior serialises _ambushRecords — single source
-            // of truth for all cooldown and reveal queries.
-            ConstructContainerDefinition(typeof(List<AmbushRecord>));
         }
     }
 }

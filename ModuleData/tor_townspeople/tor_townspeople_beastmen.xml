@@ -20,8 +20,8 @@
       <Trait id="Valor" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_bestigor_template" />
-      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_notable_artisan_ungor" name="{=!}Ungor Artisan" voice="curt" is_template="true" is_hero="false" default_group="Infantry" culture="Culture.beastmen" race="ungor" occupation="Artisan">
@@ -44,8 +44,8 @@
       <Trait id="Valor" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_bestigor_template" />
-      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_notable_ruralnotable_ungor" name="{=!}Ungor RuralNotable" voice="curt" is_template="true" is_hero="false" default_group="Infantry" culture="Culture.beastmen" race="ungor" occupation="RuralNotable">
@@ -68,8 +68,8 @@
       <Trait id="Valor" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_bestigor_template" />
-      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_notable_headman_ungor" name="{=!}Ungor Headman" voice="curt" is_template="true" is_hero="false" default_group="Infantry" culture="Culture.beastmen" race="ungor" occupation="Headman">
@@ -92,8 +92,8 @@
       <Trait id="Valor" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_bestigor_template" />
-      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_notable_gangleader_ungor" name="{=!}Ungor GangLeader" voice="curt" is_template="true" is_hero="false" default_group="Infantry" culture="Culture.beastmen" race="ungor" occupation="GangLeader">
@@ -116,8 +116,8 @@
       <Trait id="Valor" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_bestigor_template" />
-      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_notable_preacher_ungor" name="{=!}Ungor Preacher" voice="curt" is_template="true" is_hero="false" default_group="Infantry" culture="Culture.beastmen" race="ungor" occupation="Preacher">
@@ -140,8 +140,8 @@
       <Trait id="Valor" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_beast_bestigor_template" />
-      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_lord_template_1" name="{=!}Bestigor Warlord" voice="curt" is_template="true" is_hero="false" default_group="Infantry" culture="Culture.beastmen" race="gor2" occupation="Lord" skill_template="SkillSet.tor_skills_beastmen_warrior_lord">
@@ -149,8 +149,8 @@
       <face_key_template value="BodyProperty.gor" />
     </face>
     <Equipments>
-      <EquipmentSet id="tor_beast_bestigor_template" />
-      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_lord_template_2" name="{=!}Bestigor Raider" voice="curt" is_template="true" is_hero="false" default_group="Infantry" culture="Culture.beastmen" race="gor2" occupation="Lord" skill_template="SkillSet.tor_skills_beastmen_berserker_lord">
@@ -158,8 +158,8 @@
       <face_key_template value="BodyProperty.gor" />
     </face>
     <Equipments>
-      <EquipmentSet id="tor_beast_bestigor_template" />
-      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_lord_template_3" name="{=!}Bestigor Bray Lord" voice="curt" is_template="true" is_hero="false" default_group="Infantry" culture="Culture.beastmen" race="gor2" occupation="Lord" skill_template="SkillSet.tor_skills_beastmen_caster_lord">
@@ -167,8 +167,8 @@
       <face_key_template value="BodyProperty.gor" />
     </face>
     <Equipments>
-      <EquipmentSet id="tor_beast_bestigor_template" />
-      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" />
+      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
 </NPCCharacters>
