@@ -7340,11 +7340,35 @@
 			<template name="NPCCharacter.tor_chaos_lord_0" />
 			<template name="NPCCharacter.tor_chaos_lord_1" />
 			<template name="NPCCharacter.tor_chaos_lord_2" />
+			<template name="NPCCharacter.tor_bw_cultist_lord_0" />
+			<template name="NPCCharacter.tor_bw_cultist_lord_1" />
+			<template name="NPCCharacter.tor_bw_cultist_lord_2" />
+			<template name="NPCCharacter.tor_bw_cultist_lord_3" />
+			<template name="NPCCharacter.tor_coi_cultist_lord_0" />
+			<template name="NPCCharacter.tor_coi_cultist_lord_1" />
+			<template name="NPCCharacter.tor_coi_cultist_lord_2" />
+			<template name="NPCCharacter.tor_coi_cultist_lord_3" />
+			<template name="NPCCharacter.tor_fsf_cultist_lord_0" />
+			<template name="NPCCharacter.tor_fsf_cultist_lord_1" />
+			<template name="NPCCharacter.tor_fsf_cultist_lord_2" />
+			<template name="NPCCharacter.tor_fsf_cultist_lord_3" />
 		</lord_templates>
 		<rebellion_hero_templates>
 			<template name="NPCCharacter.tor_chaos_lord_0" />
 			<template name="NPCCharacter.tor_chaos_lord_1" />
 			<template name="NPCCharacter.tor_chaos_lord_2" />
+			<template name="NPCCharacter.tor_bw_cultist_lord_0" />
+			<template name="NPCCharacter.tor_bw_cultist_lord_1" />
+			<template name="NPCCharacter.tor_bw_cultist_lord_2" />
+			<template name="NPCCharacter.tor_bw_cultist_lord_3" />
+			<template name="NPCCharacter.tor_coi_cultist_lord_0" />
+			<template name="NPCCharacter.tor_coi_cultist_lord_1" />
+			<template name="NPCCharacter.tor_coi_cultist_lord_2" />
+			<template name="NPCCharacter.tor_coi_cultist_lord_3" />
+			<template name="NPCCharacter.tor_fsf_cultist_lord_0" />
+			<template name="NPCCharacter.tor_fsf_cultist_lord_1" />
+			<template name="NPCCharacter.tor_fsf_cultist_lord_2" />
+			<template name="NPCCharacter.tor_fsf_cultist_lord_3" />
 		</rebellion_hero_templates>
 		<tournament_team_templates_one_participant>
 			<template name="NPCCharacter.tor_m_tournament_template_one_participant_v1" />
