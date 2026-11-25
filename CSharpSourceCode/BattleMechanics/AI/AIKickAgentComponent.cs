@@ -7,7 +7,7 @@ namespace TOR_Core.BattleMechanics.AI
 {
     public class AIKickAgentComponent : AgentComponent
     {
-        private static readonly Random _random = new Random();
+        private readonly Random _random = new Random(Guid.NewGuid().GetHashCode());
 
         private float _inputRefreshElapsed;
         private bool _ownsAIInputCallback;
@@ -38,7 +38,32 @@ namespace TOR_Core.BattleMechanics.AI
 
         public override void OnAIInputSet(ref Agent.EventControlFlag eventFlag, ref Agent.MovementControlFlag movementFlag, ref Vec2 inputVector)
         {
-            if (!CanUseCloseCombatActions() || (eventFlag & Agent.EventControlFlag.Kick) != 0)
+            if (!CanUseCloseCombatActions())
+            {
+                return;
+            }
+
+            var weaponChangeFlags = Agent.EventControlFlag.Wield0 |
+                                    Agent.EventControlFlag.Wield1 |
+                                    Agent.EventControlFlag.Wield2 |
+                                    Agent.EventControlFlag.Wield3 |
+                                    Agent.EventControlFlag.Sheath0 |
+                                    Agent.EventControlFlag.Sheath1 |
+                                    Agent.EventControlFlag.ToggleAlternativeWeapon;
+
+            var upperBodyAction = Agent.GetCurrentActionType(1);
+            var fullBodyAction = Agent.GetCurrentActionType(0);
+            if (IsKickingOrBashing(upperBodyAction, fullBodyAction))
+            {
+                eventFlag &= ~weaponChangeFlags;
+                return;
+            }
+
+            if ((eventFlag & (weaponChangeFlags | Agent.EventControlFlag.Kick)) != Agent.EventControlFlag.None ||
+                upperBodyAction == Agent.ActionCodeType.EquipUnequip ||
+                upperBodyAction == Agent.ActionCodeType.SwitchAlternative ||
+                fullBodyAction == Agent.ActionCodeType.EquipUnequip ||
+                fullBodyAction == Agent.ActionCodeType.SwitchAlternative)
             {
                 return;
             }
@@ -151,7 +176,7 @@ namespace TOR_Core.BattleMechanics.AI
         private void UpdateAIInputRegistration()
         {
             var shouldReceiveAIInput = CanUseCloseCombatActions();
-            if (shouldReceiveAIInput)
+            if (shouldReceiveAIInput && !IsKickingOrBashing(Agent.GetCurrentActionType(1), Agent.GetCurrentActionType(0)))
             {
                 var enemy = Agent.ImmediateEnemy;
                 shouldReceiveAIInput = IsUsableTarget(enemy) &&
@@ -234,6 +259,12 @@ namespace TOR_Core.BattleMechanics.AI
                 weaponReach,
                 Agent.Monster.StandingPelvisHeight * Agent.AgentScale);
             return bodyReach + weaponContribution;
+        }
+
+        private static bool IsKickingOrBashing(Agent.ActionCodeType upperBodyAction, Agent.ActionCodeType fullBodyAction)
+        {
+            return (upperBodyAction >= Agent.ActionCodeType.Kick && upperBodyAction <= Agent.ActionCodeType.WeaponBash) ||
+                   (fullBodyAction >= Agent.ActionCodeType.Kick && fullBodyAction <= Agent.ActionCodeType.WeaponBash);
         }
 
         private static bool IsAttackStage(Agent.ActionStage actionStage)

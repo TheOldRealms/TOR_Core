@@ -22,8 +22,8 @@ namespace TOR_Core.CampaignMechanics
             }
             if (!settlement.Owner.Clan.IsCastleFaction()) return;
 
-            // Castle faction food support (Blood Keep, Brass Keep, Melkhiors Tower only - greenskins handled separately)
-            if (settlement.IsBloodKeep() || settlement.StringId == "castle_BK2" || settlement.StringId == "castle_MT1")
+            // Castle faction food support (Blood Keep, Brass Keep, Melkhiors Tower, Barley Motte only - greenskins handled separately)
+            if (settlement.IsBloodKeep() || settlement.IsBrassKeep() || settlement.IsMelkhiorsTower() || settlement.IsBarleyMotte())
             {
                 foreach (var  party in settlement.Parties)
                 {
@@ -60,7 +60,7 @@ namespace TOR_Core.CampaignMechanics
                 bloodKeep.SetGarrisonWagePaymentLimit(800000);
             }
 
-            var castleMousillon = Campaign.Current.Settlements.FirstOrDefault(x => x.StringId == "town_MS1");
+            var castleMousillon = Campaign.Current.Settlements.FirstOrDefault(x => x.IsCastleMousillon());
 
             if (castleMousillon != null)
             {
@@ -69,7 +69,7 @@ namespace TOR_Core.CampaignMechanics
             }
 
 
-            var brasskeep = Campaign.Current.Settlements.FirstOrDefault(x => x.StringId == "castle_BK2");
+            var brasskeep = Campaign.Current.Settlements.FirstOrDefault(x => x.IsBrassKeep());
 
             if (brasskeep != null)
             {
@@ -78,13 +78,22 @@ namespace TOR_Core.CampaignMechanics
             }
 
 
-            var melkiortower = Campaign.Current.Settlements.FirstOrDefault(x => x.StringId == "castle_MT1");
+            var melkiortower = Campaign.Current.Settlements.FirstOrDefault(x => x.IsMelkhiorsTower());
 
             if (melkiortower != null)
             {
                 var wraith = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_cairn_wraith");
                 melkiortower.MilitiaPartyComponent.Party.AddMember(wraith, 1000);
                 melkiortower.SetGarrisonWagePaymentLimit(1600000);
+            }
+
+
+            var barleyMotte = Campaign.Current.Settlements.FirstOrDefault(x => x.IsBarleyMotte());
+
+            if (barleyMotte != null)
+            {
+                var khornewarrior = MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_khorne_warrior");
+                barleyMotte.MilitiaPartyComponent.Party.AddMember(khornewarrior, 500);
             }
         }
 

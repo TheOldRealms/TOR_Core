@@ -22,6 +22,8 @@ using static TOR_Core.Utilities.TORConstants;
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
+    // Mission method prep during OnSubModuleLoad can initialize ActionIndexCache before action_types.xml loads.
+    [HarmonyPatchCategory("LatePatches")]
     public static class MissionPatches
     {
         private static readonly FieldInfo SimulationFormationTempField = AccessTools.Field(typeof(Formation), "_simulationFormationTemp");
@@ -271,8 +273,9 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(MissionEquipment), nameof(MissionEquipment.SelectWeaponPickUpSlot))]
         public static bool BlockTrollLockedGroundPickup(ref EquipmentIndex __result, MissionWeapon weaponBeingPickedUp)
         {
-            var raceLock = weaponBeingPickedUp.Item.GetTorSpecificDataReadOnly()?.RaceLock;
-            if (raceLock != "troll")
+            var item = weaponBeingPickedUp.Item;
+            var raceLock = item?.GetTorSpecificDataReadOnly()?.RaceLock;
+            if (raceLock != "troll" && string.IsNullOrEmpty(item?.GetForearmMeshName()))
             {
                 return true;
             }

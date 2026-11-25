@@ -21,6 +21,10 @@ namespace TOR_Core.AbilitySystem
     {
         private Ability _currentAbility = null;
         private readonly List<Ability> _knownAbilitySystem = new List<Ability>();
+        private EquipmentIndex _aiCachedMainHand = EquipmentIndex.None;
+        private bool _aiSheathedMainHandForCast;
+        private bool _aiPendingMainHandRestore;
+        private float _aiRestoreMainHandAtTime;
         public bool LastCastWasQuickCast;
         public delegate void CurrentAbilityChangedHandler(AbilityCrosshair crosshair);
         public event CurrentAbilityChangedHandler CurrentAbilityChanged;
@@ -46,6 +50,7 @@ namespace TOR_Core.AbilitySystem
                         CareerAbility = (CareerAbility)ability;
                         CareerAbility.OnCastStart += OnCastStart;
                         CareerAbility.OnCastComplete += OnCastComplete;
+                        CareerAbility.OnCastCancelled += OnCastCancelled;
                         _knownAbilitySystem.Add(CareerAbility);
                     }
                 }
@@ -62,6 +67,7 @@ namespace TOR_Core.AbilitySystem
                         {
                             ability.OnCastStart += OnCastStart;
                             ability.OnCastComplete += OnCastComplete;
+                            ability.OnCastCancelled += OnCastCancelled;
                             if (ability.Template.AbilityType != AbilityType.ItemBound) _knownAbilitySystem.Add(ability);
                         }
                         else
@@ -229,6 +235,24 @@ namespace TOR_Core.AbilitySystem
 
         private void OnCastStart(Ability ability)
         {
+            if (Agent != null && Agent.IsAIControlled && Agent.IsActive()
+                && ability.Template.AbilityType == AbilityType.Spell
+                && !AbilityManagerMissionLogic.IsLevitateWeapon(Agent.WieldedWeapon)
+                && !AbilityManagerMissionLogic.ShouldKeepMainHandForTemplate(ability.Template))
+            {
+                _aiPendingMainHandRestore = false;
+                var primaryIndex = Agent.GetPrimaryWieldedItemIndex();
+                if (primaryIndex != EquipmentIndex.None)
+                {
+                    if (!_aiSheathedMainHandForCast)
+                    {
+                        _aiCachedMainHand = primaryIndex;
+                    }
+                    _aiSheathedMainHandForCast = true;
+                    Agent.TryToSheathWeaponInHand(Agent.HandIndex.MainHand, Agent.WeaponWieldActionType.Instant);
+                }
+            }
+
             var manager = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
             if (manager != null)
             {
@@ -238,10 +262,30 @@ namespace TOR_Core.AbilitySystem
 
         private void OnCastComplete(Ability ability)
         {
+            ScheduleAIMainHandRestoreIfNeeded();
             var manager = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
             if (manager != null)
             {
                 manager.OnCastComplete(ability, Agent);
+            }
+        }
+
+        private void OnCastCancelled(Ability ability)
+        {
+            ScheduleAIMainHandRestoreIfNeeded();
+            var manager = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
+            if (manager != null)
+            {
+                manager.OnCastCancelled(ability, Agent);
+            }
+        }
+
+        private void ScheduleAIMainHandRestoreIfNeeded()
+        {
+            if (_aiSheathedMainHandForCast && Agent != null && Agent.IsAIControlled)
+            {
+                _aiPendingMainHandRestore = true;
+                _aiRestoreMainHandAtTime = (Mission.Current?.CurrentTime ?? 0f) + 1.0f;
             }
         }
 
@@ -305,10 +349,27 @@ namespace TOR_Core.AbilitySystem
         {
             foreach (var ability in _knownAbilitySystem)
             {
-                ability.TickCastingState();
+                ability.TickCastingState(Agent);
 
                 if (ability.IsActivationPending)
                     ability.ActivateAbility(Agent);
+            }
+
+            if (_aiPendingMainHandRestore
+                && Mission.Current != null
+                && Mission.Current.CurrentTime >= _aiRestoreMainHandAtTime
+                && !_knownAbilitySystem.Any(a => a.IsCasting || a.IsActivationPending))
+            {
+                _aiPendingMainHandRestore = false;
+                _aiSheathedMainHandForCast = false;
+                if (Agent != null
+                    && Agent.IsActive()
+                    && _aiCachedMainHand != EquipmentIndex.None
+                    && Agent.GetPrimaryWieldedItemIndex() == EquipmentIndex.None)
+                {
+                    Agent.TryToWieldWeaponInSlot(_aiCachedMainHand, Agent.WeaponWieldActionType.WithAnimation, false);
+                }
+                _aiCachedMainHand = EquipmentIndex.None;
             }
         }
 

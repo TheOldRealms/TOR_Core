@@ -53,6 +53,13 @@ namespace TOR_Core.Models
             var leaderHero = mobileParty?.LeaderHero;
             if (leaderHero == null) return result;
 
+            // Raider primary. Party-leader perk, applies to any lord party.
+            if (mobileParty.IsRaidingParty() && leaderHero.GetPerkValue(TORPerks.Roguery.Raider))
+            {
+                result.AddFactor(TORPerks.Roguery.Raider.PrimaryBonus,
+                    TORTextHelper.GetTextObject("tor_perk_raider_speed", "Raider"));
+            }
+
 
 
             if (mobileParty != MobileParty.MainParty)

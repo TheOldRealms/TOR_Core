@@ -23,6 +23,7 @@ namespace TOR_Core.AbilitySystem
         private int _coolDownLeft = 0;
         private float _cooldownEndTime;
         private float _windUpCastEndTime = -1f;
+        private int _activeCastChannel = -1;
 
         protected bool _isLocked = false;
         public bool IsCasting { get; private set; }
@@ -63,6 +64,10 @@ namespace TOR_Core.AbilitySystem
         public delegate void OnCastStartHandler(Ability ability);
 
         public event OnCastStartHandler OnCastStart;
+
+        public delegate void OnCastCancelledHandler(Ability ability);
+
+        public event OnCastCancelledHandler OnCastCancelled;
 
         public Ability(AbilityTemplate template)
         {
@@ -195,15 +200,65 @@ namespace TOR_Core.AbilitySystem
             _cooldownEndTime = Mission.Current.CurrentTime + _coolDownLeft + 0.8f; // Adjustment copied for natural tick on UI
         }
 
-        internal void TickCastingState()
+        /// <summary>
+        /// Refunds cooldown time exactly. Unlike <see cref="ReduceCooldownBy"/>, it works on the exact end time, so it neither rounds
+        /// to whole seconds nor re-adds the UI tick adjustment of <see cref="SetCoolDown"/>. The cooldown never drops below zero.
+        /// </summary>
+        public void RefundCooldown(float seconds)
+        {
+            if (Mission.Current == null) return;
+
+            _cooldownEndTime = Math.Max(Mission.Current.CurrentTime, _cooldownEndTime - seconds);
+        }
+
+        internal void TickCastingState(Agent casterAgent)
         {
             if (!IsCasting || IsActivationPending || Template.CastType != CastType.WindUp)
                 return;
+
+            if (ShouldCancelWindUpCast(casterAgent))
+            {
+                CancelCasting(casterAgent);
+                return;
+            }
 
             if (Mission.Current.CurrentTime >= _windUpCastEndTime)
             {
                 IsActivationPending = true;
             }
+        }
+
+        private bool ShouldCancelWindUpCast(Agent casterAgent)
+        {
+            if (casterAgent == null || !casterAgent.IsActive() || casterAgent.Health <= 0f || casterAgent.IsFadingOut())
+                return true;
+
+            if (IsInterruptingActionType(casterAgent.GetCurrentActionType(0)))
+                return true;
+
+            if (_activeCastChannel == 0 && IsInterruptingActionType(casterAgent.GetCurrentActionType(1)))
+                return true;
+
+            return false;
+        }
+
+        private static bool IsInterruptingActionType(Agent.ActionCodeType actionType)
+        {
+            return (actionType >= Agent.ActionCodeType.StrikeBegin && actionType <= Agent.ActionCodeType.StrikeEnd)
+                || (actionType >= Agent.ActionCodeType.FallAllBegin && actionType <= Agent.ActionCodeType.FallAllEnd)
+                || actionType == Agent.ActionCodeType.Fall;
+        }
+
+        public void CancelCasting(Agent casterAgent)
+        {
+            if (!IsCasting && !IsActivationPending)
+                return;
+
+            IsCasting = false;
+            IsActivationPending = false;
+            _windUpCastEndTime = -1f;
+            _activeCastChannel = -1;
+            OnCastCancelled?.Invoke(this);
         }
 
         public virtual void DeactivateAbility()
@@ -213,9 +268,14 @@ namespace TOR_Core.AbilitySystem
         }
         public virtual void ActivateAbility(Agent casterAgent)
         {
-            if (casterAgent == null) return; //could something die right before casting?
+            if (casterAgent == null || !casterAgent.IsActive() || casterAgent.Health <= 0f || casterAgent.IsFadingOut())
+            {
+                CancelCasting(casterAgent);
+                return;
+            }
             IsActivationPending = false;
             IsCasting = false;
+            _activeCastChannel = -1;
             bool prayerCoolSeperated = false;
             ExplainedNumber cooldown = new(Template.CoolDown);
             if (Game.Current.GameType is Campaign)
@@ -792,12 +852,49 @@ namespace TOR_Core.AbilitySystem
                 NLog.LogLevel.Info);
         }
 
+        public static bool IsFullBodyAnimation(AbilityTemplate template)
+        {
+            if (template == null || string.IsNullOrEmpty(template.AnimationActionName) || template.AnimationActionName == "none")
+                return false;
+
+            var anim = template.AnimationActionName;
+            if (anim.Contains("missile_1h") || anim.Contains("minor"))
+                return false;
+
+            return template.SpellTier >= 3
+                || anim.Contains("kamehameha")
+                || anim.Contains("adept")
+                || anim.Contains("master");
+        }
+
+        private string ResolveAnimationActionName(Agent casterAgent, bool isFullBody)
+        {
+            if (AbilityManagerMissionLogic.IsWieldingLevitateWeapon(casterAgent))
+            {
+                return isFullBody ? "act_tor_levitate_fireball_cast" : "act_tor_levitate_magic_attack";
+            }
+
+            return Template.AnimationActionName;
+        }
+
         private void SetAnimationAction(Agent casterAgent)
         {
-            if (Template.AnimationActionName != "none")
+            if (casterAgent == null || string.IsNullOrEmpty(Template.AnimationActionName) || Template.AnimationActionName == "none")
+                return;
+
+            // Mounted casters stay on Channel 1 (upper body) so Channel 0 riding pose is preserved.
+            bool isFullBody = !casterAgent.HasMount && IsFullBodyAnimation(Template);
+            int channel = isFullBody ? 0 : 1;
+            var actionIndex = ActionIndexCache.Create(ResolveAnimationActionName(casterAgent, isFullBody));
+            _activeCastChannel = channel;
+
+            if (channel == 0)
             {
-                casterAgent.SetActionChannel(1, ActionIndexCache.Create(Template.AnimationActionName));
+                // Clear any Channel 1 targeting idle stance so it doesn't mask the Channel 0 upper body.
+                casterAgent.SetActionChannel(1, ActionIndexCache.act_none, ignorePriority: true);
             }
+
+            casterAgent.SetActionChannel(channel, actionIndex);
         }
 
         public void SetCrosshair(AbilityCrosshair crosshair)
@@ -810,6 +907,7 @@ namespace TOR_Core.AbilitySystem
             Template = null;
             OnCastComplete = null;
             OnCastStart = null;
+            OnCastCancelled = null;
         }
 
         private bool IsRightAngleToCast()

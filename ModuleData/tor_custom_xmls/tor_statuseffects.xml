@@ -1427,7 +1427,7 @@
 	
 	
 	<StatusEffectTemplate 
-		id="oath_and_steel" 
+		id="oath_and_steel_buff_res" 
 		particle_id="psys_energy_sphere"
 		particle_intensity="Low"
 		base_effect_value="0.25"
@@ -1437,7 +1437,7 @@
 	</StatusEffectTemplate>
 
 	<StatusEffectTemplate 
-		id="oath_and_steel_empowered" 
+		id="oath_and_steel_buff_dmg" 
 		particle_id=""
 		particle_intensity="Low"
 		base_effect_value="0.20"
@@ -1467,7 +1467,7 @@
 	</StatusEffectTemplate>
 	
 	<StatusEffectTemplate 
-		id="hearth_and_home_buff_speed_empowered" 
+		id="hearth_and_home_buff_ats" 
 		particle_id=""
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
@@ -1518,14 +1518,24 @@
 	</StatusEffectTemplate>
 	
 	<StatusEffectTemplate
-		id="wrath_and_ruin"
+		id="wrath_and_ruin_dot"
 		particle_id="torch_fire_sparks"
 		particle_intensity="High"
-    	base_effect_value="-3"
+		base_effect_value="3"
 		type="DamageOverTime"
 		damage_type="Fire">
-		<temporary_attribute>Piercing</temporary_attribute>
-  	</StatusEffectTemplate>
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="wrath_and_ruin_sunder"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.0"
+		applies_for_attack_type="All"
+		type="TemporaryAttributeOnly"
+		damage_type="Physical">
+		<temporary_attribute>Sundered</temporary_attribute>
+	</StatusEffectTemplate>
 	
 	
 	<StatusEffectTemplate 
@@ -1554,7 +1564,7 @@
 		id="unit_rune_guarding"
 		particle_id="general_light_buff"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="0.3"
+		base_effect_value="0.15"
 		applies_for_attack_type="All"
 		type="Resistance"
 		damage_type="Physical">
@@ -1646,7 +1656,7 @@
 		id="unit_rune_grimnir"
 		particle_id="general_fire_buff"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="0.35"
+		base_effect_value="0.2"
 		applies_for_attack_type="Ranged"
 		type="AttackSpeedManipulation"
 		damage_type="Physical">
@@ -1660,6 +1670,16 @@
 		applies_for_attack_type="All"
 		type="DamageAmplification"
 		damage_type="Physical">
+	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate 
+		id="unit_rune_grimnir_3"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.35"
+		applies_for_attack_type="All"
+		type="DamageAmplification"
+		damage_type="Fire">
 	</StatusEffectTemplate>
 	
 	

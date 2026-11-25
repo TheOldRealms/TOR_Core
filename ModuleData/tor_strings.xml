@@ -80,6 +80,10 @@
   <string id="tor_race_name.spirit_host" text="{=str_tor_race_name_spirit_host}Spirit Host" />
   <string id="tor_race_name.troll" text="{=str_tor_race_name_troll}Troll" />
 
+  <!-- UI - Ambush deployment -->
+  <string id="tor_ambush_spawnpoint_tag.attacker_ambush_hill" text="{=str_tor_ambush_spawnpoint_tag.attacker_ambush_hill}Hill" />
+  <string id="tor_ambush_spawnpoint_tag.attacker_ambush_street" text="{=str_tor_ambush_spawnpoint_tag.attacker_ambush_street}Street" />
+
   <!-- Oathgold -->
   <string id="tor_party_size_desc.FriendOfUndead" text="{=str_tor_party_size_desc_friendofundead}Friend of undead" />
   <string id="tor_party_size_desc.CaravanOfDeath" text="{=str_tor_party_size_desc_caravanofdeath}Caravan of death" />
@@ -191,11 +195,11 @@
 
   <!-- Skill perks - Spellcraft -->
   <string id="tor_perk_novice_spellcaster_label" text="{=str_tor_perk_novice_spellcaster_label}Novice Spellcaster" />
-  <string id="tor_perk_novice_spellcaster_1" text="{=str_tor_perk_novice_spellcaster_1}Gain access to entry level spells." />
+  <string id="tor_perk_novice_spellcaster_1" text="{=str_tor_perk_novice_spellcaster_1}Gain access to entry level spells and runes." />
   <string id="tor_perk_adept_spellcaster_label" text="{=str_tor_perk_adept_spellcaster_label}Adept Spellcaster" />
-  <string id="tor_perk_adept_spellcaster_1" text="{=str_tor_perk_adept_spellcaster_1}Gain access to adept level spells." />
+  <string id="tor_perk_adept_spellcaster_1" text="{=str_tor_perk_adept_spellcaster_1}Gain access to adept level spells and runes." />
   <string id="tor_perk_master_spellcaster_label" text="{=str_tor_perk_master_spellcaster_label}Master Spellcaster" />
-  <string id="tor_perk_master_spellcaster_1" text="{=str_tor_perk_master_spellcaster_1}Gain access to master level spells." />
+  <string id="tor_perk_master_spellcaster_1" text="{=str_tor_perk_master_spellcaster_1}Gain access to master level spells and runes." />
   <string id="tor_perk_selfish_label" text="{=str_tor_perk_selfish_label}Selfish" />
   <string id="tor_perk_selfish_1" text="{=str_tor_perk_selfish_1}Your damaging spells do 90% reduced damage to yourself." />
   <string id="tor_perk_selfish_2" text="{=str_tor_perk_selfish_2}Your self targeted buff spells have 50% more duration." />
@@ -204,14 +208,14 @@
   <string id="tor_perk_well_controlled_2" text="{=str_tor_perk_well_controlled_2}Gain 5% advantage in simulation battles." />
   <string id="tor_perk_librarian_label" text="{=str_tor_perk_librarian_label}Librarian" />
   <string id="tor_perk_librarian_1" text="{=str_tor_perk_librarian_1}You gain double experience from reading books." />
-  <string id="tor_perk_librarian_2" text="{=str_tor_perk_librarian_2}Learning new spells cost 50% less gold." />
+  <string id="tor_perk_librarian_2" text="{=str_tor_perk_librarian_2}Learning new spells and runes costs 50% less gold." />
   <string id="tor_perk_story_teller_label" text="{=str_tor_perk_story_teller_label}Storyteller" />
   <string id="tor_perk_story_teller_1" text="{=str_tor_perk_story_teller_1}Every companion in your party gains 1000 experience in a random skill per day." />
   <string id="tor_perk_story_teller_2" text="{=str_tor_perk_story_teller_2}Your party gains a permanent +5 increase to party morale." />
   <string id="tor_perk_overcaster_label" text="{=str_tor_perk_overcaster_label}Overcaster" />
-  <string id="tor_perk_overcaster_1" text="{=str_tor_perk_overcaster_1}Your damaging spells do 20% more damage but cost 30% more winds of magic." />
+  <string id="tor_perk_overcaster_1" text="{=str_tor_perk_overcaster_1}Your damaging and healing spells are 20% more effective but cost 30% more winds of magic." />
   <string id="tor_perk_effective_spellcaster_label" text="{=str_tor_perk_effective_spellcaster_label}Efficient Spellcaster" />
-  <string id="tor_perk_effective_spellcaster_1" text="{=str_tor_perk_effective_spellcaster_1}Your damaging spells do 20% less damage, but cost 30% less winds of magic." />
+  <string id="tor_perk_effective_spellcaster_1" text="{=str_tor_perk_effective_spellcaster_1}Your damaging and healing spells are 20% less effective, but cost 30% less winds of magic." />
   <string id="tor_perk_improvision_label" text="{=str_tor_perk_improvision_label}Improvision" />
   <string id="tor_perk_improvision_1" text="{=str_tor_perk_improvision_1}Your Winds of Magic is set to 25 if you have less than that at the beginning of the battle." />
   <string id="tor_perk_improvision_2" text="{=str_tor_perk_improvision_2}+10% Persuasion chance during speech checks." />
@@ -222,7 +226,7 @@
   <string id="tor_perk_dampener_1" text="{=str_tor_perk_dampener_1}Damage dealt by your damaging spells is reduced by 15%, but troops in your formation take 30% less damage from spells." />
   <string id="tor_perk_dampener_2" text="{=str_tor_perk_dampener_2}You gain 5% ward save." />
   <string id="tor_perk_arcane_link_label" text="{=str_tor_perk_arcane_link_label}Arcane Link" />
-  <string id="tor_perk_arcane_link_1" text="{=str_tor_perk_arcane_link_1}Any buffs you cast on a friendly unit will now also apply to you even if you are not in range." />
+  <string id="tor_perk_arcane_link_1" text="{=str_tor_perk_arcane_link_1}Any buffs you cast on a friendly unit, including runes, will now also apply to you even if you are not in range." />
   <string id="tor_perk_arcane_link_2" text="{=str_tor_perk_arcane_link_2}As formation Captain, all troops in your formation deal additonal 10% magic damage." />
   <string id="tor_perk_exchange_label" text="{=str_tor_perk_exchange_label}Exchange" />
   <string id="tor_perk_exchange_1" text="{=str_tor_perk_exchange_1}All physical damage done by your weapons is doubled and dealt again as magical damage." />
@@ -260,6 +264,73 @@
   <string id="tor_perk_spirit_1" text="{=str_tor_perk_spirit_1}Whenever a tier 6 or higher unit dies, distribute their experience among the rest of the troops in the party." />
   <string id="tor_perk_miracle_label" text="{=str_tor_perk_miracle_label}Miracle" />
   <string id="tor_perk_miracle_1" text="{=str_tor_perk_miracle_1}Your faith is so strong that it is able to manifest miraculous events from time to time." />
+  <string id="tor_perk_keen_senses_label" text="{=str_tor_perk_keen_senses_label}Keen Senses" />
+  <string id="tor_perk_keen_senses_1" text="{=str_tor_perk_keen_senses_1}Your party's spotting range is increased by 25%." />
+  <string id="tor_perk_low_profile_label" text="{=str_tor_perk_low_profile_label}Low Profile" />
+  <string id="tor_perk_low_profile_1" text="{=str_tor_perk_low_profile_1}Your party is 25% harder to spot by enemy parties." />
+  <string id="tor_perk_raider_label" text="{=str_tor_perk_raider_label}Raider" />
+  <string id="tor_perk_raider_1" text="{=str_tor_perk_raider_1}Your party moves 5% faster while raiding villages." />
+  <string id="tor_perk_raider_2" text="{=str_tor_perk_raider_2}Your quartermaster earns Tactics experience from raid operations." />
+  <string id="tor_perk_parlay_label" text="{=str_tor_perk_parlay_label}Parlay" />
+  <string id="tor_perk_parlay_1" text="{=str_tor_perk_parlay_1}20% chance to end a bandit encounter peacefully during conversation." />
+  <string id="tor_perk_parlay_2" text="{=str_tor_perk_parlay_2}You keep 50% of your inventory when taken prisoner." />
+  <string id="tor_perk_high_roller_label" text="{=str_tor_perk_high_roller_label}High Roller" />
+  <string id="tor_perk_high_roller_1" text="{=str_tor_perk_high_roller_1}Your maximum tournament bet is doubled." />
+  <string id="tor_perk_high_roller_2" text="{=str_tor_perk_high_roller_2}Wages for your Master Ambusher troops are reduced by 20%." />
+  <string id="tor_perk_shakedown_label" text="{=str_tor_perk_shakedown_label}Shakedown" />
+  <string id="tor_perk_shakedown_1" text="{=str_tor_perk_shakedown_1}Villagers are 15% less likely to resist when you demand goods." />
+  <string id="tor_perk_shakedown_2" text="{=str_tor_perk_shakedown_2}Nearby villages reduce your ambush stealth by 10% less." />
+  <string id="tor_perk_reprisal_label" text="{=str_tor_perk_reprisal_label}Reprisal" />
+  <string id="tor_perk_reprisal_1" text="{=str_tor_perk_reprisal_1}Recover 15% faster from a failed ambush." />
+  <string id="tor_perk_reprisal_2" text="{=str_tor_perk_reprisal_2}Enemy reinforcements take 20 seconds longer to arrive during your ambush attacks." />
+  <string id="tor_perk_by_the_road_label" text="{=str_tor_perk_by_the_road_label}By the Road" />
+  <string id="tor_perk_by_the_road_1" text="{=str_tor_perk_by_the_road_1}+5% loot from caravans and villages." />
+  <string id="tor_perk_by_the_road_2" text="{=str_tor_perk_by_the_road_2}+1 security per day in settlements you govern." />
+  <string id="tor_perk_diversion_label" text="{=str_tor_perk_diversion_label}Diversion" />
+  <string id="tor_perk_diversion_1" text="{=str_tor_perk_diversion_1}Prisoners in your party can create a diversion, increasing your chance to escape from captivity." />
+  <string id="tor_perk_diversion_2" text="{=str_tor_perk_diversion_2}+10 prisoner capacity." />
+  <string id="tor_perk_wolf_pack_label" text="{=str_tor_perk_wolf_pack_label}Wolf Pack" />
+  <string id="tor_perk_wolf_pack_1" text="{=str_tor_perk_wolf_pack_1}Bring 5 additional ambushers to your ambush attacks." />
+  <string id="tor_perk_wolf_pack_2" text="{=str_tor_perk_wolf_pack_2}Your party consumes 10% less food while in ambush stance." />
+  <string id="tor_perk_intimidator_label" text="{=str_tor_perk_intimidator_label}Intimidator" />
+  <string id="tor_perk_intimidator_1" text="{=str_tor_perk_intimidator_1}30% chance for villagers, caravans, and bandits to surrender when you demand it." />
+  <string id="tor_perk_intimidator_2" text="{=str_tor_perk_intimidator_2}Tavern mercenaries cost 20% less to hire." />
+  <string id="tor_perk_burnt_earth_label" text="{=str_tor_perk_burnt_earth_label}Burnt Earth" />
+  <string id="tor_perk_burnt_earth_1" text="{=str_tor_perk_burnt_earth_1}Your crime rating rises 20% more slowly." />
+  <string id="tor_perk_burnt_earth_2" text="{=str_tor_perk_burnt_earth_2}Village notables lose 75% less relation with you after their village is raided." />
+  <string id="tor_perk_highwayman_label" text="{=str_tor_perk_highwayman_label}Highwayman" />
+  <string id="tor_perk_highwayman_1" text="{=str_tor_perk_highwayman_1}Fully wiping out a caravan during an ambush leaves no witnesses: no crime rating, no relation loss, no war declared." />
+  <string id="tor_perk_highwayman_2" text="{=str_tor_perk_highwayman_2}Your Master Ambusher troops gain daily experience while your party is in ambush stance." />
+  <string id="tor_perk_disguise_label" text="{=str_tor_perk_disguise_label}Disguise" />
+  <string id="tor_perk_disguise_1" text="{=str_tor_perk_disguise_1}You can trade in towns while disguised." />
+  <string id="tor_perk_disguise_2" text="{=str_tor_perk_disguise_2}Trade penalties with factions where you have a crime rating are reduced by 50%." />
+  <string id="tor_perk_skirmisher_label" text="{=str_tor_perk_skirmisher_label}Skirmisher" />
+  <string id="tor_perk_skirmisher_1" text="{=str_tor_perk_skirmisher_1}+10 vigor and control for your Master Ambusher troops in your formation." />
+  <string id="tor_perk_skirmisher_2" text="{=str_tor_perk_skirmisher_2}+1 recruitment slot when recruiting from gang leaders." />
+  <string id="tor_perk_fencer_label" text="{=str_tor_perk_fencer_label}Fencer" />
+  <string id="tor_perk_fencer_1" text="{=str_tor_perk_fencer_1}+20% loot when villagers comply with your hostile action." />
+  <string id="tor_perk_fencer_2" text="{=str_tor_perk_fencer_2}+5 tariff revenue from towns you govern." />
+  <string id="tor_perk_backstabber_label" text="{=str_tor_perk_backstabber_label}Backstabber" />
+  <string id="tor_perk_backstabber_1" text="{=str_tor_perk_backstabber_1}+10 damage on your thrust attacks." />
+  <string id="tor_perk_backstabber_2" text="{=str_tor_perk_backstabber_2}Troops in your formation deal +4 damage on thrust attacks." />
+  <string id="tor_perk_negotiator_label" text="{=str_tor_perk_negotiator_label}Negotiator" />
+  <string id="tor_perk_negotiator_1" text="{=str_tor_perk_negotiator_1}25% better deals when ransoming heroes through brokers." />
+  <string id="tor_perk_negotiator_2" text="{=str_tor_perk_negotiator_2}+30% escape chance for your hero prisoners." />
+  <string id="tor_perk_fence_label" text="{=str_tor_perk_fence_label}Fence" />
+  <string id="tor_perk_fence_1" text="{=str_tor_perk_fence_1}-20% weapon sell-price penalty." />
+  <string id="tor_perk_fence_2" text="{=str_tor_perk_fence_2}+2 militia per day in besieged towns you govern." />
+  <string id="tor_perk_unarmed_label" text="{=str_tor_perk_unarmed_label}Unarmed" />
+  <string id="tor_perk_unarmed_1" text="{=str_tor_perk_unarmed_1}50% longer stun duration on kick attacks." />
+  <string id="tor_perk_unarmed_2" text="{=str_tor_perk_unarmed_2}+2 food in besieged towns you govern." />
+  <string id="tor_perk_strider_label" text="{=str_tor_perk_strider_label}Strider" />
+  <string id="tor_perk_strider_1" text="{=str_tor_perk_strider_1}+50% damage bonus from speed while fighting on foot." />
+  <string id="tor_perk_strider_2" text="{=str_tor_perk_strider_2}Cities you govern produce 250 denars per day while a tournament is active." />
+  <string id="tor_perk_shadowed_label" text="{=str_tor_perk_shadowed_label}Shadowed" />
+  <string id="tor_perk_shadowed_1" text="{=str_tor_perk_shadowed_1}+10% combat speed for your Master Ambusher troops in formation." />
+  <string id="tor_perk_shadowed_2" text="{=str_tor_perk_shadowed_2}+30% escape chance when you are captured by mobile parties." />
+  <string id="tor_perk_master_thief_label" text="{=str_tor_perk_master_thief_label}Master Thief" />
+  <string id="tor_perk_master_thief_1" text="{=str_tor_perk_master_thief_1}You gain +1% loot for every Roguery skill point above 200." />
+  <string id="tor_skill_effect_ambush_spotting" text="{=str_tor_skill_effect_ambush_spotting}Ambush detection: +{a0} % (combined from leader and Scout, higher dominates)" />
 
   <!-- Ability System - Faith -->
   <string id="tor_ability_enabled" text="{=str_tor_ability_enabled}Enabled" />
@@ -520,8 +591,9 @@
   <!-- Career Button - unit rune -->
   <string id="tor_unit_rune_cost_display" text="{=str_tor_unit_rune_cost_display}{RUNE_DESCRIPTION}{newline}{newline}Required ingredients:{newline}{RUNE_COST_LIST}" />
   <string id="tor_unit_rune_cost_insufficient" text="{=str_tor_unit_rune_cost_insufficient}{RUNE_DESCRIPTION}{newline}{newline}Required ingredients:{newline}{RUNE_COST_LIST}{newline}You do not have enough ingredients!" />
+  <string id="tor_unit_rune_combined_cost_insufficient" text="{=str_tor_unit_rune_combined_cost_insufficient}You do not have enough ingredients for all selected runes." />
   <string id="tor_unit_rune_active_display" text="{=str_tor_unit_rune_active_display}{RUNE_NAME}{newline}{RUNE_DESC}" />
-  <string id="tor_unit_rune_warning_text" text="{=str_tor_unit_rune_warning_text}WARNING : Current {CURRENT_RUNE} will be removed without compensation." />
+  <string id="tor_unit_rune_warning_text" text="{=str_tor_unit_rune_warning_text}WARNING : Current {CURRENT_RUNE} will be removed without compensation unless selected again." />
   <string id="tor_unit_rune_unknown_runes_text" text="{=str_tor_unit_rune_unknown_runes_text}You do not know the required runes:{UNKNOWN_RUNES_LIST}" />
   <string id="tor_unit_rune_title" text="{=str_tor_unit_rune_title}Unit Runes" />
   <string id="tor_unit_rune_description" text="{=str_tor_unit_rune_description}Choose a rune to add to the equipment of your units. {RUNE_WARNING_TEXT}" />
@@ -3513,44 +3585,44 @@
   <string id="tor_careerchoice_description.TwinTailedCometPassive2" text="{=str_tor_careerchoice_description_TwinTailedCometPassive2}+5 Companion limit." />
   <string id="tor_careerchoice_description.TwinTailedCometPassive3" text="{=str_tor_careerchoice_description_TwinTailedCometPassive3}+20% personal melee 'Armour Penetration'." />
   <string id="tor_careerchoice_description.TwinTailedCometPassive4" text="{=str_tor_careerchoice_description_TwinTailedCometPassive4}+20 personal Hitpoints." />
-  <string id="tor_careerchoice_description.WarriorPriestUlricRoot" text="{=str_tor_careerchoice_description_WarriorPriestUlricRoot}Let all know the fury of the wolf god! Like Ulric and his axe Blitzbeil before you, slam your weapon into the earth, erupting the ground in a 2 meter radius. This attack cannot be parried. For every level in your highest melee weapon skill, increase Axe of Ulric's damage by 0.1%. (Ability charges by dealing melee 'Physical' damage.)" />
+  <string id="tor_careerchoice_description.WarriorPriestUlricRoot" text="{=str_tor_careerchoice_description_WarriorPriestUlricRoot}Let all know the fury of the wolf god! Like Ulric and his axe Blitzbeil before you, slam your weapon into the earth, erupting the ground in a 2 meter radius. This attack cannot be parried. For every level in your highest melee weapon skill, increase Axe of Ulric's damage by 0.1%. (Ability charges by dealing melee damage.)" />
 
   <!-- Career Choice Description - WarriorPriestUlric -->
-  <string id="tor_careerchoice_description.CrusherOfTheWeakKeystone" text="{=str_tor_careerchoice_description_CrusherOfTheWeakKeystone}Axe of Ulric knocks foes down." />
+  <string id="tor_careerchoice_description.CrusherOfTheWeakKeystone" text="{=str_tor_careerchoice_description_CrusherOfTheWeakKeystone}Axe of Ulric also releases a 3 meter shockwave that knocks foes down and deals up to 50 Physical damage." />
   <string id="tor_careerchoice_description.CrusherOfTheWeakPassive1" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive1}+10 personal Hitpoints." />
-  <string id="tor_careerchoice_description.CrusherOfTheWeakPassive2" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive2}+5% personal 'Physical' melee damage." />
-  <string id="tor_careerchoice_description.CrusherOfTheWeakPassive3" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive3}Deal +10% more personal 'Physical' melee damage to foes less than tier 4." />
+  <string id="tor_careerchoice_description.CrusherOfTheWeakPassive2" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive2}+5% personal Physical melee damage." />
+  <string id="tor_careerchoice_description.CrusherOfTheWeakPassive3" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive3}Deal +10% more personal Physical melee damage to foes less than tier 4." />
   <string id="tor_careerchoice_description.CrusherOfTheWeakPassive4" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive4}Prayers now start charged on battle start." />
   <string id="tor_careerchoice_description.WildPackKeystone" text="{=str_tor_careerchoice_description_WildPackKeystone}Axe of Ulric also scales with Leadership." />
-  <string id="tor_careerchoice_description.WildPackPassive1" text="{=str_tor_careerchoice_description_WildPackPassive1}+10% personal melee 'Physical Resistance'." />
+  <string id="tor_careerchoice_description.WildPackPassive1" text="{=str_tor_careerchoice_description_WildPackPassive1}+10% personal melee Physical Resistance." />
   <string id="tor_careerchoice_description.WildPackPassive2" text="{=str_tor_careerchoice_description_WildPackPassive2}+10 increased party size." />
   <string id="tor_careerchoice_description.WildPackPassive3" text="{=str_tor_careerchoice_description_WildPackPassive3}Personal healing rate increased by +1." />
   <string id="tor_careerchoice_description.WildPackPassive4" text="{=str_tor_careerchoice_description_WildPackPassive4}+1 party move speed on campaign map." />
   <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherKeystone" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherKeystone}Axe of Ulric also scales with Faith, and has its radius increased by 1 meter." />
   <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive1" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive1}Wounded troops heal faster." />
   <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive2" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive2}Praying at a shrine of Ulric, fully restores personal Hitpoints. (5-day cooldown.)" />
-  <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive3" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive3}Melee attacks deal increased damage to shields." />
-  <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive4" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive4}+20% ranged 'Physical Resistance' for 'Melee' troops." />
-  <string id="tor_careerchoice_description.FrostsBiteKeystone" text="{=str_tor_careerchoice_description_FrostsBiteKeystone}Axe of Ulric now deals 'Frost' damage, and enemies are slowed for 6s when hit." />
-  <string id="tor_careerchoice_description.FrostsBitePassive1" text="{=str_tor_careerchoice_description_FrostsBitePassive1}+10% personal 'Frost' damage." />
-  <string id="tor_careerchoice_description.FrostsBitePassive2" text="{=str_tor_careerchoice_description_FrostsBitePassive2}+10% 'Frost' damage for 'Melee' troops." />
+  <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive3" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive3}+30% personal melee damage to shields." />
+  <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive4" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive4}+20% ranged Physical Resistance for Melee troops." />
+  <string id="tor_careerchoice_description.FrostsBiteKeystone" text="{=str_tor_careerchoice_description_FrostsBiteKeystone}Axe of Ulric now deals Frost damage, and enemies are slowed by 90% for 6s when hit." />
+  <string id="tor_careerchoice_description.FrostsBitePassive1" text="{=str_tor_careerchoice_description_FrostsBitePassive1}+10% personal Frost melee damage." />
+  <string id="tor_careerchoice_description.FrostsBitePassive2" text="{=str_tor_careerchoice_description_FrostsBitePassive2}+10% Frost damage for Melee troops." />
   <string id="tor_careerchoice_description.FrostsBitePassive3" text="{=str_tor_careerchoice_description_FrostsBitePassive3}Party is no longer affected by snow penalties." />
-  <string id="tor_careerchoice_description.FrostsBitePassive4" text="{=str_tor_careerchoice_description_FrostsBitePassive4}+20% duration for 'Hex' prayers." />
-  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfKeystone" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfKeystone}Axe of Ulric now applies a damage over time effect to the foe." />
-  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive1" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive1}Wolf heads/pelts now provide +5% personal 'Ward Save'." />
+  <string id="tor_careerchoice_description.FrostsBitePassive4" text="{=str_tor_careerchoice_description_FrostsBitePassive4}+20% duration for Hex prayers." />
+  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfKeystone" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfKeystone}Axe of Ulric now deals 4 Physical damage per second to foes hit for 6s." />
+  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive1" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive1}Wolf heads/pelts now provide +5% personal Ward Save." />
   <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive2" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive2}+15 personal Hitpoints." />
   <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive3" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive3}+20% duration for prayers." />
-  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive4" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive4}+20% 'Ward Save' for 'Ulrician' troops." />
+  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive4" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive4}+20% Ward Save for Ulrician troops." />
   <string id="tor_careerchoice_description.FuryOfWarKeystone" text="{=str_tor_careerchoice_description_FuryOfWarKeystone}Axe of Ulric now charges twice as fast." />
-  <string id="tor_careerchoice_description.FuryOfWarPassive1" text="{=str_tor_careerchoice_description_FuryOfWarPassive1}+5% personal 'Physical' melee damage per equipped melee weapon." />
+  <string id="tor_careerchoice_description.FuryOfWarPassive1" text="{=str_tor_careerchoice_description_FuryOfWarPassive1}+5% personal Physical melee damage per equipped melee weapon." />
   <string id="tor_careerchoice_description.FuryOfWarPassive2" text="{=str_tor_careerchoice_description_FuryOfWarPassive2}+10% personal weapon swing speed." />
-  <string id="tor_careerchoice_description.FuryOfWarPassive3" text="{=str_tor_careerchoice_description_FuryOfWarPassive3}Victory against a stronger force refreshes your blessing of Ulric." />
+  <string id="tor_careerchoice_description.FuryOfWarPassive3" text="{=str_tor_careerchoice_description_FuryOfWarPassive3}Victory against an equal or stronger force refreshes your blessing of Ulric." />
   <string id="tor_careerchoice_description.FuryOfWarPassive4" text="{=str_tor_careerchoice_description_FuryOfWarPassive4}Hits below 25 damage no longer stagger you." />
   <string id="tor_careerchoice_description.FlameOfUlricKeystone" text="{=str_tor_careerchoice_description_FlameOfUlricKeystone}When Axe of Ulric is used, a random prayer becomes fully charged." />
-  <string id="tor_careerchoice_description.FlameOfUlricPassive1" text="{=str_tor_careerchoice_description_FlameOfUlricPassive1}Radius of prayers is increased by +25%." />
-  <string id="tor_careerchoice_description.FlameOfUlricPassive2" text="{=str_tor_careerchoice_description_FlameOfUlricPassive2}+15% personal 'Armour Penetration' for melee attacks." />
-  <string id="tor_careerchoice_description.FlameOfUlricPassive3" text="{=str_tor_careerchoice_description_FlameOfUlricPassive3}Victory against a stronger force provide +100% prestige." />
-  <string id="tor_careerchoice_description.FlameOfUlricPassive4" text="{=str_tor_careerchoice_description_FlameOfUlricPassive4}Kills done by you or 'Ulrician' troops cause 25% morale damage to enemies." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive1" text="{=str_tor_careerchoice_description_FlameOfUlricPassive1}Radius of prayers and Axe of Ulric is increased by +25%." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive2" text="{=str_tor_careerchoice_description_FlameOfUlricPassive2}+15% personal Armour Penetration for melee attacks." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive3" text="{=str_tor_careerchoice_description_FlameOfUlricPassive3}Victory against an equal or stronger force provides +100% prestige." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive4" text="{=str_tor_careerchoice_description_FlameOfUlricPassive4}Kills done by you or Ulrician troops cause +25% morale damage to enemies." />
 
   <!-- Career Choice Description - WitchHunter -->
   <string id="tor_careerchoice_description.WitchHunterRoot" text="{=str_tor_careerchoice_description_WitchHunterRoot}Accuse an enemy of Heresy! Place an Accusation Mark on an enemy for the next 8s, the first hit you inflict deals +20% 'Physical' damage. After a hit there is a 50% chance the foe stays marked. For every level of Gunpowder or Crossbow, increase Accusation Mark's chance to remain on the foe by 0.1%. (Ability charges by dealing ranged 'Physical' damage.)" />
@@ -4199,7 +4271,7 @@
   <string id="tor_careerchoice_description.TheLastJourneyPassive4" text="{=str_tor_careerchoice_description_TheLastJourneyPassive4}+40% ranged 'Physical Resistance' for all 'Slayer' troops." />
 
   <!-- Career Choice Description - Runelord -->
-  <string id="tor_careerchoice_description.RunelordRoot" text="{=str_tor_careerchoice_description_RunelordRoot}The runes are cast! By the Wisdom of Thungni, reduce the cooldown of the next 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)" />
+  <string id="tor_careerchoice_description.RunelordRoot" text="{=str_tor_careerchoice_description_RunelordRoot}The runes are cast! By the Wisdom of Thungni, reduce the remaining cooldown of one 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. Also applies 15% extra damage dealt as 'Magic' to your weapon for 15s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)" />
   <string id="tor_careerchoice_description.ForgefireBurningKeystone" text="{=str_tor_careerchoice_description_ForgefireBurningKeystone}Wisdom of Thungi now applies to the next 'Rune' in the sequence at half efficency as well." />
   <string id="tor_careerchoice_description.ForgefireBurningPassive1" text="{=str_tor_careerchoice_description_ForgefireBurningPassive1}+1 charcoal from burning wood." />
   <string id="tor_careerchoice_description.ForgefireBurningPassive2" text="{=str_tor_careerchoice_description_ForgefireBurningPassive2}+1 ingot when forging metal." />
@@ -4224,12 +4296,12 @@
   <string id="tor_careerchoice_description.StoneAndSteelPassive1" text="{=str_tor_careerchoice_description_StoneAndSteelPassive1}+10% personal 'Magic Resistance'." />
   <string id="tor_careerchoice_description.StoneAndSteelPassive2" text="{=str_tor_careerchoice_description_StoneAndSteelPassive2}+10% 'Magic Resistance' for all troops." />
   <string id="tor_careerchoice_description.StoneAndSteelPassive3" text="{=str_tor_careerchoice_description_StoneAndSteelPassive3}+25 personal Hitpoints." />
-  <string id="tor_careerchoice_description.StoneAndSteelPassive4" text="{=str_tor_careerchoice_description_StoneAndSteelPassive4}When a 'Rune' ability is refreshed, gain +50% 'Magic' damage for 15s." />
+  <string id="tor_careerchoice_description.StoneAndSteelPassive4" text="{=str_tor_careerchoice_description_StoneAndSteelPassive4}When a 'Rune' ability is refreshed by Wisdom of Thungni, gain +50% 'Magic' damage for 15s." />
   <string id="tor_careerchoice_description.LegacyOfGrungniKeystone" text="{=str_tor_careerchoice_description_LegacyOfGrungniKeystone}The 'Rune' Oath and Steel applies 'Fire' damage to troops." />
   <string id="tor_careerchoice_description.LegacyOfGrungniPassive1" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive1}Runesmith Guild provides more 'Oathgold' from delivered steel." />
   <string id="tor_careerchoice_description.LegacyOfGrungniPassive2" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive2}Ironsmelters within Karaks provide +2 'Oathgold' daily." />
   <string id="tor_careerchoice_description.LegacyOfGrungniPassive3" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive3}-33% cost to apply a 'Rune' to troops." />
-  <string id="tor_careerchoice_description.LegacyOfGrungniPassive4" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive4}Smithing levels increase personal range/radius of 'Rune' abilities by 0.05%." />
+  <string id="tor_careerchoice_description.LegacyOfGrungniPassive4" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive4}Smithing levels increase personal range of 'Rune' abilities by 0.4% (up to +100%) and radius by 0.05%." />
   <string id="tor_careerchoice_description.AnvilOfDoomKeystone" text="{=str_tor_careerchoice_description_AnvilOfDoomKeystone}The 'Rune' Wrath and Ruin's damage increased by 0.05% per point in Spellcraft." />
   <string id="tor_careerchoice_description.AnvilOfDoomPassive1" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive1}+15% personal 'Magic' damage." />
   <string id="tor_careerchoice_description.AnvilOfDoomPassive2" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive2}+5 'Oathgold' daily when an 'Anvil of Doom' is present." />
@@ -4575,6 +4647,21 @@
   <string id="tor_damagetype.Frost" text="{=str_tor_damagetype_frost}Frost" />
   <string id="tor_damagetype.Lightning" text="{=str_tor_damagetype_lightning}Lightning" />
 
+  <!-- ExtendedInfo.Expendable -->
+  <string id="tor_extendedInfo.Expendable" text="{=str_tor_extendedinfo_expendable}Expendable - Losses of this unit cause no morale shock (...)" />
+
+  <!-- ExtendedInfo.Crushing -->
+  <string id="tor_extendedInfo.Crushing" text="{=str_tor_extendedinfo_crushing}Crushing - Attacks cannot be blocked or parried with weapons. (...)" />
+
+  <!-- ExtendedInfo.Slice -->
+  <string id="tor_extendedInfo.Slice" text="{=str_tor_extendedinfo_slice}Slice - Melee attacks can cut through enemies(...)" />
+
+  <!-- ExtendedInfo.TreeSpirit -->
+  <string id="tor_extendedInfo.TreeSpirit" text="{=str_tor_extendedinfo_treespirit}Tree Spirit - Tree Spirit (...)" />
+
+  <!-- ExtendedInfo.Crew -->
+  <string id="tor_extendedInfo.Crew" text="{=str_tor_extendedinfo_crew}Artillery Crew - {VALUE}% faster cannon reloads and can load cannons (...)" />
+
   <!-- ExtendedInfo.Monstrous -->
   <string id="tor_extendedInfo.Monstrous" text="{=str_tor_extendedinfo_monstrous}Monstrous - Attacks gates (...)" />
 
@@ -4620,6 +4707,8 @@
 
   <!-- ExtendedInfo.Ethereal -->
   <string id="tor_extendedInfo.Ethereal" text="{=str_tor_extendedinfo_ethereal}Ethereal - {VALUE}% Chance to Ignore Purely Physical Hits(...)" />
+
+  <!-- Ethereal -->
   <string id="tor_ethereal_hit_ignored" text="{=str_tor_ethereal_hit_ignored}Your blow passes harmlessly through the ethereal form!" />
 
   <!-- ExtendedInfo.KillingBlow -->
@@ -6246,4 +6335,46 @@
   <string id="tor_hire_accept_p.tor_wanderer_dawi_3" text="{=str_tor_hire_accept_p_tor_wanderer_dawi_3}Done. Try not to drink it all at once." />
   <string id="tor_hire_decline_p.tor_wanderer_dawi_3" text="{=str_tor_hire_decline_p_tor_wanderer_dawi_3}My purse can't stretch that far yet." />
   <string id="tor_recruitment_culture_blocked" text="{=str_tor_recruitment_culture_blocked}You cannot recruit this troop due to cultural restrictions (...)" />
+  <string id="str_weapon_usage.TorFlail" text="{=str_tor_weapon_usage_TorFlail}Flail" />
+
+  <!-- Ambush -->
+  <string id="tor_ambush_widget_tt_eye_unavailable" text="{=str_tor_ambush_widget_tt_eye_unavailable}Stealth entry chance unavailable." />
+  <string id="tor_ambush_widget_tt_eye_header" text="{=str_tor_ambush_widget_tt_eye_header}Stealth entry chance: {PCT}%" />
+  <string id="tor_ambush_widget_tt_eye_base" text="{=str_tor_ambush_widget_tt_eye_base}  Base: {PCT}%" />
+  <string id="tor_ambush_widget_tt_eye_observers" text="{=str_tor_ambush_widget_tt_eye_observers}  Hostile observers in range: {COUNT}" />
+  <string id="tor_ambush_widget_tt_eye_night" text="{=str_tor_ambush_widget_tt_eye_night}  Night: +{PCT}%" />
+  <string id="tor_ambush_widget_tt_eye_click_enter" text="{=str_tor_ambush_widget_tt_eye_click_enter}(Click to enter stealth)" />
+  <string id="tor_ambush_widget_tt_eye_click_exit" text="{=str_tor_ambush_widget_tt_eye_click_exit}(In stealth — click to break cover)" />
+  <string id="tor_ambush_widget_tt_spotted" text="{=str_tor_ambush_widget_tt_spotted}You were spotted recently. Enemies are alert." />
+  <string id="tor_ambush_widget_tt_alert" text="{=str_tor_ambush_widget_tt_alert}{COUNT} hostile parties in detection range." />
+  <string id="tor_ambush_widget_tt_cooldown_hours" text="{=str_tor_ambush_widget_tt_cooldown_hours}Stealth cooling down — available in {HOURS}h." />
+  <string id="tor_ambush_widget_tt_cooldown_now" text="{=str_tor_ambush_widget_tt_cooldown_now}Stealth cooling down." />
+  <string id="tor_ambush_widget_tt_backstab_hours" text="{=str_tor_ambush_widget_tt_backstab_hours}Recently ambushed — enemies still searching. Clear in {HOURS}h." />
+  <string id="tor_ambush_widget_tt_backstab_now" text="{=str_tor_ambush_widget_tt_backstab_now}Recently ambushed — enemies are still searching." />
+  <string id="tor_ambush_widget_tt_terrain_forest" text="{=str_tor_ambush_widget_tt_terrain_forest}Forest — concealing terrain, bonus to entry chance." />
+  <string id="tor_ambush_widget_tt_terrain_mountain" text="{=str_tor_ambush_widget_tt_terrain_mountain}Mountain — concealing terrain, bonus to entry chance." />
+  <string id="tor_ambush_widget_tt_terrain_canyon" text="{=str_tor_ambush_widget_tt_terrain_canyon}Canyon — concealing terrain, bonus to entry chance." />
+  <string id="tor_ambush_widget_tt_terrain_swamp" text="{=str_tor_ambush_widget_tt_terrain_swamp}Swamp — concealing terrain, bonus to entry chance." />
+  <string id="tor_ambush_widget_tt_terrain_open" text="{=str_tor_ambush_widget_tt_terrain_open}Open ground — exposing, penalty to entry chance." />
+  <string id="tor_ambush_widget_tt_snowy" text="{=str_tor_ambush_widget_tt_snowy}Snowy weather." />
+  <string id="tor_ambush_widget_tt_rainy" text="{=str_tor_ambush_widget_tt_rainy}Rainy weather." />
+  <string id="tor_ambush_widget_tt_cursed" text="{=str_tor_ambush_widget_tt_cursed}You are inside a cursed region." />
+  <string id="tor_ambush_widget_tt_settlement" text="{=str_tor_ambush_widget_tt_settlement}A settlement is nearby." />
+  <string id="tor_ambush_widget_tt_settlement_hostile" text="{=str_tor_ambush_widget_tt_settlement_hostile}A hostile settlement is nearby — garrisons are watching." />
+  <string id="tor_ambush_widget_tt_settlement_neutral" text="{=str_tor_ambush_widget_tt_settlement_neutral}A neutral settlement is nearby — passers-by notice more than empty roads do." />
+  <string id="tor_ambush_widget_tt_enemies_close" text="{=str_tor_ambush_widget_tt_enemies_close}A hostile party is very close — detection risk is high." />
+  <string id="tor_ambush_widget_tt_eye_detection_header" text="{=str_tor_ambush_widget_tt_eye_detection_header}Chance of being spotted within the next hour: {PCT}%" />
+  <string id="tor_ambush_widget_tt_eye_settlement_hostile" text="{=str_tor_ambush_widget_tt_eye_settlement_hostile}  Hostile settlement nearby: strong pressure" />
+  <string id="tor_ambush_widget_tt_eye_settlement_neutral" text="{=str_tor_ambush_widget_tt_eye_settlement_neutral}  Neutral settlement nearby: slight pressure" />
+  <string id="tor_ambush_widget_tt_eye_night_stealth" text="{=str_tor_ambush_widget_tt_eye_night_stealth}  Night: detection reduced" />
+
+  <!-- Roguery perks: menu options, dialog lines, and information messages -->
+  <string id="tor_perk_diversion_option_text" text="{=str_tor_perk_diversion_option_text}Use your prisoners as a diversion. ({DIVERSION_PRISONER_COUNT} will be lost instead of your own men.)" />
+  <string id="tor_perk_diversion_debrief_text" text="{=str_tor_perk_diversion_debrief_text}Your prisoners stage a loud, panicked break and bolt into the trees. The pursuers wheel to run them down, and in the confusion you and your men slip away." />
+  <string id="tor_perk_diversion_break_in_debrief_text" text="{=str_tor_perk_diversion_break_in_debrief_text}You set the prisoners loose at the gate. They scatter into the siege lines screaming for their lives. The defenders waste arrows on them while your column slips through intact." />
+  <string id="tor_perk_parlay_player_line" text="{=str_tor_perk_parlay_player_line}Let's see if we can resolve this peacefully." />
+  <string id="tor_perk_parlay_success_line" text="{=str_tor_perk_parlay_success_line}Hmph. Fine then, we'll find easier marks elsewhere. Move along, lads." />
+  <string id="tor_perk_parlay_fail_line" text="{=str_tor_perk_parlay_fail_line}Save your sweet words. Your coin or your blood, your choice." />
+  <string id="tor_perk_fencer_supplies_msg" text="{=str_tor_perk_fencer_supplies_msg}Fencer: extracted an extra share from the compliant villagers." />
+  <string id="tor_perk_fencer_volunteers_msg" text="{=str_tor_perk_fencer_volunteers_msg}Fencer: an extra group of villagers signs on under duress." />
 </strings>

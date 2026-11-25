@@ -170,10 +170,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public static bool IsValidCareerMissionInteractionBetweenAgents(Agent affectorAgent, Agent affectedAgent)
         {
             if (Campaign.Current == null) return false;
-            if (affectorAgent == null) return false;
+            if (affectorAgent == null || affectedAgent == null) return false;
             if (Agent.Main == null) return false;
             if (!Hero.MainHero.HasAnyCareer()) return false;
             if (affectorAgent.IsMount || affectedAgent.IsMount) return false;
+            if (!affectorAgent.IsHuman || !affectedAgent.IsHuman) return false;
+            if (affectorAgent.Character == null || affectedAgent.Character == null) return false;
 
             if (Hero.MainHero.HasCareer(TORCareers.Necromancer) && affectorAgent.Character.IsNecromancerChampion()) return true;
 

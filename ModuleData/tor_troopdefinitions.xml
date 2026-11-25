@@ -2325,7 +2325,7 @@
       <EquipmentSet id="tor_gs_troll_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_savage_orc" name="{=str_tor_gs_savage_orc}Savage Orc" level="16" default_group="infantry" culture="Culture.aserai" occupation="Soldier" is_basic_troop="true" skill_template="SkillSet.tor_skills_level16" race="orc">
+  <NPCCharacter id="tor_gs_savage_orc" name="{=str_tor_gs_savage_orc}Savage Orc" level="16" default_group="infantry" culture="Culture.aserai" occupation="Soldier" is_basic_troop="true" skill_template="SkillSet.tor_skills_level16" race="orc" localizationId="str_tor_gs_savage_orc">
     <face>
       <face_key_template value="BodyProperty.orc_savage" />
     </face>
@@ -2333,7 +2333,7 @@
       <EquipmentSet id="tor_gs_savage_orc_template" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_savage_orc_boar" name="{=str_tor_gs_savage_orc_copy}Savage Boar Orc" level="21" default_group="cavalry" culture="Culture.aserai" occupation="Soldier" is_basic_troop="true" skill_template="SkillSet.tor_skills_level21" race="orc">
+  <NPCCharacter id="tor_gs_savage_orc_boar" name="{=str_tor_gs_savage_orc_copy}Savage Boar Orc" level="21" default_group="cavalry" culture="Culture.aserai" occupation="Soldier" is_basic_troop="true" skill_template="SkillSet.tor_skills_level21" race="orc" localizationId="str_tor_gs_savage_orc_copy">
     <face>
       <face_key_template value="BodyProperty.orc_savage" />
     </face>
@@ -3714,6 +3714,7 @@
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_chaos_darksoul_of_chaos" />
+      <upgrade_target id="NPCCharacter.tor_chaos_nefarious_of_chaos" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_chaos_cult_acolyte_template" />
@@ -3730,6 +3731,14 @@
     <Equipments>
       <EquipmentSet id="tor_chaos_cult_darksoul_template" />
       <EquipmentSet id="tor_chaos_cult_darksoul_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_nefarious_of_chaos" name="{=str_tor_chaos_nefarious_of_chaos}Nefarious Militia of Chaos" level="11" skill_template="SkillSet.tor_unitskills_chaos_darksoul_of_chaos" default_group="ranged" culture="Culture.chaos_culture" occupation="Soldier" race="chaos_ud_cultist" localizationId="str_tor_chaos_nefarious_of_chaos">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <Equipments>
+      <EquipmentSet id="tor_chaos_cult_nefarious_template" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_acolyte_of_chaos" default_group="infantry" level="16" name="{=str_tor_chaos_acolyte_of_chaos}Acolyte of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_unitskills_chaos_acolyte_of_chaos" race="chaos_ud_cultist" localizationId="str_tor_chaos_acolyte_of_chaos">
@@ -3864,8 +3873,8 @@
       <upgrade_target id="NPCCharacter.tor_beastmen_gor_gougehorn" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_beast_gor_manripper_template" />
-      <EquipmentSet id="tor_beast_gor_manripper_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_bestigor_template" />
+      <EquipmentSet id="tor_beast_bestigor_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_gor_gougehorn" name="{=str_tor_beast_gor_gougehorn}Bestigor Gouge-Horn" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Soldier" skill_template="SkillSet.tor_unitskills_beastmen_gor_gougehorn" race="gor2" localizationId="str_tor_beast_gor_gougehorn">
@@ -3873,8 +3882,8 @@
       <face_key_template value="BodyProperty.gor" />
     </face>
     <Equipments>
-      <EquipmentSet id="tor_beast_gor_gougehorn_template" />
-      <EquipmentSet id="tor_beast_gor_gougehorn_template" equipmentType="Civilian" />
+      <EquipmentSet id="tor_beast_bestigor_gougehorn_template" />
+      <EquipmentSet id="tor_beast_bestigor_gougehorn_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastmen_minotaur" default_group="infantry" level="36" name="{=str_tor_beast_minotaur}Minotaur" occupation="Mercenary" culture="Culture.beastmen" skill_template="SkillSet.tor_unitskills_beastmen_minotaur" is_basic_troop="true" race="minotaur" localizationId="str_tor_beast_minotaur">
@@ -3908,7 +3917,7 @@
       <face_key_template value="BodyProperty.gor" />
     </face>
     <Equipments>
-      <EquipmentSet id="tor_beast_pestigor_template" />
+      <EquipmentSet id="tor_beast_slaangor_template" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastman_tzaangor" name="{=str_tor_beastman_tzaangor}Tzaangor" level="41" default_group="infantry" culture="Culture.beastmen" occupation="Mercenary" is_basic_troop="true" skill_template="SkillSet.tor_unitskills_beastman_tzaangor" race="gor2" localizationId="str_tor_beastman_tzaangor">
@@ -4958,108 +4967,6 @@
     <Equipments>
       <EquipmentSet id="tor_chaos_cult_magister_template" />
       <EquipmentSet id="tor_chaos_cult_magister_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_cult_bw_expelled_magister" default_group="infantry" level="11" name="{=str_tor_cult_bw_expelled_magister}Expelled Magister" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_unitskills_cult_bw_expelled_magister" is_basic_troop="true" race="chaos_ud_cultist" localizationId="str_tor_cult_bw_expelled_magister">
-    <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_cult_bw_vengeful_cultist" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_cult_bw_expelled_magister_template" />
-      <EquipmentSet id="tor_cult_bw_expelled_magister_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_cult_bw_vengeful_cultist" default_group="infantry" level="16" name="{=str_tor_cult_bw_vengeful_cultist}Vengeful Cultist" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_unitskills_cult_bw_vengeful_cultist" race="chaos_ud_cultist" localizationId="str_tor_cult_bw_vengeful_cultist">
-    <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_cult_bw_sorcerer_broken_wheel" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_cult_bw_vengeful_cultist_template" />
-      <EquipmentSet id="tor_cult_bw_vengeful_cultist_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_cult_bw_sorcerer_broken_wheel" default_group="infantry" level="21" name="{=str_tor_cult_bw_sorcerer_broken_wheel}Sorcerer of the Broken Wheel" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_unitskills_cult_bw_sorcerer_broken_wheel" race="chaos_ud_cultist" localizationId="str_tor_cult_bw_sorcerer_broken_wheel">
-    <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_cult_bw_sorcerer_broken_wheel_template" />
-      <EquipmentSet id="tor_cult_bw_sorcerer_broken_wheel_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_cult_coi_unlit_candle" default_group="infantry" level="11" name="{=str_tor_cult_coi_unlit_candle}Unlit Candle" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_unitskills_cult_coi_unlit_candle" is_basic_troop="true" race="chaos_ud_cultist" localizationId="str_tor_cult_coi_unlit_candle">
-    <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_cult_coi_beacon" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_cult_coi_unlit_candle_template" />
-      <EquipmentSet id="tor_cult_coi_unlit_candle_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_cult_coi_beacon" default_group="infantry" level="16" name="{=str_tor_cult_coi_beacon}Beacon" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_unitskills_cult_coi_beacon" race="chaos_ud_cultist" localizationId="str_tor_cult_coi_beacon">
-    <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_cult_coi_order_of_star_acolyte" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_cult_coi_beacon_template" />
-      <EquipmentSet id="tor_cult_coi_beacon_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_cult_coi_order_of_star_acolyte" default_group="infantry" level="21" name="{=str_tor_cult_coi_order_of_star_acolyte}Order of the Star Acolyte" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_unitskills_cult_coi_order_of_star_acolyte" race="chaos_ud_cultist" localizationId="str_tor_cult_coi_order_of_star_acolyte">
-    <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_cult_coi_order_of_star_acolyte_template" />
-      <EquipmentSet id="tor_cult_coi_order_of_star_acolyte_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_cult_fsf_puer_ulceris" default_group="infantry" level="11" name="{=str_tor_cult_fsf_puer_ulceris}Puer Ulceris" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_unitskills_cult_fsf_puer_ulceris" is_basic_troop="true" race="chaos_ud_cultist" localizationId="str_tor_cult_fsf_puer_ulceris">
-    <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_cult_fsf_ulcus_frater" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_cult_fsf_puer_ulceris_template" />
-      <EquipmentSet id="tor_cult_fsf_puer_ulceris_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_cult_fsf_ulcus_frater" default_group="infantry" level="16" name="{=str_tor_cult_fsf_ulcus_frater}Ulcus Frater" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_unitskills_cult_fsf_ulcus_frater" race="chaos_ud_cultist" localizationId="str_tor_cult_fsf_ulcus_frater">
-    <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_cult_fsf_ulcerator" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_cult_fsf_ulcus_frater_template" />
-      <EquipmentSet id="tor_cult_fsf_ulcus_frater_template" equipmentType="Civilian" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_cult_fsf_ulcerator" default_group="infantry" level="21" name="{=str_tor_cult_fsf_ulcerator}Ulcerator" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_unitskills_cult_fsf_ulcerator" race="chaos_ud_cultist" localizationId="str_tor_cult_fsf_ulcerator">
-    <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
-    </face>
-    <upgrade_targets />
-    <Equipments>
-      <EquipmentSet id="tor_cult_fsf_ulcerator_template" />
-      <EquipmentSet id="tor_cult_fsf_ulcerator_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_looter" default_group="infantry" level="6" name="{=str_tor_looter}Goblin Git" occupation="Bandit" culture="Culture.looters" skill_template="SkillSet.tor_unitskills_looter" is_basic_troop="true" race="goblin" localizationId="str_tor_looter">

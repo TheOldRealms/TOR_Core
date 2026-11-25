@@ -7809,7 +7809,7 @@
 		elite_basic_troop="NPCCharacter.tor_chaos_aspiring_warrior"
 		basic_troop="NPCCharacter.tor_chaos_norscan_tribesman"
 		melee_militia_troop="NPCCharacter.tor_chaos_cultist_of_chaos"
-		ranged_militia_troop="NPCCharacter.tor_chaos_norscan_whaler"
+		ranged_militia_troop="NPCCharacter.tor_chaos_nefarious_of_chaos"
 		melee_elite_militia_troop="NPCCharacter.tor_chaos_undivided_warrior"
 		ranged_elite_militia_troop="NPCCharacter.tor_chaos_norscan_reaver"
 		can_have_settlement="true"
@@ -7997,35 +7997,11 @@
 			<template name="NPCCharacter.tor_chaos_lord_0" />
 			<template name="NPCCharacter.tor_chaos_lord_1" />
 			<template name="NPCCharacter.tor_chaos_lord_2" />
-			<template name="NPCCharacter.tor_bw_cultist_lord_0" />
-			<template name="NPCCharacter.tor_bw_cultist_lord_1" />
-			<template name="NPCCharacter.tor_bw_cultist_lord_2" />
-			<template name="NPCCharacter.tor_bw_cultist_lord_3" />
-			<template name="NPCCharacter.tor_coi_cultist_lord_0" />
-			<template name="NPCCharacter.tor_coi_cultist_lord_1" />
-			<template name="NPCCharacter.tor_coi_cultist_lord_2" />
-			<template name="NPCCharacter.tor_coi_cultist_lord_3" />
-			<template name="NPCCharacter.tor_fsf_cultist_lord_0" />
-			<template name="NPCCharacter.tor_fsf_cultist_lord_1" />
-			<template name="NPCCharacter.tor_fsf_cultist_lord_2" />
-			<template name="NPCCharacter.tor_fsf_cultist_lord_3" />
 		</lord_templates>
 		<rebellion_hero_templates>
 			<template name="NPCCharacter.tor_chaos_lord_0" />
 			<template name="NPCCharacter.tor_chaos_lord_1" />
 			<template name="NPCCharacter.tor_chaos_lord_2" />
-			<template name="NPCCharacter.tor_bw_cultist_lord_0" />
-			<template name="NPCCharacter.tor_bw_cultist_lord_1" />
-			<template name="NPCCharacter.tor_bw_cultist_lord_2" />
-			<template name="NPCCharacter.tor_bw_cultist_lord_3" />
-			<template name="NPCCharacter.tor_coi_cultist_lord_0" />
-			<template name="NPCCharacter.tor_coi_cultist_lord_1" />
-			<template name="NPCCharacter.tor_coi_cultist_lord_2" />
-			<template name="NPCCharacter.tor_coi_cultist_lord_3" />
-			<template name="NPCCharacter.tor_fsf_cultist_lord_0" />
-			<template name="NPCCharacter.tor_fsf_cultist_lord_1" />
-			<template name="NPCCharacter.tor_fsf_cultist_lord_2" />
-			<template name="NPCCharacter.tor_fsf_cultist_lord_3" />
 		</rebellion_hero_templates>
 		<tournament_team_templates_one_participant>
 			<template name="NPCCharacter.tor_m_tournament_template_one_participant_v1" />

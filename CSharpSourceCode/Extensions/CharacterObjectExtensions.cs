@@ -315,14 +315,16 @@ namespace TOR_Core.Extensions
 
         public static bool IsBeastman(this CharacterObject characterObject)
         {
-            return characterObject.Culture.StringId == TORConstants.Cultures.BEASTMEN
-                || characterObject.Culture.StringId == TORConstants.Cultures.BEASTMEN_BANDIT;
+            var cultureId = characterObject?.Culture?.StringId;
+            return cultureId == TORConstants.Cultures.BEASTMEN
+                || cultureId == TORConstants.Cultures.BEASTMEN_BANDIT;
         }
 
         public static bool IsBeastman(this BasicCharacterObject characterObject)
         {
-            return characterObject.Culture.StringId == TORConstants.Cultures.BEASTMEN
-                || characterObject.Culture.StringId == TORConstants.Cultures.BEASTMEN_BANDIT;
+            var cultureId = characterObject?.Culture?.StringId;
+            return cultureId == TORConstants.Cultures.BEASTMEN
+                || cultureId == TORConstants.Cultures.BEASTMEN_BANDIT;
         }
 
         public static bool IsUndead(this BasicCharacterObject characterObject)
@@ -348,13 +350,13 @@ namespace TOR_Core.Extensions
         // ironbreaker troop tree, formerly had the attribute Ironbreaker
         public static bool IsIronbreakerUnit(this BasicCharacterObject characterObject)
         {
-            return characterObject.StringId.StartsWith("tor_dw_iron");
+            return characterObject?.StringId != null && characterObject.StringId.StartsWith("tor_dw_iron");
         }
 
         // dawi firearms troops, formerly had the attribute DwarfGun
         public static bool IsDwarfGunUnit(this BasicCharacterObject characterObject)
         {
-            return characterObject.StringId is
+            return characterObject?.StringId is
                 "tor_dw_thunderer"
                 or "tor_dw_sharpshooter"
                 or "tor_dw_grudge_raker"
@@ -365,7 +367,7 @@ namespace TOR_Core.Extensions
         // troops that can be donated to miners guild, formerly had the attribute DwarfMiner
         public static bool IsDwarfMinerUnit(this BasicCharacterObject characterObject)
         {
-            return characterObject.StringId is
+            return characterObject?.StringId is
                 "tor_dw_miner"
                 or "tor_dw_prospector";
         }
@@ -373,7 +375,7 @@ namespace TOR_Core.Extensions
         // harbinger family, formerly had the attribute NecromancerChampion
         public static bool IsNecromancerChampion(this BasicCharacterObject characterObject)
         {
-            return characterObject.StringId.Contains("harbinger");
+            return characterObject?.StringId != null && characterObject.StringId.Contains("harbinger");
         }
 
         public static bool IsVampire(this BasicCharacterObject characterObject)
@@ -383,17 +385,19 @@ namespace TOR_Core.Extensions
 
         public static bool IsCultist(this BasicCharacterObject characterObject)
         {
-            return characterObject.Culture.StringId == TORConstants.Cultures.CHAOS_CULTIST;//Sly : this has been changed from using the race because the cultist race was applied to a bunch of unrelated troops among the undead cultures which lead to misdetection. When this is fixed, this could be switched back to the cultist race if that's more performant/clear.
+            return characterObject?.Culture?.StringId == TORConstants.Cultures.CHAOS_CULTIST;//Sly : this has been changed from using the race because the cultist race was applied to a bunch of unrelated troops among the undead cultures which lead to misdetection. When this is fixed, this could be switched back to the cultist race if that's more performant/clear.
         }
 
         public static bool IsChaos(this CharacterObject characterObject)
         {
-            return characterObject.Culture.StringId == TORConstants.Cultures.CHAOS || characterObject.Culture.StringId == TORConstants.Cultures.CHAOS_CULTIST;
+            var cultureId = characterObject?.Culture?.StringId;
+            return cultureId == TORConstants.Cultures.CHAOS || cultureId == TORConstants.Cultures.CHAOS_CULTIST;
         }
 
         public static bool IsChaos(this BasicCharacterObject characterObject)
         {
-            return characterObject.Culture.StringId == TORConstants.Cultures.CHAOS || characterObject.Culture.StringId == TORConstants.Cultures.CHAOS_CULTIST;
+            var cultureId = characterObject?.Culture?.StringId;
+            return cultureId == TORConstants.Cultures.CHAOS || cultureId == TORConstants.Cultures.CHAOS_CULTIST;
         }
 
         // Norscans are the low-tier marauder-coded tribals under chaos_culture

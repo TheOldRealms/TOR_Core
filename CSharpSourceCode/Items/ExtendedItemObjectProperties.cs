@@ -7,12 +7,25 @@ using TOR_Core.Extensions.ExtendedInfoSystem;
 namespace TOR_Core.Items
 {
     [Serializable]
+    public enum HideHandType
+    {
+        None = 0,
+        Right = 1,
+        Left = 2,
+        Both = 3
+    }
+
+    [Serializable]
     public class ExtendedItemObjectProperties
     {
         [XmlAttribute]
         public string ItemStringId;
         [XmlAttribute]
         public string RaceLock = "human";
+        [XmlElement("HideHand")]
+        public HideHandType HideHand = HideHandType.None;
+        [XmlElement("ForearmMesh")]
+        public string ForearmMesh = "";
         [XmlElement]
         public string Description = "";
         [XmlArray("DamageProportions")]
@@ -45,6 +58,8 @@ namespace TOR_Core.Items
                 ItemStringId = ItemStringId,
                 Description = Description,
                 RaceLock = RaceLock,
+                HideHand = HideHand,
+                ForearmMesh = ForearmMesh,
                 ItemTraits = []
             };
             foreach (var trait in ItemTraits)

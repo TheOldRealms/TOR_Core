@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
@@ -22,20 +23,18 @@ using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
+    /// <summary>Agent damage model. Applies TOR's damage-type system, ward save, perk bonuses, crush-through, and shrug-off rules.</summary>
     public class TORAgentApplyDamageModel : SandboxAgentApplyDamageModel
     {
-        // Crush through block (ctb)
-        // extra crush through chance for high energy swings when attacker outskills the defender
-        private const int EXTRA_CTB_SKILL_DEAD_ZONE = 30; //skill diff over 30 doesn't do ctb
+        // Crush-through-block (ctb) tuning: extra chance for high-energy swings when the attacker outskills the defender.
+        private const int EXTRA_CTB_SKILL_DEAD_ZONE = 30;
+        private const int EXTRA_CTB_TARGET_SKILL_DIFF = 200;
+        private const float EXTRA_CTB_TARGET_OVERHEAD_CHANCE_AT_TARGET_DIFF = 0.50f;
 
-        private const int EXTRA_CTB_TARGET_SKILL_DIFF = 200; //max skill diff contribution
-        private const float EXTRA_CTB_TARGET_OVERHEAD_CHANCE_AT_TARGET_DIFF = 0.50f; // ^^ it's effect
+        private const float EXTRA_CTB_NON_OVERHEAD_CHANCE_MULTIPLIER = 0.5f;
+        private const float EXTRA_CTB_SKILL_GROWTH_RATE = 0.008097f;
 
-        private const float EXTRA_CTB_NON_OVERHEAD_CHANCE_MULTIPLIER = 0.5f; // non overhead swings are twice as less likely
-        private const float EXTRA_CTB_SKILL_GROWTH_RATE = 0.008097f; // 30 energy, 50 diff 50% ctb, 200 diff 50% ctb
-
-        // how quickly extra ctb reaches full effect after passing the base energy threshold
-        // reduce this number if you want momentum to matter less on ctb
+        // Momentum ramp: how quickly extra ctb reaches full effect past the energy threshold.
         private const float EXTRA_CTB_ENERGY_MARGIN_FOR_FULL_EFFECT = 0.27f;
 
         private static readonly float ExtraCtbSkillGrowthRate = EXTRA_CTB_SKILL_GROWTH_RATE;
@@ -317,10 +316,7 @@ namespace TOR_Core.Models
             return result.ResultNumber;
         }
 
-        /// <summary>
-        /// Calculates damage for custom missiles (e.g., scatter shot, career ability projectiles).
-        /// Called from Harmony prefix patches on AddMissileAux/AddMissileSingleUsageAux.
-        /// </summary>
+        /// <summary>Damage for custom missiles (scatter shot, career ability projectiles) invoked by Harmony prefixes on AddMissileAux.</summary>
         public static float CalculateCustomMissileDamage(Agent shooterAgent)
         {
             if (shooterAgent == null || shooterAgent.WieldedWeapon.IsEmpty)
@@ -388,10 +384,7 @@ namespace TOR_Core.Models
                 : reducedDamage;
         }
 
-        /// <summary>
-        /// Applies TOR's damage type system (proportions, amplifications, resistances, ward save).
-        /// Called last in the CalculateDamage chain, after all vanilla modifiers.
-        /// </summary>
+        /// <summary>Applies TOR's damage type system (proportions, amplifications, resistances, ward save). Runs last in CalculateDamage.</summary>
         public override float ApplyGeneralDamageModifiers(
             in AttackInformation attackInformation,
             in AttackCollisionData collisionData,
@@ -419,6 +412,32 @@ namespace TOR_Core.Models
 
             // Determine attack type mask
             AttackTypeMask attackTypeMask = collisionData.IsMissile ? AttackTypeMask.Ranged : AttackTypeMask.Melee;
+
+            // TOR skill-tree perks: main-hero gets SkillEffectType.Damage, formation troops get SkillEffectType.TroopDamage via party leader.
+            var attackerHero = attackerAgent.GetHero();
+            if (attackerHero != null && attackerAgent.IsMainAgent)
+            {
+                var skillPerkBonus = new ExplainedNumber(vanillaDamage);
+                TOR_Core.CharacterDevelopment.TORSkillPerkHelper.ApplyPerkPassives(
+                    attackerHero, ref skillPerkBonus,
+                    TOR_Core.CharacterDevelopment.SkillEffectType.Damage,
+                    targetCharacter: attackerAgent.Character as CharacterObject,
+                    mask: attackTypeMask,
+                    attacker: attackerAgent, victim: victimAgent);
+                vanillaDamage = skillPerkBonus.ResultNumber;
+            }
+            else if (attackerAgent.Origin?.BattleCombatant is PartyBase attackerParty
+                     && attackerParty.LeaderHero != null && !attackerAgent.IsHero)
+            {
+                var skillPerkBonus = new ExplainedNumber(vanillaDamage);
+                TOR_Core.CharacterDevelopment.TORSkillPerkHelper.ApplyPerkPassives(
+                    attackerParty.LeaderHero, ref skillPerkBonus,
+                    TOR_Core.CharacterDevelopment.SkillEffectType.TroopDamage,
+                    targetCharacter: attackerAgent.Character as CharacterObject,
+                    mask: attackTypeMask,
+                    attacker: attackerAgent, victim: victimAgent);
+                vanillaDamage = skillPerkBonus.ResultNumber;
+            }
 
             // Get property containers
             var attackerPropertyContainer = CreateAgentPropertyContainer(attackerAgent, PropertyMask.Attack, attackTypeMask);
@@ -546,10 +565,6 @@ namespace TOR_Core.Models
             return MathF.Max(resultDamage, killingBlowDamage);
         }
 
-        /// <summary>
-        /// Determines if the victim should shrug off the blow (no stagger/reaction).
-        /// Moved from DamagePatch to use the proper model override.
-        /// </summary>
         private static bool IsColossalMonster(Agent agent)
         {
             if (agent == null) return false;
@@ -747,7 +762,7 @@ namespace TOR_Core.Models
 
         public AgentPropertyContainer CreateAgentPropertyContainer(Agent agent, PropertyMask propertyMask, AttackTypeMask attackTypeMask)
         {
-            if (agent.IsMount)
+            if (agent == null || agent.IsMount || !agent.IsHuman || agent.Character == null)
                 return AgentPropertyContainer.InitNew();
 
             if (Mission.Current.IsArenaMission())
@@ -1332,10 +1347,7 @@ namespace TOR_Core.Models
             }
         }
 
-        /// <summary>
-        /// Calculates the % damage reduction to be applied directly to the damage.
-        /// Ie. 60% ward save factor => damage * 0.6 = 40% damage taken.
-        /// </summary>
+        /// <summary>Ward save factor as a damage multiplier. 0.6 means 40% damage taken.</summary>
         public float CalculateWardSaveFactor(Agent attacker, Agent victim, float[] resistances, bool friendlyFire)
         {
             var result = new ExplainedNumber(1f);
