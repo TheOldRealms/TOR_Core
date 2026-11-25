@@ -190,11 +190,6 @@ public class TORHiringCompatibilityModel : GameModel
             return sellerCulture == TORConstants.Cultures.GREENSKIN;
         }
 
-        if (playerCulture == TORConstants.Cultures.BEASTMEN_BANDIT)
-        {
-            return sellerCulture == TORConstants.Cultures.BEASTMEN_BANDIT;
-        }
-
         // Dwarfs can hire dwarfs and humans
         if (playerCulture == TORConstants.Cultures.DAWI)
         {
