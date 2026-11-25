@@ -176,7 +176,7 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_empire_averland_lord_1_template" />
+      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" />
       <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
@@ -194,10 +194,31 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_empire_averland_lord_1_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" />
       <EquipmentSet id="tor_generic_empire_lord_medium_pistol_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
+<<<<<<< HEAD
+=======
+  <NPCCharacter id="tor_emp_lord_averland_first_7" default_group="cavalry" name="{=str_tor_emp_lord_averland_first_7}Ferdinand Leitdorf" occupation="Lord" culture="Culture.empire" voice="ironic" age="32" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="32" weight="0.3" build="0.46" key="0005C00D0000318F4A9788884584CAB468B277986896CB5477666B79858226380077460307586743000000000000000000000000000000000000000040E47000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" />
+      <EquipmentSet id="tor_generic_empire_lord_medium_leather_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+>>>>>>> parent of 542a1476 (Empire rework)
   <NPCCharacter id="tor_emp_lord_averland_second_1" default_group="cavalry" name="{=str_tor_emp_lord_averland_second_1}Countess Ludmilla Alptraum" occupation="Lord" culture="Culture.empire" voice="curt" age="78" skill_template="SkillSet.tor_skills_commander_lord" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="78" weight="0.2" build="0.2" key="0008C40E4000200B7C7864336C9139823885867254A69647846281168CC92833007326030742746400000000000000000000000000000000000000003AF40043" />
