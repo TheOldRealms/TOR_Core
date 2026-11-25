@@ -35810,6 +35810,7 @@
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
     </EquipmentSet>
   </EquipmentRoster>
+<<<<<<< HEAD
   <EquipmentRoster id="tor_beastmen_mercenary_lord_heavy_template" culture="Culture.beastmen">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
@@ -36022,6 +36023,8 @@
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
     </EquipmentSet>
   </EquipmentRoster>
+=======
+>>>>>>> parent of ba8d4da7 (Beastmen clans, companions and Cygor recruitment)
   <EquipmentRoster id="tor_beast_minotaur_template" culture="Culture.steppe_bandits">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_greataxe_minotaur_001" />

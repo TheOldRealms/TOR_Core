@@ -1436,13 +1436,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     keyValue = default_orc;
                     CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("orc");
                     break;
-<<<<<<< HEAD
-=======
-                case TORConstants.Cultures.BEASTMEN:
-                    keyValue = default_ungor;
-                    CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("ungor");
-                    break;
->>>>>>> parent of 229853c5 (Changes beastmen default race to gor2 as ungors are not lore viable for careers.)
                 default:
                     keyValue = default_empire;
                     CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
