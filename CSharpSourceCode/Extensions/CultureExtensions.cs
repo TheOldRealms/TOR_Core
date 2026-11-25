@@ -39,7 +39,6 @@ public static class CultureExtensions
             case TORConstants.Cultures.DRUCHII:
                 return queriedCulture.IsDruchii();
             //Beastmen
-            case TORConstants.Cultures.BEASTMEN:
             case TORConstants.Cultures.BEASTMEN_BANDIT:
                 return queriedCulture.IsBeastmen();
             //Dwarfs
@@ -86,7 +85,7 @@ public static class CultureExtensions
 
     public static bool IsBeastmen (this CultureObject culture)
     {
-        if (culture.StringId == TORConstants.Cultures.BEASTMEN || culture.StringId == TORConstants.Cultures.BEASTMEN_BANDIT) return true;
+        if (culture.StringId == TORConstants.Cultures.BEASTMEN_BANDIT) return true;
         else return false;
     }
 
