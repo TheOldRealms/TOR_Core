@@ -1409,6 +1409,20 @@
 			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_chaos_undivided_knight" />
 		</stacks>
 	</MBPartyTemplate>
+		<MBPartyTemplate id="khorne_lordparty_template" >
+		<stacks>
+			<PartyTemplateStack min_value="15" max_value="14" troop="NPCCharacter.tor_chaos_norscan_tribesman" />
+			<PartyTemplateStack min_value="10" max_value="14" troop="NPCCharacter.tor_chaos_norscan_raider" />
+			<PartyTemplateStack min_value="10" max_value="13" troop="NPCCharacter.tor_chaos_norscan_whaler" />
+			<PartyTemplateStack min_value="7" max_value="9" troop="NPCCharacter.tor_chaos_norscan_horseman" />
+			<PartyTemplateStack min_value="6" max_value="15" troop="NPCCharacter.tor_chaos_norscan_reaver" />
+			<PartyTemplateStack min_value="10" max_value="15" troop="NPCCharacter.tor_chaos_aspiring_warrior" />
+			<PartyTemplateStack min_value="14" max_value="15" troop="NPCCharacter.tor_chaos_pit_fighter" />
+			<PartyTemplateStack min_value="10" max_value="23" troop="NPCCharacter.tor_chaos_undivided_warrior" />
+			<PartyTemplateStack min_value="34" max_value="54" troop="NPCCharacter.tor_chaos_khorne_warrior" />
+			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_chaos_undivided_knight" />
+		</stacks>
+	</MBPartyTemplate>
 	<MBPartyTemplate id="we_leaderparty_template" >
 		<stacks>
 			<PartyTemplateStack min_value="6" max_value="12" troop="NPCCharacter.tor_we_militia" />

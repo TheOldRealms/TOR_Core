@@ -96,6 +96,16 @@ namespace TOR_Core.AbilitySystem
 
         public delegate void OnHideOutBossFightInit();
         public event OnHideOutBossFightInit OnInitHideOutBossFight;
+
+        /// <summary>
+        /// Fires once a cast completes successfully (same site as the Specialize-
+        /// Lore quest counter / cast skill XP). Subscribers see the raw
+        /// <see cref="Ability"/> and the caster <see cref="Agent"/> and can filter
+        /// by whatever criteria they want (ability type, lore, agent team, etc.).
+        /// Used by <c>AmbushLoudnessTracker</c> to count non-silent casts as
+        /// loudness events during an ambush mission.
+        /// </summary>
+        public event System.Action<Ability, Agent> OnAbilityCastComplete;
         private static ActionIndexCache IdleAnimation
         {
             get
@@ -211,6 +221,28 @@ namespace TOR_Core.AbilitySystem
             return offhandWeapon.Item.StringId.IndexOf("staff", StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
+        internal static bool IsLevitateWeapon(MissionWeapon weapon)
+        {
+            if (weapon.IsEmpty)
+            {
+                return false;
+            }
+
+            var itemUsage = weapon.CurrentUsageItem?.ItemUsage;
+            return !string.IsNullOrEmpty(itemUsage)
+                && itemUsage.StartsWith("tor_levitate_", StringComparison.OrdinalIgnoreCase);
+        }
+
+        public static bool IsWieldingLevitateWeapon(Agent agent)
+        {
+            if (agent == null || !agent.IsHuman || agent.HasMount)
+            {
+                return false;
+            }
+
+            return IsLevitateWeapon(agent.WieldedWeapon) || IsLevitateWeapon(agent.WieldedOffhandWeapon);
+        }
+
         public static bool ShouldKeepMainHandForTemplate(AbilityTemplate template)
         {
             if (template == null || template.AbilityType != AbilityType.Spell)
@@ -259,9 +291,16 @@ namespace TOR_Core.AbilitySystem
         private void SwitchOffhandStanceForStaffs()
         {
             _wieldOffHandStaff = ShouldKeepOffhandStaffWielded(Agent.Main.WieldedOffhandWeapon);
-            _idleAnimation = _wieldOffHandStaff
-                ? ActionIndexCache.Create("act_ready_continue_throwing_axe_with_handshield")
-                : ActionIndexCache.Create("act_spellcasting_idle");
+            if (IsWieldingLevitateWeapon(Agent.Main))
+            {
+                _idleAnimation = ActionIndexCache.Create("act_tor_levitate_fireball_charge_01");
+            }
+            else
+            {
+                _idleAnimation = _wieldOffHandStaff
+                    ? ActionIndexCache.Create("act_ready_continue_throwing_axe_with_handshield")
+                    : ActionIndexCache.Create("act_spellcasting_idle");
+            }
         }
 
         private void EnableQuickSelectionMenuMode()
@@ -308,6 +347,14 @@ namespace TOR_Core.AbilitySystem
                 _shouldWieldWeapon = needsMainHandRestore || needsOffHandRestore;
             }
 
+            if (_currentState == AbilityModeState.Targeting && Agent.Main != null && Agent.Main.IsActive()
+                && IsWieldingLevitateWeapon(Agent.Main)
+                && _idleAnimation.HasValue && Agent.Main.GetCurrentAction(1) == _idleAnimation.Value)
+            {
+                Agent.Main.SetActionChannel(1, ActionIndexCache.act_none, ignorePriority: true);
+            }
+
+            _shouldPlayIdleCastStanceAnim = false;
             _currentState = AbilityModeState.Off;
             if (_abilityComponent != null) _abilityComponent.LastCastWasQuickCast = false;
 
@@ -356,6 +403,7 @@ namespace TOR_Core.AbilitySystem
                 _wieldOffHandStaff = ShouldKeepOffhandStaffWielded(agent.WieldedOffhandWeapon);
 
                 if (ability.Template.AbilityType == AbilityType.Spell
+                    && !IsLevitateWeapon(agent.WieldedWeapon)
                     && !ShouldKeepMainHandForTemplate(ability.Template)
                     && agent.GetPrimaryWieldedItemIndex() != EquipmentIndex.None)
                 {
@@ -421,6 +469,8 @@ namespace TOR_Core.AbilitySystem
                     }
                 }
             }
+
+            OnAbilityCastComplete?.Invoke(ability, agent);
         }
 
         internal void OnCastCancelled(Ability ability, Agent agent)
@@ -593,7 +643,7 @@ namespace TOR_Core.AbilitySystem
 
             if (_currentState == AbilityModeState.Targeting && _shouldSheathWeapon)
             {
-                if (!ShouldKeepMainHandForCurrentSpell() && Agent.Main.GetPrimaryWieldedItemIndex() != EquipmentIndex.None)
+                if (!IsLevitateWeapon(Agent.Main.WieldedWeapon) && !ShouldKeepMainHandForCurrentSpell() && Agent.Main.GetPrimaryWieldedItemIndex() != EquipmentIndex.None)
                 {
                     Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.MainHand, Agent.WeaponWieldActionType.WithAnimation);
                     return;
@@ -601,7 +651,7 @@ namespace TOR_Core.AbilitySystem
 
                 if (Agent.Main.GetOffhandWieldedItemIndex() != EquipmentIndex.None)
                 {
-                    if (!ShouldKeepOffhandStaffWielded(Agent.Main.WieldedOffhandWeapon))
+                    if (!IsLevitateWeapon(Agent.Main.WieldedOffhandWeapon) && !ShouldKeepOffhandStaffWielded(Agent.Main.WieldedOffhandWeapon))
                     {
                         Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.OffHand, Agent.WeaponWieldActionType.WithAnimation);
                         return;
@@ -671,22 +721,32 @@ namespace TOR_Core.AbilitySystem
         {
             foreach (var team in Mission.Teams)
             {
-                if (team.TeamAgents.IsEmpty()) continue;
-
-                var leader = team.Leader ?? team.TeamAgents.FirstOrDefault();
-
-                if (team.Side == BattleSideEnum.Attacker && _attackerSummoningCombatant == null)
+                try
                 {
-                    var culture = leader.Character.Culture;
-                    // BasicBattleAgentOrigin has no BattleCombatant. agent resolves the mission environment and fallback
-                    var battleEnvironment = leader.CurrentBattleEnvironment;
-                    _attackerSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
+                    if (team.TeamAgents.IsEmpty()) continue;
+
+                    var leader = team.Leader ?? team.TeamAgents.FirstOrDefault();
+                    if (leader?.Character == null) continue;
+
+                    if (team.Side == BattleSideEnum.Attacker && _attackerSummoningCombatant == null)
+                    {
+                        var culture = leader.Character.Culture;
+                        // BasicBattleAgentOrigin has no BattleCombatant. agent resolves the mission environment and fallback
+                        var battleEnvironment = leader.CurrentBattleEnvironment;
+                        _attackerSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
+                    }
+                    else if (team.Side == BattleSideEnum.Defender && _defenderSummoningCombatant == null)
+                    {
+                        var culture = leader.Character.Culture;
+                        var battleEnvironment = leader.CurrentBattleEnvironment;
+                        _defenderSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
+                    }
                 }
-                else if (team.Side == BattleSideEnum.Defender && _defenderSummoningCombatant == null)
+                catch (Exception e)
                 {
-                    var culture = leader.Character.Culture;
-                    var battleEnvironment = leader.CurrentBattleEnvironment;
-                    _defenderSummoningCombatant = new SummonedCombatant(team, culture, battleEnvironment);
+                    TOR_Core.Utilities.TORCommon.Log(NLog.LogLevel.Error,
+                        "[AbilityManager] InitSummoningCombatants team side=" + team.Side
+                        + " EXCEPTION: " + e);
                 }
             }
         }

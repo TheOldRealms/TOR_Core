@@ -7,6 +7,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
@@ -30,6 +31,7 @@ using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.BattleMechanics.Voice;
 using TOR_Core.CampaignMechanics;
+using TOR_Core.CampaignMechanics.Ambush;
 using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Careers;
@@ -67,6 +69,7 @@ using TOR_Core.Models;
 using TOR_Core.Models.CustomBattleModels;
 using TOR_Core.Quests;
 using TOR_Core.Utilities;
+using TOR_Core.Models.Ambush;
 
 namespace TOR_Core
 {
@@ -75,12 +78,20 @@ namespace TOR_Core
         private static float _tick = 0f;
         private static int _num = -1;
         private static bool ENABLECOPYSHADERS = true;
+        private static bool _latePatchesApplied;
         public static Harmony HarmonyInstance { get; private set; }
 
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
         {
             TORCommon.Say("TOR Core loaded.");
             MBDebug.Print("TOR Core version loaded : " + ModuleHelper.GetModuleInfo("TOR_Core").Version.ToString());
+
+            // Runs after action_types.xml is loaded. A healthy cache is count > 0 and inventory idle >= 0.
+            int actionCodeCount = MBAnimation.GetNumActionCodes();
+            int inventoryIdleIndex = ActionIndexCache.act_inventory_idle_start.Index;
+            string actionCacheStatus = "TOR ActionIndexCache sanity: GetNumActionCodes=" + actionCodeCount + ", act_inventory_idle_start=" + inventoryIdleIndex;
+            TORCommon.Log(actionCacheStatus, LogLevel.Info);
+            MBDebug.Print(actionCacheStatus);
         }
 
         protected override void OnSubModuleLoad()
@@ -100,7 +111,7 @@ namespace TOR_Core
             ViewModelExtensionManager.Initialize(); //has to happen before harmony PatchAll
 
             HarmonyInstance = new Harmony("mod.harmony.theoldrealms");
-            HarmonyInstance.PatchAllUncategorized();
+            HarmonyInstance.PatchAllUncategorized(typeof(SubModule).Assembly);
             UIConfig.DoNotUseGeneratedPrefabs = true;
 
             TORConfig.ReadConfig();
@@ -212,6 +223,9 @@ namespace TOR_Core
                 starter.AddBehavior(new GreenskinBrawlBehavior());
                 starter.AddBehavior(new GoblinRecruitmentBehavior());
                 starter.AddBehavior(new DuelBehavior());
+                starter.AddBehavior(new AmbushCampaignBehavior());
+                starter.AddBehavior(new AiAmbushBehavior());
+                starter.AddBehavior(new RogueryPerkBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -221,9 +235,18 @@ namespace TOR_Core
             }
         }
 
+        // NoInlining: Harmony 2.4.2's string overloads resolve the caller assembly via StackTrace.
+        // A Release JIT inline of this one-liner made LatePatches (custom races) apply to the wrong assembly.
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public override void OnGameInitializationFinished(Game game)
         {
-            HarmonyInstance.PatchCategory("LatePatches");//Sly : Campaign.OnInitialize starts the cascade that reaches this method; if each time a campaign is started/loaded this is patched, will we end up patching a given method multiple times?
+            if (_latePatchesApplied)
+            {
+                return;
+            }
+
+            HarmonyInstance.PatchCategory(typeof(SubModule).Assembly, "LatePatches");
+            _latePatchesApplied = true;
         }
 
         protected override void OnGameStart(Game game, IGameStarter gameStarterObject)
@@ -238,6 +261,8 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORBanditDensityModel());
                 gameStarterObject.AddModel(new TORCharacterStatsModel());
                 gameStarterObject.AddModel(new TORClanFinanceModel());
+                gameStarterObject.AddModel(new TORCrimeModel());
+                gameStarterObject.AddModel(new TORSettlementSecurityModel());
                 gameStarterObject.AddModel(new TORMinorFactionsModel());
                 gameStarterObject.AddModel(new TORClanTierModel());
                 gameStarterObject.AddModel(new TORCombatXpModel());
@@ -261,6 +286,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORStrikeMagnitudeModel());
                 gameStarterObject.AddModel(new TORCombatSimulationModel());
                 gameStarterObject.AddModel(new TORPartyMoraleModel());
+                gameStarterObject.AddModel(new TORPartyImpairmentModel());
                 gameStarterObject.AddModel(new TORPartyDesertionModel());
                 gameStarterObject.AddModel(new TORPersuasionModel());
                 gameStarterObject.AddModel(new TORVoiceOverModel());
@@ -268,6 +294,8 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORCustomResourceModel());
                 gameStarterObject.AddModel(new TORClanPoliticsModel());
                 gameStarterObject.AddModel(new TORMapVisibilityModel());
+                gameStarterObject.AddModel(new TORAmbushModel());
+                gameStarterObject.AddModel(new TORMissionAmbushModel());
                 gameStarterObject.AddModel(new TORMobilePartyAIModel());
                 gameStarterObject.AddModel(new TORTournamentModel());
                 gameStarterObject.AddModel(new TORAlleyModel());
@@ -286,6 +314,8 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORSettlementFoodModel());
                 gameStarterObject.AddModel(new TOREquipmentSelectionModel());
                 gameStarterObject.AddModel(new TOREncounterModel());
+                gameStarterObject.AddModel(new TORTroopSacrificeModel());
+                gameStarterObject.AddModel(new TORRansomValueCalculationModel());
                 gameStarterObject.AddModel(new TORVolunteerModel());
                 new CraftingModule().RegisterModels(gameStarterObject);
                 gameStarterObject.AddModel(new TORCompanionTrainingModel());
@@ -323,6 +353,7 @@ namespace TOR_Core
             mission.AddMissionBehavior(new StatusEffectMissionLogic());
             mission.AddMissionBehavior(new AbilityManagerMissionLogic());
             mission.AddMissionBehavior(new AbilityHUDMissionView());
+            mission.AddMissionBehavior(new LevitationVisualLiftMissionView());
             mission.AddMissionBehavior(new CustomCrosshairMissionBehavior());
             mission.AddMissionBehavior(new WeaponHitScriptsMissionLogic());
             mission.AddMissionBehavior(new CustomBannerMissionLogic());

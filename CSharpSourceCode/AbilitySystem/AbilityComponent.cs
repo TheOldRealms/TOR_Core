@@ -237,6 +237,7 @@ namespace TOR_Core.AbilitySystem
         {
             if (Agent != null && Agent.IsAIControlled && Agent.IsActive()
                 && ability.Template.AbilityType == AbilityType.Spell
+                && !AbilityManagerMissionLogic.IsLevitateWeapon(Agent.WieldedWeapon)
                 && !AbilityManagerMissionLogic.ShouldKeepMainHandForTemplate(ability.Template))
             {
                 _aiPendingMainHandRestore = false;

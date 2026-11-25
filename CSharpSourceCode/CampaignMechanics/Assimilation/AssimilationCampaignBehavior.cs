@@ -359,7 +359,7 @@ namespace TOR_Core.CampaignMechanics.Assimilation
 
         private bool IsSpecialSettlement(Settlement settlement)
         {
-            return settlement.StringId == "castle_BK1";
+            return settlement.IsBloodKeep();
         }
 
         public override void SyncData(IDataStore dataStore)

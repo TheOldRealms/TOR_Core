@@ -1,0 +1,21 @@
+Upstream base: hukai990124-wq/TpacTool d0eb9d343b1fe0f002e9a01e1640cad229230908 (2026-11-01 19:23:18 +0900)
+
+To rebuild TpacTool.Lib.dll from scratch:
+
+  git clone https://github.com/hukai990124-wq/TpacTool.git /tmp/TpacToolHukai
+  cd /tmp/TpacToolHukai
+  git checkout d0eb9d343b1fe0f002e9a01e1640cad229230908
+  git apply "<this-folder>/asset-metadata-size-skip.patch"
+  dotnet build -c Release -f net6.0 TpacTool.Lib/TpacTool.Lib.csproj
+  cp TpacTool.Lib/bin/Release/net6.0/TpacTool.Lib.dll "<this-folder>/"
+
+TpacTool.IO.dll is unmodified; the Release build from the same tag works as-is.
+
+Why the patch exists: upstream AssetPackage.Load relies on a
+[Conditional("DEBUG")] assertion to notice when ReadMetadata under-reads an
+asset's metadata block. Release builds strip that assertion, so a short
+read silently drifts the stream and every subsequent asset is parsed from
+the wrong offset — producing an EndOfStreamException partway through load.
+Newer Bannerlord releases append trailing fields to per-asset metadata
+that this parser doesn't understand; the patch trusts the authored
+metadataSize field and seeks past the unknown trailing bytes.

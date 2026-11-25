@@ -11,12 +11,20 @@ using static TOR_Core.Utilities.TORConstants;
 
 namespace TOR_Core.Models
 {
+    /// <summary>Settlement militia model with culture bonuses, Fence governor perk, and guild/attribute boosters.</summary>
     public class TORSettlementMilitiaModel : DefaultSettlementMilitiaModel
     {
-
+        /// <summary>Daily militia change with TOR culture bonuses and Fence besieged-town governor perk layered onto the vanilla base.</summary>
         public override ExplainedNumber CalculateMilitiaChange(Settlement settlement, bool includeDescriptions = false)
         {
             var result = base.CalculateMilitiaChange(settlement, includeDescriptions);
+
+            // Fence perk: militia bonus in besieged governed towns.
+            if (settlement.IsUnderSiege && settlement.Town?.Governor != null)
+            {
+                TORSkillPerkHelper.ApplyPerkPassives(settlement.Town.Governor, ref result,
+                    SkillEffectType.GovernorBesiegedMilitia);
+            }
             if (settlement.IsCastle)
             {
                 if (settlement.IsBloodKeep() && settlement.Owner.IsVampire() && !settlement.IsUnderSiege)
@@ -25,11 +33,10 @@ namespace TOR_Core.Models
                     {
                         result.LimitMin(10);
                     }
-                    //result.Add(10f,new TextObject("Blood Keep bonus"));
                     return result;
                 }
 
-                if (settlement.StringId == "castle_BK2")
+                if (settlement.IsBrassKeep())
                 {
                     if (settlement.Militia < 2000)
                     {
@@ -37,7 +44,7 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (settlement.StringId == "castle_MT1")
+                if (settlement.IsMelkhiorsTower())
                 {
                     if (settlement.Militia < 2000)
                     {
