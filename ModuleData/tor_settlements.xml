@@ -700,7 +700,7 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
+      <Location id="tor_witchhunter_chapterhouse" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -860,7 +860,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_ST3" name="{=Settlements.Settlement.name.castle_ST3}Halstedt" owner="Faction.stirland_clan_1" posX="1473.422" posY="962.008" culture="Culture.empire" gate_posX="1473.438" gate_posY="961.0407" text="{=Settlements.Settlement.text.castle_ST3}Halstedt Keep is on the South-East edge of the Stirhügel hills and is a staging point for the Roadwardens of the region. Originally it was a manor house belonging to some long forgotten lord, over time it has become more fortified as each subsequent owner has sought to protect its inhabitants against bandits and the greenskins from nearby Altern Forest. Eventually it fell into state hands, and was turned into a fortress lodge for the official Roadwardens who protect the locale.">
+  <Settlement id="castle_ST3" name="{=Settlements.Settlement.name.castle_ST3}Halstedt" owner="Faction.stirland_clan_1" posX="1473.422" posY="962.008" culture="Culture.empire" gate_posX="1473.438" gate_posY="961.0407" text="{=Settlements.Settlement.text.castle_ST3}Halstedt Keep is on the South-East edge of the Stirhügel hills and is a staging point for the Roadwardens of the region. Originally it was a manor house belonging to some long forgotten lord, over time it has become more fortified as each subsequent owner has sought to protect its inhabitants against bandits and the greenskins from nearby Altern Forest. Eventually it fell into state hands, and was turned into a fortress chapterhouse for the official Roadwardens who protect the locale.">
     <Components>
       <Town id="castle_comp_ST3" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_castle" gate_rotation="0.908" prosperity="580">
         <Buildings>
@@ -939,7 +939,7 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
+      <Location id="tor_witchhunter_chapterhouse" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -1957,7 +1957,7 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
+      <Location id="tor_witchhunter_chapterhouse" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -3404,7 +3404,7 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
+      <Location id="tor_witchhunter_chapterhouse" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -4449,7 +4449,7 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
+      <Location id="tor_witchhunter_chapterhouse" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -4538,7 +4538,7 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
+      <Location id="tor_witchhunter_chapterhouse" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -5768,7 +5768,7 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
+      <Location id="tor_witchhunter_chapterhouse" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -7019,7 +7019,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LA1" name="{=Settlements.Settlement.name.castle_LA1}Castle Grasgar" owner="Faction.anguille_clan_1" posX="909.453" posY="1193.38" culture="Culture.vlandia" gate_posX="908.3973" gate_posY="1192.405" text="{=Settlements.Settlement.text.castle_LA1}Once a small hunting lodge for the Duke and his vassals, the Lodge has been built into a mighty fortress, encompassed by a moat, and two curtain walls. Currently only garrisoned by a few hundred men-at-arms and a handful of Knights, the fortress could house a great host if there were enough men in L’Anguille.">
+  <Settlement id="castle_LA1" name="{=Settlements.Settlement.name.castle_LA1}Castle Grasgar" owner="Faction.anguille_clan_1" posX="909.453" posY="1193.38" culture="Culture.vlandia" gate_posX="908.3973" gate_posY="1192.405" text="{=Settlements.Settlement.text.castle_LA1}Once a small hunting chapterhouse for the Duke and his vassals, the Chapterhouse has been built into a mighty fortress, encompassed by a moat, and two curtain walls. Currently only garrisoned by a few hundred men-at-arms and a handful of Knights, the fortress could house a great host if there were enough men in L’Anguille.">
     <Components>
       <Town id="castle_comp_LA1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="810">
         <Buildings>

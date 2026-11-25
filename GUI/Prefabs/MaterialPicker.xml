@@ -1,0 +1,168 @@
+<Prefab>
+  <Constants />
+  <VisualDefinitions />
+  <Window>
+    <!-- Full-screen scrim so clicks outside the panel don't fall through to the layer below. -->
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="General\flat_bg" Color="#00000066">
+      <Children>
+
+        <!-- Centered panel -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="900" SuggestedHeight="580" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="StdAssets\Popup\canvas">
+          <Children>
+
+            <!-- Title -->
+            <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"
+                            HorizontalAlignment="Center" VerticalAlignment="Top"
+                            MarginTop="20"
+                            Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="34"
+                            Text="@ScreenTitle" />
+
+            <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"
+                            HorizontalAlignment="Center" VerticalAlignment="Top"
+                            MarginTop="65"
+                            Brush="Standard.Description.Text" Brush.FontSize="22"
+                            Text="@Subtitle" />
+
+            <!-- Content container: left list + right details -->
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="400"
+                    MarginTop="100" MarginLeft="20" MarginRight="20"
+                    VerticalAlignment="Top">
+              <Children>
+
+                <!-- Left: material list -->
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="430"
+                        HorizontalAlignment="Left" Sprite="StdAssets\Popup\canvas_inner">
+                  <Children>
+                    <ScrollablePanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                                     InnerPanel="ClipRect\Inner" ClipRect="ClipRect"
+                                     AutoHideScrollBars="true" AcceptDrop="false" ClipContents="true">
+                      <Children>
+                        <Widget Id="ClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                                ClipContents="true">
+                          <Children>
+                            <ListPanel Id="Inner" DataSource="{Options}"
+                                       WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                                       StackLayout.LayoutMethod="VerticalTopToBottom"
+                                       MarginTop="8" MarginBottom="8" MarginLeft="8" MarginRight="8">
+                              <ItemTemplate>
+                                <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                                              SuggestedHeight="60" MarginBottom="4"
+                                              Brush="TorEnchantingItemBrush"
+                                              Command.Click="ExecuteSelect"
+                                              IsSelected="@IsSelected">
+                                  <Children>
+                                    <ImageIdentifierWidget DataSource="{Icon}"
+                                                           WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                                                           SuggestedWidth="48" SuggestedHeight="48"
+                                                           HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                           MarginLeft="8"
+                                                           ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" />
+                                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"
+                                                    HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                    MarginLeft="68"
+                                                    Brush="Standard.Button.Text" Brush.FontSize="22"
+                                                    Text="@DisplayName" />
+                                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"
+                                                    HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                    MarginRight="12"
+                                                    Brush="Standard.Description.Text" Brush.FontSize="20"
+                                                    Text="@AvailableLabel" />
+                                  </Children>
+                                </ButtonWidget>
+                              </ItemTemplate>
+                            </ListPanel>
+                          </Children>
+                        </Widget>
+                      </Children>
+                    </ScrollablePanel>
+                  </Children>
+                </Widget>
+
+                <!-- Right: slider + reward preview -->
+                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                        MarginLeft="450" Sprite="StdAssets\Popup\canvas_inner">
+                  <Children>
+
+                    <!-- Quantity label (shows current slider value) -->
+                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"
+                                    HorizontalAlignment="Center" VerticalAlignment="Top"
+                                    MarginTop="40"
+                                    Brush="Quest.CenterPanel.Title.Text" Brush.FontSize="28"
+                                    Text="@Quantity" />
+
+                    <!-- Slider -->
+                    <SliderWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                                  SuggestedWidth="340" SuggestedHeight="42"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                                  Filler="Filler" Handle="SliderHandle"
+                                  MinValueFloat="@MinQuantity" MaxValueFloat="@MaxQuantity" ValueFloat="@Quantity"
+                                  IsDiscrete="true" IsEnabled="@IsSliderEnabled">
+                      <Children>
+                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="362" SuggestedHeight="38"
+                                HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Sprite="SPGeneral\SPOptions\standart_slider_canvas" IsEnabled="false" />
+                        <Widget Id="Filler" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                                SuggestedWidth="345" SuggestedHeight="35" VerticalAlignment="Center"
+                                Sprite="SPGeneral\SPOptions\standart_slider_fill" ClipContents="true">
+                          <Children>
+                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="345" SuggestedHeight="35"
+                                    HorizontalAlignment="Left" VerticalAlignment="Center"
+                                    Sprite="SPGeneral\SPOptions\standart_slider_fill" />
+                          </Children>
+                        </Widget>
+                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="400" SuggestedHeight="65"
+                                HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Sprite="SPGeneral\SPOptions\standart_slider_frame" IsEnabled="false" />
+                        <ImageWidget Id="SliderHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                                     SuggestedWidth="14" SuggestedHeight="38" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                     Brush="SPOptions.Slider.Handle" DoNotAcceptEvents="true" />
+                      </Children>
+                    </SliderWidget>
+
+                    <!-- Reward preview -->
+                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"
+                                    HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                    MarginBottom="40"
+                                    Brush="Standard.Description.Text" Brush.FontSize="22"
+                                    Text="@RewardPreview" />
+                  </Children>
+                </Widget>
+
+              </Children>
+            </Widget>
+
+            <!-- Bottom buttons -->
+            <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="56"
+                       HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="20"
+                       StackLayout.LayoutMethod="HorizontalLeftToRight">
+              <Children>
+                <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="180" SuggestedHeight="56"
+                              Brush="Popup.Accept.Button" MarginRight="20"
+                              IsEnabled="@IsConfirmEnabled" Command.Click="ExecuteConfirm">
+                  <Children>
+                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                                    Brush="Standard.Button.Text" Brush.FontSize="22"
+                                    Text="@ConfirmText" />
+                  </Children>
+                </ButtonWidget>
+                <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="180" SuggestedHeight="56"
+                              Brush="Popup.Decline.Button"
+                              Command.Click="ExecuteCancel">
+                  <Children>
+                    <RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                                    Brush="Standard.Button.Text" Brush.FontSize="22"
+                                    Text="@CancelText" />
+                  </Children>
+                </ButtonWidget>
+              </Children>
+            </ListPanel>
+
+          </Children>
+        </Widget>
+
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

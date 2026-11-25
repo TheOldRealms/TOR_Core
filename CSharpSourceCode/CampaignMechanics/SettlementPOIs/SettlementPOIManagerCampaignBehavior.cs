@@ -67,7 +67,14 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, OnAfterSessionLaunched);
+            // Re-pin residents on both menu-open and mission-open — mirrors the
+            // retired BountyMasterCampaignBehavior pattern. OnGameMenuOpened
+            // catches town-center / keep / tavern menu transitions (vanilla's
+            // notable shuffle can relocate the hero between menus);
+            // BeforeMissionOpenedEvent catches the scene-load transition. Both
+            // dispatch to EnsureResidentsAreSet, which is idempotent.
             CampaignEvents.BeforeMissionOpenedEvent.AddNonSerializedListener(this, OnBeforeMissionOpened);
+            CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, OnGameMenuOpened);
             CampaignEvents.SettlementEntered.AddNonSerializedListener(this, OnSettlementEntered);
         }
 
@@ -85,6 +92,16 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
         /// otherwise stay stale with the discovery=false values they were born with.
         /// </summary>
         public static event Action DiscoveryChanged;
+
+        /// <summary>
+        /// Fires when the icon text of one or more POIs changes without the discovery
+        /// state itself changing (e.g. a chapterhouse gains a pending bounty offer and wants
+        /// to show a "!" marker). Nameplate VMs subscribe to both this event and
+        /// <see cref="DiscoveryChanged"/>.
+        /// </summary>
+        public static event Action IconsChanged;
+
+        public static void NotifyIconsChanged() => IconsChanged?.Invoke();
 
         public bool IsDiscovered(Settlement s, SettlementPOI poi)
         {
@@ -138,6 +155,16 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             MarkAllApplicableDiscovered(settlement);
         }
 
+        private void OnBeforeMissionOpened()
+        {
+            EnsureResidentsAreSet(Settlement.CurrentSettlement);
+        }
+
+        private void OnGameMenuOpened(MenuCallbackArgs args)
+        {
+            EnsureResidentsAreSet(Settlement.CurrentSettlement);
+        }
+
         /// <summary>
         /// Attach a scene to the template-provided Location row at this settlement and
         /// immediately place any trainers that newly apply. The town_complex template
@@ -152,10 +179,9 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             if (loc == null) return false;   // template doesn't define this Location in the settlement's complex
             if (loc.GetSceneCount() == 0) loc.SetSceneName(0, sceneName);
             _dynamicScenes[$"{s.StringId}|{poi.LocationId}"] = sceneName;
-            // Place any resident NPCs that newly apply at this settlement.
-            foreach (var h in _byLocationId.Values.OfType<ISpellTrainerHost>())  if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
-            foreach (var h in _byLocationId.Values.OfType<IEnchanterHost>())      if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
-            foreach (var h in _byLocationId.Values.OfType<ISkillTrainerHost>())  if (ReferenceEquals(h, poi)) h.EnsurePlaced(s);
+            // Place any resident NPC(s) this POI hosts. The POI's EnsurePlaced is a
+            // no-op if it doesn't host anyone, so the single dispatch covers every POI.
+            poi.EnsurePlaced(s);
             return poi.AppliesTo(s);
         }
 
@@ -194,6 +220,17 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                 if (h != null && h.IsAlive && h.Template?.StringId == templateId) return h;
             }
 
+            // Orphan adoption: before spawning a fresh hero, scan the settlement for an
+            // unregistered hero already matching the template. Covers the save-migration
+            // case where a legacy behavior (e.g. BountyMasterCampaignBehavior) created the
+            // hero outside the POI residents dict, and we don't want duplicates.
+            var orphan = s.HeroesWithoutParty.FirstOrDefault(h => h.IsAlive && h.Template?.StringId == templateId);
+            if (orphan != null)
+            {
+                ids.Add(orphan.StringId);
+                return orphan;
+            }
+
             var template = MBObjectManager.Instance.GetObject<CharacterObject>(templateId);
             if (template == null) return null;
 
@@ -222,34 +259,29 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
             }
         }
 
-        private void OnBeforeMissionOpened()
-        {
-            var s = Settlement.CurrentSettlement;
-            if (s != null && (s.IsTown || s.IsCastle)) PlaceResidentsFor(s);
-        }
-
         private void PlaceAllResidentsEverywhere()
         {
-            foreach (var s in Settlement.All)
-            {
-                if (!s.IsTown && !s.IsCastle) continue;
-                PlaceResidentsFor(s);
-            }
+            foreach (var s in Settlement.All) EnsureResidentsAreSet(s);
         }
 
         /// <summary>
-        /// Place every POI's resident NPC(s) at the settlement — spell trainers, enchanters,
-        /// skill trainers, and any future host interfaces. Each host's <c>EnsurePlaced</c>
-        /// is idempotent, so repeated calls across session-launch and mission-open are safe.
+        /// Pin every POI resident at the settlement to its POI location. Skips
+        /// settlements with no applicable POI — the common case for most towns
+        /// and all villages. Called on mission open and again on the
+        /// location-characters-ready-to-spawn event, so vanilla's daily/hourly
+        /// notable shuffle can't leave a chapterhouse Inquisitor stranded in the
+        /// keep when the player walks in. Each host's <c>EnsurePlaced</c> is
+        /// idempotent.
         /// </summary>
-        private void PlaceResidentsFor(Settlement s)
+        public void EnsureResidentsAreSet(Settlement s)
         {
-            foreach (var host in _byLocationId.Values.OfType<ISpellTrainerHost>())
-                host.EnsurePlaced(s);
-            foreach (var host in _byLocationId.Values.OfType<IEnchanterHost>())
-                host.EnsurePlaced(s);
-            foreach (var host in _byLocationId.Values.OfType<ISkillTrainerHost>())
-                host.EnsurePlaced(s);
+            if (s == null) return;
+            if (!s.IsTown && !s.IsCastle) return;
+            foreach (var poi in _byLocationId.Values)
+            {
+                if (!poi.AppliesTo(s)) continue;
+                poi.EnsurePlaced(s);
+            }
         }
 
         private void OnSessionLaunched(CampaignGameStarter starter)
@@ -279,10 +311,19 @@ namespace TOR_Core.CampaignMechanics.SettlementPOIs
                     // menus. Suffix the LocationId with the menu to keep ids distinct
                     // across attachments.
                     var optionId = captured.LocationId + "@" + attach.MenuId;
+                    // Split the POI's dotted text id into (group, field) for the
+                    // two-arg GameTexts lookup — Bannerlord stores dotted ids that
+                    // way at load. Single-arg lookup silently misses and the menu
+                    // option permanently shows the C# fallback. See CLAUDE.md
+                    // "Known gotchas".
+                    var enterLabelId = captured.EnterLabelId;
+                    var dotIdx = enterLabelId.LastIndexOf('.');
+                    var groupId = dotIdx > 0 ? enterLabelId.Substring(0, dotIdx) : enterLabelId;
+                    var field = dotIdx > 0 ? enterLabelId.Substring(dotIdx + 1) : string.Empty;
                     starter.AddGameMenuOption(
                         menuId: attach.MenuId,
                         optionId: optionId,
-                        optionText: TORTextHelper.GetTextForNative(captured.EnterLabelId, captured.EnterLabelDefault),
+                        optionText: TORTextHelper.GetTextForNative(groupId, field, captured.EnterLabelDefault),
                         condition: args => MenuCondition(args, captured),
                         consequence: args => MenuConsequence(args, captured),
                         isLeave: false);
