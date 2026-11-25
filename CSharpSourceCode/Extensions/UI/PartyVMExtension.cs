@@ -8,7 +8,6 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CampaignMechanics.CustomResources;
-using TOR_Core.CampaignMechanics.Formations;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.UI
@@ -23,9 +22,6 @@ namespace TOR_Core.Extensions.UI
         private HintViewModel _hintViewModel;
         private Sprite _customResourceUpkeepSprite;
         private MBBindingList<PendingResourceCostVM> _pendingResourceCosts;
-        private SelectorVM<SelectorItemVM> _characterFormationSelector;
-        private bool _torFormationSelectionVisible;
-
         public PartyVMExtension(ViewModel vm) : base(vm)
         {
             var partyVm = vm as PartyVM;
@@ -52,24 +48,6 @@ namespace TOR_Core.Extensions.UI
 
             var partyVm = (PartyVM)_vm;
             var troop = partyVm.CurrentCharacter.Character;
-            TORFormationSelectionVisible = TORFormationAssignments.HasPlayerCultureFormations && partyVm.IsCurrentCharacterFormationEnabled;
-            if (TORFormationSelectionVisible)
-            {
-                if (_characterFormationSelector == null)
-                {
-                    CharacterFormationSelector = new SelectorVM<SelectorItemVM>(0, OnFormationSelected);
-                    for (var i = 0; i < 8; i++)
-                    {
-                        var icon = $"<img src=\"{TORFormationAssignments.GetFormationIcon(i)}\"/>";
-                        var name = GameTexts.FindText("tor_formation", $"{TORFormationAssignments.FormationCultureKey}_{i + 1}");
-                        _characterFormationSelector.AddItem(new SelectorItemVM(icon, name));
-                    }
-                }
-
-                _characterFormationSelector.SetOnChangeAction(null);
-                _characterFormationSelector.SelectedIndex = (int)TORFormationAssignments.GetFormation(troop);
-                _characterFormationSelector.SetOnChangeAction(OnFormationSelected);
-            }
             if (troop.HasCustomResourceUpkeepRequirement())
             {
                 CustomResourceUpkeepVisible = true;
@@ -83,35 +61,6 @@ namespace TOR_Core.Extensions.UI
             }
         }
 
-        private void OnFormationSelected(SelectorVM<SelectorItemVM> selector)
-        {
-            Campaign.Current.SetPlayerFormationPreference(((PartyVM)_vm).CurrentCharacter.Character, (FormationClass)selector.SelectedIndex);
-        }
-
-        [DataSourceProperty]
-        public SelectorVM<SelectorItemVM> CharacterFormationSelector
-        {
-            get => _characterFormationSelector;
-            private set
-            {
-                _characterFormationSelector = value;
-                _vm.OnPropertyChangedWithValue(value, "CharacterFormationSelector");
-            }
-        }
-
-        [DataSourceProperty]
-        public bool TORFormationSelectionVisible
-        {
-            get => _torFormationSelectionVisible;
-            private set
-            {
-                if (_torFormationSelectionVisible != value)
-                {
-                    _torFormationSelectionVisible = value;
-                    _vm.OnPropertyChangedWithValue(value, "TORFormationSelectionVisible");
-                }
-            }
-        }
 
         public override void OnFinalize()
         {

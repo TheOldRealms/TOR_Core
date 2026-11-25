@@ -42,7 +42,6 @@ using TOR_Core.CampaignMechanics.CustomEvents;
 using TOR_Core.CampaignMechanics.CustomResourceBehavior;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Diplomacy;
-using TOR_Core.CampaignMechanics.Formations;
 using TOR_Core.CampaignMechanics.Menagery;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
@@ -168,7 +167,6 @@ namespace TOR_Core
                 starter.AddBehavior(new TORCustomSettlementCampaignBehavior());
                 starter.AddBehavior(new TrollCaveCampaignBehavior());
                 starter.AddBehavior(new RaidingPartyCampaignBehavior());
-                starter.AddBehavior(new TORFormationCampaignBehavior());
                 starter.AddBehavior(new CustomDialogCampaignBehavior());
                 starter.AddBehavior(new TORCompanionDialogBehavior());
                 starter.AddBehavior(new PostBattleCampaignBehavior());
@@ -280,7 +278,6 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORAlleyModel());
                 gameStarterObject.AddModel(new TORRaidModel());
                 gameStarterObject.AddModel(new TORBattleBannerBearersModel());
-                gameStarterObject.AddModel(new TORBattleSpawnModel());
                 gameStarterObject.AddModel(new TORKingdomDecisionPermissionModel());
                 gameStarterObject.AddModel(new TORDiplomacyModel());
                 gameStarterObject.AddModel(new TORAllianceModel());
@@ -350,12 +347,6 @@ namespace TOR_Core
 
                 if (mission.GetMissionBehavior<DefaultBattleMissionAgentSpawnLogic>() != null)
                 {
-                    mission.AddMissionBehavior(new TORFormationMissionLogic());
-                }
-
-                if (mission.GetMissionBehavior<CampaignSiegeStateHandler>()?.IsSiege == true)
-                {
-                    mission.AddMissionBehavior(new SiegeEarlyVictoryMissionLogic());
                 }
 
                 if (mission.GetMissionBehavior<BattleAgentLogic>() != null)
