@@ -6,7 +6,4 @@
     <AnimationTrigger
         race_id="troll"
         triggered_effect="troll_smash" />
-    <AnimationTrigger
-        race_id="cygor"
-        triggered_effect="treeman_smash" />
 </AnimationTriggers>

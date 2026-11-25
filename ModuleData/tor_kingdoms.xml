@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Kingdoms>
     <Kingdom id="averland"
+             initial_home_settlement="Settlement.town_AV1"
              owner="Hero.tor_emp_lord_averland_factionleader"
              banner_key="11.116.149.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_averland"
              primary_banner_color="0xff211F1F"
@@ -28,6 +29,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="stirland"
+             initial_home_settlement="Settlement.town_ST1"
              owner="Hero.tor_emp_lord_stirland_factionleader"
              banner_key="11.2.131.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_stirland"
              primary_banner_color="0xff206f29"
@@ -51,6 +53,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="wissenland"
+             initial_home_settlement="Settlement.town_WI1"
              owner="Hero.tor_emp_lord_wissenland_factionleader"
              banner_key="3.116.148.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_wissenland"
              primary_banner_color="0xff8a2527"
@@ -74,6 +77,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="talabecland"
+             initial_home_settlement="Settlement.town_TB1"
              owner="Hero.tor_emp_lord_talabecland_factionleader"
              banner_key="11.121.149.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_talabecland"
              primary_banner_color="0xfffcdf03"
@@ -97,6 +101,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="reikland"
+             initial_home_settlement="Settlement.town_RL1"
              owner="Hero.tor_emp_lord_reikland_factionleader"
              banner_key="11.22.131.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_reikland"
              primary_banner_color="0xfffffdfc"
@@ -124,6 +129,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="middenland"
+             initial_home_settlement="Settlement.town_ML1"
              owner="Hero.tor_emp_lord_middenland_factionleader"
              banner_key="11.12.148.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_middenland"
              primary_banner_color="0xffb3b3b3"
@@ -151,6 +157,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="ostermark"
+             initial_home_settlement="Settlement.town_OM1"
              owner="Hero.tor_emp_lord_ostermark_factionleader"
              banner_key="1.8.116.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_ostermark"
              primary_banner_color="0xff5a1c47"
@@ -174,6 +181,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="hochland"
+             initial_home_settlement="Settlement.town_HL1"
              owner="Hero.tor_emp_lord_hochland_factionleader"
              banner_key="11.126.116.1500.1500.764.764.1.1.0.505.83.120.1312.2582.1025.212.0.0.89.505.20.41.507.507.764.764.0.0.0:kingdom_hochland"
              primary_banner_color="0xff00630f"
@@ -197,6 +205,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="nordland"
+             initial_home_settlement="Settlement.town_NL1"
              owner="Hero.tor_emp_lord_nordland_factionleader"
              banner_key="3.116.12.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_nordland"
              primary_banner_color="0xff00408a"
@@ -220,6 +229,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="ostland"
+             initial_home_settlement="Settlement.town_OL1"
              owner="Hero.tor_emp_lord_ostland_factionleader"
              banner_key="11.14.140.8000.8000.764.764.0.1.0.505.140.116.681.681.764.764.0.0.0:kingdom_ostland"
              primary_banner_color="0xfff0f0f0"
@@ -243,6 +253,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="brasskeep"
+             initial_home_settlement="Settlement.castle_BK2"
              owner="Hero.tor_chaos_lord_brasskeep_factionleader"
              banner_key="11.64.148.1500.1500.764.764.1.1.0.122.20.41.650.650.765.765.0.0.0:kingdom_repugnants"
              primary_banner_color="0xffC94B4E"
@@ -266,6 +277,7 @@
              </policies>
 		    </Kingdom>
 	<Kingdom id="skulltakers"
+             initial_home_settlement="Settlement.castle_LY1"
              owner="Hero.tor_chaos_lord_skulltakers_factionleader"
              banner_key="11.67.148.1500.1500.764.764.1.1.0.122.20.41.600.600.766.766.0.0.0:kingdom_illumination"
              primary_banner_color="0xff6c1512"
@@ -289,6 +301,7 @@
              </policies>
 		    </Kingdom>
     <Kingdom id="wasteland"
+             initial_home_settlement="Settlement.town_WA1"
              owner="Hero.tor_emp_lord_wasteland_factionleader"
              banner_key="11.131.148.1500.1500.764.764.1.1.0.122.20.41.601.601.764.764.0.0.0:kingdom_wasteland"
              primary_banner_color="0xffffe25e"
@@ -312,6 +325,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="moot"
+             initial_home_settlement="Settlement.town_MT1"
              owner="Hero.tor_emp_lord_moot_factionleader"
              banner_key="11.126.148.1500.1500.764.764.1.1.0.122.20.41.605.605.764.764.0.0.0:kingdom_mootland"
              primary_banner_color="0xff34671e"
@@ -335,6 +349,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="couronne"
+             initial_home_settlement="Settlement.town_CO1"
              owner="Hero.tor_br_lord_couronne_factionleader"
              banner_key="1.142.138.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_couronne"
              primary_banner_color="0xff292625"
@@ -358,6 +373,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="anguille"
+             initial_home_settlement="Settlement.town_LA1"
              owner="Hero.tor_br_lord_anguille_factionleader"
              banner_key="11.139.142.8000.8000.764.764.0.1.0.505.12.116.680.680.764.744.0.0.0:kingdom_anguille"
              primary_banner_color="0xff292625"
@@ -381,6 +397,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="lyonesse"
+             initial_home_settlement="Settlement.town_LY1"
              owner="Hero.tor_br_lord_lyonesse_factionleader"
              banner_key="11.110.120.8000.8000.764.764.0.1.0.505.148.64.674.674.764.764.0.0.0:kingdom_lyonesse"
              primary_banner_color="0xff292625"
@@ -404,6 +421,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="artois"
+             initial_home_settlement="Settlement.town_AS1"
              owner="Hero.tor_br_lord_artois_factionleader"
              banner_key="11.148.120.8000.8000.764.764.0.1.0.505.30.123.794.794.764.764.0.0.0:kingdom_artois"
              primary_banner_color="0xff292625"
@@ -432,6 +450,7 @@
         </relationships>
     </Kingdom>
     <Kingdom id="gisoreux"
+             initial_home_settlement="Settlement.town_GX1"
              owner="Hero.tor_br_lord_gisoreux_factionleader"
              banner_key="1.142.149.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_gisoreux"
              primary_banner_color="0xff292625"
@@ -455,6 +474,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="parravon"
+             initial_home_settlement="Settlement.town_PA1"
              owner="Hero.tor_br_lord_parravon_factionleader"
              banner_key="11.116.116.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_parravon"
              primary_banner_color="0xff292625"
@@ -478,6 +498,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="montfort"
+             initial_home_settlement="Settlement.town_MO1"
              owner="Hero.tor_br_lord_montfort_factionleader"
              banner_key="11.116.148.1500.1500.764.764.1.1.0.122.20.41.650.650.764.764.0.0.0:kingdom_montfort"
              primary_banner_color="0xff292625"
@@ -501,6 +522,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="bastonne"
+             initial_home_settlement="Settlement.town_BA1"
              owner="Hero.tor_br_lord_bastonne_factionleader"
              banner_key="11.131.148.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_bastonne"
              primary_banner_color="0xfff3d32b"
@@ -529,6 +551,7 @@
         </relationships>
     </Kingdom>
     <Kingdom id="bordeleaux"
+             initial_home_settlement="Settlement.town_BL1"
              owner="Hero.tor_br_lord_bordeleaux_factionleader"
              banner_key="11.12.116.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_bordeleaux"
              primary_banner_color="0xff234373"
@@ -552,6 +575,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="carcassonne"
+             initial_home_settlement="Settlement.town_CC1"
              owner="Hero.tor_br_lord_carcassonne_factionleader"
              banner_key="1.12.148.1500.1500.764.764.1.1.0.122.20.41.600.600.766.766.0.0.0:kingdom_carcassonne"
              primary_banner_color="0xff830d0d"
@@ -575,6 +599,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="aquitaine"
+             initial_home_settlement="Settlement.town_AQ1"
              owner="Hero.tor_br_lord_aquitaine_factionleader"
              banner_key="11.38.148.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_aquitaine"
              primary_banner_color="0xffe38b34"
@@ -598,6 +623,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="brionne"
+             initial_home_settlement="Settlement.town_BE1"
              owner="Hero.tor_br_lord_brionne_factionleader"
              banner_key="11.111.148.1500.1500.764.764.1.1.0.122.20.41.650.650.764.764.0.0.0:kingdom_brionne"
              primary_banner_color="0xffdbdbdb"
@@ -621,6 +647,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="quenelles"
+             initial_home_settlement="Settlement.town_QU1"
              owner="Hero.tor_br_lord_quenelles_factionleader"
              banner_key="11.138.116.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_quenelles"
              primary_banner_color="0xfff3f3f3"
@@ -644,6 +671,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="sylvania"
+             initial_home_settlement="Settlement.town_SY1"
              owner="Hero.tor_vc_lord_sylvania_factionleader"
              banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.50.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania"
              primary_banner_color="0xff211F1F"
@@ -668,6 +696,7 @@
         </relationships>
     </Kingdom>
     <Kingdom id="blooddragons"
+             initial_home_settlement="Settlement.castle_BK1"
              owner="Hero.tor_vc_lord_blooddragons_factionleader"
              banner_key="11.116.142.1633.1633.814.959.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_blooddragons"
              primary_banner_color="0xffC94B4E"
@@ -686,6 +715,7 @@
              ruler_title="{=str_tor_kingdom_rulertitle_blooddragons}Grand Master"
              text="{=str_tor_kingdom_text_blooddragons}Blood Keep was once the home of a valiant order of Knights known as the Order of the Blood Dragon, or the Ordo Draconis. One fateful night, a Vampire known as Walach Harkon challenged every Knight to single combat, eventually turning all who he deemed worthy into Vampires. The death of the Ordo Draconis was followed by their rebirth in blood; ever since then these terrifying warriors have been known as the Blood Dragons. The Imperials suffered under their attacks and depravations for sixty years, before they amassed a force to raze the Keep. That was almost six centuries ago, for all that time the ruins of the keep lay undisturbed. Now, the keep rises again, built by the silent undead, and the men of the Empire will again know fear." />
     <Kingdom id="necrachs"
+             initial_home_settlement="Settlement.castle_MT1"
              owner="Hero.tor_vc_lord_necrarch_first_factionleader"
              banner_key="11.12.149.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_necrarch"
              primary_banner_color="0xffC94B4E"
@@ -706,6 +736,7 @@
         <relationships />
     </Kingdom>
     <Kingdom id="mousillon"
+             initial_home_settlement="Settlement.town_MS1"
              owner="Hero.tor_m_lord_mousillon_factionleader"
              banner_key="11.39.142.1633.1633.814.959.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_mousillon"
              primary_banner_color="0xff7d5300"
@@ -730,6 +761,7 @@
         </relationships>
     </Kingdom>
     <Kingdom id="athel_loren"
+             initial_home_settlement="Settlement.town_AL1"
              owner="Hero.tor_we_lord_athel_loren_factionleader"
              banner_key="11.2.116.1500.1500.764.764.1.1.0.122.20.41.601.601.765.765.0.0.0:kingdom_talsyn"
              primary_banner_color="0xff284E19"
@@ -748,6 +780,7 @@
              ruler_title="{=str_tor_kingdom_rulertitle_athelloren}Highborn"
              text="{=str_tor_kingdom_text_athelloren}Athel Loren the great forest of the old world is divided into twelve Asrai kingdoms, each ruled by ancient lord's and lady's of the great council. The flow of time works different in Athel Loren. Some realms are permanently locked in time and what seems like the passing of a season is actually years. Others dwell in an eternal night or in the glory of the light of the midday sun. The magical halls of elven lords and ladies are scattered throughout the glades of these kingdoms forming having their own identity and custom's. In these places, enveloped by a dim light, you can hear laughter and ghostly tunes that are reminiscent of the wind blowing through the spring branches. Its magnificent entrance portals are interwoven with the trunks of ancient trees or carved into the slopes of a hill. These places remain hidden from all those who are not welcomed by the Asrai. These beings may pass very close to these entrances, but they will never discover them." />
     <Kingdom id="laurelorn"
+             initial_home_settlement="Settlement.town_LL1"
              owner="Hero.tor_eo_lord_laurelorn_factionleader"
              banner_key="11.126.148.1500.1500.764.764.1.1.0.218.38.138.2000.1000.1414.964.0.0.0.218.38.138.2000.1000.1414.564.0.1.180.218.38.138.2000.1000.114.964.0.0.0.218.38.132.2000.1000.114.564.0.1.180.122.20.41.550.675.764.764.0.0.0:kingdom_wardens_sun"
              primary_banner_color="0xff777251"
@@ -766,6 +799,7 @@
              ruler_title="{=str_tor_kingdom_rulertitle_laurelorn}Highborn"
              text="{=str_tor_kingdom_text_laurelorn}Once a proud colony of the Phoenix King, the Eonir of Laurelorn are the last remains of the High elves in the Old World, however, they assert their complete independence from Ulthuan after thousands of years of separation. In the Tragic events of the War of the Beards against the Dwarves, All colonies were either dissolved or burned down by the Dwarfs, leading to most of the remaining elves searching for shelter in the most northern province in Tor Lithanel. Though they called for support from the Phoenix Throne, Tor Lithanel did not receive any response and had a long-lasting fight for their survival as a result of these events, Laurelorn declared their independence. Today, the relationship between Ulthuan and Laurelorn has improved again. Yet, the Eonir do not believe anymore in the cause of the Asur. Instead, they arranged their situation in the middle of the empire of men. " />
     <Kingdom id="karak_kadrin"
+             initial_home_settlement="Settlement.town_KK1"
              owner="Hero.tor_dw_lord_karak_kadrin_factionleader"
              banner_key="11.123.140.1398.1615.785.765.0.0.90.505.123.18.620.620.764.764.0.0.0:kingdom_kadrin"
              primary_banner_color="0xfff0f0f0"
@@ -789,6 +823,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="karak_angazhar"
+             initial_home_settlement="Settlement.town_AN1"
              owner="Hero.tor_dw_lord_karak_angazhar_factionleader"
              banner_key="11.99.116.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_angazhar"
              primary_banner_color="0xfff0f0f0"
@@ -812,6 +847,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="karak_azgaraz"
+             initial_home_settlement="Settlement.town_AZ1"
              owner="Hero.tor_dw_lord_karak_azgaraz_factionleader"
              banner_key="11.146.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_azgaraz"
              primary_banner_color="0xfff0f0f0"
@@ -835,6 +871,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="karak_eksfilaz"
+             initial_home_settlement="Settlement.town_EZ1"
              owner="Hero.tor_dw_lord_karak_eksfilaz_factionleader"
              banner_key="11.126.116.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_eksfilaz"
              primary_banner_color="0xfff0f0f0"
@@ -858,6 +895,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="karak_gantuk"
+             initial_home_settlement="Settlement.town_KG1"
              owner="Hero.tor_dw_lord_karak_gantuk_factionleader"
              banner_key="11.92.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_gantuk"
              primary_banner_color="0xfff0f0f0"
@@ -881,6 +919,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="karak_hirn"
+             initial_home_settlement="Settlement.town_KH1"
              owner="Hero.tor_dw_lord_karak_hirn_factionleader"
              banner_key="11.113.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_hirn"
              primary_banner_color="0xfff0f0f0"
@@ -904,6 +943,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="karak_izor"
+             initial_home_settlement="Settlement.town_KI1"
              owner="Hero.tor_dw_lord_karak_izor_factionleader"
              banner_key="11.72.140.1398.1615.785.765.0.0.90.505.72.18.620.620.764.764.0.0.0:kingdom_izor"
              primary_banner_color="0xfff0f0f0"
@@ -927,6 +967,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="karak_kaferkammaz"
+             initial_home_settlement="Settlement.town_KF1"
              owner="Hero.tor_dw_lord_karak_kaferkammaz_factionleader"
              banner_key="11.71.142.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_kaferkammaz"
              primary_banner_color="0xfff0f0f0"
@@ -950,6 +991,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="karak_norn"
+             initial_home_settlement="Settlement.town_NO1"
              owner="Hero.tor_dw_lord_karak_norn_factionleader"
              banner_key="1.127.142.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_norn"
              primary_banner_color="0xfff0f0f0"
@@ -973,6 +1015,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="karak_zhufbar"
+             initial_home_settlement="Settlement.town_ZH1"
              owner="Hero.tor_dw_lord_karak_zhufbar_factionleader"
              banner_key="11.101.140.1398.1615.785.765.0.0.90.505.101.18.620.620.764.764.0.0.0:kingdom_zhufbar"
              primary_banner_color="0xfff0f0f0"
@@ -996,6 +1039,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="karak_ziflin"
+             initial_home_settlement="Settlement.town_ZI1"
              owner="Hero.tor_dw_lord_karak_ziflin_factionleader"
              banner_key="11.38.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_ziflin"
              primary_banner_color="0xfff0f0f0"
@@ -1019,6 +1063,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="bad_axes"
+             initial_home_settlement="Settlement.town_BX1"
              owner="Hero.tor_greenskin_lord_bad_axes_factionleader"
              banner_key="11.142.116.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_badaxes"
              primary_banner_color="0xfff0f0f0"
@@ -1042,6 +1087,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="black_sunz"
+             initial_home_settlement="Settlement.town_BZ1"
              owner="Hero.tor_greenskin_lord_black_sunz_factionleader"
              banner_key="11.149.90.1449.1410.815.674.0.0.-90.505.149.142.787.787.764.764.0.1.0:kingdom_blacksunz"
              primary_banner_color="0xfff0f0f0"
@@ -1065,6 +1111,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="crooked_eye"
+             initial_home_settlement="Settlement.town_CE1"
              owner="Hero.tor_greenskin_lord_crooked_eye_factionleader"
              banner_key="11.8.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_crookedeye"
              primary_banner_color="0xfff0f0f0"
@@ -1088,6 +1135,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="deff_grindaz"
+             initial_home_settlement="Settlement.town_DG1"
              owner="Hero.tor_greenskin_lord_deff_grindaz_factionleader"
              banner_key="11.119.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_deffgrindaz"
              primary_banner_color="0xfff0f0f0"
@@ -1111,6 +1159,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="iron_tribe"
+             initial_home_settlement="Settlement.town_IT1"
              owner="Hero.tor_greenskin_lord_iron_tribe_factionleader"
              banner_key="11.116.116.1400.1400.768.788.1.0.0.505.116.116.694.694.764.764.0.0.0:kingdom_irontribe"
              primary_banner_color="0xfff0f0f0"
@@ -1134,6 +1183,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="massif_choppas"
+             initial_home_settlement="Settlement.town_MC1"
              owner="Hero.tor_greenskin_lord_massif_choppas_factionleader"
              banner_key="11.84.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_massif_choppas"
              primary_banner_color="0xfff0f0f0"
@@ -1157,6 +1207,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="neck_snappers"
+             initial_home_settlement="Settlement.town_NS1"
              owner="Hero.tor_greenskin_lord_neck_snappers_factionleader"
              banner_key="11.26.90.1449.1410.764.764.0.0.-90.505.26.142.787.787.764.764.0.1.0:kingdom_necksnappers"
              primary_banner_color="0xfff0f0f0"
@@ -1180,6 +1231,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="skull_smasherz"
+             initial_home_settlement="Settlement.town_SM1"
              owner="Hero.tor_greenskin_lord_skull_smasherz_factionleader"
              banner_key="11.35.140.1398.1615.785.765.1.0.90.505.35.142.714.714.764.764.0.0.0:kingdom_skullsmasherz"
              primary_banner_color="0xfff0f0f0"
@@ -1203,6 +1255,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="bloody_spearz"
+             initial_home_settlement="Settlement.town_BS1"
              owner="Hero.tor_greenskin_lord_bloody_spearz_factionleader"
              banner_key="11.126.90.1449.1410.764.764.0.0.-90.505.129.142.787.787.764.764.0.1.0:kingdom_bloodyspearz"
              primary_banner_color="0xfff0f0f0"
@@ -1226,6 +1279,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="red_eye"
+             initial_home_settlement="Settlement.town_RE1"
              owner="Hero.tor_greenskin_lord_red_eye_factionleader"
              banner_key="11.83.90.1449.1410.764.764.0.0.-90.505.83.142.787.787.764.764.0.1.0:kingdom_redeye"
              primary_banner_color="0xfff0f0f0"
@@ -1249,6 +1303,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="black_pit"
+             initial_home_settlement="Settlement.castle_BP1"
              owner="Hero.tor_greenskin_lord_black_pit_factionleader"
              banner_key="11.149.90.1449.1410.764.764.0.0.-90.505.149.142.787.787.764.764.0.1.0:kingdom_spiderkult"
              primary_banner_color="0xfff0f0f0"
@@ -1272,6 +1327,7 @@
         </policies>
     </Kingdom>
     <Kingdom id="reavaz"
+             initial_home_settlement="Settlement.castle_RZ1"
              owner="Hero.tor_greenskin_lord_reavaz_factionleader"
              banner_key="11.149.90.1449.1410.646.799.0.0.-90.505.149.142.787.787.764.764.0.1.0:kingdom_reavaz"
              primary_banner_color="0xfff0f0f0"
