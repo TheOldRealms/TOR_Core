@@ -862,40 +862,6 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_greatsword_001" />
     </EquipmentSet>
   </EquipmentRoster>
-  <EquipmentRoster id="tor_empire_count_champion_template" culture="Culture.empire">
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_thsword_greatsword_002" />
-      <Equipment slot="Head" id="Item.tor_empire_head_helm_lion_003" />
-      <Equipment slot="Body" id="Item.tor_empire_body_armor_greatsword_001" />
-      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_pistolier_001" />
-      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_greatsword_001" />
-      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_greatsword_003" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_thsword_greatsword_002" />
-      <Equipment slot="Head" id="Item.tor_empire_head_helm_lion_003" />
-      <Equipment slot="Body" id="Item.tor_empire_body_armor_greatsword_001" />
-      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_pistolier_001" />
-      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_greatsword_001" />
-      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_greatsword_003" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_thsword_greatsword_002" />
-      <Equipment slot="Head" id="Item.tor_empire_head_helm_lion_003" />
-      <Equipment slot="Body" id="Item.tor_empire_body_armor_greatsword_001" />
-      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_pistolier_001" />
-      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_greatsword_001" />
-      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_greatsword_003" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.tor_empire_weapon_thsword_greatsword_002" />
-      <Equipment slot="Head" id="Item.tor_empire_head_helm_lion_003" />
-      <Equipment slot="Body" id="Item.tor_empire_body_armor_greatsword_001" />
-      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_pistolier_001" />
-      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_greatsword_001" />
-      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_greatsword_003" />
-    </EquipmentSet>
-  </EquipmentRoster>
   <EquipmentRoster id="tor_empire_sergeant_template" culture="Culture.empire">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />

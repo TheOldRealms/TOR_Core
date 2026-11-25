@@ -67,9 +67,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_greatsword">
     <Abilities />
-    <Attributes>
-      <string>Piercing</string>
-    </Attributes>
+    <Attributes />
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -130,6 +128,7 @@
     <Abilities />
     <Attributes>
       <string>MonsterSlayer</string>
+      <string>Deadeye</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -192,6 +191,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_pistolier">
     <Abilities />
+    <Attributes>
+      <string>Piercing</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -11215,9 +11217,6 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <Attributes>
-      <string>Piercing</string>
-    </Attributes>
   </CharacterExtendedInfo>
 >>>>>>> parent of 542a1476 (Empire rework)
 </ArrayOfCharacterExtendedInfo>
