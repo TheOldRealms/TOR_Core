@@ -305,13 +305,10 @@
                   <Children>
 
                     <!--Current Learning Rate Text-->
-                    <Widget DataSource="{CurrentSkill}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Widget DataSource="{CurrentSkill}" DoNotPassEventsToChildren="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top">
                       <Children>
-                        <HintWidget DataSource="{LearningRateTooltip}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false">
-                          <Children>
-                            <TextWidget Id="CurrentLearningRateTextWidget" DataSource="{..}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="CharacterDeveloper.LearningRate.Text" Text="@CurrentLearningRateText" Brush.FontSize="30" />
-                          </Children>
-                        </HintWidget>
+                        <TextWidget Id="CurrentLearningRateTextWidget" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="CharacterDeveloper.LearningRate.Text" Text="@CurrentLearningRateText" Brush.FontSize="30" />
+                        <HintWidget DataSource="{LearningRateTooltip}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
                       </Children>
                     </Widget>
 
