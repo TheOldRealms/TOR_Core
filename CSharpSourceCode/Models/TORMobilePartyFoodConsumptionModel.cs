@@ -124,10 +124,6 @@ namespace TOR_Core.Models
                 return false;
             }
 
-            if (mobileParty.GetUniqueSpawnComponent() != null)
-            {
-                return false;
-            }
 
             //Sly : both chaos revolts and brasskeep will have no food consumption to skip their AI needing to find settlements for replenishing.
             if (mobileParty.Party.MapFaction?.Culture.StringId == TORConstants.Cultures.CHAOS && mobileParty != MobileParty.MainParty)//Party.Culture doesn't null protect against MapFaction

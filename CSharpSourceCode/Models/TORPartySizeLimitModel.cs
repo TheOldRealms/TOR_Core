@@ -27,11 +27,6 @@ namespace TOR_Core.Models
 
             var num = base.GetPartyMemberSizeLimit(party, isCurrentlyAtSea, includeDescriptions);
 
-            if (party.IsMobile && party.MobileParty.GetUniqueSpawnComponent() is { TargetPartySize: > 0 } uniqueSpawnComponent)
-            {
-                return new ExplainedNumber(uniqueSpawnComponent.TargetPartySize, includeDescriptions, null);
-            }
-
             var partyCulture = GetPartyCultureForPartySize(party);
 
             if (partyCulture?.StringId == TORConstants.Cultures.SYLVANIA)

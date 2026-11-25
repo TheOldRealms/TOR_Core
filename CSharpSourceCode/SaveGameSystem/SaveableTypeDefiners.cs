@@ -14,7 +14,6 @@ using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.Component;
-using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items.InventoryUseScripts;
 using TOR_Core.Quests;
@@ -57,7 +56,7 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(TrollCaveComponent), 21);
             AddClassDefinition(typeof(TrollCaveDefenderPartyComponent), 22);
             AddClassDefinition(typeof(ScriptUseData), 23);
-            AddClassDefinition(typeof(UniqueSpawnPartyComponent), 24);
+            // ID 24 formerly held UniqueSpawnPartyComponent. Slot preserved for save compat.
             AddClassDefinition(typeof(TORMapNotification), 25);
             // IDs 26-28 formerly held GreenKnight/Reinforcement battle-state types. Slot gaps preserved for save compat.
 
@@ -82,7 +81,6 @@ namespace TOR_Core.SaveGameSystem
             //Enums between 100-199
             AddEnumDefinition(typeof(EngineerQuestStates), 100);
             AddEnumDefinition(typeof(SpellCastingLevel), 101);
-            AddEnumDefinition(typeof(UniqueSpawnState), 102);
         }
 
         protected override void DefineContainerDefinitions()

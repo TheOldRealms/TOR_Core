@@ -6,7 +6,6 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Localization;
-using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
@@ -100,25 +99,6 @@ public static class MobilePartyPatches
             maxAggressiveness,
             ref avoidScore,
             ref attackScore);
-    }
-
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(MobileParty), "GetBehaviorText")]
-    public static void UseOrionWarPlanBehaviorText(MobileParty __instance, ref TextObject __result)
-    {
-        if (__instance?.GetUniqueSpawnComponent()?.UniqueSpawnId != "tor_unique_orion")
-        {
-            return;
-        }
-
-        var orionBehavior = Campaign.Current?.GetCampaignBehavior<OrionCampaignBehavior>();
-        var behaviorText = orionBehavior?.GetOrionBehaviorText(__instance);
-        if (behaviorText == null || behaviorText.IsEmpty())
-        {
-            return;
-        }
-
-        __result = behaviorText;
     }
 
 }

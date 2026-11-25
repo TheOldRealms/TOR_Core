@@ -9,7 +9,6 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TOR_Core.CampaignMechanics.Religion;
-using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -23,29 +22,6 @@ namespace TOR_Core.Models
         public override ExplainedNumber CalculateFinalSpeed(MobileParty mobileParty, ExplainedNumber finalSpeed)
         {
             var result = base.CalculateFinalSpeed(mobileParty, finalSpeed);
-
-            if (mobileParty.GetUniqueSpawnComponent() is { UniqueSpawnId: "tor_unique_orion" })
-            {
-                var orionBaseSpeed = mobileParty.InAthelLoren()
-                    ? OrionCampaignBehavior.OrionAthelLorenSpeed
-                    : OrionCampaignBehavior.OrionOutsideAthelLorenSpeed;
-
-                var uniqueSpawnBehavior = Campaign.Current.GetCampaignBehavior<OrionCampaignBehavior>();
-                if (uniqueSpawnBehavior != null && uniqueSpawnBehavior.IsOrionRetreating(mobileParty))
-                {
-                    orionBaseSpeed += OrionCampaignBehavior.OrionRetreatSpeedBonus;
-                }
-
-                var orionSpeed = new ExplainedNumber(orionBaseSpeed, result.IncludeDescriptions, null);
-
-                if (mobileParty.IsDisorganized)
-                {
-                    orionSpeed.AddFactor(-0.4f);
-                }
-
-                orionSpeed.LimitMin(MinimumSpeed);
-                return orionSpeed;
-            }
 
             if (!mobileParty.IsLordParty) return result;
 

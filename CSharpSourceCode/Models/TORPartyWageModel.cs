@@ -10,7 +10,6 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
-using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -138,22 +137,6 @@ namespace TOR_Core.Models
                 return value;
             }
 
-            if (mobileParty.GetUniqueSpawnComponent() != null)
-            {
-                var uniqueSpawnWage = new ExplainedNumber(0, includeDescriptions);
-
-                foreach (var troop in troopRoster.GetTroopRoster())
-                {
-                    if (troop.Character == null || troop.Character.IsHero)
-                    {
-                        continue;
-                    }
-
-                    uniqueSpawnWage.Add(troop.Number * UniqueSpawnCampaignBehavior.UniqueSpawnTroopWage);
-                }
-
-                return uniqueSpawnWage;
-            }
             void StoreCacheIfPossible()
             {
                 if (mobileParty == null || cacheEntry == null)

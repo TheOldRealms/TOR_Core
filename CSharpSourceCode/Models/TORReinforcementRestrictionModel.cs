@@ -51,11 +51,6 @@ namespace TOR_Core.Models
         }
         protected virtual string GetReinforcementCultureId(PartyBase party)
         {
-            if (party?.MobileParty?.GetUniqueSpawnComponent()?.UniqueSpawnId == "tor_unique_orion")
-            {
-                return TORConstants.Cultures.ASRAI;
-            }
-
             return party?.MapFaction?.Culture?.StringId;
         }
         protected virtual bool HasDirectJoinOverride(PartyBase joiningParty, PartyBase sideParty)

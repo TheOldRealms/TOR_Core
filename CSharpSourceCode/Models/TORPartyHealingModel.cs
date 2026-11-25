@@ -9,7 +9,6 @@ using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
-using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -154,15 +153,6 @@ namespace TOR_Core.Models
 
             var mobileParty = party.MobileParty;
 
-            if (mobileParty.GetUniqueSpawnComponent() != null)
-            {
-
-                var uniqueSpawnHealing = base.GetDailyHealingForRegulars(party, isPrisoners, includeDescriptions);
-
-                uniqueSpawnHealing.AddFactor(UniqueSpawnCampaignBehavior.UniqueSpawnHealingFactor);
-                return uniqueSpawnHealing;
-            }
-
             if (!mobileParty.IsLordParty)
             {
                 return base.GetDailyHealingForRegulars(party, isPrisoners, includeDescriptions);
@@ -201,14 +191,6 @@ namespace TOR_Core.Models
                 return base.GetDailyHealingHpForHeroes(party, isPrisoners, includeDescriptions);
             }
             var mobileParty = party.MobileParty;
-
-            if (mobileParty.GetUniqueSpawnComponent() != null)
-            {
-                var uniqueSpawnHeroHealing = base.GetDailyHealingHpForHeroes(party, isPrisoners, includeDescriptions);
-
-                uniqueSpawnHeroHealing.AddFactor(UniqueSpawnCampaignBehavior.UniqueSpawnHealingFactor);
-                return uniqueSpawnHeroHealing;
-            }
 
             if (!mobileParty.IsLordParty)
             {

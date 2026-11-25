@@ -18,7 +18,6 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.PostBattleLoot;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
-using TOR_Core.CampaignMechanics.UniqueSpawns;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.HarmonyPatches
@@ -302,13 +301,6 @@ namespace TOR_Core.HarmonyPatches
                     roster.AddToCounts(rosterElement.Character, -rosterElement.Number);
                 }
             }
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(MapEvent), "CaptureDefeatedPartyMembers")]
-        public static void CaptureDefeatedPartyMembersPrefix(MapEvent __instance, MBReadOnlyList<MapEventParty> defeatedParties)
-        {
-            OrionCampaignBehavior.RemoveOrionFromDefeatedPartyRosters(__instance, defeatedParties);
         }
 
         [HarmonyTranspiler]
