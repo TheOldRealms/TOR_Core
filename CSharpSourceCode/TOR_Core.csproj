@@ -225,17 +225,8 @@
     <Compile Include="BattleMechanics\Artillery\FieldTrebuchet.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerManager.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerMissionLogic.cs" />
-    <Compile Include="BattleMechanics\Reinforcements\GreenKnightAgentOrigin.cs" />
-    <Compile Include="BattleMechanics\Reinforcements\GreenKnightBehavior.cs" />
-    <Compile Include="BattleMechanics\Reinforcements\GreenKnightMissionLogic.cs" />
-    <Compile Include="BattleMechanics\Reinforcements\ReinforcementArrivalNotifier.cs" />
-    <Compile Include="BattleMechanics\Reinforcements\ReinforcementBehavior.cs" />
-    <Compile Include="BattleMechanics\Reinforcements\ReinforcementMissionLogic.cs" />
-    <Compile Include="BattleMechanics\TORFormationMissionLogic.cs" />
-    <Compile Include="BattleMechanics\Reinforcements\ReinforcementPartyAgentOrigin.cs" />
     <Compile Include="BattleMechanics\CareerPerkMissionBehavior.cs" />
     <Compile Include="BattleMechanics\CinematicCameraMissionView.cs" />
-    <Compile Include="BattleMechanics\LevitationVisualLiftMissionView.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\ArcheryContestAgentController.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\ArcheryContestTournamentGame.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\CustomTournamentBehaviors.cs" />
@@ -246,7 +237,6 @@
     <Compile Include="BattleMechanics\DamageSystem\TORDamageHelper.cs" />
     <Compile Include="BattleMechanics\Dismemberment\DismembermentMissionLogic.cs" />
     <Compile Include="BattleMechanics\Firearms\FirearmsMissionLogic.cs" />
-    <Compile Include="BattleMechanics\SiegeEarlyVictoryMissionLogic.cs" />
     <Compile Include="BattleMechanics\TORMonsterSiegeLogic.cs" />
     <Compile Include="BattleMechanics\Voice\AgentVoiceComponent.cs" />
     <Compile Include="BattleMechanics\Voice\BattleShoutsMissionLogic.cs" />
@@ -354,10 +344,7 @@
     <Compile Include="CampaignMechanics\MapNotifications\TORMapNotificationView.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghMeterVM.cs" />
     <Compile Include="CampaignMechanics\TORCampaignMusicHandler.cs" />
-    <Compile Include="CampaignMechanics\UniqueSpawns\OrionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\MapNotifications\TORMapNotification.cs" />
-    <Compile Include="CampaignMechanics\UniqueSpawns\UniqueSpawnCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\UniqueSpawns\UniqueSpawnPartyComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\TORBaseSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\BaseRaiderSpawnerComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\ChaosPortalComponent.cs" />
@@ -370,8 +357,6 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\Component\WorldRootsComponent.cs" />
     <Compile Include="CampaignMechanics\Villages\TORTownManagementVillageItemVM.cs" />
     <Compile Include="CampaignMechanics\Villages\TORVillageTypes.cs" />
-    <Compile Include="CampaignMechanics\FactionScenes\FactionSceneEntry.cs" />
-    <Compile Include="CampaignMechanics\FactionScenes\TORFactionSceneRegistry.cs" />
     <Compile Include="Extensions\CultureExtensions.cs" />
     <Compile Include="Extensions\UI\PartyVMExtension.cs" />
     <Compile Include="CampaignMechanics\CustomResources\TeefHelper.cs" />
@@ -418,12 +403,6 @@
     <Compile Include="CampaignMechanics\TorMapBarSpriteWidget.cs" />
     <Compile Include="Extensions\UI\SPItemVMExtension.cs" />
     <Compile Include="Extensions\UI\TORInitialScreen.cs" />
-    <Compile Include="Extensions\UI\MainMenu\TORMainMenuLinkLauncher.cs" />
-    <Compile Include="Extensions\UI\MainMenu\TORMainMenuLinksVM.cs" />
-    <Compile Include="Extensions\UI\MainMenu\TORRecommendedSettingsService.cs" />
-    <Compile Include="Extensions\UI\MainMenu\TORRecommendedSettingsWarningVM.cs" />
-    <Compile Include="Extensions\UI\MainMenu\TORShaderCacheWarning.cs" />
-    <Compile Include="Extensions\UI\MainMenu\TORWelcomePopupVM.cs" />
     <Compile Include="Extensions\UI\TORMapInfoVMExtension.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TorRecruitmentHelpers.cs" />
@@ -553,7 +532,6 @@
     <Compile Include="HarmonyPatches\CharacterObjectPatches.cs" />
     <Compile Include="HarmonyPatches\ClanMembersRenamePatch.cs" />
     <Compile Include="HarmonyPatches\CaravanVisualPatch.cs" />
-    <Compile Include="HarmonyPatches\CampaignMapLevitationPatches.cs" />
     <Compile Include="HarmonyPatches\ConversationPatches.cs" />
     <Compile Include="HarmonyPatches\CustomBattlePatches.cs" />
     <Compile Include="HarmonyPatches\CustomResourcePatches.cs" />
@@ -567,7 +545,6 @@
     <Compile Include="HarmonyPatches\GameTextPatches.cs" />
     <Compile Include="HarmonyPatches\FastTradeInventoryPatch.cs" />
     <Compile Include="HarmonyPatches\InventoryResetPatch.cs" />
-    <Compile Include="HarmonyPatches\JoinKingdomSceneIDPatch.cs" />
     <Compile Include="HarmonyPatches\InventoryPatches.cs" />
     <Compile Include="HarmonyPatches\LogEntryNotificationPatches.cs" />
     <Compile Include="HarmonyPatches\ItemPatches.cs" />
@@ -637,7 +614,6 @@
     <Compile Include="Models\TORAlleyModel.cs" />
     <Compile Include="Models\TORBanditDensityModel.cs" />
     <Compile Include="Models\TORBattleBannerBearersModel.cs" />
-    <Compile Include="Models\TORBattleSpawnModel.cs" />
     <Compile Include="Models\TORBattleMoraleModel.cs" />
     <Compile Include="Models\TORBattleRewardModel.cs" />
     <Compile Include="Models\TORBuildingEffectModel.cs" />
@@ -705,9 +681,6 @@
     <Compile Include="Quests\TORQuestHelper.cs" />
     <Compile Include="SaveGameSystem\SaveableTypeDefiners.cs" />
     <Compile Include="SubModule.cs" />
-    <Compile Include="CampaignMechanics\Formations\TORFormationAssignments.cs" />
-    <Compile Include="CampaignMechanics\Formations\TORFormationCampaignBehavior.cs" />
-    <Compile Include="HarmonyPatches\TOROrderOfBattleFormationsPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\CTBlog.cs" />
     <Compile Include="Utilities\DictionaryExtensions.cs" />
