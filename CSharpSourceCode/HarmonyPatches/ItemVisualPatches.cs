@@ -47,33 +47,17 @@ namespace TOR_Core.HarmonyPatches
         private static void AutoWieldForearmWeaponIfUnarmed(Agent agent, bool isWieldedOnSpawn)
         {
             if (agent == null || !agent.IsHuman || !agent.IsActive() || agent.Equipment == null) return;
+            if (agent.GetPrimaryWieldedItemIndex() != EquipmentIndex.None) return;
 
-            if (agent.GetPrimaryWieldedItemIndex() == EquipmentIndex.None)
+            for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumAllWeaponSlots; i++)
             {
-                for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumAllWeaponSlots; i++)
-                {
-                    var element = agent.Equipment[i];
-                    if (element.IsEmpty || element.Item == null) continue;
-                    if (string.IsNullOrEmpty(element.Item.GetForearmMeshName())) continue;
-                    if (element.Item.IsShield() || element.Item.IsAmmoItem()) continue;
+                var element = agent.Equipment[i];
+                if (element.IsEmpty || element.Item == null) continue;
+                if (string.IsNullOrEmpty(element.Item.GetForearmMeshName())) continue;
+                if (element.Item.IsShield() || element.Item.IsAmmoItem()) continue;
 
-                    agent.TryToWieldWeaponInSlot(i, Agent.WeaponWieldActionType.Instant, isWieldedOnSpawn);
-                    break;
-                }
-            }
-
-            if (agent.GetOffhandWieldedItemIndex() == EquipmentIndex.None)
-            {
-                for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumAllWeaponSlots; i++)
-                {
-                    var element = agent.Equipment[i];
-                    if (element.IsEmpty || element.Item == null) continue;
-                    if (string.IsNullOrEmpty(element.Item.GetForearmMeshName())) continue;
-                    if (!element.Item.IsShield()) continue;
-
-                    agent.TryToWieldWeaponInSlot(i, Agent.WeaponWieldActionType.Instant, isWieldedOnSpawn);
-                    break;
-                }
+                agent.TryToWieldWeaponInSlot(i, Agent.WeaponWieldActionType.Instant, isWieldedOnSpawn);
+                break;
             }
         }
 
@@ -171,7 +155,7 @@ namespace TOR_Core.HarmonyPatches
             var visuals = agent.AgentVisuals;
             if (agent.Equipment != null)
             {
-                ApplyForearmReplacementFromMissionEquipment(visuals, agent.Equipment);
+                ApplyForearmReplacementFromMissionEquipment(visuals, agent.Equipment, agent);
                 ApplyPerHandVisibility(visuals, agent.Equipment.GetCombinedHideHandType());
             }
             else if (agent.SpawnEquipment != null)
@@ -181,7 +165,7 @@ namespace TOR_Core.HarmonyPatches
             }
         }
 
-        private static void ApplyForearmReplacementFromMissionEquipment(MBAgentVisuals visuals, MissionEquipment equipment)
+        private static void ApplyForearmReplacementFromMissionEquipment(MBAgentVisuals visuals, MissionEquipment equipment, Agent agent)
         {
             if (visuals == null || equipment == null) return;
 
@@ -200,6 +184,15 @@ namespace TOR_Core.HarmonyPatches
 
                 activeForearmNames ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 activeForearmNames.Add(forearmMeshName);
+
+                if (agent != null)
+                {
+                    var weaponEntity = agent.GetWeaponEntityFromEquipmentSlot(i);
+                    if (weaponEntity.IsValid)
+                    {
+                        HideWeakEntityMeshesRecursive(weaponEntity);
+                    }
+                }
 
                 rigidNamesToHide ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 CollectRigidItemMeshNames(element.Item, rigidNamesToHide);

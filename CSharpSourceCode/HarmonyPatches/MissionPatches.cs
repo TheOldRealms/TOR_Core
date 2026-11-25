@@ -255,9 +255,8 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(MissionEquipment), nameof(MissionEquipment.SelectWeaponPickUpSlot))]
         public static bool BlockTrollLockedGroundPickup(ref EquipmentIndex __result, MissionWeapon weaponBeingPickedUp)
         {
-            var item = weaponBeingPickedUp.Item;
-            var raceLock = item?.GetTorSpecificDataReadOnly()?.RaceLock;
-            if (raceLock != "troll" && string.IsNullOrEmpty(item?.GetForearmMeshName()))
+            var raceLock = weaponBeingPickedUp.Item.GetTorSpecificDataReadOnly()?.RaceLock;
+            if (raceLock != "troll")
             {
                 return true;
             }

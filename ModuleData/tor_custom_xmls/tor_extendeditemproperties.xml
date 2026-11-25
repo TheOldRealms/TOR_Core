@@ -1751,30 +1751,6 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_slaangor_hood_001" RaceLock="gor2">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_slaangor_hood_002" RaceLock="gor2">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_head_slaangor_hood_003" RaceLock="gor2">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>  
-  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_slaangor_shoulderpads_001" RaceLock="gor2">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_body_armour_slaangor_001" RaceLock="gor2">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
-  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_legs_slaangor_001" RaceLock="gor2">
-    <ItemTraits />
-    <Description />
-  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_bestigor_shoulderpads_001" RaceLock="gor2">
     <ItemTraits />
     <Description />
@@ -7559,11 +7535,11 @@
     </DamageProportions>
     <Description />
   </ExtendedItemObjectProperties>
-  <!-- Left-Hand Defend Claw Shield: Hides ONLY Left Hand (gor_hands_v2.1) and renders forearm-skinned defend claw mesh -->
-  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_shield_slaangor_defend_claw_001" RaceLock="gor2">
+  <!-- Uncomment once slaangor_block_claw is imported and added to tor_shields.xml:
+  <ExtendedItemObjectProperties ItemStringId="tor_beastmen_shield_slaangor_block_claw_001" RaceLock="gor2">
     <HideHand>Left</HideHand>
-    <ForearmMesh>slaangor_defend_claw_forearm_mesh</ForearmMesh>
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  -->
 </ArrayOfExtendedItemObjectProperties>
