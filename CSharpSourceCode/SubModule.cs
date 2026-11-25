@@ -327,7 +327,6 @@ namespace TOR_Core
             mission.AddMissionBehavior(new StatusEffectMissionLogic());
             mission.AddMissionBehavior(new AbilityManagerMissionLogic());
             mission.AddMissionBehavior(new AbilityHUDMissionView());
-            mission.AddMissionBehavior(new LevitationVisualLiftMissionView());
             mission.AddMissionBehavior(new CustomCrosshairMissionBehavior());
             mission.AddMissionBehavior(new WeaponHitScriptsMissionLogic());
             mission.AddMissionBehavior(new CustomBannerMissionLogic());
