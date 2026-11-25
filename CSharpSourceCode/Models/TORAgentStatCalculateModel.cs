@@ -12,7 +12,6 @@ using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
-using TOR_Core.BattleMechanics.Reinforcements;
 using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.BattleMechanics.StatusEffect;
@@ -107,7 +106,7 @@ namespace TOR_Core.Models
 
         public override void InitializeMissionEquipment(Agent agent)
         {
-            if (agent.Origin is SummonedAgentOrigin || agent.Origin is GreenKnightAgentOrigin) return;
+            if (agent.Origin is SummonedAgentOrigin) return;
             base.InitializeMissionEquipment(agent);
             if (agent.IsHuman)
             {
@@ -224,7 +223,7 @@ namespace TOR_Core.Models
 
         public override int GetEffectiveSkill(Agent agent, SkillObject skill)
         {
-            if (agent.Origin is SummonedAgentOrigin || agent.Origin is GreenKnightAgentOrigin) return agent.Character.GetSkillValue(skill);
+            if (agent.Origin is SummonedAgentOrigin) return agent.Character.GetSkillValue(skill);
             var result = base.GetEffectiveSkill(agent, skill);
             ExplainedNumber effectiveSkill = new ExplainedNumber(result, false, null);
 
@@ -275,16 +274,14 @@ namespace TOR_Core.Models
 
         public override string GetMissionDebugInfoForAgent(Agent agent)
         {
-            if (agent.Origin is SummonedAgentOrigin || agent.Origin is GreenKnightAgentOrigin) return "unit without a party. base debug path expects a PartyBase origin.";
+            if (agent.Origin is SummonedAgentOrigin) return "unit without a party. base debug path expects a PartyBase origin.";
             else return base.GetMissionDebugInfoForAgent(agent);
         }
 
         public override float GetEffectiveMaxHealth(Agent agent)
         {
             if (agent == null) return 0;
-            if (agent.Origin is SummonedAgentOrigin || agent.Origin is GreenKnightAgentOrigin)
-                return agent.BaseHealthLimit;
-            if (agent.RiderAgent?.Origin is GreenKnightAgentOrigin)
+            if (agent.Origin is SummonedAgentOrigin)
                 return agent.BaseHealthLimit;
 
             var explainedNumber = new ExplainedNumber(base.GetEffectiveMaxHealth(agent));

@@ -132,7 +132,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             if (string.Equals(trigger.RaceId, "cygor", StringComparison.Ordinal))
             {
                 PlayBoulderImpact(agent, pos);
-                CygorCameraShake.Apply(agent.Position, BoulderShakeRange, BoulderShakeIntensity);
             }
         }
 

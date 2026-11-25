@@ -7,7 +7,6 @@ using TaleWorlds.Core;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.CustomArenaModes;
-using TOR_Core.BattleMechanics.Reinforcements;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.MapNotifications;
@@ -60,9 +59,7 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(ScriptUseData), 23);
             AddClassDefinition(typeof(UniqueSpawnPartyComponent), 24);
             AddClassDefinition(typeof(TORMapNotification), 25);
-            AddClassDefinition(typeof(GreenKnightBehavior.GreenKnightBattleState), 26);
-            AddClassDefinition(typeof(ReinforcementBehavior.ReinforcementBattleState), 27);
-            AddClassDefinition(typeof(ReinforcementBehavior.ReinforcementCandidateState), 28);
+            // IDs 26-28 formerly held GreenKnight/Reinforcement battle-state types. Slot gaps preserved for save compat.
 
 
             //Quests and issues begin at 200 - they generally can't be expanded to cover new use cases
@@ -108,9 +105,6 @@ namespace TOR_Core.SaveGameSystem
             ConstructContainerDefinition(typeof(List<BaseInventoryUseScript>));
             ConstructContainerDefinition(typeof(Dictionary<string, List<BaseInventoryUseScript>>));
             ConstructContainerDefinition(typeof(Dictionary<string, HeroTrainingData>));
-            ConstructContainerDefinition(typeof(Dictionary<MapEvent, GreenKnightBehavior.GreenKnightBattleState>));
-            ConstructContainerDefinition(typeof(Dictionary<MapEvent, ReinforcementBehavior.ReinforcementBattleState>));
-            ConstructContainerDefinition(typeof(List<ReinforcementBehavior.ReinforcementCandidateState>));
             ConstructContainerDefinition(typeof(List<ScriptUseData>));
             ConstructContainerDefinition(typeof(List<string>));
         }
