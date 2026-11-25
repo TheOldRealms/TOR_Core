@@ -7275,7 +7275,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LY1" name="{=Settlements.Settlement.name.castle_LY1}Barley Motte" owner="Faction.skulltakers_clan_1" posX="838.565" posY="1235.31" culture="Culture.chaos_culture" gate_posX="837.9566" gate_posY="1234.493" text="{=Settlements.Settlement.text.castle_LY1}Bordering the Dukedom of L'Anguille is Barley Motte, a strategic castle situated on a hilltop that oversees the surrounding northern Lyonesse hills. The castle serves as a military stronghold and a symbol of protection for the neighboring villages. However, the location is also infamous in Bretonnia for being home to bandits, necromancers, and Chaos cults, with most Lyonens believing the Motte to be cursed despite its strategic importance.">
+  <Settlement id="castle_LY1" name="{=Settlements.Settlement.name.castle_LY1}Barley Motte" owner="Faction.brasskeep_clan_1" posX="838.565" posY="1235.31" culture="Culture.chaos_culture" gate_posX="837.9566" gate_posY="1234.493" text="{=Settlements.Settlement.text.castle_LY1}Bordering the Dukedom of L'Anguille is Barley Motte, a strategic castle situated on a hilltop that oversees the surrounding northern Lyonesse hills. The castle serves as a military stronghold and a symbol of protection for the neighboring villages. However, the location is also infamous in Bretonnia for being home to bandits, necromancers, and Chaos cults, with most Lyonens believing the Motte to be cursed despite its strategic importance.">
     <Components>
       <Town id="castle_comp_LY1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="820">
         <Buildings>

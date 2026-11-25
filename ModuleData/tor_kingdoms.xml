@@ -276,30 +276,6 @@
 			<policy id="policy_sacred_majesty" />
              </policies>
 		    </Kingdom>
-	<Kingdom id="skulltakers"
-             initial_home_settlement="Settlement.castle_LY1"
-             owner="Hero.tor_chaos_lord_skulltakers_factionleader"
-             banner_key="11.67.148.1500.1500.764.764.1.1.0.122.20.41.600.600.766.766.0.0.0:kingdom_illumination"
-             primary_banner_color="0xff6c1512"
-             secondary_banner_color="0xff6c1512"
-             label_color="FF211F1F"
-             color="FF830808"
-             color2="FF830808"
-             alternative_color="FFffffff"
-             alternative_color2="FF660653"
-             culture="Culture.chaos_culture"
-             settlement_banner_mesh="encounter_flag_a"
-             flag_mesh="info_screen_flags_b"
-             name="{=str_tor_kingdom_name_skulltakers}Skulltakers of the Hound"
-             short_name="{=str_tor_kingdom_shortname_skulltakers}Marauders of Khorne"
-             title="{=str_tor_kingdom_title_skulltakers}Skulltakers"
-             ruler_title="{=str_tor_kingdom_rulertitle_skulltakers}Chaos Champion"
-             text="{=str_tor_kingdom_text_skulltakers}NEED TEXT" >
-			 			 <policies>
-            <policy id="policy_royal_commission" />
-			<policy id="policy_sacred_majesty" />
-             </policies>
-		    </Kingdom>
     <Kingdom id="wasteland"
              initial_home_settlement="Settlement.town_WA1"
              owner="Hero.tor_emp_lord_wasteland_factionleader"

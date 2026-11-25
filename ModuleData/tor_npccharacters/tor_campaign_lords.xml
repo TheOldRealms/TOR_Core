@@ -4379,7 +4379,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" />
     </Equipments>
     <face>
-      <BodyProperties age="65" weight="0.7265" build="0.4589" key="0000680B9E2C3A028859A686879A78C774D6946B7A5C536D539437B9898D56E40077B60307C3265800000000000000000000000000000000000000001CF47080" />
+      <BodyProperties version="4" age="65" weight="0.7265" build="0.4589" key="0000680B9E2C3A028859A686879A78C774D6946B7A5C536D539437B9898D56E40077B60307C3265800000000000000000000000000000000000000001CF47080" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="6" />
@@ -4522,7 +4522,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" />
     </Equipments>
     <face>
-      <BodyProperties age="36" weight="0.2791" build="0.7678" key="0000CC080044300C4673696679B77C8A757C468242CBCBB8663579AC8A8964AC007C46030718C958000000000000000000000000000000000000000024EC7100" />
+      <BodyProperties version="4" age="36" weight="0.2791" build="0.7678" key="0000CC080044300C4673696679B77C8A757C468242CBCBB8663579AC8A8964AC007C46030718C958000000000000000000000000000000000000000024EC7100" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="6" />
@@ -4845,7 +4845,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" />
     </Equipments>
     <face>
-      <BodyProperties age="48" weight="0.5452" build="0.5631" key="0002640B97FC09D47D4889A488B69FAC61747AB778BA7E521676A2786C3A89740078860307C5C888000000000000000000000000000000000000000034EC2040" />
+      <BodyProperties version="4" age="48" weight="0.5452" build="0.5631" key="0002640B97FC09D47D4889A488B69FAC61747AB778BA7E521676A2786C3A89740078860307C5C888000000000000000000000000000000000000000034EC2040" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -5996,7 +5996,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" />
     </Equipments>
     <face>
-      <BodyProperties age="28" weight="0.5879" build="0.3668" key="000A94009EB436CF835B59A5DB4A188ECDD4967B8998AD5225665169C49A95680096960309C546C600000000000000000000000000000000000000003B3C3140" />
+      <BodyProperties version="4" age="28" weight="0.5879" build="0.3668" key="000A94009EB436CF835B59A5DB4A188ECDD4967B8998AD5225665169C49A95680096960309C546C600000000000000000000000000000000000000003B3C3140" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="6" />
@@ -6139,7 +6139,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" />
     </Equipments>
     <face>
-      <BodyProperties age="33" weight="0.5876" build="0.5813" key="0002B00551000086467C6388B6B83E56A5286154B7BBB65AC3A56CD689A81C390079960307A867C900000000000000000000000000000000000000005CE41140" />
+      <BodyProperties version="4" age="33" weight="0.5876" build="0.5813" key="0002B00551000086467C6388B6B83E56A5286154B7BBB65AC3A56CD689A81C390079960307A867C900000000000000000000000000000000000000005CE41140" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -6282,7 +6282,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_1" />
     </Equipments>
     <face>
-      <BodyProperties age="56" weight="0.8641" key="00022C001A58170B97C49B843637B49D168998A37387548C9284254719B754B50086D6030821D43900000000000000000000000000000000000000002D049000" build="0.3909" />
+      <BodyProperties version="4" age="56" weight="0.8641" key="00022C001A58170B97C49B843637B49D168998A37387548C9284254719B754B50086D6030821D43900000000000000000000000000000000000000002D049000" build="0.3909" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="4" />
@@ -6308,7 +6308,7 @@
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_2" />
     </Equipments>
     <face>
-      <BodyProperties age="47" weight="0.368" build="0.4498" key="001B1C040EE40002776E44BC8A3D69B96DED8D79837AD1532A89596EE5C7739800D766030D99AB6200000000000000000000000000000000000000002BAC1140" />
+      <BodyProperties version="4" age="47" weight="0.368" build="0.4498" key="001B1C040EE40002776E44BC8A3D69B96DED8D79837AD1532A89596EE5C7739800D766030D99AB6200000000000000000000000000000000000000002BAC1140" />
     </face>
   </NPCCharacter>
   <NPCCharacter id="tor_m_lord_mousillon_factionleader" default_group="cavalry" name="{=str_tor_m_lord_mousillon_factionleader}The Serpent of Mousillon" occupation="Lord" culture="Culture.mousillon" voice="curt" age="24" skill_template="SkillSet.tor_skills_serpent" race="bretonnian" is_hero="true">
@@ -6496,7 +6496,7 @@
       <EquipmentSet id="tor_blooddragon_templar_template" />
     </Equipments>
     <face>
-      <BodyProperties key="0002380E5BFC39401A75D9599695268CA814A8648A66786983B1876EBB79BE750065760306C28B6C000000000000000000000000000000000000000032C44000" weight="0.4682" build="0.3493" age="45" />
+      <BodyProperties version="4" key="0002380E5BFC39401A75D9599695268CA814A8648A66786983B1876EBB79BE750065760306C28B6C000000000000000000000000000000000000000032C44000" weight="0.4682" build="0.3493" age="45" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="8" />
@@ -6513,7 +6513,7 @@
       <EquipmentSet id="tor_necromancer_template" />
     </Equipments>
     <face>
-      <BodyProperties weight="0.7688" build="0.0046" key="00008C0E5DE41BD2955A877356889D51C6AB88B61FAC5C3686A5DA35666E47350050C60305A67A9B0000000000000000000000000000000000000000649C7140" age="90" />
+      <BodyProperties version="4" weight="0.7688" build="0.0046" key="00008C0E5DE41BD2955A877356889D51C6AB88B61FAC5C3686A5DA35666E47350050C60305A67A9B0000000000000000000000000000000000000000649C7140" age="90" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="6" />
@@ -12915,108 +12915,6 @@
       <EquipmentSet id="tor_brasskeep_lord_1_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_skulltakers_factionleader" name="Chaos Lord Chammon" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord">
-    <Equipments>
-      <EquipmentSet id="tor_chammon_khorne_template" />
-    </Equipments>
-    <face>
-      <BodyProperties age="25" weight="0.3148" build="0.8627" key="0000FC0FCB000A53797664884754DCBAA35E866295A0967774414A498C83368601CD56140CA7B7A500000000000000000000000000000000000000003D942000" />
-    </face>
-    <Traits>
-      <Trait id="BalancedFightingSkills" value="9" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Politician" value="3" />
-      <Trait id="Manager" value="3" />
-      <Trait id="Honor" value="2" />
-      <Trait id="Mercy" value="-2" />
-      <Trait id="Generosity" value="-1" />
-    </Traits>
-  </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_skulltakers_first_2" name="Vekhoth Chosen of Khorne" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord">
-    <Equipments>
-      <EquipmentSet id="tor_generic_khorne_lord_template" />
-    </Equipments>
-    <face>
-      <BodyProperties age="25" weight="0.6331" build="0.6065" key="0016FC0FCD0003C085D64C4C5C6BA757BA99657AC7994E77D68579D87465E18A0179961407838D58000000000000000000000000000000000000000028DC2000" />
-    </face>
-    <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="3" />
-      <Trait id="Politician" value="5" />
-      <Trait id="Manager" value="4" />
-      <Trait id="Honor" value="2" />
-      <Trait id="Mercy" value="-2" />
-      <Trait id="Generosity" value="-1" />
-    </Traits>
-  </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_skulltakers_first_3" name="Bael the Crimson Barbarian" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord">
-    <Equipments>
-      <EquipmentSet id="tor_generic_khorne_lord_template" />
-    </Equipments>
-    <face>
-      <BodyProperties age="25" weight="0.6331" build="0.6065" key="0016FC0FCD0003C085D64C4C5C6BA757BA99657AC7994E77D68579D87465E18A0179961407838D58000000000000000000000000000000000000000028DC2000" />
-    </face>
-    <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="3" />
-      <Trait id="Politician" value="5" />
-      <Trait id="Manager" value="4" />
-      <Trait id="Honor" value="2" />
-      <Trait id="Mercy" value="-2" />
-      <Trait id="Generosity" value="-1" />
-    </Traits>
-  </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_skulltakers_first_4" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="Khrovak Scarred Pillager of Lyonesse">
-    <Equipments>
-      <EquipmentSet id="tor_generic_khorne_lord_template" />
-    </Equipments>
-    <face>
-      <BodyProperties age="25" weight="0.6331" build="0.6065" key="0016FC0FCD0003C085D64C4C5C6BA757BA99657AC7994E77D68579D87465E18A0179961407838D58000000000000000000000000000000000000000028DC2000" />
-    </face>
-    <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="3" />
-      <Trait id="Politician" value="5" />
-      <Trait id="Manager" value="4" />
-      <Trait id="Honor" value="2" />
-      <Trait id="Mercy" value="-2" />
-      <Trait id="Generosity" value="-1" />
-    </Traits>
-  </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_skulltakers_first_5" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="Skeinya Daugter of Red Mist" is_female="true">
-    <Equipments>
-      <EquipmentSet id="tor_generic_khorne_lord_female_template" />
-    </Equipments>
-    <face>
-      <BodyProperties age="25" weight="0.3333" build="0.9934" key="0000FC0FC50010098A7D879C3978E59967674C777E1BC37365A6704F78A845E3008F5604087A926600000000000000000000000000000000000000003B0C4000" />
-    </face>
-    <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="3" />
-      <Trait id="Politician" value="5" />
-      <Trait id="Manager" value="4" />
-      <Trait id="Honor" value="2" />
-      <Trait id="Mercy" value="-2" />
-      <Trait id="Generosity" value="-1" />
-    </Traits>
-  </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_skulltakers_first_6" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="Khuzorath Chosen of Khorne">
-    <Equipments>
-      <EquipmentSet id="tor_generic_khorne_lord_template" />
-    </Equipments>
-    <face>
-      <BodyProperties age="25" weight="0.6331" build="0.6065" key="0016FC0FCD0003C085D64C4C5C6BA757BA99657AC7994E77D68579D87465E18A0179961407838D58000000000000000000000000000000000000000028DC2000" />
-    </face>
-    <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="3" />
-      <Trait id="Politician" value="5" />
-      <Trait id="Manager" value="4" />
-      <Trait id="Honor" value="2" />
-      <Trait id="Mercy" value="-2" />
-      <Trait id="Generosity" value="-1" />
-    </Traits>
-  </NPCCharacter>
   <NPCCharacter id="tor_de_lord_factionleader" default_group="cavalry" name="{=str_tor_de_lord_factionleader}Draxor Bloodscar" occupation="Lord" culture="Culture.druchii" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="50" weight="0.5" build="0.5" key="0039B8000000300FE90675CE1663F9E2334183BAC5AE860C69B35046831589100077760307A6408700000000000000000000000000000000000000003AF46002" />
@@ -13037,7 +12935,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_we_orion_factionleader" name="{=str_tor_tor_we_orion_factionleader}Orion, Master of the Wild Hunt" default_group="infantry" occupation="Special" culture="Culture.battania" voice="curt" age="25" race="orion" is_hero="true" skill_template="SkillSet.tor_skills_karlfranz">
     <face>
-      <BodyProperties age="25" weight="0.2608" build="0.3997" key="0000AC0FC0B40000B97634CE6774B835537D86629511323BDCB177278A840203010646130048B49500000000000000000000000000000000000000003E040000" />
+      <BodyProperties version="4" age="25" weight="0.2608" build="0.3997" key="0000AC0FC0B40000B97634CE6774B835537D86629511323BDCB177278A840203010646130048B49500000000000000000000000000000000000000003E040000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="10" />
@@ -13231,7 +13129,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_br_greenknight_leader" name="{=str_tor_br_greenknight_leader}The Green Knight" default_group="cavalry" occupation="Lord" culture="Culture.vlandia" voice="earnest" age="58" skill_template="SkillSet.tor_skills_louenleoncoeur" is_hero="true" race="bretonnian">
     <face>
-      <BodyProperties age="43" weight="0.5568" build="0.5163" key="0002780D8044034576A2A6415759B9EA73B77A9971DB846978735A5944668856854C76030C85738C888796AA3686398C000000000000000C00000000418C1002" />
+      <BodyProperties version="4" age="43" weight="0.5568" build="0.5163" key="0002780D8044034576A2A6415759B9EA73B77A9971DB846978735A5944668856854C76030C85738C888796AA3686398C000000000000000C00000000418C1002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="10" />

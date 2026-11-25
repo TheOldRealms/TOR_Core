@@ -2306,7 +2306,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_priest_trainer_empire_shallya_0" default_group="infantry" name="{=str_tor_priest_trainer_empire_shallya_0}Highpriestess Anja Gustavson" occupation="Special" culture="Culture.empire" voice="ironic" age="30" is_female="true" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.BodyProperty.townswoman_empire" />
+      <face_key_template value="BodyProperty.townswoman_empire" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />
@@ -2322,7 +2322,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_priest_trainer_empire_shallya_1" default_group="infantry" name="{=str_tor_priest_trainer_empire_shallya_1}The Most Holy Matriarch Lisegund" occupation="Special" culture="Culture.empire" voice="ironic" age="95" is_female="true" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.BodyProperty.townswoman_empire" />
+      <face_key_template value="BodyProperty.townswoman_empire" />
     </face>
     <Traits>
       <Trait id="Mercy" value="0" />

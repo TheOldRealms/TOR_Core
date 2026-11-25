@@ -308,8 +308,7 @@
             <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
-		<FollowerClan stringId="skulltakers_clan_1" />
-        </Followers>
+</Followers>
         <ReligiousTroops>
         </ReligiousTroops>
     </Religion>
