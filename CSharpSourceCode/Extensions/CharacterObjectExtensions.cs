@@ -315,16 +315,12 @@ namespace TOR_Core.Extensions
 
         public static bool IsBeastman(this CharacterObject characterObject)
         {
-            var cultureId = characterObject?.Culture?.StringId;
-            return cultureId == TORConstants.Cultures.BEASTMEN
-                || cultureId == TORConstants.Cultures.BEASTMEN_BANDIT;
+            return characterObject.Culture.StringId == TORConstants.Cultures.BEASTMEN;//all beastmen currently belong to the bandit culture
         }
 
         public static bool IsBeastman(this BasicCharacterObject characterObject)
         {
-            var cultureId = characterObject?.Culture?.StringId;
-            return cultureId == TORConstants.Cultures.BEASTMEN
-                || cultureId == TORConstants.Cultures.BEASTMEN_BANDIT;
+            return characterObject.Culture.StringId == TORConstants.Cultures.BEASTMEN;//all beastmen currently belong to the bandit culture
         }
 
         public static bool IsUndead(this BasicCharacterObject characterObject)

@@ -41,27 +41,7 @@
   <string id="tor_cc_growth.aserai" text="{=str_tor_cc_growth_aserai}After joining a tribe your biggest achievement was…" />
   <string id="tor_cc_profession.aserai" text="{=str_tor_cc_profession_aserai}Before leaving the tribe, you were one of the…" />
 
-  <!-- Character Creation - Beastmen -->
-  <string id="tor_cc_beastmen_ungor_label" text="{=str_tor_cc_beastmen_ungor_label}Ungor Whelp" />
-  <string id="tor_cc_beastmen_ungor_text" text="{=str_tor_cc_beastmen_ungor_text}You were spawned into the herd as an Ungor — small horns, weaker limbs, meant to run and fetch rather than fight and die. What you lack in muscle you learned to make up for with a keen eye and a fleet hoof." />
-  <string id="tor_cc_beastmen_gor_label" text="{=str_tor_cc_beastmen_gor_label}Gor Spawn" />
-  <string id="tor_cc_beastmen_gor_text" text="{=str_tor_cc_beastmen_gor_text}You were spawned strong — full horns, thick hide, the mark of a Gor. You ate the weakest of your brood as calves and grew large on their bones. The herd's warriors watched you and nodded." />
-  <string id="tor_cc_beastmen_touched_label" text="{=str_tor_cc_beastmen_touched_label}Bray-Touched" />
-  <string id="tor_cc_beastmen_touched_text" text="{=str_tor_cc_beastmen_touched_text}You were born under a bad moon, marked with the twin-tailed comet on your hide. The Bray-Shamans of the herd watched you closely — the dark gods had touched you, though for good or ill none could yet say." />
-  <string id="tor_cc_beastmen_stalker_label" text="{=str_tor_cc_beastmen_stalker_label}Forest Stalker" />
-  <string id="tor_cc_beastmen_stalker_text" text="{=str_tor_cc_beastmen_stalker_text}You hunted alone in the deep Drakwald — human trappers, lost travellers, sleeping foresters. You learned to move without sound and to strike from cover. The herd left you to your work because you never returned empty-hoofed." />
-  <string id="tor_cc_beastmen_raider_label" text="{=str_tor_cc_beastmen_raider_label}Warherd Raider" />
-  <string id="tor_cc_beastmen_raider_text" text="{=str_tor_cc_beastmen_raider_text}You ran with the warherds — down through the Drakwald and out onto Middenland's farms and hamlets. You burned houses, dragged screaming humans back to the herdstone, and returned drenched in blood and glory." />
-  <string id="tor_cc_beastmen_herdstone_label" text="{=str_tor_cc_beastmen_herdstone_label}Herdstone Watcher" />
-  <string id="tor_cc_beastmen_herdstone_text" text="{=str_tor_cc_beastmen_herdstone_text}You served at the great herdstone under a Bray-Shaman's hoof — tending the sacred fires, dragging bound sacrifices to the altar, whispering to the shadows that gathered between the standing stones. You saw things not meant for mortal eyes." />
-  <string id="tor_cc_beastmen_fetcher_label" text="{=str_tor_cc_beastmen_fetcher_label}Ungor Fetcher" />
-  <string id="tor_cc_beastmen_fetcher_text" text="{=str_tor_cc_beastmen_fetcher_text}You have taken your place among the Ungor Fetchers — the herd's skirmishers and scouts. Small horns, sharp eyes, and the fastest hooves in the warherd. You harry the enemy from cover while the Gors close in for the kill." />
-  <string id="tor_cc_beastmen_warrior_label" text="{=str_tor_cc_beastmen_warrior_label}Gor of the Great Herd" />
-  <string id="tor_cc_beastmen_warrior_text" text="{=str_tor_cc_beastmen_warrior_text}You are a Gor now — the herd's frontline, its cleaving axe. You are what humans see when the forest breaks open at nightfall and comes charging out of the treeline: horned, bloody, and unstoppable." />
-  <string id="tor_cc_beastmen_wargor_label" text="{=str_tor_cc_beastmen_wargor_label}Wargor Champion" />
-  <string id="tor_cc_beastmen_wargor_text" text="{=str_tor_cc_beastmen_wargor_text}You have risen above the common Gor — you are a Wargor, a chosen champion of the herd. Junior lieutenants of the Beastlord, Wargors bellow orders across the battle and split human skulls with heavy axes. One day, perhaps, the horns of a full Beastlord will crown you." />
-
-  <!-- Cheat -->
+  <!-- Cheats -->
   <string id="tor_cheat_party_inspect" text="{=str_tor_cheat_party_inspect}[CHEAT] Let me inspect your party" />
 
   <!-- UI -->
@@ -79,8 +59,7 @@
   <string id="tor_race_name.wraith" text="{=str_tor_race_name_wraith}Wraith" />
   <string id="tor_race_name.spirit_host" text="{=str_tor_race_name_spirit_host}Spirit Host" />
   <string id="tor_race_name.troll" text="{=str_tor_race_name_troll}Troll" />
-
-  <!-- Oathgold -->
+	
   <string id="tor_party_size_desc.FriendOfUndead" text="{=str_tor_party_size_desc_friendofundead}Friend of undead" />
   <string id="tor_party_size_desc.CaravanOfDeath" text="{=str_tor_party_size_desc_caravanofdeath}Caravan of death" />
   <string id="tor_party_size_desc.SettlementVampireCounts" text="{=str_tor_party_size_desc_settlementvampirecounts}Settlement of Vampire Counts" />
@@ -88,35 +67,6 @@
   <string id="tor_party_size_desc.Greenskins" text="{=str_tor_party_size_desc_greenskins}Greenskins" />
   <string id="tor_party_size_desc.DwarfPenalty" text="{=str_tor_party_size_desc_dwarfpenalty}Dwarf cultural penalty" />
   <string id="tor_party_size_desc.WoodelfPenalty" text="{=str_tor_party_size_desc_woodelfpenalty}Woodelf cultural penalty" />
-  <string id="tor_dw_guildmaster_hub_oath_gold.runesmith" text="{=str_tor_dw_guildmaster_hub_oath_gold_runesmith}Can I support the Rhunki?" />
-  <string id="tor_dw_guildmaster_oath_gold.runesmith" text="{=str_tor_dw_guildmaster_oath_gold_runesmith}Donations to the Burudin are always welcome." />
-  <string id="tor_dw_guildmaster_oath_gold_accept_p.runesmith" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_runesmith}I wish to donate Oathgold." />
-  <string id="tor_dw_guildmaster_oath_gold_decline_p.runesmith" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_runesmith}Forgive me, I changed my mind." />
-  <string id="tor_dw_guildmaster_oath_gold_end.runesmith" text="{=str_tor_dw_guildmaster_oath_gold_end_runesmith}Thank you for your contribution." />
-  <string id="tor_dw_guildmaster_hub_oath_gold.engineer" text="{=str_tor_dw_guildmaster_hub_oath_gold_engineer}Can I support the Engineers Guild in some way?" />
-  <string id="tor_dw_guildmaster_oath_gold.engineer" text="{=str_tor_dw_guildmaster_oath_gold_engineer}Donations to the Guild are always welcome." />
-  <string id="tor_dw_guildmaster_oath_gold_accept_p.engineer" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_engineer}I wish to donate Oathgold." />
-  <string id="tor_dw_guildmaster_oath_gold_decline_p.engineer" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_engineer}I changed my mind, Master Engineer." />
-  <string id="tor_dw_guildmaster_oath_gold_end.engineer" text="{=str_tor_dw_guildmaster_oath_gold_end_engineer}Thank you for your contribution." />
-  <string id="tor_dw_guildmaster_hub_oath_gold.miner" text="{=str_tor_dw_guildmaster_hub_oath_gold_miner}Can I support the Miners Guild in some way?" />
-  <string id="tor_dw_guildmaster_oath_gold.miner" text="{=str_tor_dw_guildmaster_oath_gold_miner}Donations to the Guild are always welcome." />
-  <string id="tor_dw_guildmaster_oath_gold_accept_p.miner" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_miner}I wish to donate Oathgold." />
-  <string id="tor_dw_guildmaster_oath_gold_decline_p.miner" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_miner}Forgive me, I changed my mind." />
-  <string id="tor_dw_guildmaster_oath_gold_end.miner" text="{=str_tor_dw_guildmaster_oath_gold_end_miner}This is appreciated." />
-  <string id="tor_dw_guildmaster_hub_oath_gold.brewer" text="{=str_tor_dw_guildmaster_hub_oath_gold_brewer}Can I support the Brewers Guild in some way?" />
-  <string id="tor_dw_guildmaster_oath_gold.brewer" text="{=str_tor_dw_guildmaster_oath_gold_brewer}Donations to the guild are always appreciated." />
-  <string id="tor_dw_guildmaster_oath_gold_accept_p.brewer" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_brewer}I wish to donate Oathgold." />
-  <string id="tor_dw_guildmaster_oath_gold_decline_p.brewer" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_brewer}I changed my mind, Master Brewer." />
-  <string id="tor_dw_guildmaster_oath_gold_end.brewer" text="{=str_tor_dw_guildmaster_oath_gold_end_brewer}Thank ye for yer contribution." />
-  <string id="tor_dw_guildmaster_hub_oath_gold.warrior" text="{=str_tor_dw_guildmaster_hub_oath_gold_warrior}Can I support the Warriors Guild?" />
-  <string id="tor_dw_guildmaster_oath_gold.warrior" text="{=str_tor_dw_guildmaster_oath_gold_warrior}Donations to the guild are always welcome." />
-  <string id="tor_dw_guildmaster_oath_gold_accept_p.warrior" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_warrior}I wish to donate Oathgold." />
-  <string id="tor_dw_guildmaster_oath_gold_decline_p.warrior" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_warrior}Forgive me, Master Longbeard. I changed my mind." />
-  <string id="tor_dw_guildmaster_oath_gold_end.warrior" text="{=str_tor_dw_guildmaster_oath_gold_end_warrior}The Guild appreciates any contribution." />
-  <string id="tor_dw_guildmaster_gemcutter_hub_spend_troops_p" text="{=str_tor_dw_guildmaster_gemcutter_hub_spend_troops_p}Can I provide you with troops to guard mining shafts?" />
-  <string id="tor_dw_guildmaster_expedition_hub_found_artefacts_p" text="{=str_tor_dw_guildmaster_expedition_hub_found_artefacts_p}You find something of interest for me?" />
-  <string id="tor_dw_guildmaster_expedition_hub_launch_expedition_p" text="{=str_tor_dw_guildmaster_expedition_hub_launch_expedition_p}Can I launch an expedition?" />
-  <string id="tor_dw_guildmaster_gemcutter_hub_quit_p" text="{=str_tor_dw_guildmaster_gemcutter_hub_quit_p}That will be all, Master Boki." />
 
   <!-- Skills - Skill labels -->
   <string id="tor_skill_faith" text="{=str_tor_skill_faith}Faith" />
@@ -325,10 +275,7 @@
   <string id="tor_ability_effect_type.CareerAbilityEffect" text="{=str_tor_ability_effect_type_career_ability}Career Ability" />
   <string id="tor_ability_effect_type.TacticalReposition" text="{=str_tor_ability_effect_type_tactical_reposition}Tactical Reposition" />
 
-  <!-- Ability Types -->
-  <string id="tor_ability_effect_type.ItemPlacement" text="{=str_tor_ability_effect_type_item_placement}Item Placement" />
-
-  <!-- Spellbook -->
+  <!-- SpellBook UI -->
   <string id="tor_spellbook_title" text="{=str_tor_spellbook_title}SpellBook" />
   <string id="tor_spellbook_button" text="{=str_tor_spellbook_button}Done" />
 
@@ -404,7 +351,7 @@
   <!-- WindsOfMagic -->
   <string id="tor_windsOfMagic_base" text="{=str_tor_windsOfMagic_base}Base" />
 
-  <!-- Main -->
+  <!-- Main Menu Popups -->
   <string id="tor_main_menu_welcome_title" text="{=str_tor_main_menu_welcome_title}Welcome to The Old Realms!" />
   <string id="tor_main_menu_welcome_description" text="{=str_tor_main_menu_welcome_description}This is a total conversion mod for Mount and Blade II: Bannerlord. We have put a lot of work and new features into this mod for you to enjoy. Visit the TOR Wiki to learn about the mod and its features. Don't hesitate to reach out to our discord if you have issues installing or running the mod." />
   <string id="tor_main_menu_manual_button" text="{=str_tor_main_menu_manual_button}TOR Wiki" />
@@ -422,136 +369,6 @@
   <string id="tor_main_menu_recommended_settings_description" text="{=str_tor_main_menu_recommended_settings_description}Applying these settings may cause Bannerlord to rebuild shaders. Performance can be lower or uneven until shaders finish rebuilding, or until you rebuild shaders manually. Apply recommended settings now?" />
   <string id="tor_main_menu_recommended_settings_apply_button" text="{=str_tor_main_menu_recommended_settings_apply_button}Apply" />
   <string id="tor_main_menu_recommended_settings_cancel_button" text="{=str_tor_main_menu_recommended_settings_cancel_button}Cancel" />
-
-  <!-- Ink Stories -->
-  <string id="tor_ink_end" text="{=str_tor_ink_end}End" />
-  <string id="tor_ink_continue" text="{=str_tor_ink_continue}Continue" />
-
-  <!-- Missions -->
-  <string id="tor_brawl_cannot_leave" text="{=str_tor_brawl_cannot_leave}You may not leave until finishing the brawl." />
-  <string id="tor_quest_fight_cannot_leave" text="{=str_tor_quest_fight_cannot_leave}You may not leave until finishing the quest scenario." />
-  <string id="tor_joust_dismount" text="{=str_tor_joust_dismount}You must dismount to continue with combat on foot." />
-
-  <!-- Event Notifications -->
-  <string id="tor_chaos_rebellion_text" text="{=str_tor_chaos_rebellion_text}Chaos corruption reaches a critical level in {SETTLEMENT_NAME} and rebellion breaks out." />
-
-  <!-- Unique -->
-  <string id="tor_unique_orion_spawned_message" text="{=str_tor_unique_orion_spawned_message}orion spawns" />
-  <string id="tor_unique_orion_returned_message" text="{=str_tor_unique_orion_returned_message}orion returns" />
-  <string id="tor_unique_orion_retreat_started_message" text="{=str_tor_unique_orion_retreat_started_message}Winter cold orion back" />
-  <string id="tor_unique_orion_defeated_message" text="{=str_tor_unique_orion_defeated_message}Orion gone 3 year" />
-  <string id="tor_unique_orion_behavior_hunting" text="{=str_tor_unique_orion_behavior_hunting}Hunting for {TARGET_HERO}." />
-  <string id="tor_unique_orion_behavior_protecting" text="{=str_tor_unique_orion_behavior_protecting}Protecting {TARGET_SETTLEMENT}." />
-  <string id="tor_unique_orion_behavior_keeping_watch" text="{=str_tor_unique_orion_behavior_keeping_watch}Keeping watch of {TARGET_SETTLEMENT}." />
-  <string id="tor_unique_orion_behavior_ravaging" text="{=str_tor_unique_orion_behavior_ravaging}Ravaging {TARGET_SETTLEMENT}." />
-  <string id="tor_unique_orion_behavior_raiding" text="{=str_tor_unique_orion_behavior_raiding}Raiding {TARGET_SETTLEMENT}." />
-  <string id="tor_unique_orion_hunt_player" text="{=str_tor_unique_orion_hunt_player}Your scouts report the God-King of the forest is following your trail, seeking vengeance for his slain kin." />
-  <string id="tor_unique_orion_to_player_land" text="{=str_tor_unique_orion_to_player_land}Your scouts report The God-King of the Forest is coming towards your lands" />
-
-  <!-- Combat Messages -->
-  <string id="tor_stealth_attack_text" text="{=str_tor_stealth_attack_text}Stealth Attack!" />
-
-  <!-- Quests - Specialize Lore -->
-  <string id="tor_quest_specialize_lore_title" text="{=str_tor_quest_specialize_lore_title}Practice Spellcasting" />
-
-  <!-- Quests - Engineer -->
-  <string id="tor_quest_engineer_cultists_skip" text="{=str_tor_quest_engineer_cultists_skip}Your victory here is meaningless...you will never find what we took..." />
-  <string id="tor_quest_engineer_skip" text="{=str_tor_quest_engineer_skip}You have no idea what you are interfering with..." />
-
-  <!-- Quests - Hunt Cultists -->
-  <string id="tor_quest_hunt_cultist_issue_brief" text="{=str_tor_quest_hunt_cultist_issue_brief}As a matter of fact, I have a lead on a potential cultist. A grave accusation that needs investigating." />
-  <string id="tor_quest_hunt_cultist_issue_accept_player" text="{=str_tor_quest_hunt_cultist_issue_accept_player}What needs to be done?" />
-  <string id="tor_quest_hunt_cultist_issue_explanation" text="{=str_tor_quest_hunt_cultist_issue_explanation}I need you to travel to {TARGET_SETTLEMENT}. Investigate the local populace and root out any cultists. On successful completion, the order will pay you {REWARD}{GOLD_ICON}." />
-  <string id="tor_quest_hunt_cultist_accept_player" text="{=str_tor_quest_hunt_cultist_accept_player}Consider it done." />
-  <string id="tor_quest_hunt_cultist_issue_title" text="{=str_tor_quest_hunt_cultist_issue_title}A cultist in our midst" />
-  <string id="tor_quest_hunt_cultist_description" text="{=str_tor_quest_hunt_cultist_description}Travel to {TARGET_SETTLEMENT} and root out any cultist who may be hiding there." />
-  <string id="tor_quest_hunt_cultist_quest_title" text="{=str_tor_quest_hunt_cultist_quest_title}A cultist in our midst" />
-  <string id="tor_quest_hunt_cultist_offer_dialog" text="{=str_tor_quest_hunt_cultist_offer_dialog}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!" />
-  <string id="tor_quest_hunt_cultist_discuss_dialog" text="{=str_tor_quest_hunt_cultist_discuss_dialog}It was good doing business with you." />
-  <string id="tor_quest_hunt_cultist_prepare_to_die" text="{=str_tor_quest_hunt_cultist_prepare_to_die}Prepare to die!" />
-  <string id="tor_khorne_cultist_mission_dialog" text="{=str_tor_khorne_cultist_mission_dialog}This vessel is mine. Don't interfere with my plans!" />
-  <string id="tor_quest_hunt_cultist_out_of_time_log" text="{=str_tor_quest_hunt_cultist_out_of_time_log}You failed to complete the investigation in time. Any potential cultists are surely in the wind now." />
-  <string id="tor_quest_hunt_cultist_village_raided_title" text="{=str_tor_quest_hunt_cultist_village_raided_title}Village Raided" />
-  <string id="tor_quest_hunt_cultist_village_raided_info" text="{=str_tor_quest_hunt_cultist_village_raided_info}The village has been raided. Any cultists have likely fled or gone into hiding. Return when the village has been repopulated." />
-  <string id="tor_quest_hunt_cultist_log_updated_success" text="{=str_tor_quest_hunt_cultist_log_updated_success}You were successful in uncovering the cultists." />
-  <string id="tor_quest_hunt_cultist_log_updated_fail" text="{=str_tor_quest_hunt_cultist_log_updated_fail}The cultists have fled before you could deal with them." />
-  <string id="tor_quest_hunt_cultist_started" text="{=str_tor_quest_hunt_cultist_started}You were tasked to travel to {TARGET_SETTLEMENT} and root out any cultist who may be hiding there." />
-
-  <!-- Quests - Plagued Village -->
-  <string id="tor_quest_plagued_village_issue_brief" text="{=str_tor_quest_plagued_village_issue_brief}As a matter of fact, I have a lead on potential cultist activity. A village is struck by a terrible, unnatural plague. A grave matter that needs investigating." />
-  <string id="tor_quest_plagued_village_issue_accept_player" text="{=str_tor_quest_plagued_village_issue_accept_player}What needs to be done?" />
-  <string id="tor_quest_plagued_village_issue_explanation" text="{=str_tor_quest_plagued_village_issue_explanation}I need you to travel to {TARGET_SETTLEMENT}. Investigate the situation and find root cause of the plague. On successful completion, the order will pay you {REWARD}{GOLD_ICON}." />
-  <string id="tor_quest_plagued_village_accept_player" text="{=str_tor_quest_plagued_village_accept_player}Consider it done." />
-  <string id="tor_quest_plagued_village_title" text="{=str_tor_quest_plagued_village_title}The plague ridden village" />
-  <string id="tor_quest_plagued_village_description" text="{=str_tor_quest_plagued_village_description}Travel to target settlement and find the cause of the unnatural epidemic that plagues the village." />
-  <string id="tor_quest_plagued_village_quest_title" text="{=str_tor_quest_plagued_village_quest_title}The plague ridden village" />
-  <string id="tor_quest_plagued_village_offer_dialog" text="{=str_tor_quest_plagued_village_offer_dialog}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!" />
-  <string id="tor_quest_plagued_village_discuss_dialog" text="{=str_tor_quest_plagued_village_discuss_dialog}It was good doing business with you." />
-  <string id="tor_quest_plagued_village_out_of_time_log" text="{=str_tor_quest_plagued_village_out_of_time_log}You failed to complete the investigation in time." />
-  <string id="tor_quest_plagued_village_raided_info" text="{=str_tor_quest_plagued_village_raided_info}The village is raided, no chance to find any cultists now. Come back when the village is repopulated." />
-  <string id="tor_quest_plagued_village_log_updated_success" text="{=str_tor_quest_plagued_village_log_updated_success}You were successful in lifting the plague." />
-  <string id="tor_quest_plagued_village_log_updated_fail" text="{=str_tor_quest_plagued_village_log_updated_fail}You abandoned the mission." />
-  <string id="tor_quest_plagued_village_started" text="{=str_tor_quest_plagued_village_started}You were tasked to travel to {TARGET_SETTLEMENT} and investigate the epidemic that plagues it." />
-
-  <!-- Generic Text -->
-  <string id="tor_generic_upkeep" text="{=str_tor_generic_upkeep}Upkeep" />
-  <string id="tor_generic_garrisonUpkeep" text="{=str_tor_generic_garrisonUpkeep}Garrison Upkeep" />
-  <string id="tor_generic_armyMember" text="{=str_tor_generic_armyMember}Part of Army" />
-  <string id="tor_generic_siegeCampBonus" text="{=str_tor_generic_siegeCampBonus}Siege Camp Bonus" />
-  <string id="tor_generic_enchantedEquipment" text="{=str_tor_generic_enchantedEquipment}Equipped Enchanted Items" />
-  <string id="tor_generic_isRaided" text="{=str_tor_generic_isRaided}{SETTLEMENT} is raided" />
-  <string id="tor_generic_isLooted" text="{=str_tor_generic_isLooted}{SETTLEMENT} is destroyed" />
-  <string id="tor_generic_isCaptured" text="{=str_tor_generic_isCaptured}{SETTLEMENT} is captured" />
-
-  <!-- Generic -->
-  <string id="tor_generic_companionLimitReached" text="{=str_tor_generic_companionLimitReached}Clan companion limit reached" />
-  <string id="tor_generic_equipmentWeight" text="{=str_tor_generic_equipmentWeight}Equipment weight" />
-
-  <!-- Generic UI Messages -->
-  <string id="tor_inquiry_ok_text" text="{=str_tor_inquiry_ok_text}OK" />
-  <string id="tor_inquiry_accept_text" text="{=str_tor_inquiry_accept_text}Accept" />
-  <string id="tor_item_added_to_inventory_text" text="{=str_tor_item_added_to_inventory_text}{ITEM_NAME} was added to the inventory" />
-  <string id="tor_not_enough_gold_text" text="{=str_tor_not_enough_gold_text}Not enough gold" />
-
-  <!-- Career Button - UI -->
-  <string id="tor_inquiry_cancel_text" text="{=str_tor_inquiry_cancel_text}Cancel" />
-  <string id="tor_inquiry_confirm_text" text="{=str_tor_inquiry_confirm_text}Confirm" />
-
-  <!-- Career Button - unit rune -->
-  <string id="tor_unit_rune_cost_display" text="{=str_tor_unit_rune_cost_display}{RUNE_DESCRIPTION}{newline}{newline}Required ingredients:{newline}{RUNE_COST_LIST}" />
-  <string id="tor_unit_rune_cost_insufficient" text="{=str_tor_unit_rune_cost_insufficient}{RUNE_DESCRIPTION}{newline}{newline}Required ingredients:{newline}{RUNE_COST_LIST}{newline}You do not have enough ingredients!" />
-  <string id="tor_unit_rune_combined_cost_insufficient" text="{=str_tor_unit_rune_combined_cost_insufficient}You do not have enough ingredients for all selected runes." />
-  <string id="tor_unit_rune_active_display" text="{=str_tor_unit_rune_active_display}{RUNE_NAME}{newline}{RUNE_DESC}" />
-  <string id="tor_unit_rune_warning_text" text="{=str_tor_unit_rune_warning_text}WARNING : Current {CURRENT_RUNE} will be removed without compensation unless selected again." />
-  <string id="tor_unit_rune_unknown_runes_text" text="{=str_tor_unit_rune_unknown_runes_text}You do not know the required runes:{UNKNOWN_RUNES_LIST}" />
-  <string id="tor_unit_rune_title" text="{=str_tor_unit_rune_title}Unit Runes" />
-  <string id="tor_unit_rune_description" text="{=str_tor_unit_rune_description}Choose a rune to add to the equipment of your units. {RUNE_WARNING_TEXT}" />
-  <string id="tor_unit_rune_not_for_heroes_text" text="{=str_tor_unit_rune_not_for_heroes_text}Doesn't work for heroes" />
-  <string id="tor_unit_rune_no_runes_known_text" text="{=str_tor_unit_rune_no_runes_known_text}Hero doesn't know any Runes yet" />
-  <string id="tor_unit_rune_only_in_karak_text" text="{=str_tor_unit_rune_only_in_karak_text}Only possible inside a Dwarf Karak. Visit a Dwarf Karak" />
-  <string id="tor_unit_rune_add_rune_text" text="{=str_tor_unit_rune_add_rune_text}Add a Rune for Units" />
-  <string id="tor_unit_rune_guarding_name" text="{=str_tor_unit_rune_guarding_name}Rune of Guarding" />
-  <string id="tor_unit_rune_guarding_desc" text="{=str_tor_unit_rune_guarding_desc}15% extra physical resistance." />
-  <string id="tor_unit_rune_sanctuary_name" text="{=str_tor_unit_rune_sanctuary_name}Rune of Sanctuary" />
-  <string id="tor_unit_rune_sanctuary_desc" text="{=str_tor_unit_rune_sanctuary_desc}30% extra magic resistance." />
-  <string id="tor_unit_rune_battle_name" text="{=str_tor_unit_rune_battle_name}Rune of Battle" />
-  <string id="tor_unit_rune_battle_desc" text="{=str_tor_unit_rune_battle_desc}30% extra physical damage." />
-  <string id="tor_unit_rune_retribution_name" text="{=str_tor_unit_rune_retribution_name}Rune of Retribution" />
-  <string id="tor_unit_rune_retribution_desc" text="{=str_tor_unit_rune_retribution_desc}25% extra fire resistance, 35% extra fire damage." />
-  <string id="tor_unit_rune_rapid_fire_name" text="{=str_tor_unit_rune_rapid_fire_name}Rune of Rapid Fire" />
-  <string id="tor_unit_rune_rapid_fire_desc" text="{=str_tor_unit_rune_rapid_fire_desc}60% extra reload speed." />
-  <string id="tor_unit_rune_strollaz_name" text="{=str_tor_unit_rune_strollaz_name}Strollaz' Rune" />
-  <string id="tor_unit_rune_strollaz_desc" text="{=str_tor_unit_rune_strollaz_desc}35% extra movement speed." />
-  <string id="tor_unit_rune_valaya_name" text="{=str_tor_unit_rune_valaya_name}Master Rune of Valaya" />
-  <string id="tor_unit_rune_valaya_desc" text="{=str_tor_unit_rune_valaya_desc}30% extra Ward Save." />
-  <string id="tor_unit_rune_grungni_name" text="{=str_tor_unit_rune_grungni_name}Master Rune of Grungni" />
-  <string id="tor_unit_rune_grungni_desc" text="{=str_tor_unit_rune_grungni_desc}Reduce incoming ranged damage by 75%." />
-  <string id="tor_unit_rune_grimnir_name" text="{=str_tor_unit_rune_grimnir_name}Master Rune of Grimnir" />
-  <string id="tor_unit_rune_grimnir_desc" text="{=str_tor_unit_rune_grimnir_desc}20% extra attack speed, 35% extra physical and fire damage." />
-
-  <!-- Unit -->
-  <string id="tor_unit_rune_requirement_unmet" text="{=str_tor_unit_rune_requirement_unmet}{RUNE_DESCRIPTION}{newline}{newline}{RUNE_REQUIREMENT}" />
-
   <!-- Greenskin Mechanics -->
   <string id="tor_greenskin_appetite" text="{=str_tor_greenskin_appetite}Greenskin appetite" />
   <string id="tor_waaagh_bar_tooltip" text="{=str_tor_waaagh_bar_tooltip}Waaagh: {CURRENT} / {MAX}" />
@@ -582,7 +399,7 @@
   <string id="tor_greenskin_shaman_player" text="{=str_tor_greenskin_shaman_player}Greenskin shaman" />
   <string id="tor_greenskin_shaman_companion" text="{=str_tor_greenskin_shaman_companion}Greenskin shaman companionn" />
 
-  <!-- Stats -->
+  <!-- Character Stats Bonuses -->
   <string id="tor_stats_additional_health_text" text="{=str_tor_stats_additional_health_text}Additional Health" />
   <string id="tor_stats_dwarf_bonus_text" text="{=str_tor_stats_dwarf_bonus_text}Dwarf bonus" />
   <string id="tor_stats_goblin_bonus_text" text="{=str_tor_stats_goblin_bonus_text}Goblin frailty" />
@@ -596,15 +413,6 @@
   <string id="tor_stats_gift_of_nurgle_text" text="{=str_tor_stats_gift_of_nurgle_text}Gift of Nurgle" />
   <string id="tor_stats_oak_of_ages_text" text="{=str_tor_stats_oak_of_ages_text}Oak of Ages" />
   <string id="tor_stats_perks_text" text="{=str_tor_stats_perks_text}Perks" />
-
-  <!-- Character Stats Bonuses -->
-  <string id="tor_vampire_bonus" text="{=str_tor_vampire_bonus}Vampire bonus" />
-  <string id="tor_vampire_nighttime_bonus" text="{=str_tor_vampire_nighttime_bonus}Vampire nighttime bonus" />
-  <string id="tor_stats_tier1_text" text="{=str_tor_stats_tier1_text}Tier1" />
-  <string id="tor_stats_tier2_text" text="{=str_tor_stats_tier2_text}Tier2" />
-  <string id="tor_stats_tier3_text" text="{=str_tor_stats_tier3_text}Tier3" />
-  <string id="tor_stats_tier4_text" text="{=str_tor_stats_tier4_text}Tier4" />
-  <string id="tor_stats_vampire_body_text" text="{=str_tor_stats_vampire_body_text}Vampire body" />
 
   <!-- Healing & Other Bonuses -->
   <string id="tor_healing_shallya_seal_text" text="{=str_tor_healing_shallya_seal_text}Shallya Seal" />
@@ -776,14 +584,15 @@
   <string id="tor_enchantmentshop_restriction.Thrown" text="{=str_tor_enchantmentshop_restriction_Thrown}Applies to thrown weapons" />
   <string id="tor_enchantmentshop_restriction.Invalid" text="{=str_tor_enchantmentshop_restriction_Invalid}" />
 
-  <!-- Enchantmentshop -->
+  <!-- Enchantment Shop - blueprint hints -->
   <string id="tor_enchantmentshop_blueprint_hint" text="{=str_tor_enchantmentshop_blueprint_hint}{TRAIT_EFFECT}{newline}{COMPLETE_COST}{newline}{VALIDTYPE_RESTRICTION}" />
   <string id="tor_enchantmentshop_blueprint_hint_notice" text="{=str_tor_enchantmentshop_blueprint_hint_notice}{TRAIT_EFFECT}{newline}{newline}{REQUIREMENT_TEXT}{newline}{newline}{COMPLETE_COST}" />
   <string id="tor_enchantmentshop_blueprint_cost" text="{=str_tor_enchantmentshop_blueprint_cost}{GOLD_VALUE}{GOLD_ICON}, {CR_VALUE}{CUSTOMRESOURCE}" />
+
+  <!-- Enchantment Shop - insufficient funds hints -->
   <string id="tor_enchantmentshop_insufficient_both" text="{=str_tor_enchantmentshop_insufficient_both}Not enough {CUSTOMRESOURCE} and {GOLD_ICON}." />
   <string id="tor_enchantmentshop_insufficient_customresource" text="{=str_tor_enchantmentshop_insufficient_customresource}Not enough {CUSTOMRESOURCE}." />
   <string id="tor_enchantmentshop_insufficient_gold" text="{=str_tor_enchantmentshop_insufficient_gold}Not enough {GOLD_ICON}." />
-  <string id="tor_enchantmentshop_future_requirement" text="{=str_tor_enchantmentshop_future_requirement}You can learn this now, but cannot enchant with it yet. {REQUIREMENT}" />
 
   <!-- Enchanting UI Messages -->
   <string id="tor_enchanting_title_text" text="{=str_tor_enchanting_title_text}Enchanting" />
@@ -809,20 +618,7 @@
   <string id="tor_enchanting_requires_skill" text="{=str_tor_enchanting_requires_skill}Requires {SKILL} {VALUE}." />
   <string id="tor_enchanting_requires_lore" text="{=str_tor_enchanting_requires_lore}Requires a character who knows the Lore of {LORE}." />
   <string id="tor_enchanting_requires_attribute" text="{=str_tor_enchanting_requires_attribute}Requires a character with {ATTRIBUTE}." />
-
-  <!-- Enchant -->
-  <string id="tor_enchant_trait_hint_requirement" text="{=str_tor_enchant_trait_hint_requirement}{DESCRIPTION}{newline}{newline}{REQUIREMENT}" />
-  <string id="tor_enchant_prompt_disintegrate.title" text="{=str_tor_enchant_prompt_disintegrate_title}Disenchant items" />
-  <string id="tor_enchant_prompt_disintegrate.text" text="{=str_tor_enchant_prompt_disintegrate_text}Select the items you want to disenchant. Their ingredients will be returned to you." />
-  <string id="tor_enchant_no_description" text="{=str_tor_enchant_no_description}No description available." />
-
-  <!-- Gained -->
-  <string id="tor_gained_resource_notification_text" text="{=str_tor_gained_resource_notification_text}Gained {AMOUNT}{RESOURCE_ICON}" />
-  <string id="tor_gained_items_notification_text" text="{=str_tor_gained_items_notification_text}Gained {ITEMS}" />
-  <string id="tor_gained_item_amount_text" text="{=str_tor_gained_item_amount_text}{AMOUNT} {ITEM_NAME}" />
-
-  <!-- Runesmithing -->
-  <string id="tor_runesmithing_title" text="{=str_tor_runesmithing_title}Runesmithing" />
+  <string id="tor_enchantmentshop_future_requirement" text="{=str_tor_enchantmentshop_future_requirement}You can learn this now, but cannot enchant with it yet. {REQUIREMENT}" />
 
   <!-- EMPIRE (empire) - Imperial Alchemist dialogs -->
   <string id="tor_enchanter_start_p.empire" text="{=str_tor_enchanter_start_p_empire}I wish to learn about enchantment." />
@@ -1079,87 +875,6 @@
   <string id="tor_dw_guildmaster_unlock_info.warrior" text="{=str_tor_dw_guildmaster_unlock_info_warrior}We are the largest of the guilds; any Dawi worth their weight in gold, be they miner or scout, underwent warrior training of some kind. If a warrior does exceptionally well, they might rise to become an Angthragor or even a Hammerer." />
   <string id="tor_dw_guildmaster_unlock_info_2.warrior" text="{=str_tor_dw_guildmaster_unlock_info_2_warrior}Apart from that, we can help reduce upgrade costs of Warriors, Longbeards, and Slayers. Our connections also help you gain more Oathgold from battles and tournaments. Lastly, we are in charge of providing extra Dawi to help patrol the Karaz Ankor." />
 
-  <!-- Expeditions -->
-  <string id="tor_dw_guildmaster_gemcutter_found_artefacts" text="{=str_tor_dw_guildmaster_expedition_found_artefacts}Some of the explorer teams return with treasuers or artifacts. Naturally, a portion would be shared with you." />
-  <string id="tor_dw_guildmaster_expedition_found_artefacts_no_expeditions" text="{=str_tor_dw_guildmaster_expedition_found_artefacts_no_expeditions}The expeditions have not returned yet." />
-  <string id="tor_dw_guildmaster_expedition_launch_expedition_decline" text="{=str_tor_dw_guildmaster_expedition_launch_expedition_decline}We are spread too thin; all we can do is wait for our explorers to return." />
-  <string id="tor_dw_guildmaster_expedition_launch_expedition" text="{=str_tor_dw_guildmaster_expedition_launch_expedition}Aye, with sufficient funding we can send teams to reclaim treasures from the deepest tunnels of the Underway." />
-  <string id="tor_dw_guildmaster_gemcutter_launch_expedition_accept_p" text="{=str_tor_dw_guildmaster_gemcutter_launch_expedition_accept_p}Let me fund an expeditions." />
-  <string id="tor_dw_guildmaster_gemcutter_launch_expedition_decline_p" text="{=str_tor_dw_guildmaster_gemcutter_launch_expedition_decline_p}Forgive me, I changed my mind." />
-  <string id="tor_dw_guildmaster_gemcutter_launch_expedition_end" text="{=str_tor_dw_guildmaster_gemcutter_launch_expedition_end}Very well, our finest explorers and miners will depart after gathering supplies." />
-  <string id="tor_dw_guildmaster_gemcutter_spend_troops" text="{=str_tor_dw_guildmaster_gemcutter_spend_troops}Aye, the Guild will appreciate any help in this regard." />
-  <string id="tor_dw_guildmaster_gemcutter_spend_troops_accept_p" text="{=str_tor_dw_guildmaster_gemcutter_spend_troops_accept_p}Let me station these men." />
-  <string id="tor_dw_guildmaster_gemcutter_spend_troops_decline_p" text="{=str_tor_dw_guildmaster_gemcutter_spend_troops_decline_p}I changed my mind, forgive me." />
-  <string id="tor_dw_guildmaster_gemcutter_spend_troops_end" text="{=str_tor_dw_guildmaster_gemcutter_spend_troops_end}This is greatly appreciated, Dawongr." />
-
-  <!-- Brewer -->
-  <string id="tor_dw_guildmaster_brewer_hub_spend_food_p" text="{=str_tor_dw_guildmaster_brewer_hub_spend_food_p}Can I deliver you some wheat to help brew ale?" />
-  <string id="tor_dw_guildmaster_brewer_hub_quit_p" text="{=str_tor_dw_guildmaster_brewer_hub_quit_p}That will be all, Master Brewer." />
-  <string id="tor_dw_guildmaster_brewer_hub_spend_food" text="{=str_tor_dw_guildmaster_brewer_hub_spend_food}It is how we brew our finest ale. An' we can always use more Gertun." />
-  <string id="tor_dw_guildmaster_brewer_hub_spend_food_accept_p" text="{=str_tor_dw_guildmaster_brewer_hub_spend_food_accept_p}Have these sacks of grain then." />
-  <string id="tor_dw_guildmaster_brewer_hub_spend_food_decline_p" text="{=str_tor_dw_guildmaster_brewer_hub_spend_food_decline_p}Actually I changed my mind." />
-  <string id="tor_dw_guildmaster_brewer_hub_spend_food_end" text="{=str_tor_dw_guildmaster_brewer_hub_spend_food_end}Thank ye for yer contribution." />
-  <string id="tor_dw_brewer_recruit_rangers_text" text="{=str_tor_dw_brewer_recruit_rangers_text}I need some rangers for scouting" />
-  <string id="tor_dw_brewer_recruit_rangers_offer_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_text}Aye, we have some skilled rangers eager to serve. It'll cost ye {RANGER_GOLD_PRICE}{GOLD_ICON} and {RANGER_OATHGOLD_PRICE} Oathgold." />
-  <string id="tor_dw_brewer_recruit_rangers_accept_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_accept_p}They'll serve the holds well." />
-  <string id="tor_dw_brewer_recruit_rangers_no_funds_text" text="{=str_tor_dw_brewer_recruit_rangers_no_funds_text}I don't have enough coin or Oathgold right now." />
-  <string id="tor_dw_brewer_recruit_rangers_decline_text" text="{=str_tor_dw_brewer_recruit_rangers_offer_decline_p}Maybe another time" />
-
-  <!-- Warrior Guild -->
-  <string id="tor_dw_guildmaster_warrior_hub_spend_troops_p" text="{=str_tor_dw_guildmaster_warrior_hub_spend_troops_p}Can I leave some Dawi to help defend our Holds?" />
-  <string id="tor_dw_guildmaster_warrior_influence_for_oath_p" text="{=str_tor_dw_guildmaster_warrior_influence_for_oath_p}Can you help improve my standing within the Karaz Ankor?" />
-  <string id="tor_dw_guildmaster_warrior_hub_quit_p" text="{=str_tor_dw_guildmaster_warrior_hub_quit_p}That will be all, honoured longbeard." />
-  <string id="tor_dw_guildmaster_warrior_spend_troops" text="{=str_tor_dw_guildmaster_warrior_spend_troops}Honoured warriors of sure grip and stern eye are always welcome." />
-  <string id="tor_dw_guildmaster_warrior_spend_troops_accept_p" text="{=str_tor_dw_guildmaster_warrior_spend_troops_accept_p}In that case I will leave these Dawi with you." />
-  <string id="tor_dw_guildmaster_warrior_spend_troops_decline_p" text="{=str_tor_dw_guildmaster_warrior_spend_troops_decline_p}Forgive me, I changed my mind." />
-  <string id="tor_dw_guildmaster_warrior_spend_troops_end" text="{=str_tor_dw_guildmaster_warrior_spend_troops_end}We appreciate any warrior you can spare." />
-  <string id="tor_dw_guildmaster_warrior_influence_for_oath" text="{=str_tor_dw_guildmaster_warrior_influence_for_oath}With a donation of Oathgold our warriors will spread the Influence of your Clan across the Karaz Ankor." />
-  <string id="tor_dw_guildmaster_warrior_influence_for_oath_decline_p" text="{=str_tor_dw_guildmaster_warrior_influence_for_oath_decline_p}Actually I changed my mind." />
-  <string id="tor_dw_guildmaster_warrior_influence_for_oath_accept_p" text="{=str_tor_dw_guildmaster_warrior_influence_for_oath_accept_p}We have a deal, that is a worthy trade." />
-
-  <!-- Engineer Guild -->
-  <string id="tor_dw_guildmaster_engineer_hub_quit_p" text="{=str_tor_dw_guildmaster_engineer_hub_quit_p}I hope you found what you were looking for. Come back anytime." />
-  <string id="tor_dw_guildmaster_engineer_hub_buy_weapons_shop_p" text="{=str_tor_dw_guildmaster_engineer_hub_buy_weapons_shop_p}Can the Guild share some of its inventions?" />
-  <string id="tor_dw_guildmaster_engineer_buy_weapons_shop" text="{=str_tor_dw_guildmaster_engineer_buy_weapons_shop}Very well. Here is what we were recently working on." />
-  <string id="tor_dw_oathgold.time_since_visit" text="{=str_tor_dw_oathgold_time_since_visit}Time since last benefits provided" />
-  <string id="tor_dw_engineer_benefit.title" text="{=str_tor_dw_engineer_benefit_title}Engineers" />
-  <string id="tor_dw_engineer_benefit.description" text="{=str_tor_dw_engineer_benefit_description}Access to ranged weapons and artillery, reduce gunmen and Irondrake upgrade costs." />
-  <string id="tor_dw_engineer_benefit.arsenal" text="{=str_tor_dw_engineer_benefit_arsenal}Entire arsenal" />
-  <string id="tor_dw_engineer_benefit.artillery" text="{=str_tor_dw_engineer_benefit_artillery}Guns and artillery" />
-  <string id="tor_dw_engineer_benefit.guns" text="{=str_tor_dw_engineer_benefit_guns}Guns" />
-  <string id="tor_dw_engineer_benefit.upkeep_reduction" text="{=str_tor_dw_engineer_benefit_upkeep_reduction}Upkeep reduction for gun troops" />
-  <string id="tor_dw_runesmith_benefit.title" text="{=str_tor_dw_runesmith_benefit_title}Runesmiths." />
-  <string id="tor_dw_runesmith_benefit.description" text="{=str_tor_dw_runesmith_benefit_description}Access to melee weapons and Runecraft, reduce Ironbreaker upgrade costs." />
-  <string id="tor_dw_runesmith_benefit.anvil" text="{=str_tor_dw_runesmith_benefit_anvil}Artefact" />
-  <string id="tor_dw_runesmith_benefit.equipment2" text="{=str_tor_dw_runesmith_benefit_equipment2}Weapons and armors" />
-  <string id="tor_dw_runesmith_benefit.equipment1" text="{=str_tor_dw_runesmith_benefit_equipment1}Weapons" />
-  <string id="tor_dw_runesmith_benefit.upgradecost" text="{=str_tor_dw_runesmith_benefit_upgradecost}Ironbreaker upgrade cost reduction." />
-  <string id="tor_dw_miners_benefit.title" text="{=str_tor_dw_miners_benefit_title}Mining and Expeditions Guild" />
-  <string id="tor_dw_miners_benefit.description" text="{=str_tor_dw_miners_benefit_description}Receive raw materials, increase mining production, launch expeditions." />
-  <string id="tor_dw_miners_benefit.expeditions" text="{=str_tor_dw_miners_benefit_expeditions}Expeditions " />
-  <string id="tor_dw_miners_benefit.mine_productivity" text="{=str_tor_dw_miners_benefit_mine_productivity}Global productivity of mines" />
-  <string id="tor_dw_brewers_benefit.title" text="{=str_tor_dw_brewers_benefit_title}Brewers" />
-  <string id="tor_dw_brewers_benefit.description" text="{=str_tor_dw_brewers_benefit_description}Receive supplies, increase food production and spotting range near Dwarf holds, boost Rangers." />
-  <string id="tor_dw_brewers_benefit.supplies" text="{=str_tor_dw_brewers_benefit_supplies}Biweekly supplies" />
-  <string id="tor_dw_brewers_benefit.foodbonus" text="{=str_tor_dw_brewers_benefit_foodbonus}Food Production in Dwarf Karak" />
-  <string id="tor_dw_brewers_benefit.loyalty" text="{=str_tor_dw_brewers_benefit_loyalty}Global Karak Loyality" />
-  <string id="tor_dw_brewers_benefit.sightbonus" text="{=str_tor_dw_brewers_benefit_sightbonus}Extra sight close to Dwarf settlements" />
-  <string id="tor_dw_oathgold_warrior_benefit.title" text="{=str_tor_dw_oathgold_warrior_benefit_title}Warriors" />
-  <string id="tor_dw_oathgold_warrior_benefit.description" text="{=str_tor_dw_oathgold_warrior_benefit_description}Reduce upgrade costs of melee troops, increase Oathgold gains, boost militias." />
-  <string id="tor_dw_oathgold_warriorguild_benefit.upgradecost" text="{=str_tor_dw_oathgold_warriorguild_benefit_upgradecost}Upgrade cost reduction for Slayers, Warriors and Longbeard" />
-  <string id="tor_dw_oathgold_warriorguild_benefit.oathgoldgain" text="{=str_tor_dw_oathgold_warriorguild_benefit_oathgoldgain}Battle and tournament Oathgold gain" />
-  <string id="tor_dw_oathgold_warriorguild_benefit.militiabonus" text="{=str_tor_dw_oathgold_warriorguild_benefit_militiabonus}Additional Militia" />
-
-  <!-- Dw -->
-  <string id="tor_dw_oathgold.time_days_value" text="{=str_tor_dw_oathgold_time_days_value}{EFFECT_VALUE} days" />
-  <string id="tor_dw_oathgold.time_value" text="{=str_tor_dw_oathgold_time_value}&gt;{EFFECT_VALUE} weeks ago" />
-  <string id="tor_dw_guild_relationship.unknown" text="{=str_tor_dw_guild_relationship_unknown}Unknown" />
-  <string id="tor_dw_guild_relationship.trustworthy" text="{=str_tor_dw_guild_relationship_trustworthy}Trustworthy" />
-  <string id="tor_dw_guild_relationship.reliable" text="{=str_tor_dw_guild_relationship_reliable}Reliable" />
-  <string id="tor_dw_guild_relationship.respected" text="{=str_tor_dw_guild_relationship_respected}Respected" />
-  <string id="tor_dw_oath_gold_spending_title_text" text="{=str_tor_dw_guild_donate_oathgold_label}Spend Oath Gold {GUILD_ICON}" />
-  <string id="tor_dw_oath_gold_spending_description_text" text="{=str_tor_dw_guild_donate_oathgold_description}Select how much Oath Gold you want to donate" />
-
   <!-- Rogue Engineer Quest -->
   <string id="tor_engineer_quest_rogue_engineer_first_time" text="{=str_tor_engineer_quest_rogue_engineer_first_time}You have the look of someone who has never seen a speck of black powder nor grease. Are you in the right place?" />
   <string id="tor_engineer_quest_cultist_done" text="{=str_tor_engineer_quest_cultist_done}Ah, you have returned. What news do you bring?" />
@@ -1288,6 +1003,7 @@
   <string id="str_culture_rich_name.chaos_culture" text="{=str_tor_culture_rich_name_chaos_culture}Chaos" />
   <string id="str_culture_rich_name.sturgia" text="{=str_tor_culture_rich_name_sturgia}Dawi" />
   <string id="str_culture_rich_name.aserai" text="{=str_tor_culture_rich_name_aserai}Greenskins" />
+	
   <string id="str_culture_description.khuzait" text="{=str_tor_culture_description_khuzait}The Vampire Counts are fiends without equal. They seek to topple the civilisations of the living and supplant them with an Undead empire. Each Vampire is a unique and majestic figure with his own personality, drive and ambition. In contrast, their minions are mindlessly obedient - rank after rank of ragged and dirt-encrusted cadavers forced back to life by their masters' necromantic power." />
   <string id="str_culture_description.empire" text="{=str_tor_culture_description_empire}The Empire of Man, the sprawling nation of humans dominating the Old World, faces a daily struggle for survival. Guided by their Emperor, Karl Franz, its armies stand as a testament to unwavering discipline and unmatched martial skills. In a world teeming with brutal savages and bloodthirsty monsters, the Empire endures thanks to the renowned discipline of its armies, honed through rigorous training and fortified by their unyielding faith in Sigmar. A beacon of human resilience, the Empire's soldiers exemplify the indomitable spirit of man that prevails amidst its endless list of foes." />
   <string id="str_culture_description.vlandia" text="{=str_tor_culture_description_vlandia}The Kingdom of Bretonnia is a land renowned for powerful Knights and their strong sense of Chivalry. Guided by the Fey Enchantress and the Damsels of the Lady, the peasants toil while their noble lords protect them from the many dangers threating their survival. In times of war the whole kingdom can join together, led in a crusade against their enemies by King Louen Leoncoeur, against which no foe has known victory." />
@@ -1297,6 +1013,7 @@
   <string id="str_culture_description.sturgia" text="{=str_tor_culture_description_sturgia}The Dwarfs, or the Dawi in their tongue, are one of the oldest and proudest races of the world. The Everlasting Realm of the Dwarfs was at its peak when human nations were nothing more than bands of warring barbarian tribes. Hardy, stout hearts combined with, at times, excessive pride result in a harsh and durable folk – one that is utterly incapable of forgiveness. And so the Dawi record each and every single wrong suffered at the hands of other races, with hopes of avenging said grudges in the future. Alas, this merciless and stubborn attitude led the Dwarfs into a number of conflicts that eventually pushed their civilization into decline. Out of 22 major Dwarfen Holds, or Karaks, only 12 remain under Dawi control – with the remaining ones fallen into the hands of their Ancestral Foes: Skaven and Greenskins." />
   <string id="str_culture_description.chaos_culture" text="{=str_tor_culture_description_chaos_culture}No one truly knows the origin of Chaos in the mortal world. Even the long-lived scholars of the High Elves can only speculate as to where the forces of Chaos first originated. War, famine, natural disaster and the destroyer known as time have eroded away nearly all indications of the roots of Chaos." />
   <string id="str_culture_description.aserai" text="{=str_tor_culture_description_aserai}Orcs and Goblins have been a thorn in the side of every major and minor power for as long as anyone can remember. Caring nothing for history or legacy, in olden days the Greenskins were largely confined to the Southlands, where they waged savage wars amongst themselves, indifferent to the wider world. Yet this brutal isolation did not last. Earthquakes and volcanic activity drove them northwards in vast, rampaging hordes called Waaaghs!, looting and burning all in their path. The Dwarfs, weakened by the long and bitter War of Vengeance against the Elves, stood little chance against the green tide that washed over their homes, and many holds were lost. Ever since, Orcs and Goblins can be found in great numbers all over the planet, being outnumbered only by the Skaven, with whom they often wage wars deep underground." />
+	
   <string id="str_faction_official.empire" text="{=str_tor_faction_official_empire}a count" />
   <string id="str_faction_official.empire_f" text="{=str_tor_faction_official_empire_f}a countess" />
   <string id="str_faction_ruler.empire" text="{=str_tor_faction_ruler_empire}elector count" />
@@ -1692,6 +1409,7 @@
   <string id="tor_player_accept_vassalage.sturgia" text="{=str_tor_player_accept_vassalage_sturgia}Your oath is heard and hammered into the annals. Stand proud, for your kin shall weigh your deeds in stone." />
   <string id="tor_player_accept_vassalage.aserai" text="{=str_tor_player_accept_vassalage_aserai}You'z part uv me mob now! Go an' get to smashin' before I stab ya. WAAAAAAAGH!!!" />
   <string id="tor_player_accept_vassalage.chaos_culture" text="{=str_tor_player_accept_vassalage_chaos_culture}May Nurgle gift you with his blessings." />
+	
   <string id="str_liege_title.empire" text="{=str_tor_liege_title_empire}Elector Count of one of the Provinces of the Empire">
     <tags>
       <tag tag_name="EmpireTag" />
@@ -2020,63 +1738,7 @@
   <string id="str_how_to_learn_skill.Spellcraft" text="{=str_tor_how_to_learn_skill_Spellcraft}Cast spells, do damage with magic." />
 
   <!-- crafting -->
-  <string id="str_crafting_template.tor_twohandedswords_template" text="{=str_tor_crafting_template_TORGreatswords}TOR-Greatswords" />
-  <string id="str_crafting_template.tor_orc_twohandedsword_template" text="{=str_tor_crafting_template_TOROrcGreatswords}TOR-Orc Greatswords" />
-  <string id="str_crafting_template.tor_sword_template" text="{=str_tor_crafting_template_TORSwords}TOR-Swords" />
-  <string id="str_crafting_template.tor_rapier_template" text="{=str_tor_crafting_template_TORRapiers}TOR-Rapiers" />
-  <string id="str_crafting_template.tor_scythe_template" text="{=str_tor_crafting_template_TORScythes}TOR-Scythes" />
-  <string id="str_crafting_template.tor_staff_template" text="{=str_tor_crafting_template_TORStaffs}TOR-Staffs" />
-  <string id="str_crafting_template.tor_polearm_template" text="{=str_tor_crafting_template_TORPolearms}TOR-Polearms" />
-  <string id="str_crafting_template.tor_orc_polearm_template" text="{=str_tor_crafting_template_TOROrcPolearms}TOR-OrcPolearms" />
-  <string id="str_crafting_template.tor_large_monster_weapon_template" text="{=str_tor_crafting_template_TORLargeMonsterWeapon}TOR-Large Monster Weapon (Hidden)" />
-  <string id="str_crafting_template.tor_dual_wield_mainhand" text="{=str_tor_crafting_template_TORDualWieldMainhand}TOR-Dual-Wield Mainhand (Hidden)" />
-  <string id="str_crafting_template.tor_axe_template" text="{=str_tor_crafting_template_TORAxes}TOR-Axes" />
-  <string id="str_crafting_template.tor_twohandedaxe" text="{=str_tor_crafting_template_TORGreataxes}TOR-Greataxes" />
-  <string id="str_crafting_template.tor_mace_template" text="{=str_tor_crafting_template_TORMaces}TOR-Maces" />
-  <string id="str_crafting_template.tor_orc_mace_template" text="{=str_tor_crafting_template_TOROrcMaces}TOR-Orc Maces" />
-  <string id="str_crafting_template.tor_orc_axe_template" text="{=str_tor_crafting_template_TorOrcOneHandedAxe}TOR-Orc Axes" />
-  <string id="str_crafting_template.tor_orc_sword_template" text="{=str_tor_crafting_template_TorOrcOneHandedSword}TOR-Orc Swords" />
-  <string id="str_crafting_template.tor_troll_mace_template" text="{=str_tor_crafting_template_TORTrollMaces}TOR-Troll Maces" />
-  <string id="str_crafting_template.tor_twohandedmace" text="{=str_tor_crafting_template_TORTwoHandedMaces}TOR-Two-Handed Maces" />
-  <string id="str_crafting_template.tor_trolltwohandedmace" text="{=str_tor_crafting_template_TORTrollTwoHandedMaces}TOR-Troll Two-Handed Maces" />
-  <string id="str_crafting_template.tor_lance_template" text="{=str_tor_crafting_template_TOR-Lances}TOR-Lances" />
-  <string id="str_crafting_template.tor_dwarven_axe_template" text="{=str_tor_crafting_template_TORDwarvenAxes}TOR-Dwarven Axes" />
-  <string id="str_crafting_template.tor_orc_staff_template" text="{=str_tor_crafting_template_TOROrcStaves}TOR-Orc Staves" />
-  <string id="str_crafting_template.tor_orctwohandedaxe" text="{=str_tor_crafting_template_TOROrcTwoHnadedAxes}TOR-Orc Two-Handed Axes" />
-  <string id="str_weapon_usage.TorOneHandedSword" text="{=str_tor_weapon_usage_TorOneHandedSword}One Handed Sword" />
-  <string id="str_weapon_usage.TorTwoHandedSword" text="{=str_tor_weapon_usage_TorTwoHandedSword}Two Handed Sword" />
-  <string id="str_weapon_usage.TorRapier" text="{=str_tor_weapon_usage_TorRapier}Rapier" />
-  <string id="str_weapon_usage.TorOneHandedAxe" text="{=str_tor_weapon_usage_TorOneHandedAxe}One Handed Axe" />
-  <string id="str_weapon_usage.TorTwoHandedAxe" text="{=str_tor_weapon_usage_TorTwoHandedAxe}Two Handed Axe" />
-  <string id="str_weapon_usage.TorMace" text="{=str_tor_weapon_usage_TorMace}Mace" />
-  <string id="str_weapon_usage.TorTwoHandedMace" text="{=str_tor_weapon_usage_TorTwoHandedMace}Two Handed Mace" />
-  <string id="str_weapon_usage.TorOneHandedPolearm" text="{=str_tor_weapon_usage_TorOneHandedPolearm}One Handed Polearm" />
-  <string id="str_weapon_usage.TorTwoHandedPolearm" text="{=str_tor_weapon_usage_TorTwoHandedPolearm}Two Handed Polearm" />
-  <string id="str_weapon_usage.TorTwoHandedPolearm_Bracing" text="{=str_tor_weapon_usage_TorTwoHandedPolearm_Bracing}Bracing" />
-  <string id="str_weapon_usage.TorStaves" text="{=str_tor_weapon_usage_TorStaves}Staff" />
-  <string id="str_weapon_usage.TorScythe" text="{=str_tor_weapon_usage_TorScythe}Scythe" />
-  <string id="str_weapon_usage.TorLance" text="{=str_tor_weapon_usage_TorLance}Lance" />
-  <string id="str_weapon_usage.TorLance_Couchable" text="{=str_tor_weapon_usage_TorLance_Couchable}Couch Lance" />
-  <string id="str_weapon_usage.TorDwarvenOneHandedAxe" text="{=str_tor_weapon_usage_TorDwarvenOneHandedAxe}Dwarven Axe" />
-  <string id="str_weapon_usage.TorOrcOneHandedMace" text="{=str_tor_weapon_usage_TorOrcOneHandedMace}Orc Mace" />
-  <string id="str_weapon_usage.TorOrcOneHandedSword" text="{=str_tor_weapon_usage_TorOrcOneHandedSword}Orc Sword" />
-  <string id="str_weapon_usage.TorOrcTwoHandedSword" text="{=str_tor_weapon_usage_TorOrcTwoHandedSword}Orc Greatsword" />
-  <string id="str_weapon_usage.TorOrcOneHandedAxe" text="{=str_tor_weapon_usage_TorOrcOneHandedAxe}Orc Axe" />
-  <string id="str_weapon_usage.TorOrcOneHandedPolearm" text="{=str_tor_weapon_usage_TorOrcOneHandedPolearm}Orc Polearm" />
-  <string id="str_weapon_usage.TorOrcTwoHandedPolearm" text="{=str_tor_weapon_usage_TorOrcTwoHandedPolearm}Orc Greatpolearm" />
-  <string id="str_weapon_usage.TorOrcTwoHandedAxe" text="{=str_tor_weapon_usage_TorOrcTwoHandedAxe}Orc Two Handed Axe" />
-  <string id="str_weapon_usage.TorOrcStaves" text="{=str_tor_weapon_usage_TorOrcStaves}Orc Staff" />
-  <string id="str_weapon_usage.TorLargeMonsterWeapon" text="{=str_tor_weapon_usage_TorLargeMonsterWeapon}LargeMonsterWeapon" />
   <string id="tor_refine_all_hint" text="{=str_tor_refine_all_hint}Refine repeatedly until stamina or materials are exhausted" />
-
-  <!-- Uncategorized -->
-  <string id="str_crafting_template.tor_kotww_axe_template" text="Knight of the White Wolf Axe" />
-  <string id="str_crafting_template.tor_mace_knight_template" text="{=str_tor_crafting_template_TORKnightlyMaces}TOR-Knightly Maces" />
-  <string id="str_formation_ai_sergeant_instruction_behaviour_text.TORBehaviorCharge" text="{=str_formation_ai_sergeant_instruction_behaviour_text.torbehaviorcharge}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are Charging." />
-
-  <!-- Refine -->
-  <string id="tor_refine_all_text" text="{=str_tor_refine_all_text}Refine All" />
-  <string id="tor_refine_all_count_text" text="{=str_tor_refine_all_count_text}Refine All ({COUNT})" />
 
   <!-- inventory -->
   <string id="str_inventory_weapon.22" text="{=str_tor_inventory_weapon_22}Pistol" />
@@ -3065,94 +2727,6 @@
   <string id="tor_religion_devotionlevel.Follower" text="{=str_tor_religion_devotionlevel_Follower}Follower" />
   <string id="tor_religion_devotionlevel.Devoted" text="{=str_tor_religion_devotionlevel_Devoted}Devoted" />
   <string id="tor_religion_devotionlevel.Fanatic" text="{=str_tor_religion_devotionlevel_Fanatic}Fanatic" />
-  <string id="tor_religion_description.cult_of_sigmar" text="{=str_tor_religion_description_cult_of_sigmar}The Cult of Sigmar, also sometimes called the Church of Sigmar, the Holy Temple of Sigmar, the Clergy of Sigmar or simply the Sigmarite Cult, is the state church of the Empire that administrates the worship of that realm's patron god, Sigmar Heldenhammer. The Cult of Sigmar was founded by the wild-eyed friar Johann Helstrum in the year 73 IC, when he appeared before the masses to relate a vision that he experienced of Sigmar kneeling before Ulric, the god of war and winter, who placed the crown of godhood upon his brow as Sigmar took his place amongst the deities of the Old World Pantheon. As of today, the Cult of Sigmar has become an essential part of Imperial society. Nearly every city, town or village within the Empire has dedicated a portion of their wealth and land to the creation and maintenance of a Sigmarite temple, from which a priest of the Cult of Sigmar will attend to the spiritual well-being of its citizenry, whether it be through holy words of prayer or through heroic actions and trials by combat." />
-  <string id="tor_religion_description.cult_of_taal" text="{=str_tor_religion_description_cult_of_taal}The Cult of Taal and Rhya is among the most ancient and pervasive in the Old World, tracing a direct line to the primal gods from the deepest of history. The cult grew organically, as early Humans tried to explain natural phenomenon, such as thunder, the turning of the seasons, and the rise and ebb of the seas. Over time, the Gods Taal and Rhya came into being, beginning as a single entity, known as Ishnernos. This split occurred many thousands of years ago, and the Cult of Ishnernos faded into distant memory. Taal rules nature and is considered King of the Gods. He claims the wild places as his domain and is primarily worshipped by hardy woodsmen, trackers, and rangers. Rhya's worshippers are found in the cultivated fields and orchards of the Empire, as well as among farmers, fishermen, and young lovers everywhere. The Cult of Taal and Rhya is the sanctioned cult of Talabecland, and is wildly popular in the eastern and northern parts of the Empire. Of the two, Taal receives most recognition, and Rhya's role is much diminished. The grand city of Talabheim is particularly fervent in its worship of both Taal and Rhya. However, in other cities, although Rhya's name is commonly known, her worship is rare, leading many urbanites to conclude that her cult is on the decline." />
-  <string id="tor_religion_description.cult_of_ulric" text="{=str_tor_religion_description_cult_of_ulric}The Ulrican cult, Church of Ulric or simply the Cult of Ulric is the state approved religious organisation that administrates the worship of the god of war, winter, and wolves. It is second in power and influence to the Cult of Sigmar, but is amongst the most ancient religions of the Empire of Man and dates back before the Empire was created by Sigmar. As a god of war, it is through battle and bloodshed that Ulric is worshipped, any who dare oppose him are merely awaiting the ferocious bite of his priests. {newline}   {newline}   Ulric give me the fangs of the wolf,   {newline}   Ulric give me the claws of the wolf,   {newline}   Ulric give me the coat of the wolf,   {newline}   And I will show your enemies the mercy of the wolf." />
-  <string id="tor_religion_description.cult_of_shallya" text="{=str_tor_religion_description_cult_of_shallya}The Cult of Shallya is dedicated to the White Dove of Mercy, the Lady in White, Shallya. Compassion, mercy and healing are the doctrines of the cult, and her priests offer aid to those in need across the Empire. The Old World is a gruelling place filled with disease, injury and bad fortune that can drive a person to utter despair, it is these folk who turn to Shallya whose priests bring the promise of mercy and comfort. Her temples double as hospitals for those who cannot afford a physician, run by her devout priestesses for few men serve her order." />
-  <string id="tor_religion_description.cult_of_manaan" text="{=str_tor_religion_description_cult_of_manaan}The religious organisation that oversees and administrates the worship of the god of the sea, oceans, and tides across the Old World. It is most prevalent along the western border of the Empire where the waters of the Sea of Claws touch the shores of man, and most influential within Marienburg. Its members are often navigators, pilots and able-bodied sailors and it is seen as immense luck to have a priest of Manann aboard your vessel.   {newline}   {newline}   Manann be praised, for he is the breeze to take us out, {newline}   Manann be praised, for he is the wave to bring us home, {newline}   Manann be praised, for he is the food to feed us,{newline}   Manann be praised, or his be the wrath that drowns us." />
-  <string id="tor_religion_description.cult_of_myrmidia" text="{=str_tor_religion_description_cult_of_myrmidia}Myrmidia is the goddess of war and wisdom – One that is most popular in the southern realms of the Old World, such as Tilea and Estalia. Her providence inspires commanders with their unparalleled strategies and tactics, as well as soldiers, whose feints, blocks, and thrusts in combat almost seem like graceful and lethal choreography. Any combatant who fights with honour and for a just cause or one that seeks tactical knowledge will be favored by Myrmidia. Many would consider the Cult of Myrmidia to be the most organised religion in the Old World; the truth, however, is more complicated. There is a great deal of internal strife and contradictions within the Cult if one visits the great temple in Tilea and the Archecclesiastium in Estalia, each holding to their own beliefs, such as the legitimacy of Bellona Myrmidia and the Bellum Strategia. Tilean legends say that there was once a man called Tylos who made a pact with a goddess of wisdom and beauty and founded a great city with her help. However, Tylos wished his city to rival that of the elves, and in his hubris the city was doomed. Years later, when the elves left the Old World behind and humans slowly colonised the ruins, they found a newborn child in the ruins of what is now Remas. Her foster parents died young, and she was sold to a local duke infamous for his cruelty. Unable to bear his abuse any longer, the girl took up a spear and killed the duke. From then on she led Tilea and Estalia to greatness, with the aim to uphold the virtues of honour. Yet Estalians believe Myrmida to be the daughter of Morr and Verena, that she stepped forth from the heavens in Magritta, descending onto the same ground upon which the Archecclesiastium is built. In the bowels of the temple, pilgrims and priests alike can pray to the sacred rock with an imprint of Myrmidia's footprint." />
-  <string id="tor_religion_description.cult_of_lady" text="{=str_tor_religion_description_cult_of_lady}The Cult of the Lady of the Lake, or simply the Cult of the Lady, is a state-official religious cult that serves to follow and uphold the values set upon them by the Lady of the Lake, and to serve the interest of her and the Kingdom of Bretonnia. Since ancient times, the Bretonnians have worshipped the Lady of the Lake as their goddess and their primary deity, a figure of myth and legend who guides their Kings and protects their lands from harm. Worship of the Lady can be traced to the earliest days of the Kingdom. It is said that she arose from a Sacred Lake before Gilles le Breton and his Knightly Companions on the dawn of the Great Victory of Bordeleaux. Wreathed in a fey light, the Lady rose from the water bearing a Grail which overflowed with light that spilled into the waters of the lake, blessing the assembled knights until dawn's light broke over the mountains." />
-  <string id="tor_religion_description.cult_of_nagash" text="{=str_tor_religion_description_cult_of_nagash}Vampires of all kinds loathe the gods. They don't deny their existence, but they don't serve them, seeking to be their equal instead. The closest idea of a religion to vampires would be their shared recognition of Nagash as the creator of undeath. Ultimately, all vampires descend from him. Nagash, known by many names such as the 'Great Necromancer', the 'Great Betrayer', the 'Usurper', the 'Undying King', the 'Supreme Lord of Undeath' or simply 'He Who Shall Not Be Named' is the ultimate personification of death and the Undead, an ancient, evil being who sought to conquer this cruel, chaotic mortal world and bring about an age of Undeath that will rule for all eternity. Nagash is darkness and unreasoning hatred given form, the father and creator of the foul art of necromancy and lord of all Vampires. His every action and deed is self-serving, his achievement horrific and loathsome, and his every whim bent solely to ensure that no one shall ever deny nor challenge his right to rule ever again." />
-  <string id="tor_religion_description.chaos_undivided" text="{=str_tor_religion_description_chaos_undivided}The term Chaos Undivided refers to a faction among the forces of Chaos that serves the pantheon of the major Chaos Gods as a whole rather than owing complete fealty to one over the others. It is often represented by the Everchosen of Chaos, the mortal Chaos Lord who is the greatest champion of all the major Chaos Gods. Followers of Chaos Undivided venerate the force of Chaos itself, sometimes as an entity that some insane scholars of the Old World name the 'Great Beast' in which the major Chaos Gods are seen as a single deity whose four major constituent parts are to be worshipped equally as different emanations of the same universal force. At times, this entity sets aside its mad internal struggle, which is otherwise known as the Great Game, to make it possible for the fragmented armies of the major Chaos Gods to gather together under one banner, such as during the various Chaos incursions into the Known World like the Great War Against Chaos and the End Times. These moments cause the Old World to tremble and quake in fear and loathing." />
-  <string id="tor_religion_description.cult_of_slaanesh" text="{=str_tor_religion_description_cult_of_slaanesh}Slaanesh, also known as the 'Dark Prince', the 'Prince of Pleasure', the 'Lord of Excess', the 'God of Obsession', 'the Serpent', the 'Master of Excess in All Things', the 'Perfect Prince' and even the 'Prince of Chaos' is the major Chaos God of pleasure, passion, obsession, excess, hedonism, decadence and pain. Born of mortal inspiration and desire, Slaanesh is the great muse, the fulfiller of dreams. He is passion given form. He is pleasure incarnate, from the intellectual satisfaction of a problem solved to the fulfilment of baser desires. His is the domain of frustration and agony, the struggle to achieve that which mortals covet. He is titillation. He is suffering. He is the sum of all mortal experience." />
-  <string id="tor_religion_description.cult_of_nurgle" text="{=str_tor_religion_description_cult_of_nurgle}Nurgle, also known as the 'Plague Lord', 'Grandfather Nurgle', the 'Lord of Pestilence', the 'Fly Lord', the 'Urfather' and 'the Crow' among many other names is the major Chaos God of disease, decay, despair, destruction, death and rebirth. Nurgle is the Chaos God most directly involved with the plight of mortals, particularly Men, who suffer so acutely from a fear of death. He is the eldest of the four Chaos Gods and indeed is undoubtedly the oldest Chaos God of all, for the process of death and decay is as ancient as life itself. Nurgle is the embodiment of the constant cycle of death and rebirth which animates all life in the universe, and was brought into being by mortals' fears of death and the despair they feel about their inevitable mortality from age and disease." />
-  <string id="tor_religion_description.cult_of_khorne" text="{=str_tor_religion_description_cult_of_khorne}Khorne, also known as the 'Blood God', the 'Lord of Murder', the 'Lord of Skulls', 'Hunter of Souls' and 'the Hound' in Norsca, is the major Chaos God of war, hatred, wrath, rage, murder, blood, strength, courage and martial honour. Khorne is the second eldest of the major Ruinous Powers and his waxing strength in this time of constant conflict often renders him the mightiest of the Chaos Gods in his effect on the mortal world and in the Great Game between the gods. His domain encompasses the most basic and brutal of sentient emotions - hate, anger, rage, the desire for destruction and the joy of killing one's enemies. Every act of killing or murder in the mortal world feeds and empowers Khorne, the more senseless, vicious and bloodthirsty, the better." />
-  <string id="tor_religion_description.cult_of_tzeentch" text="{=str_tor_religion_description_cult_of_tzeentch}Tzeentch, also known as the 'Changer of Ways', the 'Lord of Change', the 'Architect of Fate', the 'Wind-lord', the 'Raven God', and the 'Great Conspirator' is the major Chaos God of change, evolution, ambition, intrigue, destiny, lies, trickery, sorcery, knowledge, and mutation. Though weary scholars of daemonology know this god by the name of Tzeentch, in truth, he exceeds all the other Ruinous Powers in his number of facets, names and aspects. For he is change, said to embody every mortal creature's recognition of, and desire, to change, to grow, to move, to seek more -- more knowledge, more wealth, more power. His face and form shifts and turns from eternity unto eternity." />
-  <string id="tor_religion_description.cult_of_isha" text="{=str_tor_religion_description_cult_of_isha}At the dawn of time, the first elves were born from Isha, and her place in their pantheon is appropriately prominent, behind only the creator of the world, Asuryan. She is especially important to the Asrai, as is her avatar, Ariel, the Queen-In-The-Wood. It is Isha who first taught the elves to care for the land, and in turn how the land would care for them. Isha is a goddess of life, first and foremost, and weeps at the death of any of her creations, but especially the deaths of her elven children -- it is said that when Asuryan decreed that the Elves would be long-lived, but not immortal, Isha saw their deaths and despaired; her anguish flowed out of her with such force that the tears became the inner sea of Ulthuan. Though direct contact with mortals is forbidden by Asuryan, even the god of wisdom’s attention is finite, and whenever his eye is elsewhere, Isha slips past to infuse the lands of the elves with her protective magic; and when she cannot act to protect her children herself, she petitions her daughter Lileath, the goddess of dreams, to send omens and portents that they might be forewarned of coming harm." />
-  <string id="tor_religion_description.cult_of_kurnous" text="{=str_tor_religion_description_cult_of_kurnous}As Isha is the mother of the elven race, Kurnous, her husband, is the father. Kurnous the Hunter, Master of the Wild Places. He is of most importance to the Asrai, and his perennial avatar, Orion, is their King, reborn every spring by the hand of Ariel and the will of Kurnous. Kurnous’ sphere of concern is the hunt, and he has very specific opinions about how that hunt is to be done. His first commandment is to kill only those animals which you need to eat or who are lost to disease or madness. His second commandment is that Greenskins and Beastmen, or other chaos mutants, are to be driven from the forests and exterminated without pity. While his power is strongest in the ancient forests of the Asrai, especially Athel Loren and Laurelorn, he extends his will into all the wild places in the world, and woe betide those who disrespect his holdings." />
-  <string id="tor_religion_description.cult_of_vaul" text="{=str_tor_religion_description_cult_of_vaul}Vaul is the elven god of smiths and artisans. In ancient days, when the gods warred among themselves, Vaul was defeated by Khaine, who blinded the smith and chained him to his anvil, where he labours to this day forging and maintaining the great artifacts of the elven gods. It is in his captivity by Khaine that he forged the greatest of the artifacts, the Widowmaker, for Khaine himself. In the forging of the Widowmaker. Vaul enlisted the aid of Draugnir, the father of Dragons, to temper the blade -- but the Widowmaker was, and is, a greedy weapon, and drew something of the essence of the great dragon into itself; and so the fate of elves and dragons was, and will be, forever entwined. " />
-  <string id="tor_religion_description.cult_of_anath_raema" text="{=str_tor_religion_description_cult_of_anath_raema}In many ways Anath Raema is defined by what she is not. She is a hunter, like Kurnous, but she cares nothing for the balance of nature. Hers is the chase and the kill, nothing more. Some, primarily among the Druchii, tell a story of Anath Raema courting Kurnous, and her rejection -- and worship her as a patron of jealous lovers, seeing their pursuit of the object of their affections as a facet of the chase." />
-  <string id="tor_religion_description.cult_of_asuryan" text="{=str_tor_religion_description_cult_of_asuryan}The Creator God and Emperor of the Heavens, the oldest of the elven gods, rules the heavens and keeps the balance among gods and mortals from his throne in a great pyramid. Although he rarely speaks to his fellow gods and even less to the elves, it is said that every Phoenix King has come in contact with him. When a new Phoenix King ascends to the Phoenix Throne, he steps through the Flames of Asuryan, where the god himself touches the minds of the aspirant to judge his worth. Those deemed unworthy are burned by the flames, while the worthy are then reborn in the flames. So far, there has been only one that Asuryan rejected." />
-  <string id="tor_religion_description.cult_of_loec" text="{=str_tor_religion_description_cult_of_loec}Loec, also known as the Shadow Dancer, is the elven god of laughter and tricks, a patron to all arts. As a part of the Cadai, the Gods of Heaven, Loec is usually portrayed as a benevolent deity, but as with all, he has a darker side. In this, he is the god of vengeance, shadows, and dark deeds as well. As such, he is said to dance among the void, stirring the souls that dwell there. With his nature of tricks and mischief, he is said to steal elven souls from the Chaos Gods, even if this saps his strength. The main worshippers of Loec are the Wardancers of the Wood Elves as well as the elves from the shattered lands of Nagarythe." />
-  <string id="tor_religion_description.cult_of_grimnir" text="{=str_tor_religion_description_cult_of_grimnir}It is said that in the age when the Ancestor Gods still walked the world, the Dwarfen god Grimnir ventured northwards clad in nothing but his famed red crest and bearing his mighty axe. There, he met his doom, cutting down countless daemons until he reached the collapsed warpgate, where he stood vigil to bar their passage into the south. Since that time, those who now bear the name of 'Slayer' have followed in Grimnir's footsteps, seeking out mighty foes and striving to meet their end in battle or die trying. Yet it was in the time of King Baragor, the first of the Slayer Kings, that the Slayer Cult took a steep rise. Karak Kadrin became a haven for these doomed warriors, a place where they could find food and rest before marching towards their doom once more. The Cult of Grimnir is open to all warriors, but only a Slayer can access sacred shrines in Karak Kadrin. These deadly berserkers are bound by an oath to find their death against worthy foes, while regular warriors must uphold the warrior's code set by the cult, which includes attacking when possible, defending when required, always aiding your brothers-in-arms, and slaying as many foes as possible." />
-  <string id="tor_religion_description.cult_of_valaya" text="{=str_tor_religion_description_cult_of_valaya}Valaya is the Ancestor Goddess of Home and Hearth, of Healing and of Brewing. She is responsible for the shaping of the Dwarfen culture, teaching her people the runic script known as Khazalid and instructing them in the art of brewing, for which the Dwarfs remain renowned to this day. It was also Valaya who bestowed upon her kin the arts of healing, a gift sorely needed during the first great incursion of Chaos. Whilst Grimnir ranged far in battle against the daemonic hosts, and Grungni laboured at the forge crafting weapons and armour, Valaya remained beside her people. She fought alongside them when needed and tended to the wounded when the battle was done. In the darkest days of the war, Valaya is said to have devised a mighty defensive rune, a warding barrier cast about the Dwarf holds. Any daemon that dared touch its power was banished back into the Realm of Chaos, unable to breach the sanctity of Dwarfen stone. When the war had passed and her teachings were complete, Valaya withdrew with the remaining Ancestor Gods, venturing deep into the mountains. Since that time she has not been seen, though her presence is felt in every hearthfire and every hold that stands unbroken against the dark." />
-  <string id="tor_religion_description.cult_of_grungni" text="{=str_tor_religion_description_cult_of_grungni}In elder days, when the Ancestor Gods walked amongst the Dwarfs, foremost among them was Grungni, master of smithing and lord of the forge. Grungni foresaw the coming of Chaos and guided his people beneath the earth and into the safety of the mountains. There he taught them to shape metal into weapons and armour of peerless craft, preparing them for the darkness that was to come. When the hordes of Chaos descended upon the world, Grungni led his kin forth to war. Yet Chaos was not so easily cast down, and in time the Dwarfs were driven back to their mountain holds. Only Grimnir, brother to Grungni, dared to venture beyond the mountains to combat the enemy. Grungni remained behind, forging artefacts of immense power to aid his people. Among these was the Throne of Power, upon which was set the Rune of Azamar, the Eternity Rune, a rune so powerful only one has ever existed, and can never be replicated. It was Grungni’s only work where he felt satisfied upon its completion, and with the rune came a promise, for as long as the rune endures, the Karaz Ankor shall never fall. After the great war, the surviving Ancestor Gods withdrew deep into the mountains, awaiting the hour when their children would have need of them once more." />
-  <string id="tor_religion_description.cult_of_gork" text="{=str_tor_religion_description_cult_of_gork}Little is known about the major greenskin gods, and for outsiders they are hard to differentiate. Gork and Mork, the twin gods, both share the attributes of being brutal and cunning, but for the greenskins, it is clear who to worship for which boons. Gork is the brutally cunning part of the twins, a god of raw strength and might. As such, his main worshippers are the orcs, who value strength above all. Shamans that beseech Gork will sometimes succeed in summoning the god himself, or at least part of him. If they should succeed, they can summon enormous grasping hands to pluck their enemies apart or gigantic feet to stomp the enemy forces. Such is the raw power of Gork." />
-  <string id="tor_religion_description.cult_of_mork" text="{=str_tor_religion_description_cult_of_mork}Little is known about the major greenskin gods, and for outsiders they are hard to differentiate. Gork and Mork, the twin gods, both share the attributes of being brutal and cunning, but for the greenskins it is clear who to worship for which boons. Mork is the cunningly brutal of the two twins and is primarily worshipped by goblins and other smarter varieties of greenskin. While the way of Gork is simply punching someone in the face, the way of Mork is much more refined: a worshipper of Mork would try to distract their foe and then punch them in the back of their head. Shamans that invoke the power of Mork do so not only to still damage their foes but also to protect their own. They can petition their god to hold his protecting hands over other greenskins or to manifest the piercing gaze of the god himself in the shaman’s own eyes, obliterating everything in his line of sight with deadly rays of energy." />
-  <string id="tor_religion_name_of_god.cult_of_sigmar" text="{=str_tor_religion_name_of_god_cult_of_sigmar}Sigmar" />
-  <string id="tor_religion_name_of_god.cult_of_taal" text="{=str_tor_religion_name_of_god_cult_of_taal}Taal" />
-  <string id="tor_religion_name_of_god.cult_of_ulric" text="{=str_tor_religion_name_of_god_cult_of_ulric}Ulric" />
-  <string id="tor_religion_name_of_god.cult_of_shallya" text="{=str_tor_religion_name_of_god_cult_of_shallya}Shallya" />
-  <string id="tor_religion_name_of_god.cult_of_manaan" text="{=str_tor_religion_name_of_god_cult_of_manaan}Manann" />
-  <string id="tor_religion_name_of_god.cult_of_myrmidia" text="{=str_tor_religion_name_of_god_cult_of_myrmidia}Myrmidia" />
-  <string id="tor_religion_name_of_god.cult_of_lady" text="{=str_tor_religion_name_of_god_cult_of_lady}the Lady" />
-  <string id="tor_religion_name_of_god.cult_of_nagash" text="{=str_tor_religion_name_of_god_cult_of_nagash}Nagash" />
-  <string id="tor_religion_name_of_god.cult_of_isha" text="{=str_tor_religion_name_of_god_cult_of_isha}Isha" />
-  <string id="tor_religion_name_of_god.cult_of_kurnous" text="{=str_tor_religion_name_of_god_cult_of_kurnous}Kurnous" />
-  <string id="tor_religion_name_of_god.cult_of_vaul" text="{=str_tor_religion_name_of_god_cult_of_vaul}Vaul" />
-  <string id="tor_religion_name_of_god.cult_of_anath_raema" text="{=str_tor_religion_name_of_god_cult_of_anath_raema}Anath Raema" />
-  <string id="tor_religion_name_of_god.cult_of_asuryan" text="{=str_tor_religion_name_of_god_cult_of_asuryan}Asuryan" />
-  <string id="tor_religion_name_of_god.cult_of_loec" text="{=str_tor_religion_name_of_god_cult_of_loec}Loec" />
-  <string id="tor_religion_name_of_god.cult_of_grimnir" text="{=str_tor_religion_name_of_god_cult_of_grimnir}Grimnir" />
-  <string id="tor_religion_name_of_god.cult_of_valaya" text="{=str_tor_religion_name_of_god_cult_of_valaya}Valaya" />
-  <string id="tor_religion_name_of_god.cult_of_grungni" text="{=str_tor_religion_name_of_god_cult_of_grungni}Grungni" />
-  <string id="tor_religion_name_of_god.chaos_undivided" text="{=str_tor_religion_name_of_god_chaos_undivided}Ruinous Powers" />
-  <string id="tor_religion_name_of_god.cult_of_slaanesh" text="{=str_tor_religion_name_of_god_cult_of_slaanesh}Slaanesh" />
-  <string id="tor_religion_name_of_god.cult_of_nurgle" text="{=str_tor_religion_name_of_god_cult_of_nurgle}Nurgle" />
-  <string id="tor_religion_name_of_god.cult_of_khorne" text="{=str_tor_religion_name_of_god_cult_of_khorne}Khorne" />
-  <string id="tor_religion_name_of_god.cult_of_tzeentch" text="{=str_tor_religion_name_of_god_cult_of_tzeentch}Tzeentch" />
-  <string id="tor_religion_name_of_god.cult_of_gork" text="{=str_tor_religion_name_of_god_cult_of_gork}Gork" />
-  <string id="tor_religion_name_of_god.cult_of_mork" text="{=str_tor_religion_name_of_god_cult_of_mork}Mork" />
-  <string id="tor_religion_blessing_effect_description.cult_of_sigmar" text="{=str_tor_religion_blessing_effect_description_cult_of_sigmar}Earn 20% more prestige." />
-  <string id="tor_religion_blessing_effect_description.cult_of_shallya" text="{=str_tor_religion_blessing_effect_description_cult_of_shallya}Your party members heal their wounds 20% faster." />
-  <string id="tor_religion_blessing_effect_description.cult_of_taal" text="{=str_tor_religion_blessing_effect_description_cult_of_taal}Increase your party's movement speed in forests by 20%." />
-  <string id="tor_religion_blessing_effect_description.cult_of_ulric" text="{=str_tor_religion_blessing_effect_description_cult_of_ulric}Earn 20% more xp from battles." />
-  <string id="tor_religion_blessing_effect_description.cult_of_manaan" text="{=str_tor_religion_blessing_effect_description_cult_of_manaan}All troops in your party deal an extra 10% damage as lightning damage." />
-  <string id="tor_religion_blessing_effect_description.cult_of_lady" text="{=str_tor_religion_blessing_effect_description_cult_of_lady}Bretonnians earn 15 Chivalry every day." />
-  <string id="tor_religion_blessing_effect_description.cult_of_loec" text="{=str_tor_religion_blessing_effect_description_cult_of_loec}All troops in your party gain an extra 15% movement speed and 10% attack speed." />
-  <string id="tor_religion_blessing_effect_description.cult_of_isha" text="{=str_tor_religion_blessing_effect_description_cult_of_isha}Your winds of magic regenerate 25% faster." />
-  <string id="tor_religion_blessing_effect_description.cult_of_asuryan" text="{=str_tor_religion_blessing_effect_description_cult_of_asuryan}All troops in your party deal an extra 10% damage as fire damage." />
-  <string id="tor_religion_blessing_effect_description.cult_of_vaul" text="{=str_tor_religion_blessing_effect_description_cult_of_vaul}All troops in your party gain 10% physical resistance." />
-  <string id="tor_religion_blessing_effect_description.cult_of_anath_raema" text="{=str_tor_religion_blessing_effect_description_cult_of_anath_raema}Get 7 copies of a random item looted post-battle." />
-  <string id="tor_religion_blessing_effect_description.cult_of_kurnous" text="{=str_tor_religion_blessing_effect_description_cult_of_kurnous}All ranged troops in your party deal an extra 10% physical damage." />
-  <string id="tor_religion_blessing_effect_description.cult_of_gork" text="{=str_tor_religion_blessing_effect_description_cult_of_gork}All melee troops in your party deal an extra 10% physical damage." />
-  <string id="tor_religion_blessing_effect_description.cult_of_mork" text="{=str_tor_religion_blessing_effect_description_cult_of_mork}All troops in your party deal an extra 10% damage as fire damage." />
-  <string id="tor_religion_blessing_effect_description.cult_of_myrmidia" text="{=str_tor_religion_blessing_effect_description_cult_of_myrmidia}All heroes in your party earn 10% more xp and your clan earns 10% more renown from battles." />
-  <string id="tor_religion_blessing_effect_description.cult_of_grimnir" text="{=str_tor_religion_blessing_effect_description_cult_of_grimnir}All troops in your party deal an extra 15% physical damage." />
-  <string id="tor_religion_blessing_effect_description.cult_of_valaya" text="{=str_tor_religion_blessing_effect_description_cult_of_valaya}All troops in your party gain 5% ward save." />
-  <string id="tor_religion_blessing_effect_description.cult_of_grungni" text="{=str_tor_religion_blessing_effect_description_cult_of_grungni}Gain 25% bonus crafting stamina." />
-  <string id="tor_religion_blessing_name.cult_of_sigmar" text="{=str_tor_religion_blessing_name_cult_of_sigmar}Blessing of Sigmar" />
-  <string id="tor_religion_blessing_name.cult_of_shallya" text="{=str_tor_religion_blessing_name_cult_of_shallya}Blessing of Shallya" />
-  <string id="tor_religion_blessing_name.cult_of_taal" text="{=str_tor_religion_blessing_name_cult_of_taal}Blessing of Taal" />
-  <string id="tor_religion_blessing_name.cult_of_lady" text="{=str_tor_religion_blessing_name_cult_of_lady}Blessing of the Lady" />
-  <string id="tor_religion_blessing_name.cult_of_ulric" text="{=str_tor_religion_blessing_name_cult_of_ulric}Blessing of Ulric" />
-  <string id="tor_religion_blessing_name.cult_of_manaan" text="{=str_tor_religion_blessing_name_cult_of_manaan}Blessing of Manann" />
-  <string id="tor_religion_blessing_name.cult_of_loec" text="{=str_tor_religion_blessing_name_cult_of_loec}Blessing of Loec" />
-  <string id="tor_religion_blessing_name.cult_of_isha" text="{=str_tor_religion_blessing_name_cult_of_isha}Blessing of Isha" />
-  <string id="tor_religion_blessing_name.cult_of_asuryan" text="{=str_tor_religion_blessing_name_cult_of_asuryan}Blessing of Asuryan" />
-  <string id="tor_religion_blessing_name.cult_of_vaul" text="{=str_tor_religion_blessing_name_cult_of_vaul}Blessing of Vaul" />
-  <string id="tor_religion_blessing_name.cult_of_anath_raema" text="{=str_tor_religion_blessing_name_cult_of_anath_raema}Blessing of Anath Raema" />
-  <string id="tor_religion_blessing_name.cult_of_kurnous" text="{=str_tor_religion_blessing_name_cult_of_kurnous}Blessing of Kurnous" />
-  <string id="tor_religion_blessing_name.cult_of_gork" text="{=str_tor_religion_blessing_name_cult_of_gork}Blessing of Gork" />
-  <string id="tor_religion_blessing_name.cult_of_mork" text="{=str_tor_religion_blessing_name_cult_of_mork}Blessing of Mork" />
-  <string id="tor_religion_blessing_name.cult_of_myrmidia" text="{=str_tor_religion_blessing_name_cult_of_myrmidia}Blessing of Myrmidia" />
-  <string id="tor_religion_blessing_name.cult_of_grimnir" text="{=str_tor_religion_blessing_name_cult_of_grimnir}Blessing of Grimnir" />
-  <string id="tor_religion_blessing_name.cult_of_valaya" text="{=str_tor_religion_blessing_name_cult_of_valaya}Blessing of Valaya" />
-  <string id="tor_religion_blessing_name.cult_of_grungni" text="{=str_tor_religion_blessing_name_cult_of_grungni}Blessing of Grungni" />
-
-  <!-- Religion -->
-  <string id="tor_religion_affiliation" text="{=str_tor_religion_affiliation}Affiliation" />
-
   <!-- Career related -->
   <string id="tor_career_title.WarriorPriest" text="{=str_tor_career_title_WarriorPriest}Warrior Priest of Sigmar" />
   <string id="tor_career_title.WarriorPriestUlric" text="{=str_tor_career_title_WarriorPriestUlric}Warrior Priest of Ulric" />
@@ -3286,16 +2860,6 @@
   <string id="tor_witch_hunter_not_enough_troops_text" text="{=str_tor_witch_hunter_not_enough_troops_text}Not enough healthy troops available" />
   <string id="tor_witch_hunter_culture_requirement_text" text="{=str_tor_witch_hunter_culture_requirement_text}Needs to be part of the empire or southern realms" />
   <string id="tor_witch_hunter_requires_text" text="{=str_tor_witch_hunter_requires_text}Requires atleast {EXCHANGE_COST} {PRESTIGE_ICON}" />
-
-  <!-- Waywatcher -->
-  <string id="tor_waywatcher_arrow_label" text="{=str_tor_waywatcher_arrow_label}Choose special arrows." />
-  <string id="tor_waywatcher_arrow_descr" text="{=str_tor_waywatcher_arrow_descr}Empower your ranged unit with a permanent magical effect." />
-  <string id="tor_careerunlock_level_1.Waywatcher" text="{=str_tor_careerunlock_level_1_waywatcher}" />
-  <string id="tor_careerunlock_level_2.Waywatcher" text="{=str_tor_careerunlock_level_2_waywatcher}Required clan renown: 2" />
-  <string id="tor_careerunlock_level_3.Waywatcher" text="{=str_tor_careerunlock_level_3_waywatcher}Required clan renown: 4" />
-  <string id="tor_careerunlock_reward_1.Waywatcher" text="{=str_tor_careerunlock_reward_1_waywatcher}Swiftshiver shards upgrade for troops" />
-  <string id="tor_careerunlock_reward_2.Waywatcher" text="{=str_tor_careerunlock_reward_2_waywatcher}Hagbane Tipps upgrade for troops" />
-  <string id="tor_careerunlock_reward_3.Waywatcher" text="{=str_tor_careerunlock_reward_3_waywatcher}Unlocks Starfire shafts" />
 
   <!-- Necromancer Choice Group Names -->
   <string id="tor_career_choicegroup_name.LiberNecris" text="{=str_tor_career_choicegroup_name_LiberNecris}Liber Necris" />
@@ -3514,10 +3078,10 @@
   <string id="tor_careerchoice_description.TwinTailedCometPassive2" text="{=str_tor_careerchoice_description_TwinTailedCometPassive2}+5 Companion limit." />
   <string id="tor_careerchoice_description.TwinTailedCometPassive3" text="{=str_tor_careerchoice_description_TwinTailedCometPassive3}+20% personal melee 'Armour Penetration'." />
   <string id="tor_careerchoice_description.TwinTailedCometPassive4" text="{=str_tor_careerchoice_description_TwinTailedCometPassive4}+20 personal Hitpoints." />
-  <string id="tor_careerchoice_description.WarriorPriestUlricRoot" text="{=str_tor_careerchoice_description_WarriorPriestUlricRoot}Let all know the fury of the wolf god! Like Ulric and his axe Blitzbeil before you, slam your weapon into the earth, erupting the ground in a 2 meter radius. This attack cannot be parried. For every level in your highest melee weapon skill, increase Axe of Ulric's damage by 0.1%. (Ability charges by dealing melee damage.)" />
+  <string id="tor_careerchoice_description.WarriorPriestUlricRoot" text="{=str_tor_careerchoice_description_WarriorPriestUlricRoot}Let all know the fury of the wolf god! Like Ulric and his axe Blitzbeil before you, slam your weapon into the earth, erupting the ground in a 2 meter radius. This attack cannot be parried. For every level in your highest melee weapon skill, increase Axe of Ulric's damage by 0.1%. (Ability charges by dealing melee 'Physical' damage.)" />
 
   <!-- Career Choice Description - WarriorPriestUlric -->
-  <string id="tor_careerchoice_description.CrusherOfTheWeakKeystone" text="{=str_tor_careerchoice_description_CrusherOfTheWeakKeystone}Axe of Ulric also releases a 3 meter shockwave that knocks foes down and deals up to 50 Physical damage." />
+  <string id="tor_careerchoice_description.CrusherOfTheWeakKeystone" text="{=str_tor_careerchoice_description_CrusherOfTheWeakKeystone}Axe of Ulric knocks foes down." />
   <string id="tor_careerchoice_description.CrusherOfTheWeakPassive1" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive1}+10 personal Hitpoints." />
   <string id="tor_careerchoice_description.CrusherOfTheWeakPassive2" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive2}+5% personal Physical melee damage." />
   <string id="tor_careerchoice_description.CrusherOfTheWeakPassive3" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive3}Deal +10% more personal Physical melee damage to foes less than tier 4." />
@@ -3548,10 +3112,10 @@
   <string id="tor_careerchoice_description.FuryOfWarPassive3" text="{=str_tor_careerchoice_description_FuryOfWarPassive3}Victory against an equal or stronger force refreshes your blessing of Ulric." />
   <string id="tor_careerchoice_description.FuryOfWarPassive4" text="{=str_tor_careerchoice_description_FuryOfWarPassive4}Hits below 25 damage no longer stagger you." />
   <string id="tor_careerchoice_description.FlameOfUlricKeystone" text="{=str_tor_careerchoice_description_FlameOfUlricKeystone}When Axe of Ulric is used, a random prayer becomes fully charged." />
-  <string id="tor_careerchoice_description.FlameOfUlricPassive1" text="{=str_tor_careerchoice_description_FlameOfUlricPassive1}Radius of prayers and Axe of Ulric is increased by +25%." />
-  <string id="tor_careerchoice_description.FlameOfUlricPassive2" text="{=str_tor_careerchoice_description_FlameOfUlricPassive2}+15% personal Armour Penetration for melee attacks." />
-  <string id="tor_careerchoice_description.FlameOfUlricPassive3" text="{=str_tor_careerchoice_description_FlameOfUlricPassive3}Victory against an equal or stronger force provides +100% prestige." />
-  <string id="tor_careerchoice_description.FlameOfUlricPassive4" text="{=str_tor_careerchoice_description_FlameOfUlricPassive4}Kills done by you or Ulrician troops cause +25% morale damage to enemies." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive1" text="{=str_tor_careerchoice_description_FlameOfUlricPassive1}Radius of prayers is increased by +25%." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive2" text="{=str_tor_careerchoice_description_FlameOfUlricPassive2}+15% personal 'Armour Penetration' for melee attacks." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive3" text="{=str_tor_careerchoice_description_FlameOfUlricPassive3}Victory against a stronger force provide +100% prestige." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive4" text="{=str_tor_careerchoice_description_FlameOfUlricPassive4}Kills done by you or 'Ulrician' troops cause 25% morale damage to enemies." />
 
   <!-- Career Choice Description - WitchHunter -->
   <string id="tor_careerchoice_description.WitchHunterRoot" text="{=str_tor_careerchoice_description_WitchHunterRoot}Accuse an enemy of Heresy! Place an Accusation Mark on an enemy for the next 8s, the first hit you inflict deals +20% 'Physical' damage. After a hit there is a 50% chance the foe stays marked. For every level of Gunpowder or Crossbow, increase Accusation Mark's chance to remain on the foe by 0.1%. (Ability charges by dealing ranged 'Physical' damage.)" />
@@ -3972,7 +3536,7 @@
   <string id="tor_careerchoice_description.BlackGrailVowPassive4" text="{=str_tor_careerchoice_description_BlackGrailVowPassive4}+5 daily 'Dark Energy' per Necromancer and Vampire companion." />
 
   <!-- Career Choice Description - Waywatcher -->
-  <string id="tor_careerchoice_description.WayWatcherRoot" text="{=str_tor_careerchoice_description_WayWatcherRoot}Soon, the Lumberfoots shall regret their trespass! Fire a Lethal Shot, with deadly precision! +50% 'Physical' damage to your next shot. Every 'Keystone' career perk unlocked increases arrows affected by Lethal Shot by +1, but decreases its charge rate. (Ability is charged by dealing damage with bows.)" />
+  <string id="tor_careerchoice_description.WayWatcherRoot" text="{=str_tor_careerchoice_description_WayWatcherRoot}Soon, the Lumberfoots shall regret their trespass! Fire a Lethal Shot, with deadly precision! +50% 'Physical' damage to your next shot. Every 'Keystone' career perk unlocked increases arrows affected by Lethal Shot by +1, but decreases its recharge rate. (Ability is charged by dealing 'Physical' damage with bows.)" />
   <string id="tor_careerchoice_description.ProtectorOfTheWoodsKeystone" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsKeystone}Lethal Shot can be used on battle start, reduces required damage to use, and affects +1 shot." />
   <string id="tor_careerchoice_description.ProtectorOfTheWoodsPassive1" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsPassive1}+10% personal ranged 'Physical' damage." />
   <string id="tor_careerchoice_description.ProtectorOfTheWoodsPassive2" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsPassive2}+3 arrows per quiver you have equipped." />
@@ -4200,7 +3764,7 @@
   <string id="tor_careerchoice_description.TheLastJourneyPassive4" text="{=str_tor_careerchoice_description_TheLastJourneyPassive4}+40% ranged 'Physical Resistance' for all 'Slayer' troops." />
 
   <!-- Career Choice Description - Runelord -->
-  <string id="tor_careerchoice_description.RunelordRoot" text="{=str_tor_careerchoice_description_RunelordRoot}The runes are cast! By the Wisdom of Thungni, reduce the remaining cooldown of one 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. Also applies 15% extra damage dealt as 'Magic' to your weapon for 15s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)" />
+  <string id="tor_careerchoice_description.RunelordRoot" text="{=str_tor_careerchoice_description_RunelordRoot}The runes are cast! By the Wisdom of Thungni, reduce the cooldown of the next 'Rune' ability by 15s, and empower all 'Rune' abilities for 5s. For every level of Smithing, Wisdom of Thungni's cooldown is reduced by 0.1s. (60s cooldown.)" />
   <string id="tor_careerchoice_description.ForgefireBurningKeystone" text="{=str_tor_careerchoice_description_ForgefireBurningKeystone}Wisdom of Thungi now applies to the next 'Rune' in the sequence at half efficency as well." />
   <string id="tor_careerchoice_description.ForgefireBurningPassive1" text="{=str_tor_careerchoice_description_ForgefireBurningPassive1}+1 charcoal from burning wood." />
   <string id="tor_careerchoice_description.ForgefireBurningPassive2" text="{=str_tor_careerchoice_description_ForgefireBurningPassive2}+1 ingot when forging metal." />
@@ -4366,9 +3930,6 @@
   <string id="tor_career_rank2_name.OrcShaman" text="{=str_tor_career_rank2_name_OrcShaman}Favoured uv Da Godz" />
   <string id="tor_career_rank3_name.OrcShaman" text="{=str_tor_career_rank3_name_OrcShaman}Great Shaman Lord" />
 
-  <!-- Careerchoice -->
-  <string id="tor_careerchoice_description.BonesAnFirepitzPassive1" text="{=str_tor_career_choice_description_BonesAnFirepitzPassive1}Get 15 mumbo-jumbo pointz afta' winnin' brawls" />
-
   <!-- Career Rank Label - Necrarch -->
   <string id="tor_career_rank1_name.Necrarch" text="{=str_tor_career_rank1_name_Necrarch}Apprentice" />
   <string id="tor_career_rank2_name.Necrarch" text="{=str_tor_career_rank2_name_Necrarch}Seeker" />
@@ -4443,131 +4004,28 @@
   <string id="tor_careerunlock_reward_2.ImperialMagister" text="{=str_tor_careerunlock_reward_2_imperialmagister}Unlocks Greater Powerstones" />
   <string id="tor_careerunlock_reward_3.ImperialMagister" text="{=str_tor_careerunlock_reward_3_imperialmagister}Unlocks Mighty Powerstones" />
 
-  <!-- Spellsinger -->
-  <string id="tor_careerunlock_level_1.Spellsinger" text="{=str_tor_careerunlock_level_1_spellsinger}" />
-  <string id="tor_careerunlock_level_2.Spellsinger" text="{=str_tor_careerunlock_level_2_spellsinger}Required clan renown: 2" />
-  <string id="tor_careerunlock_level_3.Spellsinger" text="{=str_tor_careerunlock_level_3_spellsinger}Required clan renown: 4" />
-  <string id="tor_careerunlock_reward_2.Spellsinger" text="{=str_tor_careerunlock_reward_2_spellsinger}Unlocks 3rd lore and Spellweaver path" />
-  <string id="tor_careerunlock_reward_3.Spellsinger" text="{=str_tor_careerunlock_reward_3_spellsinger}Unlocks all 8 winds" />
+<!--TOR Information and data !-->
 
-  <!-- Grey Lord -->
-  <string id="tor_careerunlock_level_1.GreyLord" text="{=str_tor_careerunlock_level_1_greylord}" />
-  <string id="tor_careerunlock_level_2.GreyLord" text="{=str_tor_careerunlock_level_2_greylord}Required clan renown: 2" />
-  <string id="tor_careerunlock_level_3.GreyLord" text="{=str_tor_careerunlock_level_3_greylord}Required clan renown: 4" />
-
-  <!-- Knight of the Old World -->
-  <string id="tor_careerunlock_level_1.KnightOldWorld" text="{=str_tor_careerunlock_level_1_knightoldworld}" />
-  <string id="tor_careerunlock_level_2.KnightOldWorld" text="{=str_tor_careerunlock_level_2_knightoldworld}Required clan renown: 2" />
-  <string id="tor_careerunlock_level_3.KnightOldWorld" text="{=str_tor_careerunlock_level_3_knightoldworld}Required clan renown: 4" />
-
-  <!-- Ironbreaker -->
-  <string id="tor_careerunlock_level_1.Ironbreaker" text="{=str_tor_careerunlock_level_1_ironbreaker}" />
-  <string id="tor_careerunlock_level_2.Ironbreaker" text="{=str_tor_careerunlock_level_2_ironbreaker}Required clan renown: 2" />
-  <string id="tor_careerunlock_level_3.Ironbreaker" text="{=str_tor_careerunlock_level_3_ironbreaker}Required clan renown: 4" />
-
-  <!-- Slayer -->
-  <string id="tor_careerunlock_level_1.Slayer" text="{=str_tor_careerunlock_level_1_slayer}" />
-  <string id="tor_careerunlock_level_2.Slayer" text="{=str_tor_careerunlock_level_2_slayer}Required clan renown: 2" />
-  <string id="tor_careerunlock_level_3.Slayer" text="{=str_tor_careerunlock_level_3_slayer}Required clan renown: 4" />
-
-  <!-- Warden -->
-  <string id="tor_careerunlock_level_1.Warden" text="{=str_tor_careerunlock_level_1_warden}" />
-  <string id="tor_careerunlock_level_2.Warden" text="{=str_tor_careerunlock_level_2_warden}Required clan renown: 2" />
-  <string id="tor_careerunlock_level_3.Warden" text="{=str_tor_careerunlock_level_3_warden}Required clan renown: 4" />
-
-  <!-- Runelord (Special unlock conditions) -->
-  <string id="tor_careerunlock_level_1.Runelord" text="{=str_tor_careerunlock_level_1_runelord}" />
-  <string id="tor_careerunlock_level_2.Runelord" text="{=str_tor_careerunlock_level_2_runelord}Ask the Runesmiths Guild to unlock" />
-  <string id="tor_careerunlock_level_3.Runelord" text="{=str_tor_careerunlock_level_3_runelord}Ask the Runesmiths Guild to unlock" />
-
-  <!-- Orc Boss (Special unlock conditions) -->
-  <string id="tor_careerunlock_level_1.OrcBoss" text="{=str_tor_careerunlock_level_1_orcboss}" />
-  <string id="tor_careerunlock_level_2.OrcBoss" text="{=str_tor_careerunlock_level_2_orcboss}Complete Da Path of Da Boss quest" />
-  <string id="tor_careerunlock_level_3.OrcBoss" text="{=str_tor_careerunlock_level_3_orcboss}Complete Da Path of Da Big Boss quest" />
-
-  <!-- Orc Shaman (Special unlock conditions) -->
-  <string id="tor_careerunlock_level_1.OrcShaman" text="{=str_tor_careerunlock_level_1_orcshaman}" />
-  <string id="tor_careerunlock_level_2.OrcShaman" text="{=str_tor_careerunlock_level_2_orcshaman}Complete Da Path of Da Shaman quest" />
-  <string id="tor_careerunlock_level_3.OrcShaman" text="{=str_tor_careerunlock_level_3_orcshaman}Complete Da Path of Da Great Shaman quest" />
-
-  <!-- Rewards -->
-  <string id="tor_careerunlock_reward_2.MinorVampire" text="{=str_tor_careerunlock_reward_2_minorvampire}Unlock Death or Dark Magic" />
-
-  <!-- Runelord -->
-  <string id="tor_careerunlock_reward_1.Runelord" text="{=str_tor_careerunlock_reward_1_runelord}Unlocks Runecraft for Equipment" />
-
-  <!-- GreyLord -->
-  <string id="tor_careerunlock_reward_2.GreyLord" text="{=str_tor_careerunlock_reward_2_greylord}Unlock Qhaysh and Dhar after learning 8 Lores" />
-  <string id="TORKnightPuritySealName.SecularSeal1" text="{=str_torknightpuritysealname_secularseal1}Lesser Secular Seal" />
-  <string id="TORKnightPuritySealName.SecularSeal2" text="{=str_torknightpuritysealname_secularseal2}Secular Seal" />
-  <string id="TORKnightPuritySealName.SecularSeal3" text="{=str_torknightpuritysealname_secularseal3}Greater Secular Seal" />
-  <string id="TORKnightPuritySealName.SigmarSeal1" text="{=str_torknightpuritysealname_sigmarseal1}Lesser Sigmar Seal" />
-  <string id="TORKnightPuritySealName.SigmarSeal2" text="{=str_torknightpuritysealname_sigmarseal2}Sigmar Seal" />
-  <string id="TORKnightPuritySealName.SigmarSeal3" text="{=str_torknightpuritysealname_sigmarseal3}Greater Sigmar Seal" />
-  <string id="TORKnightPuritySealName.TaalSeal1" text="{=str_torknightpuritysealname_taalseal1}Lesser Taal Seal" />
-  <string id="TORKnightPuritySealName.TaalSeal2" text="{=str_torknightpuritysealname_taalseal2}Taal Seal" />
-  <string id="TORKnightPuritySealName.TaalSeal3" text="{=str_torknightpuritysealname_taalseal3}Greater Taal Seal" />
-  <string id="TORKnightPuritySealName.UlricSeal1" text="{=str_torknightpuritysealname_ulricseal1}Lesser Ulric Seal" />
-  <string id="TORKnightPuritySealName.UlricSeal2" text="{=str_torknightpuritysealname_ulricseal2}Ulric Seal" />
-  <string id="TORKnightPuritySealName.UlricSeal3" text="{=str_torknightpuritysealname_ulricseal3}Greater Ulric Seal" />
-  <string id="TORKnightPuritySealName.ManaanSeal1" text="{=str_torknightpuritysealname_manaanseal1}Lesser Manann Seal" />
-  <string id="TORKnightPuritySealName.ManaanSeal2" text="{=str_torknightpuritysealname_manaanseal2}Manann Seal" />
-  <string id="TORKnightPuritySealName.ManaanSeal3" text="{=str_torknightpuritysealname_manaanseal3}Greater Manann Seal" />
-  <string id="TORKnightPuritySealName.ShallyaSeal1" text="{=str_torknightpuritysealname_shallyaseal1}Lesser Shallya Seal" />
-  <string id="TORKnightPuritySealName.ShallyaSeal2" text="{=str_torknightpuritysealname_shallyaseal2}Shallya Seal" />
-  <string id="TORKnightPuritySealName.ShallyaSeal3" text="{=str_torknightpuritysealname_shallyaseal3}Greater Shallya Seal" />
-  <string id="TORKnightPuritySealName.MyrmidiaSeal1" text="{=str_torknightpuritysealname_myrmidiaseal1}Lesser Myrmidia Seal" />
-  <string id="TORKnightPuritySealName.MyrmidiaSeal2" text="{=str_torknightpuritysealname_myrmidiaseal2}Myrmidia Seal" />
-  <string id="TORKnightPuritySealName.MyrmidiaSeal3" text="{=str_torknightpuritysealname_myrmidiaseal3}Greater Myrmidia Seal" />
-  <string id="TORKnightPuritySealDescription.SecularSeal1" text="{=str_torknightpuritysealdescription_secularseal1}10% Physical Damage" />
-  <string id="TORKnightPuritySealDescription.SecularSeal2" text="{=str_torknightpuritysealdescription_secularseal2}25% Wage reduction" />
-  <string id="TORKnightPuritySealDescription.SecularSeal3" text="{=str_torknightpuritysealdescription_secularseal3}25% Charge Bonus" />
-  <string id="TORKnightPuritySealDescription.SigmarSeal1" text="{=str_torknightpuritysealdescription_sigmarseal1}20% Physical Damage" />
-  <string id="TORKnightPuritySealDescription.SigmarSeal2" text="{=str_torknightpuritysealdescription_sigmarseal2}15% Wardsave" />
-  <string id="TORKnightPuritySealDescription.SigmarSeal3" text="{=str_torknightpuritysealdescription_sigmarseal3}+2% Prestige per sealed unit (stacking)" />
-  <string id="TORKnightPuritySealDescription.TaalSeal1" text="{=str_torknightpuritysealdescription_taalseal1}30% Ranged Protection" />
-  <string id="TORKnightPuritySealDescription.TaalSeal2" text="{=str_torknightpuritysealdescription_taalseal2}15% Wardsave" />
-  <string id="TORKnightPuritySealDescription.TaalSeal3" text="{=str_torknightpuritysealdescription_taalseal3}+0.01 movement speed on the campaign map per sealed unit (stacking)" />
-  <string id="TORKnightPuritySealDescription.UlricSeal1" text="{=str_torknightpuritysealdescription_ulricseal1}10% Swing Speed" />
-  <string id="TORKnightPuritySealDescription.UlricSeal2" text="{=str_torknightpuritysealdescription_ulricseal2}Unstoppable" />
-  <string id="TORKnightPuritySealDescription.UlricSeal3" text="{=str_torknightpuritysealdescription_ulricseal3}20% Armor Penetration" />
-  <string id="TORKnightPuritySealDescription.ManaanSeal1" text="{=str_torknightpuritysealdescription_manaanseal1}25% Charge Bonus" />
-  <string id="TORKnightPuritySealDescription.ManaanSeal2" text="{=str_torknightpuritysealdescription_manaanseal2}20% Lightning Damage" />
-  <string id="TORKnightPuritySealDescription.ManaanSeal3" text="{=str_torknightpuritysealdescription_manaanseal3}45% Magical Resistance" />
-  <string id="TORKnightPuritySealDescription.ShallyaSeal1" text="{=str_torknightpuritysealdescription_shallyaseal1}Party healing increased by 5% per sealed unit." />
-  <string id="TORKnightPuritySealDescription.ShallyaSeal2" text="{=str_torknightpuritysealdescription_shallyaseal2}15% Wardsave" />
-  <string id="TORKnightPuritySealDescription.ShallyaSeal3" text="{=str_torknightpuritysealdescription_shallyaseal3}+20% Survival Chance" />
-  <string id="TORKnightPuritySealDescription.MyrmidiaSeal1" text="{=str_torknightpuritysealdescription_myrmidiaseal1}Strategic Advantage" />
-  <string id="TORKnightPuritySealDescription.MyrmidiaSeal2" text="{=str_torknightpuritysealdescription_myrmidiaseal2}+10% XP" />
-  <string id="TORKnightPuritySealDescription.MyrmidiaSeal3" text="{=str_torknightpuritysealdescription_myrmidiaseal3}10% Holy Damage" />
-
-  <!-- Purity Seal UI -->
-  <string id="tor_purity_seal_choose_title_text" text="{=tor_purity_seal_choose_title_text}Choose Purity Seal" />
-  <string id="tor_purity_seal_choose_description_text" text="{=tor_purity_seal_choose_description_text}Empower your knight units with powerful seals." />
-  <string id="tor_purity_seal_no_description_text" text="{=tor_purity_seal_no_description_text}No description found." />
-  <string id="tor_myrmidia_seal" text="{=tor_myrmidia_seal}Myrmidia Seal" />
-
-  <!-- Knight Old World Seal Accept Texts -->
-  <string id="tor_career_button_knightoldworld_seal_accept.default" text="{=tor_career_button_knightoldworld_seal_accept.default}Add a Purity Seal to this knight." />
-  <string id="tor_career_button_knightoldworld_seal_accept.templar_seal" text="{=tor_career_button_knightoldworld_seal_accept.templar_seal}Apply Templar Seal." />
-  <string id="tor_career_button_knightoldworld_seal_accept.secular_seal" text="{=tor_career_button_knightoldworld_seal_accept.secular_seal}Apply Secular Seal." />
-
-  <!-- Knight Old World Seal Decline Texts -->
-  <string id="tor_career_button_knightoldworld_seal_decline.templar_religion_no_match" text="{=tor_career_button_knightoldworld_seal_decline.templar_religion_no_match}Your religion does not match this unit's religion." />
-  <string id="tor_career_button_knightoldworld_seal_decline.secular_no_perk_for_templar" text="{=tor_career_button_knightoldworld_seal_decline.secular_no_perk_for_templar}You need the Secular Orders perk to apply seals to templar knights." />
-  <string id="tor_career_button_knightoldworld_seal_decline.devout_no_perk_for_secular" text="{=tor_career_button_knightoldworld_seal_decline.devout_no_perk_for_secular}You need the Secular Orders perk to apply Templar seals to secular knights." />
-  <string id="tor_career_button_knightoldworld_seal_decline.not_eligible" text="{=tor_career_button_knightoldworld_seal_decline.not_eligible}Not eligible for seal." />
-
-  <!-- TOR Information and data -->
-  <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead - The unit will not be affected by morale; instead of fleeing, it will disintegrate. If defeated, the unit will be lost and cannot be healed." />
-  <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - The unit will never flee, no matter how much morale it loses." />
-  <string id="tor_extendedInfo.Expendable" text="{=str_tor_extendedinfo_expendable}Expendable - The death or flight of these units will have no effect on the morale of the allied troops." />
-  <string id="tor_extendedInfo.Crushing" text="{=str_tor_extendedinfo_crushing}Crushing - Enemy weapons cannot block or parry this unit's attacks." />
-  <string id="tor_extendedInfo.Slice" text="{=str_tor_extendedinfo_slice}Slice - Melee attacks can cut through enemies(...)" />
-  <string id="tor_extendedInfo.TreeSpirit" text="{=str_tor_extendedinfo_treespirit}Tree Spirit - This unit is a Tree Spirit" />
-  <string id="tor_extendedInfo.Crew" text="{=str_tor_extendedinfo_crew}Artillery Crew - This unit can operate artillery. And it reloads {VALUE}% faster." />
-  <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage." />
-  <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Piercing - {VALUE}% Armor Penetration(...)" />
+  <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead - not affected by morale, and instead of fleeing, shall crumble to dust. If defeated, this unit cannot be wounded."/>
+  <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew - required to operate most artillery pieces."/>
+  <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale."/>
+  <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage."/>
+  <string id="tor_extendedInfo.Regeneration" text="{=str_tor_extendedinfo_regeneration}Regeneration - restores {VALUE} health per second.(...)"/>
+  <string id="tor_extendedInfo.Brute" text="{=str_tor_extendedinfo_brute}Brute - htis better(...)"/>
+  <string id="tor_extendedInfo.Piercing" text="{=str_tor_extendedinfo_piercing}Piercing - {VALUE}% Armor Penetration(...)"/>
+  <string id="tor_extendedInfo.Bulwark" text="{=str_tor_extendedinfo_bulwark}Bulwark - {VALUE}% Ranged Damage Reduction(...)"/>
+  <string id="tor_extendedInfo.Swift" text="{=str_tor_extendedinfo_swift}Swift - {VALUE}% Movement Speed Bonus(...)"/>
+  <string id="tor_extendedInfo.Poisonous" text="{=str_tor_extendedinfo_poisonous}Poisonous - {CHANCE}% Chance on Hit to Poison the Target {DURATION} {DAMAGE}(...)"/>
+  <string id="tor_extendedInfo.TheHunger" text="{=str_tor_extendedinfo_the_hunger}The Hunger - Restores {VALUE}% Maximum Health after Killing an enemy(...)"/>
+  <string id="tor_extendedInfo.Frenzy" text="{=str_tor_extendedinfo_frenzy}Frenzy - Kill Grants {VALUE}% Movement Speed {VALUE}% Attack Speed for {DURATION} (...)"/>
+  <string id="tor_extendedInfo.UndeadSlayer" text="{=str_tor_extendedinfo_undead_slayer}Undead Slayer - +{VALUE}% Damage against Undead Units (...)"/>
+  <string id="tor_extendedInfo.Immortality" text="{=str_tor_extendedinfo_immortality}Immortality - Cannot be killed (...)"/>
+  <string id="tor_extendedInfo.Deadeye" text="{=str_tor_extendedinfo_deadeye}Deadeye - suffers no ranged accuracy penalty while moving(...)"/>
+  <string id="tor_extendedInfo.Ethereal" text="{=str_tor_extendedinfo_ethereal}Ethereal - {VALUE}% Chance to Ignore Purely Physical Hits(...)"/>
+  <string id="tor_extendedInfo.KillingBlow" text="{=str_tor_extendedinfo_killing_blow}Killing Blow - has a chance to instantly kill enemy units(...)"/>
+  <string id="tor_extendedInfo.WightKing" text="{=str_tor_extendedinfo_wight_king}Wight King - Has an Increased Chance to Instantly Kill Enemy Units(...)"/>
+  <string id="tor_extendedInfo.MonsterSlayer" text="{=str_tor_extendedinfo_monster_slayer}Monster Slayer - +{VALUE}% Damage against Monstrous Units(...)"/>
+  
   <string id="tor_damagetype.Invalid" text="{=str_tor_damagetype_invalid}Invalid" />
   <string id="tor_damagetype.Physical" text="{=str_tor_damagetype_physical}Physical" />
   <string id="tor_damagetype.Magical" text="{=str_tor_damagetype_magical}Magical" />
@@ -4575,62 +4033,6 @@
   <string id="tor_damagetype.Holy" text="{=str_tor_damagetype_holy}Holy" />
   <string id="tor_damagetype.Frost" text="{=str_tor_damagetype_frost}Frost" />
   <string id="tor_damagetype.Lightning" text="{=str_tor_damagetype_lightning}Lightning" />
-
-  <!-- ExtendedInfo.Monstrous -->
-  <string id="tor_extendedInfo.Monstrous" text="{=str_tor_extendedinfo_monstrous}Monstrous - Attacks gates (...)" />
-
-  <!-- ExtendedInfo.cult -->
-  <string id="tor_extendedInfo.cult_of_loec" text="{=str_tor_extendedinfo_cult_of_loec}Cult of Loec - Religious unit of Loec.(...)" />
-  <string id="tor_extendedInfo.cult_of_manaan" text="{=str_tor_extendedinfo_cult_of_manaan}Cult of Manann - Religious unit of Manann(...)" />
-  <string id="tor_extendedInfo.cult_of_morr" text="{=str_tor_extendedinfo_cult_of_morr}Cult of Morr - Religious unit of Morr.(...)" />
-  <string id="tor_extendedInfo.cult_of_sigmar" text="{=str_tor_extendedinfo_cult_of_sigmar}Cult of Sigmar - Religious unit of Sigmar.(...)" />
-  <string id="tor_extendedInfo.cult_of_lady" text="{=str_tor_extendedinfo_cult_of_lady}Cult of the Lady - Religious unit of the Lady.(...)" />
-  <string id="tor_extendedInfo.cult_of_ulric" text="{=str_tor_extendedinfo_cult_of_ulric}Cult of Ulric - Religious unit of Ulric.(...)" />
-  <string id="tor_extendedInfo.cult_of_grimnir" text="{=str_tor_extendedinfo_cult_of_grimnir}Cult of Grimnir - Religious unit of Grimnir.(...)" />
-  <string id="tor_extendedInfo.cult_of_myrmidia" text="{=str_tor_extendedinfo_cult_of_myrmidia}Cult of Myrmidia - Religious unit of Myrmidia.(...)" />
-
-  <!-- ExtendedInfo.Regeneration -->
-  <string id="tor_extendedInfo.Regeneration" text="{=str_tor_extendedinfo_regeneration}Regeneration - restores {VALUE} health per second.(...)" />
-
-  <!-- ExtendedInfo.Brute -->
-  <string id="tor_extendedInfo.Brute" text="{=str_tor_extendedinfo_brute}Brute - htis better(...)" />
-
-  <!-- ExtendedInfo.Bulwark -->
-  <string id="tor_extendedInfo.Bulwark" text="{=str_tor_extendedinfo_bulwark}Bulwark - {VALUE}% Ranged Damage Reduction(...)" />
-
-  <!-- ExtendedInfo.Swift -->
-  <string id="tor_extendedInfo.Swift" text="{=str_tor_extendedinfo_swift}Swift - {VALUE}% Movement Speed Bonus(...)" />
-
-  <!-- ExtendedInfo.Poisonous -->
-  <string id="tor_extendedInfo.Poisonous" text="{=str_tor_extendedinfo_poisonous}Poisonous - {CHANCE}% Chance on Hit to Poison the Target {DURATION} {DAMAGE}(...)" />
-
-  <!-- ExtendedInfo.TheHunger -->
-  <string id="tor_extendedInfo.TheHunger" text="{=str_tor_extendedinfo_the_hunger}The Hunger - Restores {VALUE}% Maximum Health after Killing an enemy(...)" />
-
-  <!-- ExtendedInfo.Frenzy -->
-  <string id="tor_extendedInfo.Frenzy" text="{=str_tor_extendedinfo_frenzy}Frenzy - Kill grants {MOVEMENT}% Movement Speed and {ATTACK}% Attack Speed for {DURATION} seconds(...)" />
-
-  <!-- ExtendedInfo.UndeadSlayer -->
-  <string id="tor_extendedInfo.UndeadSlayer" text="{=str_tor_extendedinfo_undead_slayer}Undead Slayer - +{VALUE}% Damage against Undead Units (...)" />
-
-  <!-- ExtendedInfo.Immortality -->
-  <string id="tor_extendedInfo.Immortality" text="{=str_tor_extendedinfo_immortality}Immortality - Cannot be killed (...)" />
-
-  <!-- ExtendedInfo.Deadeye -->
-  <string id="tor_extendedInfo.Deadeye" text="{=str_tor_extendedinfo_deadeye}Deadeye - suffers no ranged accuracy penalty while moving(...)" />
-
-  <!-- ExtendedInfo.Ethereal -->
-  <string id="tor_extendedInfo.Ethereal" text="{=str_tor_extendedinfo_ethereal}Ethereal - {VALUE}% Chance to Ignore Purely Physical Hits(...)" />
-  <string id="tor_ethereal_hit_ignored" text="{=str_tor_ethereal_hit_ignored}Your blow passes harmlessly through the ethereal form!" />
-
-  <!-- ExtendedInfo.KillingBlow -->
-  <string id="tor_extendedInfo.KillingBlow" text="{=str_tor_extendedinfo_killing_blow}Killing Blow - has a chance to instantly kill enemy units(...)" />
-
-  <!-- ExtendedInfo.WightKing -->
-  <string id="tor_extendedInfo.WightKing" text="{=str_tor_extendedinfo_wight_king}Wight King - Has an Increased Chance to Instantly Kill Enemy Units(...)" />
-
-  <!-- ExtendedInfo.MonsterSlayer -->
-  <string id="tor_extendedInfo.MonsterSlayer" text="{=str_tor_extendedinfo_monster_slayer}Monster Slayer - +{VALUE}% Damage against Monstrous Units(...)" />
 
   <!-- Message Templates -->
   <string id="tor_damage_display_spell_damage" text="{=str_tor_damage_display_spell_damage}{ICON} {SPELL_NAME} dealt {DAMAGE} {DAMAGE_TYPE} damage to {COUNT} {TARGET_TEXT}" />
@@ -4733,10 +4135,9 @@
   <!-- TOR_CHOICE_TROOPUPGRADECOST -->
   <string id="tor_careerchoice_basic.Ammo" text="{=str_tor_careerchoice_basic_ammo}{EFFECT_VALUE} extra ammunition" />
 
-  <!-- Custom -->
-  <string id="tor_custom_resource_cost" text="{=str_tor_custom_resource_cost}Requires {AMOUNT} {RESOURCE_ICON}" />
-
   <!-- Custom Resource -->
+  <string id="tor_custom_resource_cost" text="{=str_tor_custom_resource_cost}Requires {AMOUNT} {RESOURCE_ICON}" />
+	
   <string id="tor_custom_resource_name.Prestige" text="{=str_tor_custom_resource_name_prestige}Prestige" />
   <string id="tor_custom_resource_name.Chivalry" text="{=str_tor_custom_resource_name_chivalry}Chivalry" />
   <string id="tor_custom_resource_name.DarkEnergy" text="{=str_tor_custom_resource_name_darkenergy}Dark Energy" />
@@ -4747,6 +4148,7 @@
   <string id="tor_custom_resource_name.Meat" text="{=str_tor_custom_resource_name_meat}Meat" />
   <string id="tor_custom_resource_name.Waaagh" text="{=str_tor_custom_resource_name_waaagh}Fightiness" />
   <string id="tor_custom_resource_name.WindsOfMagic" text="{=str_tor_custom_resource_name_windsofmagic}Winds of Magic" />
+	
   <string id="tor_custom_resource_description.Prestige" text="{=str_tor_custom_resource_description_prestige}Prestige is a sign of respect within the Empire. A symbolic currency that allows upgrading Imperial troops and striking special deals with influential individuals." />
   <string id="tor_custom_resource_description.Chivalry" text="{=str_tor_custom_resource_description_chivalry}A representation of the chivalrous code of conduct driving the people of the fair land of Bretonnia. Higher Chivalry allows for greater recruitment of special troops and utilization of unique mechanics." />
   <string id="tor_custom_resource_description.DarkEnergy" text="{=str_tor_custom_resource_description_darkenergy}Dark Energy is used by practitioners of necromancy to raise and support their undead minions." />
@@ -4893,8 +4295,8 @@
   <string id="tor_inky_Duel.STR_PlayerLost1" text="{=!}" />
   <string id="tor_inky_Duel.STR_PlayerLost2" text="{=!}" />
   <string id="tor_inky_Duel.STR_DuelEnd" text="{=!}" />
-
-  <!-- Inky -->
+  
+  <!-- Orion defeat reward -->
   <string id="tor_inky_OrionDefeatedByPlayer.Title" text="{=str_tor_inky_orion_defeated_title}Orion Defeated" />
   <string id="tor_inky_OrionDefeatedByPlayer.STR_Start1" text="{=str_tor_inky_orion_defeated_start1}You defeated Orion." />
   <string id="tor_inky_OrionDefeatedByPlayer.STR_Start2" text="{=str_tor_inky_orion_defeated_start2}Wild Hunt has been broken." />
@@ -4925,10 +4327,7 @@
   <string id="tor_hireling_siege_engines_text" text="{=str_tor_hireling_siege_engines_text}Siege engines ready: {COUNT}" />
   <string id="tor_hireling_raiding_text" text="{=str_tor_hireling_raiding_text}Raiding {VILLAGE_NAME}" />
 
-  <!-- Hirelinglordquit -->
-  <string id="tor_hirelinglordquit_serviceDuration" text="{=str_tor_hirelinglordquit_serviceDuration}Minimum service is {MINIMUM_SERVICE_TIME} days." />
-
-  <!-- Graveyard Menus -->
+  <!-- Hireling Battle Menu -->
   <string id="tor_hireling_desert_warning" text="{=str_tor_hireling_desert_warning}This will damage your reputation with the {FACTION}. Serve for {MINIMUM_SERVICE_TIME} days, and speak to your enlisting Lord to avoid consequences." />
   <string id="tor_graveyard_go_to" text="{=str_tor_graveyard_go_to}Go to the graveyard" />
   <string id="tor_graveyard_title" text="{=str_tor_graveyard_title}Graveyard" />
@@ -5551,74 +4950,17 @@
   <!-- Spell Trainer Eonir Dialogs -->
   <string id="tor_spelltrainer_eonir_open_book" text="{=str_tor_spelltrainer_eonir_open_book}I seek to further my knowledge of the Winds of Magic, can you help me achieve this?" />
 
-  <!-- Greenskin Spell Trainer Dialogs -->
-  <string id="tor_spelltrainer_greenskin_start_str" text="{=str_tor_spelltrainer_greenskin_start_str}You come to look into da fire?" />
-  <string id="tor_spelltrainer_greenskin_hub_str" text="{=str_tor_spelltrainer_greenskin_hub_str}Wot you want, git?" />
-  <string id="tor_spelltrainer_greenskin_open_book_str" text="{=str_tor_spelltrainer_greenskin_open_book_str}I'z here fer sum ju-ju spooks." />
-  <string id="tor_spelltrainer_greenskin_close_book_str" text="{=str_tor_spelltrainer_greenskin_close_book_str}Eat dis shroom an' dance wiv me." />
-  <string id="tor_spelltrainer_greenskin_enchantments_str" text="{=str_tor_spelltrainer_greenskin_enchantments_str}I wanna learn how ta make some proppa gear wif da runes." />
-  <string id="tor_spelltrainer_greenskin_player_goodbye_str" text="{=str_tor_spelltrainer_greenskin_player_goodbye_str}I'z outta 'ere." />
-  <string id="tor_spelltrainer_greenskin_goodbye_str" text="{=str_tor_spelltrainer_greenskin_goodbye_str}Get outta 'ere! You'z lettin' out da smoke!" />
-
-  <!-- Vanilla Perks and Skills -->
-  <string id="tor_veterinarian_description" text="{=str_tor_veterinarian_description}A variable chance to recover a mount from lost cavalry after battles." />
-  <string id="tor_trade_skill_description" text="{=str_tor_trade_skill_description}Trade penalty Reduction +0.2% per level for trade goods and animals.\nTrade penalty Reduction +0.7% per level for equipment." />
-
-  <!-- Powerstone Texts - Lesser -->
-  <string id="tor_powerstone_fire_dmg_10_name" text="{=str_tor_powerstone_fire_dmg_10_name}Lesser Sparkling Fire Ruby" />
-  <string id="tor_powerstone_fire_dmg_10_desc" text="{=str_tor_powerstone_fire_dmg_10_desc}+15% Fire damage" />
-  <string id="tor_powerstone_fire_amp_50_name" text="{=str_tor_powerstone_fire_amp_50_name}Lesser Nourishing Fire Ruby" />
-  <string id="tor_powerstone_fire_amp_50_desc" text="{=str_tor_powerstone_fire_amp_50_desc}+50% Fire amplification" />
-  <string id="tor_powerstone_fire_res_20_name" text="{=str_tor_powerstone_fire_res_20_name}Lesser Heating Fire Ruby" />
-  <string id="tor_powerstone_fire_res_20_desc" text="{=str_tor_powerstone_fire_res_20_desc}+20% Frost and Fire resistance" />
-  <string id="tor_powerstone_light_res_20_name" text="{=str_tor_powerstone_light_res_20_name}Lesser Protecting Lumen Stone" />
-  <string id="tor_powerstone_light_res_20_desc" text="{=str_tor_powerstone_light_res_20_desc}+20% physical resistance" />
-  <string id="tor_powerstone_light_mov_25_name" text="{=str_tor_powerstone_light_mov_25_name}Lesser Timewarp Lumen Stone" />
-  <string id="tor_powerstone_light_mov_25_desc" text="{=str_tor_powerstone_light_mov_25_desc}+25% movementSpeed" />
-  <string id="tor_powerstone_light_dmg_15_name" text="{=str_tor_powerstone_light_dmg_15_name}Lesser Gleaming Lumen Stone" />
-  <string id="tor_powerstone_light_dmg_15_desc" text="{=str_tor_powerstone_light_dmg_15_desc}+15% physical damage amplification" />
-  <string id="tor_powerstone_beast_range_res_25_name" text="{=str_tor_powerstone_beast_range_res_25_name}Lesser Obfuscating Ghost Amber" />
-  <string id="tor_powerstone_beast_range_res_25_desc" text="{=str_tor_powerstone_beast_range_res_25_desc}+25% ranged resistance" />
-  <string id="tor_powerstone_beast_phys_15_name" text="{=str_tor_powerstone_beast_phys_15_name}Lesser Protecting Ghost Amber" />
-  <string id="tor_powerstone_beast_phys_15_desc" text="{=str_tor_powerstone_beast_phys_15_desc}+15% physical resistance" />
-  <string id="tor_powerstone_beast_phys_20_ranged_name" text="{=str_tor_powerstone_beast_phys_20_ranged_name}Lesser Seeking Ghost Amber" />
-  <string id="tor_powerstone_beast_phys_20_ranged_desc" text="{=str_tor_powerstone_beast_phys_20_ranged_desc}Add 20% ranged damage" />
-  <string id="tor_powerstone_life_magical_fire_res_25_name" text="{=str_tor_powerstone_life_magical_fire_res_25_name}Lesser Dampening Vitaellum" />
-  <string id="tor_powerstone_life_magical_fire_res_25_desc" text="{=str_tor_powerstone_life_magical_fire_res_25_desc}Add 25% magical and fire resistance" />
-  <string id="tor_powerstone_life_res_20_name" text="{=str_tor_powerstone_life_res_20_name}Lesser Protecting Vitaellum" />
-  <string id="tor_powerstone_life_res_20_desc" text="{=str_tor_powerstone_life_res_20_desc}Add 20% physical resistance" />
-  <string id="tor_powerstone_life_res_40_debuff_name" text="{=str_tor_powerstone_life_res_40_debuff_name}Lesser Heavy Vitaellum" />
-  <string id="tor_powerstone_life_res_40_debuff_desc" text="{=str_tor_powerstone_life_res_40_debuff_desc}Add 35% physical resistance -35% reduced speed" />
-  <string id="tor_powerstone_heavens_dmg_raged_20_name" text="{=str_tor_powerstone_heavens_dmg_raged_20_name}Lesser Wind Saphire" />
-  <string id="tor_powerstone_heavens_dmg_raged_20_desc" text="{=str_tor_powerstone_heavens_dmg_raged_20_desc}+20% physical ranged damage amplification" />
-  <string id="tor_powerstone_heavens_dmg_20_name" text="{=str_tor_powerstone_heavens_dmg_20_name}Lesser Conductive Saphire" />
-  <string id="tor_powerstone_heavens_dmg_20_desc" text="{=str_tor_powerstone_heavens_dmg_20_desc}+20% lightning melee damage" />
-  <string id="tor_powerstone_heavens_res_25_name" text="{=str_tor_powerstone_heavens_res_25_name}Lesser Dissipation Saphire" />
-  <string id="tor_powerstone_heavens_res_25_desc" text="{=str_tor_powerstone_heavens_res_25_desc}+25% lightning resistance, +25% magical resistance" />
-  <string id="tor_powerstone_metal_dmg_15_name" text="{=str_tor_powerstone_metal_dmg_15_name}Lesser Hardening Goldstone" />
-  <string id="tor_powerstone_metal_dmg_15_desc" text="{=str_tor_powerstone_metal_dmg_15_desc}+15% physical damage" />
-  <string id="tor_powerstone_metal_dmg_20_name" text="{=str_tor_powerstone_metal_dmg_20_name}Lesser Sparkling Goldstone" />
-  <string id="tor_powerstone_metal_dmg_20_desc" text="{=str_tor_powerstone_metal_dmg_20_desc}+20% physical ranged damage" />
-  <string id="tor_powerstone_metal_res_30_debuff_name" text="{=str_tor_powerstone_metal_res_30_debuff_name}Lesser Burdening Goldstone" />
-  <string id="tor_powerstone_metal_res_30_debuff_desc" text="{=str_tor_powerstone_metal_res_30_debuff_desc}+30% physical resistance, 35% reduced speed" />
-  <string id="tor_powerstone_death_dmg_15_name" text="{=str_tor_powerstone_death_dmg_15_name}Lesser Harming Endstone" />
-  <string id="tor_powerstone_death_dmg_15_desc" text="{=str_tor_powerstone_death_dmg_15_desc}+15% physical damage" />
-  <string id="tor_powerstone_death_res_mag_20_name" text="{=str_tor_powerstone_death_res_mag_20_name}Lesser Encouraging Endstone" />
-  <string id="tor_powerstone_death_res_mag_20_desc" text="{=str_tor_powerstone_death_res_mag_20_desc}+20% magic damage resistance" />
-  <string id="tor_powerstone_death_res_30_debuff_name" text="{=str_tor_powerstone_death_res_30_debuff_name}Lesser Deadening Endstone" />
-  <string id="tor_powerstone_death_res_30_debuff_desc" text="{=str_tor_powerstone_death_res_30_debuff_desc}+25% physical resistance, 20% reduced swing-speed" />
-
-  <!-- Powerstone -->
-  <string id="tor_powerstone_choose_title" text="{=str_tor_powerstone_choose_title_text}Choose Powerstone" />
-  <string id="tor_powerstone_choose_description" text="{=str_tor_powerstone_choose_description}Empower your troop with the persisting magical effect of a Powerstone. The effect will reduce the maximum Winds of all magisters sharing the stone's lore while it is active." />
-  <string id="tor_powerstone_inquiry_description" text="{=str_tor_powerstone_inquiry_description}{STONE_ICON}{STONE_NAME} {STONE_PRICE}{PRESTIGE_ICON} Reserved Winds : {STONE_UPKEEP}{WINDS_ICON}" />
-  <string id="tor_powerstone_remove_hint" text="{=str_tor_powerstone_remove_hint}Remove powerstone and recover some prestige." />
-  <string id="tor_powerstone_not_enough_winds" text="{=str_tor_powerstone_not_enough_winds}You don't have enough Winds" />
-  <string id="tor_powerstone_not_experienced_enough" text="{=str_tor_powerstone_not_experienced_enough}Troop is too inexperienced. Requires Tier 4+" />
-  <string id="tor_powerstone_not_enough_prestige" text="{=str_tor_powerstone_not_enough_prestige}You do not have enough prestige to create Powerstones" />
-  <string id="tor_powerstone_remove" text="{=str_tor_powerstone_remove}Remove Powerstone" />
-  <string id="tor_powerstone_apply_tooltip" text="{=str_tor_powerstone_apply_tooltip}Empower troop with a Powerstone" />
-
+  <!-- Powerstone Texts - General -->
+	<string id="tor_powerstone_choose_title" text="{=str_tor_powerstone_choose_title_text}Choose Powerstone" />
+	<string id="tor_powerstone_choose_description" text="{=str_tor_powerstone_choose_description}Empower your troop with the persisting magical effect of a Powerstone. The effect will reduce the maximum Winds of all magisters sharing the stone's lore while it is active." />
+	<string id="tor_powerstone_inquiry_description" text="{=str_tor_powerstone_inquiry_description}{STONE_ICON}{STONE_NAME} {STONE_PRICE}{PRESTIGE_ICON} Reserved Winds : {STONE_UPKEEP}{WINDS_ICON}" />
+	<string id="tor_powerstone_remove_hint" text="{=str_tor_powerstone_remove_hint}Remove powerstone and recover some prestige." />
+	<string id="tor_powerstone_not_enough_winds" text="{=str_tor_powerstone_not_enough_winds}You don't have enough Winds" />
+	<string id="tor_powerstone_not_experienced_enough" text="{=str_tor_powerstone_not_experienced_enough}Troop is too inexperienced. Requires Tier 4+" />
+	<string id="tor_powerstone_not_enough_prestige" text="{=str_tor_powerstone_not_enough_prestige}You do not have enough prestige to create Powerstones" />
+	<string id="tor_powerstone_remove" text="{=str_tor_powerstone_remove}Remove Powerstone" />
+	<string id="tor_powerstone_apply_tooltip" text="{=str_tor_powerstone_apply_tooltip}Empower troop with a Powerstone" />
+	
   <!-- Powerstone Texts - Greater -->
   <string id="tor_powerstone_fire_dmg_35_name" text="{=str_tor_powerstone_fire_dmg_35_name}Greater Enlightening Fire Ruby" />
   <string id="tor_powerstone_fire_dmg_35_desc" text="{=str_tor_powerstone_fire_dmg_35_desc}+50% Fire amplification, 15% Fire damage+30%" />
@@ -5686,7 +5028,7 @@
   <string id="tor_encyclopedia_filter_campaign_issues" text="{=str_tor_encyclopedia_filter_campaign_issues}Campaign Issues" />
   <string id="tor_encyclopedia_filter_types" text="{=str_tor_encyclopedia_filter_types}Types" />
 
-  <!-- Quartermaster/Shop Texts -->
+  <!-- Quartermaster/Kwartamasta Texts -->
   <string id="tor_gs_quartermaster_intro_text" text="{=str_tor_gs_quartermaster_intro_text}Yoo dere, youz got sumfing fer da Boss?" />
   <string id="tor_gs_quartermaster_anything_else_text" text="{=str_tor_gs_quartermaster_anything_else_text}Wot, youz got more?" />
   <string id="tor_gs_quartermaster_shinies_option_text" text="{=str_tor_gs_quartermaster_shinies_option_text}Shinies" />
@@ -5695,21 +5037,6 @@
   <string id="tor_gs_quartermaster_owner_intro_text" text="{=str_tor_gs_quartermaster_owner_intro_text}Oi, Boss, youz got sum loot fer da pile?" />
   <string id="tor_gs_quartermaster_owner_anything_else_text" text="{=str_tor_gs_quartermaster_owner_anything_else_text}Iz dere more, Boss?" />
   <string id="tor_gs_quartermaster_make_teefbags_option_text" text="{=str_tor_gs_quartermaster_make_teefbags_option_text}Make Teefbags" />
-  <string id="tor_dw_shop_show_goods_text" text="{=str_tor_dw_shop_show_goods_text}Very well, take a look at our inventions." />
-  <string id="tor_dw_engineer_buy_weapons_text" text="{=str_tor_dw_engineer_buy_weapons_text}I need better gear, Master Engineer." />
-  <string id="tor_dw_quit_text" text="{=str_tor_dw_quit_text}That will be all." />
-  <string id="tor_dw_engineer_recruit_crew_text" text="{=str_tor_dw_engineer_recruit_crew_text}I require reliable crewmen to operate my artillery." />
-  <string id="tor_dw_engineer_recruit_crew_offer_text" text="{=str_tor_dw_engineer_recruit_crew_offer_text}Aye, a pair of our beardlings are eager to prove themselves. It'll cost ye {ENGINEER_GOLD_PRICE}{GOLD_ICON} and {ENGINEER_OATHGOLD_PRICE} Oathgold." />
-  <string id="tor_dw_engineer_recruit_crew_accept_text" text="{=str_tor_dw_engineer_recruit_crew_accept_text}They'll serve the hold well." />
-  <string id="tor_dw_engineer_recruit_crew_no_funds_text" text="{=str_tor_dw_engineer_recruit_crew_no_funds_text}I don't have enough coin or Oathgold right now." />
-  <string id="tor_dw_engineer_recruit_crew_decline_text" text="{=str_tor_dw_engineer_recruit_crew_decline_text}Maybe another time." />
-
-  <!-- Gs -->
-  <string id="tor_gs_quartermaster_shinies_option_text_owner" text="{=str_tor_gs_quartermaster_shinies_option_text_owner}Shinies for me pile" />
-  <string id="tor_gs_give_items_to_boss_text" text="{=str_tor_gs_quartermaster_inventory_menu}Give Items to the Big Boss" />
-  <string id="tor_gs_spend_gold_description_text_teef" text="{=str_tor_gs_spend_gold_description_text_teef}The Big Boss takes your shinies. How much would you like to spend to obtain some Teef?" />
-  <string id="tor_gs_spend_gold_description_text_piles" text="{=str_tor_gs_spend_gold_description_text_piles}We takes your shinies Big Boss. How much for da loot pile (Stash)?" />
-
   <!-- Priest Dialog Texts -->
   <string id="tor_priest_start_accept" text="{=str_tor_priest_start_accept}Welcome, faithful one. How may I serve you today?" />
   <string id="tor_priest_start_decline" text="{=str_tor_priest_start_decline}I am sorry, but I can only help those who follow our faith." />
@@ -5927,7 +5254,7 @@
   <string id="tor_settlement_graveyard_raise_dead_interrupt_action" text="{=str_tor_settlement_graveyard_raise_dead_interrupt_action}Defend yourself" />
   <string id="tor_settlement_graveyard_closed" text="{=str_tor_settlement_graveyard_closed}The Graveyard's massive iron gates are closed shut." />
 
-  <!-- Ironingot6 -->
+  <!-- Other Missing Texts -->
   <string id="tor_ironingot6_name" text="{=str_tor_ironingot6_name}Gromril{@Plural}loads of gromril{\@}" />
 
   <!-- Diplomacy -->
@@ -5981,62 +5308,8 @@
   <string id="str_formation_ai_behavior_text.TORBehaviorProtectArtillery" text="{=str_tor_formation_ai_behavior_text_torbehaviorprotectartillery}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are protecting artillery." />
   <string id="str_formation_ai_behavior_text.TORBehaviorRetreat" text="{=str_tor_formation_ai_behavior_text_torbehaviorretreat}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are retreating." />
   <string id="str_formation_ai_behavior_text.TORBehaviorSkirmish" text="{=str_tor_formation_ai_behavior_text_torbehaviorskirmish}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are skirmishing." />
-
-  <!-- Units - Wood Elves -->
-  <string id="tor_we_scout" text="{=str_tor_we_scout}Asrai Ranger" />
-  <string id="tor_we_kings_bowman" text="{=str_tor_we_kings_bowman}Asrai Kings Bowman" />
-
-  <!-- Units - Test -->
-  <string id="tor_test_subject" text="{=str_tor_test_subject}Test Subject" />
-
-  <!-- Factions - Beastmen -->
-  <string id="str_tor_culture_beastmen" text="{=str_tor_culture_beastmen}Beastmen" />
-  <string id="str_tor_kingdom_beastmen" text="{=str_tor_kingdom_beastmen}Beastmen Herds" />
-  <string id="str_tor_kingdom_beastmen_short" text="{=str_tor_kingdom_beastmen_short}Beastmen" />
-  <string id="str_tor_kingdom_beastmen_title" text="{=str_tor_kingdom_beastmen_title}Beastmen Herds" />
-  <string id="str_tor_kingdom_beastmen_ruler" text="{=str_tor_kingdom_beastmen_ruler}Beastlord" />
-  <string id="str_tor_kingdom_beastmen_text" text="{=str_tor_kingdom_beastmen_text}The scattered herds of Chaos-corrupted beast-kin that stalk the Drakwald and the deep places of the Empire. Ruled by no crown but might, they raid the borderlands from herdstone-shadowed hollows in the trees." />
-  <string id="str_tor_clan_beastmen_1" text="{=str_tor_clan_beastmen_1}Great Herd" />
-  <string id="str_tor_clan_beastmen_1_text" text="{=str_tor_clan_beastmen_1_text}The paramount warherd of the Drakwald, gathered under the horns of the current Beastlord." />
-  <string id="str_tor_hero_beastmen_leader_text" text="{=str_tor_hero_beastmen_leader_text}The current Beastlord of the Great Herd, whose horns and hooves rule by fear and by strength alone." />
-  <string id="str_tor_beastmen_lord_factionleader" text="{=str_tor_beastmen_lord_factionleader}[TODO] The Beastlord" />
-  <string id="str_culture_rich_name.beastmen" text="{=str_culture_rich_name.beastmen}[TODO] Beastmen of Chaos" />
-  <string id="str_culture_description.beastmen" text="{=str_culture_description.beastmen}[TODO] The Beastmen are the twisted children of Chaos, mutated descendants of humans corrupted by the dark energies that flow from the north. They lurk in the deepest forests of the Old World, gathering in savage warherds around their herdstones. Driven by an instinctive hatred of civilization and all its works, the Beastmen live only to tear down what others have built. When the horns sound and the Beastlords rally their herds, the forests disgorge a tide of cloven-hoofed fury that sweeps away all in its path." />
-  <string id="str_faction_formal_name_for_culture.beastmen" text="{=str_faction_formal_name_for_culture.beastmen}[TODO] Beastmen Warherds" />
-  <string id="str_faction_informal_name_for_culture.beastmen" text="{=str_faction_informal_name_for_culture.beastmen}[TODO] the Beastmen" />
-  <string id="str_adjective_for_culture.beastmen" text="{=str_adjective_for_culture.beastmen}[TODO] beastman" />
-  <string id="str_neutral_term_for_culture.beastmen" text="{=str_neutral_term_for_culture.beastmen}[TODO] beastmen" />
-
-  <!-- Custom Resources - Beastmen -->
-  <string id="tor_custom_resource_name.DarkOmen" text="{=str_tor_custom_resource_name.DarkOmen}[TODO] Dark Omen" />
-  <string id="tor_custom_resource_description.DarkOmen" text="{=str_tor_custom_resource_description.DarkOmen}[TODO] A measure of the dark favor bestowed upon the herd by the Chaos Gods. Used to perform dark rituals and summon reinforcements." />
-
-  <!-- POIs - Wizard Hall -->
-  <string id="tor_poi_wizardhall.Name" text="{=str_tor_poi_wizardhall.Name}Wizard Hall" />
-  <string id="tor_poi_wizardhall.EnterLabel" text="{=str_tor_poi_wizardhall.EnterLabel}Visit the Wizard Hall" />
-  <string id="tor_poi_wizardhall.Undiscovered" text="{=str_tor_poi_wizardhall.Undiscovered}You have not yet found this place." />
-  <string id="tor_poi_wizardhall.Sealed" text="{=str_tor_poi_wizardhall.Sealed}This place is sealed." />
-  <string id="tor_poi_wizardhall.SiegeSealed" text="{=str_tor_poi_wizardhall.SiegeSealed}The gates of the College are sealed during the siege." />
-  <string id="tor_poi_wizardhall.Rejected" text="{=str_tor_poi_wizardhall.Rejected}The wards of the College turn you away." />
-  <string id="tor_poi_wizardhall.MustHaveCareer" text="{=str_tor_poi_wizardhall.MustHaveCareer}Only {REQUIRED_CAREER} may enter the College." />
-
-  <!-- POIs - Witch Hunter Lodge -->
-  <string id="tor_poi_witchhunter_lodge.Name" text="{=str_tor_poi_witchhunter_lodge.Name}Witch Hunter Lodge" />
-  <string id="tor_poi_witchhunter_lodge.EnterLabel" text="{=str_tor_poi_witchhunter_lodge.EnterLabel}Visit the Witch Hunter Lodge" />
-  <string id="tor_poi_witchhunter_lodge.Undiscovered" text="{=str_tor_poi_witchhunter_lodge.Undiscovered}You have not yet found this place." />
-  <string id="tor_poi_witchhunter_lodge.Sealed" text="{=str_tor_poi_witchhunter_lodge.Sealed}This place is sealed." />
-  <string id="tor_poi_witchhunter_lodge.SiegeSealed" text="{=str_tor_poi_witchhunter_lodge.SiegeSealed}The lodge is closed during the siege." />
-  <string id="tor_poi_witchhunter_lodge.Rejected" text="{=str_tor_poi_witchhunter_lodge.Rejected}The templars turn you away." />
-
-  <!-- POIs - Empire Engineer Hall -->
-  <string id="tor_poi_empire_engineer_hall.Name" text="{=str_tor_poi_empire_engineer_hall.Name}Empire Engineer Hall" />
-  <string id="tor_poi_empire_engineer_hall.EnterLabel" text="{=str_tor_poi_empire_engineer_hall.EnterLabel}Visit the Empire Engineer Hall" />
-  <string id="tor_poi_empire_engineer_hall.Undiscovered" text="{=str_tor_poi_empire_engineer_hall.Undiscovered}You have not yet found this place." />
-  <string id="tor_poi_empire_engineer_hall.Sealed" text="{=str_tor_poi_empire_engineer_hall.Sealed}This place is sealed." />
-  <string id="tor_poi_empire_engineer_hall.SiegeSealed" text="{=str_tor_poi_empire_engineer_hall.SiegeSealed}The gates of the Engineer Hall are sealed during the siege." />
-  <string id="tor_poi_empire_engineer_hall.Rejected" text="{=str_tor_poi_empire_engineer_hall.Rejected}The engineers turn you away." />
-  <string id="tor_poi_empire_engineer_hall.WrongCulture" text="{=str_tor_poi_empire_engineer_hall.WrongCulture}The Imperial engineers only serve those of the Empire." />
-
-  <!-- POIs - Smoke Test -->
-  <string id="tor_test_mcp_linkedfield_verification" text="{=str_tor_test_mcp_linkedfield_verification}Smoke test — safe to delete." />
+  <string id="str_formation_ai_sergeant_instruction_behaviour_text.TORBehaviorCharge" text="{=str_formation_ai_sergeant_instruction_behaviour_text.torbehaviorcharge}{TROOP_NAMES_BEGIN}{?IS_PLURAL} and {?}{\?}{TROOP_NAMES_END} are Charging." />
+  <string id="tor_we_scout" text="{=str_tor_we_scout}Asrai Ranger" category="Units" subcategory="Wood Elves" />
+  <string id="tor_we_kings_bowman" text="{=str_tor_we_kings_bowman}Asrai Kings Bowman" category="Units" subcategory="Wood Elves" />
+  <string id="tor_test_subject" text="{=str_tor_test_subject}Test Subject" category="Units" subcategory="Test" />
 </strings>

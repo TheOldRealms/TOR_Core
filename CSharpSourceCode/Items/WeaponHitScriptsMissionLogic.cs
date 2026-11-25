@@ -112,7 +112,7 @@ namespace TOR_Core.Items
                     agent.IsActive() &&
                     agent.Health > 0f &&
                     !agent.IsFadingOut() &&
-                    (agent.Character?.Culture?.StringId == TORConstants.Cultures.BEASTMEN || agent.Character?.Culture?.StringId == TORConstants.Cultures.BEASTMEN_BANDIT))
+                    agent.Character?.Culture?.StringId == TORConstants.Cultures.BEASTMEN)
                 .ToList();
 
             if (beastmen.Count == 0)
