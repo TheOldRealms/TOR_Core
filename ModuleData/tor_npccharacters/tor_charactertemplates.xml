@@ -2608,7 +2608,6 @@
       <EquipmentSet id="tor_weapon_practice_stage_3_khuzait_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-<<<<<<< HEAD
   <NPCCharacter id="tor_wanderer_dawi_3" default_group="infantry" name="{=str_tor_wanderer_dawi_3}{FIRSTNAME} the Slayer" occupation="Wanderer" culture="Culture.sturgia" voice="ironic" age="30" race="dwarf" skill_template="SkillSet.tor_skills_wanderer_slayer" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.dwarf_slayer_companion" />
@@ -2631,6 +2630,4 @@
       <EquipmentSet id="tor_wanderer_dawi_slayer_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-=======
->>>>>>> parent of ba8d4da7 (Beastmen clans, companions and Cygor recruitment)
 </NPCCharacters>
