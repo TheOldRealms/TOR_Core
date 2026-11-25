@@ -35085,115 +35085,87 @@
   <EquipmentRoster id="tor_beast_ungor_template" culture="Culture.steppe_bandits">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_axe_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_axe_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_axe_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_axe_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_axe_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_axe_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_axe_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_axe_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_sword_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_sword_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_sword_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_sword_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_sword_ungor_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_sword_ungor_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_sword_ungor_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_sword_ungor_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_spear_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_spear_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_spear_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_spear_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_spear_ungor_002" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_spear_ungor_002" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_spear_ungor_002" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_spear_ungor_002" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_spear_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_spear_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_spear_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_spear_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_beast_shielded_ungor_template" culture="Culture.steppe_bandits">
@@ -35810,221 +35782,6 @@
       <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
     </EquipmentSet>
   </EquipmentRoster>
-<<<<<<< HEAD
-  <EquipmentRoster id="tor_beastmen_mercenary_lord_heavy_template" culture="Culture.beastmen">
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item1" id="Item.northern_round_shield" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item1" id="Item.northern_round_shield" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item1" id="Item.northern_round_shield" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item1" id="Item.northern_round_shield" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
-      <Equipment slot="Item1" id="Item.strapped_round_shield" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
-      <Equipment slot="Item1" id="Item.strapped_round_shield" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
-      <Equipment slot="Item1" id="Item.strapped_round_shield" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
-      <Equipment slot="Item1" id="Item.strapped_round_shield" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_bestigor_shoulderpads_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_bestigor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_bestigor_001" />
-    </EquipmentSet>
-  </EquipmentRoster>
-  <EquipmentRoster id="tor_beastmen_mercenary_lord_light_template" culture="Culture.beastmen">
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.sturgia_2haxe_2_t5" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item1" id="Item.northern_round_shield" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item1" id="Item.northern_round_shield" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item1" id="Item.northern_round_shield" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.sturgia_axe_5_t5" />
-      <Equipment slot="Item1" id="Item.northern_round_shield" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
-      <Equipment slot="Item1" id="Item.strapped_round_shield" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
-      <Equipment slot="Item1" id="Item.strapped_round_shield" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian">
-      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
-      <Equipment slot="Item1" id="Item.strapped_round_shield" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-    <EquipmentSet equipmentType="Civilian" civilian="true">
-      <Equipment slot="Item0" id="Item.pointed_falchion_sword_t4" />
-      <Equipment slot="Item1" id="Item.strapped_round_shield" />
-      <Equipment slot="Head" id="Item.tor_beastmen_head_bestigor_facemask_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_bestigor_001" />
-      <Equipment slot="Cape" id="Item.tor_beastmen_shoulder_necklace_001" />
-      <Equipment slot="Gloves" id="Item.tor_beastmen_arm_bracers_gor_001" />
-      <Equipment slot="Leg" id="Item.tor_beastmen_legs_gor_001" />
-    </EquipmentSet>
-  </EquipmentRoster>
-=======
->>>>>>> parent of ba8d4da7 (Beastmen clans, companions and Cygor recruitment)
   <EquipmentRoster id="tor_beast_minotaur_template" culture="Culture.steppe_bandits">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_greataxe_minotaur_001" />
@@ -36170,197 +35927,141 @@
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_002" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_002" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_002" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_002" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_001" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_002" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_002" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_002" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_002" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_003" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.steppe_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.default_arrows" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_beast_ungor_raider_chief_template" culture="Culture.steppe_bandits">
@@ -36369,96 +36070,72 @@
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_002" />
       <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_002" />
       <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_002" />
       <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_002" />
       <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_003" />
       <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_003" />
       <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_003" />
       <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_003" />
       <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_003" />
       <Equipment slot="Cape" id="Item.battania_shoulder_strap" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_003" />
       <Equipment slot="Cape" id="Item.battania_shoulder_strap" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_003" />
       <Equipment slot="Cape" id="Item.battania_shoulder_strap" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_003" />
       <Equipment slot="Cape" id="Item.battania_shoulder_strap" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.lowland_longbow" />
@@ -36497,64 +36174,48 @@
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_001" />
       <Equipment slot="Cape" id="Item.a_khuzait_leather_shoulder_b_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_001" />
       <Equipment slot="Cape" id="Item.a_khuzait_leather_shoulder_b_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_001" />
       <Equipment slot="Cape" id="Item.a_khuzait_leather_shoulder_b_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_sword_ungor_001" />
       <Equipment slot="Cape" id="Item.a_khuzait_leather_shoulder_b_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_spear_ungor_002" />
       <Equipment slot="Cape" id="Item.a_khuzait_leather_shoulder_b_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_spear_ungor_002" />
       <Equipment slot="Cape" id="Item.a_khuzait_leather_shoulder_b_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_spear_ungor_002" />
       <Equipment slot="Cape" id="Item.a_khuzait_leather_shoulder_b_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian" civilian="true">
       <Equipment slot="Item0" id="Item.lowland_longbow" />
       <Equipment slot="Item1" id="Item.barbed_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_spear_ungor_002" />
       <Equipment slot="Cape" id="Item.a_khuzait_leather_shoulder_b_b" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
-      <Equipment slot="Item3" id="Item.barbed_arrows" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.lowland_longbow" />

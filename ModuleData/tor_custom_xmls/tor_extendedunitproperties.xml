@@ -3485,7 +3485,6 @@
       <string>Frenzy</string>
       <string>MonsterAttack</string>
       <string>Monstrous</string>
-      <string>Piercing</string>
     </Attributes>
     <AdditionalHealth>350</AdditionalHealth>
     <Resistances />
@@ -3500,7 +3499,6 @@
     <Abilities />
     <Attributes>
       <string>Expendable</string>
-      <string>Swift</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -3512,7 +3510,6 @@
     <Abilities />
     <Attributes>
       <string>Expendable</string>
-      <string>Swift</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -3524,7 +3521,6 @@
     <Abilities />
     <Attributes>
       <string>Expendable</string>
-      <string>Swift</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -3536,7 +3532,6 @@
     <Abilities />
     <Attributes>
       <string>Expendable</string>
-      <string>Swift</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -3546,10 +3541,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastmen_ungor_chief">
     <Abilities />
-    <Attributes>
-      <string>Swift</string>
-      <string>MonsterSlayer</string>
-    </Attributes>
+    <Attributes />
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -3558,66 +3550,47 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastmen_gor">
     <Abilities />
-    <Attributes>
-      <string>Swift</string>
-    </Attributes>
+    <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastmen_gor_foerender">
     <Abilities />
-    <Attributes>
-      <string>Swift</string>
-    </Attributes>
+    <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastmen_gor_manripper">
     <Abilities />
-    <Attributes>
-      <string>Swift</string>
-      <string>Piercing</string>
-    </Attributes>
+    <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastmen_gor_gougehorn">
     <Attributes>
-      <string>Crushing</string>
-      <string>Swift</string>
-      <string>Piercing</string>
+      <string>MonsterAttack</string>
     </Attributes>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
-    </DamageAmplifiers>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastmen_minotaur">
     <Abilities />
     <Attributes>
+      <string>Unbreakable</string>
       <string>Unstoppable</string>
       <string>Frenzy</string>
       <string>Crushing</string>
       <string>Monstrous</string>
-      <string>Swift2</string>
-      <string>Piercing</string>
     </Attributes>
     <AdditionalHealth>350</AdditionalHealth>
     <Resistances />
@@ -7812,8 +7785,6 @@
     </Abilities>
     <Attributes>
       <string>Tough</string>
-      <string>AbilityUser</string>
-      <string>Runesmith</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_first_6">
@@ -11229,35 +11200,21 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <Attributes>
-      <string>Swift</string>
-    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastman_pestigor">
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <Attributes>
-      <string>Swift</string>
-      <string>Bulwark</string>
-      <string>Piercing</string>
-    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastman_slaangor">
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <Attributes>
-      <string>Swift</string>
-    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_beastman_tzaangor">
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <Attributes>
-      <string>Swift</string>
-    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lost_son">
     <Attributes>
@@ -11284,294 +11241,26 @@
   <CharacterExtendedInfo id="tor_cygor">
     <Attributes>
       <string>Unstoppable</string>
-      <string>Swift</string>
-      <string>Piercing</string>
-      <string>Monstrous</string>
+      <string>Tough</string>
+      <string>MonsterAttack</string>
+      <string>CannotClimbLadders</string>
     </Attributes>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
     <Resistances>
-      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.80" />
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.70" />
     </Resistances>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_giant">
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <Attributes>
-      <string>Bulwark2</string>
-    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_ghoul">
     <Attributes>
       <string>Undead</string>
     </Attributes>
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-1.00" />
-    </Resistances>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_br_fey_1">
-    <Abilities>
-      <string>Regrowth</string>
-      <string>Thunderbolt</string>
-      <string>TanglingThorn</string>
-      <string>AuraOfTheLady</string>
-      <string>ShieldOfCombat</string>
-      <string>LadysFavour</string>
-      <string>AerialShield</string>
-    </Abilities>
-    <Attributes>
-      <string>SpellCaster</string>
-      <string>AbilityUser</string>
-      <string>PriestLady</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_br_fey_leader">
-    <Abilities>
-      <string>DwellersBelow</string>
-      <string>TheGreenEye</string>
-      <string>Barkskin</string>
-      <string>SummerHeat</string>
-      <string>Regrowth</string>
-      <string>DrainLife</string>
-      <string>StormOfRenewal</string>
-      <string>ShieldOfThorns</string>
-      <string>LightningBolt</string>
-      <string>WindBlast</string>
-      <string>ChainLightning</string>
-      <string>HarmonicConvergence</string>
-      <string>Blizzard</string>
-      <string>CometOfCasandora</string>
-      <string>Thunderbolt</string>
-      <string>CurseOfMidnightWind</string>
-      <string>AmberSpear</string>
-      <string>TanglingThorn</string>
-      <string>PannsImpenetrablePelt</string>
-      <string>HailStorm</string>
-      <string>FlockOfDoom</string>
-      <string>TheBeastUnleashed</string>
-      <string>CurseOfAnraheir</string>
-      <string>AuraOfTheLady</string>
-      <string>ShieldOfCombat</string>
-      <string>LadysFavour</string>
-      <string>AerialShield</string>
-    </Abilities>
-    <Attributes>
-      <string>SpellCaster</string>
-      <string>LegendaryLord</string>
-      <string>AbilityUser</string>
-      <string>PriestLady</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_br_fey_2">
-    <Abilities>
-      <string>Regrowth</string>
-      <string>Thunderbolt</string>
-      <string>TanglingThorn</string>
-      <string>AuraOfTheLady</string>
-      <string>ShieldOfCombat</string>
-      <string>LadysFavour</string>
-      <string>AerialShield</string>
-    </Abilities>
-    <Attributes>
-      <string>SpellCaster</string>
-      <string>AbilityUser</string>
-      <string>PriestLady</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_br_fey_3">
-    <Abilities>
-      <string>Regrowth</string>
-      <string>Thunderbolt</string>
-      <string>TanglingThorn</string>
-      <string>AuraOfTheLady</string>
-      <string>ShieldOfCombat</string>
-      <string>LadysFavour</string>
-      <string>AerialShield</string>
-    </Abilities>
-    <Attributes>
-      <string>SpellCaster</string>
-      <string>AbilityUser</string>
-      <string>PriestLady</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_empire_duke_champion">
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <Attributes>
-      <string>Piercing</string>
-      <string>Unbreakable</string>
-    </Attributes>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="6" />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_empire_knight">
-    <Attributes>
-      <string>EmpireKnight</string>
-    </Attributes>
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_empire_reiksguard_innercircle_knight">
-    <Attributes>
-      <string>EmpireKnight</string>
-    </Attributes>
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-  </CharacterExtendedInfo>
-<<<<<<< HEAD
-  <CharacterExtendedInfo id="tor_beastmen_mercenary_wargor_template">
-    <Abilities />
-    <Attributes />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_beastmen_mercenary_beastlord_template">
-    <Abilities />
-    <Attributes />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_beastmen_lord_hryndyr">
-    <Abilities />
-    <Attributes />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_beastmen_lord_koka_dudlu">
-    <Abilities>
-      <string>AmberSpear</string>
-      <string>TanglingThorn</string>
-      <string>PannsImpenetrablePelt</string>
-      <string>HailStorm</string>
-      <string>FlockOfDoom</string>
-      <string>TheBeastUnleashed</string>
-      <string>CurseOfAnraheir</string>
-    </Abilities>
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>SpellCaster</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_beastmen_lord_khazrak">
-    <Abilities />
-    <Attributes />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_beastmen_lord_khazsnorr">
-    <Abilities />
-    <Attributes />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_beastmen_lord_wunsru">
-    <Abilities>
-      <string>AmberSpear</string>
-      <string>TanglingThorn</string>
-      <string>PannsImpenetrablePelt</string>
-      <string>HailStorm</string>
-      <string>FlockOfDoom</string>
-      <string>TheBeastUnleashed</string>
-      <string>CurseOfAnraheir</string>
-    </Abilities>
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>SpellCaster</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_beastmen_lord_khorok">
-    <Abilities />
-    <Attributes />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_beastmen_lord_dhrothok">
-    <Abilities />
-    <Attributes />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_beastmen_lord_morghur">
-    <Abilities>
-      <string>TasteOfDeath</string>
-      <string>AshesAndDust</string>
-      <string>PurpleSun</string>
-      <string>FateOfBjuna</string>
-      <string>Amaranth</string>
-      <string>SpiritLeech</string>
-      <string>CaressOfLaniph</string>
-    </Abilities>
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>SpellCaster</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_beastmen_lord_akhbarz">
-    <Abilities />
-    <Attributes />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_beastmen_lord_morbagh">
-    <Abilities />
-    <Attributes />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_beastmen_lord_gnarl_tooth">
-    <Abilities>
-      <string>AmberSpear</string>
-      <string>TanglingThorn</string>
-      <string>PannsImpenetrablePelt</string>
-      <string>HailStorm</string>
-      <string>FlockOfDoom</string>
-      <string>TheBeastUnleashed</string>
-      <string>CurseOfAnraheir</string>
-    </Abilities>
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>SpellCaster</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_gs_savage_orc">
-    <Attributes>
-      <string>Frenzy</string>
-    </Attributes>
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" />
-    </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.40" />
-    </DamageAmplifiers>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_gs_savage_orc_copy">
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.35" />
-    </Resistances>
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.40" />
-    </DamageAmplifiers>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_chaos_nefarious_of_chaos">
-    <Attributes>
-      <string>Expendable</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_chaos_lord_skulltakers_first_2">
-    <Attributes>
-      <string>EncyclopediaHelmet</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_chaos_lord_skulltakers_first_3">
-    <Attributes>
-      <string>EncyclopediaHelmet</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_chaos_lord_skulltakers_first_4">
-    <Attributes>
-      <string>EncyclopediaHelmet</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_chaos_lord_skulltakers_first_6">
-    <Attributes>
-      <string>EncyclopediaHelmet</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-=======
->>>>>>> parent of ba8d4da7 (Beastmen clans, companions and Cygor recruitment)
+  <DamageProportions><DamageProportionTuple DamageType="Physical" Percent="1.00" /></DamageProportions><Resistances><ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" /></Resistances></CharacterExtendedInfo>
+>>>>>>> parent of 09427a30 (Attributes for beastman roster)
 </ArrayOfCharacterExtendedInfo>
