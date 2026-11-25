@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="oak_of_ages" name="{=str_tor_settlements_oak_of_ages}Oak of Ages" owner="Faction.athel_loren_clan_1" posX="1218.711" posY="798.5" culture="Culture.battania" text="{=!}Oak of Ages" gate_posX="1218.711" gate_posY="798.5">
@@ -95,41 +95,26 @@
     <Components>
       <Shrine id="grove_of_the_lady_01" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_lady" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
-    <Locations complex_template="LocationComplexTemplate.shrine_lady_complex">
-      <Location id="tor_bretonnia_forest_trainer_shrine" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
-    </Locations>
   </Settlement>
   <Settlement id="grove_of_the_lady_02" name="{=str_tor_settlements_grove_lady2}Grove of the Lady" owner="Faction.bastonne_clan_1" posX="1038.792" posY="1070.953" culture="Culture.vlandia" text="{=!}Grove of the Lady" gate_posX="1038.792" gate_posY="1070.953">
     <Components>
       <Shrine id="grove_of_the_lady_02" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_lady" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
-    <Locations complex_template="LocationComplexTemplate.shrine_lady_complex">
-      <Location id="tor_bretonnia_forest_trainer_shrine" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
-    </Locations>
   </Settlement>
   <Settlement id="grove_of_the_lady_03" name="{=str_tor_settlements_grove_lady3}Grove of the Lady" owner="Faction.couronne_clan_1" posX="1060.126" posY="1260.541" culture="Culture.vlandia" text="{=!}Grove of the Lady" gate_posX="1060.126" gate_posY="1260.541">
     <Components>
       <Shrine id="grove_of_the_lady_03" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_lady" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
-    <Locations complex_template="LocationComplexTemplate.shrine_lady_complex">
-      <Location id="tor_bretonnia_forest_trainer_shrine" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
-    </Locations>
   </Settlement>
   <Settlement id="grove_of_the_lady_04" name="{=str_tor_settlements_grove_lady4}Grove of the Lady" owner="Faction.artois_clan_1" posX="968.873" posY="1157.072" culture="Culture.vlandia" text="{=!}Grove of the Lady" gate_posX="968.873" gate_posY="1157.072">
     <Components>
       <Shrine id="grove_of_the_lady_04" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_lady" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
-    <Locations complex_template="LocationComplexTemplate.shrine_lady_complex">
-      <Location id="tor_bretonnia_forest_trainer_shrine" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
-    </Locations>
   </Settlement>
   <Settlement id="grove_of_the_lady_05" name="{=str_tor_settlements_grove_lady5}Grove of the Lady" owner="Faction.lyonesse_clan_1" posX="851.747" posY="1174.426" culture="Culture.vlandia" text="{=!}Grove of the Lady" gate_posX="851.747" gate_posY="1174.426">
     <Components>
       <Shrine id="grove_of_the_lady_05" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_lady" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
-    <Locations complex_template="LocationComplexTemplate.shrine_lady_complex">
-      <Location id="tor_bretonnia_forest_trainer_shrine" scene_name="TOR_POI_bretonnia_ladyshrine_001_atmo_w_night" />
-    </Locations>
   </Settlement>
   <Settlement id="myrmidia_shrine_01" name="{=str_tor_settlements_myrmidia_shrine01}Shrine of Myrmidia" owner="Faction.talabecland_clan_1" posX="1429.137" posY="1129.217" culture="Culture.vlandia" text="{=!}Shrine of Myrmidia" gate_posX="1429.137" gate_posY="1129.217">
     <Components>
@@ -697,10 +682,9 @@
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
-      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_2" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -936,10 +920,9 @@
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
-      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_2" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -1357,7 +1340,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_vampire_crypt" scene_name="TOR_vampire_magister_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -1496,7 +1478,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_vampire_crypt" scene_name="TOR_vampire_magister_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -1843,12 +1824,10 @@
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_01" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
-      <Location id="house_1" scene_name="empire_house_d_interior_house" />
+      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
       <Location id="house_2" scene_name="TOR_engineer_office_002" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_wizardhall" scene_name="TOR_wizard_hall_001_atmo_w_night" />
-      <Location id="tor_empire_engineer_hall" scene_name="TOR_engineer_office_002" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -1954,10 +1933,9 @@
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
-      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_2" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -3199,11 +3177,10 @@
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
-      <Location id="house_1" scene_name="empire_house_d_interior_house" />
+      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_wizardhall" scene_name="TOR_wizard_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -3401,10 +3378,9 @@
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
-      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_2" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -3802,11 +3778,10 @@
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
-      <Location id="house_1" scene_name="empire_house_d_interior_house" />
+      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_wizardhall" scene_name="TOR_wizard_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -4446,10 +4421,9 @@
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
-      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_2" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -4535,10 +4509,9 @@
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
-      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_2" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -5765,10 +5738,9 @@
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_stealth" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
-      <Location id="house_2" scene_name="empire_house_d_interior_house" />
+      <Location id="house_2" scene_name="TOR_POI_empire_witch_hunter_chapterhouse" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_witchhunter_lodge" scene_name="TOR_POI_empire_witch_hunter_house_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -6113,7 +6085,6 @@
       <Location id="center" scene_name="TOR_vampire_melkhior_tower_atmo_w_night" scene_name_1="TOR_vampire_melkhior_tower_atmo_w_night" scene_name_2="TOR_vampire_melkhior_tower_atmo_w_night" scene_name_3="TOR_vampire_melkhior_tower_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_vampire_keep_001" scene_name_2="TOR_vampire_keep_001" scene_name_3="TOR_vampire_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_stealth" />
-      <Location id="tor_vampire_crypt" scene_name="TOR_vampire_magister_001" />
     </Locations>
   </Settlement>
   <!-- Laurelorn -->
@@ -10371,7 +10342,6 @@
       <Location id="house_2" scene_name="vlandia_house_d_interior_house" />
       <Location id="house_3" scene_name="vlandia_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_vampire_crypt" scene_name="TOR_vampire_magister_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -10573,7 +10543,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_spellsingers_grove" scene_name="TOR_POI_spellsinger_cave_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -10662,7 +10631,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_spellsingers_grove" scene_name="TOR_POI_spellsinger_cave_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -10725,7 +10693,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_spellsingers_grove" scene_name="TOR_POI_spellsinger_cave_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -10802,7 +10769,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_spellsingers_grove" scene_name="TOR_POI_spellsinger_cave_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -10892,7 +10858,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_spellsingers_grove" scene_name="TOR_POI_spellsinger_cave_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -10942,7 +10907,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_spellsingers_grove" scene_name="TOR_POI_spellsinger_cave_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -11255,8 +11219,6 @@
       <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -11420,8 +11382,6 @@
       <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -11585,8 +11545,6 @@
       <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -11737,8 +11695,6 @@
       <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -11889,8 +11845,6 @@
       <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -11991,8 +11945,6 @@
       <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -12056,8 +12008,6 @@
       <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -12195,8 +12145,6 @@
       <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -12347,8 +12295,6 @@
       <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -12462,8 +12408,6 @@
       <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -12614,8 +12558,6 @@
       <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -12678,8 +12620,6 @@
       <Location id="house_2" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_runehall" scene_name="TOR_POI_dwarf_runesmithy_001_atmo_w_night" />
-      <Location id="tor_dwarf_engineer_hall" scene_name="TOR_POI_dwarf_engineers_hall_001_atmo_w_night" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -12855,7 +12795,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -12931,7 +12870,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -13095,7 +13033,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -13145,7 +13082,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -13335,7 +13271,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -13398,7 +13333,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -13486,7 +13420,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -13549,7 +13482,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -13612,7 +13544,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -13789,7 +13720,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -13852,7 +13782,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -14016,7 +13945,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -14117,7 +14045,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -14193,7 +14120,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -14357,7 +14283,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -14420,7 +14345,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -14634,7 +14558,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -14710,7 +14633,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -14837,7 +14759,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -14900,7 +14821,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />
@@ -14963,7 +14883,6 @@
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
-      <Location id="tor_shaman_hut" scene_name="TOR_greenskin_shaman_lair_001" />
     </Locations>
     <CommonAreas>
       <Area type="Backstreet" name="{=a0MVffcN}Backstreet" />

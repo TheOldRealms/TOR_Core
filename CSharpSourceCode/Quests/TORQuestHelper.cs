@@ -78,6 +78,25 @@ namespace TOR_Core.Quests
         }
 
 
+        public static EngineerQuest GetNewEngineerQuest(bool checkForExisting)
+        {
+            if (checkForExisting)
+            {
+                var quest = GetCurrentActiveIfExists<EngineerQuest>();
+                if (quest != null) return quest;
+            }
+            var hero = Hero.OneToOneConversationHero;
+            if (hero == null || !hero.IsMasterEngineer())
+            {
+                hero = Hero.AllAliveHeroes.Where(x => x.IsMasterEngineer()).TakeRandom(1).FirstOrDefault();
+            }
+
+
+            return new EngineerQuest("engineerQuest", hero, CampaignTime.DaysFromNow(1000),
+                100
+            );
+        }
+
         public static SpecializeLoreQuest GetNewSpecializeLoreQuest(bool checkForExisting)
         {
             if (checkForExisting)
