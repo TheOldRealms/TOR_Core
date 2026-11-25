@@ -79,12 +79,6 @@ namespace TOR_Core.Models.CustomBattleModels
                 {
                     DisableDefensiveAi(agent, agentDrivenProperties);
                 }
-
-                if ((agent.Character != null && agent.Character.IsCygor()) || (agent.Monster != null && agent.Monster.StringId == "cygor"))
-                {
-                    agentDrivenProperties.SwingSpeedMultiplier *= 1.18f;
-                    agentDrivenProperties.ThrustOrRangedReadySpeedMultiplier *= 1.10f;
-                }
             }
 
             UpdateDynamicAgentDrivenProperties(agent, agentDrivenProperties);

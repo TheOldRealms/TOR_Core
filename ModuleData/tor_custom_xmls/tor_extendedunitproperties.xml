@@ -11175,35 +11175,12 @@
     </DamageAmplifiers>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_cygor">
-    <Abilities />
     <Attributes>
-      <string>Crushing</string>
-      <string>Unbreakable</string>
+      <string>Crushing</string>	
       <string>Unstoppable</string>
+      <string>Swift</string>
       <string>Piercing</string>
-      <string>MonsterAttack</string>
       <string>Monstrous</string>
-      <string>HasAnimationTriggeredEffects</string>
-      <string>CannotClimbLadders</string>
-    </Attributes>
-    <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-    </DamageProportions>
-    <Resistances>
-      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.80" />
-    </Resistances>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_cygor_lord">
-    <Abilities />
-    <Attributes>
-      <string>Crushing</string>
-      <string>Unbreakable</string>
-      <string>Unstoppable</string>
-      <string>Piercing</string>
-      <string>MonsterAttack</string>
-      <string>Monstrous</string>
-      <string>HasAnimationTriggeredEffects</string>
-      <string>CannotClimbLadders</string>
     </Attributes>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
