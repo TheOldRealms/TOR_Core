@@ -1,11 +1,13 @@
 using System.Diagnostics;
 using HarmonyLib;
+using SandBox.ViewModelCollection.Nameplate;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.Utilities.Profiling;
 
@@ -194,6 +196,53 @@ public static class AiThinkLodPatches
             int offset = __instance.GetHashCode() & 0x7FFFFFFF;
             int period = tier == AiThinkLod.Tier.Mid ? MidPeriodFrames : FarPeriodFrames;
             return ((frame + offset) % period) == 0;
+        }
+    }
+
+    /// <summary>
+    /// Camera-distance cull on the per-settlement nameplate update. Called from
+    /// <c>SettlementNameplatesVM.Update</c> inside a <c>TWParallel.For</c> over all
+    /// ~1,100 settlement nameplates every frame. Vanilla does no visibility
+    /// pre-filter at the aggregator level, so settlements on the far side of the
+    /// continent run full update treatment every frame even though they will
+    /// never be on screen. This probe caught it at ~10 ms mean per aggregator
+    /// call = ~62% of a 60 FPS frame budget on every frame of campaign-map play.
+    /// </summary>
+    /// <remarks>
+    /// Gate: skip the update when the settlement's world-plane distance to the
+    /// camera exceeds the cull radius. The method parameter <c>cameraPosition</c>
+    /// is the live camera Vec3; we compare to the settlement's gate position.
+    ///
+    /// 300f threshold chosen to generously cover default zoom (~150 units visible
+    /// radius) plus pan + zoom-out extremes, while still cutting ~70% of
+    /// settlements on any given frame when the player is in a populated region.
+    ///
+    /// Safety notes:
+    /// - Skipped settlements retain their last-computed bind values. Their UI
+    ///   simply stops updating until they re-enter the cull radius. Since they
+    ///   are not on screen, the stale values are invisible.
+    /// - Siege/raid state transitions fire via separate event handlers
+    ///   (OnSiegeEventStartedOnSettlement, OnMapEventStartedOnSettlement) that
+    ///   update the nameplate directly, so icon state propagates immediately
+    ///   even for culled settlements. When the player later approaches, the next
+    ///   in-range Update picks up the already-correct state.
+    /// - Sequential pass (RefreshBindValues) still runs for all nameplates but
+    ///   only reads the already-computed _bind fields — cheap field assignments.
+    /// </remarks>
+    [HarmonyPatch(typeof(SettlementNameplateVM), "UpdateNameplateMT")]
+    public static class SettlementNameplateUpdateMTLodPatch
+    {
+        private const float CullRadiusSq = 300f * 300f;
+
+        [HarmonyPrefix]
+        public static bool Prefix(SettlementNameplateVM __instance, Vec3 cameraPosition)
+        {
+            if (__instance?.Settlement == null) return true;
+
+            var sp = __instance.Settlement.GatePosition;
+            float dx = cameraPosition.x - sp.X;
+            float dy = cameraPosition.y - sp.Y;
+            return (dx * dx + dy * dy) < CullRadiusSq;
         }
     }
 
