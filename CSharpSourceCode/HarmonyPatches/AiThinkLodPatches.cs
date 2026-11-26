@@ -3,6 +3,7 @@ using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors;
+using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TOR_Core.CampaignMechanics;
@@ -126,6 +127,28 @@ public static class AiThinkLodPatches
     /// the think, but letting the full method run keeps HourCounter evolving
     /// predictably for the player's party).
     /// </remarks>
+    /// <summary>
+    /// Measurement-only probe on <c>MapEvent.Update</c>. Driven per-frame by
+    /// <c>MapEventManager.Tick</c> → <c>Campaign.Tick</c>, so every active AI-vs-AI
+    /// battle gets an Update call every engine tick. Candidate for LOD gating in a
+    /// follow-up commit once the baseline is measured.
+    /// </summary>
+    [HarmonyPatch(typeof(MapEvent), "Update")]
+    public static class MapEventUpdateProfilerPatch
+    {
+        [HarmonyPrefix]
+        public static void Prefix(out long __state)
+            => __state = TORCampaignProfiler.Enabled ? Stopwatch.GetTimestamp() : 0L;
+
+        [HarmonyPostfix]
+        public static void Postfix(long __state)
+        {
+            if (__state == 0L) return;
+            var elapsedMs = (Stopwatch.GetTimestamp() - __state) * 1000.0 / Stopwatch.Frequency;
+            TORCampaignProfiler.Record("Vanilla.MapEvent.Update", elapsedMs);
+        }
+    }
+
     [HarmonyPatch(typeof(AiPartyThinkBehavior), "PartyHourlyAiTick")]
     public static class AiPartyThinkPartyHourlyAiTickLodPatch
     {
