@@ -269,13 +269,13 @@ namespace TOR_Core.Missions
 
         public void OnMatchEnded()
         {
-            if (_leftParticipantAgent != null)
+            if (_leftParticipantAgent != null && _leftParticipantAgent.IsActive())
             {
-                SandBoxHelpers.MissionHelper.FadeOutAgents([_leftParticipantAgent], false, false);
+                SandBoxHelpers.MissionHelper.FadeOutAgents([_leftParticipantAgent], true, false);
             }
-            if (_rightParticipantAgent != null)
+            if (_rightParticipantAgent != null && _rightParticipantAgent.IsActive())
             {
-                SandBoxHelpers.MissionHelper.FadeOutAgents([_rightParticipantAgent], false, false);
+                SandBoxHelpers.MissionHelper.FadeOutAgents([_rightParticipantAgent], true, false);
             }
             Mission.ClearCorpses(false);
             Mission.Teams.Clear();

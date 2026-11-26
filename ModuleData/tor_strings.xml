@@ -3589,44 +3589,44 @@
   <string id="tor_careerchoice_description.TwinTailedCometPassive2" text="{=str_tor_careerchoice_description_TwinTailedCometPassive2}+5 Companion limit." />
   <string id="tor_careerchoice_description.TwinTailedCometPassive3" text="{=str_tor_careerchoice_description_TwinTailedCometPassive3}+20% personal melee 'Armour Penetration'." />
   <string id="tor_careerchoice_description.TwinTailedCometPassive4" text="{=str_tor_careerchoice_description_TwinTailedCometPassive4}+20 personal Hitpoints." />
-  <string id="tor_careerchoice_description.WarriorPriestUlricRoot" text="{=str_tor_careerchoice_description_WarriorPriestUlricRoot}Let all know the fury of the wolf god! Like Ulric and his axe Blitzbeil before you, slam your weapon into the earth, erupting the ground in a 2 meter radius. This attack cannot be parried. For every level in your highest melee weapon skill, increase Axe of Ulric's damage by 0.1%. (Ability charges by dealing melee 'Physical' damage.)" />
+  <string id="tor_careerchoice_description.WarriorPriestUlricRoot" text="{=str_tor_careerchoice_description_WarriorPriestUlricRoot}Let all know the fury of the wolf god! Like Ulric and his axe Blitzbeil before you, slam your weapon into the earth, erupting the ground in a 2 meter radius. This attack cannot be parried. For every level in your highest melee weapon skill, increase Axe of Ulric's damage by 0.1%. (Ability charges by dealing melee damage.)" />
 
   <!-- Career Choice Description - WarriorPriestUlric -->
-  <string id="tor_careerchoice_description.CrusherOfTheWeakKeystone" text="{=str_tor_careerchoice_description_CrusherOfTheWeakKeystone}Axe of Ulric knocks foes down." />
+  <string id="tor_careerchoice_description.CrusherOfTheWeakKeystone" text="{=str_tor_careerchoice_description_CrusherOfTheWeakKeystone}Axe of Ulric also releases a 3 meter shockwave that knocks foes down and deals up to 50 Physical damage." />
   <string id="tor_careerchoice_description.CrusherOfTheWeakPassive1" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive1}+10 personal Hitpoints." />
-  <string id="tor_careerchoice_description.CrusherOfTheWeakPassive2" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive2}+5% personal 'Physical' melee damage." />
-  <string id="tor_careerchoice_description.CrusherOfTheWeakPassive3" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive3}Deal +10% more personal 'Physical' melee damage to foes less than tier 4." />
+  <string id="tor_careerchoice_description.CrusherOfTheWeakPassive2" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive2}+5% personal Physical melee damage." />
+  <string id="tor_careerchoice_description.CrusherOfTheWeakPassive3" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive3}Deal +10% more personal Physical melee damage to foes less than tier 4." />
   <string id="tor_careerchoice_description.CrusherOfTheWeakPassive4" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive4}Prayers now start charged on battle start." />
   <string id="tor_careerchoice_description.WildPackKeystone" text="{=str_tor_careerchoice_description_WildPackKeystone}Axe of Ulric also scales with Leadership." />
-  <string id="tor_careerchoice_description.WildPackPassive1" text="{=str_tor_careerchoice_description_WildPackPassive1}+10% personal melee 'Physical Resistance'." />
+  <string id="tor_careerchoice_description.WildPackPassive1" text="{=str_tor_careerchoice_description_WildPackPassive1}+10% personal melee Physical Resistance." />
   <string id="tor_careerchoice_description.WildPackPassive2" text="{=str_tor_careerchoice_description_WildPackPassive2}+10 increased party size." />
   <string id="tor_careerchoice_description.WildPackPassive3" text="{=str_tor_careerchoice_description_WildPackPassive3}Personal healing rate increased by +1." />
   <string id="tor_careerchoice_description.WildPackPassive4" text="{=str_tor_careerchoice_description_WildPackPassive4}+1 party move speed on campaign map." />
   <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherKeystone" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherKeystone}Axe of Ulric also scales with Faith, and has its radius increased by 1 meter." />
   <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive1" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive1}Wounded troops heal faster." />
   <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive2" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive2}Praying at a shrine of Ulric, fully restores personal Hitpoints. (5-day cooldown.)" />
-  <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive3" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive3}Melee attacks deal increased damage to shields." />
-  <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive4" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive4}+20% ranged 'Physical Resistance' for 'Melee' troops." />
-  <string id="tor_careerchoice_description.FrostsBiteKeystone" text="{=str_tor_careerchoice_description_FrostsBiteKeystone}Axe of Ulric now deals 'Frost' damage, and enemies are slowed for 6s when hit." />
-  <string id="tor_careerchoice_description.FrostsBitePassive1" text="{=str_tor_careerchoice_description_FrostsBitePassive1}+10% personal 'Frost' damage." />
-  <string id="tor_careerchoice_description.FrostsBitePassive2" text="{=str_tor_careerchoice_description_FrostsBitePassive2}+10% 'Frost' damage for 'Melee' troops." />
+  <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive3" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive3}+30% personal melee damage to shields." />
+  <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive4" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive4}+20% ranged Physical Resistance for Melee troops." />
+  <string id="tor_careerchoice_description.FrostsBiteKeystone" text="{=str_tor_careerchoice_description_FrostsBiteKeystone}Axe of Ulric now deals Frost damage, and enemies are slowed by 90% for 6s when hit." />
+  <string id="tor_careerchoice_description.FrostsBitePassive1" text="{=str_tor_careerchoice_description_FrostsBitePassive1}+10% personal Frost melee damage." />
+  <string id="tor_careerchoice_description.FrostsBitePassive2" text="{=str_tor_careerchoice_description_FrostsBitePassive2}+10% Frost damage for Melee troops." />
   <string id="tor_careerchoice_description.FrostsBitePassive3" text="{=str_tor_careerchoice_description_FrostsBitePassive3}Party is no longer affected by snow penalties." />
-  <string id="tor_careerchoice_description.FrostsBitePassive4" text="{=str_tor_careerchoice_description_FrostsBitePassive4}+20% duration for 'Hex' prayers." />
-  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfKeystone" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfKeystone}Axe of Ulric now applies a damage over time effect to the foe." />
-  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive1" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive1}Wolf heads/pelts now provide +5% personal 'Ward Save'." />
+  <string id="tor_careerchoice_description.FrostsBitePassive4" text="{=str_tor_careerchoice_description_FrostsBitePassive4}+20% duration for Hex prayers." />
+  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfKeystone" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfKeystone}Axe of Ulric now deals 4 Physical damage per second to foes hit for 6s." />
+  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive1" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive1}Wolf heads/pelts now provide +5% personal Ward Save." />
   <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive2" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive2}+15 personal Hitpoints." />
   <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive3" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive3}+20% duration for prayers." />
-  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive4" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive4}+20% 'Ward Save' for 'Ulrician' troops." />
+  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive4" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive4}+20% Ward Save for Ulrician troops." />
   <string id="tor_careerchoice_description.FuryOfWarKeystone" text="{=str_tor_careerchoice_description_FuryOfWarKeystone}Axe of Ulric now charges twice as fast." />
-  <string id="tor_careerchoice_description.FuryOfWarPassive1" text="{=str_tor_careerchoice_description_FuryOfWarPassive1}+5% personal 'Physical' melee damage per equipped melee weapon." />
+  <string id="tor_careerchoice_description.FuryOfWarPassive1" text="{=str_tor_careerchoice_description_FuryOfWarPassive1}+5% personal Physical melee damage per equipped melee weapon." />
   <string id="tor_careerchoice_description.FuryOfWarPassive2" text="{=str_tor_careerchoice_description_FuryOfWarPassive2}+10% personal weapon swing speed." />
-  <string id="tor_careerchoice_description.FuryOfWarPassive3" text="{=str_tor_careerchoice_description_FuryOfWarPassive3}Victory against a stronger force refreshes your blessing of Ulric." />
+  <string id="tor_careerchoice_description.FuryOfWarPassive3" text="{=str_tor_careerchoice_description_FuryOfWarPassive3}Victory against an equal or stronger force refreshes your blessing of Ulric." />
   <string id="tor_careerchoice_description.FuryOfWarPassive4" text="{=str_tor_careerchoice_description_FuryOfWarPassive4}Hits below 25 damage no longer stagger you." />
   <string id="tor_careerchoice_description.FlameOfUlricKeystone" text="{=str_tor_careerchoice_description_FlameOfUlricKeystone}When Axe of Ulric is used, a random prayer becomes fully charged." />
-  <string id="tor_careerchoice_description.FlameOfUlricPassive1" text="{=str_tor_careerchoice_description_FlameOfUlricPassive1}Radius of prayers is increased by +25%." />
-  <string id="tor_careerchoice_description.FlameOfUlricPassive2" text="{=str_tor_careerchoice_description_FlameOfUlricPassive2}+15% personal 'Armour Penetration' for melee attacks." />
-  <string id="tor_careerchoice_description.FlameOfUlricPassive3" text="{=str_tor_careerchoice_description_FlameOfUlricPassive3}Victory against a stronger force provide +100% prestige." />
-  <string id="tor_careerchoice_description.FlameOfUlricPassive4" text="{=str_tor_careerchoice_description_FlameOfUlricPassive4}Kills done by you or 'Ulrician' troops cause 25% morale damage to enemies." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive1" text="{=str_tor_careerchoice_description_FlameOfUlricPassive1}Radius of prayers and Axe of Ulric is increased by +25%." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive2" text="{=str_tor_careerchoice_description_FlameOfUlricPassive2}+15% personal Armour Penetration for melee attacks." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive3" text="{=str_tor_careerchoice_description_FlameOfUlricPassive3}Victory against an equal or stronger force provides +100% prestige." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive4" text="{=str_tor_careerchoice_description_FlameOfUlricPassive4}Kills done by you or Ulrician troops cause +25% morale damage to enemies." />
 
   <!-- Career Choice Description - WitchHunter -->
   <string id="tor_careerchoice_description.WitchHunterRoot" text="{=str_tor_careerchoice_description_WitchHunterRoot}Accuse an enemy of Heresy! Place an Accusation Mark on an enemy for the next 8s, the first hit you inflict deals +20% 'Physical' damage. After a hit there is a 50% chance the foe stays marked. For every level of Gunpowder or Crossbow, increase Accusation Mark's chance to remain on the foe by 0.1%. (Ability charges by dealing ranged 'Physical' damage.)" />
@@ -6236,6 +6236,7 @@
   <string id="tor_hire_accept_p.tor_wanderer_dawi_3" text="{=str_tor_hire_accept_p_tor_wanderer_dawi_3}Done. Try not to drink it all at once." />
   <string id="tor_hire_decline_p.tor_wanderer_dawi_3" text="{=str_tor_hire_decline_p_tor_wanderer_dawi_3}My purse can't stretch that far yet." />
   <string id="tor_recruitment_culture_blocked" text="{=str_tor_recruitment_culture_blocked}You cannot recruit this troop due to cultural restrictions (...)" />
+  <string id="str_weapon_usage.TorFlail" text="{=str_tor_weapon_usage_TorFlail}Flail" />
 
   <!-- Ambush -->
   <string id="tor_ambush_widget_tt_eye_unavailable" text="{=str_tor_ambush_widget_tt_eye_unavailable}Stealth entry chance unavailable." />

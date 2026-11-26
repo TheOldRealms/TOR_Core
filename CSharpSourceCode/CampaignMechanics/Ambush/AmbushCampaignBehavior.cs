@@ -60,12 +60,32 @@ namespace TOR_Core.CampaignMechanics.Ambush
         };
 
         /// <summary>
-        /// Pick a random forest ambush scene.
+        /// Developer/author override: when non-empty, <see cref="PickAmbushScene"/>
+        /// returns this name instead of rolling the random pick. Set and cleared
+        /// by the <c>tor.ambush_force_scene</c> / <c>tor.ambush_clear_scene</c>
+        /// console cheats. Persists across picks until explicitly cleared so an
+        /// author can playtest one scene repeatedly.
+        /// </summary>
+        public static string ForcedNextSceneForCheats { get; set; }
+
+        /// <summary>
+        /// Pick a random forest ambush scene, or the override if the author
+        /// forced one via the <c>tor.ambush_force_scene</c> cheat.
         /// </summary>
         public static string PickAmbushScene()
         {
-            var scene = AmbushScenes[MBRandom.RandomInt(AmbushScenes.Length)];
-            TORCommon.Log(NLog.LogLevel.Info, "[Ambush] PickAmbushScene -> " + scene);
+            string scene;
+            if (!string.IsNullOrEmpty(ForcedNextSceneForCheats))
+            {
+                scene = ForcedNextSceneForCheats;
+                TORCommon.Log(NLog.LogLevel.Info,
+                    "[Ambush] PickAmbushScene -> " + scene + " (forced via console)");
+            }
+            else
+            {
+                scene = AmbushScenes[MBRandom.RandomInt(AmbushScenes.Length)];
+                TORCommon.Log(NLog.LogLevel.Info, "[Ambush] PickAmbushScene -> " + scene);
+            }
             return scene;
         }
 

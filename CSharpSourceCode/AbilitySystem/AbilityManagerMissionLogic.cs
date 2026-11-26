@@ -75,6 +75,8 @@ namespace TOR_Core.AbilitySystem
         private readonly Dictionary<int, SpellCastSession> _activeSpellSessions = new();
         private readonly List<SpellCastSession> _pendingCollectSessions = new();
         private readonly Queue<QueuedSpellDamage> _queuedSpellDamage = new();
+        // RegisterBlow reaches OnAgentHit without the ability-template provenance needed to identify queued spell damage.
+        private QueuedSpellDamage? _resolvingSpellDamage;
         private readonly Dictionary<int, int> _queuedSpellDamageCountByCastId = new();
         private readonly Queue<QueuedSpellHealing> _queuedSpellHealing = new();
         private readonly Dictionary<int, int> _queuedSpellHealingCountByCastId = new();
@@ -221,6 +223,28 @@ namespace TOR_Core.AbilitySystem
             return offhandWeapon.Item.StringId.IndexOf("staff", StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
+        internal static bool IsLevitateWeapon(MissionWeapon weapon)
+        {
+            if (weapon.IsEmpty)
+            {
+                return false;
+            }
+
+            var itemUsage = weapon.CurrentUsageItem?.ItemUsage;
+            return !string.IsNullOrEmpty(itemUsage)
+                && itemUsage.StartsWith("tor_levitate_", StringComparison.OrdinalIgnoreCase);
+        }
+
+        public static bool IsWieldingLevitateWeapon(Agent agent)
+        {
+            if (agent == null || !agent.IsHuman || agent.HasMount)
+            {
+                return false;
+            }
+
+            return IsLevitateWeapon(agent.WieldedWeapon) || IsLevitateWeapon(agent.WieldedOffhandWeapon);
+        }
+
         public static bool ShouldKeepMainHandForTemplate(AbilityTemplate template)
         {
             if (template == null || template.AbilityType != AbilityType.Spell)
@@ -269,9 +293,16 @@ namespace TOR_Core.AbilitySystem
         private void SwitchOffhandStanceForStaffs()
         {
             _wieldOffHandStaff = ShouldKeepOffhandStaffWielded(Agent.Main.WieldedOffhandWeapon);
-            _idleAnimation = _wieldOffHandStaff
-                ? ActionIndexCache.Create("act_ready_continue_throwing_axe_with_handshield")
-                : ActionIndexCache.Create("act_spellcasting_idle");
+            if (IsWieldingLevitateWeapon(Agent.Main))
+            {
+                _idleAnimation = ActionIndexCache.Create("act_tor_levitate_fireball_charge_01");
+            }
+            else
+            {
+                _idleAnimation = _wieldOffHandStaff
+                    ? ActionIndexCache.Create("act_ready_continue_throwing_axe_with_handshield")
+                    : ActionIndexCache.Create("act_spellcasting_idle");
+            }
         }
 
         private void EnableQuickSelectionMenuMode()
@@ -318,6 +349,14 @@ namespace TOR_Core.AbilitySystem
                 _shouldWieldWeapon = needsMainHandRestore || needsOffHandRestore;
             }
 
+            if (_currentState == AbilityModeState.Targeting && Agent.Main != null && Agent.Main.IsActive()
+                && IsWieldingLevitateWeapon(Agent.Main)
+                && _idleAnimation.HasValue && Agent.Main.GetCurrentAction(1) == _idleAnimation.Value)
+            {
+                Agent.Main.SetActionChannel(1, ActionIndexCache.act_none, ignorePriority: true);
+            }
+
+            _shouldPlayIdleCastStanceAnim = false;
             _currentState = AbilityModeState.Off;
             if (_abilityComponent != null) _abilityComponent.LastCastWasQuickCast = false;
 
@@ -366,6 +405,7 @@ namespace TOR_Core.AbilitySystem
                 _wieldOffHandStaff = ShouldKeepOffhandStaffWielded(agent.WieldedOffhandWeapon);
 
                 if (ability.Template.AbilityType == AbilityType.Spell
+                    && !IsLevitateWeapon(agent.WieldedWeapon)
                     && !ShouldKeepMainHandForTemplate(ability.Template)
                     && agent.GetPrimaryWieldedItemIndex() != EquipmentIndex.None)
                 {
@@ -605,7 +645,7 @@ namespace TOR_Core.AbilitySystem
 
             if (_currentState == AbilityModeState.Targeting && _shouldSheathWeapon)
             {
-                if (!ShouldKeepMainHandForCurrentSpell() && Agent.Main.GetPrimaryWieldedItemIndex() != EquipmentIndex.None)
+                if (!IsLevitateWeapon(Agent.Main.WieldedWeapon) && !ShouldKeepMainHandForCurrentSpell() && Agent.Main.GetPrimaryWieldedItemIndex() != EquipmentIndex.None)
                 {
                     Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.MainHand, Agent.WeaponWieldActionType.WithAnimation);
                     return;
@@ -613,7 +653,7 @@ namespace TOR_Core.AbilitySystem
 
                 if (Agent.Main.GetOffhandWieldedItemIndex() != EquipmentIndex.None)
                 {
-                    if (!ShouldKeepOffhandStaffWielded(Agent.Main.WieldedOffhandWeapon))
+                    if (!IsLevitateWeapon(Agent.Main.WieldedOffhandWeapon) && !ShouldKeepOffhandStaffWielded(Agent.Main.WieldedOffhandWeapon))
                     {
                         Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.OffHand, Agent.WeaponWieldActionType.WithAnimation);
                         return;
@@ -823,10 +863,24 @@ namespace TOR_Core.AbilitySystem
             if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
             {
                 var attackMask = TORDamageHelper.DetermineMask(blow);
-                CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage, ChargeType.DamageDone, attackMask, affectorAgent, affectedAgent, attackCollisionData);
+                if (attackMask != AttackTypeMask.Spell || !IsNecrarchSelfChargeHit(affectorAgent, affectedAgent, attackCollisionData))
+                {
+                    CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage, ChargeType.DamageDone, attackMask, affectorAgent, affectedAgent, attackCollisionData);
+                }
 
                 CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage, ChargeType.DamageTaken, attackMask, affectorAgent, affectedAgent, attackCollisionData);
             }
+        }
+
+        private bool IsNecrarchSelfChargeHit(Agent caster, Agent target, in AttackCollisionData collision)
+        {
+            if (_resolvingSpellDamage is not { } hit || hit.Caster != caster || hit.Target != target ||
+                hit.AbilityTemplate?.AbilityType != AbilityType.CareerAbility || !caster.IsMainAgent ||
+                !TORSpellBlowHelper.IsSpellAttack(collision))
+                return false;
+
+            return Hero.MainHero.HasCareer(TORCareers.Necrarch) &&
+                hit.AbilityTemplate == caster.GetComponent<AbilityComponent>()?.CareerAbility?.Template;
         }
 
         protected override void OnAgentControllerChanged(Agent agent, AgentControllerType oldController)
@@ -1553,13 +1607,22 @@ namespace TOR_Core.AbilitySystem
                 return;
             }
 
-            spellDamage.Target.ApplyDamage(
-                spellDamage.Damage,
-                spellDamage.ImpactPosition,
-                spellDamage.Caster,
-                doBlow: true,
-                hasShockWave: spellDamage.HasShockWave,
-                originatesFromAbility: spellDamage.OriginatesFromAbility);
+            var previousSpellDamage = _resolvingSpellDamage;
+            _resolvingSpellDamage = spellDamage;
+            try
+            {
+                spellDamage.Target.ApplyDamage(
+                    spellDamage.Damage,
+                    spellDamage.ImpactPosition,
+                    spellDamage.Caster,
+                    doBlow: true,
+                    hasShockWave: spellDamage.HasShockWave,
+                    originatesFromAbility: spellDamage.OriginatesFromAbility);
+            }
+            finally
+            {
+                _resolvingSpellDamage = previousSpellDamage;
+            }
 
             _spellBlowsAppliedThisTick++;
 

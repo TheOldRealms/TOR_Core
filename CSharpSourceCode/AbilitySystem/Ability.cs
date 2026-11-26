@@ -867,6 +867,16 @@ namespace TOR_Core.AbilitySystem
                 || anim.Contains("master");
         }
 
+        private string ResolveAnimationActionName(Agent casterAgent, bool isFullBody)
+        {
+            if (AbilityManagerMissionLogic.IsWieldingLevitateWeapon(casterAgent))
+            {
+                return isFullBody ? "act_tor_levitate_fireball_cast" : "act_tor_levitate_magic_attack";
+            }
+
+            return Template.AnimationActionName;
+        }
+
         private void SetAnimationAction(Agent casterAgent)
         {
             if (casterAgent == null || string.IsNullOrEmpty(Template.AnimationActionName) || Template.AnimationActionName == "none")
@@ -875,7 +885,7 @@ namespace TOR_Core.AbilitySystem
             // Mounted casters stay on Channel 1 (upper body) so Channel 0 riding pose is preserved.
             bool isFullBody = !casterAgent.HasMount && IsFullBodyAnimation(Template);
             int channel = isFullBody ? 0 : 1;
-            var actionIndex = ActionIndexCache.Create(Template.AnimationActionName);
+            var actionIndex = ActionIndexCache.Create(ResolveAnimationActionName(casterAgent, isFullBody));
             _activeCastChannel = channel;
 
             if (channel == 0)
