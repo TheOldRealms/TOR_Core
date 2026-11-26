@@ -620,6 +620,7 @@
     <Compile Include="HarmonyPatches\ItemPatches.cs" />
     <Compile Include="HarmonyPatches\ItemVisualPatches.cs" />
     <Compile Include="HarmonyPatches\JoinKingdomSceneIDPatch.cs" />
+    <Compile Include="HarmonyPatches\KingdomTickProbes.cs" />
     <Compile Include="HarmonyPatches\LoadingScreenPatches.cs" />
     <Compile Include="HarmonyPatches\LogEntryNotificationPatches.cs" />
     <Compile Include="HarmonyPatches\MainMenuCrashPatch.cs" />
