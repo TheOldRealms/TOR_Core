@@ -26,6 +26,7 @@
     <!-- Runtime dependency of TpacTool.Lib; not transitively resolvable
          since we reference the DLL directly, so we restate it here. -->
     <PackageReference Include="lz4net" Version="1.0.15.93" />
+    <PackageReference Include="SharpGLTF.Toolkit" Version="1.0.4" />
   </ItemGroup>
 
 </Project>
