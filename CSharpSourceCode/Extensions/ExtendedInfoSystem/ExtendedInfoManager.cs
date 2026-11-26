@@ -28,6 +28,14 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         private static Dictionary<string, string> _bannerResources = [];
         private static ExtendedInfoManager _instance;
         private static readonly Dictionary<string, List<string>> _settlementInfos = [];
+
+        // Spellcaster subset of _heroInfos, rebuilt on daily tick and incrementally
+        // maintained on hero create/kill. HourlyTick iterates this instead of
+        // _heroInfos so the per-hour cost is proportional to the spellcaster count
+        // (tens) rather than the non-notable alive hero count (hundreds to low thousands).
+        // Max staleness for a newly-eligible hero: 1 in-game day.
+        private readonly List<HeroExtendedInfo> _spellcasterInfos = [];
+        private const string SpellcasterAttribute = "SpellCaster";
         private readonly string _torUnitPropertiesPath = TORPaths.TORCoreModuleExtendedDataPath + "tor_extendedunitproperties.xml";
 
         public static ExtendedInfoManager Instance => _instance;
@@ -100,6 +108,13 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         private void DailyTick()
         {
+            // Refresh the spellcaster cache once per in-game day. Handles the case where a
+            // hero's SpellCaster attribute is set at runtime via a path that doesn't go
+            // through OnHeroCreated (e.g. late attribute additions from career progression
+            // code we didn't hook explicitly). Max staleness for winds-of-magic regen is
+            // therefore bounded to one in-game day.
+            RebuildSpellcasterCache();
+
             //Sly : until(if) custom resources are ever implemented for AI heroes, there's no point in calculating the resource upkeep for every hero.
             //foreach (var entry in _heroInfos)
             //{
@@ -206,6 +221,11 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             var success = _characterInfos.Any(x => x.Value.ResourceCost != null);
             EnsurePartyInfos();
             HideVanillaUnitsInEncyclopedia();
+            // Loaded saves already have _heroInfos populated from SyncData; prime the
+            // spellcaster cache now so HourlyTick isn't empty on the first in-game hour.
+            // Fresh saves overwrite this via OnNewGameCreatedPartialFollowUpEnd after
+            // InitializeHeroes fills _heroInfos for the first time.
+            RebuildSpellcasterCache();
         }
 
         private void HideVanillaUnitsInEncyclopedia()
@@ -228,6 +248,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             {
                 InitializeHeroes();
                 EnsurePartyInfos();
+                RebuildSpellcasterCache();
             }
         }
 
@@ -235,17 +256,12 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             using var _profilerScope = TOR_Core.Utilities.Profiling.TORCampaignProfiler.Scope("ExtendedInfoManager.HourlyTick");
 
-            // Fill winds of magic. Iterate _heroInfos directly rather than Hero.AllAliveHeroes:
-            // _heroInfos only tracks non-notable heroes (notables are skipped in OnHeroCreated
-            // and removed in OnHeroKilled), and short-circuiting on the SpellCaster attribute
-            // means heroes who will never gain winds don't pay for a perk/settlement lookup.
-            // Profiler data (Nov 2026) showed this handler at ~5 ms per call because the old
-            // loop paid Hero.AllAliveHeroes + a dict lookup per hero regardless of eligibility.
-            foreach (var heroInfo in _heroInfos.Values)
+            // Fill winds of magic for the cached spellcaster subset. The daily-tick
+            // rebuild + create/kill maintenance keep _spellcasterInfos in sync, so we
+            // skip the per-hero AllAttributes.Contains("SpellCaster") allocation+scan
+            // that would otherwise run once per non-notable alive hero every hour.
+            foreach (var heroInfo in _spellcasterInfos)
             {
-                if (!heroInfo.AllAttributes.Contains("SpellCaster"))
-                    continue;
-
                 var hero = heroInfo.BaseCharacter?.HeroObject;
                 if (hero == null)
                     continue;
@@ -290,6 +306,12 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 if (hero.Template != null) InitializeTemplatedHeroStats(hero);
                 hero.AddCultureSpecificCustomResource(0);
                 hero.HitPoints = hero.MaxHitPoints; //the extended info feeds MaxHitpoints, so a hero whose info was only just created is still carrying the smaller pre-info value
+
+                // Catch heroes that start life as spellcasters (XML template with the
+                // attribute baked in). Mid-life transitions are picked up by the daily
+                // RebuildSpellcasterCache.
+                if (info.AllAttributes.Contains(SpellcasterAttribute))
+                    _spellcasterInfos.Add(info);
             }
         }
 
@@ -297,9 +319,25 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             //should perform a similar check to whatever is required to be added to the dictionary in the first place - idk if notables are being checked against this
             if (victim.IsNotable) return;
-            if (_heroInfos.ContainsKey(victim.GetInfoKey()))
+            if (_heroInfos.TryGetValue(victim.GetInfoKey(), out var info))
             {
                 _heroInfos.Remove(victim.GetInfoKey());
+                _spellcasterInfos.Remove(info);  // no-op when victim wasn't a cached spellcaster
+            }
+        }
+
+        /// <summary>
+        /// Rebuilds <see cref="_spellcasterInfos"/> from <see cref="_heroInfos"/>. Called on
+        /// session launch, new-game finalisation, and daily tick. Cheap: one pass over the
+        /// hero-info dict, pays an <c>AllAttributes</c> allocation per entry.
+        /// </summary>
+        private void RebuildSpellcasterCache()
+        {
+            _spellcasterInfos.Clear();
+            foreach (var info in _heroInfos.Values)
+            {
+                if (info.AllAttributes.Contains(SpellcasterAttribute))
+                    _spellcasterInfos.Add(info);
             }
         }
 
