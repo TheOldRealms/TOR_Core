@@ -75,6 +75,8 @@ namespace TOR_Core.AbilitySystem
         private readonly Dictionary<int, SpellCastSession> _activeSpellSessions = new();
         private readonly List<SpellCastSession> _pendingCollectSessions = new();
         private readonly Queue<QueuedSpellDamage> _queuedSpellDamage = new();
+        // RegisterBlow reaches OnAgentHit without the ability-template provenance needed to identify queued spell damage.
+        private QueuedSpellDamage? _resolvingSpellDamage;
         private readonly Dictionary<int, int> _queuedSpellDamageCountByCastId = new();
         private readonly Queue<QueuedSpellHealing> _queuedSpellHealing = new();
         private readonly Dictionary<int, int> _queuedSpellHealingCountByCastId = new();
@@ -861,10 +863,24 @@ namespace TOR_Core.AbilitySystem
             if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
             {
                 var attackMask = TORDamageHelper.DetermineMask(blow);
-                CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage, ChargeType.DamageDone, attackMask, affectorAgent, affectedAgent, attackCollisionData);
+                if (attackMask != AttackTypeMask.Spell || !IsNecrarchSelfChargeHit(affectorAgent, affectedAgent, attackCollisionData))
+                {
+                    CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage, ChargeType.DamageDone, attackMask, affectorAgent, affectedAgent, attackCollisionData);
+                }
 
                 CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage, ChargeType.DamageTaken, attackMask, affectorAgent, affectedAgent, attackCollisionData);
             }
+        }
+
+        private bool IsNecrarchSelfChargeHit(Agent caster, Agent target, in AttackCollisionData collision)
+        {
+            if (_resolvingSpellDamage is not { } hit || hit.Caster != caster || hit.Target != target ||
+                hit.AbilityTemplate?.AbilityType != AbilityType.CareerAbility || !caster.IsMainAgent ||
+                !TORSpellBlowHelper.IsSpellAttack(collision))
+                return false;
+
+            return Hero.MainHero.HasCareer(TORCareers.Necrarch) &&
+                hit.AbilityTemplate == caster.GetComponent<AbilityComponent>()?.CareerAbility?.Template;
         }
 
         protected override void OnAgentControllerChanged(Agent agent, AgentControllerType oldController)
@@ -1591,13 +1607,22 @@ namespace TOR_Core.AbilitySystem
                 return;
             }
 
-            spellDamage.Target.ApplyDamage(
-                spellDamage.Damage,
-                spellDamage.ImpactPosition,
-                spellDamage.Caster,
-                doBlow: true,
-                hasShockWave: spellDamage.HasShockWave,
-                originatesFromAbility: spellDamage.OriginatesFromAbility);
+            var previousSpellDamage = _resolvingSpellDamage;
+            _resolvingSpellDamage = spellDamage;
+            try
+            {
+                spellDamage.Target.ApplyDamage(
+                    spellDamage.Damage,
+                    spellDamage.ImpactPosition,
+                    spellDamage.Caster,
+                    doBlow: true,
+                    hasShockWave: spellDamage.HasShockWave,
+                    originatesFromAbility: spellDamage.OriginatesFromAbility);
+            }
+            finally
+            {
+                _resolvingSpellDamage = previousSpellDamage;
+            }
 
             _spellBlowsAppliedThisTick++;
 
