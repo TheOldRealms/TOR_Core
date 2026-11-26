@@ -389,6 +389,7 @@
     <Compile Include="CampaignMechanics\Formations\TORFormationAssignments.cs" />
     <Compile Include="CampaignMechanics\Formations\TORFormationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\GreenskinAICampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\MainPartyContextCache.cs" />
     <Compile Include="CampaignMechanics\MapNotifications\TORMapNotification.cs" />
     <Compile Include="CampaignMechanics\MapNotifications\TORMapNotificationView.cs" />
     <Compile Include="CampaignMechanics\PostBattleLoot\PendingLootedTroopManager.cs" />

@@ -82,13 +82,11 @@ namespace TOR_Core.CampaignMechanics
 
         private CultureObject GetNearbyCulture()
         {
-            CultureObject cultureObject = null;
-            var settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, Campaign.Current.GetAverageDistanceBetweenClosestTwoTownsWithNavigationType(MobileParty.NavigationType.Default));//Sly : average distance was ~60 when last observed.
-
-            cultureObject = settlement.Culture;
-
-
-            return cultureObject;
+            // Reads the hourly cache. The previous implementation did a fresh settlement
+            // spatial query on every music-event probe; the cache covers the ~60 avg-town
+            // distance comfortably inside its 150f scan window.
+            var settlement = MainPartyContextCache.NearestSettlement;
+            return settlement?.Culture;
         }
     }
 }

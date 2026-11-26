@@ -284,10 +284,9 @@ namespace TOR_Core.CampaignMechanics.Ambush.UI
             IsContextRainy = weather == MapWeatherModel.WeatherEvent.LightRain
                              || weather == MapWeatherModel.WeatherEvent.HeavyRain;
 
-            // Cursed region proximity.
-            IsContextCursed = TORCommon.FindNearestSettlement(
-                mainParty, TORConstants.DEFAULT_CURSE_RADIUS,
-                x => x.SettlementComponent is CursedSiteComponent) != null;
+            // Cursed region proximity. Reads from the shared hourly cache so this VM
+            // refresh path does not re-run the settlement spatial query per frame.
+            IsContextCursed = MainPartyContextCache.GetNearbyCursedSite(TORConstants.DEFAULT_CURSE_RADIUS) != null;
 
             // Settlement proximity, hostile beats neutral when both are in range.
             var kind = model.GetNearbySettlementKind(mainParty);

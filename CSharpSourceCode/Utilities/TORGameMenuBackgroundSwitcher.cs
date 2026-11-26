@@ -2,6 +2,7 @@
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
+using TOR_Core.CampaignMechanics;
 
 namespace TOR_Core.Utilities
 {
@@ -23,7 +24,7 @@ namespace TOR_Core.Utilities
         private static void game_menu_ui_village_hostile_raid_on_init_tow(MenuCallbackArgs args)
         {
             var settlement = Settlement.CurrentSettlement
-                ?? TORCommon.FindNearestSettlement(MobileParty.MainParty, RAID_RADIUS)
+                ?? MainPartyContextCache.GetNearbySettlement(RAID_RADIUS)
                 ?? null;
 
             if (settlement == null || settlement.Culture == null)
@@ -60,7 +61,7 @@ namespace TOR_Core.Utilities
         private static void game_menu_town_menu_arena_on_init_tow(MenuCallbackArgs args)
         {
             var settlement = Settlement.CurrentSettlement
-                ?? TORCommon.FindNearestSettlement(MobileParty.MainParty, RAID_RADIUS)
+                ?? MainPartyContextCache.GetNearbySettlement(RAID_RADIUS)
                 ?? null;
 
             if (settlement != null)

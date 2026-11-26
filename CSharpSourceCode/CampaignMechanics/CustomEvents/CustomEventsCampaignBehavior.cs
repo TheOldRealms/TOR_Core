@@ -3,6 +3,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TOR_Core.Extensions;
 using TOR_Core.Ink;
 using TOR_Core.Utilities;
@@ -82,8 +83,11 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
                 _events.Add(new CustomEvent("Minstrel", CustomEventFrequency.Common, 1000,
                     () => StandardMovingCheck() &&
                     !CampaignTime.Now.IsNightTime &&
-                    TORCommon.FindNearestSettlement(MobileParty.MainParty, 100f, x => x.IsTown)?.Culture.StringId == TORConstants.Cultures.BRETONNIA, () => InkStoryManager.OpenStory("Minstrel")));
+                    MainPartyContextCache.GetNearbyTown(100f)?.Culture.StringId == TORConstants.Cultures.BRETONNIA, () => InkStoryManager.OpenStory("Minstrel")));
             }
+            // Prime the cache so the first HourlyTick's predicates (and any pre-tick VM reads)
+            // see a populated value rather than three nulls.
+            MainPartyContextCache.Refresh();
         }
 
         private bool StandardMovingCheck()
@@ -98,18 +102,52 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
 
         private void HourlyTick()
         {
+            // Refresh the shared main-party nearby-settlement cache before any event
+            // condition is probed; every predicate that previously called
+            // FindNearestSettlement on the main party now reads from this.
+            MainPartyContextCache.Refresh();
+
             if (!_triggerTimes.ContainsKey("Global")) _triggerTimes.Add("Global", 9999);
-            if (GetRandomFrequency(out CustomEventFrequency chosenFrequency) && HasCooldownExpired())
+            if (!GetRandomFrequency(out CustomEventFrequency chosenFrequency) || !HasCooldownExpired()) return;
+
+            // Pick-first-then-test-condition. The vanilla LINQ version called
+            // DoesConditionHold() on every element to resolve the weighted random pick,
+            // which fired FindNearestSettlement once per Common-frequency event per tick.
+            // Pre-filter by cheap conditions, then walk until one candidate's full
+            // condition passes.
+            var chosenEvent = PickFirstEligible(chosenFrequency,
+                x => x.StringId != InkStoryManager.LastStoryId && !_triggerTimes.ContainsKey(x.StringId));
+
+            if (chosenEvent == null)
             {
-                var chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold() && x.StringId != InkStoryManager.LastStoryId && !_triggerTimes.ContainsKey(x.StringId));
-                if (chosenEvent == null) chosenEvent = _events.GetRandomElementWithPredicate(x => x.Frequency == chosenFrequency && x.DoesConditionHold() && GetCalendarNormalizedCooldownHours(x.Cooldown) < GetElapsedTimeSinceLastTrigger(x)); if (chosenEvent != null)
-                {
-                    chosenEvent.Trigger();
-                    if (_triggerTimes.ContainsKey(chosenEvent.StringId)) _triggerTimes[chosenEvent.StringId] = CampaignTime.Now.ToHours;
-                    else _triggerTimes.Add(chosenEvent.StringId, CampaignTime.Now.ToHours);
-                    _triggerTimes["Global"] = CampaignTime.Now.ToHours;
-                }
+                chosenEvent = PickFirstEligible(chosenFrequency,
+                    x => GetCalendarNormalizedCooldownHours(x.Cooldown) < GetElapsedTimeSinceLastTrigger(x));
             }
+
+            if (chosenEvent != null)
+            {
+                chosenEvent.Trigger();
+                if (_triggerTimes.ContainsKey(chosenEvent.StringId)) _triggerTimes[chosenEvent.StringId] = CampaignTime.Now.ToHours;
+                else _triggerTimes.Add(chosenEvent.StringId, CampaignTime.Now.ToHours);
+                _triggerTimes["Global"] = CampaignTime.Now.ToHours;
+            }
+        }
+
+        /// <summary>
+        /// Returns the first candidate (in randomised order) whose <see cref="CustomEvent.DoesConditionHold"/>
+        /// returns true, after applying the cheap pre-filter. Replaces the earlier
+        /// <c>GetRandomElementWithPredicate</c> idiom that evaluated the full predicate
+        /// (including expensive conditions) across every list element.
+        /// </summary>
+        private CustomEvent PickFirstEligible(CustomEventFrequency frequency, System.Func<CustomEvent, bool> cheapFilter)
+        {
+            var candidates = _events.Where(x => x.Frequency == frequency && cheapFilter(x)).ToList();
+            candidates.Randomize();
+            foreach (var c in candidates)
+            {
+                if (c.DoesConditionHold()) return c;
+            }
+            return null;
         }
 
         private int GetElapsedTimeSinceLastTrigger(CustomEvent x)
