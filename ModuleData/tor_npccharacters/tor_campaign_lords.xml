@@ -12861,7 +12861,7 @@
       <EquipmentSet id="tor_brasskeep_lord_1_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_brasskeep_first_5" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_5}Bleboth the Blighted Apothecary" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_berserker_lord" race="marauder" is_hero="true">
+  <NPCCharacter id="tor_chaos_lord_brasskeep_first_5" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_5}Bleboth the Blighted Apothecary" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" race="marauder" is_hero="true">
     <face>
       <BodyProperties version="4" age="21" weight="0.408" build="0.6188" key="0015CC079CCC09C0B887A36A93773A665D8B78773535569A5A88936D894B23B966B796030B9679DA965156748797B79D000000000000000B00000000337C1002" />
     </face>
@@ -12879,7 +12879,43 @@
       <EquipmentSet id="tor_brasskeep_lord_5_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_brasskeep_first_6" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_6}Woerot the Tainted" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" race="marauder" is_hero="true">
+  <NPCCharacter id="tor_chaos_lord_brasskeep_first_6" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_6}Woerot the Tainted" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_berserker_lord" race="marauder" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="27" weight="0.4573" build="0.665" key="001548015CA0004039879AA94A3968D7D81374753427675749786583D87194986A4436030DDA98BAA78862895A888A47000000000000000D000000001FAC8002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_brasskeep_lord_1_template" />
+      <EquipmentSet id="tor_brasskeep_lord_1_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_lord_brasskeep_first_7" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_6_copy}Ebolas Chosen of Nurgle" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_berserker_lord" race="marauder" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="27" weight="0.4573" build="0.665" key="001548015CA0004039879AA94A3968D7D81374753427675749786583D87194986A4436030DDA98BAA78862895A888A47000000000000000D000000001FAC8002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_brasskeep_lord_1_template" />
+      <EquipmentSet id="tor_brasskeep_lord_1_template" equipmentType="Civilian" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_lord_brasskeep_first_8" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_7_copy}Rotticus Chosen of Nurgle" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_berserker_lord" race="marauder" is_hero="true">
     <face>
       <BodyProperties version="4" age="27" weight="0.4573" build="0.665" key="001548015CA0004039879AA94A3968D7D81374753427675749786583D87194986A4436030DDA98BAA78862895A888A47000000000000000D000000001FAC8002" />
     </face>
@@ -12965,7 +13001,7 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_skulltakers_first_5" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="Skeinya Daugter of Red Mist" is_female="true">
+  <NPCCharacter id="tor_chaos_lord_skulltakers_first_5" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="Skeinya Daugter of the Red Mist" is_female="true">
     <Equipments>
       <EquipmentSet id="tor_generic_khorne_lord_female_template" />
     </Equipments>
@@ -12982,7 +13018,41 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_skulltakers_first_6" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="Khuzorath Chosen of Khorne">
+  <NPCCharacter id="tor_chaos_lord_skulltakers_first_6" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" name="Khuzorath Chosen of Khorne" skill_template="SkillSet.tor_skills_khorne_lord">
+    <Equipments>
+      <EquipmentSet id="tor_generic_khorne_lord_template" />
+    </Equipments>
+    <face>
+      <BodyProperties age="25" weight="0.6331" build="0.6065" key="0016FC0FCD0003C085D64C4C5C6BA757BA99657AC7994E77D68579D87465E18A0179961407838D58000000000000000000000000000000000000000028DC2000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_lord_skulltakers_first_7" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="earnest" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="Skavean the Bloodhound">
+    <Equipments>
+      <EquipmentSet id="tor_generic_khorne_lord_template" />
+    </Equipments>
+    <face>
+      <BodyProperties age="25" weight="0.6331" build="0.6065" key="0016FC0FCD0003C085D64C4C5C6BA757BA99657AC7994E77D68579D87465E18A0179961407838D58000000000000000000000000000000000000000028DC2000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="2" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_lord_skulltakers_first_8" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="earnest" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="Mornan Chosen of Khorne">
     <Equipments>
       <EquipmentSet id="tor_generic_khorne_lord_template" />
     </Equipments>
