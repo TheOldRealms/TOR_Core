@@ -620,7 +620,6 @@
     <Compile Include="HarmonyPatches\ItemPatches.cs" />
     <Compile Include="HarmonyPatches\ItemVisualPatches.cs" />
     <Compile Include="HarmonyPatches\JoinKingdomSceneIDPatch.cs" />
-    <Compile Include="HarmonyPatches\KingdomTickProbes.cs" />
     <Compile Include="HarmonyPatches\LoadingScreenPatches.cs" />
     <Compile Include="HarmonyPatches\LogEntryNotificationPatches.cs" />
     <Compile Include="HarmonyPatches\MainMenuCrashPatch.cs" />
@@ -636,7 +635,6 @@
     <Compile Include="HarmonyPatches\NotablesCampaignBehaviorPatches.cs" />
     <Compile Include="HarmonyPatches\ObjectManagerPatches.cs" />
     <Compile Include="HarmonyPatches\PartyScreenPerformancePatches.cs" />
-    <Compile Include="HarmonyPatches\Profiling\VanillaAiProfilerPatches.cs" />
     <Compile Include="HarmonyPatches\PerkResetRelatedPatch.cs" />
     <Compile Include="HarmonyPatches\RaceFixPatches.cs" />
     <Compile Include="HarmonyPatches\RetreatPatches.cs" />
@@ -807,9 +805,6 @@
     <Compile Include="SubModule.cs" />
     <Compile Include="Utilities\CTBlog.cs" />
     <Compile Include="Utilities\DictionaryExtensions.cs" />
-    <Compile Include="Utilities\Profiling\ProfilerScope.cs" />
-    <Compile Include="Utilities\Profiling\TORCampaignProfiler.cs" />
-    <Compile Include="Utilities\Profiling\TORProfilerConsoleCommands.cs" />
     <Compile Include="Utilities\ShaderSourceManager.cs" />
     <Compile Include="Utilities\StringExtensions.cs" />
     <Compile Include="Utilities\TextObjectExtension.cs" />

@@ -36,7 +36,6 @@ namespace TOR_Core.CampaignMechanics.Ambush.UI
 
         protected override void OnMapScreenUpdate(float dt)
         {
-            using var _profilerScope = TOR_Core.Utilities.Profiling.TORCampaignProfiler.Scope("Map.AmbushRange");
             base.OnMapScreenUpdate(dt);
 
             var scene = (Campaign.Current?.MapSceneWrapper as MapScene)?.Scene;

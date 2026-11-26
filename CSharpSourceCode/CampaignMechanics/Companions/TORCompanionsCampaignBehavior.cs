@@ -83,7 +83,6 @@ namespace TOR_Core.CampaignMechanics.Companions
 
         private void WeeklyTick()
         {
-            using var _profilerScope = TOR_Core.Utilities.Profiling.TORCampaignProfiler.Scope("TORCompanions.WeeklyTick");
 
             //Sly : The useless creation and deletion cycle bothered me so I've opted for some shuffling with a low turnover, but it's on a kingdom-basis which will increase the effective turnover earlier in the campaign when the number of kingdoms is maximal.
             

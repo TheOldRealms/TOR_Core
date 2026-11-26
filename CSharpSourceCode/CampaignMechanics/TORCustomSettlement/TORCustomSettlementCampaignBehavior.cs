@@ -700,7 +700,6 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     //Sly : could this instead replicate AiVisitSettlementBehavior.AiHourlyTick which evalutes the necessary conditions, but then adds an AIBehaviorData and score to the party which then lets the game's party ai handling manage the actions to visit the shrine.
     private void OnAiTick(MobileParty party)
     {
-        using var _profilerScope = TOR_Core.Utilities.Profiling.TORCampaignProfiler.Scope("CustomSettlement.OnAiTick");
 
         if (!party.IsLordParty || party.LeaderHero == null || party == MobileParty.MainParty) return;
 
@@ -816,7 +815,6 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 
     private void OnSettlementHourlyTick(Settlement settlement)
     {
-        using var _profilerScope = TOR_Core.Utilities.Profiling.TORCampaignProfiler.Scope("CustomSettlement.OnSettlementHourlyTick");
 
         if (settlement.SettlementComponent is CursedSiteComponent)
         {

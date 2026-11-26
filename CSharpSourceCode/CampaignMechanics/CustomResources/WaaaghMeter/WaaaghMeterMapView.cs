@@ -22,7 +22,6 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
 
         protected override void OnMapScreenUpdate(float dt)
         {
-            using var _profilerScope = TOR_Core.Utilities.Profiling.TORCampaignProfiler.Scope("Map.WaaaghMeter");
             base.OnMapScreenUpdate(dt);
             _vm.RefreshValues();
         }

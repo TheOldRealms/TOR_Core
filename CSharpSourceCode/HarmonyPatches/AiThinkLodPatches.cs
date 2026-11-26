@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using HarmonyLib;
 using SandBox.ViewModelCollection.Nameplate;
 using TaleWorlds.CampaignSystem;
@@ -9,7 +8,6 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics;
-using TOR_Core.Utilities.Profiling;
 
 namespace TOR_Core.HarmonyPatches;
 
@@ -76,77 +74,6 @@ public static class AiThinkLodPatches
             int offset = settlement.StringId.GetHashCode() & 0x7FFFFFFF;
             int period = tier == AiThinkLod.Tier.Mid ? MidPeriodHours : FarPeriodHours;
             return ((hour + offset) % period) == 0;
-        }
-    }
-
-    [HarmonyPatch(typeof(PoliticalStagnationAndBorderIncidentCampaignBehavior), "HourlyTickSettlement")]
-    public static class PoliticalStagnationHourlyTickSettlementProfilerPatch
-    {
-        [HarmonyPrefix]
-        public static void Prefix(out long __state)
-            => __state = TORCampaignProfiler.Enabled ? Stopwatch.GetTimestamp() : 0L;
-
-        [HarmonyPostfix]
-        public static void Postfix(long __state)
-        {
-            // Postfix is skipped when the gating prefix above returns false, so this
-            // only records calls that actually ran the vanilla body.
-            if (__state == 0L) return;
-            var elapsedMs = (Stopwatch.GetTimestamp() - __state) * 1000.0 / Stopwatch.Frequency;
-            TORCampaignProfiler.Record("Vanilla.PoliticalStagnation.HourlyTickSettlement", elapsedMs);
-        }
-    }
-
-    /// <summary>
-    /// Tier-based cadence gate on vanilla's per-party AI think. Mid and Far parties
-    /// still think, just at a wider cadence than vanilla's own <c>HourCounter % 6</c>
-    /// stable-lord gate.
-    /// </summary>
-    /// <remarks>
-    /// Vanilla's PartyHourlyAiTick increments <see cref="MobilePartyAi.HourCounter"/>
-    /// at the end of its body (whole-assembly decompile verified). Prefix-return-false
-    /// skips the increment too, so HourCounter only advances on calls that pass my
-    /// gate. Combined with vanilla's own <c>HourCounter % 6 == 0</c> check for stable
-    /// lords, this means effective work cadence = my-period × 6:
-    ///
-    /// <list type="bullet">
-    ///   <item>Near: pass every call. Effective ~6h (vanilla default for stable lords).</item>
-    ///   <item>Mid:  pass 1-in-4 calls. Effective ~24h.</item>
-    ///   <item>Far:  pass 1-in-8 calls. Effective ~48h.</item>
-    /// </list>
-    ///
-    /// Catch-up on Far → Near (player approaches a distant party): when the tier
-    /// flips, the next hour my gate opens (immediately for Near), and vanilla's
-    /// HourCounter counts up at most 5 hours before hitting a multiple of 6. So the
-    /// max latency between a Far party becoming Near and resuming full-fidelity
-    /// think is ~5 in-game hours.
-    ///
-    /// Also respects <see cref="MobilePartyAi.RethinkAtNextHourlyTick"/>: any code
-    /// path (vanilla or TOR) that sets this flag bypasses the gate so the explicit
-    /// catch-up signal still works for battles, encounters, war declarations, etc.
-    ///
-    /// MainParty is never gated (vanilla's internal check already excludes it from
-    /// the think, but letting the full method run keeps HourCounter evolving
-    /// predictably for the player's party).
-    /// </remarks>
-    /// <summary>
-    /// Measurement-only probe on <c>MapEvent.Update</c>. Companion to the LOD gate
-    /// below. Only records calls that actually ran the vanilla body (postfix is
-    /// skipped when the gate returned false).
-    /// </summary>
-    [HarmonyPatch(typeof(MapEvent), "Update")]
-    public static class MapEventUpdateProfilerPatch
-    {
-        [HarmonyPrefix]
-        public static void Prefix(out long __state)
-            => __state = TORCampaignProfiler.Enabled ? Stopwatch.GetTimestamp() : 0L;
-
-        [HarmonyPostfix]
-        public static void Postfix(long __state)
-        {
-            if (__state == 0L) return;
-            var elapsedMs = (Stopwatch.GetTimestamp() - __state) * 1000.0 / Stopwatch.Frequency;
-            TORCampaignProfiler.Record("Vanilla.MapEvent.Update", elapsedMs);
         }
     }
 

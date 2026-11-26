@@ -36,7 +36,6 @@ namespace TOR_Core.CampaignMechanics.Ambush
 
         protected override void OnMapScreenUpdate(float dt)
         {
-            using var _profilerScope = TOR_Core.Utilities.Profiling.TORCampaignProfiler.Scope("Map.AmbushButton");
             base.OnMapScreenUpdate(dt);
             _vmRefreshAccumulator += dt;
             if (_vmRefreshAccumulator >= VmRefreshIntervalSeconds)

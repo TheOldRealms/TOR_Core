@@ -92,18 +92,6 @@ namespace TOR_Core
             string actionCacheStatus = "TOR ActionIndexCache sanity: GetNumActionCodes=" + actionCodeCount + ", act_inventory_idle_start=" + inventoryIdleIndex;
             TORCommon.Log(actionCacheStatus, LogLevel.Info);
             MBDebug.Print(actionCacheStatus);
-
-            // Optional profiler harness, off by default. Launch Bannerlord with
-            // --tor-profiler to opt in at startup; otherwise toggle at runtime with
-            // tor.profiler_enable / tor.profiler_dump from the in-game console.
-            foreach (var arg in Environment.GetCommandLineArgs())
-            {
-                if (arg == "--tor-profiler")
-                {
-                    TOR_Core.Utilities.Profiling.TORCampaignProfiler.Enable();
-                    break;
-                }
-            }
         }
 
         protected override void OnSubModuleLoad()
@@ -444,7 +432,6 @@ namespace TOR_Core
 
         protected override void OnApplicationTick(float dt)
         {
-            TOR_Core.Utilities.Profiling.TORCampaignProfiler.OnFrame(dt);
             TOR_Core.CampaignMechanics.AiThinkLod.TickFrame();
             TORAudioManager.Tick(dt);
             _tick += dt;

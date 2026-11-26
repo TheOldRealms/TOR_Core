@@ -264,7 +264,6 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         private void HourlyTick()
         {
-            using var _profilerScope = TOR_Core.Utilities.Profiling.TORCampaignProfiler.Scope("ExtendedInfoManager.HourlyTick");
 
             // Fill winds of magic for the cached spellcaster subset. The daily-tick
             // rebuild + create/kill maintenance keep _spellcasterInfos in sync, so we
