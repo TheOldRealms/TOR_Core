@@ -785,10 +785,8 @@ namespace TOR_Core.AbilitySystem
                 !TORSpellBlowHelper.IsSpellAttack(collision))
                 return false;
 
-            var career = TORCareers.Necrarch;
-            var id = hit.AbilityTemplate.StringID;
-            return Hero.MainHero.HasCareer(career) &&
-                (id == career.AbilityTemplateID || id?.StartsWith(career.AbilityTemplateID + "*cloned*", StringComparison.Ordinal) == true);
+            return Hero.MainHero.HasCareer(TORCareers.Necrarch) &&
+                hit.AbilityTemplate == caster.GetComponent<AbilityComponent>()?.CareerAbility?.Template;
         }
 
         protected override void OnAgentControllerChanged(Agent agent, AgentControllerType oldController)
