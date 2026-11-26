@@ -803,6 +803,9 @@
     <Compile Include="SubModule.cs" />
     <Compile Include="Utilities\CTBlog.cs" />
     <Compile Include="Utilities\DictionaryExtensions.cs" />
+    <Compile Include="Utilities\Profiling\ProfilerScope.cs" />
+    <Compile Include="Utilities\Profiling\TORCampaignProfiler.cs" />
+    <Compile Include="Utilities\Profiling\TORProfilerConsoleCommands.cs" />
     <Compile Include="Utilities\ShaderSourceManager.cs" />
     <Compile Include="Utilities\StringExtensions.cs" />
     <Compile Include="Utilities\TextObjectExtension.cs" />

@@ -102,6 +102,8 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
 
         private void HourlyTick()
         {
+            using var _profilerScope = TOR_Core.Utilities.Profiling.TORCampaignProfiler.Scope("CustomEvents.HourlyTick");
+
             // Refresh the shared main-party nearby-settlement cache before any event
             // condition is probed; every predicate that previously called
             // FindNearestSettlement on the main party now reads from this.
