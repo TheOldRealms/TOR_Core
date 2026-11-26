@@ -2,6 +2,8 @@ using System.Diagnostics;
 using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.Utilities.Profiling;
@@ -89,6 +91,63 @@ public static class AiThinkLodPatches
             if (__state == 0L) return;
             var elapsedMs = (Stopwatch.GetTimestamp() - __state) * 1000.0 / Stopwatch.Frequency;
             TORCampaignProfiler.Record("Vanilla.PoliticalStagnation.HourlyTickSettlement", elapsedMs);
+        }
+    }
+
+    /// <summary>
+    /// Tier-based cadence gate on vanilla's per-party AI think. Mid and Far parties
+    /// still think, just at a wider cadence than vanilla's own <c>HourCounter % 6</c>
+    /// stable-lord gate.
+    /// </summary>
+    /// <remarks>
+    /// Vanilla's PartyHourlyAiTick increments <see cref="MobilePartyAi.HourCounter"/>
+    /// at the end of its body (whole-assembly decompile verified). Prefix-return-false
+    /// skips the increment too, so HourCounter only advances on calls that pass my
+    /// gate. Combined with vanilla's own <c>HourCounter % 6 == 0</c> check for stable
+    /// lords, this means effective work cadence = my-period × 6:
+    ///
+    /// <list type="bullet">
+    ///   <item>Near: pass every call. Effective ~6h (vanilla default for stable lords).</item>
+    ///   <item>Mid:  pass 1-in-4 calls. Effective ~24h.</item>
+    ///   <item>Far:  pass 1-in-8 calls. Effective ~48h.</item>
+    /// </list>
+    ///
+    /// Catch-up on Far → Near (player approaches a distant party): when the tier
+    /// flips, the next hour my gate opens (immediately for Near), and vanilla's
+    /// HourCounter counts up at most 5 hours before hitting a multiple of 6. So the
+    /// max latency between a Far party becoming Near and resuming full-fidelity
+    /// think is ~5 in-game hours.
+    ///
+    /// Also respects <see cref="MobilePartyAi.RethinkAtNextHourlyTick"/>: any code
+    /// path (vanilla or TOR) that sets this flag bypasses the gate so the explicit
+    /// catch-up signal still works for battles, encounters, war declarations, etc.
+    ///
+    /// MainParty is never gated (vanilla's internal check already excludes it from
+    /// the think, but letting the full method run keeps HourCounter evolving
+    /// predictably for the player's party).
+    /// </remarks>
+    [HarmonyPatch(typeof(AiPartyThinkBehavior), "PartyHourlyAiTick")]
+    public static class AiPartyThinkPartyHourlyAiTickLodPatch
+    {
+        private const int MidPeriodHours = 4;
+        private const int FarPeriodHours = 8;
+
+        [HarmonyPrefix]
+        public static bool Prefix(MobileParty mobileParty)
+        {
+            if (mobileParty == null || mobileParty == MobileParty.MainParty) return true;
+            // Respect vanilla's explicit rethink request. Battles, encounters,
+            // settlement entry, and war-related events set this flag so the AI
+            // reacts within one tick; don't gate past it.
+            if (mobileParty.Ai != null && mobileParty.Ai.RethinkAtNextHourlyTick) return true;
+
+            var tier = AiThinkLod.GetTier(mobileParty);
+            if (tier == AiThinkLod.Tier.Near) return true;
+
+            int hour = (int)CampaignTime.Now.ToHours;
+            int offset = mobileParty.StringId.GetHashCode() & 0x7FFFFFFF;
+            int period = tier == AiThinkLod.Tier.Mid ? MidPeriodHours : FarPeriodHours;
+            return ((hour + offset) % period) == 0;
         }
     }
 }
