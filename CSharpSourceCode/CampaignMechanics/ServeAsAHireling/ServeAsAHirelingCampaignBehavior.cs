@@ -2315,6 +2315,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         private void OnTick(float dt)
         {
+            using var _profilerScope = TOR_Core.Utilities.Profiling.TORCampaignProfiler.Scope("Hireling.CampaignTick");
             if (_hirelingEnlisted && _hirelingEnlistingLord?.PartyBelongedTo != null)
             {
                 if (TryCleanupUnsafeHirelingSettlementState())

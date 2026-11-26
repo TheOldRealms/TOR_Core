@@ -88,6 +88,7 @@ namespace TOR_Core.CampaignMechanics.MapNotifications
 
         protected override void OnFrameTick(float dt)
         {
+            using var _profilerScope = TOR_Core.Utilities.Profiling.TORCampaignProfiler.Scope("Map.MapNotification");
             base.OnFrameTick(dt);
             _dataSource.OnFrameTick(dt);
             HandleInput();

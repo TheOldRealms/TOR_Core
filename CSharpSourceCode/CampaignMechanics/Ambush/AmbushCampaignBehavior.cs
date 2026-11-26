@@ -606,6 +606,7 @@ namespace TOR_Core.CampaignMechanics.Ambush
         /// </summary>
         private void OnCampaignTick(float dt)
         {
+            using var _profilerScope = TOR_Core.Utilities.Profiling.TORCampaignProfiler.Scope("Ambush.CampaignTick");
             TickPlayerStealthPrep();
 
             // Open the follow-up field battle one tick after the press branch stashes the ambusher.
