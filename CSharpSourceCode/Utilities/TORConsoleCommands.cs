@@ -1590,5 +1590,45 @@ namespace TOR_Core.Utilities
             GameMenu.ActivateGameMenu(AmbushCampaignBehavior.AmbushedIntroMenuId);
             return "ambushed by " + (closest.LeaderHero?.Name?.ToString() ?? closest.Name?.ToString() ?? "?");
         }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("ambush_force_scene", "tor")]
+        public static string ForceAmbushScene(List<string> strings)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            string usage =
+                "tor.ambush_force_scene <scene>\n"
+                + "Forces every subsequent ambush pick to load <scene> until cleared.\n"
+                + "Candidates: " + string.Join(", ", AmbushCampaignBehavior.AmbushScenes) + "\n"
+                + "Clear with tor.ambush_clear_scene.";
+
+            if (CampaignCheats.CheckParameters(strings, 0) || CampaignCheats.CheckHelp(strings))
+                return usage;
+
+            string scene = strings[0];
+            if (!AmbushCampaignBehavior.AmbushScenes.Contains(scene))
+                return "Unknown ambush scene '" + scene + "'. Valid: "
+                    + string.Join(", ", AmbushCampaignBehavior.AmbushScenes);
+
+            AmbushCampaignBehavior.ForcedNextSceneForCheats = scene;
+            return "Ambush picker forced to: " + scene;
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("ambush_clear_scene", "tor")]
+        public static string ClearAmbushScene(List<string> strings)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            if (CampaignCheats.CheckHelp(strings))
+                return "tor.ambush_clear_scene\nResets ambush picker to random selection.";
+
+            string previous = AmbushCampaignBehavior.ForcedNextSceneForCheats;
+            AmbushCampaignBehavior.ForcedNextSceneForCheats = null;
+            return previous == null
+                ? "Ambush picker was already random."
+                : "Ambush picker reset to random (was forced to: " + previous + ").";
+        }
     }
 }
