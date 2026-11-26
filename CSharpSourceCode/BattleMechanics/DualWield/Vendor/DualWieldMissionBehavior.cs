@@ -1,6 +1,6 @@
 // Vendored from Yotthani's DualWield-v0.10.9 mod (permission granted
 // 2026-11-24). Full MissionBehavior port, ilspycmd decompile artifacts
-// hand-fixed. Replaces the Phase 1 BerserkWieldMissionLogic stub.
+// hand-fixed. Replaces the Phase 1 DualWieldMissionLogic stub.
 
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using TOR_Core.BattleMechanics.BerserkWield.Vendor;
+using TOR_Core.BattleMechanics.DualWield.Vendor;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.DotNet;
@@ -16,12 +16,13 @@ using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.HarmonyPatches.DualWield;
 using Path = System.IO.Path;
 using TaleWorlds.ObjectSystem;
 
-namespace TOR_Core.BattleMechanics.BerserkWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield.Vendor;
 
-public class BerserkWieldMissionBehavior : MissionBehavior
+public class DualWieldMissionBehavior : MissionBehavior
 {
 	private readonly HashSet<int> _agentsWithAttachment = new HashSet<int>();
 
@@ -333,7 +334,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 	{
 		get
 		{
-			if (BerserkWieldSettings.Get().DebugMode)
+			if (DualWieldSettings.Get().DebugMode)
 			{
 				return Directory.Exists(Path.GetDirectoryName("D:/Work/Sources/github/bannerlord/HoN/DualWield/tools/capture"));
 			}
@@ -347,7 +348,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		{
 			try
 			{
-				return BerserkWieldSettings.Get().NpcFootLeftChannel1;
+				return DualWieldSettings.Get().NpcFootLeftChannel1;
 			}
 			catch
 			{
@@ -364,7 +365,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		{
 			try
 			{
-				return BerserkWieldSettings.Get().TestLeftHanded;
+				return DualWieldSettings.Get().TestLeftHanded;
 			}
 			catch
 			{
@@ -379,7 +380,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		{
 			try
 			{
-				return BerserkWieldSettings.Get().TestRiderAiTarget;
+				return DualWieldSettings.Get().TestRiderAiTarget;
 			}
 			catch
 			{
@@ -394,7 +395,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		{
 			try
 			{
-				return BerserkWieldSettings.Get().TestRiderZones;
+				return DualWieldSettings.Get().TestRiderZones;
 			}
 			catch
 			{
@@ -403,7 +404,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		}
 	}
 
-	public BerserkWieldMissionBehavior()
+	public DualWieldMissionBehavior()
 	{
 		IsActive = true;
 	}
@@ -578,7 +579,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[OffhandUsage] failed: " + ex.Message);
+			DualWieldLog.Log("[OffhandUsage] failed: " + ex.Message);
 		}
 	}
 
@@ -587,7 +588,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		int currentUsageIndex = w.CurrentUsageIndex;
 		agent.SetUsageIndexOfWeaponInSlotAsClient(slot, next);
 		bool flag = (((List<WeaponComponentData>)(object)w.Item.Weapons)[next].WeaponFlags & (WeaponFlags)0x200000000L) > 0L;
-		BerserkWieldLog.Log(string.Format("[OffhandUsage] '{0}' usage {1} -> {2} (now reads {3}), {4}{5}", new object[6]
+		DualWieldLog.Log(string.Format("[OffhandUsage] '{0}' usage {1} -> {2} (now reads {3}), {4}{5}", new object[6]
 		{
 			((MBObjectBase)w.Item).StringId,
 			currentUsageIndex,
@@ -674,7 +675,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		catch (Exception ex)
 		{
 			_turnSlot = (EquipmentIndex)(-1);
-			BerserkWieldLog.Log("[OffhandUsage] turn failed: " + ex.Message);
+			DualWieldLog.Log("[OffhandUsage] turn failed: " + ex.Message);
 		}
 	}
 
@@ -871,27 +872,27 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			return;
 		}
 		RemoveOffHandAttachment(agent);
-		if (!BerserkWieldStateManager.IsDualWielding(agent))
+		if (!DualWieldStateManager.IsDualWielding(agent))
 		{
-			BerserkWieldStateManager.Register(agent);
-			if (BerserkWieldLog.Unlimited || agent.IsMainAgent)
+			DualWieldStateManager.Register(agent);
+			if (DualWieldLog.Unlimited || agent.IsMainAgent)
 			{
-				BerserkWieldLog.Log("AttachOffHandWeapon: Registered agent " + agent.Name + " in StateManager");
+				DualWieldLog.Log("AttachOffHandWeapon: Registered agent " + agent.Name + " in StateManager");
 			}
 		}
 		MissionWeapon val = agent.Equipment[offHandSlot];
 		if (val.IsEmpty)
 		{
-			BerserkWieldLog.Log($"AttachOffHandWeapon: slot {(int)offHandSlot} is EMPTY â€” aborting");
+			DualWieldLog.Log($"AttachOffHandWeapon: slot {(int)offHandSlot} is EMPTY â€” aborting");
 			return;
 		}
-		if (BerserkWieldLog.Unlimited || agent.IsMainAgent)
+		if (DualWieldLog.Unlimited || agent.IsMainAgent)
 		{
 			object arg = (int)offHandSlot;
 			ItemObject item = val.Item;
 			string arg2 = ((item != null) ? ((MBObjectBase)item).StringId : null) ?? "NULL";
 			ItemObject item2 = val.Item;
-			BerserkWieldLog.Log($"AttachOffHandWeapon: slot {arg}, item={arg2}, flags={((item2 != null) ? (object)item2.ItemFlags : (object)null)}");
+			DualWieldLog.Log($"AttachOffHandWeapon: slot {arg}, item={arg2}, flags={((item2 != null) ? (object)item2.ItemFlags : (object)null)}");
 		}
 		try
 		{
@@ -906,25 +907,25 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				}
 			}
 			agent.SetWieldedItemIndexAsClient((Agent.HandIndex)1, offHandSlot, true, true, num);
-			if (BerserkWieldLog.Unlimited || agent.IsMainAgent)
+			if (DualWieldLog.Unlimited || agent.IsMainAgent)
 			{
-				BerserkWieldLog.Log($"SetWieldedItemIndexAsClient: offhand slot {(int)offHandSlot} for {agent.Name}");
+				DualWieldLog.Log($"SetWieldedItemIndexAsClient: offhand slot {(int)offHandSlot} for {agent.Name}");
 			}
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("SetWieldedItemIndexAsClient failed: " + ex.Message);
+			DualWieldLog.Log("SetWieldedItemIndexAsClient failed: " + ex.Message);
 		}
 		_agentsWithAttachment.Add(agent.Index);
 		_offHandSlots[agent.Index] = offHandSlot;
-		BerserkWieldStateManager.SetPaired(agent, paired: true);
+		DualWieldStateManager.SetPaired(agent, paired: true);
 		try
 		{
 			agent.UpdateAgentProperties();
 		}
 		catch (Exception ex2)
 		{
-			BerserkWieldLog.Log("AttachOffHandWeapon: stat refresh failed: " + ex2.Message);
+			DualWieldLog.Log("AttachOffHandWeapon: stat refresh failed: " + ex2.Message);
 		}
 	}
 
@@ -949,7 +950,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				object arg = (int)offhandWieldedItemIndex;
 				MissionWeapon val = agent.Equipment[offhandWieldedItemIndex];
 				ItemObject item = val.Item;
-				BerserkWieldLog.Log($"[RemoveOH] {name}: left hand holds slot {arg} '{((item != null) ? ((MBObjectBase)item).StringId : null)}' - not ours, left as it is");
+				DualWieldLog.Log($"[RemoveOH] {name}: left hand holds slot {arg} '{((item != null) ? ((MBObjectBase)item).StringId : null)}' - not ours, left as it is");
 			}
 		}
 		if ((agent.IsActive() & flag) && !keepInHand)
@@ -957,18 +958,18 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			try
 			{
 				agent.SetWieldedItemIndexAsClient((Agent.HandIndex)1, (EquipmentIndex)(-1), true, false, 0);
-				BerserkWieldLog.Log("[RemoveOH] Unwielded offhand for " + agent.Name);
+				DualWieldLog.Log("[RemoveOH] Unwielded offhand for " + agent.Name);
 			}
 			catch (Exception ex)
 			{
-				BerserkWieldLog.Log("Unwield offhand failed: " + ex.Message);
+				DualWieldLog.Log("Unwield offhand failed: " + ex.Message);
 			}
 		}
 		_agentsWithAttachment.Remove(agent.Index);
 		_offHandSlots.Remove(agent.Index);
-		if (BerserkWieldStateManager.IsPaired(agent))
+		if (DualWieldStateManager.IsPaired(agent))
 		{
-			BerserkWieldStateManager.SetPaired(agent, paired: false);
+			DualWieldStateManager.SetPaired(agent, paired: false);
 			if (agent.IsActive())
 			{
 				try
@@ -977,16 +978,16 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				}
 				catch (Exception ex2)
 				{
-					BerserkWieldLog.Log("[RemoveOH] stat refresh failed: " + ex2.Message);
+					DualWieldLog.Log("[RemoveOH] stat refresh failed: " + ex2.Message);
 				}
 			}
 		}
-		BerserkWieldLog.Log("OffHand removed for agent " + agent.Name);
+		DualWieldLog.Log("OffHand removed for agent " + agent.Name);
 	}
 
 	private static void DebugHud(InformationMessage message)
 	{
-		if (BerserkWieldSettings.Get().DebugMode)
+		if (DualWieldSettings.Get().DebugMode)
 		{
 			InformationManager.DisplayMessage(message);
 		}
@@ -1063,7 +1064,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				catch
 				{
 				}
-				BerserkWieldLog.Log($"[AnimProbe-verbatim] '{text}' idx={num}");
+				DualWieldLog.Log($"[AnimProbe-verbatim] '{text}' idx={num}");
 				if (num >= 0)
 				{
 					DebugHud(new InformationMessage($"[DW verbatim] '{text}' REGISTERED idx={num}", Colors.Green));
@@ -1091,7 +1092,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				catch
 				{
 				}
-				BerserkWieldLog.Log(string.Format("[DWactions] {0} code={1} clip='{2}' clipExists={3}", new object[4] { text2, val.Index, text3, flag }));
+				DualWieldLog.Log(string.Format("[DWactions] {0} code={1} clip='{2}' clipExists={3}", new object[4] { text2, val.Index, text3, flag }));
 			}
 			array = new string[7] { "anim_dw_v1", "anim_dw_v2", "dw_v3", "dw_v4", "anim_dw_pt_verbatim", "dw_slashright_l", "dw_slashright_r" };
 			foreach (string text4 in array)
@@ -1104,7 +1105,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				catch
 				{
 				}
-				BerserkWieldLog.Log("[VariantProbe] anim '" + text4 + "' idx=" + num2 + ((num2 >= 0) ? "  ACCEPTED" : "  rejected"));
+				DualWieldLog.Log("[VariantProbe] anim '" + text4 + "' idx=" + num2 + ((num2 >= 0) ? "  ACCEPTED" : "  rejected"));
 			}
 			array = new string[4] { "act_dwc_quick_release_slashright_1h_left_stance", "act_dwc_quick_release_slashleft_1h_left_stance", "act_dwc_quick_release_overswing_1h_left_stance", "act_dwc_quick_release_thrust_1h_left_stance" };
 			foreach (string text5 in array)
@@ -1118,7 +1119,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				catch
 				{
 				}
-				BerserkWieldLog.Log("[ActProbe] " + text5 + " index=" + val2.Index + " clip='" + text6 + "'" + ((val2.Index >= 0) ? "" : "  *** NOT REGISTERED ***"));
+				DualWieldLog.Log("[ActProbe] " + text5 + " index=" + val2.Index + " clip='" + text6 + "'" + ((val2.Index >= 0) ? "" : "  *** NOT REGISTERED ***"));
 			}
 			array = new string[5] { "dwc_quick_release_slashright_1h_left_stance", "dwc_quick_release_slashleft_1h_left_stance", "dwc_quick_release_overswing_1h_left_stance", "dwc_quick_release_thrust_1h_left_stance", "dw_cu_slashleft" };
 			foreach (string text7 in array)
@@ -1147,7 +1148,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				catch
 				{
 				}
-				BerserkWieldLog.Log("[VariantProbe] clip '" + text7 + "' idx=" + num3 + " duration=" + num4 + " blendIn=" + num5 + ((num4 > 0f) ? "  ANIM OK" : "  *** ANIM BAD ***"));
+				DualWieldLog.Log("[VariantProbe] clip '" + text7 + "' idx=" + num3 + " duration=" + num4 + " blendIn=" + num5 + ((num4 > 0f) ? "  ANIM OK" : "  *** ANIM BAD ***"));
 			}
 			MBActionSet actionSet2 = MBActionSet.GetActionSet("as_human_warrior");
 			ActionIndexCache val3 = ActionIndexCache.Create("act_quick_release_slashright_1h_left_stance");
@@ -1167,8 +1168,8 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			catch
 			{
 			}
-			BerserkWieldLog.Log($"[AnimProbe] anim_dw_lh_test idx={animationIndexWithName}  dw_lh_test idx={animationIndexWithName2}  totalAnims={numAnimations}");
-			BerserkWieldLog.Log($"[AnimProbe] act_quick_release_slashright_1h_left_stance â†’ clip='{text8}' clipExists={flag2} (XSLT worked if clip=='dw_lh_test')");
+			DualWieldLog.Log($"[AnimProbe] anim_dw_lh_test idx={animationIndexWithName}  dw_lh_test idx={animationIndexWithName2}  totalAnims={numAnimations}");
+			DualWieldLog.Log($"[AnimProbe] act_quick_release_slashright_1h_left_stance â†’ clip='{text8}' clipExists={flag2} (XSLT worked if clip=='dw_lh_test')");
 			DebugHud(new InformationMessage($"[DW probe] anim_dw_lh_test idx={animationIndexWithName}, actionâ†’'{text8}'", Colors.Cyan));
 			string text9 = "?";
 			array = new string[4] { "act_quick_release_thrust_1h_left_stance", "act_quick_release_thrust_1h", "act_release_thrust_1h_left_stance", "act_quick_release_slashright_1h_left_stance" };
@@ -1188,7 +1189,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				{
 					text9 = text11;
 				}
-				BerserkWieldLog.Log($"[AnimProbe-xslt] {text10} (code={val4.Index}) â†’ clip='{text11}'");
+				DualWieldLog.Log($"[AnimProbe-xslt] {text10} (code={val4.Index}) â†’ clip='{text11}'");
 			}
 			DebugHud(new InformationMessage("[DW probe] thrust_1h_leftâ†’'" + text9 + "' (XSLT applied if =='dw_verbatim_test')", (text9 == "dw_verbatim_test") ? Colors.Green : Colors.Red));
 			try
@@ -1218,17 +1219,17 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				goto IL_0603;
 				IL_0603:
 				string text13 = text12;
-				BerserkWieldLog.Log("[AnimProbe-player] main weapon usage='" + text13 + "'");
+				DualWieldLog.Log("[AnimProbe-player] main weapon usage='" + text13 + "'");
 				DebugHud(new InformationMessage("[DW probe] player main usage='" + text13 + "'", Colors.Cyan));
 			}
 			catch (Exception ex3)
 			{
-				BerserkWieldLog.Log("[AnimProbe-player] ERR " + ex3.Message);
+				DualWieldLog.Log("[AnimProbe-player] ERR " + ex3.Message);
 			}
 		}
 		catch (Exception ex4)
 		{
-			BerserkWieldLog.Log("[AnimProbe] ERR " + ex4.Message);
+			DualWieldLog.Log("[AnimProbe] ERR " + ex4.Message);
 		}
 	}
 
@@ -1310,13 +1311,13 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			}
 			catch (Exception ex)
 			{
-				BerserkWieldLog.Log("[CAP] equip failed: " + ex.Message);
+				DualWieldLog.Log("[CAP] equip failed: " + ex.Message);
 			}
 			_capUntil = Mission.Current.CurrentTime + 12f;
 		}
 		catch (Exception ex2)
 		{
-			BerserkWieldLog.Log("[CAP] arm failed: " + ex2.Message);
+			DualWieldLog.Log("[CAP] arm failed: " + ex2.Message);
 		}
 	}
 
@@ -1399,7 +1400,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[CAP] tick failed: " + ex.Message);
+			DualWieldLog.Log("[CAP] tick failed: " + ex.Message);
 			_capW = null;
 		}
 		if (_capWW == null)
@@ -1459,14 +1460,14 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		}
 		catch (Exception ex2)
 		{
-			BerserkWieldLog.Log("[CAP] weapon tick failed: " + ex2.Message);
+			DualWieldLog.Log("[CAP] weapon tick failed: " + ex2.Message);
 			_capWW = null;
 		}
 	}
 
 	private void RiderPoseProbe()
 	{
-		if (_riderProbeLines >= 90 || Mission.Current == null || !BerserkWieldSettings.Get().DebugMode)
+		if (_riderProbeLines >= 90 || Mission.Current == null || !DualWieldSettings.Get().DebugMode)
 		{
 			return;
 		}
@@ -1572,18 +1573,18 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			array[14] = text3;
 			array[15] = text4;
 			array[16] = text5;
-			BerserkWieldLog.Log(string.Format(invariantCulture, format, array));
+			DualWieldLog.Log(string.Format(invariantCulture, format, array));
 		}
 		catch (Exception ex)
 		{
 			_riderProbeLines = 90;
-			BerserkWieldLog.Log("[Rider] probe failed: " + ex.Message);
+			DualWieldLog.Log("[Rider] probe failed: " + ex.Message);
 		}
 	}
 
 	private void LocoProbe(float dt)
 	{
-		if (_locoLines >= 600 || Mission.Current == null || !BerserkWieldSettings.Get().DebugMode)
+		if (_locoLines >= 600 || Mission.Current == null || !DualWieldSettings.Get().DebugMode)
 		{
 			return;
 		}
@@ -1626,7 +1627,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				{
 				}
 				_locoLines++;
-				BerserkWieldLog.Log(string.Format(CultureInfo.InvariantCulture, "[Loco] t {0:0.00} v {1:0.00} | ch0 '{2}' p {3:0.00} | ch1 '{4}' p {5:0.00} act1 {6} | hand above pelvis L {7:+0.00;-0.00} R {8:+0.00;-0.00} (ch1 alone L {9:+0.00;-0.00})", new object[10]
+				DualWieldLog.Log(string.Format(CultureInfo.InvariantCulture, "[Loco] t {0:0.00} v {1:0.00} | ch0 '{2}' p {3:0.00} | ch1 '{4}' p {5:0.00} act1 {6} | hand above pelvis L {7:+0.00;-0.00} R {8:+0.00;-0.00} (ch1 alone L {9:+0.00;-0.00})", new object[10]
 				{
 					currentTime,
 					length,
@@ -1644,7 +1645,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		catch (Exception ex)
 		{
 			_locoLines = 600;
-			BerserkWieldLog.Log("[Loco] failed: " + ex.Message);
+			DualWieldLog.Log("[Loco] failed: " + ex.Message);
 		}
 	}
 
@@ -1670,7 +1671,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		_lastTickDt = dt;
 		_leftBlade.Tick(dt);
 		TickNpcLeft(dt);
-		if (BerserkWieldSettings.Get().EnableDualWield)
+		if (DualWieldSettings.Get().EnableDualWield)
 		{
 			try
 			{
@@ -1678,10 +1679,10 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			}
 			catch (Exception ex)
 			{
-				BerserkWieldLog.Log("[Ranged] tick failed: " + ex.Message);
+				DualWieldLog.Log("[Ranged] tick failed: " + ex.Message);
 			}
 		}
-		if (!BerserkWieldSettings.Get().EnableDualWield)
+		if (!DualWieldSettings.Get().EnableDualWield)
 		{
 			return;
 		}
@@ -1693,21 +1694,21 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		if (!_tickLoggedOnce)
 		{
 			_tickLoggedOnce = true;
-			BerserkWieldLog.Log("OnMissionTick: v10.30 â€” Mode system + usage diagnostics");
-			_dwCombatMode = Math.Max(1, Math.Min(2, BerserkWieldSettings.Get().AttackMode));
+			DualWieldLog.Log("OnMissionTick: v10.30 â€” Mode system + usage diagnostics");
+			_dwCombatMode = Math.Max(1, Math.Min(2, DualWieldSettings.Get().AttackMode));
 			string[] array = new string[3] { "Mirror", "Alternating (LMB)", "Separate (LMB right, own key left)" };
-			BerserkWieldLog.Log($"[DW] Initial mode from settings: {_dwCombatMode} = {array[_dwCombatMode]}");
+			DualWieldLog.Log($"[DW] Initial mode from settings: {_dwCombatMode} = {array[_dwCombatMode]}");
 			try
 			{
-				BerserkWieldSettings dualWieldSettings = BerserkWieldSettings.Get();
-				BerserkWieldLog.Log("[DW] switches: player's left on foot channel " + (dualWieldSettings.FootLeftChannel1 ? 1 : 0) + ", NPC left on foot channel " + (dualWieldSettings.NpcFootLeftChannel1 ? 1 : 0) + ", left on horseback channel " + dualWieldSettings.MountedLeftChannel + ", rider's left takes the AI's target " + (dualWieldSettings.TestRiderAiTarget ? "on" : "OFF") + ", measured rider zones " + (dualWieldSettings.TestRiderZones ? "ON" : "off") + ", free rein hand " + (dualWieldSettings.FreeReinHand ? "on" : "OFF") + ", log look bend " + (dualWieldSettings.TestLogLookBend ? "ON" : "off") + ", everyone dual wields " + (dualWieldSettings.TestNpcDualWield ? "ON" : "off") + string.Format(CultureInfo.InvariantCulture, ", NPC own left strikes {0:0.00}, share leading left {1:0.00}", dualWieldSettings.NpcOffhandFollowUpChance, dualWieldSettings.NpcLeftLeadShare));
+				DualWieldSettings dualWieldSettings = DualWieldSettings.Get();
+				DualWieldLog.Log("[DW] switches: player's left on foot channel " + (dualWieldSettings.FootLeftChannel1 ? 1 : 0) + ", NPC left on foot channel " + (dualWieldSettings.NpcFootLeftChannel1 ? 1 : 0) + ", left on horseback channel " + dualWieldSettings.MountedLeftChannel + ", rider's left takes the AI's target " + (dualWieldSettings.TestRiderAiTarget ? "on" : "OFF") + ", measured rider zones " + (dualWieldSettings.TestRiderZones ? "ON" : "off") + ", free rein hand " + (dualWieldSettings.FreeReinHand ? "on" : "OFF") + ", log look bend " + (dualWieldSettings.TestLogLookBend ? "ON" : "off") + ", everyone dual wields " + (dualWieldSettings.TestNpcDualWield ? "ON" : "off") + string.Format(CultureInfo.InvariantCulture, ", NPC own left strikes {0:0.00}, share leading left {1:0.00}", dualWieldSettings.NpcOffhandFollowUpChance, dualWieldSettings.NpcLeftLeadShare));
 			}
 			catch
 			{
 			}
 			try
 			{
-				_settingsModeSeen = BerserkWieldSettings.Get().AttackMode;
+				_settingsModeSeen = DualWieldSettings.Get().AttackMode;
 			}
 			catch
 			{
@@ -1718,8 +1719,8 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				int itemUsageIndex2 = MBItem.GetItemUsageIndex("dw_mainhand_swing_thrust");
 				int itemUsageIndex3 = MBItem.GetItemUsageIndex("hand_shield");
 				int itemUsageIndex4 = MBItem.GetItemUsageIndex("onehanded_swing_thrust");
-				BerserkWieldLog.Log($"[UsageIdx] dw_offhand={itemUsageIndex}, dw_mainhand_swing_thrust={itemUsageIndex2}");
-				BerserkWieldLog.Log($"[UsageIdx] hand_shield={itemUsageIndex3}, onehanded_swing_thrust={itemUsageIndex4}");
+				DualWieldLog.Log($"[UsageIdx] dw_offhand={itemUsageIndex}, dw_mainhand_swing_thrust={itemUsageIndex2}");
+				DualWieldLog.Log($"[UsageIdx] hand_shield={itemUsageIndex3}, onehanded_swing_thrust={itemUsageIndex4}");
 				DebugHud(new InformationMessage($"[DW] UsageIdx: dw_off={itemUsageIndex} dw_main={itemUsageIndex2} shield={itemUsageIndex3}", (itemUsageIndex >= 0) ? Colors.Green : Colors.Red));
 				Agent main = Agent.Main;
 				if (main != null && main.IsActive())
@@ -1748,14 +1749,14 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 							num2 = (string.IsNullOrEmpty(text2) ? (-1) : MBItem.GetItemUsageIndex(text2));
 						}
 					}
-					BerserkWieldLog.Log($"[Player] mainSlot={primaryWieldedItemIndex} usage='{text}' nativeIdx={num}");
-					BerserkWieldLog.Log($"[Player] offSlot={offhandWieldedItemIndex} usage='{text2}' nativeIdx={num2}");
+					DualWieldLog.Log($"[Player] mainSlot={primaryWieldedItemIndex} usage='{text}' nativeIdx={num}");
+					DualWieldLog.Log($"[Player] offSlot={offhandWieldedItemIndex} usage='{text2}' nativeIdx={num2}");
 					DebugHud(new InformationMessage(string.Format("[DW] Main: '{0}'={1} Off: '{2}'={3}", new object[4] { text, num, text2, num2 }), (num2 >= 0) ? Colors.Green : Colors.Yellow));
 				}
 			}
 			catch (Exception ex2)
 			{
-				BerserkWieldLog.Log("[UsageIdx] Error: " + ex2.Message);
+				DualWieldLog.Log("[UsageIdx] Error: " + ex2.Message);
 			}
 		}
 		_tickCount++;
@@ -1775,10 +1776,10 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			}
 			catch (Exception ex3)
 			{
-				BerserkWieldLog.Log("[Wield] left gesture tick failed: " + ex3.Message);
+				DualWieldLog.Log("[Wield] left gesture tick failed: " + ex3.Message);
 			}
 		}
-		if (_tickCount % 15 == 0 && main2 != null && main2.IsActive() && !BerserkWieldStateManager.IsDualWielding(main2) && BerserkWieldDetector.PlayerCanDualWield(main2.Equipment))
+		if (_tickCount % 15 == 0 && main2 != null && main2.IsActive() && !DualWieldStateManager.IsDualWielding(main2) && DualWieldDetector.PlayerCanDualWield(main2.Equipment))
 		{
 			try
 			{
@@ -1786,10 +1787,10 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			}
 			catch (Exception ex4)
 			{
-				BerserkWieldLog.Log("[Spawn] late registration failed: " + ex4.Message);
+				DualWieldLog.Log("[Spawn] late registration failed: " + ex4.Message);
 			}
 		}
-		if (_tickCount % 15 == 0 && main2 != null && main2.IsActive() && !_agentsWithAttachment.Contains(main2.Index) && BerserkWieldStateManager.IsDualWielding(main2) && (int)main2.GetOffhandWieldedItemIndex() != -1)
+		if (_tickCount % 15 == 0 && main2 != null && main2.IsActive() && !_agentsWithAttachment.Contains(main2.Index) && DualWieldStateManager.IsDualWielding(main2) && (int)main2.GetOffhandWieldedItemIndex() != -1)
 		{
 			try
 			{
@@ -1797,7 +1798,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			}
 			catch (Exception ex5)
 			{
-				BerserkWieldLog.Log("[Wield] adopt failed: " + ex5.Message);
+				DualWieldLog.Log("[Wield] adopt failed: " + ex5.Message);
 			}
 		}
 		if (_agentsWithAttachment.Count == 0)
@@ -1836,7 +1837,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			}
 			array2[5] = text4;
 			array2[6] = " - dual wield off, keys back to vanilla";
-			BerserkWieldLog.Log(string.Concat(array2));
+			DualWieldLog.Log(string.Concat(array2));
 			RemoveOffHandAttachment(main2);
 		}
 		if (main2 != null && main2.IsActive() && _agentsWithAttachment.Contains(main2.Index))
@@ -1876,8 +1877,8 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		}
 		if (_tickCount % 300 == 0)
 		{
-			BerserkWieldLog.Log($"[Tick] heartbeat #{_tickCount}, tracking {_agentsWithAttachment.Count}, followUps={_followUpCount}");
-			BerserkWieldLog.Log(DwPerf.Report());
+			DualWieldLog.Log($"[Tick] heartbeat #{_tickCount}, tracking {_agentsWithAttachment.Count}, followUps={_followUpCount}");
+			DualWieldLog.Log(DwPerf.Report());
 		}
 		if (_tickCount % 60 != 0)
 		{
@@ -1902,7 +1903,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 	{
 		try
 		{
-			if (BerserkWieldSettings.Get().LeftStrikeSlowdownOff)
+			if (DualWieldSettings.Get().LeftStrikeSlowdownOff)
 			{
 				return 1f;
 			}
@@ -1970,7 +1971,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			}
 			else if (_speedLeftN > 0)
 			{
-				BerserkWieldLog.Log($"[Speed] left strike: mean {_speedLeftSum / (float)_speedLeftN:0.00} m/s over {_speedLeftN} ticks (speed x{LeftStrikeSpeed(agent):0.00})");
+				DualWieldLog.Log($"[Speed] left strike: mean {_speedLeftSum / (float)_speedLeftN:0.00} m/s over {_speedLeftN} ticks (speed x{LeftStrikeSpeed(agent):0.00})");
 				_speedLeftSum = 0f;
 				_speedLeftN = 0;
 			}
@@ -1981,7 +1982,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			}
 			else if (_speedRightN > 0)
 			{
-				BerserkWieldLog.Log($"[Speed] right swing: mean {_speedRightSum / (float)_speedRightN:0.00} m/s over {_speedRightN} ticks (vanilla)");
+				DualWieldLog.Log($"[Speed] right swing: mean {_speedRightSum / (float)_speedRightN:0.00} m/s over {_speedRightN} ticks (vanilla)");
 				_speedRightSum = 0f;
 				_speedRightN = 0;
 			}
@@ -2023,7 +2024,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[Speed] stat refresh failed: " + ex.Message);
+			DualWieldLog.Log("[Speed] stat refresh failed: " + ex.Message);
 		}
 	}
 
@@ -2037,7 +2038,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		InputKey leftHandKey = (InputKey)225;
 		try
 		{
-			leftHandKey = BerserkWieldSettings.Get().LeftHandKey;
+			leftHandKey = DualWieldSettings.Get().LeftHandKey;
 		}
 		catch
 		{
@@ -2102,7 +2103,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		{
 			text = "on foot - left strikes on channel " + LeftChannel(agent);
 		}
-		BerserkWieldLog.Log("[DW] " + text);
+		DualWieldLog.Log("[DW] " + text);
 	}
 
 	private static int LeftChannel(Agent agent)
@@ -2122,7 +2123,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		}
 		try
 		{
-			return BerserkWieldSettings.Get().FootLeftChannel1;
+			return DualWieldSettings.Get().FootLeftChannel1;
 		}
 		catch
 		{
@@ -2134,7 +2135,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 	{
 		try
 		{
-			return BerserkWieldSettings.Get().MountedLeftChannel;
+			return DualWieldSettings.Get().MountedLeftChannel;
 		}
 		catch
 		{
@@ -2165,7 +2166,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 	{
 		try
 		{
-			if (BerserkWieldSettings.Get().TestLeftLookSlope)
+			if (DualWieldSettings.Get().TestLeftLookSlope)
 			{
 				return baseFlags | 0x100000;
 			}
@@ -2218,7 +2219,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		InputKey val = (InputKey)225;
 		try
 		{
-			val = BerserkWieldSettings.Get().LeftHandKey;
+			val = DualWieldSettings.Get().LeftHandKey;
 		}
 		catch
 		{
@@ -2251,7 +2252,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			}
 			if (index != _windupAct.Index)
 			{
-				BerserkWieldLog.Log("[DW " + tag + "] wind-up interrupted ('" + ActionCache.NameOf(agent.GetCurrentAction(LeftChannel(agent))) + "')");
+				DualWieldLog.Log("[DW " + tag + "] wind-up interrupted ('" + ActionCache.NameOf(agent.GetCurrentAction(LeftChannel(agent))) + "')");
 				_windingUp = false;
 				_sepReleasePending = false;
 				_sepQueued = false;
@@ -2261,7 +2262,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		{
 			if (!_sepQueued)
 			{
-				BerserkWieldLog.Log("[DW " + tag + "] press buffered, strike still running");
+				DualWieldLog.Log("[DW " + tag + "] press buffered, strike still running");
 			}
 			_sepQueued = true;
 		}
@@ -2277,7 +2278,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				_windupDir = val;
 				_windingUp = true;
 				_sepWindupAt = currentTime;
-				BerserkWieldLog.Log("[DW " + tag + "] buffered strike -> wind-up " + windupAct.GetName());
+				DualWieldLog.Log("[DW " + tag + "] buffered strike -> wind-up " + windupAct.GetName());
 			}
 			_sepQueued = false;
 			_sepReleasePending = true;
@@ -2299,7 +2300,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				_windupDir = val2;
 				if (!_windingUp)
 				{
-					BerserkWieldLog.Log("[DW " + tag + "] wind-up -> " + windupAct2.GetName());
+					DualWieldLog.Log("[DW " + tag + "] wind-up -> " + windupAct2.GetName());
 				}
 				_windingUp = true;
 			}
@@ -2327,7 +2328,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			_sepStrikeAct = val4;
 			_sepStrikeAt = currentTime;
 			_followUpCount++;
-			BerserkWieldLog.Log(string.Format("[DW {0}] release -> clip {1} ({2}) on channel {3} set={4}", new object[5]
+			DualWieldLog.Log(string.Format("[DW {0}] release -> clip {1} ({2}) on channel {3} set={4}", new object[5]
 			{
 				tag,
 				val4.GetName(),
@@ -2337,7 +2338,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			}));
 			if (flag2)
 			{
-				BerserkWieldBalance.PlayerLeftFired(agent.HasMount);
+				DualWieldBalance.PlayerLeftFired(agent.HasMount);
 			}
 			CaptureArm(tag + " " + ActionCache.NameOf(val4));
 			DebugHud(new InformationMessage("[DW] LINKS", Colors.Green));
@@ -2443,7 +2444,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		if (!_padHintShown)
 		{
 			_padHintShown = true;
-			BerserkWieldLog.Log("[DW] Separate mode with a gamepad active: fighting Alternating (the attack trigger strikes right and left in turn)");
+			DualWieldLog.Log("[DW] Separate mode with a gamepad active: fighting Alternating (the attack trigger strikes right and left in turn)");
 			InformationManager.DisplayMessage(new InformationMessage("Dual Wield: on a gamepad the attack trigger strikes right and left in turn (Separate mode needs mouse and keyboard).", Colors.Cyan));
 		}
 		return true;
@@ -2507,7 +2508,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[DW alt] SetAgentFlags failed: " + ex.Message);
+			DualWieldLog.Log("[DW alt] SetAgentFlags failed: " + ex.Message);
 		}
 		if (!_nextIsLeft)
 		{
@@ -2529,7 +2530,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			bool flag = false;
 			try
 			{
-				flag = BerserkWieldSettings.Get().TestLogLookBend;
+				flag = DualWieldSettings.Get().TestLogLookBend;
 			}
 			catch
 			{
@@ -2567,7 +2568,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 					Vec3 origin = val.GetBoneEntitialFrame((sbyte)13).origin;
 					Vec3 origin2 = val.GetBoneEntitialFrame((sbyte)26).origin;
 					Vec3 origin3 = val.GetBoneEntitialFrame((sbyte)0).origin;
-					BerserkWieldLog.Log(string.Format(CultureInfo.InvariantCulture, "[LookBend] {0} {1}: look pitch {2:+0;-0} yaw {3:+0;-0} deg | head {4:0.00} {5:0.00} {6:0.00} | right hand {7:0.00} {8:0.00} {9:0.00} | pelvis {10:0.00} {11:0.00} {12:0.00} (model space x y z, progress 0.45)", new object[13]
+					DualWieldLog.Log(string.Format(CultureInfo.InvariantCulture, "[LookBend] {0} {1}: look pitch {2:+0;-0} yaw {3:+0;-0} deg | head {4:0.00} {5:0.00} {6:0.00} | right hand {7:0.00} {8:0.00} {9:0.00} | pelvis {10:0.00} {11:0.00} {12:0.00} (model space x y z, progress 0.45)", new object[13]
 					{
 						agent.HasMount ? "mounted" : "on foot",
 						ActionCache.NameOf(agent.GetCurrentAction(1)),
@@ -2634,7 +2635,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				Vec3 origin = val.GetBoneEntitialFrame((sbyte)13).origin;
 				Vec3 origin2 = val.GetBoneEntitialFrame((sbyte)19).origin;
 				Vec3 origin3 = val.GetBoneEntitialFrame((sbyte)0).origin;
-				BerserkWieldLog.Log(string.Format(CultureInfo.InvariantCulture, "[LookBend] ours {0} {1}: look pitch {2:+0;-0} yaw {3:+0;-0} deg | head {4:0.00} {5:0.00} {6:0.00} | left hand {7:0.00} {8:0.00} {9:0.00} | pelvis {10:0.00} {11:0.00} {12:0.00} (model space x y z, progress 0.45)", new object[13]
+				DualWieldLog.Log(string.Format(CultureInfo.InvariantCulture, "[LookBend] ours {0} {1}: look pitch {2:+0;-0} yaw {3:+0;-0} deg | head {4:0.00} {5:0.00} {6:0.00} | left hand {7:0.00} {8:0.00} {9:0.00} | pelvis {10:0.00} {11:0.00} {12:0.00} (model space x y z, progress 0.45)", new object[13]
 				{
 					agent.HasMount ? "mounted" : "on foot",
 					text,
@@ -2660,7 +2661,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		bool flag = false;
 		try
 		{
-			flag = BerserkWieldSettings.Get().AlternatingCrossCombo;
+			flag = DualWieldSettings.Get().AlternatingCrossCombo;
 		}
 		catch
 		{
@@ -2692,13 +2693,13 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			CycleDWMode(agent);
 		}
 		_nWasDown = flag;
-		if (!BerserkWieldSettings.Get().DebugMode)
+		if (!DualWieldSettings.Get().DebugMode)
 		{
 			return;
 		}
 		if (_dbgChanWatch > 0 && agent != null && agent.IsActive())
 		{
-			BerserkWieldLog.Log($"[DW watch {_dbgChanWatch}] {DumpChannels(agent)}");
+			DualWieldLog.Log($"[DW watch {_dbgChanWatch}] {DumpChannels(agent)}");
 			_dbgChanWatch--;
 		}
 		if (_clipPlayTicks > 0)
@@ -2729,14 +2730,14 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 						catch
 						{
 						}
-						BerserkWieldLog.Log($"[DW clip] restore-state action='{text}' anim='{text2}' savedAnimIdx={_savedCh0AnimIdx}");
+						DualWieldLog.Log($"[DW clip] restore-state action='{text}' anim='{text2}' savedAnimIdx={_savedCh0AnimIdx}");
 						DebugHud(new InformationMessage("[DW clip] act='" + text + "' anim='" + text2 + "'", Colors.Cyan));
 						{ ActionIndexCache _tmpAct = _idleReady1h; agent.SetActionChannel(0, ref _tmpAct, true, (AnimFlags)0, 0f, 1f, 0.25f, 0f, 0f, false, -0.2f, 0, true); }
 					}
 				}
 				catch (Exception ex)
 				{
-					BerserkWieldLog.Log("[DW clip] restore ERR " + ex.Message);
+					DualWieldLog.Log("[DW clip] restore ERR " + ex.Message);
 				}
 			}
 		}
@@ -2859,9 +2860,9 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			}
 			catch (Exception ex2)
 			{
-				BerserkWieldLog.Log("[DWflags] read threw: " + ex2.Message);
+				DualWieldLog.Log("[DWflags] read threw: " + ex2.Message);
 			}
-			BerserkWieldLog.Log("[DWflags] " + name + " selfWritten=" + flag2 + " ch0=0x" + num.ToString("X") + " ch1=0x" + num2.ToString("X"));
+			DualWieldLog.Log("[DWflags] " + name + " selfWritten=" + flag2 + " ch0=0x" + num.ToString("X") + " ch1=0x" + num2.ToString("X"));
 			DebugHud(new InformationMessage("[flags] ch0=0x" + num.ToString("X"), Colors.Yellow));
 			string text2 = "?";
 			try
@@ -2886,13 +2887,13 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			catch
 			{
 			}
-			BerserkWieldLog.Log(string.Format("[DW act] {0} code={1} mappedClip='{2}' set={3} ch0anim='{4}'", new object[5] { name, act.Index, text, flag, text2 }));
+			DualWieldLog.Log(string.Format("[DW act] {0} code={1} mappedClip='{2}' set={3} ch0anim='{4}'", new object[5] { name, act.Index, text, flag, text2 }));
 			bool flag3 = flag && text2 != null && text2.Contains("dw_cu");
 			DebugHud(new InformationMessage($"[DW act] set={flag} map='{text}' ch0='{text2}'", flag3 ? Colors.Green : Colors.Yellow));
 		}
 		catch (Exception ex3)
 		{
-			BerserkWieldLog.Log("[DW act] ERR " + ex3.Message);
+			DualWieldLog.Log("[DW act] ERR " + ex3.Message);
 			DebugHud(new InformationMessage("[DW act] ERR " + ex3.Message, Colors.Red));
 		}
 	}
@@ -2930,9 +2931,9 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				_savedCh0AnimIdx = val.GetAnimationIndexAtChannel(0);
 				MBSkeletonExtensions.SetAnimationAtChannel(val, text, 0, 1f, 0.15f, 0f);
 				_clipPlayTicks = 70;
-				BerserkWieldLog.Log($"[DW clip] savedCh0AnimIdx={_savedCh0AnimIdx}");
+				DualWieldLog.Log($"[DW clip] savedCh0AnimIdx={_savedCh0AnimIdx}");
 			}
-			BerserkWieldLog.Log(string.Format("[DW clip] clip '{0}'={1}  anim '{2}'={3}  van_slashright={4}  chose={5} on {6}", new object[7]
+			DualWieldLog.Log(string.Format("[DW clip] clip '{0}'={1}  anim '{2}'={3}  van_slashright={4}  chose={5} on {6}", new object[7]
 			{
 				clipId,
 				animationIndexWithName,
@@ -2952,7 +2953,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[DW clip] ERR " + ex.Message);
+			DualWieldLog.Log("[DW clip] ERR " + ex.Message);
 			DebugHud(new InformationMessage("[DW clip] ERR " + ex.Message, Colors.Red));
 		}
 	}
@@ -2967,12 +2968,12 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		int attackMode;
 		try
 		{
-			BerserkWieldSettings dualWieldSettings = BerserkWieldSettings.Get();
+			DualWieldSettings dualWieldSettings = DualWieldSettings.Get();
 			if (dualWieldSettings != _settingsObjectSeen)
 			{
 				if (_settingsObjectSeen != null && _settingsSwapLogs++ < 5)
 				{
-					BerserkWieldLog.Log(string.Format("[DW] MCM settings object replaced - mode there {0}, left key {1}, instance {2}", dualWieldSettings.AttackMode, dualWieldSettings.LeftHandKey, (BerserkWieldSettings.Get() == null) ? "NULL" : "set"));
+					DualWieldLog.Log(string.Format("[DW] MCM settings object replaced - mode there {0}, left key {1}, instance {2}", dualWieldSettings.AttackMode, dualWieldSettings.LeftHandKey, (DualWieldSettings.Get() == null) ? "NULL" : "set"));
 				}
 				_settingsObjectSeen = dualWieldSettings;
 			}
@@ -2984,7 +2985,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		}
 		if (attackMode != _settingsModeSeen)
 		{
-			BerserkWieldLog.Log($"[DW] MCM combat mode changed to {attackMode} (was {_settingsModeSeen}), mission mode {_dwCombatMode}");
+			DualWieldLog.Log($"[DW] MCM combat mode changed to {attackMode} (was {_settingsModeSeen}), mission mode {_dwCombatMode}");
 			_settingsModeSeen = attackMode;
 			if (attackMode >= 1 && attackMode <= 2 && attackMode != _dwCombatMode)
 			{
@@ -3013,7 +3014,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		_sepReleasePending = false;
 		string[] array = new string[3] { "Mirror", "Alternating (LMB)", "Separate (LMB right, own key left)" };
 		InformationManager.DisplayMessage(new InformationMessage("Dual wield mode: " + array[_dwCombatMode], new Color(1f, 0.6f, 0f, 1f)));
-		BerserkWieldLog.Log($"[DW] Mode â†’ {_dwCombatMode}: {array[_dwCombatMode]}");
+		DualWieldLog.Log($"[DW] Mode â†’ {_dwCombatMode}: {array[_dwCombatMode]}");
 		if (persist)
 		{
 			try
@@ -3039,7 +3040,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				val = blow;
 				if (!val.IsMissile && affectorAgent.IsMainAgent && _offHandSlots.ContainsKey(affectorAgent.Index))
 				{
-					BerserkWieldBalance.PlayerHit(LeftBladeStrike.ApplyingLeftHit, blow.InflictedDamage, affectedAgent.Health <= 0f);
+					DualWieldBalance.PlayerHit(LeftBladeStrike.ApplyingLeftHit, blow.InflictedDamage, affectedAgent.Health <= 0f);
 				}
 			}
 			if (affectorAgent == null || affectedAgent == null)
@@ -3047,20 +3048,20 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				return;
 			}
 			val = blow;
-			if (!val.IsMissile && BerserkWieldBalance.IsNpc(affectorAgent))
+			if (!val.IsMissile && DualWieldBalance.IsNpc(affectorAgent))
 			{
 				bool flag = _offHandSlots.ContainsKey(affectorAgent.Index);
 				if (flag)
 				{
-					BerserkWieldBalance.Hit(LeftBladeStrike.ApplyingLeftHit, blow.InflictedDamage, affectedAgent.Health <= 0f);
+					DualWieldBalance.Hit(LeftBladeStrike.ApplyingLeftHit, blow.InflictedDamage, affectedAgent.Health <= 0f);
 				}
 				if (flag && LeftBladeStrike.ApplyingLeftHit && affectorAgent.HasMount && blow.InflictedDamage > 0)
 				{
-					BerserkWieldBalance.Rider(10);
+					DualWieldBalance.Rider(10);
 				}
 				if (blow.InflictedDamage > 0 && affectedAgent.IsHuman && Mission.Current != null)
 				{
-					BerserkWieldBalance.ChainHit(affectorAgent, affectedAgent, flag, Mission.Current.CurrentTime);
+					DualWieldBalance.ChainHit(affectorAgent, affectedAgent, flag, Mission.Current.CurrentTime);
 				}
 			}
 		}
@@ -3080,14 +3081,14 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		((MissionBehavior)this).OnMeleeHit(attacker, victim, isCanceled, collisionData);
 		try
 		{
-			if (LeftBladeStrike.ApplyingLeftHit || attacker == null || victim == null || !attacker.IsActive() || !BerserkWieldBalance.IsNpc(attacker))
+			if (LeftBladeStrike.ApplyingLeftHit || attacker == null || victim == null || !attacker.IsActive() || !DualWieldBalance.IsNpc(attacker))
 			{
 				return;
 			}
 			bool flag = _offHandSlots.ContainsKey(attacker.Index);
 			if (victim.IsHuman && attacker.IsFriendOf(victim))
 			{
-				BerserkWieldBalance.FriendCollision(flag);
+				DualWieldBalance.FriendCollision(flag);
 			}
 			else
 			{
@@ -3100,20 +3101,20 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				{
 					return;
 				}
-				BerserkWieldBalance.RightBlocked();
-				if ((!_npcLeftCooldown.TryGetValue(attacker.Index, out var value) || !(value > 0f)) && !(_npcRng.NextDouble() >= (double)NpcLeftChance(attacker, BerserkWieldSettings.Get().NpcOffhandChance)) && !_npcCounterQueue.Contains(attacker))
+				DualWieldBalance.RightBlocked();
+				if ((!_npcLeftCooldown.TryGetValue(attacker.Index, out var value) || !(value > 0f)) && !(_npcRng.NextDouble() >= (double)NpcLeftChance(attacker, DualWieldSettings.Get().NpcOffhandChance)) && !_npcCounterQueue.Contains(attacker))
 				{
 					_npcCounterQueue.Add(attacker);
 					if (attacker.HasMount && MountedLeftOn)
 					{
-						BerserkWieldBalance.Rider(5);
+						DualWieldBalance.Rider(5);
 					}
 				}
 			}
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[NPC-LH] melee hit failed: " + ex.Message);
+			DualWieldLog.Log("[NPC-LH] melee hit failed: " + ex.Message);
 		}
 	}
 
@@ -3164,7 +3165,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			_npcCounterQueue.Clear();
 			foreach (Agent item3 in list)
 			{
-				BerserkWieldMissionBehavior dualWieldMissionBehavior = this;
+				DualWieldMissionBehavior dualWieldMissionBehavior = this;
 				Agent agent = item3;
 				string why;
 				if (_npcFollowUps.Remove(item3.Index))
@@ -3178,7 +3179,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				dualWieldMissionBehavior.FireNpcLeft(agent, why);
 			}
 		}
-		if (!BerserkWieldBalance.Tick(dt))
+		if (!DualWieldBalance.Tick(dt))
 		{
 			return;
 		}
@@ -3192,11 +3193,11 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			}
 			Mission current5 = Mission.Current;
 			Agent val = ((current5 != null) ? current5.FindAgentWithIndex(key) : null);
-			if (val != null && val.IsActive() && BerserkWieldBalance.IsNpc(val))
+			if (val != null && val.IsActive() && DualWieldBalance.IsNpc(val))
 			{
 				try
 				{
-					BerserkWieldBalance.SampleGuard(ActionCache.NameOf(val.GetCurrentAction(1)));
+					DualWieldBalance.SampleGuard(ActionCache.NameOf(val.GetCurrentAction(1)));
 				}
 				catch
 				{
@@ -3340,7 +3341,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		float share = 0.2f;
 		try
 		{
-			share = BerserkWieldSettings.Get().NpcLeftLeadShare;
+			share = DualWieldSettings.Get().NpcLeftLeadShare;
 		}
 		catch
 		{
@@ -3362,7 +3363,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			_npcCounterQueue.Add(a);
 			if (hasMount)
 			{
-				BerserkWieldBalance.Rider(12);
+				DualWieldBalance.Rider(12);
 			}
 		}
 	}
@@ -3381,7 +3382,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		float num = 0.3f;
 		try
 		{
-			num = BerserkWieldSettings.Get().NpcOffhandFollowUpChance;
+			num = DualWieldSettings.Get().NpcOffhandFollowUpChance;
 		}
 		catch
 		{
@@ -3389,7 +3390,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		float num2 = 0.2f;
 		try
 		{
-			num2 = BerserkWieldSettings.Get().NpcLeftLeadShare;
+			num2 = DualWieldSettings.Get().NpcLeftLeadShare;
 		}
 		catch
 		{
@@ -3404,7 +3405,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		int num3 = side;
 		foreach (Agent item in (List<Agent>)(object)Mission.Current.Agents)
 		{
-			if (item == null || item.Index % 3 != num3 || !_offHandSlots.ContainsKey(item.Index) || !item.IsActive() || !BerserkWieldBalance.IsNpc(item))
+			if (item == null || item.Index % 3 != num3 || !_offHandSlots.ContainsKey(item.Index) || !item.IsActive() || !DualWieldBalance.IsNpc(item))
 			{
 				continue;
 			}
@@ -3451,33 +3452,33 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				bool flag3 = item.HasMount && MountedLeftOn;
 				if (flag3)
 				{
-					BerserkWieldBalance.Rider(0);
+					DualWieldBalance.Rider(0);
 				}
 				if (_npcCounterQueue.Contains(item) || _npcLeftCooldown.ContainsKey(item.Index) || (_npcStrikes.TryGetValue(item.Index, out var value) && value.Active))
 				{
 					if (flag3)
 					{
-						BerserkWieldBalance.Rider(1);
+						DualWieldBalance.Rider(1);
 					}
 					continue;
 				}
 				bool flag4 = ((!item.HasMount) ? EnemyInReach(item) : (MountedLeftOn && MountedTarget(item, out side, out var _, out var _, out var _)));
 				if (flag3 && !flag4)
 				{
-					BerserkWieldBalance.Rider(2);
-					BerserkWieldBalance.RiderNoTargetWhy(MountedNoTargetWhy(item));
+					DualWieldBalance.Rider(2);
+					DualWieldBalance.RiderNoTargetWhy(MountedNoTargetWhy(item));
 				}
 				if (_npcRng.NextDouble() >= (double)NpcLeftChance(item, num) || !flag4)
 				{
 					if (flag3 & flag4)
 					{
-						BerserkWieldBalance.Rider(3);
+						DualWieldBalance.Rider(3);
 					}
 					continue;
 				}
 				if (flag3)
 				{
-					BerserkWieldBalance.Rider(4);
+					DualWieldBalance.Rider(4);
 				}
 				_npcFollowUps.Add(item.Index);
 				_npcCounterQueue.Add(item);
@@ -3538,12 +3539,12 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			{ ActionIndexCache _tmpAct = ActionIndexCache.act_none; agent.SetActionChannel(1, ref _tmpAct, true, (AnimFlags)0, 0f, 1f, 0.1f, 0.4f, 0f, false, -0.2f, 0, true); }
 			if (_npcHoldLogs++ < 15)
 			{
-				BerserkWieldLog.Log("[NPC-LH] " + agent.Name + ": channel 1 held '" + text + "' when the left strike started - cleared");
+				DualWieldLog.Log("[NPC-LH] " + agent.Name + ": channel 1 held '" + text + "' when the left strike started - cleared");
 			}
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[NPC-LH] hold failed: " + ex.Message);
+			DualWieldLog.Log("[NPC-LH] hold failed: " + ex.Message);
 		}
 	}
 
@@ -3617,7 +3618,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 					ItemObject item = val.Item;
 					array[2] = ((item != null) ? ((MBObjectBase)item).StringId : null);
 					array[3] = (flag ? "pairing dropped" : "no counter this time");
-					BerserkWieldLog.Log(string.Format("[NPC-LH] {0}: left hand does not hold our weapon (slot {1} = '{2}') - {3}", array));
+					DualWieldLog.Log(string.Format("[NPC-LH] {0}: left hand does not hold our weapon (slot {1} = '{2}') - {3}", array));
 				}
 				if (flag)
 				{
@@ -3627,10 +3628,10 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			}
 			if (_npcStrikesRunning >= _npcStrikeCap)
 			{
-				BerserkWieldBalance.LeftSkipped();
+				DualWieldBalance.LeftSkipped();
 				if (agent.HasMount && MountedLeftOn)
 				{
-					BerserkWieldBalance.Rider(8);
+					DualWieldBalance.Rider(8);
 				}
 				return;
 			}
@@ -3645,10 +3646,10 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			List<Agent.UsageDirection> list = SafeLeftDirections(agent, out var allies);
 			if (list.Count == 0)
 			{
-				BerserkWieldBalance.LeftHeldForAlly();
+				DualWieldBalance.LeftHeldForAlly();
 				if (_npcLeftLogs++ < 20)
 				{
-					BerserkWieldLog.Log("[NPC-LH] " + agent.Name + ": " + why + " -> no left strike, ally " + allies);
+					DualWieldLog.Log("[NPC-LH] " + agent.Name + ": " + why + " -> no left strike, ally " + allies);
 				}
 				return;
 			}
@@ -3667,7 +3668,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			bool flag2 = agent.SetActionChannel(num, ref act, true, (AnimFlags)LeftFlags(33uL), 0f, 1f, -0.2f, 0.4f, 0f, false, -0.2f, 0, true);
 			if (_npcLeftLogs++ < 20)
 			{
-				BerserkWieldLog.Log(string.Format("[NPC-LH] {0}: {1} -> left strike {2} on channel {3} ({4}, allies {5}) set={6}", new object[7]
+				DualWieldLog.Log(string.Format("[NPC-LH] {0}: {1} -> left strike {2} on channel {3} ({4}, allies {5}) set={6}", new object[7]
 				{
 					agent.Name,
 					why,
@@ -3690,15 +3691,15 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 				}
 				value2.Stop("next strike");
 				value2.Start(agent, value, ActionCache.NameOf(act), val2, num);
-				BerserkWieldBalance.NpcFootStrike(num);
+				DualWieldBalance.NpcFootStrike(num);
 				_npcStrikesRunning++;
 				_npcLeftCooldown[agent.Index] = (LeftLeads(agent) ? 1.2f : 2.5f);
-				BerserkWieldBalance.LeftFired(why == "own follow-up", why == "lead");
+				DualWieldBalance.LeftFired(why == "own follow-up", why == "lead");
 			}
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[NPC-LH] counter failed: " + ex.Message);
+			DualWieldLog.Log("[NPC-LH] counter failed: " + ex.Message);
 		}
 	}
 
@@ -3747,7 +3748,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 	{
 		if (!MountedTarget(agent, out var side, out var deg, out var dist, out var onFoot))
 		{
-			BerserkWieldBalance.Rider(6);
+			DualWieldBalance.Rider(6);
 			return;
 		}
 		Agent.UsageDirection val = (Agent.UsageDirection)(side switch
@@ -3760,14 +3761,14 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		});
 		if (side == 0 && LeftUsable(agent, val) != val)
 		{
-			BerserkWieldBalance.Rider(6);
+			DualWieldBalance.Rider(6);
 			return;
 		}
 		val = LeftUsable(agent, val);
 		if (MountedAllyInTheWay(agent, side, deg, dist, onFoot, _mountedTargetAhead))
 		{
-			BerserkWieldBalance.LeftHeldForAlly();
-			BerserkWieldBalance.Rider(7);
+			DualWieldBalance.LeftHeldForAlly();
+			DualWieldBalance.Rider(7);
 			return;
 		}
 		ActionIndexCache act = AtHeight(MountedAction(agent, val, ready: false), onFoot ? (-1) : 0);
@@ -3793,7 +3794,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		bool flag = agent.SetActionChannel(num, ref act, true, (AnimFlags)LeftFlags(33uL), 0f, 1f, -0.2f, 0.4f, 0f, false, -0.2f, 0, true);
 		if (_npcMountedLogs++ < 20)
 		{
-			BerserkWieldLog.Log(string.Format("[NPC-LH] {0}: mounted {1} -> {2} on channel {3} (enemy will be at {4:0} deg, {5:0.0} m; the AI's right arm: {6}) set={7}", new object[8]
+			DualWieldLog.Log(string.Format("[NPC-LH] {0}: mounted {1} -> {2} on channel {3} (enemy will be at {4:0} deg, {5:0.0} m; the AI's right arm: {6}) set={7}", new object[8]
 			{
 				agent.Name,
 				why,
@@ -3815,13 +3816,13 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			value.Start(agent, slot, ActionCache.NameOf(act), val, num);
 			_npcStrikesRunning++;
 			_npcLeftCooldown[agent.Index] = (LeftLeads(agent) ? 1.2f : 2.5f);
-			BerserkWieldBalance.LeftFired(why == "own follow-up", why == "lead");
-			BerserkWieldBalance.LeftMounted();
-			BerserkWieldBalance.Rider(9);
-			BerserkWieldBalance.RiderTarget(agent.Index, deg, dist);
+			DualWieldBalance.LeftFired(why == "own follow-up", why == "lead");
+			DualWieldBalance.LeftMounted();
+			DualWieldBalance.Rider(9);
+			DualWieldBalance.RiderTarget(agent.Index, deg, dist);
 			if (_mountedTookAiTarget)
 			{
-				BerserkWieldBalance.Rider(13);
+				DualWieldBalance.Rider(13);
 			}
 		}
 	}
@@ -3890,7 +3891,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 					_ => "nobody near", 
 				};
 				array[7] = "nearest";
-				BerserkWieldLog.Log(string.Format(invariantCulture, "[Mounted] no target: {7} {0} at forward {1:+0.0;-0.0} lateral {2:+0.0;-0.0} m ({3:0.0} m), reach {4:0.00} m, rider {5:0.0} m/s - {6}", array));
+				DualWieldLog.Log(string.Format(invariantCulture, "[Mounted] no target: {7} {0} at forward {1:+0.0;-0.0} lateral {2:+0.0;-0.0} m ({3:0.0} m), reach {4:0.00} m, rider {5:0.0} m/s - {6}", array));
 			}
 			return num5;
 		}
@@ -4081,20 +4082,20 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			_npcHeldFlags.Remove(affectedAgent.Index);
 			RangedHybrids.Remove(affectedAgent.Index);
 		}
-		BerserkWieldStateManager.Unregister(affectedAgent);
+		DualWieldStateManager.Unregister(affectedAgent);
 	}
 
 	protected override void OnEndMission()
 	{
 		base.OnEndMission();
 		PlayerLeftArrow = (Agent.UsageDirection)(-1);
-		BerserkWieldBalance.Report("mission end");
+		DualWieldBalance.Report("mission end");
 		try
 		{
 			string text = OneAgentLimbRay.TakeSummary();
 			if (text != null)
 			{
-				BerserkWieldLog.Log(text);
+				DualWieldLog.Log(text);
 			}
 		}
 		catch
@@ -4105,13 +4106,13 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 			string text2 = LeftBladeStrike.TakeStaleSummary();
 			if (text2 != null)
 			{
-				BerserkWieldLog.Log(text2);
+				DualWieldLog.Log(text2);
 			}
 		}
 		catch
 		{
 		}
-		BerserkWieldBalance.Reset();
+		DualWieldBalance.Reset();
 		_npcStrikes.Clear();
 		RangedHybrids.Clear();
 		_npcLeftCooldown.Clear();
@@ -4122,7 +4123,7 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		_strikeSlowOn = false;
 		PlayerOffHandStriking = false;
 		PlayerMainLeftStriking = false;
-		BerserkWieldLog.Flush();
+		DualWieldLog.Flush();
 		_npcReleasing.Clear();
 		_npcReadying.Clear();
 		_npcLeads.Clear();
@@ -4142,10 +4143,10 @@ public class BerserkWieldMissionBehavior : MissionBehavior
 		_nWasDown = false;
 		_dwCombatMode = 0;
 		DualWieldWieldingPatches.ClearTrackingState();
-		BerserkWieldStateManager.Clear();
+		DualWieldStateManager.Clear();
 	}
 
-	static BerserkWieldMissionBehavior()
+	static DualWieldMissionBehavior()
 	{
 	}
 }

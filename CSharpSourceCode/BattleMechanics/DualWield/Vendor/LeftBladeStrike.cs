@@ -12,7 +12,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 
-namespace TOR_Core.BattleMechanics.BerserkWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield.Vendor;
 
 public sealed class LeftBladeStrike
 {
@@ -218,7 +218,7 @@ public sealed class LeftBladeStrike
 	{
 		get
 		{
-			if (!BerserkWieldLog.Unlimited)
+			if (!DualWieldLog.Unlimited)
 			{
 				if (_attacker != null)
 				{
@@ -259,7 +259,7 @@ public sealed class LeftBladeStrike
 		_channel = channel;
 		try
 		{
-			_limbMode = BerserkWieldSettings.Get().LimbRayMode;
+			_limbMode = DualWieldSettings.Get().LimbRayMode;
 		}
 		catch
 		{
@@ -306,14 +306,14 @@ public sealed class LeftBladeStrike
 			{
 			}
 		}
-		if (_attacker != null && BerserkWieldLog.Unlimited)
+		if (_attacker != null && DualWieldLog.Unlimited)
 		{
-			BerserkWieldLog.Log($"[LH-Blade] strike end ({why}): max tip speed {_maxTipSpeed:0.0} m/s, hits {_hitThisStrike.Count}");
+			DualWieldLog.Log($"[LH-Blade] strike end ({why}): max tip speed {_maxTipSpeed:0.0} m/s, hits {_hitThisStrike.Count}");
 		}
 		if (_attacker != null && _diag)
 		{
 			_diag = false;
-			BerserkWieldLog.Log(string.Format(CultureInfo.InvariantCulture, "[Mounted] {0} {1} end ({2}) after {3:0.00} s at progress {4:0.00} (window {5:0.00}-{6:0.00}): contacts {7}, window ticks {8} (swept {9}), tip max {10:0.0} m/s, stale ticks {17} (forced update moved {18}) | closest enemy to the blade {11} at progress {12:0.00}: blade z {13:0.00}..{14:0.00}, enemy feet {15:0.00} eyes {16:0.00}", new object[19]
+			DualWieldLog.Log(string.Format(CultureInfo.InvariantCulture, "[Mounted] {0} {1} end ({2}) after {3:0.00} s at progress {4:0.00} (window {5:0.00}-{6:0.00}): contacts {7}, window ticks {8} (swept {9}), tip max {10:0.0} m/s, stale ticks {17} (forced update moved {18}) | closest enemy to the blade {11} at progress {12:0.00}: blade z {13:0.00}..{14:0.00}, enemy feet {15:0.00} eyes {16:0.00}", new object[19]
 			{
 				_attacker.IsMainAgent ? "player" : "npc",
 				_actionName.Replace("act_dwc_quick_release_", ""),
@@ -348,7 +348,7 @@ public sealed class LeftBladeStrike
 		}
 		if (_attacker != null && _riderStrike)
 		{
-			BerserkWieldBalance.RiderStrikeEnded(_actionName, _hitThisStrike.Count > 0, _woundedEnemy, _wasBlocked || why == "parried", _friendMet, _friendWhere, _attacker.Index);
+			DualWieldBalance.RiderStrikeEnded(_actionName, _hitThisStrike.Count > 0, _woundedEnemy, _wasBlocked || why == "parried", _friendMet, _friendWhere, _attacker.Index);
 		}
 		_attacker = null;
 	}
@@ -373,7 +373,7 @@ public sealed class LeftBladeStrike
 				if (!_holdChecked && _sceneHoldLeft < 0.03f)
 				{
 					_holdChecked = true;
-					BerserkWieldLog.Log($"[LH-Blade] hold check: contact {_sceneHoldProgress:0.000}, now {CurrentProgress():0.000} mid-hold");
+					DualWieldLog.Log($"[LH-Blade] hold check: contact {_sceneHoldProgress:0.000}, now {CurrentProgress():0.000} mid-hold");
 				}
 				return;
 			}
@@ -573,16 +573,16 @@ public sealed class LeftBladeStrike
 				{
 					value = num2;
 				}
-				BerserkWieldLog.Log($"[LH-Reach] '{((MBObjectBase)item).StringId}' hangs on '{item.SkeletonName}': declared {num:0.00} m, " + string.Format("mesh '{0}' box {1:0.00} x {2:0.00} x {3:0.00} -> reach {4:0.00} m", new object[5] { item.MultiMeshName, val.x, val.y, val.z, value }));
+				DualWieldLog.Log($"[LH-Reach] '{((MBObjectBase)item).StringId}' hangs on '{item.SkeletonName}': declared {num:0.00} m, " + string.Format("mesh '{0}' box {1:0.00} x {2:0.00} x {3:0.00} -> reach {4:0.00} m", new object[5] { item.MultiMeshName, val.x, val.y, val.z, value }));
 			}
 			else
 			{
-				BerserkWieldLog.Log($"[LH-Reach] '{((MBObjectBase)item).StringId}': mesh '{item.MultiMeshName}' not loadable, keeping {num:0.00} m");
+				DualWieldLog.Log($"[LH-Reach] '{((MBObjectBase)item).StringId}': mesh '{item.MultiMeshName}' not loadable, keeping {num:0.00} m");
 			}
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[LH-Reach] mesh measurement failed for '" + ((MBObjectBase)item).StringId + "': " + ex.Message);
+			DualWieldLog.Log("[LH-Reach] mesh measurement failed for '" + ((MBObjectBase)item).StringId + "': " + ex.Message);
 		}
 		_reachByItem[((MBObjectBase)item).StringId] = value;
 		return value;
@@ -620,7 +620,7 @@ public sealed class LeftBladeStrike
 		catch (Exception ex)
 		{
 			_guards.Clear();
-			BerserkWieldLog.Log("[LH-Blade] guard collect failed: " + ex.Message);
+			DualWieldLog.Log("[LH-Blade] guard collect failed: " + ex.Message);
 		}
 		DwPerf.Stop(9, started);
 	}
@@ -810,7 +810,7 @@ public sealed class LeftBladeStrike
 						float along = MathF.Min(val6.Length, length);
 						if (Chatty)
 						{
-							BerserkWieldLog.Log(string.Format("[LH-Blade] PARRIED by {0}'s {1} weapon ({2}), gap {3:0.00} m, tip {4:0.0} m/s", new object[5]
+							DualWieldLog.Log(string.Format("[LH-Blade] PARRIED by {0}'s {1} weapon ({2}), gap {3:0.00} m, tip {4:0.0} m/s", new object[5]
 							{
 								val5.Name,
 								(_guardBone[j] == 20) ? "LEFT" : "right",
@@ -819,7 +819,7 @@ public sealed class LeftBladeStrike
 								tipSpeed
 							}));
 						}
-						BerserkWieldBalance.LeftParried(_attacker);
+						DualWieldBalance.LeftParried(_attacker);
 						ApplyHit(val5, weapon, usage, _guardBone[j], onP, along, tipSpeed, tip - _prevTip, blocked: true, withShield: false, out var progress);
 						PlayBlockedReaction("parried", progress);
 						Stop("parried");
@@ -882,10 +882,10 @@ public sealed class LeftBladeStrike
 				DwPerf.Stop(15, started2);
 				if (flag3)
 				{
-					BerserkWieldBalance.LeftBlocked(_attacker);
+					DualWieldBalance.LeftBlocked(_attacker);
 					if (Chatty)
 					{
-						BerserkWieldLog.Log(string.Format("[LH-Blade] BLOCKED by {0} ({1}{2}), tip {3:0.0} m/s", new object[4]
+						DualWieldLog.Log(string.Format("[LH-Blade] BLOCKED by {0} ({1}{2}), tip {3:0.0} m/s", new object[4]
 						{
 							val7.Name,
 							val7.GetCurrentActionType(1),
@@ -893,7 +893,7 @@ public sealed class LeftBladeStrike
 							tipSpeed
 						}));
 					}
-					if (BerserkWieldSettings.Get().DebugMode)
+					if (DualWieldSettings.Get().DebugMode)
 					{
 						InformationManager.DisplayMessage(new InformationMessage("[DW] left blocked", Colors.Yellow));
 					}
@@ -999,7 +999,7 @@ public sealed class LeftBladeStrike
 		_sceneHoldProgress = MathF.Clamp(_prevProgress + (CurrentProgress() - _prevProgress) * contactTime, _window.Start, _window.End);
 		string text = (entity.IsValid ? (entity.Name ?? "") : "");
 		string text2 = MaterialAt(point, entity, text);
-		BerserkWieldLog.Log(string.Format("[LH-Blade] SCENE hit {0} [{1}] at {2:0.00}/{3:0.00} m (ray {4}/{5}{6}), tip {7:0.0} m/s, now {8:0.000} -> freeze {9:0.000}", new object[10]
+		DualWieldLog.Log(string.Format("[LH-Blade] SCENE hit {0} [{1}] at {2:0.00}/{3:0.00} m (ray {4}/{5}{6}), tip {7:0.0} m/s, now {8:0.000} -> freeze {9:0.000}", new object[10]
 		{
 			(text.Length > 0) ? text : "(no entity)",
 			text2,
@@ -1022,7 +1022,7 @@ public sealed class LeftBladeStrike
 			}
 			else
 			{
-				BerserkWieldLog.Log("[LH-Blade] no impact sound for surface '" + text2 + "'");
+				DualWieldLog.Log("[LH-Blade] no impact sound for surface '" + text2 + "'");
 			}
 			string text3;
 			if (text2.Contains("wood"))
@@ -1061,7 +1061,7 @@ public sealed class LeftBladeStrike
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[LH-Blade] scene impact failed: " + ex.Message);
+			DualWieldLog.Log("[LH-Blade] scene impact failed: " + ex.Message);
 		}
 		_hitStopLeft = 0f;
 		_holdChecked = false;
@@ -1245,9 +1245,9 @@ public sealed class LeftBladeStrike
 		{
 			float animationParameterAtChannel = _attacker.AgentVisuals.GetSkeleton().GetAnimationParameterAtChannel(_channel);
 			ActionIndexCache currentAction = _attacker.GetCurrentAction(_channel);
-			if (BerserkWieldLog.Unlimited)
+			if (DualWieldLog.Unlimited)
 			{
-				BerserkWieldLog.Log($"[LH-Blade] {tag}: actionProgress {_attacker.GetCurrentActionProgress(_channel):0.000}, animParam {animationParameterAtChannel:0.000}, " + string.Format("channel action '{0}', ours '{1}', window {2:0.00}-{3:0.00}", new object[4]
+				DualWieldLog.Log($"[LH-Blade] {tag}: actionProgress {_attacker.GetCurrentActionProgress(_channel):0.000}, animParam {animationParameterAtChannel:0.000}, " + string.Format("channel action '{0}', ours '{1}', window {2:0.00}-{3:0.00}", new object[4]
 				{
 					currentAction.GetName(),
 					_actionName,
@@ -1258,7 +1258,7 @@ public sealed class LeftBladeStrike
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[LH-Blade] progress probe failed: " + ex.Message);
+			DualWieldLog.Log("[LH-Blade] progress probe failed: " + ex.Message);
 		}
 	}
 
@@ -1292,23 +1292,23 @@ public sealed class LeftBladeStrike
 			}
 			if (val.Index < 0)
 			{
-				BerserkWieldLog.Log("[LH-Blade] no blocked action " + text);
+				DualWieldLog.Log("[LH-Blade] no blocked action " + text);
 				return;
 			}
 			float num = MathF.Clamp(1f - releaseProgress, 0f, 0.95f);
 			bool flag = _attacker.SetActionChannel(_channel, ref val, true, (AnimFlags)33, 0f, 1f, blendIn, 0.4f, num, false, -0.2f, 0, true);
 			if (Chatty)
 			{
-				BerserkWieldLog.Log(string.Format("[LH-Blade] {0} -> {1} from {2:0.00} set={3}", new object[4] { why, text, num, flag }));
+				DualWieldLog.Log(string.Format("[LH-Blade] {0} -> {1} from {2:0.00} set={3}", new object[4] { why, text, num, flag }));
 			}
 			if (flag)
 			{
-				BerserkWieldBalance.ThrownBack(_attacker, DwRules.HeightOfAction(text), upright);
+				DualWieldBalance.ThrownBack(_attacker, DwRules.HeightOfAction(text), upright);
 			}
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[LH-Blade] blocked reaction failed: " + ex.Message);
+			DualWieldLog.Log("[LH-Blade] blocked reaction failed: " + ex.Message);
 		}
 	}
 
@@ -1362,7 +1362,7 @@ public sealed class LeftBladeStrike
 			PlayDefend(victim, flag2);
 			if (Chatty)
 			{
-				BerserkWieldLog.Log(string.Format("[LH-Blade] AI reaction block by {0} (skill {1}, chance {2:0.00}{3}, was {4})", new object[5]
+				DualWieldLog.Log(string.Format("[LH-Blade] AI reaction block by {0} (skill {1}, chance {2:0.00}{3}, was {4})", new object[5]
 				{
 					victim.Name,
 					num,
@@ -1375,7 +1375,7 @@ public sealed class LeftBladeStrike
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[LH-Blade] reaction block failed: " + ex.Message);
+			DualWieldLog.Log("[LH-Blade] reaction block failed: " + ex.Message);
 			return false;
 		}
 	}
@@ -1429,7 +1429,7 @@ public sealed class LeftBladeStrike
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[LH-Blade] defend animation failed: " + ex.Message);
+			DualWieldLog.Log("[LH-Blade] defend animation failed: " + ex.Message);
 		}
 	}
 
@@ -1610,7 +1610,7 @@ public sealed class LeftBladeStrike
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[LH-Blade] impact fx failed: " + ex.Message);
+			DualWieldLog.Log("[LH-Blade] impact fx failed: " + ex.Message);
 		}
 	}
 
@@ -1632,7 +1632,7 @@ public sealed class LeftBladeStrike
 				if (_defendResults == null)
 				{
 					_defendResultsMissing = true;
-					BerserkWieldLog.Log("[LH-Blade] GetDefendCollisionResults not found - no stun periods");
+					DualWieldLog.Log("[LH-Blade] GetDefendCollisionResults not found - no stun periods");
 					return new KeyValuePair<float, float>(0f, 0f);
 				}
 			}
@@ -1660,7 +1660,7 @@ public sealed class LeftBladeStrike
 			float key = (float)array[13];
 			if (((bool)array[14] || (bool)array[15]) && Chatty)
 			{
-				BerserkWieldLog.Log($"[LH-Blade] defend results: crushedThrough {array[14]}, chamber {array[15]}");
+				DualWieldLog.Log($"[LH-Blade] defend results: crushedThrough {array[14]}, chamber {array[15]}");
 			}
 			return new KeyValuePair<float, float>(key, value);
 		}
@@ -1668,14 +1668,14 @@ public sealed class LeftBladeStrike
 		{
 			if (_defendResultsErrors++ < 5)
 			{
-				BerserkWieldLog.Log("[LH-Blade] stun periods failed for this blow: " + (ex.InnerException?.ToString() ?? ex.Message));
+				DualWieldLog.Log("[LH-Blade] stun periods failed for this blow: " + (ex.InnerException?.ToString() ?? ex.Message));
 			}
 			return new KeyValuePair<float, float>(0f, 0f);
 		}
 		catch (Exception ex2)
 		{
 			_defendResultsMissing = true;
-			BerserkWieldLog.Log("[LH-Blade] stun periods failed: " + ex2.Message);
+			DualWieldLog.Log("[LH-Blade] stun periods failed: " + ex2.Message);
 			return new KeyValuePair<float, float>(0f, 0f);
 		}
 	}
@@ -1716,7 +1716,7 @@ public sealed class LeftBladeStrike
 			}
 			if (_meleeHitCallback == null)
 			{
-				BerserkWieldLog.Log("[LH-Blade] Mission.MeleeHitCallback not found");
+				DualWieldLog.Log("[LH-Blade] Mission.MeleeHitCallback not found");
 				return (MeleeCollisionReaction)(-1);
 			}
 			object[] array = new object[11]
@@ -1765,7 +1765,7 @@ public sealed class LeftBladeStrike
 			PlayImpact(victim, point, val3, val4, (HitParticleResultData)array[9], blocked, withShield, val2);
 			if (Chatty)
 			{
-				BerserkWieldLog.Log(string.Format("[LH-Blade] {0} {1} {2} bone {3}: {4} dmg (armor absorbed {5}, magnitude {6:0.0}), health {7:0} -> {8:0}, reaction {9}, tip {10:0.0} m/s at {11:0.00} m, progress {12:0.00}, victim before {13} vs strike {14}, friend {15}", new object[16]
+				DualWieldLog.Log(string.Format("[LH-Blade] {0} {1} {2} bone {3}: {4} dmg (armor absorbed {5}, magnitude {6:0.0}), health {7:0} -> {8:0}, reaction {9}, tip {10:0.0} m/s at {11:0.00} m, progress {12:0.00}, victim before {13} vs strike {14}, friend {15}", new object[16]
 				{
 					blocked ? "BLOCK" : "HIT",
 					victim.Name,
@@ -1816,19 +1816,19 @@ public sealed class LeftBladeStrike
 			}
 			if (flag && !blocked)
 			{
-				BerserkWieldBalance.LeftOnFriend(_attacker);
+				DualWieldBalance.LeftOnFriend(_attacker);
 				float num = ((val4.AttackerStunPeriod > 0f) ? val4.AttackerStunPeriod : 0.4f);
 				_stunUntil = Mission.Current.CurrentTime + num;
-				if (BerserkWieldLog.Unlimited)
+				if (DualWieldLog.Unlimited)
 				{
-					BerserkWieldLog.Log($"[LH-Blade] {_attacker.Name}: blow on a friend - stunned {num:0.00} s");
+					DualWieldLog.Log($"[LH-Blade] {_attacker.Name}: blow on a friend - stunned {num:0.00} s");
 				}
 			}
 			try
 			{
 				AttackCollisionData val8 = attackCollisionDataForDebugPurpose;
 				bool flag2 = MissionCombatMechanicsHelper.HitWithAnotherBone(ref val8, _attacker, ref weapon);
-				if (BerserkWieldLog.Unlimited)
+				if (DualWieldLog.Unlimited)
 				{
 					string[] array2 = new string[5];
 					object arg = flag2;
@@ -1848,18 +1848,18 @@ public sealed class LeftBladeStrike
 					object arg4 = _direction;
 					val6 = _attacker.Velocity;
 					array2[4] = $"strike {arg3} dir {arg4}, attacker vel {val6.Length:0.0}";
-					BerserkWieldLog.Log(string.Concat(array2));
+					DualWieldLog.Log(string.Concat(array2));
 				}
 			}
 			catch (Exception ex)
 			{
-				BerserkWieldLog.Log("[LH-Blade] dmg inputs failed: " + ex.Message);
+				DualWieldLog.Log("[LH-Blade] dmg inputs failed: " + ex.Message);
 			}
 			return val5;
 		}
 		catch (Exception ex2)
 		{
-			BerserkWieldLog.Log("[LH-Blade] hit failed: " + (ex2.InnerException ?? ex2).Message);
+			DualWieldLog.Log("[LH-Blade] hit failed: " + (ex2.InnerException ?? ex2).Message);
 			return (MeleeCollisionReaction)(-1);
 		}
 	}

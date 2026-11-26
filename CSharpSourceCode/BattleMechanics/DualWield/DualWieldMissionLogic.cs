@@ -3,7 +3,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 
-namespace TOR_Core.BattleMechanics.BerserkWield
+namespace TOR_Core.BattleMechanics.DualWield
 {
     /// <summary>
     /// Phase 1 of the dual-wield revival. Auto-wields a second
@@ -27,7 +27,7 @@ namespace TOR_Core.BattleMechanics.BerserkWield
     /// a 30s slaangor skirmish, confirming 1.3 fixed the weapon-rater
     /// sheath-churn that killed Péter's original feature.
     /// </summary>
-    public class BerserkWieldMissionLogic : MissionLogic
+    public class DualWieldMissionLogic : MissionLogic
     {
         public override void OnAgentBuild(Agent agent, Banner banner)
         {

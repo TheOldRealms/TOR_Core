@@ -1,5 +1,5 @@
 // Vendored from Yotthani's DualWield-v0.10.9 mod (permission granted
-// 2026-11-24). Class name prefixed BerserkWield for TOR namespacing;
+// 2026-11-24). Class name prefixed DualWield for TOR namespacing;
 // internal logic preserved as-is. See TORTasks/feral-combat/architecture-
 // dualwield-vendored.md for the big picture.
 
@@ -10,7 +10,7 @@ using System.IO;
 using System.Xml;
 using TaleWorlds.Library;
 
-namespace TOR_Core.BattleMechanics.BerserkWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield.Vendor;
 
 public static class CombatWindows
 {
@@ -67,7 +67,7 @@ public static class CombatWindows
 			string text = Path.Combine(BasePath.Name, "Modules/Native/ModuleData/combat_parameters.xml");
 			if (!File.Exists(text))
 			{
-				BerserkWieldLog.Log("[CombatWindows] not found: " + text);
+				DualWieldLog.Log("[CombatWindows] not found: " + text);
 				return;
 			}
 			XmlDocument xmlDocument = new XmlDocument();
@@ -90,11 +90,11 @@ public static class CombatWindows
 					}
 				}
 			}
-			BerserkWieldLog.Log($"[CombatWindows] {_byId.Count} collision windows from combat_parameters.xml");
+			DualWieldLog.Log($"[CombatWindows] {_byId.Count} collision windows from combat_parameters.xml");
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[CombatWindows] failed: " + ex.Message);
+			DualWieldLog.Log("[CombatWindows] failed: " + ex.Message);
 		}
 	}
 }

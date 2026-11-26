@@ -1,5 +1,5 @@
 // Vendored from Yotthani's DualWield-v0.10.9 mod (permission granted
-// 2026-11-24). Class name prefixed BerserkWield for TOR namespacing;
+// 2026-11-24). Class name prefixed DualWield for TOR namespacing;
 // internal logic preserved as-is. See TORTasks/feral-combat/architecture-
 // dualwield-vendored.md for the big picture.
 
@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using TaleWorlds.MountAndBlade;
 
-namespace TOR_Core.BattleMechanics.BerserkWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield.Vendor;
 
-public static class BerserkWieldBalance
+public static class DualWieldBalance
 {
 	private const float REPORT_EVERY = 60f;
 
@@ -335,7 +335,7 @@ public static class BerserkWieldBalance
 			_riderFriend[friend]++;
 			if (_riderFriendLogs++ < 120)
 			{
-				BerserkWieldLog.Log("[Mounted] friend met by " + action.Replace("act_dwc_quick_release_", "") + ": " + friend switch
+				DualWieldLog.Log("[Mounted] friend met by " + action.Replace("act_dwc_quick_release_", "") + ": " + friend switch
 				{
 					2 => "a rider", 
 					1 => "a man on foot", 
@@ -536,15 +536,15 @@ public static class BerserkWieldBalance
 			float num4 = 1f;
 			try
 			{
-				num3 = BerserkWieldSettings.Get().NpcOffhandChance;
-				num4 = BerserkWieldSettings.Get().OffHandDamageMultiplier;
+				num3 = DualWieldSettings.Get().NpcOffhandChance;
+				num4 = DualWieldSettings.Get().OffHandDamageMultiplier;
 			}
 			catch
 			{
 			}
 			float whole = _rightDamage + _leftDamage;
 			int num5 = Math.Max(0, _leftFired - _leftHits - _leftParried - _leftBlocked - _leftOnFriend);
-			BerserkWieldLog.Log(string.Format("[Balance] {0}: NPC dual wielders | right: {1} hits, {2:0} dmg, {3} kills, {4} blocked", new object[5] { when, _rightHits, _rightDamage, _rightKills, _rightBlocked }) + string.Format(" | left: {0} strikes ({1} counters = {2} of blocked, setting {3:0%}; {4} own follow-ups; {5} leading strikes; {6} over the cap of strikes at once; {7} held back for an ally in every arc; {8} from horseback; on foot {9} on channel 0, {10} on channel 1), {11} hits, {12:0} dmg, {13} kills, {14} parried, {15} blocked, {16} stopped on a friend, {17} missed", new object[18]
+			DualWieldLog.Log(string.Format("[Balance] {0}: NPC dual wielders | right: {1} hits, {2:0} dmg, {3} kills, {4} blocked", new object[5] { when, _rightHits, _rightDamage, _rightKills, _rightBlocked }) + string.Format(" | left: {0} strikes ({1} counters = {2} of blocked, setting {3:0%}; {4} own follow-ups; {5} leading strikes; {6} over the cap of strikes at once; {7} held back for an ally in every arc; {8} from horseback; on foot {9} on channel 0, {10} on channel 1), {11} hits, {12:0} dmg, {13} kills, {14} parried, {15} blocked, {16} stopped on a friend, {17} missed", new object[18]
 			{
 				_leftFired,
 				_leftFired - _leftFollowUps - _leftLeads,

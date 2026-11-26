@@ -1,5 +1,5 @@
 // Vendored from Yotthani's DualWield-v0.10.9 mod (permission granted
-// 2026-11-24). Class name prefixed BerserkWield for TOR namespacing;
+// 2026-11-24). Class name prefixed DualWield for TOR namespacing;
 // internal logic preserved as-is. See TORTasks/feral-combat/architecture-
 // dualwield-vendored.md for the big picture.
 
@@ -10,7 +10,7 @@ using TaleWorlds.Library;
 using TaleWorlds.ModuleManager;
 using TaleWorlds.ObjectSystem;
 
-namespace TOR_Core.BattleMechanics.BerserkWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield.Vendor;
 
 internal static class DwTroopSetLoader
 {
@@ -32,7 +32,7 @@ internal static class DwTroopSetLoader
 			string text = DwTroopSets.Choose(offWhy, (Func<string, bool>)ModuleHelper.IsModuleActive, out string why);
 			if (text == null)
 			{
-				BerserkWieldLog.Log("[Troops] no NPC dual-wield troops: " + why);
+				DualWieldLog.Log("[Troops] no NPC dual-wield troops: " + why);
 				TellOldAddOn();
 				return;
 			}
@@ -42,7 +42,7 @@ internal static class DwTroopSetLoader
 			{
 				if (!File.Exists(ModuleHelper.GetXmlPath("DualWield", array2[1])))
 				{
-					BerserkWieldLog.Log("[Troops] ModuleData/" + array2[1] + ".xml is missing - the module is not complete");
+					DualWieldLog.Log("[Troops] ModuleData/" + array2[1] + ".xml is missing - the module is not complete");
 					continue;
 				}
 				xmlInformationList.Add(new MbObjectXmlInformation
@@ -54,11 +54,11 @@ internal static class DwTroopSetLoader
 				});
 				num++;
 			}
-			BerserkWieldLog.Log("[Troops] NPC dual-wield troops: set '" + text + "' (" + why + "), " + num + " file(s) added to the game's XML list");
+			DualWieldLog.Log("[Troops] NPC dual-wield troops: set '" + text + "' (" + why + "), " + num + " file(s) added to the game's XML list");
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[Troops] failed: " + ex.GetType().Name + ": " + ex.Message);
+			DualWieldLog.Log("[Troops] failed: " + ex.GetType().Name + ": " + ex.Message);
 		}
 	}
 

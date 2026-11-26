@@ -1,5 +1,5 @@
 // Vendored from Yotthani's DualWield-v0.10.9 mod (permission granted
-// 2026-11-24). Class name prefixed BerserkWield for TOR namespacing;
+// 2026-11-24). Class name prefixed DualWield for TOR namespacing;
 // internal logic preserved as-is. See TORTasks/feral-combat/architecture-
 // dualwield-vendored.md for the big picture.
 
@@ -13,7 +13,7 @@ using HarmonyLib;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 
-namespace TOR_Core.BattleMechanics.BerserkWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield.Vendor;
 
 internal static class OneAgentLimbRay
 {
@@ -201,13 +201,13 @@ internal static class OneAgentLimbRay
 			}
 			if (_buildAt == IntPtr.Zero || _testAt == IntPtr.Zero)
 			{
-				BerserkWieldLog.Log("[LimbRay] one-agent ray: native functions not found in this build (known from 1.5.3 to 1.5.5) - the engine's ray stays");
+				DualWieldLog.Log("[LimbRay] one-agent ray: native functions not found in this build (known from 1.5.3 to 1.5.5) - the engine's ray stays");
 				return;
 			}
 			MethodInfo methodInfo = AccessTools.Method(typeof(Agent), "GetPtr", (Type[])null, (Type[])null);
 			if (methodInfo == null || methodInfo.ReturnType != typeof(UIntPtr))
 			{
-				BerserkWieldLog.Log("[LimbRay] one-agent ray: Agent.GetPtr not found - the engine's ray stays");
+				DualWieldLog.Log("[LimbRay] one-agent ray: Agent.GetPtr not found - the engine's ray stays");
 				return;
 			}
 			_agentPtr = AccessTools.MethodDelegate<Func<Agent, UIntPtr>>(methodInfo, (object)null, true);
@@ -217,12 +217,12 @@ internal static class OneAgentLimbRay
 			_ray = Marshal.AllocHGlobal(48);
 			_hit = Marshal.AllocHGlobal(48);
 			_state = 1;
-			BerserkWieldLog.Log("[LimbRay] one-agent ray: native functions found and verified");
+			DualWieldLog.Log("[LimbRay] one-agent ray: native functions found and verified");
 		}
 		catch (Exception ex)
 		{
 			_state = -1;
-			BerserkWieldLog.Log("[LimbRay] one-agent ray: off after error: " + ex.Message);
+			DualWieldLog.Log("[LimbRay] one-agent ray: off after error: " + ex.Message);
 		}
 	}
 
@@ -329,7 +329,7 @@ internal static class OneAgentLimbRay
 		catch (Exception ex)
 		{
 			_state = -1;
-			BerserkWieldLog.Log("[LimbRay] one-agent ray: stopped after error: " + ex.Message);
+			DualWieldLog.Log("[LimbRay] one-agent ray: stopped after error: " + ex.Message);
 			return false;
 		}
 	}
@@ -428,7 +428,7 @@ internal static class OneAgentLimbRay
 		if (text != null && _logged[num] < LogBudget[num])
 		{
 			_logged[num]++;
-			BerserkWieldLog.Log(string.Format(CultureInfo.InvariantCulture, "[LimbRay] {0}: engine {1} bone {2} dist {3:0.000}{8} | ours {4} bone {5} dist {6:0.000} | ray {7:0.00} m", new object[9]
+			DualWieldLog.Log(string.Format(CultureInfo.InvariantCulture, "[LimbRay] {0}: engine {1} bone {2} dist {3:0.000}{8} | ours {4} bone {5} dist {6:0.000} | ray {7:0.00} m", new object[9]
 			{
 				text,
 				Describe(engine, engineKind),

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 
-namespace TOR_Core.BattleMechanics.BerserkWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield.Vendor;
 
 internal static class SeparateKeyOverride
 {
@@ -49,7 +49,7 @@ internal static class SeparateKeyOverride
 			Key defend = _defend;
 			object arg = ((defend != null) ? (object)defend.InputKey : (object)null);
 			Key attack = _attack;
-			BerserkWieldLog.Log($"[Keys] bindings were reloaded (Defend {arg}, Attack {((attack != null) ? (object)attack.InputKey : (object)null)}) - moving them again");
+			DualWieldLog.Log($"[Keys] bindings were reloaded (Defend {arg}, Attack {((attack != null) ? (object)attack.InputKey : (object)null)}) - moving them again");
 			_moved.Clear();
 			_appliedFor = (InputKey)(-1);
 			_defend = (_attack = null);
@@ -81,7 +81,7 @@ internal static class SeparateKeyOverride
 					_attack = val;
 					_appliedFor = leftHandKey;
 					_appliedLeftHanded = true;
-					BerserkWieldLog.Log($"[Keys] Left-handed: Attack {(object)(InputKey)224} -> {leftHandKey} (left strike on the left mouse button)");
+					DualWieldLog.Log($"[Keys] Left-handed: Attack {(object)(InputKey)224} -> {leftHandKey} (left strike on the left mouse button)");
 				}
 			}
 			if ((int)leftHandKey == 226)
@@ -104,7 +104,7 @@ internal static class SeparateKeyOverride
 				if (!_toldDefendElsewhere)
 				{
 					_toldDefendElsewhere = true;
-					BerserkWieldLog.Log($"[Keys] Defend is on {((val2 != null) ? (object)val2.InputKey : (object)null)}, not on the left-hand key {leftHandKey} - left as it is");
+					DualWieldLog.Log($"[Keys] Defend is on {((val2 != null) ? (object)val2.InputKey : (object)null)}, not on the left-hand key {leftHandKey} - left as it is");
 				}
 				return;
 			}
@@ -115,7 +115,7 @@ internal static class SeparateKeyOverride
 				{
 					_moved.Add(new KeyValuePair<Key, InputKey>(val3, val3.InputKey));
 					val3.ChangeKey((InputKey)(-1));
-					BerserkWieldLog.Log($"[Keys] Separate: '{item.StringId}' off {(object)(InputKey)226} while the block is there");
+					DualWieldLog.Log($"[Keys] Separate: '{item.StringId}' off {(object)(InputKey)226} while the block is there");
 				}
 			}
 			_moved.Add(new KeyValuePair<Key, InputKey>(val2, val2.InputKey));
@@ -123,7 +123,7 @@ internal static class SeparateKeyOverride
 			_defend = val2;
 			_appliedFor = leftHandKey;
 			_appliedLeftHanded = leftHanded;
-			BerserkWieldLog.Log($"[Keys] Separate: Defend {leftHandKey} -> {(object)(InputKey)226} (left-hand strike on {leftHandKey})");
+			DualWieldLog.Log($"[Keys] Separate: Defend {leftHandKey} -> {(object)(InputKey)226} (left-hand strike on {leftHandKey})");
 			if (!_toldPlayer)
 			{
 				_toldPlayer = true;
@@ -132,7 +132,7 @@ internal static class SeparateKeyOverride
 		}
 		catch (Exception ex)
 		{
-			BerserkWieldLog.Log("[Keys] Separate override failed: " + ex.Message);
+			DualWieldLog.Log("[Keys] Separate override failed: " + ex.Message);
 			Restore();
 		}
 	}
@@ -153,10 +153,10 @@ internal static class SeparateKeyOverride
 			}
 			catch (Exception ex)
 			{
-				BerserkWieldLog.Log("[Keys] suspend for save failed: " + ex.Message);
+				DualWieldLog.Log("[Keys] suspend for save failed: " + ex.Message);
 			}
 		}
-		BerserkWieldLog.Log("[Keys] bindings saved with the player's own keys (our moves kept out of the file)");
+		DualWieldLog.Log("[Keys] bindings saved with the player's own keys (our moves kept out of the file)");
 		return true;
 	}
 
@@ -170,7 +170,7 @@ internal static class SeparateKeyOverride
 			}
 			catch (Exception ex)
 			{
-				BerserkWieldLog.Log("[Keys] resume after save failed: " + ex.Message);
+				DualWieldLog.Log("[Keys] resume after save failed: " + ex.Message);
 			}
 		}
 		_suspended.Clear();
@@ -190,14 +190,14 @@ internal static class SeparateKeyOverride
 			}
 			catch (Exception ex)
 			{
-				BerserkWieldLog.Log("[Keys] restore failed: " + ex.Message);
+				DualWieldLog.Log("[Keys] restore failed: " + ex.Message);
 			}
 		}
 		_moved.Clear();
 		_appliedFor = (InputKey)(-1);
 		_appliedLeftHanded = false;
 		_defend = (_attack = null);
-		BerserkWieldLog.Log("[Keys] keys restored");
+		DualWieldLog.Log("[Keys] keys restored");
 	}
 
 	public static void Reset()

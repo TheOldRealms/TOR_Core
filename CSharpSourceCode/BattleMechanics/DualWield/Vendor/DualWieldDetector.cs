@@ -1,5 +1,5 @@
 // Vendored from Yotthani's DualWield-v0.10.9 mod (permission granted
-// 2026-11-24). Class name prefixed BerserkWield for TOR namespacing;
+// 2026-11-24). Class name prefixed DualWield for TOR namespacing;
 // internal logic preserved as-is. See TORTasks/feral-combat/architecture-
 // dualwield-vendored.md for the big picture.
 
@@ -7,9 +7,9 @@ using System.Runtime.CompilerServices;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 
-namespace TOR_Core.BattleMechanics.BerserkWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield.Vendor;
 
-public static class BerserkWieldDetector
+public static class DualWieldDetector
 {
 	private static readonly WeaponClass[] ValidWeaponClasses;
 
@@ -164,7 +164,7 @@ public static class BerserkWieldDetector
 		return false;
 	}
 
-	static BerserkWieldDetector()
+	static DualWieldDetector()
 	{
 		// The four one-handed melee weapon classes that qualify for dual-wield
 		// (non-shield, non-two-handed, non-ranged). Hand-written to replace the

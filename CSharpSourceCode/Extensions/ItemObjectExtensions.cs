@@ -509,7 +509,7 @@ namespace TOR_Core.Extensions
         /// True if the item declares <c>GovernedBy=Berserk</c> in
         /// <c>ExtendedItemObjectProperties</c>. Signals that this is
         /// a dual-wield attack weapon: it should pair into an agent's
-        /// offhand via <c>BerserkWieldMissionLogic</c> and later earn
+        /// offhand via <c>DualWieldMissionLogic</c> and later earn
         /// XP toward the Berserk skill instead of its weapon-class
         /// default. Does NOT include defensive-forearm items; they're
         /// not Berserk-governed.

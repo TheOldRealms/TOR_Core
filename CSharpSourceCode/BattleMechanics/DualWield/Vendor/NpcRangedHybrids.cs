@@ -1,16 +1,16 @@
 // Vendored from Yotthani's DualWield-v0.10.9 mod (permission granted
-// 2026-11-24). Class name prefixed BerserkWield for TOR namespacing;
+// 2026-11-24). Class name prefixed DualWield for TOR namespacing;
 // internal logic preserved as-is. See TORTasks/feral-combat/architecture-
 // dualwield-vendored.md for the big picture.
 
 using System;
 using System.Collections.Generic;
-// using TOR_Core.HarmonyPatches.BerserkWield; // (patches not yet vendored — Task 9)
+using TOR_Core.HarmonyPatches.DualWield;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 
-namespace TOR_Core.BattleMechanics.BerserkWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield.Vendor;
 
 public sealed class NpcRangedHybrids
 {
@@ -31,7 +31,7 @@ public sealed class NpcRangedHybrids
 			_rules[agent.Index] = new RangedHybridRule();
 			if (_logged++ < 8)
 			{
-				BerserkWieldLog.Log($"[Ranged] {agent.Name}: dual wielder with a bow - left blade away while no enemy is within {20f:0} m");
+				DualWieldLog.Log($"[Ranged] {agent.Name}: dual wielder with a bow - left blade away while no enemy is within {20f:0} m");
 			}
 		}
 	}
@@ -48,7 +48,7 @@ public sealed class NpcRangedHybrids
 		_logged = 0;
 	}
 
-	public void Tick(float dt, BerserkWieldMissionBehavior behavior)
+	public void Tick(float dt, DualWieldMissionBehavior behavior)
 	{
 		if (_rules.Count == 0)
 		{
@@ -93,9 +93,9 @@ public sealed class NpcRangedHybrids
 					break;
 				case 2:
 					DualWieldWieldingPatches.ForceOffHandPairing(val);
-					if (BerserkWieldLog.Unlimited)
+					if (DualWieldLog.Unlimited)
 					{
-						BerserkWieldLog.Log($"[Ranged] {val.Name}: left blade back (nearest enemy {num:0} m)");
+						DualWieldLog.Log($"[Ranged] {val.Name}: left blade back (nearest enemy {num:0} m)");
 					}
 					break;
 				}

@@ -10,7 +10,7 @@ using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 
-namespace TOR_Core.BattleMechanics.BerserkWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield.Vendor;
 
 /// <summary>
 /// Compile-time configuration for the vendored DualWield system. Mirrors
@@ -18,10 +18,10 @@ namespace TOR_Core.BattleMechanics.BerserkWield.Vendor;
 /// files compile unmodified, but every value is hard-coded — no MCM, no
 /// runtime UI, no user override.
 /// </summary>
-public class BerserkWieldSettings
+public class DualWieldSettings
 {
-    private static readonly BerserkWieldSettings _instance = new BerserkWieldSettings();
-    public static BerserkWieldSettings Get() => _instance;
+    private static readonly DualWieldSettings _instance = new DualWieldSettings();
+    public static DualWieldSettings Get() => _instance;
 
     public bool EnableDualWield { get; } = true;
     public bool DebugMode { get; } = false;
@@ -82,7 +82,7 @@ public class BerserkWieldSettings
     /// </summary>
     public static float BonusShare(Agent agent)
     {
-        if (!BerserkWieldDetector.IsPlayer(agent))
+        if (!DualWieldDetector.IsPlayer(agent))
         {
             return Get().NpcBonusShare;
         }
@@ -93,7 +93,7 @@ public class BerserkWieldSettings
     {
         if (Get().DebugMode)
         {
-            InformationManager.DisplayMessage(new InformationMessage("[BerserkWield] " + message, Colors.Cyan));
+            InformationManager.DisplayMessage(new InformationMessage("[DualWield] " + message, Colors.Cyan));
         }
     }
 
