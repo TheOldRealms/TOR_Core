@@ -36,6 +36,13 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         // Max staleness for a newly-eligible hero: 1 in-game day.
         private readonly List<HeroExtendedInfo> _spellcasterInfos = [];
         private const string SpellcasterAttribute = "SpellCaster";
+
+        // Blessed-party subset of _partyInfos. Vast majority of parties have no
+        // active blessing at any time, and the old HourlyTick loop wrote -1/null
+        // to the blessing fields of every non-blessed entry on every tick.
+        // Maintained incrementally via AddBlessingToParty / HourlyTick expiry /
+        // OnPartyDestroyed, with a rebuild on session start for loaded saves.
+        private readonly List<MobilePartyExtendedInfo> _partiesWithActiveBlessing = [];
         private readonly string _torUnitPropertiesPath = TORPaths.TORCoreModuleExtendedDataPath + "tor_extendedunitproperties.xml";
 
         public static ExtendedInfoManager Instance => _instance;
@@ -224,8 +231,10 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             // Loaded saves already have _heroInfos populated from SyncData; prime the
             // spellcaster cache now so HourlyTick isn't empty on the first in-game hour.
             // Fresh saves overwrite this via OnNewGameCreatedPartialFollowUpEnd after
-            // InitializeHeroes fills _heroInfos for the first time.
+            // InitializeHeroes fills _heroInfos for the first time. Same story for
+            // _partyInfos and the blessing cache (CurrentBlessingStringId is saveable).
             RebuildSpellcasterCache();
+            RebuildBlessingCache();
         }
 
         private void HideVanillaUnitsInEncyclopedia()
@@ -249,6 +258,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 InitializeHeroes();
                 EnsurePartyInfos();
                 RebuildSpellcasterCache();
+                RebuildBlessingCache();
             }
         }
 
@@ -276,17 +286,23 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
                 heroInfo.AddCustomResource("WindsOfMagic", heroInfo.WindsOfMagicRechargeRate * bonusRegen);
             }
-            //count down blessing duration
-            foreach (var entry in _partyInfos)
+            // Count down blessing duration. Iterate only parties with an active
+            // blessing (maintained by AddBlessingToParty + OnPartyDestroyed + the
+            // expiry branch below). Reverse iteration so RemoveAt(i) on expiry is
+            // safe without allocating a snapshot.
+            for (int i = _partiesWithActiveBlessing.Count - 1; i >= 0; i--)
             {
-                if (!string.IsNullOrWhiteSpace(entry.Value.CurrentBlessingStringId) && entry.Value.CurrentBlessingRemainingDuration > 0)
+                var info = _partiesWithActiveBlessing[i];
+                if (info.CurrentBlessingRemainingDuration > 1)
                 {
-                    entry.Value.CurrentBlessingRemainingDuration--;
+                    info.CurrentBlessingRemainingDuration--;
                 }
                 else
                 {
-                    entry.Value.CurrentBlessingRemainingDuration = -1;
-                    entry.Value.CurrentBlessingStringId = null;
+                    // Blessing has expired this tick (or was already inert).
+                    info.CurrentBlessingRemainingDuration = -1;
+                    info.CurrentBlessingStringId = null;
+                    _partiesWithActiveBlessing.RemoveAt(i);
                 }
             }
         }
@@ -338,6 +354,21 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             {
                 if (info.AllAttributes.Contains(SpellcasterAttribute))
                     _spellcasterInfos.Add(info);
+            }
+        }
+
+        /// <summary>
+        /// Rebuilds <see cref="_partiesWithActiveBlessing"/> from <see cref="_partyInfos"/>.
+        /// Call on session launch so loaded saves (where blessing state is restored via
+        /// SyncData) have a populated cache before the first HourlyTick.
+        /// </summary>
+        private void RebuildBlessingCache()
+        {
+            _partiesWithActiveBlessing.Clear();
+            foreach (var info in _partyInfos.Values)
+            {
+                if (info.CurrentBlessingRemainingDuration > 0 && !string.IsNullOrWhiteSpace(info.CurrentBlessingStringId))
+                    _partiesWithActiveBlessing.Add(info);
             }
         }
 
@@ -486,7 +517,11 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         private void OnPartyDestroyed(MobileParty destroyedParty, PartyBase destroyerParty)
         {
-            if (destroyedParty.IsLordParty && _partyInfos.TryGetValue(destroyedParty.StringId, out _)) _partyInfos.Remove(destroyedParty.StringId);
+            if (destroyedParty.IsLordParty && _partyInfos.TryGetValue(destroyedParty.StringId, out var info))
+            {
+                _partyInfos.Remove(destroyedParty.StringId);
+                _partiesWithActiveBlessing.Remove(info);  // no-op when the party wasn't blessed
+            }
         }
 
         private void EnsurePartyInfos()
@@ -501,8 +536,14 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             CheckToAddPartyInfo(party);
             var partyId = party.StringId;
-            _partyInfos[partyId].CurrentBlessingStringId = blessingId;
-            _partyInfos[partyId].CurrentBlessingRemainingDuration = duration;
+            var info = _partyInfos[partyId];
+            info.CurrentBlessingStringId = blessingId;
+            info.CurrentBlessingRemainingDuration = duration;
+            // Register in the hot-loop cache if not already present. Re-blessing an
+            // already-blessed party just overwrites the fields above; no duplicate
+            // registration needed.
+            if (duration > 0 && !_partiesWithActiveBlessing.Contains(info))
+                _partiesWithActiveBlessing.Add(info);
         }
 
         public static string GetBannerImageResource(Banner banner)
