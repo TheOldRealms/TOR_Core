@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using HarmonyLib;
+using SandBox.ViewModelCollection.Nameplate;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.BarterSystem;
 using TaleWorlds.CampaignSystem.BarterSystem.Barterables;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.CampaignBehaviors.BarterBehaviors;
+using TOR_Core.CampaignMechanics.Ambush.UI;
 using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.Utilities.Profiling;
 
@@ -121,6 +123,56 @@ public static class KingdomTickProbes
             if (__state == 0L) return;
             var elapsedMs = (Stopwatch.GetTimestamp() - __state) * 1000.0 / Stopwatch.Frequency;
             TORCampaignProfiler.Record("TOR.TORTradeAgreement.ConsiderTradeAgreements", elapsedMs);
+        }
+    }
+
+    // ----- Nameplate probes (per-frame on campaign map) -----
+
+    [HarmonyPatch(typeof(PartyNameplatesVM), "Update")]
+    public static class PartyNameplatesUpdatePatch
+    {
+        [HarmonyPrefix]
+        public static void Prefix(out long __state)
+            => __state = TORCampaignProfiler.Enabled ? Stopwatch.GetTimestamp() : 0L;
+
+        [HarmonyPostfix]
+        public static void Postfix(long __state)
+        {
+            if (__state == 0L) return;
+            var elapsedMs = (Stopwatch.GetTimestamp() - __state) * 1000.0 / Stopwatch.Frequency;
+            TORCampaignProfiler.Record("Vanilla.PartyNameplates.Update", elapsedMs);
+        }
+    }
+
+    [HarmonyPatch(typeof(SettlementNameplatesVM), "Update")]
+    public static class SettlementNameplatesUpdatePatch
+    {
+        [HarmonyPrefix]
+        public static void Prefix(out long __state)
+            => __state = TORCampaignProfiler.Enabled ? Stopwatch.GetTimestamp() : 0L;
+
+        [HarmonyPostfix]
+        public static void Postfix(long __state)
+        {
+            if (__state == 0L) return;
+            var elapsedMs = (Stopwatch.GetTimestamp() - __state) * 1000.0 / Stopwatch.Frequency;
+            TORCampaignProfiler.Record("Vanilla.SettlementNameplates.Update", elapsedMs);
+        }
+    }
+
+    [HarmonyPatch(typeof(AmbushDetectedNameplateExtension), "RefreshValues")]
+    public static class AmbushNameplateExtensionRefreshValuesPatch
+    {
+        [HarmonyPrefix]
+        public static void Prefix(out long __state)
+            => __state = TORCampaignProfiler.Enabled ? Stopwatch.GetTimestamp() : 0L;
+
+        [HarmonyPostfix]
+        public static void Postfix(long __state)
+        {
+            if (__state == 0L) return;
+            var elapsedMs = (Stopwatch.GetTimestamp() - __state) * 1000.0 / Stopwatch.Frequency;
+            TORCampaignProfiler.Record("TOR.AmbushNameplate.RefreshValues", elapsedMs);
         }
     }
 
