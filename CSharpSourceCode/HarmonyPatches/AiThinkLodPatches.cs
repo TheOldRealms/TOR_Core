@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using HarmonyLib;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Settlements;
 using TOR_Core.CampaignMechanics;
@@ -23,13 +24,18 @@ namespace TOR_Core.HarmonyPatches;
 ///   downstream AI behaviour, i.e. for settlements near the player.
 ///
 /// Fix:
-///   Prefix-skip the method for settlements the <see cref="AiThinkLod"/> classifies
-///   as <see cref="AiThinkLod.Tier.Far"/>. Catch-up on approach is implicit: the
-///   method's own internal 3-hour gate compares <c>ElapsedHoursUntilNow</c>, so the
-///   next call after a Far→Mid/Near transition sees a large elapsed time and
-///   runs the full update once. The multiplicative decay (×0.85 / ×0.8) is also
-///   skipped for Far settlements, which just means the field stays at its last
-///   computed value until the player approaches again.
+///   Prefix coarsens the call cadence by distance tier, instead of skipping
+///   entirely. Vanilla's own 3-hour internal gate still applies on top, so our
+///   gate only takes effect when its period exceeds 3 hours.
+///
+///   * Near: pass every call. Effective work cadence = 3h (vanilla default).
+///   * Mid:  pass 1-in-6 calls, staggered by settlement hash. Effective ~6h.
+///   * Far:  pass 1-in-12 calls, staggered. Effective ~12h.
+///
+///   Threat/ally values for Mid/Far still evolve, just coarsely. Catch-up on
+///   player approach is natural: when the tier flips to Near the gate opens
+///   and vanilla's internal elapsed-time check runs the full update on the
+///   next matching tick.
 ///
 /// Measurement:
 ///   Separate prefix+postfix pair records executed calls under
@@ -49,12 +55,22 @@ public static class AiThinkLodPatches
     [HarmonyPatch(typeof(PoliticalStagnationAndBorderIncidentCampaignBehavior), "HourlyTickSettlement")]
     public static class PoliticalStagnationHourlyTickSettlementLodPatch
     {
+        private const int MidPeriodHours = 6;
+        private const int FarPeriodHours = 12;
+
         [HarmonyPrefix]
         public static bool Prefix(Settlement settlement)
         {
-            // Far settlements skip entirely. Near + Mid pass through to the vanilla
-            // body (which itself has a 3-hour internal gate).
-            return AiThinkLod.GetTier(settlement) != AiThinkLod.Tier.Far;
+            if (settlement == null) return true;
+            var tier = AiThinkLod.GetTier(settlement);
+            if (tier == AiThinkLod.Tier.Near) return true;
+
+            int hour = (int)CampaignTime.Now.ToHours;
+            // Stagger via settlement hash so Mid/Far ticks don't synchronise onto
+            // the same in-game hour. Masking the sign bit keeps modulo non-negative.
+            int offset = settlement.StringId.GetHashCode() & 0x7FFFFFFF;
+            int period = tier == AiThinkLod.Tier.Mid ? MidPeriodHours : FarPeriodHours;
+            return ((hour + offset) % period) == 0;
         }
     }
 
