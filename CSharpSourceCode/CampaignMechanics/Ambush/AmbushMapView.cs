@@ -27,11 +27,23 @@ namespace TOR_Core.CampaignMechanics.Ambush
             _movie = _layer.LoadMovie("AmbushStealthWidget", _vm);
         }
 
+        // Throttle the per-frame VM refresh. Nothing the AmbushButtonVM visualises
+        // (eye sprite index, terrain flags, context flags) changes meaningfully
+        // between 60 Hz ticks; 10 Hz covers it with no perceptible delay.
+        // HandleInput stays per-frame so key-release detection isn't missed.
+        private const float VmRefreshIntervalSeconds = 0.1f;
+        private float _vmRefreshAccumulator = VmRefreshIntervalSeconds;
+
         protected override void OnMapScreenUpdate(float dt)
         {
             using var _profilerScope = TOR_Core.Utilities.Profiling.TORCampaignProfiler.Scope("Map.AmbushButton");
             base.OnMapScreenUpdate(dt);
-            _vm?.Refresh();
+            _vmRefreshAccumulator += dt;
+            if (_vmRefreshAccumulator >= VmRefreshIntervalSeconds)
+            {
+                _vmRefreshAccumulator = 0f;
+                _vm?.Refresh();
+            }
             HandleInput();
         }
 

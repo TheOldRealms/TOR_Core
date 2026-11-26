@@ -176,9 +176,23 @@ namespace TOR_Core.CampaignMechanics.Ambush.UI
         /// <summary>
         /// Recompute all widget state. Called per map-screen update.
         /// </summary>
+        // Lazy, session-lifetime references. Campaign behaviors and models don't
+        // change after session launch, and resolving them with GetCampaignBehavior<T>()
+        // is a linear scan per call. Refresh ran that lookup 3x per frame before.
+        private AmbushCampaignBehavior _ambushCache;
+        private AiAmbushBehavior _aiAmbushCache;
+        private TORAmbushModel _modelCache;
+
+        private AmbushCampaignBehavior Ambush
+            => _ambushCache ??= Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
+        private AiAmbushBehavior AiAmbush
+            => _aiAmbushCache ??= Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
+        private TORAmbushModel Model
+            => _modelCache ??= Campaign.Current?.Models?.GetAmbushModel();
+
         public void Refresh()
         {
-            var ambush = Campaign.Current?.GetCampaignBehavior<AmbushCampaignBehavior>();
+            var ambush = Ambush;
             if (ambush == null)
             {
                 IsVisible = false;
@@ -189,7 +203,7 @@ namespace TOR_Core.CampaignMechanics.Ambush.UI
             if (!IsVisible) return;
 
             var mainParty = MobileParty.MainParty;
-            var model = Campaign.Current?.Models?.GetAmbushModel();
+            var model = Model;
             if (mainParty == null || model == null) return;
 
             IsStealthActive = ambush.IsPlayerInStealth;
@@ -241,7 +255,7 @@ namespace TOR_Core.CampaignMechanics.Ambush.UI
             IsEventAlert = ambush.CachedObserversInRange.Count >= AlertObserverCountThreshold;
             IsEventEnemiesClose = HasObserverWithinRadius(ambush, CloseEnemyProximityRadius);
 
-            var ai = Campaign.Current?.GetCampaignBehavior<AiAmbushBehavior>();
+            var ai = AiAmbush;
             // Backstab outranks Cooldown.
             IsEventBackstab = ai?.GetMostRecentActiveVictimRecord(MobileParty.MainParty) != null;
             IsEventCooldown = ambush.IsOnAmbushCooldown && !IsEventBackstab;
