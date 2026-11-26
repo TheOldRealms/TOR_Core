@@ -231,21 +231,25 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             }
         }
 
-        private void HourlyTick() //I wonder if this could be done on the quarter daily tick instead and reduce the load significantly? The quarter tick is party-based, it could be performed on the main party's quarter tick, ie QuarterDailyTick above.
+        private void HourlyTick()
         {
             using var _profilerScope = TOR_Core.Utilities.Profiling.TORCampaignProfiler.Scope("ExtendedInfoManager.HourlyTick");
 
-            //fill winds of magic
-            foreach (var hero in Hero.AllAliveHeroes)//Sly : do clanless spellcasters exist? iterate through clans then heroes instead and skip irrelevant ones?
-                //could this not just iterate _heroInfos and check spellcasters? What would this assume about how heroes are added to _heroInfos?
+            // Fill winds of magic. Iterate _heroInfos directly rather than Hero.AllAliveHeroes:
+            // _heroInfos only tracks non-notable heroes (notables are skipped in OnHeroCreated
+            // and removed in OnHeroKilled), and short-circuiting on the SpellCaster attribute
+            // means heroes who will never gain winds don't pay for a perk/settlement lookup.
+            // Profiler data (Nov 2026) showed this handler at ~5 ms per call because the old
+            // loop paid Hero.AllAliveHeroes + a dict lookup per hero regardless of eligibility.
+            foreach (var heroInfo in _heroInfos.Values)
             {
-                if (hero.IsNotable)
-                    continue;
-                if (!_heroInfos.TryGetValue(hero.GetInfoKey(), out var heroInfo))
-                    continue;
                 if (!heroInfo.AllAttributes.Contains("SpellCaster"))
                     continue;
-                
+
+                var hero = heroInfo.BaseCharacter?.HeroObject;
+                if (hero == null)
+                    continue;
+
                 var bonusRegen = 1f;
                 if (hero.GetPerkValue(TORPerks.Spellcraft.Catalyst) &&
                     hero.CurrentSettlement != null &&
