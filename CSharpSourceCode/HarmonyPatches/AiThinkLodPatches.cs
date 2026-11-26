@@ -128,10 +128,9 @@ public static class AiThinkLodPatches
     /// predictably for the player's party).
     /// </remarks>
     /// <summary>
-    /// Measurement-only probe on <c>MapEvent.Update</c>. Driven per-frame by
-    /// <c>MapEventManager.Tick</c> → <c>Campaign.Tick</c>, so every active AI-vs-AI
-    /// battle gets an Update call every engine tick. Candidate for LOD gating in a
-    /// follow-up commit once the baseline is measured.
+    /// Measurement-only probe on <c>MapEvent.Update</c>. Companion to the LOD gate
+    /// below. Only records calls that actually ran the vanilla body (postfix is
+    /// skipped when the gate returned false).
     /// </summary>
     [HarmonyPatch(typeof(MapEvent), "Update")]
     public static class MapEventUpdateProfilerPatch
@@ -146,6 +145,55 @@ public static class AiThinkLodPatches
             if (__state == 0L) return;
             var elapsedMs = (Stopwatch.GetTimestamp() - __state) * 1000.0 / Stopwatch.Frequency;
             TORCampaignProfiler.Record("Vanilla.MapEvent.Update", elapsedMs);
+        }
+    }
+
+    /// <summary>
+    /// Tier-based cadence gate on <c>MapEvent.Update</c>. Called per-frame per-event
+    /// by <c>MapEventManager.Tick</c>. The expensive combat work inside vanilla's
+    /// body is already time-gated via <c>_nextSimulationTime.IsPast</c>, so this
+    /// gate saves the cheap state-check overhead that fires every frame per event.
+    /// </summary>
+    /// <remarks>
+    /// Cadence by tier (frame-based, not in-game-time-based):
+    /// <list type="bullet">
+    ///   <item>Near: pass every frame. Full vanilla responsiveness.</item>
+    ///   <item>Mid:  pass 1-in-4 frames staggered by event hash.</item>
+    ///   <item>Far:  pass 1-in-16 frames staggered.</item>
+    /// </list>
+    ///
+    /// In-game battle duration is preserved because vanilla's internal
+    /// <c>_nextSimulationTime</c> uses <c>CampaignTime</c>, which advances
+    /// regardless of whether <c>Update</c> fired. When the gate finally opens, the
+    /// vanilla body sees "sim time is well past" and runs the overdue sim session
+    /// in one go. Casualties, retreats, outcomes all identical. Only the
+    /// wall-clock latency between "sim is due" and "sim actually runs" shifts.
+    ///
+    /// Safety: skips gating for player-involved map events so the player's own
+    /// battles behave exactly like vanilla.
+    /// </remarks>
+    [HarmonyPatch(typeof(MapEvent), "Update")]
+    public static class MapEventUpdateLodPatch
+    {
+        private const int MidPeriodFrames = 4;
+        private const int FarPeriodFrames = 16;
+
+        [HarmonyPrefix]
+        public static bool Prefix(MapEvent __instance)
+        {
+            if (__instance == null) return true;
+            // Never gate the player's own battle. MapEventManager.Tick already
+            // short-circuits for the non-raid player event, but IsRaid cases still
+            // reach here — keep them full speed.
+            if (MobileParty.MainParty != null && __instance == MobileParty.MainParty.MapEvent) return true;
+
+            var tier = AiThinkLod.GetTier(__instance);
+            if (tier == AiThinkLod.Tier.Near) return true;
+
+            int frame = AiThinkLod.CurrentFrame;
+            int offset = __instance.GetHashCode() & 0x7FFFFFFF;
+            int period = tier == AiThinkLod.Tier.Mid ? MidPeriodFrames : FarPeriodFrames;
+            return ((frame + offset) % period) == 0;
         }
     }
 

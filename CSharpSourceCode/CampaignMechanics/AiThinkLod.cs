@@ -1,4 +1,5 @@
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 
@@ -38,6 +39,19 @@ public static class AiThinkLod
         Far,
     }
 
+    /// <summary>
+    /// Monotonically increasing frame counter, updated once per application tick by
+    /// <c>SubModule.OnApplicationTick</c>. Used by frame-based gates on per-frame
+    /// vanilla methods (e.g. <see cref="MapEvent.Update"/>) to stagger their pass
+    /// windows without per-entity state.
+    /// </summary>
+    public static int CurrentFrame { get; private set; }
+
+    /// <summary>
+    /// Advances <see cref="CurrentFrame"/>. Called from <c>SubModule.OnApplicationTick</c>.
+    /// </summary>
+    public static void TickFrame() => CurrentFrame++;
+
     public static Tier GetTier(MobileParty party)
     {
         if (party == null) return Tier.Far;
@@ -52,6 +66,14 @@ public static class AiThinkLod
         var main = MobileParty.MainParty;
         if (main == null) return Tier.Far;
         return FromDistanceSq(main.Position.DistanceSquared(settlement.GatePosition));
+    }
+
+    public static Tier GetTier(MapEvent mapEvent)
+    {
+        if (mapEvent == null) return Tier.Far;
+        var main = MobileParty.MainParty;
+        if (main == null) return Tier.Far;
+        return FromDistanceSq(main.Position.DistanceSquared(mapEvent.Position));
     }
 
     private static Tier FromDistanceSq(float distSq)

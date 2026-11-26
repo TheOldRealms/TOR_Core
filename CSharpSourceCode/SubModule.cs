@@ -445,6 +445,7 @@ namespace TOR_Core
         protected override void OnApplicationTick(float dt)
         {
             TOR_Core.Utilities.Profiling.TORCampaignProfiler.OnFrame(dt);
+            TOR_Core.CampaignMechanics.AiThinkLod.TickFrame();
             TORAudioManager.Tick(dt);
             _tick += dt;
             if (_tick > 1)
