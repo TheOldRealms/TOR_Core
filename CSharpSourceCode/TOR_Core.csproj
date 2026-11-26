@@ -633,6 +633,7 @@
     <Compile Include="HarmonyPatches\NotablesCampaignBehaviorPatches.cs" />
     <Compile Include="HarmonyPatches\ObjectManagerPatches.cs" />
     <Compile Include="HarmonyPatches\PartyScreenPerformancePatches.cs" />
+    <Compile Include="HarmonyPatches\Profiling\VanillaAiProfilerPatches.cs" />
     <Compile Include="HarmonyPatches\PerkResetRelatedPatch.cs" />
     <Compile Include="HarmonyPatches\RaceFixPatches.cs" />
     <Compile Include="HarmonyPatches\RetreatPatches.cs" />
