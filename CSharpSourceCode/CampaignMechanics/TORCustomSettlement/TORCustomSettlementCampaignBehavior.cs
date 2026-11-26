@@ -38,6 +38,15 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     [SaveableField(5)] private Dictionary<string, int> _lastPrayerTime = [];
     [SaveableField(6)] private Dictionary<string, int> _lastPrayerTroopRewardTime = [];
 
+    /// <summary>
+    /// Shrines indexed by religion StringId. Rebuilt from <see cref="AllCustomSettlements"/>
+    /// on session launch and new-game start. Used by <see cref="OnAiTick"/> instead of a
+    /// per-party spatial query because the total shrine count is ~58 and each religion
+    /// bucket is ~8-12 settlements, cheap to loop directly.
+    /// </summary>
+    private Dictionary<string, List<Settlement>> _shrinesByReligion = [];
+    private List<Settlement> _cursedSites = [];
+
 
     //TODO: Randy - Expose to appropriate xml.
     public static int DEVOTION_FOLLOWER_TROOPS_MIN = 3;
@@ -547,6 +556,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                 _cursedSiteWardDurationLeft[settlement.StringId] = cursedSite.WardHours;
             }
         }
+        BuildCustomSettlementShortLists();
     }
 
     private void OnNewGameStart(CampaignGameStarter starter)
@@ -557,6 +567,34 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         {
             var comp = settlement.SettlementComponent as TORBaseSettlementComponent;
             comp.IsActive = true;
+        }
+        BuildCustomSettlementShortLists();
+    }
+
+    /// <summary>
+    /// Populates <see cref="_shrinesByReligion"/> and <see cref="_cursedSites"/> from the
+    /// current <see cref="AllCustomSettlements"/>. Call whenever that list is refreshed.
+    /// </summary>
+    private void BuildCustomSettlementShortLists()
+    {
+        _shrinesByReligion.Clear();
+        _cursedSites.Clear();
+        foreach (var settlement in AllCustomSettlements)
+        {
+            switch (settlement.SettlementComponent)
+            {
+                case ShrineComponent shrine when shrine.Religion != null:
+                    if (!_shrinesByReligion.TryGetValue(shrine.Religion.StringId, out var list))
+                    {
+                        list = [];
+                        _shrinesByReligion[shrine.Religion.StringId] = list;
+                    }
+                    list.Add(settlement);
+                    break;
+                case CursedSiteComponent:
+                    _cursedSites.Add(settlement);
+                    break;
+            }
         }
     }
    
@@ -663,15 +701,21 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     private void OnAiTick(MobileParty party)
     {
         if (!party.IsLordParty || party.LeaderHero == null || party == MobileParty.MainParty) return;
+
+        // Mirror vanilla's AiPartyThinkBehavior cadence (HourCounter % 6 for stable lords).
+        // Shrine and cursed-site visit decisions are low-urgency background flavour;
+        // ungated hourly re-evaluation is what produced the 964k-call figure in the
+        // Nov 2026 BCA capture. RethinkAtNextHourlyTick still forces an immediate pass.
+        if (party.Ai.HourCounter % 6 != 0 && !party.Ai.RethinkAtNextHourlyTick) return;
+
+        const float scanRadiusSq = 20f * 20f;
+
         if (ShrineMenuLogic.CanPartyGoToShrine(party))
         {
             var leaderReligion = party.LeaderHero.GetDominantReligion();
-            if (leaderReligion != null)
+            if (leaderReligion != null && _shrinesByReligion.TryGetValue(leaderReligion.StringId, out var shrines))
             {
-                var shrineSettlement = TORCommon.FindNearestSettlement(
-                    party,
-                    20f,
-                    x => x.SettlementComponent is ShrineComponent shrineComponent && shrineComponent.Religion == leaderReligion);
+                var shrineSettlement = NearestWithinSqRadius(party, shrines, scanRadiusSq);
                 if (shrineSettlement != null)
                 {
                     MoveToCustomSettlement(party, shrineSettlement);
@@ -683,7 +727,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         {
             if (!_lastGhostRecruitmentTime.ContainsKey(party.LeaderHero.StringId) || _lastGhostRecruitmentTime[party.LeaderHero.StringId] + CursedSiteMenuLogic.MinimumDaysBetweenRaisingGhosts < (int)CampaignTime.Now.ToDays)
             {
-                var cursedSite = TORCommon.FindNearestSettlement(party, 20f, x => x.SettlementComponent is CursedSiteComponent);
+                var cursedSite = NearestWithinSqRadius(party, _cursedSites, scanRadiusSq);
                 if (cursedSite != null)
                 {
                     MoveToCustomSettlement(party, cursedSite);
@@ -691,6 +735,28 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
             }
         }
     }
+
+    /// <summary>
+    /// One-pass nearest-match over a short candidate list, using squared Euclidean
+    /// distance to <see cref="Settlement.GatePosition"/>. Cheaper than the spatial
+    /// query API when the candidate set is small (handful of settlements).
+    /// </summary>
+    private static Settlement NearestWithinSqRadius(MobileParty party, List<Settlement> candidates, float radiusSq)
+    {
+        Settlement best = null;
+        float bestSq = radiusSq;
+        for (int i = 0; i < candidates.Count; i++)
+        {
+            var sq = party.Position.DistanceSquared(candidates[i].GatePosition);
+            if (sq < bestSq)
+            {
+                bestSq = sq;
+                best = candidates[i];
+            }
+        }
+        return best;
+    }
+
     private static void MoveToCustomSettlement(MobileParty party, Settlement settlement)
     {
         var gatePosition = settlement.GatePosition;
