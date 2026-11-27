@@ -113,7 +113,7 @@ namespace TOR_Core
             ViewModelExtensionManager.Initialize(); //has to happen before harmony PatchAll
 
             HarmonyInstance = new Harmony("mod.harmony.theoldrealms");
-            HarmonyInstance.PatchAllUncategorized(typeof(SubModule).Assembly);
+            PatchAllDiagnostic(HarmonyInstance, typeof(SubModule).Assembly);
             UIConfig.DoNotUseGeneratedPrefabs = true;
 
             TORConfig.ReadConfig();
@@ -137,6 +137,38 @@ namespace TOR_Core
                 return Assembly.LoadFrom(dllPath);
             }
             else return null;
+        }
+
+        /// <summary>
+        /// Per-class wrapper around Harmony's PatchAll. Standard PatchAll aborts
+        /// on the first class whose target resolution or Patch() throws, leaving
+        /// all later [HarmonyPatch] classes unregistered. We log each failure
+        /// instead so a single broken patch does not silently disable everything.
+        /// </summary>
+        private static void PatchAllDiagnostic(Harmony harmony, Assembly assembly)
+        {
+            int ok = 0, fail = 0;
+            foreach (var type in AccessTools.GetTypesFromAssembly(assembly))
+            {
+                var attrs = HarmonyMethodExtensions.GetFromType(type);
+                if (attrs == null || attrs.Count == 0) continue;
+                var merged = HarmonyMethod.Merge(attrs);
+                if (merged != null && !string.IsNullOrEmpty(merged.category)) continue;
+                try
+                {
+                    new PatchClassProcessor(harmony, type).Patch();
+                    ok++;
+                }
+                catch (Exception ex)
+                {
+                    fail++;
+                    var inner = ex;
+                    while (inner.InnerException != null) inner = inner.InnerException;
+                    TORCommon.Log($"[Harmony] FAILED to patch {type.FullName}: {inner.GetType().Name}: {inner.Message}", LogLevel.Error);
+                    MBDebug.Print($"[Harmony] FAILED: {type.FullName}: {inner.Message}");
+                }
+            }
+            TORCommon.Log($"[Harmony] PatchAllDiagnostic: {ok} succeeded, {fail} failed.", LogLevel.Info);
         }
 
         private static void ConfigureLogging()
