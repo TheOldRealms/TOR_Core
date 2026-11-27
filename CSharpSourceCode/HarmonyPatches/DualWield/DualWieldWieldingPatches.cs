@@ -99,17 +99,12 @@ public static class DualWieldWieldingPatches
 			}
 			if (isOffHand)
 			{
-				// Vanilla path: skip re-pairing on an offhand wield change -- a
-				// normal dual-wielder dropping the offhand should stay that way.
-				// Exception: claws (GovernedBy=Berserk) must be re-wielded
-				// immediately when the engine un-wields them, because they are
-				// part of the body. Re-fire ForceOffHandPairing for those.
-				if (DualWieldStateManager.IsDualWielding(__instance)
-					&& __instance.GetOffhandWieldedItemIndex() == (EquipmentIndex)(-1)
-					&& __instance.Equipment[(EquipmentIndex)1].Item?.IsDualWieldItem() == true)
-				{
-					ForceOffHandPairing(__instance, isWieldedInstantly, isWieldedOnSpawn);
-				}
+				// BISECT: the claw re-wield carve-out is temporarily disabled
+				// while hunting the slaangor dual-wield freeze. Suspected
+				// culprit: when the engine refuses the offhand wield, this
+				// fires ForceOffHandPairing which re-triggers the wield -> the
+				// engine refuses again -> loop. Restore the branch once the
+				// slaangor usage pipeline is confirmed to not un-wield.
 				return;
 			}
 			if (!DualWieldStateManager.IsDualWielding(__instance))
