@@ -8608,6 +8608,8 @@
   <EquipmentRoster id="tor_dw_slayer_template" culture="Culture.sturgia">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_axe_slayer_1h_001" />
+      <!-- Second slayer axe for dual-wield smoke testing (feral-combat Task 13). -->
+      <Equipment slot="Item1" id="Item.tor_dwarf_weapon_axe_slayer_1h_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_slayer_novice_001" />
     </EquipmentSet>
     <EquipmentSet>
