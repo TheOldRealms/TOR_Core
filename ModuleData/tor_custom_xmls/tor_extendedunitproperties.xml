@@ -11512,4 +11512,26 @@
       <string>EncyclopediaHelmet</string>
     </Attributes>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_lord_brasskeep_first_7">
+    <Attributes>
+      <string>BrassKeep</string>
+      <string>LegendaryLord</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_lord_brasskeep_first_8">
+    <Attributes>
+      <string>BrassKeep</string>
+      <string>LegendaryLord</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_lord_skulltakers_first_7">
+    <Attributes>
+      <string>EncyclopediaHelmet</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_lord_skulltakers_first_8">
+    <Attributes>
+      <string>EncyclopediaHelmet</string>
+    </Attributes>
+  </CharacterExtendedInfo>
 </ArrayOfCharacterExtendedInfo>
