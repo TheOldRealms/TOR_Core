@@ -514,7 +514,7 @@ namespace TOR_Core.Extensions
         /// default. Does NOT include defensive-forearm items; they're
         /// not Berserk-governed.
         /// </summary>
-        public static bool IsBerserkGoverned(this ItemObject item)
+        public static bool IsDualWieldItem(this ItemObject item)
         {
             if (item == null) return false;
             var info = item.GetTorSpecificDataReadOnly();

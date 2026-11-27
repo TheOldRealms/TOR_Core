@@ -21,7 +21,7 @@ namespace TOR_Core.BattleMechanics.DualWield
     /// <c>GovernedBy = Berserk</c> tag on <c>ExtendedItemObjectProperties</c>,
     /// NOT the presence of a forearm mesh (which would also catch
     /// defensive-claw items and other passive offhand forearm skins).
-    /// See <see cref="ItemObjectExtensions.IsBerserkGoverned"/>.
+    /// See <see cref="ItemObjectExtensions.IsDualWieldItem"/>.
     ///
     /// Phase 1 acceptance: offhand attack claw stays wielded through
     /// a 30s slaangor skirmish, confirming 1.3 fixed the weapon-rater
@@ -53,14 +53,14 @@ namespace TOR_Core.BattleMechanics.DualWield
             var off = agent.WieldedOffhandWeapon;
 
             if (main.IsEmpty || !off.IsEmpty) return;
-            if (main.Item == null || !main.Item.IsBerserkGoverned()) return;
+            if (main.Item == null || !main.Item.IsDualWieldItem()) return;
 
             for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumAllWeaponSlots; i++)
             {
                 var el = agent.Equipment[i];
                 if (el.IsEmpty || el.Item == null) continue;
                 if (el.Item == main.Item) continue;
-                if (!el.Item.IsBerserkGoverned()) continue;
+                if (!el.Item.IsDualWieldItem()) continue;
 
                 agent.TryToWieldWeaponInSlot(i, Agent.WeaponWieldActionType.Instant, false);
                 return;
