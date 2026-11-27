@@ -33,6 +33,8 @@ namespace TOR_Core.Items
         public HideHandType HideHand = HideHandType.None;
         [XmlElement("ForearmMesh")]
         public string ForearmMesh = "";
+        [XmlElement("ForearmMeshLeft")]
+        public string ForearmMeshLeft = "";
         [XmlElement("GovernedBy")]
         public WeaponGovernance GovernedBy = WeaponGovernance.OneHanded;
         [XmlElement]
@@ -69,6 +71,7 @@ namespace TOR_Core.Items
                 RaceLock = RaceLock,
                 HideHand = HideHand,
                 ForearmMesh = ForearmMesh,
+                ForearmMeshLeft = ForearmMeshLeft,
                 GovernedBy = GovernedBy,
                 ItemTraits = []
             };

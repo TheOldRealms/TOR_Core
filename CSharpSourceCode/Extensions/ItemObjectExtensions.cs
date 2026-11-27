@@ -458,6 +458,19 @@ namespace TOR_Core.Extensions
         }
 
         /// <summary>
+        /// Left-arm variant of the forearm graft mesh. Used for the
+        /// offhand-side slot so the same item can graft a differently
+        /// rigged mesh onto the left arm when dual-wielded. Falls back
+        /// to empty when the item declares no left variant.
+        /// </summary>
+        public static string GetForearmMeshLeftName(this ItemObject item)
+        {
+            if (item == null) return "";
+            var info = item.GetTorSpecificDataReadOnly();
+            return info != null && !string.IsNullOrEmpty(info.ForearmMeshLeft) ? info.ForearmMeshLeft : "";
+        }
+
+        /// <summary>
         /// True for weapon slots the engine treats as the left/offhand
         /// side: slot 1 (vanilla left-hand / shield slot) and slot 4
         /// (banner slot, repurposed by Yotthani's dual-wield reshuffle

@@ -7553,6 +7553,7 @@
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_weapon_slaangor_claw_001" RaceLock="gor2">
     <HideHand>Right</HideHand>
     <ForearmMesh>slaangor_claw_forearm_mesh</ForearmMesh>
+    <ForearmMeshLeft>slaangor_defend_claw_forearm_mesh</ForearmMeshLeft>
     <GovernedBy>Berserk</GovernedBy>
     <ItemTraits />
     <DamageProportions>

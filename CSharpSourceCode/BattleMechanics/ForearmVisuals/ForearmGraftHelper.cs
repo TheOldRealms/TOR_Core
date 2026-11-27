@@ -84,8 +84,6 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
             if (visuals == null || equipment == null) return false;
 
             HashSet<string> activeForearmNames = null;
-            HashSet<string> rigidNamesToHide = null;
-            List<EquipmentIndex> graftedSlots = null;
             bool anyFailed = false;
 
             for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumAllWeaponSlots; i++)
@@ -93,7 +91,14 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
                 var element = equipment[i];
                 if (element.IsEmpty || element.Item == null) continue;
 
-                string forearmMeshName = element.Item.GetForearmMeshName();
+                // Offhand-side slots (1 = vanilla shield, 4 = Yotthani
+                // banner-slot reshuffle target) use the item's left-arm
+                // variant mesh if declared, so a same-item dual-wield
+                // can graft a differently rigged mesh on the left arm.
+                bool offhandSide = i == EquipmentIndex.Weapon1 || i == EquipmentIndex.ExtraWeaponSlot;
+                string forearmMeshName = offhandSide
+                    ? element.Item.GetForearmMeshLeftName()
+                    : element.Item.GetForearmMeshName();
                 if (string.IsNullOrEmpty(forearmMeshName)) continue;
 
                 if (!EnsureForearmMeshOnSkeleton(visuals, forearmMeshName, trackingForearmNames))
@@ -104,20 +109,6 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
 
                 activeForearmNames ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 activeForearmNames.Add(forearmMeshName);
-
-                // Offhand-side slots (1 = vanilla shield, 4 = banner slot
-                // used by Yotthani's dual-wield reshuffle) share the
-                // mainhand item's rigid mesh name in a two-claw setup.
-                // Hiding both would leave the offhand arm empty, so skip
-                // the rigid-hide bookkeeping for those slots.
-                bool offhandSide = i == EquipmentIndex.Weapon1 || i == EquipmentIndex.ExtraWeaponSlot;
-                if (offhandSide) continue;
-
-                rigidNamesToHide ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                CollectRigidItemMeshNames(element.Item, rigidNamesToHide);
-
-                graftedSlots ??= new List<EquipmentIndex>();
-                graftedSlots.Add(i);
             }
 
             if (trackingForearmNames != null)
@@ -125,18 +116,11 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
                 SyncInactiveForearmMeshes(visuals, activeForearmNames, trackingForearmNames);
             }
 
-            if (rigidNamesToHide != null && rigidNamesToHide.Count > 0)
-            {
-                if (agent != null && graftedSlots != null)
-                {
-                    HideRigidMeshesOnGraftedSlotEntities(visuals, agent, graftedSlots, rigidNamesToHide);
-                }
-                else
-                {
-                    HideRigidMeshes(visuals, rigidNamesToHide);
-                }
-            }
-
+            // Raw weapon mesh invisibility is handled by
+            // ForearmInventoryIconPatch.OnGetWeaponDataPostfix via the
+            // lhm_fist_weapon material swap -- that path hides the
+            // batched weapon entity on both the mainhand and offhand
+            // hand bones, so we don't need to walk entities here.
             return anyFailed;
         }
 

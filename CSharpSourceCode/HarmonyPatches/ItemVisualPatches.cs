@@ -47,16 +47,6 @@ namespace TOR_Core.HarmonyPatches
             string forearmMeshName = weapon.Item.GetForearmMeshName();
             if (string.IsNullOrEmpty(forearmMeshName)) return;
 
-            // OnGetWeaponData fires for inventory/world-icon renders AND
-            // for in-mission wielded weapons. In the mission case, the
-            // forearm graft (ForearmGraftHelper) hides the rigid mesh
-            // surgically per slot so the offhand sibling stays visible.
-            // Without this skip, the shared MetaMesh here would get an
-            // invisible material swap that affects every render of the
-            // item -- including the offhand claw, which has no graft to
-            // cover it.
-            if (Mission.Current != null) return;
-
             MakeWeaponMetaMeshInvisible(weaponData.WeaponMesh);
             MakeWeaponMetaMeshInvisible(weaponData.HolsterMesh);
             MakeWeaponMetaMeshInvisible(weaponData.HolsterMeshWithWeapon);
@@ -67,12 +57,26 @@ namespace TOR_Core.HarmonyPatches
         {
             if (mm == null) return;
 
-            // Material.GetFromResource returns a shared cached material.
-            // Calling mm.SetMaterial with it mutated the MetaMesh for the
-            // whole session, leaving every later render of the claw --
-            // including in-mission offhand copies -- with no material.
-            // Rely on per-instance SetVisibilityMask on the Mesh handles
-            // returned by this specific MetaMesh query only.
+            // SetVisibilityMask(0) alone isn't enough on the batched
+            // weapon entities Bannerlord uses in combat -- diagnostic
+            // logs show vis=0 but the mesh still renders. The original
+            // 9-patch system swapped the MetaMesh's material to the
+            // invisible 'lhm_fist_weapon' resource, which does hide it
+            // in the render path. Both operations stay so the mesh
+            // disappears in every pass.
+            Material invisibleMat = Material.GetFromResource(InvisibleWeaponMaterialName);
+            if (invisibleMat != null)
+            {
+                mm.SetMaterial(invisibleMat);
+            }
+            else if (!_loggedMissingMaterial)
+            {
+                _loggedMissingMaterial = true;
+                TORCommon.Log(
+                    $"ForearmInventoryIconPatch: material '{InvisibleWeaponMaterialName}' unresolved. Forearm items fall back to visibility mask only.",
+                    LogLevel.Warn);
+            }
+
             for (int i = 0; i < mm.MeshCount; i++)
             {
                 Mesh sub = mm.GetMeshAtIndex(i);
