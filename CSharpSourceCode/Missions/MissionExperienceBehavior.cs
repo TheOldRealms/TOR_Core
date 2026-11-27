@@ -53,17 +53,27 @@ namespace TOR_Core.Missions
 	    }
 
         /// <summary>
-        /// Grant Berserk XP to the main hero when a hit lands while actively dual-wielding.
-        /// Additive on top of the vanilla weapon-skill XP routed through <c>EnemyHitReward</c>;
-        /// Berserk governs "the paired weapons of those who fight without a shield" per the
-        /// skill description, so every strike during a paired-weapons engagement counts.
-        /// Siege and spell hits are excluded for parity with <c>TORCombatXpModel</c>.
+        /// Grant Berserk XP to the main hero when a hit lands while dual-wielding. Uses
+        /// <c>DualWieldStateManager.IsDualWielding</c> (set at spawn when two matching
+        /// weapons are detected), not <c>IsPaired</c> (which is Yotthani's transient
+        /// synchronous-swing combat substate). Additive on top of the vanilla
+        /// weapon-skill XP routed through <c>EnemyHitReward</c>. Siege and spell hits
+        /// are excluded for parity with <c>TORCombatXpModel</c>.
         /// </summary>
+        private static int _berserkDiagHits;
+
         private static void BerserkHitReward(Agent affector, Agent affected, float inflictedDamage, bool isSiegeEngineHit, bool isSpellHit)
         {
             if (isSiegeEngineHit || isSpellHit) return;
             if (affector == null || !affector.IsMainAgent || Hero.MainHero == null) return;
-            if (!DualWieldStateManager.IsPaired(affector)) return;
+
+            bool dualWielding = DualWieldStateManager.IsDualWielding(affector);
+            if (_berserkDiagHits++ < 20)
+            {
+                // Temp diagnostic -- confirms the hook fires and whether IsDualWielding detects the player.
+                Utilities.TORCommon.Say($"[Berserk] hit#{_berserkDiagHits} dw={dualWielding} dmg={inflictedDamage:F0} currentXp={Hero.MainHero.HeroDeveloper?.GetSkillXpProgress(TORSkills.Berserk)}");
+            }
+            if (!dualWielding) return;
             if (TORSkills.Berserk == null) return;
 
             // Scale per hit by inflicted damage (matches CareerPerkMissionBehavior's Roguery grant),
