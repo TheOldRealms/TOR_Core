@@ -50,7 +50,11 @@ public static class DualWieldStatPatches
 		long started = DwPerf.Start();
 		try
 		{
-			if (!DualWieldMissionBehavior.IsActive || !DualWieldSettings.Get().EnableDualWield || !DualWieldStateManager.IsPaired(agent))
+			// Gate on IsDualWielding (equipment state) rather than IsPaired
+			// (Yotthani's transient synchronous-swing substate) so the paired-
+			// weapons stat bonus applies continuously while the loadout is
+			// active, matching how vanilla OneHanded's level effects fire.
+			if (!DualWieldMissionBehavior.IsActive || !DualWieldSettings.Get().EnableDualWield || !DualWieldStateManager.IsDualWielding(agent))
 			{
 				return;
 			}
@@ -67,14 +71,14 @@ public static class DualWieldStatPatches
 					agentDrivenProperties.CombatMaxSpeedMultiplier *= num;
 				}
 			}
-			DualWieldSettings dualWieldSettings = DualWieldSettings.Get();
-			float num2 = DualWieldSettings.BonusShare(agent);
-			if (!(num2 <= 0f))
+			float swingBonus = BerserkBonusModel.SwingSpeedBonus(agent);
+			float moveBonus = BerserkBonusModel.MovementSpeedBonus(agent);
+			if (swingBonus > 0f || moveBonus > 0f)
 			{
-				agentDrivenProperties.SwingSpeedMultiplier *= 1f + dualWieldSettings.AttackSpeedBonus * num2;
-				agentDrivenProperties.HandlingMultiplier *= 1f + dualWieldSettings.AttackSpeedBonus * 0.5f * num2;
-				agentDrivenProperties.MaxSpeedMultiplier *= 1f + dualWieldSettings.MovementSpeedBonus * num2;
-				agentDrivenProperties.CombatMaxSpeedMultiplier *= 1f + dualWieldSettings.MovementSpeedBonus * num2;
+				agentDrivenProperties.SwingSpeedMultiplier *= 1f + swingBonus;
+				agentDrivenProperties.HandlingMultiplier *= 1f + swingBonus * 0.5f;
+				agentDrivenProperties.MaxSpeedMultiplier *= 1f + moveBonus;
+				agentDrivenProperties.CombatMaxSpeedMultiplier *= 1f + moveBonus;
 				if (DualWieldSettings.Get().DebugMode)
 				{
 					DualWieldSettings.DebugLog($"Stats applied to {agent.Name}: SwingSpeed={agentDrivenProperties.SwingSpeedMultiplier:F2}, MaxSpeed={agentDrivenProperties.MaxSpeedMultiplier:F2}");

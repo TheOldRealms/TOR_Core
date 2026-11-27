@@ -54,12 +54,16 @@ public static class DualWieldCombatPatches
 			}
 			DualWieldSettings dualWieldSettings = DualWieldSettings.Get();
 			Agent attackerAgent = attackInformation.AttackerAgent;
-			if (attackerAgent != null && (DualWieldStateManager.IsPaired(attackerAgent) || LeftBladeStrike.ApplyingLeftHit))
+			// Gate on IsDualWielding not IsPaired so the offhand-damage multiplier
+			// fires for every offhand strike while the loadout is active, not only
+			// during Yotthani's narrow synchronous-swing window.
+			if (attackerAgent != null && (DualWieldStateManager.IsDualWielding(attackerAgent) || LeftBladeStrike.ApplyingLeftHit))
 			{
 				if (DwRules.OffHandHit(LeftBladeStrike.ApplyingLeftHit, attackerAgent.IsMainAgent && DualWieldMissionBehavior.LeftHanded))
 				{
-					baseMagnitude *= dualWieldSettings.OffHandDamageMultiplier;
-					specialMagnitude *= dualWieldSettings.OffHandDamageMultiplier;
+					float offhandMult = BerserkBonusModel.OffHandDamageMultiplier(attackerAgent);
+					baseMagnitude *= offhandMult;
+					specialMagnitude *= offhandMult;
 					if (DualWieldSettings.Get().DebugMode)
 					{
 						DualWieldSettings.DebugLog($"[Combat] Off-hand strike: magnitude {baseMagnitude:F1}");
@@ -82,7 +86,7 @@ public static class DualWieldCombatPatches
 				}
 			}
 			Agent victimAgent = attackInformation.VictimAgent;
-			if (victimAgent != null && DualWieldStateManager.IsPaired(victimAgent) && dualWieldSettings.ArmorPenalty > 0f && !ArmoryActive())
+			if (victimAgent != null && DualWieldStateManager.IsDualWielding(victimAgent) && dualWieldSettings.ArmorPenalty > 0f && !ArmoryActive())
 			{
 				float num = 1f + dualWieldSettings.ArmorPenalty;
 				baseMagnitude *= num;
