@@ -402,8 +402,8 @@ public static class DualWieldSpawnPatches
 					obj2 = "empty";
 				}
 				string text2 = (string)obj2;
-				int itemUsageIndex = MBItem.GetItemUsageIndex("dw_offhand");
-				int itemUsageIndex2 = MBItem.GetItemUsageIndex("dw_mainhand_swing_thrust");
+				int itemUsageIndex = MBItem.GetItemUsageIndex("tor_dw_offhand");
+				int itemUsageIndex2 = MBItem.GetItemUsageIndex("tor_dw_mainhand_swing_thrust");
 				int itemUsageIndex3 = MBItem.GetItemUsageIndex("hand_shield");
 				string arg = "none";
 				int num = -1;

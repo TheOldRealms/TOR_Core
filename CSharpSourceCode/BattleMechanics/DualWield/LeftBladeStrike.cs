@@ -316,7 +316,7 @@ public sealed class LeftBladeStrike
 			DualWieldLog.Log(string.Format(CultureInfo.InvariantCulture, "[Mounted] {0} {1} end ({2}) after {3:0.00} s at progress {4:0.00} (window {5:0.00}-{6:0.00}): contacts {7}, window ticks {8} (swept {9}), tip max {10:0.0} m/s, stale ticks {17} (forced update moved {18}) | closest enemy to the blade {11} at progress {12:0.00}: blade z {13:0.00}..{14:0.00}, enemy feet {15:0.00} eyes {16:0.00}", new object[19]
 			{
 				_attacker.IsMainAgent ? "player" : "npc",
-				_actionName.Replace("act_dwc_quick_release_", ""),
+				_actionName.Replace("act_tor_dwc_qck_release_", ""),
 				why,
 				_elapsed,
 				_prevProgress,

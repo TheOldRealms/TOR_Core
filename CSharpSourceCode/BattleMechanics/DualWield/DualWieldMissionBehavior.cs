@@ -40,13 +40,13 @@ public class DualWieldMissionBehavior : MissionBehavior
 
 	private static readonly ActionIndexCache _actDwSlashLeft = ActionIndexCache.Create("act_dw_cu_slashleft");
 
-	private static readonly ActionIndexCache _mirUp = ActionIndexCache.Create("act_dwc_quick_release_overswing_1h_left_stance");
+	private static readonly ActionIndexCache _mirUp = ActionIndexCache.Create("act_tor_dwc_qck_release_overswing_1h_left_stance");
 
-	private static readonly ActionIndexCache _mirDown = ActionIndexCache.Create("act_dwc_quick_release_thrust_1h_left_stance");
+	private static readonly ActionIndexCache _mirDown = ActionIndexCache.Create("act_tor_dwc_qck_release_thrust_1h_left_stance");
 
-	private static readonly ActionIndexCache _mirRight = ActionIndexCache.Create("act_dwc_quick_release_slashright_1h_left_stance");
+	private static readonly ActionIndexCache _mirRight = ActionIndexCache.Create("act_tor_dwc_qck_release_slashright_1h_left_stance");
 
-	private static readonly ActionIndexCache _mirLeft = ActionIndexCache.Create("act_dwc_quick_release_slashleft_1h_left_stance");
+	private static readonly ActionIndexCache _mirLeft = ActionIndexCache.Create("act_tor_dwc_qck_release_slashleft_1h_left_stance");
 
 	private static readonly ActionIndexCache _mirBit = ActionIndexCache.Create("act_dwmirbit");
 
@@ -54,7 +54,7 @@ public class DualWieldMissionBehavior : MissionBehavior
 
 	private static readonly string[] _dwcNames = BuildDwcNames();
 
-	private static readonly ActionIndexCache[] _dwcActs = BuildDwcActions("act_dwc_");
+	private static readonly ActionIndexCache[] _dwcActs = BuildDwcActions("act_tor_dwc_");
 
 	private static readonly ActionIndexCache[] _dwvActs = BuildDwcActions("act_dwv_");
 
@@ -68,47 +68,47 @@ public class DualWieldMissionBehavior : MissionBehavior
 
 	private bool _dwcWasDown;
 
-	private static readonly ActionIndexCache _dagUp = ActionIndexCache.Create("act_dwc_quick_release_backstab_1h_left_stance");
+	private static readonly ActionIndexCache _dagUp = ActionIndexCache.Create("act_tor_dwc_qck_release_backstab_1h_left_stance");
 
-	private static readonly ActionIndexCache _dagRight = ActionIndexCache.Create("act_dwc_quick_release_slashright_dagger_leftstance");
+	private static readonly ActionIndexCache _dagRight = ActionIndexCache.Create("act_tor_dwc_qck_release_slashright_dagger_leftstance");
 
-	private static readonly ActionIndexCache _dagLeft = ActionIndexCache.Create("act_dwc_quick_release_slashleft_dagger_leftstance");
+	private static readonly ActionIndexCache _dagLeft = ActionIndexCache.Create("act_tor_dwc_qck_release_slashleft_dagger_leftstance");
 
-	private static readonly ActionIndexCache _flailUp = ActionIndexCache.Create("act_dwc_quick_release_overswing_flail_left_stance");
+	private static readonly ActionIndexCache _flailUp = ActionIndexCache.Create("act_tor_dwc_qck_release_overswing_flail_left_stance");
 
-	private static readonly ActionIndexCache _flailRight = ActionIndexCache.Create("act_dwc_quick_release_slashright_flail_left_stance");
+	private static readonly ActionIndexCache _flailRight = ActionIndexCache.Create("act_tor_dwc_qck_release_slashright_flail_left_stance");
 
-	private static readonly ActionIndexCache _flailLeft = ActionIndexCache.Create("act_dwc_quick_release_slashleft_flail_left_stance");
+	private static readonly ActionIndexCache _flailLeft = ActionIndexCache.Create("act_tor_dwc_qck_release_slashleft_flail_left_stance");
 
-	private static readonly ActionIndexCache _rdyFlailUp = ActionIndexCache.Create("act_dwc_ready_overswing_flail_left_stance");
+	private static readonly ActionIndexCache _rdyFlailUp = ActionIndexCache.Create("act_tor_dwc_ready_overswing_flail_left_stance");
 
-	private static readonly ActionIndexCache _rdyFlailRight = ActionIndexCache.Create("act_dwc_ready_slashright_flail_left_stance");
+	private static readonly ActionIndexCache _rdyFlailRight = ActionIndexCache.Create("act_tor_dwc_ready_slashright_flail_left_stance");
 
-	private static readonly ActionIndexCache _rdyFlailLeft = ActionIndexCache.Create("act_dwc_ready_slashleft_flail_left_stance");
+	private static readonly ActionIndexCache _rdyFlailLeft = ActionIndexCache.Create("act_tor_dwc_ready_slashleft_flail_left_stance");
 
-	private static readonly ActionIndexCache _rdyUp = ActionIndexCache.Create("act_dwc_ready_overswing_1h_left_stance");
+	private static readonly ActionIndexCache _rdyUp = ActionIndexCache.Create("act_tor_dwc_ready_overswing_1h_left_stance");
 
-	private static readonly ActionIndexCache _rdyDown = ActionIndexCache.Create("act_dwc_ready_thrust_1h_left_stance");
+	private static readonly ActionIndexCache _rdyDown = ActionIndexCache.Create("act_tor_dwc_ready_thrust_1h_left_stance");
 
-	private static readonly ActionIndexCache _rdyRight = ActionIndexCache.Create("act_dwc_ready_slashright_1h_left_stance");
+	private static readonly ActionIndexCache _rdyRight = ActionIndexCache.Create("act_tor_dwc_ready_slashright_1h_left_stance");
 
-	private static readonly ActionIndexCache _rdyLeft = ActionIndexCache.Create("act_dwc_ready_slashleft_1h_left_stance");
+	private static readonly ActionIndexCache _rdyLeft = ActionIndexCache.Create("act_tor_dwc_ready_slashleft_1h_left_stance");
 
-	private static readonly ActionIndexCache _rdyDagUp = ActionIndexCache.Create("act_dwc_ready_backstab_1h_left_stance");
+	private static readonly ActionIndexCache _rdyDagUp = ActionIndexCache.Create("act_tor_dwc_ready_backstab_1h_left_stance");
 
-	private static readonly ActionIndexCache _rdyDagRight = ActionIndexCache.Create("act_dwc_ready_slashright_dagger_leftstance");
+	private static readonly ActionIndexCache _rdyDagRight = ActionIndexCache.Create("act_tor_dwc_ready_slashright_dagger_leftstance");
 
-	private static readonly ActionIndexCache _rdyDagLeft = ActionIndexCache.Create("act_dwc_ready_slashleft_dagger_leftstance");
+	private static readonly ActionIndexCache _rdyDagLeft = ActionIndexCache.Create("act_tor_dwc_ready_slashleft_dagger_leftstance");
 
 	private bool _toggleWasDown;
 
-	private static readonly ActionIndexCache _turnToBack = ActionIndexCache.Create("act_dwc_switch_alternate_dagger_left_stance");
+	private static readonly ActionIndexCache _turnToBack = ActionIndexCache.Create("act_tor_dwc_switch_alternate_dagger_left_stance");
 
-	private static readonly ActionIndexCache _turnToBackEnd = ActionIndexCache.Create("act_dwc_switch_alternate_dagger_left_stance_continue");
+	private static readonly ActionIndexCache _turnToBackEnd = ActionIndexCache.Create("act_tor_dwc_switch_alternate_dagger_left_stance_cont");
 
-	private static readonly ActionIndexCache _turnToFront = ActionIndexCache.Create("act_dwc_switch_back_alternate_dagger_left_stance");
+	private static readonly ActionIndexCache _turnToFront = ActionIndexCache.Create("act_tor_dwc_switch_back_alternate_dagger_left_stance");
 
-	private static readonly ActionIndexCache _turnToFrontEnd = ActionIndexCache.Create("act_dwc_switch_back_alternate_dagger_left_stance_continue");
+	private static readonly ActionIndexCache _turnToFrontEnd = ActionIndexCache.Create("act_tor_dwc_switch_back_alternate_dagger_left_stance_cont");
 
 	private static readonly ActionIndexCache _vanillaTurnToBackEnd = ActionIndexCache.Create("act_switch_alternate_dagger_continue_left_stance");
 
@@ -1107,7 +1107,7 @@ public class DualWieldMissionBehavior : MissionBehavior
 				}
 				DualWieldLog.Log("[VariantProbe] anim '" + text4 + "' idx=" + num2 + ((num2 >= 0) ? "  ACCEPTED" : "  rejected"));
 			}
-			array = new string[4] { "act_dwc_quick_release_slashright_1h_left_stance", "act_dwc_quick_release_slashleft_1h_left_stance", "act_dwc_quick_release_overswing_1h_left_stance", "act_dwc_quick_release_thrust_1h_left_stance" };
+			array = new string[4] { "act_tor_dwc_qck_release_slashright_1h_left_stance", "act_tor_dwc_qck_release_slashleft_1h_left_stance", "act_tor_dwc_qck_release_overswing_1h_left_stance", "act_tor_dwc_qck_release_thrust_1h_left_stance" };
 			foreach (string text5 in array)
 			{
 				ActionIndexCache val2 = ActionIndexCache.Create(text5);
@@ -1715,8 +1715,8 @@ public class DualWieldMissionBehavior : MissionBehavior
 			}
 			try
 			{
-				int itemUsageIndex = MBItem.GetItemUsageIndex("dw_offhand");
-				int itemUsageIndex2 = MBItem.GetItemUsageIndex("dw_mainhand_swing_thrust");
+				int itemUsageIndex = MBItem.GetItemUsageIndex("tor_dw_offhand");
+				int itemUsageIndex2 = MBItem.GetItemUsageIndex("tor_dw_mainhand_swing_thrust");
 				int itemUsageIndex3 = MBItem.GetItemUsageIndex("hand_shield");
 				int itemUsageIndex4 = MBItem.GetItemUsageIndex("onehanded_swing_thrust");
 				DualWieldLog.Log($"[UsageIdx] dw_offhand={itemUsageIndex}, dw_mainhand_swing_thrust={itemUsageIndex2}");
@@ -2159,7 +2159,7 @@ public class DualWieldMissionBehavior : MissionBehavior
 		{
 			text = (((int)dir == 1) ? "thrust_1h_horseback" : "overswing_horseback");
 		}
-		return ActionCache.Get("act_dwc_" + (ready ? "ready_" : "quick_release_") + text);
+		return ActionCache.Get("act_tor_dwc_" + (ready ? "ready_" : "quick_release_") + text);
 	}
 
 	private static ulong LeftFlags(ulong baseFlags)
@@ -2462,7 +2462,7 @@ public class DualWieldMissionBehavior : MissionBehavior
 					break;
 				}
 				string text = ActionCache.NameOf(agent.GetCurrentAction(i));
-				if (!string.IsNullOrEmpty(text) && text.IndexOf("release", StringComparison.OrdinalIgnoreCase) >= 0 && !text.StartsWith("act_dwc_", StringComparison.Ordinal))
+				if (!string.IsNullOrEmpty(text) && text.IndexOf("release", StringComparison.OrdinalIgnoreCase) >= 0 && !text.StartsWith("act_tor_dwc_", StringComparison.Ordinal))
 				{
 					flag = true;
 				}
@@ -2603,7 +2603,7 @@ public class DualWieldMissionBehavior : MissionBehavior
 				break;
 			}
 			string text2 = ActionCache.NameOf(agent.GetCurrentAction(i));
-			if (text2 != null && text2.StartsWith("act_dwc_quick_release_", StringComparison.Ordinal))
+			if (text2 != null && text2.StartsWith("act_tor_dwc_qck_release_", StringComparison.Ordinal))
 			{
 				num = i;
 				text = text2;

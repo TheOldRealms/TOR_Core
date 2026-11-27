@@ -152,7 +152,7 @@ public static class DualWieldOffhandFlagsPatch
 	{
 		if (_dwOffhandUsage == -2)
 		{
-			_dwOffhandUsage = MBItem.GetItemUsageIndex("dw_offhand");
+			_dwOffhandUsage = MBItem.GetItemUsageIndex("tor_dw_offhand");
 		}
 		if (_dwOffhandUsage >= 0)
 		{

@@ -335,7 +335,7 @@ public static class DualWieldBalance
 			_riderFriend[friend]++;
 			if (_riderFriendLogs++ < 120)
 			{
-				DualWieldLog.Log("[Mounted] friend met by " + action.Replace("act_dwc_quick_release_", "") + ": " + friend switch
+				DualWieldLog.Log("[Mounted] friend met by " + action.Replace("act_tor_dwc_qck_release_", "") + ": " + friend switch
 				{
 					2 => "a rider", 
 					1 => "a man on foot", 

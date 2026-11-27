@@ -427,11 +427,11 @@ public static class DualWieldWieldingPatches
 	private static ActionIndexCache SheathTwin(string equip, out string name)
 	{
 		string text = equip.Substring("act_equip_".Length);
-		name = "act_dwc_unequip_" + text;
+		name = "act_tor_dwc_unequip_" + text;
 		ActionIndexCache result = ActionCache.Get(name);
 		if (result.Index < 0 && text.EndsWith("_left_stance", StringComparison.Ordinal))
 		{
-			name = "act_dwc_unequip_" + text.Substring(0, text.Length - "_left_stance".Length);
+			name = "act_tor_dwc_unequip_" + text.Substring(0, text.Length - "_left_stance".Length);
 			result = ActionCache.Get(name);
 		}
 		return result;
