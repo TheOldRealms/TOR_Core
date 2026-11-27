@@ -3033,7 +3033,8 @@ public class DualWieldMissionBehavior : MissionBehavior
 	public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
 	{
 		base.OnAgentHit(affectedAgent, affectorAgent, in affectorWeapon, in blow, in attackCollisionData);
-		GrantBerserkXp(affectorAgent, affectedAgent, blow);
+		(MissionGameModels.Current?.CombatXpModel as TOR_Core.Models.TORCombatXpModel)
+			?.GrantBerserkXpForHit(affectorAgent, affectedAgent, blow);
 		try
 		{
 			Blow val;
@@ -4150,29 +4151,5 @@ public class DualWieldMissionBehavior : MissionBehavior
 
 	static DualWieldMissionBehavior()
 	{
-	}
-
-	/// <summary>
-	/// Grant Berserk XP to the main hero on every hit landed while dual-wielding.
-	/// Hooked into <see cref="OnAgentHit"/> rather than <c>MissionLogic.OnScoreHit</c>
-	/// because Yotthani's <c>LeftBladeStrike</c> applies damage via
-	/// <c>Mission.MeleeHitCallback</c>, which dispatches through
-	/// <c>MissionBehavior.OnAgentHit</c> (fires here) but doesn't necessarily reach
-	/// every mission-logic <c>OnScoreHit</c> override. Additive on top of the
-	/// vanilla One-Handed XP routed through <c>TORCombatXpModel</c>.
-	/// </summary>
-	private static void GrantBerserkXp(Agent affector, Agent affected, Blow blow)
-	{
-		if (affector == null || !affector.IsMainAgent || Hero.MainHero == null) return;
-		if (!DualWieldStateManager.IsDualWielding(affector)) return;
-		if (TORSkills.Berserk == null) return;
-		if (blow.IsMissile) return;
-
-		// Scale by inflicted damage (matches CareerPerkMissionBehavior's Roguery
-		// grant); lethal blows get a flat kill bonus.
-		int xp = Math.Max(1, (int)(blow.InflictedDamage * 0.5f));
-		if (affected != null && affected.Health < 1f) xp += 20;
-
-		Hero.MainHero.AddSkillXp(TORSkills.Berserk, xp);
 	}
 }

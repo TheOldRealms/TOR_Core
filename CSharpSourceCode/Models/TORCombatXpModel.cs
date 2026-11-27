@@ -1,8 +1,11 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
+using TOR_Core.BattleMechanics.DualWield;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -73,6 +76,30 @@ namespace TOR_Core.Models
             }
 
             return xpAmount;
+        }
+
+        /// <summary>
+        /// Grant Berserk XP to the main hero on top of the vanilla weapon-skill
+        /// XP when they land a hit while dual-wielding. Called from
+        /// <c>DualWieldMissionBehavior.OnAgentHit</c>, which is the reliable
+        /// firing point for every hit including Yotthani's <c>LeftBladeStrike</c>
+        /// offhand path (that one bypasses <c>MissionLogic.OnScoreHit</c> via
+        /// a direct <c>Mission.MeleeHitCallback</c> invocation). Formula lives
+        /// here so Berserk tuning sits alongside the other combat-XP math.
+        /// </summary>
+        public void GrantBerserkXpForHit(Agent affector, Agent affected, Blow blow)
+        {
+            if (affector == null || !affector.IsMainAgent || Hero.MainHero == null) return;
+            if (!DualWieldStateManager.IsDualWielding(affector)) return;
+            if (TORSkills.Berserk == null) return;
+            if (blow.IsMissile) return;
+
+            // Scale by inflicted damage (parity with the Roguery grant in
+            // CareerPerkMissionBehavior); lethal blows add a flat bonus.
+            int xp = Math.Max(1, (int)(blow.InflictedDamage * 0.5f));
+            if (affected != null && affected.Health < 1f) xp += 20;
+
+            Hero.MainHero.AddSkillXp(TORSkills.Berserk, xp);
         }
 
         /// <summary>
