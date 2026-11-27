@@ -35,17 +35,14 @@ public static class DualWieldNpcBannerSlotPatch
 			{
 				return;
 			}
-			// Skip natural-weapon loadouts (claws / future mutation items).
-			// Yotthani's reshuffle moves slot1 to the banner slot (slot 4) to
-			// pass the slot1-is-shield check downstream, but claws carry an
-			// unusual item_holsters (right_finger) that native-side crashes
-			// when the engine treats them as a banner-slot item. Leave the
-			// claw in slot1 so it goes through the normal dual-wield path.
-			if (spawnEquipment[(EquipmentIndex)0].Item?.IsDualWieldItem() == true
-				|| spawnEquipment[(EquipmentIndex)1].Item?.IsDualWieldItem() == true)
-			{
-				return;
-			}
+			// Note: earlier draft of this patch guarded natural-weapon
+			// loadouts (claws) to skip the reshuffle, fearing their unusual
+			// item_holsters would native-crash in the banner slot. Removing
+			// the guard: observed behaviour showed the opposite problem --
+			// without the reshuffle, the engine's NPC wield-rater kept
+			// un-wielding the slaangor offhand (see commit log for this
+			// change). The slayer-with-two-axes path works precisely because
+			// vanilla sees only slot 0 populated after the reshuffle.
 			EquipmentElement val = spawnEquipment[(EquipmentIndex)4];
 			if (val.IsEmpty && DualWieldDetector.IsDualWieldEquipped(spawnEquipment, allowShield: false))
 			{
