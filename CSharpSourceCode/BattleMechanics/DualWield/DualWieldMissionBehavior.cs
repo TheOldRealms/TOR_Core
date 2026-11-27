@@ -17,6 +17,7 @@ using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.Extensions;
 using TOR_Core.HarmonyPatches.DualWield;
 using Path = System.IO.Path;
 using TaleWorlds.ObjectSystem;
@@ -935,6 +936,18 @@ public class DualWieldMissionBehavior : MissionBehavior
 		if (agent == null || !_agentsWithAttachment.Contains(agent.Index))
 		{
 			return;
+		}
+		// Claws (GovernedBy=Berserk) are part of the body and must stay in
+		// hand for the agent's lifetime. Covers both single-hand-claw and
+		// dual-wielded-claw agents; the engine must not sheath the claw
+		// mid-combat.
+		if (agent.IsActive())
+		{
+			var offhandIdx = agent.GetOffhandWieldedItemIndex();
+			if ((int)offhandIdx != -1 && agent.Equipment[offhandIdx].Item?.IsDualWieldItem() == true)
+			{
+				return;
+			}
 		}
 		if (agent == Agent.Main)
 		{
