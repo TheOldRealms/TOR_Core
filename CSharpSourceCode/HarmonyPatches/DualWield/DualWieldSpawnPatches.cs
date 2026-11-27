@@ -355,15 +355,14 @@ public static class DualWieldSpawnPatches
 			}
 			if (!DualWieldMissionBehavior.IsActive)
 			{
-				// BISECT: lazy AddMissionBehavior fallback neutered. We want
-				// to see whether any patch body on its own (without the
-				// behavior ever being constructed) triggers the battle-start
-				// crash. Restore once bisected.
-				// if (__instance.GetMissionBehavior<DualWieldMissionBehavior>() == null)
-				// {
-				//     __instance.AddMissionBehavior(new DualWieldMissionBehavior());
-				// }
-				return;
+				if (__instance.GetMissionBehavior<DualWieldMissionBehavior>() == null)
+				{
+					__instance.AddMissionBehavior(new DualWieldMissionBehavior());
+				}
+				if (!DualWieldMissionBehavior.IsActive)
+				{
+					return;
+				}
 			}
 			DualWieldMissionBehavior missionBehavior = __instance.GetMissionBehavior<DualWieldMissionBehavior>();
 			if (missionBehavior == null)

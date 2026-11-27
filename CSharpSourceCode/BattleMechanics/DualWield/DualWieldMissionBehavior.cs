@@ -1651,7 +1651,7 @@ public class DualWieldMissionBehavior : MissionBehavior
 
 	public override void OnMissionTick(float dt)
 	{
-		((MissionBehavior)this).OnMissionTick(dt);
+		base.OnMissionTick(dt);
 		long started = DwPerf.Start();
 		try
 		{
@@ -3078,7 +3078,7 @@ public class DualWieldMissionBehavior : MissionBehavior
 
 	public override void OnMeleeHit(Agent attacker, Agent victim, bool isCanceled, AttackCollisionData collisionData)
 	{
-		((MissionBehavior)this).OnMeleeHit(attacker, victim, isCanceled, collisionData);
+		base.OnMeleeHit(attacker, victim, isCanceled, collisionData);
 		try
 		{
 			if (LeftBladeStrike.ApplyingLeftHit || attacker == null || victim == null || !attacker.IsActive() || !DualWieldBalance.IsNpc(attacker))
@@ -4064,7 +4064,7 @@ public class DualWieldMissionBehavior : MissionBehavior
 
 	public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
 	{
-		((MissionBehavior)this).OnAgentRemoved(affectedAgent, affectorAgent, agentState, blow);
+		base.OnAgentRemoved(affectedAgent, affectorAgent, agentState, blow);
 		if (affectedAgent != null)
 		{
 			_agentsWithAttachment.Remove(affectedAgent.Index);

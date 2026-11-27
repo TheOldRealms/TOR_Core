@@ -394,9 +394,7 @@ namespace TOR_Core
             mission.AddMissionBehavior(new DismembermentMissionLogic());
             mission.AddMissionBehavior(new ForearmVisualMissionBehavior());
             mission.AddMissionBehavior(new DualWieldMissionLogic());
-            // BISECT: paused to see if the heavy vendored behavior is the
-            // battle-start crash trigger. Patches remain registered via LatePatches.
-            // mission.AddMissionBehavior(new BattleMechanics.DualWield.DualWieldMissionBehavior());
+            mission.AddMissionBehavior(new BattleMechanics.DualWield.DualWieldMissionBehavior());
             mission.AddMissionBehavior(new AddAgentComponentsMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new AnimationTriggerMissionLogic());
