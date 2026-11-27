@@ -3,7 +3,7 @@
     "tor_tools": {
       "command": "/usr/bin/dotnet",
       "args": [
-        "/home/Zerca/.local/share/Steam/steamapps/common/Mount & Blade II Bannerlord/Modules/TOR_Tools/release-mcp/TORTools.Mcp.Host.dll"
+        "/home/Zerca/.local/share/Steam/steamapps/common/Mount & Blade II Bannerlord/Modules/TOR_Tools/release-linux-mcp/TORTools.Mcp.Host.dll"
       ]
     },
     "tortasks": {
