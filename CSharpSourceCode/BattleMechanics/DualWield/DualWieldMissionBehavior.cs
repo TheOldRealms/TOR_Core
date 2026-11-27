@@ -937,18 +937,9 @@ public class DualWieldMissionBehavior : MissionBehavior
 		{
 			return;
 		}
-		// Claws (GovernedBy=Berserk) are part of the body and must stay in
-		// hand for the agent's lifetime. Covers both single-hand-claw and
-		// dual-wielded-claw agents; the engine must not sheath the claw
-		// mid-combat.
-		if (agent.IsActive())
-		{
-			var offhandIdx = agent.GetOffhandWieldedItemIndex();
-			if ((int)offhandIdx != -1 && agent.Equipment[offhandIdx].Item?.IsDualWieldItem() == true)
-			{
-				return;
-			}
-		}
+		// BISECT: claw-forcing guard temporarily disabled while hunting the
+		// slaangor dual-wield freeze. Restore once the engine's wield
+		// pipeline is confirmed to not fight with it.
 		if (agent == Agent.Main)
 		{
 			ReleasePlayerStrikeState(agent, "dual wield off");
