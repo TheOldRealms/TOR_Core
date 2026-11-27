@@ -60,20 +60,11 @@ namespace TOR_Core.Missions
         /// weapon-skill XP routed through <c>EnemyHitReward</c>. Siege and spell hits
         /// are excluded for parity with <c>TORCombatXpModel</c>.
         /// </summary>
-        private static int _berserkDiagHits;
-
         private static void BerserkHitReward(Agent affector, Agent affected, float inflictedDamage, bool isSiegeEngineHit, bool isSpellHit)
         {
             if (isSiegeEngineHit || isSpellHit) return;
             if (affector == null || !affector.IsMainAgent || Hero.MainHero == null) return;
-
-            bool dualWielding = DualWieldStateManager.IsDualWielding(affector);
-            if (_berserkDiagHits++ < 20)
-            {
-                // Temp diagnostic -- confirms the hook fires and whether IsDualWielding detects the player.
-                Utilities.TORCommon.Say($"[Berserk] hit#{_berserkDiagHits} dw={dualWielding} dmg={inflictedDamage:F0} currentXp={Hero.MainHero.HeroDeveloper?.GetSkillXpProgress(TORSkills.Berserk)}");
-            }
-            if (!dualWielding) return;
+            if (!DualWieldStateManager.IsDualWielding(affector)) return;
             if (TORSkills.Berserk == null) return;
 
             // Scale per hit by inflicted damage (matches CareerPerkMissionBehavior's Roguery grant),
