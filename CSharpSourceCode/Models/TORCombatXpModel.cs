@@ -23,6 +23,14 @@ namespace TOR_Core.Models
             return result;
         }
 
+        /// <summary>
+        /// Fraction of vanilla weapon-skill XP (OneHanded etc.) kept when the
+        /// main hero lands a hit while dual-wielding. The remaining share is
+        /// the price of routing most of the XP into Berserk via
+        /// <see cref="GrantBerserkXpForHit"/>.
+        /// </summary>
+        private const float DualWieldMainHandXpShare = 0.25f;
+
         public override ExplainedNumber GetXpFromHit(CharacterObject attackerTroop, CharacterObject captain, CharacterObject attackedTroop, PartyBase party, int damage, bool isFatal, MissionTypeEnum missionType)
         {
             // Spell hits get their own XP via TORAbilityModel - skip vanilla weapon XP
@@ -30,6 +38,18 @@ namespace TOR_Core.Models
                 return new ExplainedNumber(0f);
 
             var xpAmount = base.GetXpFromHit(attackerTroop, captain, attackedTroop, party, damage, isFatal, missionType);
+
+            // Main hero landed this while dual-wielding: scale vanilla XP to 25%
+            // because Berserk is already getting the full damage-scaled XP in
+            // addition via DualWieldMissionBehavior.OnAgentHit -> GrantBerserkXpForHit.
+            if (attackerTroop != null
+                && Hero.MainHero != null
+                && attackerTroop == Hero.MainHero.CharacterObject
+                && Agent.Main != null
+                && DualWieldStateManager.IsDualWielding(Agent.Main))
+            {
+                xpAmount.AddFactor(DualWieldMainHandXpShare - 1f, TORSkills.Berserk?.Name);
+            }
 
             var previousFactor = xpAmount.SumOfFactors;
             var inverseMultiplier = AdjustXpMultiplierToBattle(missionType);
