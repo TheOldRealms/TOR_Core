@@ -99,12 +99,18 @@ public static class DualWieldWieldingPatches
 			}
 			if (isOffHand)
 			{
-				// BISECT: the claw re-wield carve-out is temporarily disabled
-				// while hunting the slaangor dual-wield freeze. Suspected
-				// culprit: when the engine refuses the offhand wield, this
-				// fires ForceOffHandPairing which re-triggers the wield -> the
-				// engine refuses again -> loop. Restore the branch once the
-				// slaangor usage pipeline is confirmed to not un-wield.
+				// The engine un-wields natural-weapon offhands (claws) shortly
+				// after Yotthani's spawn-postfix attaches them -- confirmed
+				// via DW log: nine isOffHand=True events (one per slaangor)
+				// ~90ms after AttachOffHandWeapon fires, with no re-wield.
+				// This carve-out re-attaches when the offhand is empty and
+				// slot 1 holds a Berserk-governed item.
+				if (DualWieldStateManager.IsDualWielding(__instance)
+					&& __instance.GetOffhandWieldedItemIndex() == (EquipmentIndex)(-1)
+					&& __instance.Equipment[(EquipmentIndex)1].Item?.IsDualWieldItem() == true)
+				{
+					ForceOffHandPairing(__instance, isWieldedInstantly, isWieldedOnSpawn);
+				}
 				return;
 			}
 			if (!DualWieldStateManager.IsDualWielding(__instance))
