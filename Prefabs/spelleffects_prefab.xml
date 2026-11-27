@@ -255,53 +255,35 @@
 		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
 		<components>
 			<particle_system_instanced_component>
-				<effect base_effect="{81EEC005-4E3B-446B-809A-BEDFD58998F1}">
-					<emitter_overrides>
-						<emitter guid="{B71C27BF-8D6A-4363-A3B0-B5C4031F2EBF}">
-							<parameters>
-								<parameter name="particle_color">
-									<color>
-										<keys>
-											<key time="0.000" value="1.000, 1.000, 1.000"/>
-											<key time="0.173" value="0.694, 0.941, 1.000"/>
-											<key time="0.692" value="0.379, 0.991, 1.000"/>
-										</keys>
-									</color>
-									<alpha>
-										<keys>
-											<key time="0.000" value="0.000"/>
-											<key time="0.531" value="1.000"/>
-											<key time="1.000" value="0.000"/>
-										</keys>
-									</alpha>
-								</parameter>
-							</parameters>
-						</emitter>
-						<emitter guid="{FF917314-9B09-42E1-A626-6AA3B88B6A5E}">
-							<parameters>
-								<parameter name="particle_color">
-									<color>
-										<keys>
-											<key time="0.005" value="1.000, 1.000, 1.000"/>
-											<key time="0.155" value="0.379, 0.991, 1.000"/>
-											<key time="1.000" value="0.000, 0.040, 1.000"/>
-										</keys>
-									</color>
-									<alpha>
-										<keys>
-											<key time="0.003" value="0.000"/>
-											<key time="0.063" value="1.000"/>
-											<key time="0.805" value="0.855"/>
-											<key time="1.000" value="0.000"/>
-										</keys>
-									</alpha>
-								</parameter>
-							</parameters>
-						</emitter>
-					</emitter_overrides>
-				</effect>
+				<effect_ref base_effect="{B6FE8706-706C-4FE0-94F7-731B4AB5128F}"/>
 			</particle_system_instanced_component>
 		</components>
+		<children>
+			<game_entity name="shem_lance_core" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.400, 0.000" rotation_euler="1.571, 0.000, 0.000" scale="0.500, 0.500, 3.200"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_column_mesh">
+						<mesh name="tor_hysh_column_mesh" factor="4282795071"/>
+					</meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="shem_lance_sheath" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.600, 0.000" rotation_euler="1.571, 0.000, 0.000" scale="1.400, 1.400, 4.800"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_column_mesh">
+						<mesh name="tor_hysh_column_mesh" factor="4279899664"/>
+					</meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="shem_head_glow" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000" scale="1.000, 1.000, 1.000"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_quad_mesh">
+						<mesh name="tor_hysh_quad_mesh" material="tor_hysh_flash_mat" factor="4285755500"/>
+					</meta_mesh_component>
+				</components>
+			</game_entity>
+		</children>
 	</game_entity>
 	<game_entity name="nagash_gaze" old_prefab_name="" mobility="1">
 		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
@@ -381,25 +363,147 @@
 	</game_entity>
 	<game_entity name="deathly_shards" old_prefab_name="" mobility="1">
 		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
-		<components>
-			<particle_system_instanced_component>
-				<effect_ref base_effect="{19E48096-D09D-43CE-AB04-F215846F983E}"/>
-			</particle_system_instanced_component>
-		</components>
+		<children>
+			<game_entity name="lightshard_glints" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{6D3526A6-6DA1-405D-B863-4549AE137034}"/>
+					</particle_system_instanced_component>
+				</components>
+			</game_entity>
+			<game_entity name="shard_01" old_prefab_name="" mobility="1">
+				<transform position="-0.119, -0.479, 0.120" rotation_euler="-1.6664, 0.0493, 0.2620" scale="0.056, 0.056, 0.308"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_shard_mesh"><mesh name="tor_hysh_shard_mesh" factor="4286611584"/></meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="shard_02" old_prefab_name="" mobility="1">
+				<transform position="0.048, -0.407, 0.129" rotation_euler="-1.5983, -0.0404, 0.0023" scale="0.048, 0.048, 0.237"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_shard_mesh"><mesh name="tor_hysh_shard_mesh" factor="4286611584"/></meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="shard_03" old_prefab_name="" mobility="1">
+				<transform position="-0.060, -0.262, 0.138" rotation_euler="-1.5109, -0.0071, 0.1980" scale="0.068, 0.068, 0.293"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_shard_mesh"><mesh name="tor_hysh_shard_mesh" factor="4286611584"/></meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="shard_04" old_prefab_name="" mobility="1">
+				<transform position="0.135, -0.171, 0.049" rotation_euler="-1.4858, 0.0470, 0.0401" scale="0.083, 0.083, 0.379"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_shard_mesh"><mesh name="tor_hysh_shard_mesh" factor="4286611584"/></meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="shard_05" old_prefab_name="" mobility="1">
+				<transform position="-0.035, 0.037, 0.142" rotation_euler="-1.5719, 0.1445, 0.2249" scale="0.071, 0.071, 0.345"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_shard_mesh"><mesh name="tor_hysh_shard_mesh" factor="4286611584"/></meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="shard_06" old_prefab_name="" mobility="1">
+				<transform position="0.161, 0.143, 0.183" rotation_euler="-1.5126, -0.1180, 0.2044" scale="0.082, 0.082, 0.356"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_shard_mesh"><mesh name="tor_hysh_shard_mesh" factor="4286611584"/></meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="shard_07" old_prefab_name="" mobility="1">
+				<transform position="-0.091, 0.287, 0.055" rotation_euler="-1.5208, -0.0706, -0.1743" scale="0.058, 0.058, 0.233"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_shard_mesh"><mesh name="tor_hysh_shard_mesh" factor="4286611584"/></meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="shard_08" old_prefab_name="" mobility="1">
+				<transform position="-0.073, 0.390, -0.112" rotation_euler="-1.4314, -0.1191, -0.0178" scale="0.061, 0.061, 0.309"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_shard_mesh"><mesh name="tor_hysh_shard_mesh" factor="4286611584"/></meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="shard_09" old_prefab_name="" mobility="1">
+				<transform position="0.138, 0.453, -0.119" rotation_euler="-1.6432, 0.1205, -0.0537" scale="0.053, 0.053, 0.262"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_shard_mesh"><mesh name="tor_hysh_shard_mesh" factor="4286611584"/></meta_mesh_component>
+				</components>
+			</game_entity>
+		</children>
 	</game_entity>
 	<game_entity name="radiance_pillar" old_prefab_name="" mobility="1">
 		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
 		<components>
 			<particle_system_instanced_component>
-				<effect_ref base_effect="{78216AB0-192D-4A06-AFC3-63CF43574154}"/>
+				<effect_ref base_effect="{D318FB9A-5F3F-4857-85DE-C13E8AE5AC1D}"/>
 			</particle_system_instanced_component>
 		</components>
+		<scripts>
+			<script name="RadiancePillarSpawner"/>
+		</scripts>
+	</game_entity>
+	<game_entity name="radiance_pillar_column" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<scripts>
+			<script name="RadiancePillarColumn">
+				<variables>
+					<variable name="FadeSeconds" value="10.000"/>
+					<variable name="Height" value="84.000"/>
+					<variable name="GroundSink" value="15.000"/>
+					<variable name="CoreWidth" value="5.000"/>
+					<variable name="SheathWidth" value="14.000"/>
+					<variable name="CoreLevel" value="0.275"/>
+					<variable name="SheathLevel" value="0.100"/>
+					<variable name="StrikeSeconds" value="0.450"/>
+					<variable name="FlashSize" value="8.000"/>
+					<variable name="RingRadius" value="8.000"/>
+					<variable name="PulseGain" value="0.450"/>
+					<variable name="LightHeight" value="3.000"/>
+					<variable name="BaseGlowSize" value="4.500"/>
+					<variable name="BaseGlowLevel" value="0.450"/>
+					<variable name="BaseGlowHeight" value="1.400"/>
+				</variables>
+			</script>
+		</scripts>
+		<children>
+			<game_entity name="pillar_core" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, -15.000" rotation_euler="0.000, 0.000, 0.000" scale="5.000, 5.000, 99.000"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_column_mesh"/>
+				</components>
+			</game_entity>
+			<game_entity name="pillar_sheath" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, -15.000" rotation_euler="0.000, 0.000, 0.000" scale="14.000, 14.000, 99.000"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_column_mesh"/>
+				</components>
+			</game_entity>
+			<game_entity name="pillar_flash" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, 1.400" rotation_euler="0.000, 0.000, 0.000" scale="4.500, 4.500, 1.000"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_quad_mesh">
+						<mesh name="tor_hysh_quad_mesh" material="tor_hysh_flash_mat"/>
+					</meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="pillar_ring" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, 0.100" rotation_euler="0.000, 0.000, 0.000" scale="0.010, 0.010, 0.010"/>
+				<components>
+					<meta_mesh_component name="tor_hysh_quad_mesh"/>
+				</components>
+			</game_entity>
+			<game_entity name="pillar_motes" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, 0.300" rotation_euler="0.000, 0.000, 0.000"/>
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{1C179EDC-0A03-4CDF-A08C-6D463B1C2636}"/>
+					</particle_system_instanced_component>
+				</components>
+			</game_entity>
+		</children>
 	</game_entity>
 	<game_entity name="radiant_gaze" old_prefab_name="" mobility="1">
 		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
 		<components>
 			<particle_system_instanced_component>
-				<effect_ref base_effect="{9FF14D4D-DF74-4102-BEC4-24C5F417C618}"/>
+				<effect_ref base_effect="{A31160EF-E8A2-4E55-88A9-1659AEE0ACCC}"/>
 			</particle_system_instanced_component>
 		</components>
 	</game_entity>
@@ -1123,7 +1227,7 @@
 		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
 		<components>
 			<particle_system_instanced_component>
-				<effect_ref base_effect="{1F9B4564-D2D8-4DBF-A343-E3EEC701E8F5}"/>
+				<effect_ref base_effect="{23036271-5593-4E42-B198-3C690E32B186}"/>
 			</particle_system_instanced_component>
 		</components>
 	</game_entity>

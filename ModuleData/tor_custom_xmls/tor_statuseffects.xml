@@ -35,6 +35,13 @@
 		particle_intensity="High"
 		base_effect_value="4"
 		type="HealthOverTime"/>
+	<StatusEffectTemplate
+		id="hysh_healing_light"
+		particle_id="tor_light_healing"
+		particle_intensity="Low"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="2"
+		type="HealthOverTime"/>
 	<StatusEffectTemplate 
 		id="breath_of_darkness" 
 		particle_id="breath_of_darkness"
@@ -288,6 +295,24 @@
 		damage_type="Physical">
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
+		id="pha_protection_ranged_resistance"
+		particle_id="tor_light_pha_ward"
+		particle_intensity="High"
+		apply_particle_to_root_bone_only="true"
+		base_effect_value="0.5"
+		type="Resistance"
+		damage_type="Physical"
+		applies_for_attack_type="Ranged"/>
+	<StatusEffectTemplate
+		id="pha_protection_melee_resistance"
+		particle_id=""
+		particle_intensity="High"
+		apply_particle_to_root_bone_only="true"
+		base_effect_value="0.25"
+		type="Resistance"
+		damage_type="Physical"
+		applies_for_attack_type="Melee"/>
+	<StatusEffectTemplate
 		id="physical_bonus_20"
 		particle_id="berzerk_effect"
 		particle_intensity="High"
@@ -465,7 +490,7 @@
 
 	<StatusEffectTemplate
 		id="net_amyn_movementimpair_100"
-		particle_id="net_of_amyntok"
+		particle_id="tor_light_amyntok_net"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
     	base_effect_value="-5"
