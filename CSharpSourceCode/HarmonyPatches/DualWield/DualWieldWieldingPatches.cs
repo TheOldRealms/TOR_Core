@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using TOR_Core.BattleMechanics.DualWield;
+using TOR_Core.Extensions;
 using HarmonyLib;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
