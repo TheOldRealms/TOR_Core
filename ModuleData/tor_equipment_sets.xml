@@ -8609,7 +8609,7 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_axe_slayer_1h_001" />
       <!-- Second slayer axe for dual-wield smoke testing (feral-combat Task 13). -->
-      <Equipment slot="Item1" id="Item.tor_dwarf_weapon_axe_slayer_1h_001" />
+      <Equipment slot="Item1" id="Item.tor_beastmen_weapon_slaangor_offhand_claw_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_slayer_novice_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -13729,7 +13729,7 @@
   <EquipmentRoster id="tor_beast_slaangor_template" culture="Culture.beastmen">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_slaangor_claw_001" />
-      <Equipment slot="Item1" id="Item.tor_dwarf_weapon_axe_slayer_1h_001" />
+      <Equipment slot="Item1" id="Item.tor_beastmen_weapon_slaangor_offhand_claw_001" />
       <Equipment slot="Head" id="Item.tor_beastmen_head_slaangor_hood_001" />
       <Equipment slot="Body" id="Item.tor_beastmen_body_armour_slaangor_001" />
       <Equipment slot="Cape" id="Item.tor_beastmen_slaangor_shoulderpads_001" />
@@ -13737,7 +13737,7 @@
     </EquipmentSet>
     <EquipmentSet equipmentType="Civilian">
       <Equipment slot="Item0" id="Item.tor_beastmen_weapon_slaangor_claw_001" />
-      <Equipment slot="Item1" id="Item.tor_dwarf_weapon_axe_slayer_1h_001" />
+      <Equipment slot="Item1" id="Item.tor_beastmen_weapon_slaangor_offhand_claw_001" />
       <Equipment slot="Head" id="Item.tor_beastmen_head_slaangor_hood_001" />
       <Equipment slot="Body" id="Item.tor_beastmen_body_armour_slaangor_001" />
       <Equipment slot="Cape" id="Item.tor_beastmen_slaangor_shoulderpads_001" />
