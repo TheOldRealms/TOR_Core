@@ -12,7 +12,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 
-namespace TOR_Core.BattleMechanics.DualWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield;
 
 public sealed class LeftBladeStrike
 {

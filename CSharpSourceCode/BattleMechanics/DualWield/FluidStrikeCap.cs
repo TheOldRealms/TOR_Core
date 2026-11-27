@@ -5,7 +5,7 @@
 
 using System;
 
-namespace TOR_Core.BattleMechanics.DualWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield;
 
 public sealed class FluidStrikeCap
 {

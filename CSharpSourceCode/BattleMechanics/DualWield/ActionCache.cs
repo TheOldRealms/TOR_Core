@@ -6,7 +6,7 @@
 using System.Collections.Generic;
 using TaleWorlds.MountAndBlade;
 
-namespace TOR_Core.BattleMechanics.DualWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield;
 
 internal static class ActionCache
 {

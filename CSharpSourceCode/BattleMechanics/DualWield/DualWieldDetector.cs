@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 
-namespace TOR_Core.BattleMechanics.DualWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield;
 
 public static class DualWieldDetector
 {

@@ -362,6 +362,7 @@ namespace TOR_Core
             mission.AddMissionBehavior(new DismembermentMissionLogic());
             mission.AddMissionBehavior(new ForearmVisualMissionBehavior());
             mission.AddMissionBehavior(new DualWieldMissionLogic());
+            mission.AddMissionBehavior(new BattleMechanics.DualWield.DualWieldMissionBehavior());
             mission.AddMissionBehavior(new AddAgentComponentsMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new AnimationTriggerMissionLogic());

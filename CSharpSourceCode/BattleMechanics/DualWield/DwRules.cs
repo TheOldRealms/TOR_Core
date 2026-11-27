@@ -6,7 +6,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TOR_Core.BattleMechanics.DualWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield;
 
 public static class DwRules
 {

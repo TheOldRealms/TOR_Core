@@ -8,7 +8,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using TOR_Core.BattleMechanics.DualWield.Vendor;
+using TOR_Core.BattleMechanics.DualWield;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.DotNet;
@@ -20,7 +20,7 @@ using TOR_Core.HarmonyPatches.DualWield;
 using Path = System.IO.Path;
 using TaleWorlds.ObjectSystem;
 
-namespace TOR_Core.BattleMechanics.DualWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield;
 
 public class DualWieldMissionBehavior : MissionBehavior
 {

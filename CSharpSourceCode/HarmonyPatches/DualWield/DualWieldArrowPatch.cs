@@ -7,7 +7,7 @@
 using HarmonyLib;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.ViewModelCollection.HUD;
-using TOR_Core.BattleMechanics.DualWield.Vendor;
+using TOR_Core.BattleMechanics.DualWield;
 
 namespace TOR_Core.HarmonyPatches.DualWield;
 

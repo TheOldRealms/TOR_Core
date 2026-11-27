@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using TOR_Core.BattleMechanics.DualWield.Vendor;
+using TOR_Core.BattleMechanics.DualWield;
 using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.HarmonyPatches.DualWield;

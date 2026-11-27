@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 
-namespace TOR_Core.BattleMechanics.DualWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield;
 
 internal static class SeparateKeyOverride
 {

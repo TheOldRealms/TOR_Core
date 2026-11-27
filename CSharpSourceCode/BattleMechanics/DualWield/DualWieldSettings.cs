@@ -3,6 +3,10 @@
 // singleton: TOR doesn't ship MCM, so there is no in-game toggle UI; the
 // values below are the DEFAULTS from Yotthani's original class.
 //
+// This class IS the "DualWieldConfig" referenced in feral-combat Task 10
+// (always-on config). The DualWieldSettings name is kept so the ~200
+// vendored call sites don't churn; the content is the always-on config.
+//
 // If any field proves worth exposing to end-users later, wire it up when TOR
 // adopts a settings story. Until then it's compile-time constants.
 
@@ -10,7 +14,7 @@ using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 
-namespace TOR_Core.BattleMechanics.DualWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield;
 
 /// <summary>
 /// Compile-time configuration for the vendored DualWield system. Mirrors

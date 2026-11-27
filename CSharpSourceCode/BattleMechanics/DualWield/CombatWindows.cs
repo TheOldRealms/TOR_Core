@@ -10,7 +10,7 @@ using System.IO;
 using System.Xml;
 using TaleWorlds.Library;
 
-namespace TOR_Core.BattleMechanics.DualWield.Vendor;
+namespace TOR_Core.BattleMechanics.DualWield;
 
 public static class CombatWindows
 {

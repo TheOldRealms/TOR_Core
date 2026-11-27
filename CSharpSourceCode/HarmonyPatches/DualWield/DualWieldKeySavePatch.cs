@@ -4,7 +4,7 @@
 // Harmony patch rationale: see the class-level <summary> below for
 // Problem / Why not non-patching / Scope (per feedback_harmony_patch_rationale).
 
-using TOR_Core.BattleMechanics.DualWield.Vendor;
+using TOR_Core.BattleMechanics.DualWield;
 using HarmonyLib;
 using TaleWorlds.InputSystem;
 

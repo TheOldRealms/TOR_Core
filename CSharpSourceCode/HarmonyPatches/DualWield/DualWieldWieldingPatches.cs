@@ -6,7 +6,7 @@
 
 using System;
 using System.Collections.Generic;
-using TOR_Core.BattleMechanics.DualWield.Vendor;
+using TOR_Core.BattleMechanics.DualWield;
 using HarmonyLib;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
