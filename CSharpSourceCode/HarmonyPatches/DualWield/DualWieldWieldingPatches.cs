@@ -93,8 +93,23 @@ public static class DualWieldWieldingPatches
 					isWieldedOnSpawn
 				}));
 			}
-			if (isOffHand || Mission.Current == null || !DualWieldSettings.Get().EnableDualWield || __instance == null || !__instance.IsHuman)
+			if (Mission.Current == null || !DualWieldSettings.Get().EnableDualWield || __instance == null || !__instance.IsHuman)
 			{
+				return;
+			}
+			if (isOffHand)
+			{
+				// Vanilla path: skip re-pairing on an offhand wield change -- a
+				// normal dual-wielder dropping the offhand should stay that way.
+				// Exception: claws (GovernedBy=Berserk) must be re-wielded
+				// immediately when the engine un-wields them, because they are
+				// part of the body. Re-fire ForceOffHandPairing for those.
+				if (DualWieldStateManager.IsDualWielding(__instance)
+					&& __instance.GetOffhandWieldedItemIndex() == (EquipmentIndex)(-1)
+					&& __instance.Equipment[(EquipmentIndex)1].Item?.IsDualWieldItem() == true)
+				{
+					ForceOffHandPairing(__instance, isWieldedInstantly, isWieldedOnSpawn);
+				}
 				return;
 			}
 			if (!DualWieldStateManager.IsDualWielding(__instance))
