@@ -119,6 +119,8 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
         /// <see cref="ForearmGraftHelper"/>; passes the instance
         /// tracking HashSet so cross-wield cleanup happens.
         /// </summary>
+        private static int _refreshLogged;
+
         private void RefreshAgentForearmAndHands(Agent agent)
         {
             if (agent == null || !agent.IsHuman || agent.AgentVisuals == null) return;
@@ -129,7 +131,7 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
 
             if (agent.Equipment != null)
             {
-                anyGraftFailed = ForearmGraftHelper.ApplyFromMissionEquipment(visuals, agent.Equipment, _knownForearmMeshNames);
+                anyGraftFailed = ForearmGraftHelper.ApplyFromMissionEquipment(visuals, agent.Equipment, agent, _knownForearmMeshNames);
                 hideMode = agent.Equipment.GetCombinedHideHandType();
             }
             else if (agent.SpawnEquipment != null)
@@ -140,6 +142,25 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
             else
             {
                 return;
+            }
+
+            if (agent.Equipment != null)
+            {
+                bool anyClaw = false;
+                string slots = "";
+                for (var i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumAllWeaponSlots; i++)
+                {
+                    var el = agent.Equipment[i];
+                    if (el.IsEmpty || el.Item == null) continue;
+                    var mode = el.Item.GetHideHandType();
+                    if (mode != HideHandType.None) anyClaw = true;
+                    slots += $" s{(int)i}='{el.Item.StringId}'/HH={mode}";
+                }
+                if (anyClaw || _refreshLogged < 50)
+                {
+                    _refreshLogged++;
+                    TORCommon.Log($"[Claw.Refresh] agent={agent.Name} combinedHideMode={hideMode} slots:{slots}", LogLevel.Info);
+                }
             }
 
             ForearmGraftHelper.ApplyPerHandVisibility(visuals, hideMode, _knownForearmMeshNames);

@@ -71,13 +71,21 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
 
         /// <summary>
         /// Mission-equipment variant of <see cref="ApplyFromEquipment"/>.
+        /// When an <paramref name="agent"/> is supplied, rigid mesh hides
+        /// are scoped to the specific weapon entity on the arm that
+        /// receives the forearm graft (via
+        /// <c>Agent.GetWeaponEntityFromEquipmentSlot</c>), leaving an
+        /// offhand-wielded copy of the same item visible. Needed for
+        /// dual-wielded claws where mainhand and offhand share one
+        /// rigid mesh name: the global hide would blank both arms.
         /// </summary>
-        public static bool ApplyFromMissionEquipment(MBAgentVisuals visuals, MissionEquipment equipment, HashSet<string> trackingForearmNames = null)
+        public static bool ApplyFromMissionEquipment(MBAgentVisuals visuals, MissionEquipment equipment, Agent agent = null, HashSet<string> trackingForearmNames = null)
         {
             if (visuals == null || equipment == null) return false;
 
             HashSet<string> activeForearmNames = null;
             HashSet<string> rigidNamesToHide = null;
+            List<EquipmentIndex> graftedSlots = null;
             bool anyFailed = false;
 
             for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumAllWeaponSlots; i++)
@@ -97,8 +105,19 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
                 activeForearmNames ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 activeForearmNames.Add(forearmMeshName);
 
+                // Offhand-side slots (1 = vanilla shield, 4 = banner slot
+                // used by Yotthani's dual-wield reshuffle) share the
+                // mainhand item's rigid mesh name in a two-claw setup.
+                // Hiding both would leave the offhand arm empty, so skip
+                // the rigid-hide bookkeeping for those slots.
+                bool offhandSide = i == EquipmentIndex.Weapon1 || i == EquipmentIndex.ExtraWeaponSlot;
+                if (offhandSide) continue;
+
                 rigidNamesToHide ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 CollectRigidItemMeshNames(element.Item, rigidNamesToHide);
+
+                graftedSlots ??= new List<EquipmentIndex>();
+                graftedSlots.Add(i);
             }
 
             if (trackingForearmNames != null)
@@ -108,7 +127,14 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
 
             if (rigidNamesToHide != null && rigidNamesToHide.Count > 0)
             {
-                HideRigidMeshes(visuals, rigidNamesToHide);
+                if (agent != null && graftedSlots != null)
+                {
+                    HideRigidMeshesOnGraftedSlotEntities(visuals, agent, graftedSlots, rigidNamesToHide);
+                }
+                else
+                {
+                    HideRigidMeshes(visuals, rigidNamesToHide);
+                }
             }
 
             return anyFailed;
@@ -121,6 +147,8 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
         /// <c>left_hand</c> on the rig's hand meshes); rigs without
         /// those tags are a content issue, not a code fallback.
         /// </summary>
+        private static int _handLogged;
+
         public static void ApplyPerHandVisibility(MBAgentVisuals visuals, HideHandType hideMode, HashSet<string> trackingForearmNames = null)
         {
             if (visuals == null) return;
@@ -132,15 +160,37 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
             bool hideRight = hideMode == HideHandType.Right || hideMode == HideHandType.Both;
             bool hideLeft = hideMode == HideHandType.Left || hideMode == HideHandType.Both;
 
+            int rightFound = 0, leftFound = 0;
+            // Always collect for claw-hide (hideMode != None) events, cap
+            // only neutral refreshes to keep log readable.
+            bool forceLog = hideMode != HideHandType.None;
+            string allMeshNames = (forceLog || _handLogged < 10) ? "" : null;
+
+            // Rigs rarely tag hand submeshes; the vanilla and TOR races
+            // (cultist, gor2/slaangor, etc.) use mesh naming like
+            // 'hands_male_a' / 'gor_hands_v2' / 'gor_hands_v2.1' with
+            // no tag. Fall back to name match -- "hands" (plural) is
+            // narrow enough to miss "handguard" / "handle".
+            int nameHandsHidden = 0;
             foreach (Mesh mesh in skeleton.GetAllMeshes())
             {
                 if (mesh == null) continue;
 
                 bool isRightHand = mesh.HasTag("right_hand");
                 bool isLeftHand = mesh.HasTag("left_hand");
+                bool isNameHands = !string.IsNullOrEmpty(mesh.Name)
+                    && mesh.Name.IndexOf("hands", StringComparison.OrdinalIgnoreCase) >= 0
+                    && mesh.Name.IndexOf("handguard", StringComparison.OrdinalIgnoreCase) < 0;
+
+                if (allMeshNames != null)
+                {
+                    string tagFlag = isRightHand ? "[RH]" : isLeftHand ? "[LH]" : (isNameHands ? "[NH]" : "");
+                    allMeshNames += $"{mesh.Name}{tagFlag},";
+                }
 
                 if (isRightHand)
                 {
+                    rightFound++;
                     if (hideRight)
                     {
                         mesh.SetVisibilityMask(HiddenMask);
@@ -152,6 +202,7 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
                 }
                 else if (isLeftHand)
                 {
+                    leftFound++;
                     if (hideLeft)
                     {
                         mesh.SetVisibilityMask(HiddenMask);
@@ -161,6 +212,29 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
                         mesh.SetVisibilityMask(visibleMask);
                     }
                 }
+                else if (isNameHands)
+                {
+                    // Untagged hand submesh (common case). Hide when
+                    // hideMode is Both. For single-hand hides we lack
+                    // the discriminator; the forearm graft covering the
+                    // right arm is enough in the one-claw case.
+                    if (hideRight && hideLeft)
+                    {
+                        mesh.SetVisibilityMask(HiddenMask);
+                        nameHandsHidden++;
+                    }
+                }
+            }
+
+            if (forceLog)
+            {
+                TOR_Core.Utilities.TORCommon.Log($"[Claw.Hands] name-fallback hid {nameHandsHidden} 'hands' meshes (hideMode={hideMode})", NLog.LogLevel.Info);
+            }
+
+            if (allMeshNames != null)
+            {
+                _handLogged++;
+                TOR_Core.Utilities.TORCommon.Log($"[Claw.Hands] hideMode={hideMode} rightFound={rightFound} leftFound={leftFound} meshes=[{allMeshNames}]", NLog.LogLevel.Info);
             }
         }
 
@@ -321,6 +395,47 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
                 {
                     HideMatchingChildEntitiesRecursive(child, rigidNames);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Agent-scoped rigid-mesh hide: for each slot whose item got a
+        /// forearm graft, hides only the meshes on that slot's own
+        /// <c>GetWeaponEntityFromEquipmentSlot</c> entity. Also walks the
+        /// agent's body skeleton (holstered / native-weapon copies live
+        /// there). An offhand-wielded sibling with the same rigid mesh
+        /// name keeps its native visuals — the dual-wield case this
+        /// method exists for.
+        /// </summary>
+        public static void HideRigidMeshesOnGraftedSlotEntities(MBAgentVisuals visuals, Agent agent, List<EquipmentIndex> graftedSlots, HashSet<string> rigidNames)
+        {
+            if (visuals == null || agent == null || graftedSlots == null || rigidNames == null || rigidNames.Count == 0)
+            {
+                return;
+            }
+
+            Skeleton skeleton = visuals.GetSkeleton();
+            if (skeleton != null)
+            {
+                foreach (Mesh mesh in skeleton.GetAllMeshes())
+                {
+                    if (mesh == null || string.IsNullOrEmpty(mesh.Name)) continue;
+                    if (rigidNames.Contains(StripLodToken(mesh.Name.Trim())))
+                    {
+                        mesh.SetVisibilityMask(HiddenMask);
+                    }
+                }
+            }
+
+            foreach (var slot in graftedSlots)
+            {
+                WeakGameEntity weak = agent.GetWeaponEntityFromEquipmentSlot(slot);
+                if (!weak.IsValid) continue;
+
+                GameEntity weaponEntity = TaleWorlds.Engine.GameEntity.CreateFromWeakEntity(weak);
+                if (weaponEntity == null) continue;
+
+                HideMatchingChildEntitiesRecursive(weaponEntity, rigidNames);
             }
         }
 

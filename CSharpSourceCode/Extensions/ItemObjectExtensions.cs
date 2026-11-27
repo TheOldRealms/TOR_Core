@@ -457,6 +457,27 @@ namespace TOR_Core.Extensions
             return info != null && !string.IsNullOrEmpty(info.ForearmMesh) ? info.ForearmMesh : "";
         }
 
+        /// <summary>
+        /// True for weapon slots the engine treats as the left/offhand
+        /// side: slot 1 (vanilla left-hand / shield slot) and slot 4
+        /// (banner slot, repurposed by Yotthani's dual-wield reshuffle
+        /// in <c>DualWieldNpcBannerSlotPatch</c>). An item whose
+        /// <c>HideHand</c> points at Right (the natural mesh-replacement
+        /// side) still replaces the LEFT arm when wielded here, so the
+        /// hide-side must flip.
+        /// </summary>
+        private static bool IsOffhandSideSlot(EquipmentIndex i)
+        {
+            return i == EquipmentIndex.Weapon1 || i == EquipmentIndex.ExtraWeaponSlot;
+        }
+
+        /// <summary>
+        /// Combines the HideHand side across all four weapon slots with
+        /// per-slot awareness: a claw declaring <c>HideHand=Right</c>
+        /// hides the right hand in slot 0 and the left hand in slot 1
+        /// or 4. Lets the same item serve as either hand's prosthesis
+        /// without a separate "left-hand" variant.
+        /// </summary>
         public static HideHandType GetCombinedHideHandType(this Equipment equipment)
         {
             if (equipment == null) return HideHandType.None;
@@ -467,12 +488,9 @@ namespace TOR_Core.Extensions
             for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumAllWeaponSlots; i++)
             {
                 var element = equipment[i];
-                if (!element.IsEmpty && element.Item != null)
-                {
-                    var mode = element.Item.GetHideHandType();
-                    if (mode == HideHandType.Right || mode == HideHandType.Both) hideRight = true;
-                    if (mode == HideHandType.Left || mode == HideHandType.Both) hideLeft = true;
-                }
+                if (element.IsEmpty || element.Item == null) continue;
+
+                AccumulateHideHand(element.Item, IsOffhandSideSlot(i), ref hideRight, ref hideLeft);
             }
 
             if (hideRight && hideLeft) return HideHandType.Both;
@@ -481,6 +499,9 @@ namespace TOR_Core.Extensions
             return HideHandType.None;
         }
 
+        /// <summary>
+        /// Mission-equipment overload of <see cref="GetCombinedHideHandType(Equipment)"/>.
+        /// </summary>
         public static HideHandType GetCombinedHideHandType(this MissionEquipment equipment)
         {
             if (equipment == null) return HideHandType.None;
@@ -491,18 +512,32 @@ namespace TOR_Core.Extensions
             for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumAllWeaponSlots; i++)
             {
                 var element = equipment[i];
-                if (!element.IsEmpty && element.Item != null)
-                {
-                    var mode = element.Item.GetHideHandType();
-                    if (mode == HideHandType.Right || mode == HideHandType.Both) hideRight = true;
-                    if (mode == HideHandType.Left || mode == HideHandType.Both) hideLeft = true;
-                }
+                if (element.IsEmpty || element.Item == null) continue;
+
+                AccumulateHideHand(element.Item, IsOffhandSideSlot(i), ref hideRight, ref hideLeft);
             }
 
             if (hideRight && hideLeft) return HideHandType.Both;
             if (hideRight) return HideHandType.Right;
             if (hideLeft) return HideHandType.Left;
             return HideHandType.None;
+        }
+
+        private static void AccumulateHideHand(ItemObject item, bool offhandSide, ref bool hideRight, ref bool hideLeft)
+        {
+            var mode = item.GetHideHandType();
+            if (mode == HideHandType.None) return;
+
+            bool itemHidesRight = mode == HideHandType.Right || mode == HideHandType.Both;
+            bool itemHidesLeft = mode == HideHandType.Left || mode == HideHandType.Both;
+
+            if (offhandSide)
+            {
+                (itemHidesRight, itemHidesLeft) = (itemHidesLeft, itemHidesRight);
+            }
+
+            if (itemHidesRight) hideRight = true;
+            if (itemHidesLeft) hideLeft = true;
         }
 
         /// <summary>
