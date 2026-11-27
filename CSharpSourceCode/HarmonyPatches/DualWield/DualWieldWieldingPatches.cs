@@ -868,7 +868,14 @@ public static class DualWieldWieldingPatches
 		try
 		{
 			EquipmentIndex offhandWieldedItemIndex = agent.GetOffhandWieldedItemIndex();
-			// BISECT: claw-forcing guard temporarily disabled.
+			// Claws (GovernedBy=Berserk) are part of the body and must stay in
+			// hand for the agent's lifetime. Covers both single-hand-claw and
+			// dual-wielded-claw agents; the engine must not sheath the claw
+			// mid-combat.
+			if ((int)offhandWieldedItemIndex != -1 && agent.Equipment[offhandWieldedItemIndex].Item?.IsDualWieldItem() == true)
+			{
+				return;
+			}
 			if ((int)offhandWieldedItemIndex != -1 && IsOneHandedMeleeWeapon(agent.Equipment[offhandWieldedItemIndex]))
 			{
 				_isAutoEquipping = true;
