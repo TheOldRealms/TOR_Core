@@ -1,8 +1,11 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.BattleMechanics.DualWield;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Missions
@@ -45,7 +48,31 @@ namespace TOR_Core.Missions
                 if (isSpellHit)
                     TORSpellBlowHelper.IsProcessingSpellHit = false;
             }
+
+            BerserkHitReward(affectorAgent, affectedAgent, inflictedDamage, isSiegeEngineHit, isSpellHit);
 	    }
+
+        /// <summary>
+        /// Grant Berserk XP to the main hero when a hit lands while actively dual-wielding.
+        /// Additive on top of the vanilla weapon-skill XP routed through <c>EnemyHitReward</c>;
+        /// Berserk governs "the paired weapons of those who fight without a shield" per the
+        /// skill description, so every strike during a paired-weapons engagement counts.
+        /// Siege and spell hits are excluded for parity with <c>TORCombatXpModel</c>.
+        /// </summary>
+        private static void BerserkHitReward(Agent affector, Agent affected, float inflictedDamage, bool isSiegeEngineHit, bool isSpellHit)
+        {
+            if (isSiegeEngineHit || isSpellHit) return;
+            if (affector == null || !affector.IsMainAgent || Hero.MainHero == null) return;
+            if (!DualWieldStateManager.IsPaired(affector)) return;
+            if (TORSkills.Berserk == null) return;
+
+            // Scale per hit by inflicted damage (matches CareerPerkMissionBehavior's Roguery grant),
+            // lethal blows get a flat kill bonus.
+            int xp = Math.Max(1, (int)(inflictedDamage * 0.5f));
+            if (affected != null && affected.Health < 1f) xp += 20;
+
+            Hero.MainHero.AddSkillXp(TORSkills.Berserk, xp);
+        }
 
         public void EnemyHitReward(Agent affectedAgent, Agent affectorAgent, float lastSpeedBonus, float lastShotDifficulty, WeaponComponentData lastAttackerWeapon, AgentAttackType attackType, float hitpointRatio, float damageAmount, bool isSneakAttack)
         {
