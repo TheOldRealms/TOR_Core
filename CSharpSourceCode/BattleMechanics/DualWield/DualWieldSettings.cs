@@ -27,7 +27,11 @@ public class DualWieldSettings
     private static readonly DualWieldSettings _instance = new DualWieldSettings();
     public static DualWieldSettings Get() => _instance;
 
-    public bool EnableDualWield { get; } = true;
+    // BISECT: every patch early-returns when this is false, and the spawn
+    // patch's lazy AddMissionBehavior fallback is gated on it too. Flipping
+    // false fully disables DualWield runtime while leaving the Harmony patches
+    // registered via LatePatches (so the action cache stays healthy).
+    public bool EnableDualWield { get; } = false;
     public bool DebugMode { get; } = false;
     public bool AlternatingCrossCombo { get; } = false;
     public bool TestWeaponBothHands { get; } = false;
