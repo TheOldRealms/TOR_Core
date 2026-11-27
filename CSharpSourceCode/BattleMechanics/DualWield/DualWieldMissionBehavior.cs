@@ -3033,7 +3033,7 @@ public class DualWieldMissionBehavior : MissionBehavior
 	public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
 	{
 		base.OnAgentHit(affectedAgent, affectorAgent, in affectorWeapon, in blow, in attackCollisionData);
-		(MissionGameModels.Current?.CombatXpModel as TOR_Core.Models.TORCombatXpModel)
+		(Campaign.Current?.Models?.CombatXpModel as TOR_Core.Models.TORCombatXpModel)
 			?.GrantBerserkXpForHit(affectorAgent, affectedAgent, blow);
 		try
 		{
