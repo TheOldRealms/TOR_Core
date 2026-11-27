@@ -10,6 +10,7 @@ using TaleWorlds.InputSystem;
 
 namespace TOR_Core.HarmonyPatches.DualWield;
 
+[HarmonyPatchCategory("LatePatches")]
 [HarmonyPatch(typeof(HotKeyManager), "SaveAsync")]
 public static class DualWieldKeySavePatch
 {

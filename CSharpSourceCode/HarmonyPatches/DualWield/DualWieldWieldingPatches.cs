@@ -15,6 +15,7 @@ using TaleWorlds.ObjectSystem;
 
 namespace TOR_Core.HarmonyPatches.DualWield;
 
+[HarmonyPatchCategory("LatePatches")]
 [HarmonyPatch(typeof(Agent), "OnWieldedItemIndexChange")]
 public static class DualWieldWieldingPatches
 {

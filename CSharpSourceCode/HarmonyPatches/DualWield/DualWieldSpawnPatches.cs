@@ -16,6 +16,7 @@ using TaleWorlds.ObjectSystem;
 
 namespace TOR_Core.HarmonyPatches.DualWield;
 
+[HarmonyPatchCategory("LatePatches")]
 [HarmonyPatch(typeof(Mission), "SpawnAgent")]
 public static class DualWieldSpawnPatches
 {

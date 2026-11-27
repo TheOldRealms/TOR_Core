@@ -12,6 +12,7 @@ using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.HarmonyPatches.DualWield;
 
+[HarmonyPatchCategory("LatePatches")]
 [HarmonyPatch(typeof(Agent), "WieldNextWeapon")]
 public static class DualWieldScrollPatch
 {
