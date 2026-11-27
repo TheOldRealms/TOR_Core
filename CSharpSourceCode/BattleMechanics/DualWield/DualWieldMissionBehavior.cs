@@ -409,6 +409,8 @@ public class DualWieldMissionBehavior : MissionBehavior
 	public DualWieldMissionBehavior()
 	{
 		IsActive = true;
+		// BISECT: verbose DW logging while hunting the slaangor offhand un-wield loop.
+		DualWieldLog.Unlimited = true;
 	}
 
 	private static string[] BuildDwcNames()
