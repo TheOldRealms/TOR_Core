@@ -1,5 +1,6 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TOR_Core.BattleMechanics.DualWield;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CharacterDevelopment
@@ -17,6 +18,8 @@ namespace TOR_Core.CharacterDevelopment
         private SkillEffect _blessingDuration;
         private SkillEffect _prayerDuration;
         private SkillEffect _ambushSpottingBonus;
+        private SkillEffect _berserkSwingSpeed;
+        private SkillEffect _berserkMovementSpeed;
 
         public static TORSkillEffects Instance { get; private set; }
         public static SkillEffect GunReloadSpeed => Instance._gunReloadSpeed;
@@ -31,6 +34,8 @@ namespace TOR_Core.CharacterDevelopment
         public static SkillEffect FaithWardSave => Instance._faithWardSave;
         public static SkillEffect BlessingDuration => Instance._blessingDuration;
         public static SkillEffect AmbushSpottingBonus => Instance._ambushSpottingBonus;
+        public static SkillEffect BerserkSwingSpeed => Instance._berserkSwingSpeed;
+        public static SkillEffect BerserkMovementSpeed => Instance._berserkMovementSpeed;
 
         public TORSkillEffects()
         {
@@ -46,6 +51,8 @@ namespace TOR_Core.CharacterDevelopment
             _prayerEffectiveness = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("PrayerEffectiveness"));
             _prayerDuration = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("PrayerDuration"));
             _ambushSpottingBonus = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("AmbushSpottingBonus"));
+            _berserkSwingSpeed = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("BerserkSwingSpeed"));
+            _berserkMovementSpeed = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("BerserkMovementSpeed"));
 
             _gunReloadSpeed.Initialize(TORTextHelper.GetTextObject("tor_skill_effect_gun_reload_speed", "Gunpowder firearms reload speed: +{a0} %"),
             TORSkills.GunPowder, PartyRole.Personal, 0.0007f, EffectIncrementType.AddFactor, 0f, 0f);
@@ -80,6 +87,15 @@ namespace TOR_Core.CharacterDevelopment
 
             _ambushSpottingBonus.Initialize(TORTextHelper.GetTextObject("tor_skill_effect_ambush_spotting", "Ambush detection: +{a0} % (combined from leader and Scout, higher dominates)"),
             DefaultSkills.Scouting, PartyRole.Scout, 0.0015f, EffectIncrementType.AddFactor);
+
+            // Berserk display effects. Coefficients MUST stay in sync with
+            // BerserkBonusModel.SwingSpeedPerLevel / MovementSpeedPerLevel so
+            // the "Personal: X" tooltip reads the same number the runtime applies.
+            _berserkSwingSpeed.Initialize(TORTextHelper.GetTextObject("tor_skill_effect_berserk_swing_speed", "Paired-weapons swing speed: +{a0} %"),
+            TORSkills.Berserk, PartyRole.Personal, BerserkBonusModel.SwingSpeedPerLevel, EffectIncrementType.AddFactor, 0f, 0f);
+
+            _berserkMovementSpeed.Initialize(TORTextHelper.GetTextObject("tor_skill_effect_berserk_movement_speed", "Paired-weapons movement speed: +{a0} %"),
+            TORSkills.Berserk, PartyRole.Personal, BerserkBonusModel.MovementSpeedPerLevel, EffectIncrementType.AddFactor, 0f, 0f);
         }
     }
 }

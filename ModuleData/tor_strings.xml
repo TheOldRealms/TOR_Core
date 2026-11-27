@@ -145,6 +145,8 @@
   <string id="tor_skill_effect_blessing_duration" text="{=str_tor_skill_effect_blessing_duration}Blessing duration increase: +{a0} %" />
   <string id="tor_skill_effect_prayer_effectiveness" text="{=str_tor_skill_effect_prayer_effectiveness}Prayer effectiveness(Only Priests): +{a0} %" />
   <string id="tor_skill_effect_prayer_duration" text="{=str_tor_skill_effect_prayer_duration}Prayer duration increase(Only Priests): +{a0} %" />
+  <string id="tor_skill_effect_berserk_swing_speed" text="{=str_tor_skill_effect_berserk_swing_speed}Paired-weapons swing speed: +{a0} %" />
+  <string id="tor_skill_effect_berserk_movement_speed" text="{=str_tor_skill_effect_berserk_movement_speed}Paired-weapons movement speed: +{a0} %" />
 
   <!-- Character Traits - Skill labels -->
   <string id="tor_spellcaster_trait_name" text="{=str_tor_spellcaster_trait_name}Spellcaster" />

@@ -18,30 +18,39 @@ namespace TOR_Core.BattleMechanics.DualWield
     internal static class BerserkBonusModel
     {
         /// <summary>
-        /// Skill value at which the main hero matches Yotthani's flat default
-        /// (1.0 multiplier). Below this they scale down, above they scale up
-        /// to <see cref="MaxMultiplier"/>.
+        /// Swing-speed bonus per Berserk skill point for the main hero. 0.0005
+        /// = +15% at the vanilla skill cap (300), matching Yotthani's flat
+        /// default. Must stay in sync with <c>TORSkillEffects.BerserkSwingSpeed</c>
+        /// so the "Personal: X" tooltip reads the same number the runtime applies.
         /// </summary>
-        private const float ReferenceSkill = 150f;
-        private const float MinMultiplier = 0.5f;
-        private const float MaxMultiplier = 1.5f;
+        public const float SwingSpeedPerLevel = 0.0005f;
+
+        /// <summary>
+        /// Movement-speed bonus per Berserk skill point. 0.0003 = +9% at 300,
+        /// close to Yotthani's 10% flat default. Must stay in sync with
+        /// <c>TORSkillEffects.BerserkMovementSpeed</c>.
+        /// </summary>
+        public const float MovementSpeedPerLevel = 0.0003f;
 
         /// <summary>
         /// Skill value at which the offhand-damage multiplier reaches 1.0
-        /// (fully parity with main-hand). Capped at 1.0 above this.
+        /// (parity with main-hand). Capped at 1.0 above.
         /// </summary>
         private const float OffHandParitySkill = 200f;
         private const float OffHandPenaltyAtZero = 0.85f;
 
         /// <summary>
-        /// Swing-speed multiplier bonus to add on top of Yotthani's flat base.
-        /// Returns the bonus FRACTION (0.15 = +15% swing speed); caller does
-        /// <c>SwingSpeedMultiplier *= 1 + bonus</c>.
+        /// Swing-speed multiplier bonus. Returns the bonus FRACTION (0.15 =
+        /// +15% swing speed); caller does <c>SwingSpeedMultiplier *= 1 + bonus</c>.
+        /// Main hero scales linearly with Berserk skill level; NPCs read
+        /// Yotthani's flat <c>AttackSpeedBonus</c> scaled by <c>NpcBonusShare</c>.
         /// </summary>
         public static float SwingSpeedBonus(Agent agent)
         {
-            float flat = DualWieldSettings.Get().AttackSpeedBonus;
-            return flat * BerserkScale(agent);
+            if (!IsMainHeroAgent(agent))
+                return DualWieldSettings.Get().AttackSpeedBonus * DualWieldSettings.Get().NpcBonusShare;
+
+            return Hero.MainHero.GetSkillValue(TORSkills.Berserk) * SwingSpeedPerLevel;
         }
 
         /// <summary>
@@ -49,16 +58,17 @@ namespace TOR_Core.BattleMechanics.DualWield
         /// </summary>
         public static float MovementSpeedBonus(Agent agent)
         {
-            float flat = DualWieldSettings.Get().MovementSpeedBonus;
-            return flat * BerserkScale(agent);
+            if (!IsMainHeroAgent(agent))
+                return DualWieldSettings.Get().MovementSpeedBonus * DualWieldSettings.Get().NpcBonusShare;
+
+            return Hero.MainHero.GetSkillValue(TORSkills.Berserk) * MovementSpeedPerLevel;
         }
 
         /// <summary>
-        /// Offhand-damage multiplier to apply to blow magnitude. Starts at
-        /// <see cref="OffHandPenaltyAtZero"/> for a Berserk-0 hero and climbs
-        /// linearly to 1.0 at <see cref="OffHandParitySkill"/>, capped at 1.0
-        /// so offhand never exceeds mainhand without an explicit perk. NPCs
-        /// read Yotthani's flat default scaled by <c>NpcBonusShare</c>.
+        /// Offhand-damage multiplier. Starts at <see cref="OffHandPenaltyAtZero"/>
+        /// at Berserk 0 and climbs linearly to 1.0 at <see cref="OffHandParitySkill"/>,
+        /// capped at 1.0 so offhand never exceeds mainhand without an explicit perk.
+        /// NPCs read Yotthani's flat default (0.85).
         /// </summary>
         public static float OffHandDamageMultiplier(Agent agent)
         {
@@ -67,21 +77,6 @@ namespace TOR_Core.BattleMechanics.DualWield
             float skill = Hero.MainHero.GetSkillValue(TORSkills.Berserk);
             float progress = MathF.Clamp(skill / OffHandParitySkill, 0f, 1f);
             return OffHandPenaltyAtZero + (1f - OffHandPenaltyAtZero) * progress;
-        }
-
-        /// <summary>
-        /// Multiplier applied to Yotthani's flat bonuses for the main hero.
-        /// At Berserk 0: <see cref="MinMultiplier"/>. At <see cref="ReferenceSkill"/>:
-        /// 1.0 (Yotthani's default). Climbing to <see cref="MaxMultiplier"/> at
-        /// double the reference. For NPCs returns <c>NpcBonusShare</c>.
-        /// </summary>
-        private static float BerserkScale(Agent agent)
-        {
-            if (!IsMainHeroAgent(agent)) return DualWieldSettings.Get().NpcBonusShare;
-
-            float skill = Hero.MainHero.GetSkillValue(TORSkills.Berserk);
-            float raw = MinMultiplier + (MaxMultiplier - MinMultiplier) * (skill / (2f * ReferenceSkill));
-            return MathF.Clamp(raw, MinMultiplier, MaxMultiplier);
         }
 
         private static bool IsMainHeroAgent(Agent agent)
