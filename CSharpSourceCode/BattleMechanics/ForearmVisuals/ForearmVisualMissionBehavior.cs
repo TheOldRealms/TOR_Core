@@ -119,44 +119,6 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
         /// <see cref="ForearmGraftHelper"/>; passes the instance
         /// tracking HashSet so cross-wield cleanup happens.
         /// </summary>
-        private static int _refreshLogged;
-        private static int _rootTreeLogged;
-
-        private static string DescribeEntityTree(TaleWorlds.Engine.GameEntity entity, int depth)
-        {
-            if (entity == null) return new string(' ', depth * 2) + "(null)";
-            var sb = new System.Text.StringBuilder();
-            string indent = new string(' ', depth * 2);
-            string name = "";
-            try { name = entity.Name ?? ""; } catch { }
-            int mmCount = 0;
-            try { mmCount = entity.MultiMeshComponentCount; } catch { }
-            sb.Append(indent).Append("entity '").Append(name).Append("' mmCount=").Append(mmCount);
-
-            for (int m = 0; m < mmCount; m++)
-            {
-                var mm = entity.GetMetaMesh(m);
-                if (mm == null) continue;
-                for (int i = 0; i < mm.MeshCount; i++)
-                {
-                    var sub = mm.GetMeshAtIndex(i);
-                    if (sub == null || string.IsNullOrEmpty(sub.Name)) continue;
-                    sb.Append(" mesh='").Append(sub.Name).Append("'/vis=").Append((int)sub.VisibilityMask);
-                }
-            }
-            var first = entity.GetFirstMesh();
-            if (first != null && !string.IsNullOrEmpty(first.Name))
-            {
-                sb.Append(" first='").Append(first.Name).Append("'/vis=").Append((int)first.VisibilityMask);
-            }
-
-            foreach (var child in entity.GetChildren())
-            {
-                sb.Append('\n').Append(DescribeEntityTree(child, depth + 1));
-            }
-            return sb.ToString();
-        }
-
         private void RefreshAgentForearmAndHands(Agent agent)
         {
             if (agent == null || !agent.IsHuman || agent.AgentVisuals == null) return;
@@ -178,38 +140,6 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
             else
             {
                 return;
-            }
-
-            if (agent.Equipment != null)
-            {
-                bool anyClaw = false;
-                string slots = "";
-                for (var i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumAllWeaponSlots; i++)
-                {
-                    var el = agent.Equipment[i];
-                    if (el.IsEmpty || el.Item == null) continue;
-                    var mode = el.Item.GetHideHandType();
-                    if (mode != HideHandType.None) anyClaw = true;
-                    slots += $" s{(int)i}='{el.Item.StringId}'/HH={mode}";
-
-                    // Log once per claw-equipped refresh.
-                    if (mode != HideHandType.None && _rootTreeLogged < 10)
-                    {
-                        _rootTreeLogged++;
-                        var root = agent.AgentVisuals?.GetEntity();
-                        if (root != null)
-                        {
-                            string tree = DescribeEntityTree(root, 0);
-                            TORCommon.Log($"[Claw.RootTree] agent={agent.Name} ENTIRE agent root tree:\n{tree}", LogLevel.Info);
-                        }
-                        break;
-                    }
-                }
-                if (anyClaw || _refreshLogged < 50)
-                {
-                    _refreshLogged++;
-                    TORCommon.Log($"[Claw.Refresh] agent={agent.Name} combinedHideMode={hideMode} slots:{slots}", LogLevel.Info);
-                }
             }
 
             ForearmGraftHelper.ApplyPerHandVisibility(visuals, hideMode, _knownForearmMeshNames);

@@ -32,7 +32,6 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
             if (visuals == null || equipment == null) return false;
 
             HashSet<string> activeForearmNames = null;
-            HashSet<string> rigidNamesToHide = null;
             bool anyFailed = false;
 
             for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumAllWeaponSlots; i++)
@@ -40,7 +39,10 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
                 var element = equipment[i];
                 if (element.IsEmpty || element.Item == null) continue;
 
-                string forearmMeshName = element.Item.GetForearmMeshName();
+                bool offhandSide = i == EquipmentIndex.Weapon1 || i == EquipmentIndex.ExtraWeaponSlot;
+                string forearmMeshName = offhandSide
+                    ? element.Item.GetForearmMeshLeftName()
+                    : element.Item.GetForearmMeshName();
                 if (string.IsNullOrEmpty(forearmMeshName)) continue;
 
                 if (!EnsureForearmMeshOnSkeleton(visuals, forearmMeshName, trackingForearmNames))
@@ -51,9 +53,6 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
 
                 activeForearmNames ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 activeForearmNames.Add(forearmMeshName);
-
-                rigidNamesToHide ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                CollectRigidItemMeshNames(element.Item, rigidNamesToHide);
             }
 
             if (trackingForearmNames != null)
@@ -61,23 +60,11 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
                 SyncInactiveForearmMeshes(visuals, activeForearmNames, trackingForearmNames);
             }
 
-            if (rigidNamesToHide != null && rigidNamesToHide.Count > 0)
-            {
-                HideRigidMeshes(visuals, rigidNamesToHide);
-            }
-
             return anyFailed;
         }
 
         /// <summary>
         /// Mission-equipment variant of <see cref="ApplyFromEquipment"/>.
-        /// When an <paramref name="agent"/> is supplied, rigid mesh hides
-        /// are scoped to the specific weapon entity on the arm that
-        /// receives the forearm graft (via
-        /// <c>Agent.GetWeaponEntityFromEquipmentSlot</c>), leaving an
-        /// offhand-wielded copy of the same item visible. Needed for
-        /// dual-wielded claws where mainhand and offhand share one
-        /// rigid mesh name: the global hide would blank both arms.
         /// </summary>
         public static bool ApplyFromMissionEquipment(MBAgentVisuals visuals, MissionEquipment equipment, Agent agent = null, HashSet<string> trackingForearmNames = null)
         {
@@ -131,8 +118,6 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
         /// <c>left_hand</c> on the rig's hand meshes); rigs without
         /// those tags are a content issue, not a code fallback.
         /// </summary>
-        private static int _handLogged;
-
         public static void ApplyPerHandVisibility(MBAgentVisuals visuals, HideHandType hideMode, HashSet<string> trackingForearmNames = null)
         {
             if (visuals == null) return;
@@ -144,18 +129,11 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
             bool hideRight = hideMode == HideHandType.Right || hideMode == HideHandType.Both;
             bool hideLeft = hideMode == HideHandType.Left || hideMode == HideHandType.Both;
 
-            int rightFound = 0, leftFound = 0;
-            // Always collect for claw-hide (hideMode != None) events, cap
-            // only neutral refreshes to keep log readable.
-            bool forceLog = hideMode != HideHandType.None;
-            string allMeshNames = (forceLog || _handLogged < 10) ? "" : null;
-
             // Rigs rarely tag hand submeshes; the vanilla and TOR races
             // (cultist, gor2/slaangor, etc.) use mesh naming like
             // 'hands_male_a' / 'gor_hands_v2' / 'gor_hands_v2.1' with
             // no tag. Fall back to name match -- "hands" (plural) is
             // narrow enough to miss "handguard" / "handle".
-            int nameHandsHidden = 0;
             foreach (Mesh mesh in skeleton.GetAllMeshes())
             {
                 if (mesh == null) continue;
@@ -166,15 +144,8 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
                     && mesh.Name.IndexOf("hands", StringComparison.OrdinalIgnoreCase) >= 0
                     && mesh.Name.IndexOf("handguard", StringComparison.OrdinalIgnoreCase) < 0;
 
-                if (allMeshNames != null)
-                {
-                    string tagFlag = isRightHand ? "[RH]" : isLeftHand ? "[LH]" : (isNameHands ? "[NH]" : "");
-                    allMeshNames += $"{mesh.Name}{tagFlag},";
-                }
-
                 if (isRightHand)
                 {
-                    rightFound++;
                     if (hideRight)
                     {
                         mesh.SetVisibilityMask(HiddenMask);
@@ -186,7 +157,6 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
                 }
                 else if (isLeftHand)
                 {
-                    leftFound++;
                     if (hideLeft)
                     {
                         mesh.SetVisibilityMask(HiddenMask);
@@ -196,29 +166,14 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
                         mesh.SetVisibilityMask(visibleMask);
                     }
                 }
-                else if (isNameHands)
+                else if (isNameHands && hideRight && hideLeft)
                 {
                     // Untagged hand submesh (common case). Hide when
                     // hideMode is Both. For single-hand hides we lack
                     // the discriminator; the forearm graft covering the
                     // right arm is enough in the one-claw case.
-                    if (hideRight && hideLeft)
-                    {
-                        mesh.SetVisibilityMask(HiddenMask);
-                        nameHandsHidden++;
-                    }
+                    mesh.SetVisibilityMask(HiddenMask);
                 }
-            }
-
-            if (forceLog)
-            {
-                TOR_Core.Utilities.TORCommon.Log($"[Claw.Hands] name-fallback hid {nameHandsHidden} 'hands' meshes (hideMode={hideMode})", NLog.LogLevel.Info);
-            }
-
-            if (allMeshNames != null)
-            {
-                _handLogged++;
-                TOR_Core.Utilities.TORCommon.Log($"[Claw.Hands] hideMode={hideMode} rightFound={rightFound} leftFound={leftFound} meshes=[{allMeshNames}]", NLog.LogLevel.Info);
             }
         }
 
@@ -331,126 +286,6 @@ namespace TOR_Core.BattleMechanics.ForearmVisuals
                 {
                     mesh.SetVisibilityMask(HiddenMask);
                 }
-            }
-        }
-
-        public static void CollectRigidItemMeshNames(ItemObject item, HashSet<string> target)
-        {
-            if (item == null) return;
-
-            if (!string.IsNullOrEmpty(item.MultiMeshName))
-            {
-                target.Add(StripLodToken(item.MultiMeshName.Trim()));
-            }
-
-            var usedPieces = item.WeaponDesign?.UsedPieces;
-            if (usedPieces != null)
-            {
-                foreach (var pieceElement in usedPieces)
-                {
-                    string pieceMesh = pieceElement?.CraftingPiece?.MeshName;
-                    if (!string.IsNullOrEmpty(pieceMesh))
-                    {
-                        target.Add(StripLodToken(pieceMesh.Trim()));
-                    }
-                }
-            }
-        }
-
-        public static void HideRigidMeshes(MBAgentVisuals visuals, HashSet<string> rigidNames)
-        {
-            Skeleton skeleton = visuals.GetSkeleton();
-            if (skeleton != null)
-            {
-                foreach (Mesh mesh in skeleton.GetAllMeshes())
-                {
-                    if (mesh == null || string.IsNullOrEmpty(mesh.Name)) continue;
-                    if (rigidNames.Contains(StripLodToken(mesh.Name.Trim())))
-                    {
-                        mesh.SetVisibilityMask(HiddenMask);
-                    }
-                }
-            }
-
-            GameEntity root = visuals.GetEntity();
-            if (root != null)
-            {
-                foreach (GameEntity child in root.GetChildren())
-                {
-                    HideMatchingChildEntitiesRecursive(child, rigidNames);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Agent-scoped rigid-mesh hide: for each slot whose item got a
-        /// forearm graft, hides only the meshes on that slot's own
-        /// <c>GetWeaponEntityFromEquipmentSlot</c> entity. Also walks the
-        /// agent's body skeleton (holstered / native-weapon copies live
-        /// there). An offhand-wielded sibling with the same rigid mesh
-        /// name keeps its native visuals — the dual-wield case this
-        /// method exists for.
-        /// </summary>
-        public static void HideRigidMeshesOnGraftedSlotEntities(MBAgentVisuals visuals, Agent agent, List<EquipmentIndex> graftedSlots, HashSet<string> rigidNames)
-        {
-            if (visuals == null || agent == null || graftedSlots == null || rigidNames == null || rigidNames.Count == 0)
-            {
-                return;
-            }
-
-            Skeleton skeleton = visuals.GetSkeleton();
-            if (skeleton != null)
-            {
-                foreach (Mesh mesh in skeleton.GetAllMeshes())
-                {
-                    if (mesh == null || string.IsNullOrEmpty(mesh.Name)) continue;
-                    if (rigidNames.Contains(StripLodToken(mesh.Name.Trim())))
-                    {
-                        mesh.SetVisibilityMask(HiddenMask);
-                    }
-                }
-            }
-
-            foreach (var slot in graftedSlots)
-            {
-                WeakGameEntity weak = agent.GetWeaponEntityFromEquipmentSlot(slot);
-                if (!weak.IsValid) continue;
-
-                GameEntity weaponEntity = TaleWorlds.Engine.GameEntity.CreateFromWeakEntity(weak);
-                if (weaponEntity == null) continue;
-
-                HideMatchingChildEntitiesRecursive(weaponEntity, rigidNames);
-            }
-        }
-
-        private static void HideMatchingChildEntitiesRecursive(GameEntity entity, HashSet<string> rigidNames)
-        {
-            if (entity == null) return;
-
-            int mmCount = entity.MultiMeshComponentCount;
-            for (int m = 0; m < mmCount; m++)
-            {
-                MetaMesh mm = entity.GetMetaMesh(m);
-                if (mm == null) continue;
-                for (int i = 0; i < mm.MeshCount; i++)
-                {
-                    Mesh sub = mm.GetMeshAtIndex(i);
-                    if (sub != null && !string.IsNullOrEmpty(sub.Name) && rigidNames.Contains(StripLodToken(sub.Name.Trim())))
-                    {
-                        sub.SetVisibilityMask(HiddenMask);
-                    }
-                }
-            }
-
-            Mesh firstMesh = entity.GetFirstMesh();
-            if (firstMesh != null && !string.IsNullOrEmpty(firstMesh.Name) && rigidNames.Contains(StripLodToken(firstMesh.Name.Trim())))
-            {
-                firstMesh.SetVisibilityMask(HiddenMask);
-            }
-
-            foreach (GameEntity grandChild in entity.GetChildren())
-            {
-                HideMatchingChildEntitiesRecursive(grandChild, rigidNames);
             }
         }
 

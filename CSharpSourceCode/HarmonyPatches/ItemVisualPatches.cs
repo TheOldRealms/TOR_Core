@@ -100,77 +100,57 @@ namespace TOR_Core.HarmonyPatches
     /// their native visuals so the dual-wielded claw shows on the
     /// left arm where no left-rigged forearm graft exists.
     /// </summary>
+    /// <summary>
+    /// Per-equip-entity hook that hides the raw weapon entity's mesh
+    /// right when the engine attaches it to a hand bone. OnAgentBuild
+    /// runs BEFORE weapon entities exist, so the refresh-only path has
+    /// no entity to find and the raw claw mesh survives on top of the
+    /// forearm graft. Complements the material-swap in
+    /// <see cref="ForearmInventoryIconPatch"/> for first-frame hide
+    /// reliability.
+    ///
+    /// Scope: only mainhand-side slots (0, 2, 3). The offhand-side
+    /// slots 1 and 4 (Yotthani's banner-slot reshuffle target) keep
+    /// their native visuals so the dual-wielded claw's left-arm
+    /// forearm graft is what renders in that position.
+    /// </summary>
     [HarmonyPatch]
     [HarmonyPatchCategory("LatePatches")]
     public static class ForearmWeaponEntityHidePatch
     {
         private const VisibilityMaskFlags HiddenMask = (VisibilityMaskFlags)0;
-        private static int _logged;
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(Agent), "WeaponEquipped")]
         public static void WeaponEquippedPostfix(Agent __instance, EquipmentIndex equipmentSlot, WeakGameEntity weaponEntity)
         {
-            // Always log claw-item events (bypass global cap). For non-claw
-            // items, cap to prevent log spam.
-            var element = __instance == null ? default : __instance.Equipment[equipmentSlot];
-            bool isClawItem = element.Item != null && !string.IsNullOrEmpty(element.Item.GetForearmMeshName());
-            bool logThis = isClawItem || _logged < 50;
+            if (__instance == null || !__instance.IsHuman) return;
+            if (equipmentSlot < EquipmentIndex.WeaponItemBeginSlot || equipmentSlot >= EquipmentIndex.NumAllWeaponSlots) return;
+            if (equipmentSlot == EquipmentIndex.Weapon1 || equipmentSlot == EquipmentIndex.ExtraWeaponSlot) return;
 
-            if (__instance == null || !__instance.IsHuman)
-            {
-                if (logThis) { _logged++; TORCommon.Log($"[Claw.WEq] skip: nonhuman/null agent={__instance?.Name}", LogLevel.Info); }
-                return;
-            }
-            if (equipmentSlot < EquipmentIndex.WeaponItemBeginSlot || equipmentSlot >= EquipmentIndex.NumAllWeaponSlots)
-            {
-                if (logThis) { _logged++; TORCommon.Log($"[Claw.WEq] skip: out-of-range slot={(int)equipmentSlot} agent={__instance.Name}", LogLevel.Info); }
-                return;
-            }
-            if (element.IsEmpty || element.Item == null)
-            {
-                if (logThis) { _logged++; TORCommon.Log($"[Claw.WEq] skip: empty slot={(int)equipmentSlot} agent={__instance.Name}", LogLevel.Info); }
-                return;
-            }
-            string fm = element.Item.GetForearmMeshName();
-            if (string.IsNullOrEmpty(fm))
-            {
-                if (logThis) { _logged++; TORCommon.Log($"[Claw.WEq] skip: no ForearmMesh on '{element.Item.StringId}' slot={(int)equipmentSlot} agent={__instance.Name}", LogLevel.Info); }
-                return;
-            }
-            if (equipmentSlot == EquipmentIndex.Weapon1 || equipmentSlot == EquipmentIndex.ExtraWeaponSlot)
-            {
-                TORCommon.Log($"[Claw.WEq] skip: offhand-side slot={(int)equipmentSlot} item='{element.Item.StringId}' agent={__instance.Name} (leaving native visual)", LogLevel.Info);
-                return;
-            }
-            // Postfix param weaponEntity is often invalid (natural-weapon
-            // / Yotthani-wielded path). Re-fetch via the agent's live
-            // slot accessor instead -- that one works after the attach
-            // completes.
+            var element = __instance.Equipment[equipmentSlot];
+            if (element.IsEmpty || element.Item == null) return;
+            if (string.IsNullOrEmpty(element.Item.GetForearmMeshName())) return;
+
+            // Postfix param weaponEntity is often invalid on the
+            // natural-weapon / Yotthani-wielded path. Re-fetch via the
+            // agent's live slot accessor -- that one works after the
+            // attach completes.
             if (!weaponEntity.IsValid)
             {
                 weaponEntity = __instance.GetWeaponEntityFromEquipmentSlot(equipmentSlot);
-                if (!weaponEntity.IsValid)
-                {
-                    TORCommon.Log($"[Claw.WEq] skip: no valid WeakGameEntity even via agent lookup slot={(int)equipmentSlot} item='{element.Item.StringId}' agent={__instance.Name}", LogLevel.Info);
-                    return;
-                }
+                if (!weaponEntity.IsValid) return;
             }
 
             GameEntity entity = GameEntity.CreateFromWeakEntity(weaponEntity);
-            if (entity == null)
-            {
-                TORCommon.Log($"[Claw.WEq] skip: CreateFromWeakEntity returned null slot={(int)equipmentSlot} agent={__instance.Name}", LogLevel.Info);
-                return;
-            }
+            if (entity == null) return;
 
-            int hidden = HideAllMeshesRecursive(entity, 0);
-            TORCommon.Log($"[Claw.WEq] HIDE slot={(int)equipmentSlot} item='{element.Item.StringId}' agent={__instance.Name} meshesHidden={hidden}", LogLevel.Info);
+            HideAllMeshesRecursive(entity);
         }
 
-        private static int HideAllMeshesRecursive(GameEntity entity, int counter)
+        private static void HideAllMeshesRecursive(GameEntity entity)
         {
-            if (entity == null) return counter;
+            if (entity == null) return;
 
             int mmCount = entity.MultiMeshComponentCount;
             for (int m = 0; m < mmCount; m++)
@@ -180,27 +160,17 @@ namespace TOR_Core.HarmonyPatches
                 for (int i = 0; i < mm.MeshCount; i++)
                 {
                     Mesh sub = mm.GetMeshAtIndex(i);
-                    if (sub != null)
-                    {
-                        sub.SetVisibilityMask(HiddenMask);
-                        counter++;
-                    }
+                    sub?.SetVisibilityMask(HiddenMask);
                 }
             }
 
             Mesh firstMesh = entity.GetFirstMesh();
-            if (firstMesh != null)
-            {
-                firstMesh.SetVisibilityMask(HiddenMask);
-                counter++;
-            }
+            firstMesh?.SetVisibilityMask(HiddenMask);
 
             foreach (GameEntity child in entity.GetChildren())
             {
-                counter = HideAllMeshesRecursive(child, counter);
+                HideAllMeshesRecursive(child);
             }
-
-            return counter;
         }
     }
 }
