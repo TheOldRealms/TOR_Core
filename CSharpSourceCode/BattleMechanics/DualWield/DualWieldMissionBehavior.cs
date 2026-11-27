@@ -409,6 +409,9 @@ public class DualWieldMissionBehavior : MissionBehavior
 	public DualWieldMissionBehavior()
 	{
 		IsActive = true;
+		// DIAG: verbose log to trace why slaangor spawn-postfix doesn't reach
+		// AttachOffHandWeapon. Revert after the attachment path is confirmed.
+		DualWieldLog.Unlimited = true;
 	}
 
 	private static string[] BuildDwcNames()
