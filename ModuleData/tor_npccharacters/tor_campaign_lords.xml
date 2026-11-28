@@ -12897,7 +12897,7 @@
       <EquipmentSet id="tor_brasskeep_lord_1_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_brasskeep_first_7" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_6_copy}Ebolas Chosen of Nurgle" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_berserker_lord" race="marauder" is_hero="true">
+  <NPCCharacter id="tor_chaos_lord_brasskeep_first_7" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_7}Ebolas Chosen of Nurgle" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_berserker_lord" race="marauder" is_hero="true">
     <face>
       <BodyProperties version="4" age="27" weight="0.4573" build="0.665" key="001548015CA0004039879AA94A3968D7D81374753427675749786583D87194986A4436030DDA98BAA78862895A888A47000000000000000D000000001FAC8002" />
     </face>
@@ -12915,7 +12915,7 @@
       <EquipmentSet id="tor_brasskeep_lord_1_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_brasskeep_first_8" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_7_copy}Rotticus Chosen of Nurgle" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_berserker_lord" race="marauder" is_hero="true">
+  <NPCCharacter id="tor_chaos_lord_brasskeep_first_8" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_8}Rotticus Chosen of Nurgle" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_berserker_lord" race="marauder" is_hero="true">
     <face>
       <BodyProperties version="4" age="27" weight="0.4573" build="0.665" key="001548015CA0004039879AA94A3968D7D81374753427675749786583D87194986A4436030DDA98BAA78862895A888A47000000000000000D000000001FAC8002" />
     </face>
@@ -12933,7 +12933,7 @@
       <EquipmentSet id="tor_brasskeep_lord_1_template" equipmentType="Civilian" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_skulltakers_factionleader" name="Chaos Lord Chammon" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord">
+  <NPCCharacter id="tor_chaos_lord_skulltakers_factionleader" name="{=str_tor_chaos_lord_skulltakers_factionleader}Chaos Lord Chammon" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord">
     <Equipments>
       <EquipmentSet id="tor_chammon_khorne_template" />
     </Equipments>
@@ -12950,7 +12950,7 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_skulltakers_first_2" name="Vekhoth Chosen of Khorne" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord">
+  <NPCCharacter id="tor_chaos_lord_skulltakers_first_2" name="{=str_tor_chaos_lord_skulltakers_first_2}Vekhoth Chosen of Khorne" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord">
     <Equipments>
       <EquipmentSet id="tor_generic_khorne_lord_template" />
     </Equipments>
@@ -12967,7 +12967,7 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_skulltakers_first_3" name="Bael the Crimson Barbarian" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord">
+  <NPCCharacter id="tor_chaos_lord_skulltakers_first_3" name="{=str_tor_chaos_lord_skulltakers_first_3}Bael the Crimson Barbarian" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord">
     <Equipments>
       <EquipmentSet id="tor_generic_khorne_lord_template" />
     </Equipments>
@@ -12984,7 +12984,7 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_skulltakers_first_4" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="Khrovak Scarred Pillager of Lyonesse">
+  <NPCCharacter id="tor_chaos_lord_skulltakers_first_4" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="{=str_tor_chaos_lord_skulltakers_first_4}Khrovak Scarred Pillager of Lyonesse">
     <Equipments>
       <EquipmentSet id="tor_generic_khorne_lord_template" />
     </Equipments>
@@ -13001,7 +13001,7 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_skulltakers_first_5" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="Skeinya Daugter of Red Mist" is_female="true">
+  <NPCCharacter id="tor_chaos_lord_skulltakers_first_5" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="{=str_tor_chaos_lord_skulltakers_first_5}Skeinya Daugter of Red Mist" is_female="true">
     <Equipments>
       <EquipmentSet id="tor_generic_khorne_lord_female_template" />
     </Equipments>
@@ -13018,7 +13018,7 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_skulltakers_first_6" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="Khuzorath Chosen of Khorne">
+  <NPCCharacter id="tor_chaos_lord_skulltakers_first_6" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="{=str_tor_chaos_lord_skulltakers_first_6}Khuzorath Chosen of Khorne">
     <Equipments>
       <EquipmentSet id="tor_generic_khorne_lord_template" />
     </Equipments>
@@ -13035,7 +13035,7 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_skulltakers_first_7" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="Skavean the Bloodhound">
+  <NPCCharacter id="tor_chaos_lord_skulltakers_first_7" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="{=str_tor_chaos_lord_skulltakers_first_7}Skavean the Bloodhound">
     <Equipments>
       <EquipmentSet id="tor_generic_khorne_lord_template" />
     </Equipments>
@@ -13052,7 +13052,7 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_skulltakers_first_8" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="Mornan Chosen of Khorne">
+  <NPCCharacter id="tor_chaos_lord_skulltakers_first_8" default_group="infantry" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" race="marauder" skill_template="SkillSet.tor_skills_khorne_lord" name="{=str_tor_chaos_lord_skulltakers_first_8}Mornan Chosen of Khorne">
     <Equipments>
       <EquipmentSet id="tor_generic_khorne_lord_template" />
     </Equipments>
